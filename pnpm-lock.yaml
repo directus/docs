@@ -8,6 +8,9 @@ dependencies:
   '@directus/format-title':
     specifier: ^11.0.0
     version: 11.0.0
+  '@directus/sdk':
+    specifier: ^17.0.0
+    version: 17.0.0
   '@iconify-json/material-symbols':
     specifier: ^1.1.88
     version: 1.1.88
@@ -426,6 +429,11 @@ packages:
   /@directus/format-title@11.0.0:
     resolution: {integrity: sha512-M4Xvwsc8M0x/ZvmxDmSmoechTQ/HRAFjj+PYi5Psn0/XhZ9vU3E8dadEXQDm0UGb30jdt0nrWBSU2+L5AgEwDw==}
     engines: {node: '>=18'}
+    dev: false
+
+  /@directus/sdk@17.0.0:
+    resolution: {integrity: sha512-ADKoFrLjWPVVsYNK0EffVFstl/ZHVaQbiUp4NCueKfvFaOSLQ16xSVNj5O//rP5+rU8t1HkjwC6JDh02rao7ZQ==}
+    engines: {node: '>=18.0.0'}
     dev: false
 
   /@es-joy/jsdoccomment@0.48.0:
