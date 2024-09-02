@@ -7,7 +7,6 @@ const { data } = await useAsyncData(route.path, () =>
 if (!data.value) {
 	throw createError({
 		statusCode: 404,
-		statusMessage: 'data not found',
 		fatal: true,
 	});
 }
@@ -28,7 +27,7 @@ useSeoMeta({
 
 <template>
 	<div class="docs container">
-		<UiAsideNav directory="/dev" />
+		<UiAsideNav :path="route.path" />
 		<div class="slug">
 			<main v-if="data">
 				<article>
@@ -53,10 +52,9 @@ useSeoMeta({
 			</main>
 			<aside>
 				<AsideTableOfContents
-					v-if="data?.body?.toc?.links?.length > 0"
+					v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
 					:toc="data?.body?.toc"
 				/>
-
 				<AsideNewsletter />
 				<AsideFeedback />
 			</aside>
