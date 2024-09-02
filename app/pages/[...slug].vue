@@ -2,7 +2,7 @@
 const route = useRoute();
 
 const { data } = await useAsyncData(route.path, () =>
-	queryContent(route.path).findOne(),
+	queryContent().where({ $or: [{ _path: { $eq: route.path } }, { additional_paths: { $contains: route.path } }] }).findOne(),
 );
 if (!data.value) {
 	throw createError({
