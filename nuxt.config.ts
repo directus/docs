@@ -26,7 +26,9 @@ export default defineNuxtConfig({
 
 			const remotePath = resolve(__dirname, '.remote');
 
-			await fs.rm(remotePath, { recursive: true });
+			if (await fs.access(remotePath).then(() => true).catch(() => false)) {
+				await fs.rm(remotePath, { recursive: true });
+			}
 
 			for (const area of docs) {
 				if (!area.categories) continue;
