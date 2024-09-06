@@ -24,6 +24,7 @@
         "@nuxtjs/seo": "2.0.0-rc.19",
         "@vueuse/core": "^11.0.1",
         "@vueuse/nuxt": "^11.0.1",
+        "confbox": "^0.1.7",
         "nuxt": "^3.12.4",
         "nuxt-security": "2.0.0-rc.9",
         "radix-vue": "^1.9.4",

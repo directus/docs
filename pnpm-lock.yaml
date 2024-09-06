@@ -38,6 +38,9 @@ dependencies:
   '@vueuse/nuxt':
     specifier: ^11.0.1
     version: 11.0.1(nuxt@3.13.0)(vue@3.4.38)
+  confbox:
+    specifier: ^0.1.7
+    version: 0.1.7
   nuxt:
     specifier: ^3.12.4
     version: 3.13.0(eslint@8.57.0)(sass@1.77.8)(typescript@5.5.4)(vite@5.4.2)(vue-tsc@2.0.29)

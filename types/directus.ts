@@ -57,6 +57,7 @@ interface DocumentationArea {
 	user_updated?: string; // Optional UUID
 	date_updated?: string | Date; // Optional DateTime
 	slug: string; // String
+	type: 'documentation' | 'article';
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
 	categories: DocumentationCategory[]; // Array of DocumentationCategory
 }
@@ -85,6 +86,8 @@ interface DocumentationPage {
 	category: string | DocumentationCategory; // UUID or DocumentationCategory
 	slug: string; // String
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
+	tags: DocumentationPagesTags[]; // Array of DocumentationPagesTags
+	additional_paths: DocumentationAdditionalPath[]; // Array of Documentation
 	title: string; // String
 	content: string; // String
 	sort?: number; // Optional Integer
@@ -94,6 +97,32 @@ interface DocumentationPage {
 	date_updated?: string | Date; // Optional DateTime
 }
 
+interface DocumentationTag {
+	id: string; // UUID
+	icon: string; // String
+	name?: string; // String
+	user_created?: string; // Optional UUID
+	date_created?: string | Date; // Optional DateTime
+	user_updated?: string; // Optional UUID
+	date_updated?: string | Date; // Optional DateTime
+}
+
+interface DocumentationAdditionalPath {
+	id: string; // UUID
+	path: string; // String
+	page: DocumentationPage; // UUID or DocumentationPage
+	user_created?: string; // Optional UUID
+	date_created?: string | Date; // Optional DateTime
+	user_updated?: string; // Optional UUID
+	date_updated?: string | Date; // Optional DateTime
+}
+
+interface DocumentationPagesTags {
+	id: string; // UUID
+	page: DocumentationPage; // UUID or DocumentationPage
+	tag: DocumentationTag; // UUID or DocumentationTag
+}
+
 export interface DirectusSchema {
 	article_area: ArticleArea[];
 	article_category: ArticleCategory[];
@@ -101,4 +130,7 @@ export interface DirectusSchema {
 	documentation_area: DocumentationArea[];
 	documentation_category: DocumentationCategory[];
 	documentation_page: DocumentationPage[];
+	documentation_tag: DocumentationTag[];
+	documentation_additional_path: DocumentationAdditionalPath[];
+	documentation_pages_tags: DocumentationPagesTags[];
 }

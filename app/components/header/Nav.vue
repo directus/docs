@@ -14,23 +14,34 @@ const nav = ref([
 	},
 	{
 		label: 'Directus Cloud',
-		to: '/cloud/projects/accounts',
+		to: '/cloud',
 		dir: '/cloud',
 		color: 'var(--section--cloud)',
 	},
 	{
 		label: 'Tutorials',
-		to: '/tutorials/example/example',
+		to: '/tutorials',
 		dir: '/tutorials',
 		color: 'var(--section--tutorials)',
 	},
 	{
 		label: 'Community',
-		to: '/community/example/example',
+		to: '/community',
 		dir: '/community',
 		color: 'var(--section--community)',
 	},
 ]);
+
+const rightNav = [
+	{
+		label: 'Directus TV',
+		href: 'https://directus.io/tv',
+	},
+	{
+		label: 'Starter Kits',
+		href: 'https://directus.io/tv',
+	},
+];
 
 const route = useRoute();
 
@@ -73,13 +84,32 @@ const navItems = computed(() => {
 				</NuxtLink>
 			</li>
 		</ul>
+		<ul class="container">
+			<li
+				v-for="item in rightNav"
+				:key="item.label"
+			>
+				<NuxtLink :to="item.href">
+					{{ item.label }}
+					<Icon name="material-symbols:open-in-new-rounded" />
+				</NuxtLink>
+			</li>
+		</ul>
 	</nav>
 </template>
 
 <style scoped>
+.container {
+  margin-left: 0px;
+  margin-right: 0px;
+}
 nav {
   background: var(--background--subdued);
   border: 2px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 ul {
   list-style-type: none;
@@ -90,7 +120,9 @@ ul {
 a {
   text-decoration: none;
   padding: var(--nav-padding) 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   border-bottom: 2px solid transparent;
   font-weight: 500;
   margin-bottom: -2px;

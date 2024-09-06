@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { TreeItem, TreeRoot } from 'radix-vue';
 
-const props = defineProps<{ items: any[] }>();
+defineProps<{ items: any[] }>();
 </script>
 
 <template>
