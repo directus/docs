@@ -36,7 +36,7 @@ export default defineNuxtConfig({
 					if (!category.pages) continue;
 					for (const page of category.pages) {
 						const pagePath = resolve(remotePath, `${area.sort}.${area.slug}`, `${category.sort}.${category.slug}`, `${page.sort}.${page.slug}` + '.md');
-						const pageContent = `---\ntitle: ${page.title}\n---\n${page.content}`;
+						const pageContent = `---\ntitle: "${page.title}"\n---\n${page.content}`;
 						await fs.mkdir(resolve(remotePath, `${area.sort}.${area.slug}`, `${category.sort}.${category.slug}`), { recursive: true });
 						await fs.writeFile(pagePath, pageContent);
 					}
