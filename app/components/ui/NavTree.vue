@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { TreeItem, TreeRoot } from 'radix-vue';
 
-const props = defineProps<{ items: any[] }>();
+// TODO: Use the correct type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+defineProps<{ items: any[] }>();
 </script>
 
 <template>

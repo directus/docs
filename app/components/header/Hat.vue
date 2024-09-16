@@ -3,11 +3,7 @@
 		<NuxtLink to="/">
 			<HeaderLogo />
 		</NuxtLink>
-		<div class="search">
-			<div class="search-box">
-				Search
-			</div>
-		</div>
+		<SearchButton />
 		<div class="links">
 			<a
 				href="https://x.com/directus"
@@ -55,21 +51,6 @@ header {
 	gap: 2rem;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
-}
-
-.search {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	.search-box {
-		background: white;
-		border: 1px solid var(--border-2);
-		border-radius: var(--border-radius);
-		width: 250px;
-		padding: 6px 9px;
-		font-size: 0.8rem;
-		color: var(--border-3);
-	}
 }
 
 .links {

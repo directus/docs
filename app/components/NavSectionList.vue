@@ -1,7 +1,7 @@
 <script setup>
 // import sidebarHighlightOverrides from '@/utils/sidebarHighlightOverrides';
 
-const route = useRoute();
+// const route = useRoute();
 
 defineProps({
 	list: {
@@ -15,7 +15,7 @@ defineProps({
 });
 
 // const highlightOverride = sidebarHighlightOverrides.find(h => h.path == route.path);
-// :class="{ highlight: highlightOverride?.highlight == link._path }"
+//
 </script>
 
 <template>

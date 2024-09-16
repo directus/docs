@@ -1,6 +1,5 @@
 import { resolve } from 'path';
-import fs from 'node:fs/promises';
-import { docPages } from './server/utils/directus';
+import { buildPages } from './server/remoteContent';
 
 export default defineNuxtConfig({
 	compatibilityDate: '2024-04-03',
@@ -14,6 +13,13 @@ export default defineNuxtConfig({
 		'@nuxt/icon',
 		'@nuxtjs/seo',
 	],
+	runtimeConfig: {
+		public: {
+			INKEEP_API_KEY: '',
+			INKEEP_INTEGRATION_ID: '',
+			INKEEP_ORGANIZATION_ID: '',
+		},
+	},
 	typescript: {
 		// typeCheck: true,
 	},
@@ -22,26 +28,7 @@ export default defineNuxtConfig({
 	},
 	hooks: {
 		async ready() {
-			const docs = await docPages();
-
-			const remotePath = resolve(__dirname, '.remote');
-
-			if (await fs.access(remotePath).then(() => true).catch(() => false)) {
-				await fs.rm(remotePath, { recursive: true });
-			}
-
-			for (const area of docs) {
-				if (!area.categories) continue;
-				for (const category of area.categories) {
-					if (!category.pages) continue;
-					for (const page of category.pages) {
-						const pagePath = resolve(remotePath, `${area.sort}.${area.slug}`, `${category.sort}.${category.slug}`, `${page.sort}.${page.slug}` + '.md');
-						const pageContent = `---\ntitle: "${page.title}"\n---\n${page.content}`;
-						await fs.mkdir(resolve(remotePath, `${area.sort}.${area.slug}`, `${category.sort}.${category.slug}`), { recursive: true });
-						await fs.writeFile(pagePath, pageContent);
-					}
-				}
-			}
+			await buildPages(__dirname);
 		},
 	},
 	content: {
@@ -80,6 +67,9 @@ export default defineNuxtConfig({
 				base: resolve(__dirname, '.remote'),
 			},
 		},
+		navigation: {
+			fields: ['tags', 'additional_paths'],
+		},
 	},
 	eslint: {
 		config: {
@@ -116,13 +106,20 @@ export default defineNuxtConfig({
 		],
 	},
 	security: {
+		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
         process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
 		},
 	},
 	css: ['~/assets/css/main.scss'],
-	experimental: {
-		inlineRouteRules: true,
+	vue: {
+		runtimeCompiler: true,
+	},
+	nitro: {
+		prerender: {
+			routes: ['/', '/api'],
+			crawlLinks: false,
+		},
 	},
 });
