@@ -9,7 +9,7 @@ on:
       - main
 
 concurrency:
-  group: lint-${{ github.ref }}
+  group: app-lint-${{ github.ref }}
   cancel-in-progress: true
 
 env:
