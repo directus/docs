@@ -1,4 +1,4 @@
-name: Lint
+name: OAS Lint
 
 on:
   push:
@@ -27,4 +27,4 @@ jobs:
         uses: ./.github/actions/prepare
 
       - name: Run Linter
-        run: pnpm lint
+        run: pnpm oas:lint
