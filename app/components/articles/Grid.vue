@@ -14,7 +14,10 @@ defineProps<{
 </script>
 
 <template>
-	<div v-if="articles.length > 0" class="card-grid">
+	<div
+		v-if="articles.length > 0"
+		class="card-grid"
+	>
 		<ArticlesCard
 			v-for="article in articles"
 			:key="article._path"
