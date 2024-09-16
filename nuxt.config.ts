@@ -13,9 +13,15 @@ export default defineNuxtConfig({
 		'@nuxt/icon',
 		'@nuxtjs/seo',
 	],
+	runtimeConfig: {
+		public: {
+			INKEEP_API_KEY: '',
+			INKEEP_INTEGRATION_ID: '',
+			INKEEP_ORGANIZATION_ID: '',
+		},
+	},
 	typescript: {
 		// typeCheck: true,
-
 	},
 	routeRules: {
 		'/**': { prerender: true },
@@ -100,6 +106,7 @@ export default defineNuxtConfig({
 		],
 	},
 	security: {
+		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
         process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
@@ -111,7 +118,7 @@ export default defineNuxtConfig({
 	},
 	nitro: {
 		prerender: {
-			routes: ['/'],
+			routes: ['/', '/api'],
 			crawlLinks: false,
 		},
 	},
