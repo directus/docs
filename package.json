@@ -49,5 +49,6 @@
         "sass": "^1.77.8",
         "typescript": "^5.5.4",
         "vue-tsc": "^2.0.29"
-    }
+    },
+    "packageManager": "pnpm@9.10.0"
 }
