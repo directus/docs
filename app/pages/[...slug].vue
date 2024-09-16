@@ -14,8 +14,6 @@ if (route.path === '/') {
 
 const resolvedRoute = resolveRoute(route.path, allPages, allNavigation);
 
-console.log(resolvedRoute);
-
 if (!resolvedRoute) {
 	throw createError({
 		statusCode: 404,
