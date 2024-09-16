@@ -16,8 +16,8 @@ env:
   NODE_OPTIONS: --max_old_space_size=6144
 
 jobs:
-  lint:
-    name: Lint
+  app-lint:
+    name: App Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
