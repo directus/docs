@@ -1,8 +1,0 @@
-get:
-  summary: Info for a specific alligator
-  operationId: showPetById
-  tags:
-    - pets
-  responses:
-    '200':
-      description: Expected response to a valid request
