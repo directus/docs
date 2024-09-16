@@ -9,7 +9,13 @@ info:
 servers:
   - url: https://example.directus.app
     description: Your current Directus project.
-paths: {}
+
+paths: 
+  "/permissions":
+    $ref: paths/permissions/index.yaml
+  "/permissions/{id}":
+    $ref: paths/permissions/_id/index.yaml
+
 components:
   parameters:
     $ref: components/parameters.yaml
@@ -18,7 +24,7 @@ components:
   securitySchemes:
     $ref: components/security.yaml
   schemas:
-    $ref: components/schemas/index.yaml
+    $ref: components/schemas/_index.yaml
 tags:
   - name: Assets
     description: Image typed files can be dynamically resized and transformed to fit any need.
