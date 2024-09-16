@@ -1,0 +1,64 @@
+type: object
+properties:
+  collection:
+    description: The collection key.
+    example: customers
+    type: string
+  icon:
+    nullable: true
+    type: string
+  note:
+    nullable: true
+    type: string
+  display_template:
+    nullable: true
+    type: string
+  hidden:
+    nullable: false
+    type: boolean
+  singleton:
+    nullable: false
+    type: boolean
+  translations:
+    nullable: true
+  archive_field:
+    nullable: true
+    type: string
+  archive_app_filter:
+    nullable: false
+    type: boolean
+  archive_value:
+    nullable: true
+    type: string
+  unarchive_value:
+    nullable: true
+    type: string
+  sort_field:
+    nullable: true
+    type: string
+  accountability:
+    nullable: true
+    type: string
+  color:
+    nullable: true
+    type: string
+  item_duplication_fields:
+    nullable: true
+  sort:
+    nullable: true
+    type: integer
+  group:
+    nullable: true
+    oneOf:
+      - type: string
+      - $ref: collections.yaml
+  collapse:
+    nullable: false
+    type: string
+  preview_url:
+    nullable: true
+    type: string
+  versioning:
+    nullable: false
+    type: boolean
+x-collection: directus_collections

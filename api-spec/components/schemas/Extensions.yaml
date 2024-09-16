@@ -1,0 +1,21 @@
+type: object
+properties:
+  enabled:
+    nullable: false
+    type: boolean
+  id:
+    nullable: false
+    type: string
+    format: uuid
+  folder:
+    nullable: false
+    type: string
+  source:
+    nullable: false
+    type: string
+  bundle:
+    description: Name of the bundle the extension is in.
+    example: my-bundle
+    type: string
+    nullable: true
+x-collection: directus_extensions
