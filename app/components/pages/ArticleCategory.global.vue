@@ -5,104 +5,155 @@ const props = defineProps<{
 	data: ParsedContent;
 }>();
 
-const { data: navigation } = await useAsyncData('navigation' + props.data._path, () => fetchContentNavigation(queryContent({
-	where: {
-		_path: { $contains: props.data._path },
-	},
-})));
+const route = useRoute();
+
+const path = route.path.split('/').filter(Boolean);
+
+const { data: categories } = await useAsyncData(
+	'navigation' + `/${path[0]}`,
+	() =>
+		fetchContentNavigation(
+			queryContent({
+				where: {
+					_path: { $contains: `/${path[0]}` },
+				},
+			}),
+		),
+);
+
+const { data: navigation } = await useAsyncData(
+	'navigation' + props.data._path,
+	() =>
+		fetchContentNavigation(
+			queryContent({
+				where: {
+					_path: { $contains: props.data._path },
+				},
+			}),
+		),
+);
 
 const area = computed(() => {
 	if (!navigation.value) return null;
 	return {
 		title: navigation.value[0]?.title,
 		_path: navigation.value[0]?._path,
+		children: navigation.value[0]?.children,
 	};
+});
+
+const categoriesFound = computed(() => {
+	if (!categories.value) return null;
+	return [
+		{
+			title: 'All',
+			_path: `/${path[0]}`,
+		},
+		...categories.value[0].children,
+	];
+});
+
+const allArticlesFlattened = computed(() => {
+	const categories = area.value?.children;
+	if (!categories) return null;
+	const articles = [];
+
+	for (const category of categories) {
+		articles.push(
+			...(category.children?.map(article => ({
+				...article,
+				category: category.title,
+			})) || []),
+		);
+	}
+	return articles;
+});
+
+const allTags = computed(() => {
+	if (!allArticlesFlattened.value) return null;
+	const tags = new Set();
+	for (const article of allArticlesFlattened.value) {
+		if (article.tags) {
+			for (const tag of article.tags) {
+				tags.add(tag);
+			}
+		}
+	}
+	return Array.from(tags);
+});
+
+const { selectedTags } = useTags();
+
+const filteredArticles = computed(() => {
+	if (!selectedTags.value.length || !allArticlesFlattened.value || selectedTags.value.length == 0) return allArticlesFlattened.value;
+	return allArticlesFlattened.value.filter(article =>
+		article.tags.some(tag => selectedTags.value.includes(tag.id)),
+	);
 });
 </script>
 
 <template>
-	<div class="docs container">
-		<div class="slug">
-			<main v-if="data">
-				<p>
-					You are in the {{ data.title }} Category in the <NuxtLink :to="area?._path">
-						{{ area?.title }} are
-					</NuxtLink>a and these are the articles within:
-				</p>
+	<div class="testing">
+		<main
+			v-if="data"
+			class="main-content"
+		>
+			<h1>
+				{{ area?.title }}
+			</h1>
 
-				<ul>
-					<ContentList
-						v-slot="{ list }"
-						:path="data._path"
-					>
-						<template
-							v-for="page in list"
-							:key="page._path"
-						>
-							<li v-if="page._path !== data._path">
-								<NuxtLink
-									:to="page._path"
-								>
-									{{ page.title }}
-									&nbsp;
-									Tags: (<span
-										v-for="tag in page.tags"
-										:key="tag.id"
-									>
-										<Icon :name="tag.icon" />
-										{{ tag.name }}&nbsp;
-									</span>)
-								</NuxtLink>
-							</li>
-						</template>
-					</ContentList>
-				</ul>
-			</main>
-		</div>
+			<div class="flex-row">
+				<div
+					class="main-content"
+					style="flex-grow: 1;"
+				>
+					<ArticlesCategoryRow
+						v-if="categoriesFound"
+						:categories="categoriesFound"
+					/>
+					<ArticlesGrid
+						:articles="filteredArticles"
+					/>
+				</div>
+
+				<div>
+					<ArticlesTags :all-tags="allTags" />
+				</div>
+			</div>
+		</main>
 	</div>
 </template>
 
 <style lang="scss" scoped>
-.slug {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) 250px;
-	width: 100%;
-	gap: 3rem;
+.testing {
+	padding: 1.5rem;
 }
-main {
-	margin-top: var(--nav-spacing-under);
-	.prev-next {
-		padding: var(--nav-spacing-under) 0 calc(var(--nav-spacing-under) + 1rem);
+
+.tag {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	&:hover {
+		cursor: pointer;
+		color: var(--purple)
+	}
+
+	&.selected {
+		color: var(--purple);
 	}
 }
-aside {
-	margin-top: var(--nav-spacing-under);
-	padding-left: 2rem;
-	padding-right: 1em;
-	border-left: 2px solid var(--border);
+
+.flex-row {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+}
+
+.main-content {
 	display: flex;
 	flex-direction: column;
-	gap: calc(var(--nav-spacing-under) / 2);
-	> * {
-		width: 100%;
-	}
-}
-.docs {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr);
-	gap: 3rem;
-	> nav {
-		margin-top: var(--nav-spacing-under);
-		border-right: 2px solid var(--border);
-		section {
-			margin: 2rem 0;
-			&:first-child {
-				margin-top: 0;
-			}
-		}
-	}
-}
-:deep(ol ol) {
-	display: none;
+	align-items: stretch;
+	gap: 1rem;
 }
 </style>

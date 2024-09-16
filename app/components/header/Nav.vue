@@ -105,11 +105,13 @@ const navItems = computed(() => {
 }
 nav {
   background: var(--background--subdued);
-  border: 2px solid var(--border);
+  box-shadow: inset 0 0 0 2px var(--border);
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
   overflow-x: auto;
+  overflow-y: visible;
+
 }
 ul {
   list-style-type: none;
@@ -125,7 +127,7 @@ a {
   gap: 0.25rem;
   border-bottom: 2px solid transparent;
   font-weight: 500;
-  margin-bottom: -2px;
+  /* margin-bottom: -2px; */
   &:hover,
   &.active {
     color: var(--active-color);
