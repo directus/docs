@@ -1,0 +1,1 @@
+This extension type is loaded into the Directus process. They can use the provided [services](/extensions/api-extensions/services) exported by the `@directus/extensions-sdk` packageand can be written in JavaScript or TypeScript.
