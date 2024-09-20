@@ -1,0 +1,4 @@
+get:
+  $ref: getPermissions.yaml
+post:
+  $ref: createPermission.yaml
