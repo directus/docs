@@ -1,0 +1,46 @@
+type: object
+properties:
+  id:
+    description: Unique identifier for the role.
+    example: 2f24211d-d928-469a-aea3-3c8f53d4e426
+    type: string
+  name:
+    description: Name of the role.
+    example: Administrator
+    type: string
+  icon:
+    description: The role's icon.
+    example: verified_user
+    type: string
+  description:
+    description: Description of the role.
+    example: Admins have access to all managed data within the system by default
+    type: string
+    nullable: true
+  parent:
+    nullable: true
+    description: Optional parent role that this role inherits permissions from.
+    oneOf:
+      - type: string
+        format: uuid
+      - $ref: roles.yaml
+  children:
+    nullable: true
+    description: Nested child roles that inherit this roles permissions
+    type: array
+    items:
+      oneOf:
+        - type: string
+          format: uuid
+        - $ref: roles.yaml
+  policies:
+    nullable: true
+  users:
+    nullable: true
+    type: array
+    items:
+      oneOf:
+        - type: string
+          format: uuid
+        - $ref: users.yaml
+x-collection: directus_roles
