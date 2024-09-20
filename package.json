@@ -4,7 +4,7 @@
     "type": "module",
     "scripts": {
         "oas:dev": "nodemon --watch './api-spec/**/*.yaml' --exec 'pnpm oas:build &&  pnpm scalar serve ./public/oas.yaml -p 5001' --ext yaml",
-        "oas:build": "redocly bundle api-spec/index.yaml -o public/oas.yaml --ext yaml",
+        "oas:build": "redocly bundle ./api-spec/index.yaml -o ./public/oas.yaml --ext yaml",
         "oas:lint": "redocly lint ./api-spec/index.yaml",
         "nuxt:build": "nuxt generate",
         "nuxt:dev": "nuxt dev",
