@@ -1,10 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-	allTags: {
-		id: string;
-		icon?: string;
-		name: string;
-	}[];
+	allTags: ArticleTags;
 }>();
 
 const { selectedTags, toggleTag, setTags, clearTags } = useTags();

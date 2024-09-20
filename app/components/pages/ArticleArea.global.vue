@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content';
-
 const props = defineProps<{
-	data: ParsedContent;
+	data: PageContent;
 }>();
 
+const dataPath = props.data._path;
+
+if (!dataPath) {
+	throw createError({
+		statusCode: 404,
+		fatal: true,
+	});
+}
+
 const { data: navigation } = await useAsyncData(
-	'navigation' + props.data._path,
+	`navigation:${props.data._path}`,
 	() =>
 		fetchContentNavigation(
-			queryContent({
-				where: {
-					_path: { $contains: props.data._path },
-				},
-			}),
+			queryContent(dataPath),
 		),
 );
 
@@ -27,34 +30,34 @@ const area = computed(() => {
 });
 
 const categories = computed(() => {
-	if (!area.value) return null;
+	if (!area.value) return [];
 	return [
 		{
 			title: 'All',
 			_path: props.data._path,
-		},
-		...area.value.children,
+		} as ArticleNavItem,
+		...(area.value.children ? area.value.children : []),
 	];
 });
 
 const allArticlesFlattened = computed(() => {
-	if (!categories.value) return null;
 	const articles = [];
 
 	for (const category of categories.value) {
 		articles.push(
-			...(category.children?.map(article => ({
-				...article,
-				category: category.title,
-			})) || []),
+			...(category.children
+				? category.children.map(article => ({
+					...article,
+					category: category.title,
+				}))
+				: []) as ArticleNavItems,
 		);
 	}
 	return articles;
 });
 
 const allTags = computed(() => {
-	if (!allArticlesFlattened.value) return null;
-	const tags = new Set();
+	const tags = new Set<ArticleTag>();
 	for (const article of allArticlesFlattened.value) {
 		if (article.tags) {
 			for (const tag of article.tags) {
@@ -70,7 +73,7 @@ const { selectedTags } = useTags();
 const filteredArticles = computed(() => {
 	if (!selectedTags.value.length || !allArticlesFlattened.value || selectedTags.value.length == 0) return allArticlesFlattened.value;
 	return allArticlesFlattened.value.filter(article =>
-		article.tags.some(tag => selectedTags.value.includes(tag.id)),
+		article.tags?.some(tag => selectedTags.value.includes(tag.id)) ?? false,
 	);
 });
 </script>

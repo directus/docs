@@ -28,7 +28,7 @@
 				label="Register"
 				href="https://directus.cloud/register"
 				target="_blank"
-				color="white"
+				color="outline-only"
 				size="small"
 				class="register"
 			/>
@@ -51,6 +51,10 @@ header {
 	gap: 2rem;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
+	position: sticky;
+	top: 0px;
+	z-index: 900;
+	background-color: var(--background);
 }
 
 .links {
@@ -59,7 +63,7 @@ header {
 	gap: 1rem;
 	align-items: center;
 	.icon {
-		color: var(--typography--subdued);
+		color: var(--typography-subdued);
 		margin-bottom: 1px;
 		&:hover {
 			color: var(--typography);

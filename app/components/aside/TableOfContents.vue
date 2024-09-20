@@ -1,10 +1,7 @@
-<script setup>
-const props = defineProps({
-	toc: {
-		type: [Array, Object],
-		required: true,
-	},
-});
+<script setup lang="ts">
+const props = defineProps<{
+	toc: PageToc;
+}>();
 
 const list = props.toc.links.map(link => ({
 	_path: `#${link.id}`,

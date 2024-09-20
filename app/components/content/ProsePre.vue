@@ -1,30 +1,22 @@
 <script setup lang="ts">
-defineProps({
-	code: {
-		type: String,
-		default: '',
+withDefaults(
+	defineProps<{
+		code?: string;
+		language?: string | null;
+		filename?: string | null;
+		highlights?: number[];
+		meta?: string | null;
+		class?: string | null;
+	}>(),
+	{
+		code: '',
+		language: null,
+		filename: null,
+		highlights: () => [],
+		meta: null,
+		class: null,
 	},
-	language: {
-		type: String,
-		default: null,
-	},
-	filename: {
-		type: String,
-		default: null,
-	},
-	highlights: {
-		type: Array as () => number[],
-		default: () => [],
-	},
-	meta: {
-		type: String,
-		default: null,
-	},
-	class: {
-		type: String,
-		default: null,
-	},
-});
+);
 </script>
 
 <template>
@@ -45,13 +37,13 @@ defineProps({
 
 <style scoped lang="scss">
 .filename {
-	background: var(--background--subdued);
+	background: var(--background-subdued);
 	border-top-left-radius: var(--border-radius);
 	border-top-right-radius: var(--border-radius);
 	padding: 0.5rem 1rem;
 	font-family: var(--font--code);
 	font-size: 0.8rem;
-	border: 1px solid var(--border-2);
+	border: 1px solid var(--border-subdued);
 	border-bottom: 0;
     display: flex;
     align-items: center;
@@ -66,8 +58,8 @@ pre {
 	font-weight: normal;
 	padding: 0.7rem 1rem;
 	border-radius: var(--border-radius);
-	background: var(--background--subdued);
-	border: 1px solid var(--border-2);
+	background: var(--background-subdued);
+	border: 1px solid var(--border-subdued);
 }
 </style>
 

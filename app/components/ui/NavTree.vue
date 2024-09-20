@@ -1,36 +1,40 @@
 <script setup lang="ts">
 import { TreeItem, TreeRoot } from 'radix-vue';
 
-// TODO: Use the correct type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-defineProps<{ items: any[] }>();
+const props = defineProps<{ items: NavItems; allPages: AllPages; allNavigation: NavItems }>();
+const route = useRoute();
+
+const resolvedRoute = computed(() => resolveRoute(route.path, props.allPages, props.allNavigation));
 </script>
 
 <template>
 	<TreeRoot
 		v-slot="{ flattenItems }"
-		style="list-style-type: none; padding-left: 0; white-space: nowrap;"
+		style="list-style-type: none; padding-left: 0; white-space: nowrap"
 		:items="items"
 		:get-key="(item) => item.title"
-		:default-expanded="['components']"
 		class="toc"
 	>
 		<TreeItem
 			v-for="item in flattenItems"
 			v-slot="{ isExpanded }"
 			:key="item._id"
-			:style="{ 'padding-left': `${(item.level - 1)}rem` }"
+			:style="{ 'padding-left': `${item.level - 1}rem` }"
 			v-bind="item.bind"
 			style=""
 		>
 			<div
 				v-if="item.hasChildren"
-				style="display: flex; align-items: center; gap: 0.5rem; padding-top: 0.25rem; padding-bottom: 0.25rem;"
+				style="
+					display: flex;
+					align-items: center;
+					gap: 0.5rem;
+					padding-top: 0.25rem;
+					padding-bottom: 0.25rem;
+					cursor: pointer;
+					user-select: none;
+				"
 			>
-				<Icon
-					v-if="item.icon"
-					:name="item.icon"
-				/>
 				<div>
 					{{ item.value.title }}
 				</div>
@@ -48,15 +52,10 @@ defineProps<{ items: any[] }>();
 			<NuxtLink
 				v-else
 				:to="item.value._path"
-				style="display: flex; align-items: center; gap: 0.5rem; padding-top: 0.25rem; padding-bottom: 0.25rem;"
+				:class="{ 'active-link': route.path.startsWith(item.value._path) || item.value.additional_paths?.includes(route.path) || item.value._path == resolvedRoute }"
+				style=""
 			>
-				<Icon
-					v-if="item.icon"
-					:name="item.icon"
-				/>
-				<div>
-					{{ item.value.title }}
-				</div>
+				<div>{{ item.value.title }}</div>
 			</NuxtLink>
 		</TreeItem>
 	</TreeRoot>
@@ -73,18 +72,28 @@ ol ol {
 }
 a {
 	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
 }
 li div {
 	display: block;
 	text-decoration: none;
 }
-ol.highlight {
-	a.router-link-active, a.highlight {
-		/* TODO: USE SECTION COLORS */
-		color: var(--primary);
-		font-weight: 500;
-		border-right: 2px solid var(--primary);
-		margin-right: -2px;
-	}
+
+.dark-mode .active-link {
+	color: var(--pink);
+	font-weight: 500;
+	border-right: 2px solid var(--pink);
+	margin-right: -2px;
+}
+
+.active-link {
+	color: var(--primary);
+	font-weight: 500;
+	border-right: 2px solid var(--primary);
+	margin-right: -2px;
 }
 </style>

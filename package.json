@@ -8,7 +8,7 @@
         "oas:lint": "redocly lint api-spec/index.yaml",
         "nuxt:build": "nuxt generate",
         "nuxt:dev": "nuxt dev",
-        "nuxt:preview": "pnpm serve .output/public -p 3000",
+        "nuxt:preview": "pnpm dlx serve .output/public -p 3000",
         "nuxt:typecheck": "nuxt typecheck",
         "eslint:lint": "eslint .",
         "eslint:fix": "eslint . --fix",
@@ -30,7 +30,7 @@
         "@nuxt/eslint": "^0.5.2",
         "@nuxt/icon": "^1.4.8",
         "@nuxt/image": "^1.7.0",
-        "@nuxtjs/color-mode": "^3.4.4",
+        "@nuxtjs/color-mode": "^3.5.1",
         "@nuxtjs/seo": "2.0.0-rc.19",
         "@scalar/api-reference": "^1.25.10",
         "@vueuse/core": "^11.0.1",
@@ -51,8 +51,8 @@
         "vue-tsc": "^2.0.29"
     },
     "packageManager": "pnpm@9.10.0",
-	"engines": {
-		"node": ">=20.17.0",
-		"pnpm": ">=9.10.0"
-	}
+    "engines": {
+        "node": ">=20.17.0",
+        "pnpm": ">=9.10.0"
+    }
 }

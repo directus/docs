@@ -7,4 +7,4 @@ export const productLinks = {
 	editor: '/content/editor',
 	files: '/files/quickstart',
 	insights: '/insights/overview',
-};
+} as const;

@@ -1,41 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<script setup>
-const props = defineProps({
-	type: {
-		type: String,
-		default: 'button',
-		validator(value) {
-			return ['a', 'button', 'submit', 'reset', 'span'].includes(value);
-		},
+<script setup lang="ts">
+const props = withDefaults(
+	defineProps<{
+		type?: 'a' | 'button' | 'submit' | 'reset' | 'span';
+		label: string;
+		color?: 'primary' | 'white' | 'outline-only';
+		size?: 'small' | 'medium';
+		href?: string;
+		target?: '_blank' | '_self' | '_parent' | '_top';
+	}>(),
+	{
+		type: 'button',
+		color: 'primary',
+		size: 'medium',
 	},
-	label: {
-		type: String,
-		required: true,
-	},
-	color: {
-		type: String,
-		default: 'primary',
-		validator(value) {
-			return ['primary', 'white', 'outline-only'].includes(value);
-		},
-	},
-	size: {
-		type: String,
-		default: 'medium',
-		validator(value) {
-			return ['small', 'medium'].includes(value);
-		},
-	},
-	href: {
-		type: String,
-	},
-	target: {
-		type: String,
-		validator(value) {
-			return ['_blank', '_self', '_parent', '_top'].includes(value);
-		},
-	},
-});
+);
 
 const buttonProps = computed(() => {
 	if (props.href) {
@@ -78,23 +57,34 @@ const buttonProps = computed(() => {
 .color-primary {
 	background: var(--primary);
 	color: white;
-	border-color: var(--primary--dark);
+	border-color: var(--primary);
 	&:hover {
-		background: var(--primary--dark);
+		border-color: var(--primary-5);
+		background: var(--primary-5);
 	}
 }
-.color-white {
-	background: white;
-	color: var(--typography-1);
-	border-color: var(--border-2);
+.dark-mode .color-primary {
+	border-color: var(--primary-3);
 	&:hover {
-		background: var(--border-2);
+		border-color: var(--primary-4);
+		background: var(--primary-4);
+	}
+}
+
+.color-white {
+	background: var(--background-subdued);
+	color: var(--typography);
+	border-color: var(--border);
+	&:hover {
+		border-color: var(--border-subdued);
+		background: var(--background-subtle);
 	}
 }
 .color-outline-only {
-	border-color: var(--border-2);
+	border-color: var(--border-subdued);
 	&:hover {
-		border-color: var(--border-3);
+		border-color: var(--border-subtle);
+		background: var(--background-subdued);
 	}
 }
 </style>

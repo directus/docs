@@ -1,17 +1,8 @@
-<script setup>
-defineProps({
-	type: {
-		type: String,
-		required: true,
-		validator(value) {
-			return ['youtube'].includes(value);
-		},
-	},
-	id: {
-		type: String,
-		required: true,
-	},
-});
+<script setup lang="ts">
+defineProps<{
+	type: 'youtube';
+	id: string;
+}>();
 </script>
 
 <template>
