@@ -113,8 +113,6 @@ const navItems = computed(() => {
 	margin-right: 0px;
 }
 nav {
-	position: sticky;
-	top: 72px;
 	z-index: 900;
 	background: var(--background-subdued);
 	box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--border) 50%, var(--border-subdued) 50%);
