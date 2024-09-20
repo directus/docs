@@ -64,7 +64,7 @@ import '@scalar/api-reference/style.css';
 }
 
 .references-navigation-list {
-	top: 111px !important;
+	top: 0px !important;
 }
 
 .section.introduction-section {
