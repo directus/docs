@@ -12,6 +12,7 @@ export default defineNuxtConfig({
 		'nuxt-security',
 		'@nuxt/icon',
 		'@nuxtjs/seo',
+		'@nuxtjs/color-mode',
 	],
 	runtimeConfig: {
 		public: {
@@ -68,8 +69,14 @@ export default defineNuxtConfig({
 			},
 		},
 		navigation: {
-			fields: ['tags', 'additional_paths'],
+			fields: ['root', 'tags', 'additional_paths', 'expandable'],
 		},
+	},
+	colorMode: {
+		preference: 'system',
+		fallback: 'light',
+		storage: 'localStorage',
+		storageKey: 'nuxt-color-mode',
 	},
 	eslint: {
 		config: {

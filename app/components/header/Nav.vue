@@ -1,34 +1,42 @@
-<script setup>
-const nav = ref([
+<script setup lang="ts">
+type AreaNavigation = {
+	label: string;
+	to: string;
+	dir: string;
+	color: string;
+	active?: boolean;
+};
+
+const nav = ref<AreaNavigation[]>([
 	{
 		label: 'Developer Docs',
 		to: '/',
 		dir: '/',
-		color: 'var(--section--dev-docs)',
+		color: 'var(--area--dev-docs)',
 	},
 	{
 		label: 'API Reference',
 		to: '/api',
 		dir: '/api',
-		color: 'var(--section--api-reference)',
+		color: 'var(--area--api-reference)',
 	},
 	{
 		label: 'Directus Cloud',
 		to: '/cloud',
 		dir: '/cloud',
-		color: 'var(--section--cloud)',
+		color: 'var(--area--cloud)',
 	},
 	{
 		label: 'Tutorials',
 		to: '/tutorials',
 		dir: '/tutorials',
-		color: 'var(--section--tutorials)',
+		color: 'var(--area--tutorials)',
 	},
 	{
 		label: 'Community',
 		to: '/community',
 		dir: '/community',
-		color: 'var(--section--community)',
+		color: 'var(--area--community)',
 	},
 ]);
 
@@ -60,7 +68,7 @@ const navItems = computed(() => {
 	});
 
 	// If no match was found, set the first item as active only if the path is '/'
-	if (!hasMatch) {
+	if (!hasMatch && updatedNav[0]) {
 		updatedNav[0].active = true;
 	}
 
@@ -100,38 +108,41 @@ const navItems = computed(() => {
 
 <style scoped>
 .container {
-  margin-left: 0px;
-  margin-right: 0px;
+
+	margin-left: 0px;
+	margin-right: 0px;
 }
 nav {
-  background: var(--background--subdued);
-  box-shadow: inset 0 0 0 2px var(--border);
-  display: flex;
-  justify-content: space-between;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: visible;
-
+	position: sticky;
+	top: 72px;
+	z-index: 900;
+	background: var(--background-subdued);
+	box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--border) 50%, var(--border-subdued) 50%);
+	display: flex;
+	justify-content: space-between;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: visible;
+	scrollbar-width: thin;
 }
 ul {
-  list-style-type: none;
-  display: flex;
-  font-size: var(--nav-font);
-  gap: 2rem;
+	list-style-type: none;
+	display: flex;
+	font-size: 14px;
+	gap: 2rem;
 }
 a {
-  text-decoration: none;
-  padding: var(--nav-padding) 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  border-bottom: 2px solid transparent;
-  font-weight: 500;
-  /* margin-bottom: -2px; */
-  &:hover,
-  &.active {
-    color: var(--active-color);
-    border-color: var(--active-color);
-  }
+	text-decoration: none;
+	padding: 8px 0;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	border-bottom: 2px solid transparent;
+	font-weight: 500;
+	&:hover,
+	&.active {
+		color: var(--active-color);
+		border-color: var(--active-color);
+	}
 }
 </style>

@@ -1,20 +1,11 @@
-<script setup>
-defineProps({
-	text: {
-		type: String,
-		required: true,
-	},
-	badge: {
-		type: String,
-		required: true,
-	},
-	h: {
-		type: String,
-		required: true,
-	},
-});
+<script setup lang="ts">
+defineProps<{
+	text: string;
+	badge: string;
+	h: string;
+}>();
 
-function slugify(str) {
+function slugify(str: string) {
 	str = str.replace(/^\s+|\s+$/g, '');
 	str = str.toLowerCase();
 

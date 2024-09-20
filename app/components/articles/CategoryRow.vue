@@ -1,10 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 defineProps<{
-	categories: {
-		_path: string;
-		title: string;
-	}[];
+	categories: ArticleNavItems;
 }>();
 </script>
 
@@ -35,21 +32,21 @@ defineProps<{
 	font-weight: 500;
 	font-size: 1rem;
 	padding: 0.25rem 0.75rem;
-	background-color: var(--background--subdued);
+	background-color: var(--background-subdued);
 	text-decoration: none;
 	white-space: nowrap;
 }
 
 .category-nav-item:hover {
-	background-color: var(--background--subtle);
+	background-color: var(--background-subtle);
 }
 
 .category-nav-item.active {
 	background: var(--primary);
 	color: white;
-	border-color: var(--primary--dark);
+	border-color: var(--primary);
 	&:hover {
-		background: var(--primary--dark);
+		background: var(--primary);
 	}
 }
 </style>

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content';
-
 const props = defineProps<{
-	data: ParsedContent;
+	data: PageContent;
 }>();
 
 const categoryPath = computed(() => {
@@ -62,19 +60,19 @@ const categoryPath = computed(() => {
 	gap: 3rem;
 }
 main {
-	margin-top: var(--nav-spacing-under);
+	margin-top: 24px;
 	.prev-next {
-		padding: var(--nav-spacing-under) 0 calc(var(--nav-spacing-under) + 1rem);
+		padding: 24px 0 calc(24px + 1rem);
 	}
 }
 aside {
-	margin-top: var(--nav-spacing-under);
+	margin-top: 24px;
 	padding-left: 2rem;
 	padding-right: 1em;
 	border-left: 2px solid var(--border);
 	display: flex;
 	flex-direction: column;
-	gap: calc(var(--nav-spacing-under) / 2);
+	gap: calc(24px / 2);
 	> * {
 		width: 100%;
 	}
@@ -84,7 +82,7 @@ aside {
 	grid-template-columns: minmax(0, 1fr);
 	gap: 3rem;
 	> nav {
-		margin-top: var(--nav-spacing-under);
+		margin-top: 24px;
 		border-right: 2px solid var(--border);
 		section {
 			margin: 2rem 0;

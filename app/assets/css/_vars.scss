@@ -1,101 +1,58 @@
+@use 'colors';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-	--purple--light-3: #E0DAFF;
-	--purple--light-2: #C2B4FF;
-	--purple--light-1: #947CFF;
-	--purple: #6644ff;
-	--purple--dark-1: #4C2DDB;
-	--purple--dark-2: #201262;
-
-	--pink--light-3: #FFEBF8;
-	--pink--light-2: #FFD6F1;
-	--pink--light-1: #FFB8E7;
-	--pink: #ff99dd;
-	--pink--dark-1: #D064AC;
-	--pink--dark-2: #4F133B;
-
-	--blue--light-3: #DAEBFC;
-	--blue--light-2: #B3D7F9;
-	--blue--light-1: #8FC4F7;
-	--blue: #68B0F4;
-	--blue--dark-1: #5A93C8;
-	--blue--dark-2: #4B769B;
-
-	--green--light-3: #E6FAF5;
-	--green--light-2: #7FE3CA;
-	--green--light-1: #40D6B1;
-	--green: #01C897;
-	--green--dark-1: #08A582;
-	--green--dark-2: #17826D;
-
-	--yellow--light-3: #FEF0D3;
-	--yellow--light-2: #FDE2A7;
-	--yellow--light-1: #FCD37B;
-	--yellow: #FBC54E;
-	--yellow--dark-1: #C8A34B;
-	--yellow--dark-2: #948049;
-
-	--red--light-3: #FDEEF0;
-	--red--light-2: #F0A7B3;
-	--red--light-1: #EA7D8F;
-	--red: #E35169;
-	--red--dark-1: #B64C5F;
-	--red--dark-2: #884756;
-
-	--typography-1: #19212C;
-	--typography-2: #8196B0;
-	--typography-3: #BECBDC;
-	--typography--dark-1: #FAFBFC;
-	--typography--dark--2: #F6F8FA;
-	--typography--dark--3: #ECF0F5;
-
-	--bg: white;
-	--bg-2: #F7FAFC;
-	--bg-3: #F0F4F9;
-	--bg--dark: #18222F;
-	--bg--dark-2: #172940;
-	--bg--dark-3: #263B56;
-
-	--border: #F0F4F9;
-	--border-2: #D3DAE4;
-	--border-3: #A2B5CD;
 
 	--font--body: 'IBM Plex Sans', sans-serif;
 	--font--header: 'Poppins', sans-serif;
 	--font--code: 'IBM Plex Mono', monospace;
 
-	--primary: var(--purple);
-	--primary--light: var(--purple--light-1);
-	--primary--dark: var(--purple--dark-1);
-	--secondary: var(--pink);
-	--secondary--light: var(--pink--light-1);
-	--secondary--dark: var(--pink--dark-1);
-	--typography: var(--typography-1);
-	--typography--subdued: var(--typography-2);
-	--typography--subtle: var(--typography-3);
-	--background: var(--bg);
-	--background--subdued: var(--bg-2);
-	--background--subtle: var(--bg-3);
-
-
 	--width-md: 768px;
 	--width-lg: 1024px;
 	--width-xl: 1280px;
 	--width-2xl: 1440px;
-	--max-width: var(--width-2xl);
 
-	--sidebar-width: 280px;
-	--page-padding: 24px;
 	--border-radius: 6px;
-	--nav-spacing-under: 4rem;
 
-	--nav-font: 14px;
-	--nav-padding: 8px;
+	--typography: var(--black);
+	--typography-subdued: color-mix(in hsl shorter hue, var(--black) 70%, var(--white) 30%);
 
-	--section--dev-docs: var(--purple);
-	--section--api-reference: var(--green);
-	--section--tutorials: var(--pink);
-	--section--cloud: var(--blue);
-	--section--community: var(--red);
+	--background: var(--white);
+	--background-subdued: color-mix(in hsl shorter hue, var(--white) 95%, var(--black) 5%);
+	--background-subtle: color-mix(in hsl shorter hue, var(--white) 90%, var(--black) 10%);
+
+	--border: color-mix(in hsl shorter hue, var(--white) 95%, var(--black) 5%);
+	--border-subdued: color-mix(in hsl shorter hue, var(--white) 90%, var(--black) 10%);
+	--border-subtle: color-mix(in hsl shorter hue, var(--white) 85%, var(--black) 15%);
+
+	--primary: var(--purple);
+	--secondary: var(--pink);
+
+	--area--dev-docs: var(--purple);
+	--area--api-reference: var(--green);
+	--area--tutorials: var(--pink);
+	--area--cloud: var(--blue);
+	--area--community: var(--red);
+}
+
+.dark-mode {
+	--typography: var(--white);
+	--typography-subdued: color-mix(in hsl shorter hue, var(--white) 70%, var(--black) 30%);
+
+	--background: color-mix(in hsl shorter hue, var(--black) 94%, var(--white) 6%);
+	--background-subdued: color-mix(in hsl shorter hue, var(--black) 90%, var(--white) 10%);
+	--background-subtle: color-mix(in hsl shorter hue, var(--black) 85%, var(--white) 15%);
+
+	--border: color-mix(in hsl shorter hue, var(--black) 90%, var(--white) 10%);
+	--border-subdued: color-mix(in hsl shorter hue, var(--black) 85%, var(--white) 15%);
+	--border-subtle: color-mix(in hsl shorter hue, var(--black) 80%, var(--white) 20%);
+
+	--primary: var(--purple-3);
+	--secondary: var(--pink-3);
+
+	--area--dev-docs: var(--purple-2);
+	--area--api-reference: var(--green-2);
+	--area--tutorials: var(--pink-2);
+	--area--cloud: var(--blue-2);
+	--area--community: var(--red-2);
 }

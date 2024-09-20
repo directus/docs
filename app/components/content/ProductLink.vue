@@ -1,25 +1,17 @@
-<script setup>
-const props = defineProps({
-	product: {
-		type: String,
-		required: true,
+<script setup lang="ts">
+const props = withDefaults(
+	defineProps<{
+		product: keyof typeof productLinks;
+		compact?: boolean;
+		color?: 'color' | 'white' | 'purple' | 'pink';
+		link?: boolean;
+	}>(),
+	{
+		compact: true,
+		color: 'color',
+		link: true,
 	},
-	compact: {
-		type: Boolean,
-		default: true,
-	},
-	color: {
-		type: String,
-		default: 'color',
-		validator(value) {
-			return ['color', 'white', 'purple', 'pink'].includes(value);
-		},
-	},
-	link: {
-		type: Boolean,
-		default: true,
-	},
-});
+);
 
 function componentType() {
 	return props.link ? resolveComponent('NuxtLink') : 'span';
@@ -69,10 +61,10 @@ function componentType() {
 			color: white;
 		}
 		&.purple  {
-			color: var(--purple--dark-1)
+			color: var(--purple-5)
 		}
 		&.pink  {
-			color: var(--pink--dark-1)
+			color: var(--pink-5)
 		}
 	}
 }

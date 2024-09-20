@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { withoutTrailingSlash } from 'ufo';
 
 const route = useRoute();
@@ -14,8 +14,8 @@ const { data } = await useAsyncData(`${route.path}-surround`, () =>
 		.findSurround(withoutTrailingSlash(route.path)),
 );
 
-const prev = computed(() => data.value[0]);
-const next = computed(() => data.value[1]);
+const prev = computed(() => data.value?.[0]);
+const next = computed(() => data.value?.[1]);
 </script>
 
 <template>
@@ -46,14 +46,14 @@ div {
 	gap: 1rem;
 	a {
 		text-decoration: none;
-		border: 1px solid var(--border-2);
+		border: 1px solid var(--border-subdued);
 		border-radius: var(--border-radius);
 		padding: 0.5rem 1rem 0.65rem;
 		&:last-child {
 			text-align: right;
 		}
 		&:hover {
-			border: 1px solid var(--border-3);
+			border: 1px solid var(--border-subtle);
 		}
 		p {
 			font-weight: bold;

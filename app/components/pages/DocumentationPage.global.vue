@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content';
-
 defineProps<{
-	data: ParsedContent;
+	data: PageContent;
+	allPages: AllPages;
+	allNavigation: NavItems;
 }>();
 </script>
 
 <template>
 	<div class="docs container">
-		<UiAsideNav :path="data?._path" />
+		<UiAsideNav
+			:path="data._path"
+			:all-pages="allPages"
+			:all-navigation="allNavigation"
+		/>
 		<div class="slug">
 			<main v-if="data">
 				<article>
@@ -34,7 +38,7 @@ defineProps<{
 			<aside>
 				<AsideTableOfContents
 					v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
-					:toc="data?.body?.toc"
+					:toc="data.body.toc"
 				/>
 				<AsideNewsletter />
 				<AsideFeedback />
@@ -51,29 +55,31 @@ defineProps<{
 	gap: 3rem;
 }
 main {
-	margin-top: var(--nav-spacing-under);
+	margin-top: 24px;
 	.prev-next {
-		padding: var(--nav-spacing-under) 0 calc(var(--nav-spacing-under) + 1rem);
+		padding: 24px 0 calc(24px + 1rem);
 	}
 }
 aside {
-	margin-top: var(--nav-spacing-under);
+	margin-top: 24px;
 	padding-left: 2rem;
 	padding-right: 1em;
 	border-left: 2px solid var(--border);
 	display: flex;
 	flex-direction: column;
-	gap: calc(var(--nav-spacing-under) / 2);
+	gap: calc(24px / 2);
 	> * {
 		width: 100%;
 	}
 }
 .docs {
+	padding-top: 3rem;
+	padding-bottom: 6rem;
 	display: grid;
 	grid-template-columns: 225px minmax(0, 1fr);
 	gap: 3rem;
 	> nav {
-		margin-top: var(--nav-spacing-under);
+		margin-top: 24px;
 		border-right: 2px solid var(--border);
 		section {
 			margin: 2rem 0;

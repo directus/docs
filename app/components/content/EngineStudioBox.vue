@@ -1,6 +1,4 @@
-<script setup>
-import products from '@/utils/products';
-
+<script setup lang="ts">
 const boxes = [
 	{
 		title: 'Data Engine',
@@ -14,7 +12,7 @@ const boxes = [
 		color: 'pink',
 		products: ['explore', 'editor', 'insights', 'files'],
 	},
-];
+] as const;
 </script>
 
 <template>
@@ -52,7 +50,7 @@ const boxes = [
 	border: 3px solid var(--box-color);
 	border-radius: calc(var(--border-radius) * 2);
 	padding: 1rem;
-	background: var(--bg-2);
+	background: var(--background);
 	h2 {
 		font-weight: normal;
 		font-size: 2rem;

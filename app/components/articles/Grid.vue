@@ -1,15 +1,6 @@
 <script lang="ts" setup>
 defineProps<{
-	articles: {
-		_path: string;
-		title: string;
-		category: string;
-		tags: {
-			id: string;
-			icon: string;
-			name: string;
-		}[];
-	}[];
+	articles: ArticleNavItems;
 }>();
 </script>
 
@@ -21,7 +12,7 @@ defineProps<{
 		<ArticlesCard
 			v-for="article in articles"
 			:key="article._path"
-			v-bind="article"
+			:article="article"
 		/>
 	</div>
 	<div v-else>

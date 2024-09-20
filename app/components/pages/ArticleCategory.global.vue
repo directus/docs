@@ -1,36 +1,30 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content';
-
 const props = defineProps<{
-	data: ParsedContent;
+	data: PageContent;
 }>();
 
 const route = useRoute();
 
 const path = route.path.split('/').filter(Boolean);
 
-const { data: categories } = await useAsyncData(
-	'navigation' + `/${path[0]}`,
-	() =>
-		fetchContentNavigation(
-			queryContent({
-				where: {
-					_path: { $contains: `/${path[0]}` },
-				},
-			}),
-		),
+const routePath = path[0];
+const dataPath = props.data._path;
+
+if (!routePath || !dataPath) {
+	throw createError({
+		statusCode: 404,
+		fatal: true,
+	});
+}
+
+const { data: categories } = await useAsyncData<ArticleNavItems>(
+	`categories:${path[0]}`,
+	() => fetchContentNavigation(queryContent(routePath)),
 );
 
-const { data: navigation } = await useAsyncData(
-	'navigation' + props.data._path,
-	() =>
-		fetchContentNavigation(
-			queryContent({
-				where: {
-					_path: { $contains: props.data._path },
-				},
-			}),
-		),
+const { data: navigation } = await useAsyncData<ArticleNavItems>(
+	`navigation:${props.data._path}`,
+	() => fetchContentNavigation(queryContent(dataPath)),
 );
 
 const area = computed(() => {
@@ -49,13 +43,13 @@ const categoriesFound = computed(() => {
 			title: 'All',
 			_path: `/${path[0]}`,
 		},
-		...categories.value[0].children,
+		...(categories.value[0]?.children ? categories.value[0].children : []),
 	];
 });
 
 const allArticlesFlattened = computed(() => {
 	const categories = area.value?.children;
-	if (!categories) return null;
+	if (!categories) return [];
 	const articles = [];
 
 	for (const category of categories) {
@@ -70,8 +64,7 @@ const allArticlesFlattened = computed(() => {
 });
 
 const allTags = computed(() => {
-	if (!allArticlesFlattened.value) return null;
-	const tags = new Set();
+	const tags = new Set<ArticleTag>();
 	for (const article of allArticlesFlattened.value) {
 		if (article.tags) {
 			for (const tag of article.tags) {
@@ -79,15 +72,24 @@ const allTags = computed(() => {
 			}
 		}
 	}
-	return Array.from(tags);
+	return Array.from(tags) || [];
 });
 
 const { selectedTags } = useTags();
 
 const filteredArticles = computed(() => {
-	if (!selectedTags.value.length || !allArticlesFlattened.value || selectedTags.value.length == 0) return allArticlesFlattened.value;
-	return allArticlesFlattened.value.filter(article =>
-		article.tags.some(tag => selectedTags.value.includes(tag.id)),
+	if (
+		!selectedTags.value.length
+		|| !allArticlesFlattened.value
+		|| selectedTags.value.length == 0
+	)
+		return allArticlesFlattened.value || [];
+	return (
+		allArticlesFlattened.value.filter(
+			article =>
+				article.tags?.some(tag => selectedTags.value.includes(tag.id))
+				?? false,
+		) || []
 	);
 });
 </script>
@@ -105,15 +107,13 @@ const filteredArticles = computed(() => {
 			<div class="flex-row">
 				<div
 					class="main-content"
-					style="flex-grow: 1;"
+					style="flex-grow: 1"
 				>
 					<ArticlesCategoryRow
 						v-if="categoriesFound"
 						:categories="categoriesFound"
 					/>
-					<ArticlesGrid
-						:articles="filteredArticles"
-					/>
+					<ArticlesGrid :articles="filteredArticles" />
 				</div>
 
 				<div>
@@ -136,7 +136,7 @@ const filteredArticles = computed(() => {
 
 	&:hover {
 		cursor: pointer;
-		color: var(--purple)
+		color: var(--purple);
 	}
 
 	&.selected {
