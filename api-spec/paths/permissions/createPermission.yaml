@@ -2,7 +2,7 @@ summary: Create a Permission
 description: Create a new permission.
 operationId: createPermission
 parameters:
-  - "$ref": "../../components/Parameters.yaml#/Meta"
+  - "$ref": "../../components/parameters.yaml#/Meta"
 requestBody:
   content:
     application/json:
@@ -96,11 +96,11 @@ responses:
           type: object
           properties:
             data:
-              "$ref": "../../components/schemas/Permissions.yaml"
+              "$ref": "../../components/schemas/permissions.yaml"
   "401":
-    "$ref": "../../components/Responses.yaml#/UnauthorizedError"
+    "$ref": "../../components/responses.yaml#/UnauthorizedError"
   "404":
-    "$ref": "../../components/Responses.yaml#/NotFoundError"
+    "$ref": "../../components/responses.yaml#/NotFoundError"
 tags:
   - Permissions
 x-codeSamples:

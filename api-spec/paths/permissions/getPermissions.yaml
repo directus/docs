@@ -2,14 +2,14 @@ summary: List Permissions
 description: List all permissions.
 operationId: getPermissions
 parameters:
-  - "$ref": "../../components/Parameters.yaml#/Fields"
-  - "$ref": "../../components/Parameters.yaml#/Limit"
-  - "$ref": "../../components/Parameters.yaml#/Offset"
-  - "$ref": "../../components/Parameters.yaml#/Meta"
-  - "$ref": "../../components/Parameters.yaml#/Sort"
-  - "$ref": "../../components/Parameters.yaml#/Filter"
-  - "$ref": "../../components/Parameters.yaml#/Search"
-  - "$ref": "../../components/Parameters.yaml#/Page"
+  - "$ref": "../../components/parameters.yaml#/Fields"
+  - "$ref": "../../components/parameters.yaml#/Limit"
+  - "$ref": "../../components/parameters.yaml#/Offset"
+  - "$ref": "../../components/parameters.yaml#/Meta"
+  - "$ref": "../../components/parameters.yaml#/Sort"
+  - "$ref": "../../components/parameters.yaml#/Filter"
+  - "$ref": "../../components/parameters.yaml#/Search"
+  - "$ref": "../../components/parameters.yaml#/Page"
 responses:
   "200":
     description: Successful request
@@ -21,13 +21,13 @@ responses:
             data:
               type: array
               items:
-                "$ref": "../../components/schemas/Permissions.yaml"
+                "$ref": "../../components/schemas/permissions.yaml"
             meta:
               "$ref": "../../components/schemas/x-metadata.yaml"
   "401":
-    "$ref": "../../components/Responses.yaml#/UnauthorizedError"
+    "$ref": "../../components/responses.yaml#/UnauthorizedError"
   "404":
-    "$ref": "../../components/Responses.yaml#/NotFoundError"
+    "$ref": "../../components/responses.yaml#/NotFoundError"
 tags:
   - Permissions
 x-codeSamples:

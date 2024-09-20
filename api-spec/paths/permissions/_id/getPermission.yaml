@@ -2,9 +2,9 @@ summary: Retrieve a Permission
 description: Retrieve a single permissions object by unique identifier.
 operationId: getPermission
 parameters:
-  - "$ref": "../../../components/Parameters.yaml#/Id"
-  - "$ref": "../../../components/Parameters.yaml#/Fields"
-  - "$ref": "../../../components/Parameters.yaml#/Meta"
+  - "$ref": "../../../components/parameters.yaml#/Id"
+  - "$ref": "../../../components/parameters.yaml#/Fields"
+  - "$ref": "../../../components/parameters.yaml#/Meta"
 responses:
   "200":
     description: Successful request
@@ -14,11 +14,11 @@ responses:
           type: object
           properties:
             data:
-              "$ref": "../../../components/schemas/Permissions.yaml"
+              "$ref": "../../../components/schemas/permissions.yaml"
   "401":
-    "$ref": "../../../components/Responses.yaml#/UnauthorizedError"
+    "$ref": "../../../components/responses.yaml#/UnauthorizedError"
   "404":
-    "$ref": "../../../components/Responses.yaml#/NotFoundError"
+    "$ref": "../../../components/responses.yaml#/NotFoundError"
 tags:
   - Permissions
 x-codeSamples:
