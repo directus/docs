@@ -86,6 +86,10 @@ import '@scalar/api-reference/style.css';
 
 }
 
+.sidebar-pages.custom-scroll.custom-scroll-self-contain-overflow {
+	scrollbar-gutter: stable;
+}
+
 .sidebar {
 	border-right: 0px !important;
 }
