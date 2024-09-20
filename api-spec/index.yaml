@@ -1,7 +1,7 @@
 openapi: '3.0.1'
 info:
   title: Directus API Reference
-  description: This is a dynamically generated API specification for all endpoints existing on the current project.
+  description: This is a dynamically generated API specification for all endpoints existing on the current project!
   version: '11.1.0'
   license:
     name: Business Source License 1.1 (BUSL-1.1)
@@ -10,7 +10,7 @@ servers:
   - url: https://example.directus.app
     description: Your current Directus project.
 
-paths: 
+paths:
   "/permissions":
     $ref: paths/permissions/index.yaml
   "/permissions/{id}":
