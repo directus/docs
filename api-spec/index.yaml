@@ -10,8 +10,6 @@ servers:
   - url: https://testing-connor-custom-domains.directus.community/
     description: Your current Directus instance.
 paths:
-  "/merge-test":
-    $ref: "./merge-test.yaml"
   "/assets/{id}":
     get:
       tags:
