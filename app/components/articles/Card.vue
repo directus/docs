@@ -2,8 +2,9 @@
 defineProps<{
 	_path: string;
 	title: string;
-	category: string;
-	tags: {
+	category?: string;
+	description?: string;
+	tags?: {
 		id: string;
 		icon?: string;
 		name: string;
@@ -21,7 +22,7 @@ defineProps<{
 		</p>
 
 		<div class="card-footer-row">
-			<div class="card-tag-row">
+			<div v-if="tags" class="card-tag-row">
 				<span
 					v-for="tag in tags"
 					:key="tag.id"
@@ -31,8 +32,11 @@ defineProps<{
 					<Icon :name="tag.icon || 'material-symbols:question-mark'" />
 				</span>
 			</div>
-			<p class="card-category">
+			<p v-if="category" class="card-category">
 				{{ category }}
+			</p>
+			<p v-if="description" class="card-description">
+				{{ description }}
 			</p>
 		</div>
 	</NuxtLink>
@@ -54,10 +58,10 @@ defineProps<{
 	.card-title {
 		font-size: 1rem;
 		font-weight: 500;
-		margin-bottom: 0.5rem;
 	}
 
 	.card-footer-row {
+		margin-top: 0.5rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
