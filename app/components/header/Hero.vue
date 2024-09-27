@@ -109,10 +109,10 @@ h1 {
 		align-items: center;
 		justify-content: center;
 		border-radius: calc(var(--border-radius) * 3);
-		border: 1px solid var(--border-2);
+		border: 1px solid var(--border-subdued);
 		padding: 0.5rem;
 		&:hover {
-			background: var(--bg-2);;
+			background: var(--background-subdued);;
 		}
 	}
 	& + .more {
@@ -122,7 +122,7 @@ h1 {
 	}
 }
 .code {
-	background: var(--bg-3);
+	background: var(--background-subtle);
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
 	border: 1px solid var(--border);

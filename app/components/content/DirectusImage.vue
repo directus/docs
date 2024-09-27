@@ -1,21 +1,15 @@
-<script setup>
-defineProps({
-	uuid: {
-		type: String,
-		required: true,
+<script setup lang="ts">
+withDefaults(
+	defineProps<{
+		uuid: string;
+		alt: string;
+		width?: string | number;
+		height?: string | number;
+	}>(),
+	{
+		width: 1280,
 	},
-	alt: {
-		type: String,
-		required: true,
-	},
-	width: {
-		type: [String, Number],
-		default: 1280,
-	},
-	height: {
-		type: [String, Number],
-	},
-});
+);
 </script>
 
 <template>

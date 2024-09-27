@@ -12,6 +12,9 @@ export default defineAppConfig({
 					},
 				},
 			},
+			colorMode: {
+				enableSystem: true,
+			},
 		},
 		modalSettings: {
 			isModeSwitchingEnabled: false,

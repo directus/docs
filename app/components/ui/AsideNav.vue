@@ -1,25 +1,37 @@
-<script setup>
-const props = defineProps({
-	path: {
-		type: [String],
-		required: true,
-	},
-});
-
-const { data } = await useAsyncData('navigation', () =>
-	fetchContentNavigation(),
-);
+<script setup lang="ts">
+const props = defineProps<{
+	path: string;
+	allPages: AllPages;
+	allNavigation: NavItems;
+}>();
 
 const rootPath = props.path.split('/').slice(0, 2).join('/');
 
+const recursiveRemoveChildrenIfNotExpandable = (item: NavItem) => {
+	if (item.children) {
+		item.children = item.children.map((child) => {
+			return {
+				...child,
+				...(!child.expandable && child.children && { children: undefined }),
+			};
+		});
+		item.children = item.children.map(recursiveRemoveChildrenIfNotExpandable);
+	}
+	return item;
+};
+
 const navigation = computed(() => {
-	const navTree = data.value.find(r => r._path === rootPath);
+	const navTree = props.allNavigation.find(r => r._path === rootPath);
 
 	if (navTree === undefined || navTree.root) {
-		return data.value.filter(r => r?.root);
+		return (
+			props.allNavigation
+				.filter(r => r?.root)
+				.map(recursiveRemoveChildrenIfNotExpandable) || []
+		);
 	}
 
-	return navTree.children;
+	return navTree.children?.map(recursiveRemoveChildrenIfNotExpandable) || [];
 });
 </script>
 
@@ -30,9 +42,19 @@ const navigation = computed(() => {
 			:key="section._path"
 			style="margin-bottom: 2rem"
 		>
-			<span class="section-title">{{ section.title }}</span>
+			<span
+				v-if="section.children"
+				class="section-title"
+			>
+				{{ section.title }}
+			</span>
 			<nav>
-				<UiNavTree :items="section.children" />
+				<UiNavTree
+					v-if="section.children"
+					:items="section.children"
+					:all-pages="allPages"
+					:all-navigation="allNavigation"
+				/>
 			</nav>
 		</section>
 	</nav>

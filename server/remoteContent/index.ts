@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import fs from 'node:fs/promises';
 import { stringifyYAML } from 'confbox';
 import formatTitle from '@directus/format-title';
+import { consola } from 'consola';
 import { db, readItems } from '../utils/directus';
 
 type PathPart = {
@@ -64,7 +65,11 @@ async function writePage(dir: string, pathParts: PathPartArray, config: Record<s
 }
 
 export const buildPages = async (dir: string) => {
+	consola.info('Fetching remote content');
+
 	const docs = await docPages();
+
+	consola.info(`Writing Remote Content to /.remote`);
 
 	const remotePath = resolve(dir, '.remote');
 
@@ -128,4 +133,6 @@ export const buildPages = async (dir: string) => {
 			}
 		}
 	}
+
+	consola.success('Finished Building Remote Content');
 };

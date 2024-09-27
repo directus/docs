@@ -1,56 +1,51 @@
-<script setup>
-const calloutDefinitions = [
-	{
-		type: 'info',
+<script setup lang="ts">
+const calloutDefinitions = {
+	'info': {
 		icon: 'material-symbols:info-outline',
+		color: null,
 	},
-	{
-		type: 'link',
+	'link': {
 		icon: 'material-symbols:link',
+		color: null,
 	},
-	{
-		type: 'warning',
+	'warning': {
 		icon: 'material-symbols:warning-rounded',
 		color: 'var(--red)',
 	},
-	{
-		type: 'dev-docs',
+	'dev-docs': {
 		icon: 'material-symbols:menu-book-outline',
-		color: 'var(--section--dev-docs)',
+		color: 'var(--area--dev-docs)',
 	},
-	{
-		type: 'cloud',
+	'cloud': {
 		icon: 'material-symbols:cloud',
-		color: 'var(--section--cloud)',
+		color: 'var(--area--cloud)',
 	},
-	{
-		type: 'api-reference',
+	'api-reference': {
 		icon: 'material-symbols:code-blocks-rounded',
-		color: 'var(--section--api-reference)',
+		color: 'var(--area--api-reference)',
 	},
-	{
-		type: 'tutorials',
+	'tutorials': {
 		icon: 'material-symbols:school-outline',
-		color: 'var(--section--tutorials)',
+		color: 'var(--area--tutorials)',
 	},
-	{
-		type: 'community',
+	'community': {
 		icon: 'material-symbols:groups',
-		color: 'var(--section--community)',
+		color: 'var(--area--community)',
 	},
-];
+} as const;
 
-const props = defineProps({
-	title: String,
-	url: String,
-	toggleable: Boolean,
-	type: {
-		type: String,
-		default: 'info',
+const props = withDefaults(
+	defineProps<{
+		title?: string;
+		url?: string;
+		toggleable?: boolean;
+		type?: keyof typeof calloutDefinitions;
+	}>(),
+	{
+		type: 'info',
 	},
-});
-
-const section = calloutDefinitions.find(section => section.type == props.type);
+);
+const section = calloutDefinitions[props.type];
 
 function componentType() {
 	if (props.url && props.url.charAt(0) == '/') return resolveComponent('NuxtLink');
@@ -88,7 +83,7 @@ const detailsOpen = ref(false);
 		:href="url"
 		class="callout"
 		:class="type"
-		:style="`border-color: ${section.color};`"
+		:style="section.color ? `borderColor: ${section.color}` : ''"
 	>
 		<Icon
 			:name="section.icon"
@@ -104,6 +99,7 @@ const detailsOpen = ref(false);
 			</p>
 			<ContentSlot :use="$slots.default" />
 		</div>
+		<!-- @vue-expect-error -->
 		<Icon
 			v-if="componentType == 'a' || componentType().name == 'NuxtLink'"
 			class="arrow"
@@ -116,8 +112,8 @@ const detailsOpen = ref(false);
 <style scoped lang="scss">
 .callout {
 	display: block;
-	background: var(--background--subdued);
-	border: 1px solid var(--border-2);
+	background: var(--background-subdued);
+	border: 1px solid var(--border-subdued);
 	padding: 1rem;
 	border-radius: var(--border-radius);
 	text-decoration: none;
@@ -125,7 +121,7 @@ const detailsOpen = ref(false);
 	display: grid;
 	grid-template-columns: 2em auto;
 	&.warning {
-		background: var(--red--light-3)
+		background: var(--red-1)
 	}
 	&:after {
 		display: none !important;

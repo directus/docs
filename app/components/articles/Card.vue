@@ -9,22 +9,23 @@ defineProps<{
 		icon?: string;
 		name: string;
 	}[];
+	article: ArticleNavItem;
 }>();
 </script>
 
 <template>
 	<NuxtLink
-		:to="_path"
+		:to="article._path"
 		class="card"
 	>
 		<p class="card-title">
-			{{ title }}
+			{{ article.title }}
 		</p>
 
 		<div class="card-footer-row">
 			<div v-if="tags" class="card-tag-row">
 				<span
-					v-for="tag in tags"
+					v-for="tag in article.tags"
 					:key="tag.id"
 					class="card-tag"
 					:title="tag.name"
@@ -33,7 +34,7 @@ defineProps<{
 				</span>
 			</div>
 			<p v-if="category" class="card-category">
-				{{ category }}
+				{{ article.category }}
 			</p>
 			<p v-if="description" class="card-description">
 				{{ description }}
@@ -53,7 +54,7 @@ defineProps<{
 	transition: background-color 0.2s ease-in-out;
 	text-decoration: none;
 
-	border: 1px solid var(--border-2);
+	border: 1px solid var(--border-subdued);
 
 	.card-title {
 		font-size: 1rem;
@@ -89,14 +90,14 @@ defineProps<{
 	.card-category {
 		font-size: 0.75rem;
 		font-weight: 400;
-		background-color: var(--background--subdued);
+		background-color: var(--background-subdued);
 		padding: 0.25rem 0.5rem;
 		border-radius: 0.25rem;
 	}
 
 	&:hover {
-		background-color: var(--background--subdued);
-		border-color: var(--border-3);
+		background-color: var(--background-subdued);
+		border-color: var(--border-subtle);
 	}
 }
 </style>

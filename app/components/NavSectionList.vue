@@ -1,21 +1,13 @@
-<script setup>
-// import sidebarHighlightOverrides from '@/utils/sidebarHighlightOverrides';
-
-// const route = useRoute();
-
-defineProps({
-	list: {
-		type: Object,
-		required: true,
+<script setup lang="ts">
+withDefaults(
+	defineProps<{
+		list: NavItems;
+		highlightActive?: boolean;
+	}>(),
+	{
+		highlightActive: true,
 	},
-	highlightActive: {
-		type: Boolean,
-		default: true,
-	},
-});
-
-// const highlightOverride = sidebarHighlightOverrides.find(h => h.path == route.path);
-//
+);
 </script>
 
 <template>
@@ -30,7 +22,7 @@ defineProps({
 				{{ link.title }}
 			</NuxtLink>
 			<NavSectionList
-				v-if="link.children?.length > 1"
+				v-if="link.children && link.children?.length > 1"
 				:list="link.children.slice(1)"
 			/>
 		</li>

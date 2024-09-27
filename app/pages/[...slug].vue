@@ -1,18 +1,36 @@
 <script setup lang="ts">
-const allPages = await queryContent()
-	.where({ _partial: false })
-	.only(['_path', 'additional_paths'])
-	.find();
-
-const allNavigation = await fetchContentNavigation();
+const { data: allNavigation } = await useAsyncData(`all_navigation`, () =>
+	fetchContentNavigation(),
+);
 
 const route = useRoute();
 
-if (route.path === '/') {
-	prerenderRoutes(allRoutes(allNavigation));
+if (!allNavigation.value) {
+	throw createError({
+		statusCode: 404,
+		fatal: true,
+	});
 }
 
-const resolvedRoute = resolveRoute(route.path, allPages, allNavigation);
+if (route.path === '/' && allNavigation.value?.length) {
+	prerenderRoutes(allRoutes(allNavigation.value));
+}
+
+const { data: allPages } = await useAsyncData(`all_page`, () =>
+	queryContent()
+		.where({ _partial: false })
+		.only(['_path', 'additional_paths'])
+		.find(),
+);
+
+if (!allPages.value) {
+	throw createError({
+		statusCode: 404,
+		fatal: true,
+	});
+}
+
+const resolvedRoute = resolveRoute(route.path, allPages.value, allNavigation.value);
 
 if (!resolvedRoute) {
 	throw createError({
@@ -21,15 +39,24 @@ if (!resolvedRoute) {
 	});
 }
 
-const page = await queryContent()
-	.where({ $or: [{ _path: { $eq: resolvedRoute } }] })
-	.findOne();
+const { data: page } = await useAsyncData(`page_data:${resolvedRoute}`, () =>
+	queryContent()
+		.where({ $or: [{ _path: { $eq: resolvedRoute } }] })
+		.findOne(),
+);
+
+if (!page.value) {
+	throw createError({
+		statusCode: 404,
+		fatal: true,
+	});
+}
 
 definePageMeta({});
 
 useSeoMeta({
-	title: page.title,
-	description: page.description,
+	title: page.value.title,
+	description: page.value.description,
 });
 
 // defineOgImage({
@@ -45,6 +72,8 @@ useSeoMeta({
 			:is="`Pages${page?.style || 'DocumentationPage'}`"
 			v-if="page"
 			:data="page"
+			:all-pages="allPages"
+			:all-navigation="allNavigation"
 		/>
 	</div>
 </template>

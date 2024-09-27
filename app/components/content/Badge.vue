@@ -1,27 +1,17 @@
-<script setup>
-defineProps({
-	text: {
-		type: String,
-		required: true,
+<script setup lang="ts">
+withDefaults(
+	defineProps<{
+		text: string;
+		small?: boolean;
+		iconBefore?: string;
+		iconAfter?: string;
+		color?: 'gray' | 'primary';
+	}>(),
+	{
+		small: false,
+		color: 'gray',
 	},
-	small: {
-		type: Boolean,
-		default: false,
-	},
-	iconBefore: {
-		type: String,
-	},
-	iconAfter: {
-		type: String,
-	},
-	color: {
-		type: String,
-		default: 'gray',
-		validator(value) {
-			return ['gray', 'primary'].includes(value);
-		},
-	},
-});
+);
 </script>
 
 <template>
@@ -43,8 +33,8 @@ defineProps({
 <style scoped>
 .badge {
 	background: transparent;
-	color: var(--typography--subdued);
-	border: 1px solid var(--typography--subdued);
+	color: var(--typography-subdued);
+	border: 1px solid var(--typography-subdued);
 	border-radius: 100em;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -57,8 +47,8 @@ defineProps({
 }
 
 .color-primary {
-	background-color: var(--purple);
-	border: 1px solid var(--purple--dark-1);
+	background-color: var(--primary);
+	border: 1px solid var(--primary-5);
 	color: white;
 }
 
