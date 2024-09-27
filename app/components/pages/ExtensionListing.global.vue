@@ -18,7 +18,11 @@ const pages = await queryContent().where({ _path: { $in: paths } }).only(['_path
 const sections = props.data.sections.map((section: Section) => {
 	const items = section.items?.map((item: { path: string }) => {
 		const page = pages.find(page => page._path === item.path);
-		return { ...item, title: page?.title, description: page?.description, _path: page?._path };
+		return {
+			title: page?.title,
+			description: page?.description,
+			_path: page?._path,
+		};
 	});
 	return { ...section, items };
 });
@@ -26,6 +30,7 @@ const sections = props.data.sections.map((section: Section) => {
 
 <template>
 	<div class="docs container">
+		Test
 		<UiAsideNav :path="data?._path" />
 		<div class="slug">
 			<main v-if="data">
@@ -42,6 +47,7 @@ const sections = props.data.sections.map((section: Section) => {
 					:key="section.title"
 				>
 					<h2>{{ section.title }}</h2>
+					<!-- {{ section.items }} -->
 					<ArticlesGrid :articles="section.items" />
 				</section>
 			</main>

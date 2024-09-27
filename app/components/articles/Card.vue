@@ -1,14 +1,5 @@
 <script lang="ts" setup>
 defineProps<{
-	_path: string;
-	title: string;
-	category?: string;
-	description?: string;
-	tags?: {
-		id: string;
-		icon?: string;
-		name: string;
-	}[];
 	article: ArticleNavItem;
 }>();
 </script>
@@ -23,7 +14,7 @@ defineProps<{
 		</p>
 
 		<div class="card-footer-row">
-			<div v-if="tags" class="card-tag-row">
+			<div v-if="article.tags" class="card-tag-row">
 				<span
 					v-for="tag in article.tags"
 					:key="tag.id"
@@ -33,11 +24,11 @@ defineProps<{
 					<Icon :name="tag.icon || 'material-symbols:question-mark'" />
 				</span>
 			</div>
-			<p v-if="category" class="card-category">
+			<p v-if="article.category" class="card-category">
 				{{ article.category }}
 			</p>
-			<p v-if="description" class="card-description">
-				{{ description }}
+			<p v-if="article.description" class="card-description">
+				{{ article.description }}
 			</p>
 		</div>
 	</NuxtLink>
