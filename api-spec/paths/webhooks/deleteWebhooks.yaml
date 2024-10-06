@@ -1,0 +1,27 @@
+summary: Delete Multiple Webhooks
+description: Delete multiple existing webhooks.
+tags:
+- Webhooks
+operationId: deleteWebhooks
+responses:
+  '200':
+    description: Successful request
+  '401':
+    $ref: ../../components/responses.yaml#/UnauthorizedError
+x-codeSamples:
+- label: Directus SDK
+  lang: JavaScript
+  source: |
+    import { createDirectus, rest, deleteWebhooks } from '@directus/sdk';
+
+    const client = createDirectus('directus_project_url').with(rest());
+
+    const result = await client.request(deleteWebhooks(webhook_id_array));
+- label: GraphQL
+  lang: GraphQL
+  source: |
+    POST /graphql/system
+
+    type Mutation {
+    	delete_webhooks_items(ids: [ID!]!): delete_many
+    }

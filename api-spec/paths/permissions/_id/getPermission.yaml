@@ -2,11 +2,11 @@ summary: Retrieve a Permission
 description: Retrieve a single permissions object by unique identifier.
 operationId: getPermission
 parameters:
-  - "$ref": "../../../components/parameters.yaml#/Id"
-  - "$ref": "../../../components/parameters.yaml#/Fields"
-  - "$ref": "../../../components/parameters.yaml#/Meta"
+- $ref: ../../../components/parameters.yaml#/Id
+- $ref: ../../../components/parameters.yaml#/Fields
+- $ref: ../../../components/parameters.yaml#/Meta
 responses:
-  "200":
+  '200':
     description: Successful request
     content:
       application/json:
@@ -14,26 +14,27 @@ responses:
           type: object
           properties:
             data:
-              "$ref": "../../../components/schemas/permissions.yaml"
-  "401":
-    "$ref": "../../../components/responses.yaml#/UnauthorizedError"
-  "404":
-    "$ref": "../../../components/responses.yaml#/NotFoundError"
+              $ref: ../../../components/schemas/permissions.yaml
+  '401':
+    $ref: ../../../components/responses.yaml#/UnauthorizedError
+  '404':
+    $ref: ../../../components/responses.yaml#/NotFoundError
 tags:
-  - Permissions
+- Permissions
 x-codeSamples:
-  - label: Directus SDK
-    lang: JavaScript
-    source: |
-      import { createDirectus, rest, readPermission } from '@directus/sdk';
-      const client = createDirectus('directus_project_url').with(rest());
+- label: Directus SDK
+  lang: JavaScript
+  source: |
+    import { createDirectus, rest, readPermission } from '@directus/sdk';
 
-      const result = await client.request(readPermission(permission_id, query_object));
-  - label: GraphQL
-    lang: GraphQL
-    source: |
-      GET /graphql/system
+    const client = createDirectus('directus_project_url').with(rest());
 
-      type Query {
-        permissions_by_id(id: ID!): directus_permissions
-      }
+    const result = await client.request(readPermission(permission_id, query_object));
+- label: GraphQL
+  lang: GraphQL
+  source: |
+    POST /graphql/system
+
+    type Query {
+    	permissions_by_id(id: ID!): directus_permissions
+    }

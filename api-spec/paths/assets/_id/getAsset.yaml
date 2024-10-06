@@ -1,0 +1,44 @@
+summary: Get an Asset
+tags:
+- Assets
+operationId: getAsset
+description: Image typed files can be dynamically resized and transformed to fit any
+  need.
+parameters:
+- name: id
+  in: path
+  description: The id of the file.
+  required: true
+  schema:
+    type: string
+- name: key
+  in: query
+  description: The key of the asset size configured in settings.
+  schema:
+    type: string
+- name: transforms
+  in: query
+  description: A JSON array of image transformations
+  schema:
+    type: string
+- name: download
+  in: query
+  description: Download the asset to your computer
+  schema:
+    type: boolean
+responses:
+  '200':
+    description: Successful request
+    content:
+      text/plain:
+        schema:
+          type: string
+  '404':
+    $ref: ../../components/responses.yaml#/NotFoundError
+x-codeSamples:
+  - label: Directus SDK
+    lang: JavaScript
+    source: 
+  - label: GraphQL
+    lang: GraphQL
+    source: |

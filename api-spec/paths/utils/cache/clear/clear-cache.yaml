@@ -1,0 +1,23 @@
+summary: Clear Cache
+description: Resets both the data and schema cache of Directus.
+operationId: clear-cache
+responses:
+  '200':
+    description: Successful request
+tags:
+- Utilities
+x-codeSamples:
+  - label: Directus SDK
+    lang: JavaScript
+    source: |
+      import { createDirectus, rest, clearCache } from '@directus/sdk';
+
+      const client = createDirectus('https://directus.example.com').with(rest());
+
+      const result = await client.request(clearCache());
+  - label: GraphQL
+    lang: GraphQL
+    source: |
+      mutation {
+        utils_cache_clear
+      }

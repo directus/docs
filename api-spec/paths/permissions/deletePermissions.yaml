@@ -1,0 +1,27 @@
+summary: Delete Multiple Permissions
+description: Delete multiple existing permissions.
+tags:
+- Permissions
+operationId: deletePermissions
+responses:
+  '200':
+    description: Successful request
+  '401':
+    $ref: ../../components/responses.yaml#/UnauthorizedError
+x-codeSamples:
+- label: Directus SDK
+  lang: JavaScript
+  source: |
+    import { createDirectus, rest, deletePermissions } from '@directus/sdk';
+
+    const client = createDirectus('directus_project_url').with(rest());
+
+    const result = await client.request(deletePermissions(permission_id_array));
+- label: GraphQL
+  lang: GraphQL
+  source: |
+    POST /graphql/system
+
+    type Mutation {
+    	delete_permissions_items(ids: [ID!]!): delete_many
+    }

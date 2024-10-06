@@ -1,0 +1,37 @@
+summary: Save to a Content Version
+description: Save item changes to an existing Content Version.
+operationId: saveContentVersion
+parameters:
+- $ref: ../../../../components/parameters.yaml#/UUId
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+responses:
+  '200':
+    description: Successful request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties: {}
+  '401':
+    $ref: ../../../../components/responses.yaml#/UnauthorizedError
+  '404':
+    $ref: ../../../../components/responses.yaml#/NotFoundError
+tags:
+- Versions
+x-codeSamples:
+  - label: Directus SDK
+    lang: JavaScript
+    source: |
+      import { createDirectus, rest, saveToContentVersion } from '@directus/sdk';
+
+      const client = createDirectus('directus_project_url').with(rest());
+
+      const result = await client.request(saveToContentVersion(content_version_id, partial_item_object));
+  - label: GraphQL
+    lang: GraphQL
+    source: |
+      // Not supported in GraphQL

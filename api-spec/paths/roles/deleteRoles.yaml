@@ -1,0 +1,27 @@
+summary: Delete Multiple Roles
+description: Delete multiple existing roles.
+tags:
+- Roles
+operationId: deleteRoles
+responses:
+  '200':
+    description: Successful request
+  '401':
+    $ref: ../../components/responses.yaml#/UnauthorizedError
+x-codeSamples:
+- label: Directus SDK
+  lang: JavaScript
+  source: |
+    import { createDirectus, rest, deleteRoles } from '@directus/sdk';
+
+    const client = createDirectus('https://directus.example.com').with(rest());
+
+    const result = await client.request(deleteRoles(role_id_array));
+- label: GraphQL
+  lang: GraphQL
+  source: |
+    POST /graphql/system
+
+    type Mutation {
+    	delete_roles_items(ids: [ID!]!): delete_many
+    }

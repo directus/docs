@@ -2,93 +2,90 @@ summary: Create a Permission
 description: Create a new permission.
 operationId: createPermission
 parameters:
-  - "$ref": "../../components/parameters.yaml#/Meta"
+- $ref: ../../components/parameters.yaml#/Meta
 requestBody:
   content:
     application/json:
       schema:
+        type: object
         properties:
           collection:
-            description: What collection this permission applies to.
             type: string
+            description: What collection this permission applies to.
             example: customers
           comment:
+            type: string
             description: If the user can post comments.
-            type: string
             enum:
-              - none
-              - create
-              - update
-              - full
+            - none
+            - create
+            - update
+            - full
           create:
+            type: string
             description: If the user can create items.
-            type: string
             enum:
-              - none
-              - full
+            - none
+            - full
           delete:
+            type: string
             description: If the user can update items.
-            type: string
             enum:
-              - none
-              - mine
-              - role
-              - full
+            - none
+            - mine
+            - role
+            - full
           explain:
-            description:
-              If the user is required to leave a comment explaining
-              what was changed.
             type: string
+            description: If the user is required to leave a comment explaining what
+              was changed.
             enum:
-              - none
-              - create
-              - update
-              - always
+            - none
+            - create
+            - update
+            - always
           read:
-            description: If the user can read items.
             type: string
+            description: If the user can read items.
             enum:
-              - none
-              - mine
-              - role
-              - full
+            - none
+            - mine
+            - role
+            - full
           role:
-            description:
-              Unique identifier of the role this permission applies
-              to.
             type: integer
+            description: Unique identifier of the role this permission applies to.
             example: 3
           read_field_blacklist:
-            description: Explicitly denies read access for specific fields.
             type: array
+            description: Explicitly denies read access for specific fields.
             items:
               type: string
             example:
-              - featured_image
+            - featured_image
           status:
-            description: What status this permission applies to.
             type: string
+            description: What status this permission applies to.
           status_blacklist:
-            description: Explicitly denies specific statuses to be used.
             type: array
+            description: Explicitly denies specific statuses to be used.
             items:
               type: string
           update:
-            description: If the user can update items.
             type: string
+            description: If the user can update items.
             enum:
-              - none
-              - mine
-              - role
-              - full
+            - none
+            - mine
+            - role
+            - full
           write_field_blacklist:
-            description: Explicitly denies write access for specific fields.
             type: array
+            description: Explicitly denies write access for specific fields.
             items:
               type: string
-        type: object
 responses:
-  "200":
+  '200':
     description: Successful request
     content:
       application/json:
@@ -96,26 +93,27 @@ responses:
           type: object
           properties:
             data:
-              "$ref": "../../components/schemas/permissions.yaml"
-  "401":
-    "$ref": "../../components/responses.yaml#/UnauthorizedError"
-  "404":
-    "$ref": "../../components/responses.yaml#/NotFoundError"
+              $ref: ../../components/schemas/permissions.yaml
+  '401':
+    $ref: ../../components/responses.yaml#/UnauthorizedError
+  '404':
+    $ref: ../../components/responses.yaml#/NotFoundError
 tags:
-  - Permissions
+- Permissions
 x-codeSamples:
-  - label: Directus SDK
-    lang: JavaScript
-    source: |
-      import { createDirectus, rest, createPermission } from '@directus/sdk';
-      const client = createDirectus('directus_project_url').with(rest());
+- label: Directus SDK
+  lang: JavaScript
+  source: |
+    import { createDirectus, rest, createPermission } from '@directus/sdk';
 
-      const result = await client.request(createPermission(permission_object));
-  - label: GraphQL
-    lang: GraphQL
-    source: |
-      POST /graphql/system
+    const client = createDirectus('directus_project_url').with(rest());
 
-      type Mutation {
-        create_permissions_item(data: create_directus_permissions_input!): directus_permissions
-      }
+    const result = await client.request(createPermission(permission_object));
+- label: GraphQL
+  lang: GraphQL
+  source: |
+    POST /graphql/system
+
+    type Mutation {
+    	create_permissions_item(data: create_directus_permissions_input!): directus_permissions
+    }

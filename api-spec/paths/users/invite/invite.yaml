@@ -1,0 +1,38 @@
+summary: Invite User(s)
+description: Invites one or more users to this project. It creates a user with an
+  invited status, and then sends an email to the user with instructions on how to
+  activate their account.
+operationId: invite
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          email:
+            type: string
+            description: Email address or array of email addresses of the to-be-invited
+              user(s).
+responses:
+  '200':
+    description: Successful request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: ../../../components/schemas/users.yaml
+  '401':
+    $ref: ../../../components/responses.yaml#/UnauthorizedError
+  '404':
+    $ref: ../../../components/responses.yaml#/NotFoundError
+tags:
+- Users
+x-codeSamples:
+  - label: Directus SDK
+    lang: JavaScript
+    source: |
+  - label: GraphQL
+    lang: GraphQL
+    source: |

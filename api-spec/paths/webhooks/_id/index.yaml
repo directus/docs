@@ -1,0 +1,6 @@
+get:
+  $ref: getWebhook.yaml
+patch:
+  $ref: updateWebhook.yaml
+delete:
+  $ref: deleteWebhook.yaml

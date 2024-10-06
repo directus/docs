@@ -1,0 +1,25 @@
+summary: Create a File
+description: Create a new file
+tags:
+- Files
+operationId: createFile
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          data:
+            type: string
+responses:
+  '200':
+    description: Successful request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: ../../components/schemas/files.yaml
+  '401':
+    $ref: ../../components/responses.yaml#/UnauthorizedError
