@@ -29,7 +29,7 @@ defineProps<{
 					</div>
 
 					<aside class="right-aside">
-						<ArticlesTagsFilter :all-tags="tags" />
+						<ArticlesTagsFilter :tags="tags" />
 					</aside>
 				</div>
 			</main>
