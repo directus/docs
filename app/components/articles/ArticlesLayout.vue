@@ -8,33 +8,31 @@ defineProps<{
 </script>
 
 <template>
-	<Layout>
-		<div class="page">
-			<main
-				class="main-content"
-			>
-				<h1>
-					{{ title }}
-				</h1>
+	<div class="page">
+		<main
+			class="main-content"
+		>
+			<h1>
+				{{ title }}
+			</h1>
 
-				<div class="flex-row">
-					<div
-						class="main-content"
-						style="flex-grow: 1;"
-					>
-						<ArticlesCategoryNav :categories="categories" />
-						<ArticlesGrid
-							:articles="articles"
-						/>
-					</div>
-
-					<aside class="right-aside">
-						<ArticlesTagsFilter :tags="tags" />
-					</aside>
+			<div class="flex-row">
+				<div
+					class="main-content"
+					style="flex-grow: 1;"
+				>
+					<ArticlesCategoryNav :categories="categories" />
+					<ArticlesGrid
+						:articles="articles"
+					/>
 				</div>
-			</main>
-		</div>
-	</Layout>
+
+				<aside class="right-aside">
+					<ArticlesTagsFilter :tags="tags" />
+				</aside>
+			</div>
+		</main>
+	</div>
 </template>
 
 <style scoped lang="scss">
