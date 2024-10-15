@@ -73,7 +73,7 @@ export default defineNuxtConfig({
 			INKEEP_INTEGRATION_ID: '',
 			INKEEP_ORGANIZATION_ID: '',
 			NEWSLETTER_URL: '',
-			PRODUCT_DIRECTUS_URL: '',
+			PRODUCT_DIRECTUS_URL: 'https://product-team.directus.app',
 		},
 	},
 	routeRules: {
