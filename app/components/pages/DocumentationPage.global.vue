@@ -9,7 +9,7 @@ defineProps<{
 <template>
 	<DefaultLayout>
 		<template #mobile-nav>
-			<UiAsideNav
+			<AsideNav
 				class="left-aside-slide"
 				:path="data._path"
 				:all-pages="allPages"
