@@ -25,9 +25,10 @@ async function subscribe() {
 		});
 		status.value = 'success';
 	}
-	catch (error) {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	catch (error: any) {
 		status.value = 'error';
-		errorMessage.value = error.message;
+		errorMessage.value = error.message || 'An error occurred';
 	}
 }
 </script>

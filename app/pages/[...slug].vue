@@ -64,7 +64,7 @@ defineOgImage({
 	props: {
 		title: page.value.title,
 		description: page.value.description,
-		badgeLabel: page.value.tags?.map(tag => tag.name).join(', ') || undefined,
+		badgeLabel: page.value.tags?.map((tag: ArticleTag) => tag.name).join(', ') || undefined,
 	},
 });
 </script>

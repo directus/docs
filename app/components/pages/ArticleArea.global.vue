@@ -69,7 +69,9 @@ const allTags = computed(() => {
 	}
 	const tagIdsArray = Array.from(tagIds);
 
-	return tagIdsArray.map(tagId => tags.find(tag => tag.id === tagId)).sort(
+	return tagIdsArray.map(tagId => tags.find(tag => tag.id === tagId)).filter(
+		(tag): tag is ArticleTag => tag !== undefined,
+	).sort(
 		(a, b) => a?.name?.localeCompare(b?.name || '') ?? 0,
 	);
 });
