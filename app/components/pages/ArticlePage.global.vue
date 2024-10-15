@@ -1,68 +1,144 @@
 <script setup lang="ts">
+import { formatTitle } from '@directus/format-title';
+
 const props = defineProps<{
 	data: PageContent;
 }>();
 
-const categoryPath = computed(() => {
-	return props.data._path?.split('/').slice(0, -1).join('/');
+const breadcrumbs = computed(() => {
+	const paths = props.data._path.split('/').slice(1, -1);
+	const breadcrumbs = paths.map((path, index) => {
+		const name = formatTitle(path.replace(/-/g, ' '));
+		const to = '/' + paths.slice(0, index + 1).join('/');
+		return { name, to };
+	});
+	return breadcrumbs;
 });
 </script>
 
 <template>
-	<div class="docs container">
-		<div class="slug">
-			<main v-if="data">
-				<NuxtLink
-					v-if="categoryPath"
-					:to="categoryPath"
-				>
-					<Icon
-						name="material-symbols:arrow-back-ios-rounded"
-					/>
-					Back to Category
-				</NuxtLink>
-				<article>
-					<ContentRenderer :value="data">
-						<span
-							v-if="data._dir"
-							v-title
-							class="section-title"
+	<DefaultLayout>
+		<div class="page-layout container">
+			<div class="page">
+				<main v-if="data">
+					<div class="breadcrumbs">
+						<NuxtLink
+							v-for="(breadcrumb, index) in breadcrumbs"
+							:key="breadcrumb.to"
+							class="breadcrumb section-title"
+							:to="breadcrumb.to"
 						>
-							{{ data._dir }}
-						</span>
-						<ContentRendererMarkdown
-							class="prose"
-							:value="data"
+							{{ breadcrumb.name }}
+							<Icon
+								v-if="index < breadcrumbs.length - 1"
+								name="material-symbols:chevron-right-rounded"
+								class="breadcrumb-icon"
+							/>
+						</NuxtLink>
+					</div>
+
+					<article>
+						<ContentRenderer :value="data">
+							<div class="prose">
+								<h1>
+									{{ data.title }}
+								</h1>
+							</div>
+							<div class="tags">
+								<div
+									v-for="tag in data.tags"
+									:key="tag.id"
+									class="tag"
+								>
+									<Icon :name="tag.icon" />
+									{{ formatTitle(tag.name) }}
+								</div>
+							</div>
+							<ContentRendererMarkdown
+								class="prose"
+								:value="data"
+							/>
+							<template #empty>
+								<p>No content found.</p>
+							</template>
+						</ContentRenderer>
+					</article>
+				</main>
+				<aside class="right-aside">
+					<template v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0">
+						<AsideTableOfContents
+							:toc="data.body.toc"
 						/>
-						<template #empty>
-							<p>No content found.</p>
-						</template>
-					</ContentRenderer>
-				</article>
-			</main>
-			<aside>
-				<AsideTableOfContents
-					v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
-					:toc="data?.body?.toc"
-				/>
-				<AsideNewsletter />
-				<AsideFeedback />
-			</aside>
+						<hr>
+					</template>
+					<AsideFeedback />
+					<hr>
+					<AsideNewsletter />
+				</aside>
+			</div>
 		</div>
-	</div>
+	</DefaultLayout>
 </template>
 
 <style lang="scss" scoped>
-.slug {
+.tags {
+	display: flex;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+	align-items: center;
+
+	.tag {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		background-color: var(--background-subdued);
+		padding: 0.25rem 0.5rem;
+		border-radius: var(--border-radius);
+		border: 1px solid var(--border);
+	}
+}
+
+.breadcrumbs {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	margin-bottom: 1rem;
+
+	.breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		text-decoration: none;
+		&:hover {
+			color: var(--primary);
+		}
+
+		.breadcrumb-icon {
+			font-size: 1rem;
+		}
+	}
+}
+
+.page {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) 250px;
 	width: 100%;
 	gap: 3rem;
+	overflow: clip;
 }
 main {
 	margin-top: 24px;
 	.prev-next {
 		padding: 24px 0 calc(24px + 1rem);
+	}
+}
+@media (max-width: 1024px) {
+	.right-aside {
+		display: none;
+	}
+	.page {
+		display: block;
+		padding-top: 1rem;
 	}
 }
 aside {
@@ -77,7 +153,7 @@ aside {
 		width: 100%;
 	}
 }
-.docs {
+.page-layout {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	gap: 3rem;

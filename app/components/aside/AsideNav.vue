@@ -49,7 +49,7 @@ const navigation = computed(() => {
 				{{ section.title }}
 			</span>
 			<nav>
-				<UiNavTree
+				<NavTree
 					v-if="section.children"
 					:items="section.children"
 					:all-pages="allPages"

@@ -6,25 +6,30 @@ defineProps<{
 </script>
 
 <template>
-	<div class="category-row">
-		<NuxtLink
-			v-for="category in categories"
-			:key="category._path"
-			:to="{ path: category._path, query: route.query }"
-			class="category-nav-item"
-			active-class="active"
-		>
-			{{ category.title }}
-		</NuxtLink>
+	<div class="wrapper">
+		<div class="category-row">
+			<NuxtLink
+				v-for="category in categories"
+				:key="category._path"
+				:to="{ path: category._path, query: route.query }"
+				class="category-nav-item"
+				active-class="active"
+			>
+				{{ category.title }}
+			</NuxtLink>
+		</div>
 	</div>
 </template>
 
 <style lang="scss" scoped>
+.wrapper {
+	overflow-x: auto;
+}
+
 .category-row {
 	display: flex;
 	justify-content: start;
 	gap: 1rem;
-	overflow-x: auto;
 }
 
 .category-nav-item {

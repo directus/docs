@@ -1,39 +1,44 @@
 <script setup lang="ts">
+import { formatTitle } from '@directus/format-title';
+
 const props = defineProps<{
-	allTags: ArticleTags;
+	tags: ArticleTags;
 }>();
 
 const { selectedTags, toggleTag, setTags, clearTags } = useTags();
 
 function toggleAllTags() {
-	if (selectedTags.value.length === props.allTags.length) {
+	if (selectedTags.value.length === props.tags.length) {
 		clearTags();
 	}
 	else {
-		setTags(props.allTags.map(tag => tag.id));
+		setTags(props.tags.map(tag => tag.name));
 	}
 }
 </script>
 
 <template>
 	<div>
-		<div class="row">
-			<h4>Tags</h4>
+		<div class="filter-header">
+			<p class="section-title">
+				Filter
+			</p>
 			<a
-				style="cursor: pointer;"
+				class="toggle-all"
 				@click="toggleAllTags"
-			>Toggle all</a>
+			>
+				Toggle all
+			</a>
 		</div>
 		<div
-			v-for="tag in allTags"
+			v-for="tag in tags"
 			:key="tag.id"
 			class="tag"
-			:class="{ selected: selectedTags.includes(tag.id) }"
-			@click="toggleTag(tag.id)"
+			:class="{ selected: selectedTags.includes(tag.name) }"
+			@click="toggleTag(tag.name)"
 		>
-			<!-- checkbox icon -->
 			<Icon
-				v-if="selectedTags.includes(tag.id)"
+				v-if="selectedTags.includes(tag.name)"
 				name="material-symbols:check-box"
 			/>
 			<Icon
@@ -41,23 +46,31 @@ function toggleAllTags() {
 				name="material-symbols:check-box-outline-blank"
 			/>
 			<Icon :name="tag.icon || 'material-symbols:question-mark'" />
-			<p>{{ tag.name }}</p>
+			<p>{{ formatTitle(tag.name) }}</p>
 		</div>
 	</div>
 </template>
 
 <style lang="scss" scoped>
-.row {
+.filter-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.toggle-all {
+	cursor: pointer;
+	color: var(--typography-subdued);
+	font-size: 0.85rem;
 }
 
 .tag {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+	margin-bottom: 0.25rem;
 
 	&:hover {
 		cursor: pointer;
@@ -67,18 +80,5 @@ function toggleAllTags() {
 	&.selected {
 		color: var(--purple);
 	}
-}
-
-.flex-row {
-	display: flex;
-	gap: 1rem;
-	align-items: flex-start;
-}
-
-.main-content {
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	gap: 1rem;
 }
 </style>

@@ -19,6 +19,8 @@ export default defineNuxtConfig({
 			INKEEP_API_KEY: '',
 			INKEEP_INTEGRATION_ID: '',
 			INKEEP_ORGANIZATION_ID: '',
+			NEWSLETTER_URL: '',
+			PRODUCT_DIRECTUS_URL: '',
 		},
 	},
 	typescript: {
@@ -77,6 +79,7 @@ export default defineNuxtConfig({
 		fallback: 'light',
 		storage: 'localStorage',
 		storageKey: 'nuxt-color-mode',
+		classSuffix: '',
 	},
 	eslint: {
 		config: {

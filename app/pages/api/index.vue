@@ -4,55 +4,57 @@ import '@scalar/api-reference/style.css';
 </script>
 
 <template>
-	<div class="api-wrapper">
-		<ClientOnly>
-			<ApiReference
-				:configuration="{
-					isEditable: false,
-					hideSearch: true,
-					hideDarkModeToggle: true,
-					hideTestRequestButton: true,
-					spec: { url: '/oas.yaml' },
-					hiddenClients: [
-						'libcurl',
-						'clj_http',
-						'httpclient',
-						'restsharp',
-						'native',
-						'http1.1',
-						'asynchttp',
-						'nethttp',
-						'okhttp',
-						'unirest',
-						'xhr',
-						'axios',
-						'fetch',
-						'jquery',
-						'okhttp',
-						'undici',
-						'native',
-						'request',
-						'axios',
-						'fetch',
-						'nsurlsession',
-						'cohttp',
-						'guzzle',
-						'http1',
-						'http2',
-						'webrequest',
-						'restmethod',
-						'python3',
-						'requests',
-						'httr',
-						'native',
-						'httpie',
-						'wget',
-						'nsurlsession',
-					],
-				}"
-			/>
-		</ClientOnly>
-	</div>
+	<DefaultLayout>
+		<div class="api-wrapper">
+			<ClientOnly>
+				<ApiReference
+					:configuration="{
+						isEditable: false,
+						hideSearch: true,
+						hideDarkModeToggle: true,
+						hideTestRequestButton: true,
+						spec: { url: '/oas.yaml' },
+						hiddenClients: [
+							'libcurl',
+							'clj_http',
+							'httpclient',
+							'restsharp',
+							'native',
+							'http1.1',
+							'asynchttp',
+							'nethttp',
+							'okhttp',
+							'unirest',
+							'xhr',
+							'axios',
+							'fetch',
+							'jquery',
+							'okhttp',
+							'undici',
+							'native',
+							'request',
+							'axios',
+							'fetch',
+							'nsurlsession',
+							'cohttp',
+							'guzzle',
+							'http1',
+							'http2',
+							'webrequest',
+							'restmethod',
+							'python3',
+							'requests',
+							'httr',
+							'native',
+							'httpie',
+							'wget',
+							'nsurlsession',
+						],
+					}"
+				/>
+			</ClientOnly>
+		</div>
+	</DefaultLayout>
 </template>
 
 <style>
@@ -64,15 +66,15 @@ import '@scalar/api-reference/style.css';
 }
 
 .references-navigation-list {
-	top: 111px !important;
+	top: 0 !important;
 }
 
 .section.introduction-section {
-	padding-top: 24 !important;
+	padding-top: 48px !important;
 }
 
 .section.introduction-section .section-column:nth-of-type(2) {
-	padding-top: 24 !important;
+	padding-top: 48px !important;
 }
 
 @media (max-width: 1000px) {
@@ -95,28 +97,28 @@ import '@scalar/api-reference/style.css';
 }
 
 .sidebar::after {
-	content: "" !important; /* Creates an empty content for the pseudo-element */
+	content: "" !important;
 	position: absolute !important;
-	right: 12px !important; /* Move the border 14px to the right */
+	right: 12px !important;
 	top: 0 !important;
 	height: 100% !important;
-	width: 2px !important; /* The width of the border */
+	width: 2px !important;
 	background-color: var(
 		--border
-	) !important; /* Change this to your desired border color */
+	) !important;
 	z-index: 1 !important;
 }
 
 .dark-mode .sidebar::after {
-	content: "" !important; /* Creates an empty content for the pseudo-element */
+	content: "" !important;
 	position: absolute !important;
-	right: 12px !important; /* Move the border 14px to the right */
+	right: 12px !important;
 	top: 0 !important;
 	height: 100% !important;
-	width: 2px !important; /* The width of the border */
+	width: 2px !important;
 	background-color: var(
 		--border
-	) !important; /* Change this to your desired border color */
+	) !important;
 	z-index: 1 !important;
 }
 
@@ -129,28 +131,28 @@ import '@scalar/api-reference/style.css';
 }
 
 .sidebar-heading.active_page::after {
-	content: "" !important; /* Creates an empty content for the pseudo-element */
+	content: "" !important;
 	position: absolute !important;
-	right: -11px !important; /* Move the border 14px to the right */
+	right: -11px !important;
 	top: 0 !important;
 	height: 100% !important;
-	width: 2px !important; /* The width of the border */
+	width: 2px !important;
 	background-color: var(
 		--purple
-	) !important; /* Change this to your desired border color */
+	) !important;
 	z-index: 50 !important;
 }
 
 .dark-mode .sidebar-heading.active_page::after {
-	content: "" !important; /* Creates an empty content for the pseudo-element */
+	content: "" !important;
 	position: absolute !important;
-	right: -11px !important; /* Move the border 14px to the right */
+	right: -11px !important;
 	top: 0 !important;
 	height: 100% !important;
-	width: 2px !important; /* The width of the border */
+	width: 2px !important;
 	background-color: var(
 		--pink
-	) !important; /* Change this to your desired border color */
+	) !important;
 	z-index: 50 !important;
 }
 
@@ -173,7 +175,7 @@ import '@scalar/api-reference/style.css';
 
 	--scalar-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.11);
 	--scalar-shadow-2: rgba(0, 0, 0, 0.08) 0px 13px 20px 0px,
-		rgba(0, 0, 0, 0.08) 0px 3px 8px 0px, var(--scalar-border-color) 0px 0 0 1px;
+	rgba(0, 0, 0, 0.08) 0px 3px 8px 0px, var(--scalar-border-color) 0px 0 0 1px;
 
 	--scalar-button-1: var(--primary);
 	--scalar-button-1-color: #fff;
@@ -205,7 +207,7 @@ import '@scalar/api-reference/style.css';
 
 	--scalar-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.11);
 	--scalar-shadow-2: rgba(15, 15, 15, 0.2) 0px 3px 6px,
-		rgba(15, 15, 15, 0.4) 0px 9px 24px, 0 0 0 1px rgba(255, 255, 255, 0.1);
+	rgba(15, 15, 15, 0.4) 0px 9px 24px, 0 0 0 1px rgba(255, 255, 255, 0.1);
 
 	--scalar-button-1: var(--pink);
 	--scalar-button-1-color: #fff;

@@ -123,6 +123,13 @@ interface DocumentationPagesTags {
 	tag: DocumentationTag; // UUID or DocumentationTag
 }
 
+interface DocumentationBanner {
+	id: string;
+	message: string;
+	link: string;
+	status: 'draft' | 'published';
+}
+
 export interface DirectusSchema {
 	article_area: ArticleArea[];
 	article_category: ArticleCategory[];
@@ -133,4 +140,5 @@ export interface DirectusSchema {
 	documentation_tag: DocumentationTag[];
 	documentation_additional_path: DocumentationAdditionalPath[];
 	documentation_pages_tags: DocumentationPagesTags[];
+	documentation_banner: DocumentationBanner;
 }

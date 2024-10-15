@@ -4,6 +4,7 @@
 		height="40"
 		viewBox="0 0 143 40"
 		fill="none"
+		style="max-height: 32px; width: auto;"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<g clip-path="url(#clip0_108_19)">

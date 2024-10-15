@@ -77,7 +77,7 @@ const navItems = computed(() => {
 </script>
 
 <template>
-	<nav>
+	<nav class="desktop-nav">
 		<ul class="container">
 			<li
 				v-for="item in navItems"
@@ -108,14 +108,10 @@ const navItems = computed(() => {
 
 <style scoped>
 .container {
-
 	margin-left: 0px;
 	margin-right: 0px;
 }
-nav {
-	position: sticky;
-	top: 72px;
-	z-index: 900;
+.desktop-nav {
 	background: var(--background-subdued);
 	box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--border) 50%, var(--border-subdued) 50%);
 	display: flex;
@@ -143,6 +139,12 @@ a {
 	&.active {
 		color: var(--active-color);
 		border-color: var(--active-color);
+	}
+}
+
+@media (max-width: 768px) {
+	.desktop-nav {
+		display: none;
 	}
 }
 </style>

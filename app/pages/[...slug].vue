@@ -59,11 +59,14 @@ useSeoMeta({
 	description: page.value.description,
 });
 
-// defineOgImage({
-// 	component: 'Docs',
-// 	title: data.value.title,
-// 	description: data.value.description,
-// });
+defineOgImage({
+	component: 'OgImageDefault',
+	props: {
+		title: page.value.title,
+		description: page.value.description,
+		badgeLabel: page.value.tags?.map(tag => tag.name).join(', ') || undefined,
+	},
+});
 </script>
 
 <template>
