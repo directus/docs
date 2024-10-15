@@ -14,7 +14,10 @@ defineProps<{
 		</p>
 
 		<div class="card-footer-row">
-			<div v-if="article.tags" class="card-tag-row">
+			<div
+				v-if="article.tags"
+				class="card-tag-row"
+			>
 				<span
 					v-for="tag in article.tags"
 					:key="tag.id"
@@ -24,10 +27,16 @@ defineProps<{
 					<Icon :name="tag.icon || 'material-symbols:question-mark'" />
 				</span>
 			</div>
-			<p v-if="article.category" class="card-category">
+			<p
+				v-if="article.category"
+				class="card-category"
+			>
 				{{ article.category }}
 			</p>
-			<p v-if="article.description" class="card-description">
+			<p
+				v-if="article.description"
+				class="card-description"
+			>
 				{{ article.description }}
 			</p>
 		</div>
@@ -50,6 +59,11 @@ defineProps<{
 	.card-title {
 		font-size: 1rem;
 		font-weight: 500;
+	}
+
+	.card-description {
+		font-size: 0.875rem;
+		font-weight: 400;
 	}
 
 	.card-footer-row {
