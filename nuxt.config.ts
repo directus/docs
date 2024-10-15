@@ -2,8 +2,6 @@ import { resolve } from 'path';
 import { buildPages } from './server/remoteContent';
 
 export default defineNuxtConfig({
-	compatibilityDate: '2024-04-03',
-	devtools: { enabled: true },
 	modules: [
 		'@nuxt/eslint',
 		'@vueuse/nuxt',
@@ -14,25 +12,20 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@nuxtjs/color-mode',
 	],
-	runtimeConfig: {
-		public: {
-			INKEEP_API_KEY: '',
-			INKEEP_INTEGRATION_ID: '',
-			INKEEP_ORGANIZATION_ID: '',
-			NEWSLETTER_URL: '',
-			PRODUCT_DIRECTUS_URL: '',
-		},
+	devtools: { enabled: true },
+	css: ['~/assets/css/main.scss'],
+	vue: {
+		runtimeCompiler: true,
 	},
-	typescript: {
-		// typeCheck: true,
+	site: {
+		name: 'Directus Docs',
 	},
-	routeRules: {
-		'/**': { prerender: true },
-	},
-	hooks: {
-		async ready() {
-			await buildPages(__dirname);
-		},
+	colorMode: {
+		preference: 'system',
+		fallback: 'light',
+		storage: 'localStorage',
+		storageKey: 'nuxt-color-mode',
+		classSuffix: '',
 	},
 	content: {
 		highlight: {
@@ -74,12 +67,35 @@ export default defineNuxtConfig({
 			fields: ['root', 'tags', 'additional_paths', 'expandable'],
 		},
 	},
-	colorMode: {
-		preference: 'system',
-		fallback: 'light',
-		storage: 'localStorage',
-		storageKey: 'nuxt-color-mode',
-		classSuffix: '',
+	runtimeConfig: {
+		public: {
+			INKEEP_API_KEY: '',
+			INKEEP_INTEGRATION_ID: '',
+			INKEEP_ORGANIZATION_ID: '',
+			NEWSLETTER_URL: '',
+			PRODUCT_DIRECTUS_URL: '',
+		},
+	},
+	routeRules: {
+		'/**': { prerender: true },
+	},
+	future: {
+		compatibilityVersion: 4,
+	},
+	compatibilityDate: '2024-04-03',
+	nitro: {
+		prerender: {
+			routes: ['/', '/api'],
+			crawlLinks: false,
+		},
+	},
+	typescript: {
+		// typeCheck: true,
+	},
+	hooks: {
+		async ready() {
+			await buildPages(__dirname);
+		},
 	},
 	eslint: {
 		config: {
@@ -87,20 +103,6 @@ export default defineNuxtConfig({
 				indent: 'tab',
 				semi: true,
 			},
-		},
-	},
-	site: {
-		name: 'Directus Docs',
-	},
-	future: {
-		compatibilityVersion: 4,
-	},
-	schemaOrg: {
-		identity: {
-			type: 'Organization',
-			name: 'Directus',
-			url: 'https://directus.io',
-			logo: 'https://directus.io/images/logo-dark.svg',
 		},
 	},
 	icon: {
@@ -115,21 +117,19 @@ export default defineNuxtConfig({
 			},
 		],
 	},
+	schemaOrg: {
+		identity: {
+			type: 'Organization',
+			name: 'Directus',
+			url: 'https://directus.io',
+			logo: 'https://directus.io/images/logo-dark.svg',
+		},
+	},
 	security: {
 		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
         process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
-		},
-	},
-	css: ['~/assets/css/main.scss'],
-	vue: {
-		runtimeCompiler: true,
-	},
-	nitro: {
-		prerender: {
-			routes: ['/', '/api'],
-			crawlLinks: false,
 		},
 	},
 });

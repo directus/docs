@@ -128,7 +128,10 @@ const navItems = computed(() => {
 								<!-- Label -->
 								<span class="nav-label">
 									{{ item.label }}
-									<Icon v-if="item.href" name="material-symbols:open-in-new-rounded" />
+									<Icon
+										v-if="item.href"
+										name="material-symbols:open-in-new-rounded"
+									/>
 								</span>
 							</NuxtLink>
 						</li>
