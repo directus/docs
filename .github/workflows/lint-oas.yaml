@@ -14,6 +14,7 @@ concurrency:
 
 env:
   NODE_OPTIONS: --max_old_space_size=6144
+  NUXT_PUBLIC_PRODUCT_DIRECTUS_URL: https://product-team.directus.app
 
 jobs:
   oas-lint:
@@ -28,5 +29,3 @@ jobs:
 
       - name: Run Linter
         run: pnpm oas:lint
-        env:
-          NUXT_PUBLIC_PRODUCT_DIRECTUS_URL: https://product-team.directus.app
