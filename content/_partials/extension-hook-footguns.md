@@ -1,0 +1,1 @@
+Directus reads system collections to operate. Be careful when modifying the output of system collection `read` or `query` events. Also ensure not to directly or indirectly emit the same event your hook is handling or you will create an infinite loop.
