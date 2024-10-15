@@ -89,6 +89,15 @@ export default defineNuxtConfig({
 			crawlLinks: false,
 		},
 	},
+	vite: {
+		css: {
+			preprocessorOptions: {
+				scss: {
+					api: 'modern-compiler',
+				},
+			},
+		},
+	},
 	typescript: {
 		// typeCheck: true,
 	},
