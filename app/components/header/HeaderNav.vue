@@ -111,6 +111,7 @@ const navItems = computed(() => {
 	margin-left: 0px;
 	margin-right: 0px;
 }
+
 .desktop-nav {
 	background: var(--background-subdued);
 	box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--border) 50%, var(--border-subdued) 50%);
