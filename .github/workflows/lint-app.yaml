@@ -28,3 +28,5 @@ jobs:
 
       - name: Run Linter
         run: pnpm eslint:lint
+        env:
+          NUXT_PUBLIC_PRODUCT_DIRECTUS_URL: https://product-team.directus.app
