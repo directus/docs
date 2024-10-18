@@ -11,11 +11,140 @@ servers:
     description: Your current Directus project.
 
 paths:
+  "/activity":
+    $ref: paths/permissions/index.yaml
+  "/activity/{id}":
+    $ref: paths/permissions/_id/index.yaml
+  "/activity/comment":
+    $ref: paths/permissions/comment/index.yaml
+  "/activity/comment/{id}":
+    $ref: paths/permissions/comment/_id/index.yaml
+  "/assets/{_id}":
+    $ref: paths/assets/_id/index.yaml
+  "/auth/login":
+    $ref: paths/auth/login/index.yaml
+  "/auth/logout":
+    $ref: paths/auth/logout/index.yaml
+  "/auth/oauth":
+    $ref: paths/auth/oauth/index.yaml
+  "/auth/oauth/{_provider}":
+    $ref: paths/auth/oauth/_provider/index.yaml
+  "/auth/password/request":
+    $ref: paths/auth/password/request/index.yaml
+  "/auth/password/reset":
+    $ref: paths/auth/password/reset/index.yaml
+  "/auth/refresh":
+    $ref: paths/auth/refresh/index.yaml
+  "/collections":
+    $ref: paths/collections/index.yaml
+  "/collections/{_id}":
+    $ref: paths/collections/_id/index.yaml
+  "/extensions":
+    $ref: paths/extensions/index.yaml
+  "/extensions/{_bundle}/{_name}":
+    $ref: paths/extensions/_bundle/_name/index.yaml
+  "/extensions/{_name}":
+    $ref: paths/extensions/_name/index.yaml
+  "/fields":
+    $ref: paths/fields/index.yaml
+  "/fields/{_collection}":
+    $ref: paths/fields/_collection/index.yaml
+  "/fields/{_collection}/{_id}":
+    $ref: paths/fields/_collection/_id/index.yaml
+  "/files":
+    $ref: paths/files/index.yaml
+  "/files/{_id}":
+    $ref: paths/files/_id/index.yaml
+  "/flows":
+    $ref: paths/flows/index.yaml
+  "/flows/{_id}":
+    $ref: paths/flows/_id/index.yaml
+  "/folders":
+    $ref: paths/folders/index.yaml
+  "/folders/{_id}":
+    $ref: paths/folders/_id/index.yaml
+  "/operations":
+    $ref: paths/operations/index.yaml
+  "/operations/{_id}":
+    $ref: paths/operations/_id/index.yaml
   "/permissions":
     $ref: paths/permissions/index.yaml
   "/permissions/{id}":
     $ref: paths/permissions/_id/index.yaml
-
+  "/permissions/me":
+    $ref: paths/permissions/me/index.yaml
+  "/presets":
+    $ref: paths/presets/index.yaml
+  "/presets/{id}":
+    $ref: paths/presets/_id/index.yaml
+  "/relations":
+    $ref: paths/relations/index.yaml
+  "/relations/{id}":
+    $ref: paths/relations/_id/index.yaml
+  "/revisions":
+    $ref: paths/revisions/index.yaml
+  "/revisions/{id}":
+    $ref: paths/revisions/_id/index.yaml
+  "/roles":
+    $ref: paths/roles/index.yaml
+  "/roles/{id}":
+    $ref: paths/roles/_id/index.yaml
+  "/schema/apply":
+    $ref: paths/schema/apply/index.yaml
+  "/schema/diff":
+    $ref: paths/schema/diff/index.yaml
+  "/schema/snapshot":
+    $ref: paths/schema/snapshot/index.yaml
+  "/server/info":
+    $ref: paths/server/info/index.yaml
+  "/server/ping":
+    $ref: paths/server/ping/index.yaml
+  "/settings":
+    $ref: paths/settings/index.yaml
+  "/users":
+    $ref: paths/users/index.yaml
+  "/users/{id}":
+    $ref: paths/users/_id/index.yaml
+  "/users/invite":
+    $ref: paths/users/invite/index.yaml
+  "/users/invite/accept":
+    $ref: paths/users/invite/accept/index.yaml
+  "/users/me":
+    $ref: paths/users/me/index.yaml
+  "/users/me/tfa":
+    $ref: paths/users/me/tfa/index.yaml
+  "/users/me/tfa/disable":
+    $ref: paths/users/me/tfa/disable/index.yaml
+  "/users/me/tfa/enable":
+    $ref: paths/users/me/tfa/enable/index.yaml
+  "/users/me/track/page":
+    $ref: paths/users/me/track/page/index.yaml
+  "/utils/cache/clear"
+    $ref: paths/utils/cache/clear/index.yaml
+  "/utils/export/{_collection}"
+    $ref: paths/utils/export/_collection/index.yaml
+  "/utils/hash"
+    $ref: paths/utils/hash/index.yaml
+  "/utils/import/{_collection}"
+    $ref: paths/utils/import/_collection/index.yaml
+  "/utils/random/string"
+    $ref: paths/utils/random/string/index.yaml
+  "/utils/sort/{_collection}"
+    $ref: paths/utils/sort/_collection/index.yaml
+  "/versions":
+    $ref: paths/versions/index.yaml
+  "/versions/{id}":
+    $ref: paths/versions/id/index.yaml
+  "/versions/{id}/compare":
+    $ref: paths/versions/id/compare/index.yaml
+  "/versions/{id}/promote":
+    $ref: paths/versions/id/promote/index.yaml
+  "/versions/{id}/save":
+    $ref: paths/versions/id/save/index.yaml
+  "/webhooks/":
+    $ref: paths/webhooks/index.yaml
+  "/webhooks/{id}":
+    $ref: paths/webhooks/_id/index.yaml
 components:
   parameters:
     $ref: components/parameters.yaml
