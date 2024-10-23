@@ -158,7 +158,7 @@ export interface DirectusSchema {
 	documentation_tag: DocumentationTag[];
 	documentation_additional_path: DocumentationAdditionalPath[];
 	documentation_pages_tags: DocumentationPagesTags[];
-	documentation_banner: DocumentationBanner;
+	documentation_banner: DocumentationBanner[];
 	documentation_author: DocumentationAuthor[];
 	documentation_page_author: DocumentationPageAuthor[];
 }

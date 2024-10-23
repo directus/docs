@@ -78,31 +78,33 @@ const navItems = computed(() => {
 
 <template>
 	<nav class="desktop-nav">
-		<ul class="container">
-			<li
-				v-for="item in navItems"
-				:key="item.label"
-			>
-				<NuxtLink
-					:to="item.to"
-					:class="{ active: item.active }"
-					:style="`--active-color: ${item.color}`"
+		<div class="nav-container">
+			<ul class="container">
+				<li
+					v-for="item in navItems"
+					:key="item.label"
 				>
-					{{ item.label }}
-				</NuxtLink>
-			</li>
-		</ul>
-		<ul class="container">
-			<li
-				v-for="item in rightNav"
-				:key="item.label"
-			>
-				<NuxtLink :to="item.href">
-					{{ item.label }}
-					<Icon name="material-symbols:open-in-new-rounded" />
-				</NuxtLink>
-			</li>
-		</ul>
+					<NuxtLink
+						:to="item.to"
+						:class="{ active: item.active }"
+						:style="`--active-color: ${item.color}`"
+					>
+						{{ item.label }}
+					</NuxtLink>
+				</li>
+			</ul>
+			<ul class="container">
+				<li
+					v-for="item in rightNav"
+					:key="item.label"
+				>
+					<NuxtLink :to="item.href">
+						{{ item.label }}
+						<Icon name="material-symbols:open-in-new-rounded" />
+					</NuxtLink>
+				</li>
+			</ul>
+		</div>
 	</nav>
 </template>
 
@@ -112,11 +114,21 @@ const navItems = computed(() => {
 	margin-right: 0px;
 }
 
-.desktop-nav {
-	background: var(--background-subdued);
-	box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--border) 50%, var(--border-subdued) 50%);
+.nav-container {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	max-width: var(--width-2xl);
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.desktop-nav {
+	background: var(--background-subdued);
+	box-shadow: inset 0 0 0 2px
+		color-mix(in srgb, var(--border) 50%, var(--border-subdued) 50%);
+	display: flex;
+
 	white-space: nowrap;
 	overflow-x: auto;
 	overflow-y: visible;

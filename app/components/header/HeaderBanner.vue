@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { readSingleton } from '@directus/sdk';
+import { readItems } from '@directus/sdk';
 
 const message = await useAsyncData('documentation_banner2', async () => {
-	return db().request(
-		readSingleton('documentation_banner'),
-	);
+	return db().request(readItems('documentation_banner'));
 });
 </script>
 
 <template>
 	<NuxtLink
-		v-if="message.data.value?.status == 'published'"
+		v-if="message.data.value && message.data.value?.length > 0"
 		class="banner"
-		:to="message.data.value.link"
+		:to="message.data.value[0]?.link"
 	>
-		{{ message.data.value?.message }}
-		<Icon
-			class="icon"
-			name="material-symbols:arrow-right-alt-rounded"
-		/>
+		<div class="banner-container">
+			{{ message.data.value[0]?.message }}
+			<Icon
+				class="icon"
+				name="material-symbols:arrow-right-alt-rounded"
+			/>
+		</div>
 	</NuxtLink>
 </template>
 
 <style scoped lang="scss">
 .banner {
 	background-color: var(--primary);
-	padding: 0.25rem 1rem;
+	padding: 0.25rem 0rem;
 	color: white;
 	font-size: 0.9rem;
 	font-weight: 500;
@@ -34,6 +34,17 @@ const message = await useAsyncData('documentation_banner2', async () => {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+}
+
+.banner-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	max-width: var(--width-2xl);
+	width: 100%;
+	padding: 0px 24px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .icon {
