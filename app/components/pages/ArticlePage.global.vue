@@ -67,13 +67,16 @@ const breadcrumbs = computed(() => {
 					</main>
 				</div>
 				<aside class="right-aside">
-					<template v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0">
-						<AsideTableOfContents
-							:toc="data.body.toc"
-						/>
+					<template
+						v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
+					>
+						<AsideTableOfContents :toc="data.body.toc" />
 						<hr>
 					</template>
-					<p class="authors">
+					<p
+						v-if="data?.authors && data?.authors.length > 0"
+						class="authors"
+					>
 						<span>Written by</span>
 						<span
 							v-for="author in data?.authors"
@@ -141,7 +144,6 @@ const breadcrumbs = computed(() => {
 			font-weight: 500;
 			white-space: nowrap;
 		}
-
 	}
 }
 
