@@ -53,6 +53,9 @@ importers:
       confbox:
         specifier: ^0.1.8
         version: 0.1.8
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       nuxt:
         specifier: ^3.13.2
         version: 3.13.2(@parcel/watcher@2.4.1)(@types/node@22.7.5)(eslint@9.12.0(jiti@2.3.3))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.24.0)(sass@1.79.5)(terser@5.34.1)(typescript@5.5.4)(vite@5.4.9(@types/node@22.7.5)(sass@1.79.5)(terser@5.34.1))(vue-tsc@2.1.6(typescript@5.5.4))(webpack-sources@3.2.3)
@@ -5750,9 +5753,6 @@ packages:
   performance-now@2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
 
-  picocolors@1.0.1:
-    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
-
   picocolors@1.1.0:
     resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
 
@@ -7899,7 +7899,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/code-frame@7.25.7':
     dependencies:
@@ -8101,7 +8101,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/highlight@7.25.7':
     dependencies:
@@ -9477,7 +9477,7 @@ snapshots:
 
   '@nuxtjs/mdc@0.8.3(magicast@0.3.5)(rollup@4.24.0)(webpack-sources@3.2.3)':
     dependencies:
-      '@nuxt/kit': 3.13.0(magicast@0.3.5)(rollup@4.24.0)(webpack-sources@3.2.3)
+      '@nuxt/kit': 3.13.2(magicast@0.3.5)(rollup@4.24.0)(webpack-sources@3.2.3)
       '@shikijs/transformers': 1.14.1
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.4
@@ -9491,7 +9491,7 @@ snapshots:
       hast-util-to-string: 3.0.0
       mdast-util-to-hast: 13.2.0
       micromark-util-sanitize-uri: 2.0.0
-      ohash: 1.1.3
+      ohash: 1.1.4
       parse5: 7.1.2
       pathe: 1.1.2
       property-information: 6.5.0
@@ -9700,7 +9700,7 @@ snapshots:
       look-it-up: 2.1.0
       microdiff: 1.4.0
       outdent: 0.8.0
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       pluralize: 8.0.0
       postcss: 8.4.47
@@ -10934,7 +10934,7 @@ snapshots:
 
   '@vueuse/nuxt@10.11.1(magicast@0.3.5)(nuxt@3.13.2(@parcel/watcher@2.4.1)(@types/node@22.7.5)(eslint@9.12.0(jiti@2.3.3))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.24.0)(sass@1.79.5)(terser@5.34.1)(typescript@5.5.4)(vite@5.4.9(@types/node@22.7.5)(sass@1.79.5)(terser@5.34.1))(vue-tsc@2.1.6(typescript@5.5.4))(webpack-sources@3.2.3))(rollup@4.24.0)(vue@3.5.12(typescript@5.5.4))(webpack-sources@3.2.3)':
     dependencies:
-      '@nuxt/kit': 3.13.0(magicast@0.3.5)(rollup@4.24.0)(webpack-sources@3.2.3)
+      '@nuxt/kit': 3.13.2(magicast@0.3.5)(rollup@4.24.0)(webpack-sources@3.2.3)
       '@vueuse/core': 10.11.1(vue@3.5.12(typescript@5.5.4))
       '@vueuse/metadata': 10.11.1
       local-pkg: 0.5.0
@@ -12160,7 +12160,7 @@ snapshots:
       giget: 1.2.3
       jiti: 1.21.6
       mlly: 1.7.1
-      ohash: 1.1.3
+      ohash: 1.1.4
       pathe: 1.1.2
       perfect-debounce: 1.0.0
       pkg-types: 1.2.0
@@ -12177,7 +12177,7 @@ snapshots:
       giget: 1.2.3
       jiti: 1.21.6
       mlly: 1.7.1
-      ohash: 1.1.3
+      ohash: 1.1.4
       pathe: 1.1.2
       perfect-debounce: 1.0.0
       pkg-types: 1.2.0
@@ -13502,7 +13502,7 @@ snapshots:
       defu: 6.1.4
       node-fetch-native: 1.6.4
       nypm: 0.3.12
-      ohash: 1.1.3
+      ohash: 1.1.4
       pathe: 1.1.2
       tar: 6.2.1
 
@@ -15887,8 +15887,6 @@ snapshots:
 
   performance-now@2.1.0: {}
 
-  picocolors@1.0.1: {}
-
   picocolors@1.1.0: {}
 
   picomatch@2.3.1: {}
@@ -15909,12 +15907,12 @@ snapshots:
     dependencies:
       jsonc-parser: 3.3.1
       mlly: 1.7.2
-      pathe: 1.1.1
+      pathe: 1.1.2
 
   pkg-types@1.1.3:
     dependencies:
       confbox: 0.1.8
-      mlly: 1.7.1
+      mlly: 1.7.2
       pathe: 1.1.2
 
   pkg-types@1.2.0:
@@ -17781,7 +17779,7 @@ snapshots:
     dependencies:
       browserslist: 4.23.3
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   update-browserslist-db@1.1.1(browserslist@4.24.0):
     dependencies:
