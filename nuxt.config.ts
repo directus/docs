@@ -126,6 +126,9 @@ export default defineNuxtConfig({
 			},
 		],
 	},
+	image: {
+		domains: [(process.env.NUXT_PUBLIC_PRODUCT_DIRECTUS_URL as string).replace(/https?:\/\//, ''), 'marketing.directus.app'],
+	},
 	ogImage: {
 		fonts: [
 			'Poppins:600',
