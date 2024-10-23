@@ -128,7 +128,14 @@ interface DocumentationBanner {
 	id: string;
 	message: string;
 	link: string;
-	status: 'draft' | 'published';
+}
+
+interface DocumentationWidget {
+	id: string;
+	title: string;
+	message: string;
+	link: string;
+	link_text: string;
 }
 
 interface DocumentationAuthor {
@@ -161,4 +168,5 @@ export interface DirectusSchema {
 	documentation_banner: DocumentationBanner[];
 	documentation_author: DocumentationAuthor[];
 	documentation_page_author: DocumentationPageAuthor[];
+	documentation_widget: DocumentationWidget[];
 }

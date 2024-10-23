@@ -56,6 +56,7 @@ defineProps<{
 				<AsideFeedback />
 				<hr>
 				<AsideNewsletter />
+				<AsideWidget />
 			</aside>
 		</div>
 	</DefaultLayout>

@@ -97,6 +97,7 @@ const breadcrumbs = computed(() => {
 					<AsideFeedback />
 					<hr>
 					<AsideNewsletter />
+					<AsideWidget />
 				</aside>
 			</div>
 		</div>
