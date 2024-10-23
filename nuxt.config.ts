@@ -126,6 +126,12 @@ export default defineNuxtConfig({
 			},
 		],
 	},
+	ogImage: {
+		fonts: [
+			'Poppins:600',
+			'Fira+Mono:500',
+		],
+	},
 	schemaOrg: {
 		identity: {
 			type: 'Organization',
@@ -138,7 +144,7 @@ export default defineNuxtConfig({
 		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
-        process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+				process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
 		},
 	},
 });
