@@ -20,50 +20,52 @@ const breadcrumbs = computed(() => {
 	<DefaultLayout>
 		<div class="page-layout container">
 			<div class="page">
-				<main v-if="data">
-					<div class="breadcrumbs">
-						<NuxtLink
-							v-for="(breadcrumb, index) in breadcrumbs"
-							:key="breadcrumb.to"
-							class="breadcrumb section-title"
-							:to="breadcrumb.to"
-						>
-							{{ breadcrumb.name }}
-							<Icon
-								v-if="index < breadcrumbs.length - 1"
-								name="material-symbols:chevron-right-rounded"
-								class="breadcrumb-icon"
-							/>
-						</NuxtLink>
-					</div>
+				<div class="left-column">
+					<main v-if="data">
+						<div class="breadcrumbs">
+							<NuxtLink
+								v-for="(breadcrumb, index) in breadcrumbs"
+								:key="breadcrumb.to"
+								class="breadcrumb section-title"
+								:to="breadcrumb.to"
+							>
+								{{ breadcrumb.name }}
+								<Icon
+									v-if="index < breadcrumbs.length - 1"
+									name="material-symbols:chevron-right-rounded"
+									class="breadcrumb-icon"
+								/>
+							</NuxtLink>
+						</div>
 
-					<article>
-						<ContentRenderer :value="data">
-							<div class="prose">
-								<h1>
-									{{ data.title }}
-								</h1>
-							</div>
-							<div class="tags">
-								<div
-									v-for="tag in data.tags"
-									:key="tag.id"
-									class="tag"
-								>
-									<Icon :name="tag.icon" />
-									{{ formatTitle(tag.name) }}
+						<article>
+							<ContentRenderer :value="data">
+								<div class="prose">
+									<h1>
+										{{ data.title }}
+									</h1>
 								</div>
-							</div>
-							<ContentRendererMarkdown
-								class="prose"
-								:value="data"
-							/>
-							<template #empty>
-								<p>No content found.</p>
-							</template>
-						</ContentRenderer>
-					</article>
-				</main>
+								<div class="tags">
+									<div
+										v-for="tag in data.tags"
+										:key="tag.id"
+										class="tag"
+									>
+										<Icon :name="tag.icon" />
+										{{ formatTitle(tag.name) }}
+									</div>
+								</div>
+								<ContentRendererMarkdown
+									class="prose"
+									:value="data"
+								/>
+								<template #empty>
+									<p>No content found.</p>
+								</template>
+							</ContentRenderer>
+						</article>
+					</main>
+				</div>
 				<aside class="right-aside">
 					<template v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0">
 						<AsideTableOfContents
@@ -71,6 +73,24 @@ const breadcrumbs = computed(() => {
 						/>
 						<hr>
 					</template>
+					<p class="authors">
+						<span>Written by</span>
+						<span
+							v-for="author in data?.authors"
+							:key="author.id"
+							class="author"
+						>
+							<NuxtImg
+								class="author-avatar"
+								:src="img(author.avatar)"
+								height="24"
+								width="24"
+							/>
+							<span class="author-name">
+								{{ author.name }}
+							</span>
+						</span>
+					</p>
 					<AsideFeedback />
 					<hr>
 					<AsideNewsletter />
@@ -95,6 +115,33 @@ const breadcrumbs = computed(() => {
 		padding: 0.25rem 0.5rem;
 		border-radius: var(--border-radius);
 		border: 1px solid var(--border);
+	}
+}
+
+.authors {
+	font-size: 0.75rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	row-gap: 0rem;
+	column-gap: 0.5rem;
+
+	.author {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		max-width: 100%;
+
+		.author-avatar {
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		.author-name {
+			font-weight: 500;
+			white-space: nowrap;
+		}
+
 	}
 }
 
@@ -126,11 +173,19 @@ const breadcrumbs = computed(() => {
 	gap: 3rem;
 	overflow: clip;
 }
+
+.left-column {
+	width: 100%;
+	max-width: var(--width-md);
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: center;
+}
+
 main {
 	margin-top: 24px;
-	.prev-next {
-		padding: 24px 0 calc(24px + 1rem);
-	}
+	max-width: 100%;
 }
 @media (max-width: 1024px) {
 	.right-aside {
@@ -141,7 +196,7 @@ main {
 		padding-top: 1rem;
 	}
 }
-aside {
+.right-aside {
 	margin-top: 24px;
 	padding-left: 2rem;
 	padding-right: 1em;
@@ -154,20 +209,12 @@ aside {
 	}
 }
 .page-layout {
+	margin-top: 24px;
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	gap: 3rem;
-	> nav {
-		margin-top: 24px;
-		border-right: 2px solid var(--border);
-		section {
-			margin: 2rem 0;
-			&:first-child {
-				margin-top: 0;
-			}
-		}
-	}
 }
+
 :deep(ol ol) {
 	display: none;
 }

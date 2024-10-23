@@ -88,6 +88,7 @@ interface DocumentationPage {
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
 	tags: DocumentationPagesTags[]; // Array of DocumentationPagesTags
 	additional_paths: DocumentationAdditionalPath[]; // Array of Documentation
+	authors: DocumentationPageAuthor[]; // Array of DocumentationPageAuthor
 	title: string; // String
 	content: string; // String
 	sort?: number; // Optional Integer
@@ -130,6 +131,23 @@ interface DocumentationBanner {
 	status: 'draft' | 'published';
 }
 
+interface DocumentationAuthor {
+	id: string;
+	name: string;
+	title: string;
+	avatar: string;
+	user_created?: string;
+	date_created?: string;
+	user_updated?: string;
+	date_updated?: string;
+}
+
+interface DocumentationPageAuthor {
+	id: string;
+	page: DocumentationPage;
+	author: DocumentationAuthor;
+}
+
 export interface DirectusSchema {
 	article_area: ArticleArea[];
 	article_category: ArticleCategory[];
@@ -141,4 +159,6 @@ export interface DirectusSchema {
 	documentation_additional_path: DocumentationAdditionalPath[];
 	documentation_pages_tags: DocumentationPagesTags[];
 	documentation_banner: DocumentationBanner;
+	documentation_author: DocumentationAuthor[];
+	documentation_page_author: DocumentationPageAuthor[];
 }
