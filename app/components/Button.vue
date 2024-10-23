@@ -125,7 +125,7 @@ const buttonProps = computed(() => {
 }
 .color-outline-only {
 	border-color: var(--border-subdued);
-	background: transparent;
+	background: var(--background);
 	&:not(:disabled):hover {
 		border-color: var(--border-subtle);
 		background: var(--background-subdued);
