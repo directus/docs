@@ -64,7 +64,7 @@ pre {
 	background: var(--background-subdued);
 	border: 1px solid var(--border-subdued);
 	position: relative;
-	overflow: scroll;
+	overflow: auto;
 	max-width: calc(100vw - 3rem);
 }
 </style>
