@@ -63,8 +63,7 @@ defineOgImage({
 	component: 'OgImageDefault',
 	props: {
 		title: page.value.title,
-		description: page.value.description,
-		badgeLabel: page.value.tags?.map((tag: ArticleTag) => tag.name).join(', ') || undefined,
+		breadcrumbs: resolvedRoute.split('/').slice(1, -1),
 	},
 });
 </script>
