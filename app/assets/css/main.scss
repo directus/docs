@@ -49,6 +49,9 @@ pre {
 	padding: 0 24px;
 	margin-left: auto;
 	margin-right: auto;
+	@media (max-width: 768px) {
+		padding: 0 12px;
+	}
 }
 
 .container .container {

@@ -70,7 +70,11 @@ const isOpen = ref(false);
 	position: sticky;
 	top: 0px;
 	z-index: 900;
-	background-color: var(--background);
+
+	@media (max-width: 768px) {
+		border-bottom: 2px solid var(--border);
+		background-color: var(--background);
+	}
 }
 
 .slideover-toggle {
@@ -105,15 +109,9 @@ const isOpen = ref(false);
 	.register {
 		margin-right: -0.5rem;
 	}
-}
 
-@media (max-width: 768px) {
-	.links {
+	@media (max-width: 768px) {
 		display: none;
-	}
-
-	.nav-hat {
-		border-bottom: 2px solid var(--border);
 	}
 }
 </style>

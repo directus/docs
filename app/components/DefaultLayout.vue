@@ -1,7 +1,12 @@
+<script setup lang="ts">
+const route = useRoute();
+</script>
+
 <template>
 	<div>
 		<HeaderBanner />
-		<HeaderHat>
+		<HeaderHero v-if="route.path === '/' || route.path === '/getting-started/overview'" />
+		<HeaderHat v-else>
 			<slot name="mobile-nav" />
 		</HeaderHat>
 		<HeaderNav />

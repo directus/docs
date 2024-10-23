@@ -1,67 +1,48 @@
+<script setup lang="ts">
+const switcherState = ref<'sdk' | 'rest' | 'graphql'>('sdk');
+</script>
+
 <template>
 	<div class="hero">
+		<HeaderHat />
 		<div class="container">
-			<HeaderHat />
 			<div class="main">
 				<div class="content">
-					<h1>Learn how to get started and implement Directus through our developer resources.</h1>
-					<div class="frameworks">
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/next.svg"
-								alt="Next"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/nuxt.svg"
-								alt="Nuxt.js"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/svelte.svg"
-								alt="Svelte"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/astro.svg"
-								alt="Astro"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/react.svg"
-								alt="React"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/vue.svg"
-								alt="Vue.js"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/angular.svg"
-								alt="Angular"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/apple.svg"
-								alt="Apple"
-							>
-						</NuxtLink>
-						<NuxtLink to="#">
-							<img
-								src="/img/frameworks/remix.svg"
-								alt="Remix"
-							>
-						</NuxtLink>
-					</div>
-					<div class="more">
+					<h1>
+						Learn how to get started and implement Directus through our
+						developer resources.
+					</h1>
+					<div class="tutorials">
+						<div class="frameworks">
+							<NuxtLink to="#">
+								<Icon name="simple-icons:nextdotjs" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:nuxtdotjs" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:svelte" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:astro" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:react" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:vuedotjs" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:angular" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:apple" />
+							</NuxtLink>
+							<NuxtLink to="#">
+								<Icon name="simple-icons:remix" />
+							</NuxtLink>
+						</div>
+
 						<Button
 							type="a"
 							label="See all tutorials"
@@ -72,8 +53,34 @@
 						/>
 					</div>
 				</div>
-				<div class="code">
-					Code snippets
+				<div class="code-wrapper">
+					<div class="code">
+						<div class="switcher">
+							<Button
+								label="Directus SDK"
+								:color="switcherState === 'sdk' ? 'primary' : 'white'"
+								size="small"
+								@click="switcherState = 'sdk'"
+							/>
+							<Button
+								label="REST"
+								:color="switcherState === 'rest' ? 'primary' : 'white'"
+								size="small"
+								@click="switcherState = 'rest'"
+							/>
+							<Button
+								label="GraphQL"
+								:color="switcherState === 'graphql' ? 'primary' : 'white'"
+								size="small"
+								@click="switcherState = 'graphql'"
+							/>
+						</div>
+						<ContentDoc :path="`/_partials/hero-${switcherState}`">
+							<template #default="{ doc }">
+								<ContentRenderer :value="doc" />
+							</template>
+						</ContentDoc>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -82,53 +89,92 @@
 
 <style lang="scss" scoped>
 .hero {
-	background-image: url('/img/waves.svg');
+	background-image: url("/waves.svg");
 	background-size: cover;
+	border-bottom: 1px solid var(--border);
 }
-.main {
-	display: grid;
-	grid-template-columns: 2.5fr 2fr;
-	gap: 4rem;
-	margin-top: 4rem;
-	.content {
-		margin-bottom: 4rem;
+
+.dark {
+	.hero {
+		background-image: url("/waves-dark.svg");
 	}
 }
+.main {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+	column-gap: 2rem;
+	row-gap: 1rem;
+}
+
 h1 {
 	font-weight: 600;
+	text-wrap: balance;
 }
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	max-width: 600px;
+}
+
+.tutorials {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
 .frameworks {
-	display: grid;
-	grid-template-columns: repeat(9, 1fr);
+	display: flex;
+	align-items: center;
 	gap: 1rem;
 	margin-top: 2rem;
+
+	@media (max-width: 1024px) {
+		flex-wrap: wrap;
+	}
+
 	a {
-		background: white;
+		font-size: 1.5rem;
+		background: var(--background);
 		aspect-ratio: 1/1;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		border-radius: calc(var(--border-radius) * 3);
 		border: 1px solid var(--border-subdued);
-		padding: 0.5rem;
+		padding: 0.75rem;
 		&:hover {
-			background: var(--background-subdued);;
+			background: var(--background-subdued);
 		}
 	}
-	& + .more {
-		margin-top: 1rem;
-		display: flex;
-		justify-content: flex-end;
-	}
 }
-.code {
-	background: var(--background-subtle);
-	border-top-left-radius: 12px;
-	border-top-right-radius: 12px;
-	border: 1px solid var(--border);
-	border-bottom: 0;
+
+.code-wrapper {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	height: 100%;
+	flex: 1;
+	overflow: hidden;
+	min-width: 400px;
+}
+
+.code {
+	background-color: var(--background);
+	width: 100%;
+	border: 1px solid var(--border-subdued);
+	border-radius: var(--border-radius);
+	padding: 0.5rem;
+}
+
+.switcher {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 0.5rem;
 }
 </style>
