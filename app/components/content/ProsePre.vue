@@ -56,7 +56,7 @@ pre {
 	word-wrap: normal;
 	white-space: pre;
 	position: relative;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .prose-pre {
