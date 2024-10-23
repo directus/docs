@@ -78,7 +78,8 @@ const inkeepWidget = Inkeep(config.properties.baseSettings).embed(config);
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	transition: 0.1s;
+	transition: border 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
+	background-color: var(--background);
 	&:hover {
 		cursor: pointer;
 		border: 2px solid var(--purple);
