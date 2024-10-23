@@ -37,6 +37,7 @@ defineProps<{
 
 <style scoped lang="scss">
 .page {
+	margin-top: 24px;
 	padding: 1.5rem;
 }
 
