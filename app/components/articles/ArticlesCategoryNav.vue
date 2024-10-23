@@ -11,7 +11,7 @@ defineProps<{
 			<NuxtLink
 				v-for="category in categories"
 				:key="category._path"
-				:to="{ path: category._path, query: route.query }"
+				:to="{ path: category._path, query: {} }"
 				class="category-nav-item"
 				active-class="active"
 			>
