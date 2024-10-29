@@ -12,7 +12,7 @@ const switcherState = ref<'sdk' | 'rest' | 'graphql'>('sdk');
 						Learn how to get started and implement Directus through our
 						developer resources.
 					</h1>
-					<div class="tutorials">
+					<!-- <div class="tutorials">
 						<div class="frameworks">
 							<NuxtLink to="#">
 								<Icon name="simple-icons:nextdotjs" />
@@ -51,7 +51,7 @@ const switcherState = ref<'sdk' | 'rest' | 'graphql'>('sdk');
 							size="small"
 							class="all"
 						/>
-					</div>
+					</div> -->
 				</div>
 				<div class="code-wrapper">
 					<div class="code">
@@ -75,7 +75,26 @@ const switcherState = ref<'sdk' | 'rest' | 'graphql'>('sdk');
 								@click="switcherState = 'graphql'"
 							/>
 						</div>
-						<ContentDoc :path="`/_partials/hero-${switcherState}`">
+						<ContentDoc
+							v-if="switcherState === 'sdk'"
+							path="/_partials/hero-sdk"
+						>
+							<template #default="{ doc }">
+								<ContentRenderer :value="doc" />
+							</template>
+						</ContentDoc>
+						<ContentDoc
+							v-if="switcherState === 'rest'"
+							path="/_partials/hero-rest"
+						>
+							<template #default="{ doc }">
+								<ContentRenderer :value="doc" />
+							</template>
+						</ContentDoc>
+						<ContentDoc
+							v-if="switcherState === 'graphql'"
+							path="/_partials/hero-graphql"
+						>
 							<template #default="{ doc }">
 								<ContentRenderer :value="doc" />
 							</template>
