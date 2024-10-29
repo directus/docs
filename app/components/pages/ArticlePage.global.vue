@@ -73,12 +73,12 @@ const breadcrumbs = computed(() => {
 						<AsideTableOfContents :toc="data.body.toc" />
 						<hr>
 					</template>
-					<p
+					<div
 						v-if="data?.authors && data?.authors.length > 0"
 						class="authors"
 					>
-						<span>Written by</span>
-						<span
+						<div>Written by</div>
+						<div
 							v-for="author in data?.authors"
 							:key="author.id"
 							class="author"
@@ -92,8 +92,8 @@ const breadcrumbs = computed(() => {
 							<span class="author-name">
 								{{ author.name }}
 							</span>
-						</span>
-					</p>
+						</div>
+					</div>
 					<AsideFeedback />
 					<hr>
 					<AsideNewsletter />
@@ -125,10 +125,9 @@ const breadcrumbs = computed(() => {
 .authors {
 	font-size: 0.75rem;
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	row-gap: 0rem;
-	column-gap: 0.5rem;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.25rem;
 
 	.author {
 		display: flex;
