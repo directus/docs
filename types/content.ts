@@ -18,7 +18,7 @@ declare global {
 	type ArticleTag = {
 		id: string;
 		icon: string;
-		name?: string;
+		name: string;
 	};
 
 	type ArticleTags = ArticleTag[];

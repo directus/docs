@@ -37,14 +37,10 @@ withDefaults(
 
 <style scoped lang="scss">
 .filename {
-	background: var(--background-subdued);
-	border-top-left-radius: var(--border-radius);
-	border-top-right-radius: var(--border-radius);
 	padding: 0.5rem 1rem;
 	font-family: var(--font--code);
 	font-size: 0.8rem;
-	border: 1px solid var(--border-subdued);
-	border-bottom: 0;
+	border-bottom: 1px solid var(--border-subdued);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -54,12 +50,22 @@ withDefaults(
 	border-top-right-radius: 0;
 }
 pre {
-	width: 100%;
 	font-weight: normal;
 	padding: 0.7rem 1rem;
+
+	word-wrap: normal;
+	white-space: pre;
+	position: relative;
+	overflow: auto;
+}
+
+.prose-pre {
 	border-radius: var(--border-radius);
 	background: var(--background-subdued);
 	border: 1px solid var(--border-subdued);
+	position: relative;
+	overflow: auto;
+	max-width: calc(100vw - 3rem);
 }
 </style>
 
