@@ -219,5 +219,5 @@ x-codeSamples:
     lang: GraphQL
     source: |
       type Mutation {
-	      update_fields_item(collection: String!, field: String!, data: update_directus_fields_input!): directus_fields
+        update_fields_item(collection: String!, field: String!, data: update_directus_fields_input!): directus_fields
       }

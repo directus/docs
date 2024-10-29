@@ -12,13 +12,13 @@ servers:
 
 paths:
   "/activity":
-    $ref: paths/permissions/index.yaml
+    $ref: paths/activity/index.yaml
   "/activity/{id}":
-    $ref: paths/permissions/_id/index.yaml
+    $ref: paths/activity/_id/index.yaml
   "/activity/comment":
-    $ref: paths/permissions/comment/index.yaml
+    $ref: paths/activity/comment/index.yaml
   "/activity/comment/{id}":
-    $ref: paths/permissions/comment/_id/index.yaml
+    $ref: paths/activity/comment/_id/index.yaml
   "/assets/{_id}":
     $ref: paths/assets/_id/index.yaml
   "/auth/login":
@@ -111,36 +111,36 @@ paths:
     $ref: paths/users/invite/accept/index.yaml
   "/users/me":
     $ref: paths/users/me/index.yaml
-  "/users/me/tfa":
-    $ref: paths/users/me/tfa/index.yaml
   "/users/me/tfa/disable":
     $ref: paths/users/me/tfa/disable/index.yaml
   "/users/me/tfa/enable":
     $ref: paths/users/me/tfa/enable/index.yaml
   "/users/me/track/page":
     $ref: paths/users/me/track/page/index.yaml
-  "/utils/cache/clear"
+  "/utils/cache/clear":
     $ref: paths/utils/cache/clear/index.yaml
-  "/utils/export/{_collection}"
+  "/utils/export/{_collection}":
     $ref: paths/utils/export/_collection/index.yaml
-  "/utils/hash"
-    $ref: paths/utils/hash/index.yaml
-  "/utils/import/{_collection}"
+  "/utils/hash/generate":
+    $ref: paths/utils/hash/generate/index.yaml
+  "/utils/hash/verify":
+    $ref: paths/utils/hash/verify/index.yaml
+  "/utils/import/{_collection}":
     $ref: paths/utils/import/_collection/index.yaml
-  "/utils/random/string"
+  "/utils/random/string":
     $ref: paths/utils/random/string/index.yaml
-  "/utils/sort/{_collection}"
+  "/utils/sort/{_collection}":
     $ref: paths/utils/sort/_collection/index.yaml
   "/versions":
     $ref: paths/versions/index.yaml
   "/versions/{id}":
-    $ref: paths/versions/id/index.yaml
+    $ref: paths/versions/_id/index.yaml
   "/versions/{id}/compare":
-    $ref: paths/versions/id/compare/index.yaml
+    $ref: paths/versions/_id/compare/index.yaml
   "/versions/{id}/promote":
-    $ref: paths/versions/id/promote/index.yaml
+    $ref: paths/versions/_id/promote/index.yaml
   "/versions/{id}/save":
-    $ref: paths/versions/id/save/index.yaml
+    $ref: paths/versions/_id/save/index.yaml
   "/webhooks/":
     $ref: paths/webhooks/index.yaml
   "/webhooks/{id}":

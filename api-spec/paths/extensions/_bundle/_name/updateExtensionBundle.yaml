@@ -35,11 +35,11 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/extensions.yaml
+              $ref: ../../../../components/schemas/extensions.yaml
     description: Successful request
   '401':
-    $ref: ../../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':
-    $ref: ../../../components/responses.yaml#/NotFoundError
+    $ref: ../../../../components/responses.yaml#/NotFoundError
 tags:
 - Extensions

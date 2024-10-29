@@ -32,7 +32,7 @@ requestBody:
             example:
             oneOf:
             - type: string
-            - $ref: ../../components/schemas/folders.yaml
+            - $ref: ../../../components/schemas/folders.yaml
             nullable: true
           tags:
             type: array
@@ -65,7 +65,7 @@ requestBody:
             example:
             oneOf:
             - type: string
-            - $ref: ../../components/schemas/folders.yaml
+            - $ref: ../../../components/schemas/folders.yaml
             nullable: true
           tags:
             type: array
@@ -83,9 +83,9 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../components/schemas/files.yaml
+              $ref: ../../../components/schemas/files.yaml
   '401':
-    $ref: ../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../components/responses.yaml#/UnauthorizedError
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

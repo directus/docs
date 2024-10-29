@@ -2,8 +2,8 @@ summary: Update a Comment
 description: Update the content of an existing comment.
 operationId: updateComment
 parameters:
-- $ref: ../../components/parameters.yaml#/Id
-- $ref: ../../components/parameters.yaml#/Meta
+- $ref: ../../../../components/parameters.yaml#/Id
+- $ref: ../../../../components/parameters.yaml#/Meta
 requestBody:
   content:
     application/json:
@@ -21,12 +21,12 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../components/schemas/activity.yaml
+              $ref: ../../../../components/schemas/activity.yaml
     description: Successful request
   '401':
-    $ref: ../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':
-    $ref: ../../components/responses.yaml#/NotFoundError
+    $ref: ../../../../components/responses.yaml#/NotFoundError
 tags:
 - Activity
 x-codeSamples:

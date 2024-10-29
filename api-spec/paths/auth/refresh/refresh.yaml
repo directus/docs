@@ -44,7 +44,7 @@ responses:
                   type: string
                   example: Gy-caJMpmGTA...
   '401':
-    $ref: ../../../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../components/responses.yaml#/UnauthorizedError
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

@@ -34,11 +34,11 @@ responses:
         schema:
           type: string
   '404':
-    $ref: ../../components/responses.yaml#/NotFoundError
+    $ref: ../../../components/responses.yaml#/NotFoundError
 x-codeSamples:
   - label: Directus SDK
     lang: JavaScript
-    source: 
+    source:
   - label: GraphQL
     lang: GraphQL
     source: |

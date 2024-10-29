@@ -22,9 +22,9 @@ requestBody:
             - xml
             - json
           query:
-            $ref: ../../../components/schemas/query.yaml
+            $ref: ../../../../components/schemas/query.yaml
           file:
-            $ref: ../../../components/schemas/files.yaml
+            $ref: ../../../../components/schemas/files.yaml
         required:
         - format
         - query

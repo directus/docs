@@ -2,14 +2,14 @@ summary: Delete a Comment
 description: Delete an existing comment. Deleted comments can not be retrieved.
 operationId: deleteComment
 parameters:
-- $ref: ../../components/parameters.yaml#/Id
+- $ref: ../../../../components/parameters.yaml#/Id
 responses:
   '203':
     description: Deleted successfully
   '401':
-    $ref: ../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':
-    $ref: ../../components/responses.yaml#/NotFoundError
+    $ref: ../../../../components/responses.yaml#/NotFoundError
 tags:
 - Activity
 x-codeSamples:
