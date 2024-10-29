@@ -77,6 +77,10 @@ import '@scalar/api-reference/style.css';
 	padding-top: 48px !important;
 }
 
+.introduction-card {
+	display: none !important;
+}
+
 @media (max-width: 1000px) {
 	.api-wrapper {
 		margin-top: 0px;
