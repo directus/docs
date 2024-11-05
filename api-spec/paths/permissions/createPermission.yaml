@@ -1,5 +1,5 @@
-summary: Create a Permission
-description: Create a new permission.
+summary: Create a Permission Rule
+description: Create a new permission rule.
 operationId: createPermission
 parameters:
 - $ref: ../../components/parameters.yaml#/Meta
