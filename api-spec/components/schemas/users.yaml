@@ -63,11 +63,11 @@ properties:
     example: active
     type: string
     enum:
-      - active
-      - invited
-      - draft
-      - suspended
-      - deleted
+      - `active`
+      - `invited`
+      - `draft`
+      - `suspended`
+      - `deleted`
   role:
     description: Unique identifier of the role of this user.
     example: 2f24211d-d928-469a-aea3-3c8f53d4e426
