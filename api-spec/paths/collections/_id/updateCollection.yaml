@@ -1,5 +1,5 @@
 summary: Update a Collection
-description: Update an existing collection.
+description: Update the metadata for an existing collection.
 operationId: updateCollection
 parameters:
 - name: id
