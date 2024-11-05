@@ -1,5 +1,5 @@
-summary: Log Out
-description: Log Out
+summary: Logout
+description: Invalidate the refresh token thus destroying the user's session.
 tags:
 - Authentication
 operationId: logout
