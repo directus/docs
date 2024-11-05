@@ -1,5 +1,5 @@
 summary: Update a Folder
-description: Update an existing folder
+description: Update an existing folder.
 operationId: updateFolder
 parameters:
 - $ref: ../../../components/parameters.yaml#/UUId
