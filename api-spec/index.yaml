@@ -176,7 +176,7 @@ tags:
       - Users
       - Roles
   - name: Folders
-    description: Group files by virtual folders.
+    description: Folders can be used to organize files within the platform. Folders are virtual, and aren't mirrored within the storage adapter.
     x-collection: directus_folders
   - name: Relations
     description: What data is linked to what other data. Allows you to assign authors to articles, products to sales, and whatever other structures you can think of.
