@@ -25,10 +25,10 @@ requestBody:
           mode:
             type: string
             enum:
-            - json
-            - cookie
-            - session
-            default: json
+            - `json`
+            - `cookie`
+            - `session`
+            default: `json`
             description: Whether to retrieve the refresh token in the JSON response,
               or in a `httpOnly` cookie.
           otp:
