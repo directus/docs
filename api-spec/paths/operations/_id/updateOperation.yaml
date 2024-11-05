@@ -1,5 +1,5 @@
 summary: Update an Operation
-description: Update an existing operation
+description: Update an existing operation.
 operationId: updateOperation
 parameters:
 - $ref: ../../../components/parameters.yaml#/UUId
