@@ -1,5 +1,5 @@
 summary: System Info
-description: Perform a system status check and return the options.
+description: Provides detailed information about the project server, its schema, and its health.
 operationId: serverInfo
 parameters:
 - description: The first time you create a project, the provided token will be saved
