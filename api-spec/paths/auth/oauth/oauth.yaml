@@ -1,4 +1,4 @@
-summary: List OAuth Providers
+summary: List Auth Providers
 tags:
 - Authentication
 operationId: oauth
