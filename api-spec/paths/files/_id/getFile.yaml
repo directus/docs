@@ -1,5 +1,5 @@
-summary: Retrieve a Files
-description: Retrieve a single file by unique identifier.
+summary: Retrieve a File
+description: Retrieve a single file by primary key.
 tags:
 - Files
 operationId: getFile
