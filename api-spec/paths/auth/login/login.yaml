@@ -15,7 +15,7 @@ requestBody:
           email:
             type: string
             example: admin@example.com
-            description: Email address of the user you're retrieving the access token
+            description: Email address of the user you're logging in as.
               for.
           password:
             type: string
