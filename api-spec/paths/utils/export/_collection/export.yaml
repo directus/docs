@@ -1,5 +1,5 @@
 summary: Export Items
-description: Export a larger data set to a file in the File Library
+description: Export a larger data set to a file in the file library.
 operationId: export
 parameters:
 - description: Collection identifier
