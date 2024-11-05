@@ -1,4 +1,4 @@
-summary: Authenticated using an OAuth provider
+summary: Log in Using an OAuth Provider
 description: Start OAuth flow using the specified provider
 operationId: oauthProvider
 parameters:
