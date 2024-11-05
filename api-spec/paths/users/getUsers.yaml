@@ -1,5 +1,5 @@
 summary: List Users
-description: List the users.
+description: List all users that exist in Directus.
 operationId: getUsers
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
