@@ -197,7 +197,7 @@ tags:
     description: Revisions are individual changes to items made. Directus keeps track of changes made, so you're able to revert to a previous state at will.
     x-collection: directus_revisions
   - name: Users
-    description: Users are what gives you access to the data.
+    description: Directus Users are the individual accounts that let you authenticate into the API and App. Each user can belong to a Role.
     x-collection: directus_users
   - name: Extensions
     description: Directus can easily be extended through the addition of several types of extensions, including layouts, interfaces, and modules.
