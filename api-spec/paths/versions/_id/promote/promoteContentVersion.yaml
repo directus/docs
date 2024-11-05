@@ -1,7 +1,5 @@
 summary: Promote a Content Version
-description: Pass the current hash of the main version of the item (obtained from
-  the `compare` endpoint) along with an optional array of field names of which the
-  values are to be promoted (by default, all fields are selected).
+description: Promote an existing Content Version to become the new main version of the item.
 operationId: promoteContentVersion
 parameters:
 - $ref: ../../../../components/parameters.yaml#/UUId
