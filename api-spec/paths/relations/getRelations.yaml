@@ -1,5 +1,5 @@
 summary: List Relations
-description: List the relations.
+description: List all relations that exist in Directus.
 operationId: getRelations
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
