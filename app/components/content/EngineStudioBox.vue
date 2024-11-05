@@ -47,7 +47,6 @@ const boxes = [
 					</NuxtLink>
 				</div>
 			</div>
-			<p>Get Started with a Quickstart</p>
 		</div>
 	</div>
 </template>
@@ -94,7 +93,7 @@ const boxes = [
 	background-position: center top;
 	border: 1px solid var(--border);
 	border-radius: calc(var(--border-radius) * 2);
-	padding: 2rem;
+	padding: 1.5rem;
 	color: white;
 	display: flex;
 	flex-direction: column;
