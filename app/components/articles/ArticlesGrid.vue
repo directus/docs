@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 defineProps<{
-	articles: ArticleNavItems;
+	articles: CardItem[];
 }>();
 </script>
 

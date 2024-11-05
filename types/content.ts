@@ -40,6 +40,18 @@ declare global {
 	type PageToc = {} & Toc;
 
 	type AllPages = Pick<ParsedContent, '_path' | 'additional_paths'>[];
+
+	type CardItem = {
+		title: string;
+		description?: string;
+		category?: string;
+		_path: string;
+		tags?: {
+			id: string;
+			name: string;
+			icon?: string;
+		}[];
+	};
 }
 
 export {};

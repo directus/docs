@@ -98,6 +98,8 @@ const boxes = [
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	margin-top: 0;
+	margin-bottom: 0;
 	h2 {
 		font-weight: 600;
 		font-size: 1.5rem;
