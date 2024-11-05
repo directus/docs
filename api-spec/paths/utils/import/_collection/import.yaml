@@ -1,4 +1,4 @@
-summary: Import Items
+summary: Import Data from File 
 description: Import multiple records from a JSON or CSV file into a collection.
 operationId: import
 parameters:
