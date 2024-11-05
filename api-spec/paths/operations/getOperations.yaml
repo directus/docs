@@ -1,5 +1,5 @@
 summary: List Operations
-description: Get all operations.
+description: List all operations that exist in Directus.
 operationId: getOperations
 responses:
   '200':
