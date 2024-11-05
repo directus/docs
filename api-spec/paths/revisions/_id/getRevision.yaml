@@ -1,5 +1,5 @@
 summary: Retrieve a Revision
-description: Retrieve a single revision by unique identifier.
+description: List an existing revision by primary key.
 operationId: getRevision
 parameters:
 - $ref: ../../../components/parameters.yaml#/Id
