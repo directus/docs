@@ -67,6 +67,7 @@ defineProps<{
 	.card-description {
 		font-size: 0.875rem;
 		font-weight: 400;
+		margin-bottom: 0;
 	}
 
 	.card-footer-row {
