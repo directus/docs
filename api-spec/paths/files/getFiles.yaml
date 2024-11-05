@@ -1,5 +1,5 @@
 summary: List Files
-description: List the files.
+description: List all files that exist in Directus.
 tags:
 - Files
 operationId: getFiles
