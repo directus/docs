@@ -1,5 +1,5 @@
 summary: List Permissions
-description: List all permissions.
+description: List all permissions that exist in Directus.
 operationId: getPermissions
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
