@@ -1,5 +1,5 @@
 summary: Clear Cache
-description: Resets both the data and schema cache of Directus.
+description: Resets the data cache of Directus. Optionally, can also clear system cache. This endpoint is only available to admin users.
 operationId: clear-cache
 responses:
   '200':
