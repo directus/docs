@@ -26,8 +26,8 @@ properties:
     example: active
     default: active
     enum:
-      - active
-      - inactive
+      - `active`
+      - `inactive`
   trigger:
     description: Type of trigger for the flow. One of `hook`, `webhook`, `operation`, `schedule`, `manual`.
     type: string
