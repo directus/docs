@@ -1,5 +1,5 @@
 summary: List Content Versions
-description: Get all Content Versions.
+description: List all Content Versions that exist in Directus.
 operationId: getContentVersions
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
