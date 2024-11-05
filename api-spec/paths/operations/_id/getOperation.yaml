@@ -1,5 +1,5 @@
 summary: Retrieve an Operation
-description: Retrieve a single operation by unique identifier.
+description: Retrieve a single operation by primary key.
 operationId: getOperation
 responses:
   '200':
