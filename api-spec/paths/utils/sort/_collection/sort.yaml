@@ -1,4 +1,4 @@
-summary: Sort Items
+summary: Manually Sort Items in Collection 
 description: Re-sort items in collection based on start and to value of item
 operationId: sort
 parameters:
