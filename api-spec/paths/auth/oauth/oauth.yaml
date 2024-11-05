@@ -2,7 +2,7 @@ summary: List Auth Providers
 tags:
 - Authentication
 operationId: oauth
-description: List configured OAuth providers.
+description: List all the configured auth providers.
 responses:
   '200':
     description: Successful request
