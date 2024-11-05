@@ -1,5 +1,5 @@
 summary: Retrieve a User
-description: Retrieve a single user by unique identifier.
+description: List an existing user by primary key.
 operationId: getUser
 parameters:
 - $ref: ../../../components/parameters.yaml#/UUId
