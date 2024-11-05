@@ -1,5 +1,5 @@
 summary: Retrieve a Folder
-description: Retrieve a single folder by unique identifier.
+description: List an existing folder by primary key.
 operationId: getFolder
 parameters:
 - $ref: ../../../components/parameters.yaml#/UUId
