@@ -41,6 +41,7 @@ export const docPages = async () => {
 								'sort',
 								{ tags: [{ tag: ['id', 'icon', 'name'] }] },
 								{ additional_paths: ['id', 'path'] },
+								{ authors: [{ author: ['id', 'name', 'title', 'avatar'] }] },
 							],
 						},
 					],
@@ -53,9 +54,22 @@ export const docPages = async () => {
 	return data;
 };
 
-async function writePage(dir: string, pathParts: PathPartArray, config: Record<string, unknown>, content?: string) {
-	const dirPath = resolve(dir, '.remote', ...pathParts.slice(0, -1).map(part => `${part.sort}.${part.slug}`));
-	const pagePath = resolve(dir, '.remote', ...pathParts.map(part => `${part.sort}.${part.slug}`));
+async function writePage(
+	dir: string,
+	pathParts: PathPartArray,
+	config: Record<string, unknown>,
+	content?: string,
+) {
+	const dirPath = resolve(
+		dir,
+		'.remote',
+		...pathParts.slice(0, -1).map(part => `${part.sort}.${part.slug}`),
+	);
+	const pagePath = resolve(
+		dir,
+		'.remote',
+		...pathParts.map(part => `${part.sort}.${part.slug}`),
+	);
 
 	const pageConfig = stringifyYAML(config);
 	const pageContent = `---\n${pageConfig}\n---\n${content || 'STUB'}`;
@@ -73,24 +87,23 @@ export const buildPages = async (dir: string) => {
 
 	const remotePath = resolve(dir, '.remote');
 
-	if (await fs.access(remotePath).then(() => true).catch(() => false)) {
+	if (
+		await fs
+			.access(remotePath)
+			.then(() => true)
+			.catch(() => false)
+	) {
 		await fs.rm(remotePath, { recursive: true });
 	}
 
 	for (const area of docs) {
 		const areaStyle = `${formatTitle(area.type)}Area`;
 		if (availablePageStyles.includes(areaStyle)) {
-			await writePage(
-				dir,
-				[
-					{ sort: area.sort || 0, slug: area.slug },
-				],
-				{
-					style: `${formatTitle(area.type)}Area`,
-					...area,
-					categories: undefined,
-				},
-			);
+			await writePage(dir, [{ sort: area.sort || 0, slug: area.slug }], {
+				style: `${formatTitle(area.type)}Area`,
+				...area,
+				categories: undefined,
+			});
 		}
 		if (!area.categories) continue;
 		for (const category of area.categories) {
@@ -108,7 +121,7 @@ export const buildPages = async (dir: string) => {
 						pages: undefined,
 					},
 				);
-			};
+			}
 			if (!category.pages) continue;
 			for (const page of category.pages) {
 				const pageStyle = `${formatTitle(area.type)}Page`;
@@ -126,6 +139,7 @@ export const buildPages = async (dir: string) => {
 							tags: page.tags?.map(tag => tag.tag),
 							additional_paths: page.additional_paths?.map(path => path.path),
 							content: undefined,
+							authors: page.authors?.map(author => author.author),
 						},
 						page.content,
 					);

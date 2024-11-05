@@ -16,7 +16,7 @@ const items = props.paths.map((item) => {
 		title: page?.title,
 		description: props.showDescription ? page?.description : undefined,
 		_path: page?._path,
-	};
+	} as ArticleNavItem;
 });
 </script>
 

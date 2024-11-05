@@ -59,11 +59,13 @@ useSeoMeta({
 	description: page.value.description,
 });
 
-// defineOgImage({
-// 	component: 'Docs',
-// 	title: data.value.title,
-// 	description: data.value.description,
-// });
+defineOgImage({
+	component: 'OgImageDefault',
+	props: {
+		title: page.value.title,
+		breadcrumbs: resolvedRoute.split('/').slice(1, -1),
+	},
+});
 </script>
 
 <template>

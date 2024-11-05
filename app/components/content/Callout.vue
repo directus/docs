@@ -48,7 +48,8 @@ const props = withDefaults(
 const section = calloutDefinitions[props.type];
 
 function componentType() {
-	if (props.url && props.url.charAt(0) == '/') return resolveComponent('NuxtLink');
+	if (props.url && props.url.charAt(0) == '/')
+		return resolveComponent('NuxtLink');
 	if (props.url) return 'a';
 	else return 'div';
 }
@@ -110,6 +111,20 @@ const detailsOpen = ref(false);
 </template>
 
 <style scoped lang="scss">
+.dark {
+	.callout.warning {
+		background-color: color-mix(
+			in hsl shorter hue,
+			rgba(0, 0, 0, 0.1) 75%,
+			var(--red-6) 25%
+		);
+		border-color: color-mix(
+			in hsl shorter hue,
+			rgba(0, 0, 0, 0) 60%,
+			var(--red-6) 40%
+		);
+	}
+}
 .callout {
 	display: block;
 	background: var(--background-subdued);
@@ -121,8 +136,10 @@ const detailsOpen = ref(false);
 	display: grid;
 	grid-template-columns: 2em auto;
 	&.warning {
-		background: var(--red-1)
+		background: var(--red-1);
+		border-color: var(--red-2);
 	}
+
 	&:after {
 		display: none !important;
 	}
@@ -158,7 +175,7 @@ details.callout {
 			margin-bottom: 0;
 		}
 		&::marker {
-			content: '';
+			content: "";
 		}
 		&:deep(+ *) {
 			margin-top: 1rem;

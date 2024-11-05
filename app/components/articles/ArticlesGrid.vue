@@ -7,7 +7,7 @@ defineProps<{
 <template>
 	<div
 		v-if="articles.length > 0"
-		class="card-grid"
+		class="grid"
 	>
 		<ArticlesCard
 			v-for="article in articles"
@@ -21,7 +21,7 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.card-grid {
+.grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 1rem;

@@ -7,14 +7,27 @@ defineProps<{
 </script>
 
 <template>
-	<div class="docs container">
-		<UiAsideNav
-			:path="data._path"
-			:all-pages="allPages"
-			:all-navigation="allNavigation"
-		/>
-		<div class="slug">
-			<main v-if="data">
+	<DefaultLayout>
+		<template #mobile-nav>
+			<AsideNav
+				class="left-aside-slide"
+				:path="data._path"
+				:all-pages="allPages"
+				:all-navigation="allNavigation"
+			/>
+		</template>
+
+		<div class="docs-grid container">
+			<AsideNav
+				class="left-aside"
+				:path="data._path"
+				:all-pages="allPages"
+				:all-navigation="allNavigation"
+			/>
+			<main
+				v-if="data"
+				class="main-content"
+			>
 				<article>
 					<ContentRenderer :value="data">
 						<span
@@ -33,34 +46,45 @@ defineProps<{
 						</template>
 					</ContentRenderer>
 				</article>
-				<PrevNext />
 			</main>
-			<aside>
+			<aside class="right-aside">
 				<AsideTableOfContents
 					v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
 					:toc="data.body.toc"
 				/>
-				<AsideNewsletter />
+				<hr>
 				<AsideFeedback />
+				<hr>
+				<AsideNewsletter />
+				<AsideWidget />
 			</aside>
 		</div>
-	</div>
+	</DefaultLayout>
 </template>
 
 <style lang="scss" scoped>
-.slug {
+.docs-grid {
+	padding-top: 3rem;
+	padding-bottom: 6rem;
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 250px;
-	width: 100%;
+	grid-template-columns: 225px minmax(0, 1fr) 250px;
 	gap: 3rem;
 }
-main {
+
+.left-aside {
 	margin-top: 24px;
-	.prev-next {
-		padding: 24px 0 calc(24px + 1rem);
-	}
+	border-right: 2px solid var(--border);
 }
-aside {
+
+.left-aside-slide {
+	border-right: 2px solid var(--border);
+}
+
+.main-content {
+	margin-top: 24px;
+}
+
+.right-aside {
 	margin-top: 24px;
 	padding-left: 2rem;
 	padding-right: 1em;
@@ -68,28 +92,31 @@ aside {
 	display: flex;
 	flex-direction: column;
 	gap: calc(24px / 2);
-	> * {
-		width: 100%;
+}
+
+.right-aside > * {
+	width: 100%;
+}
+
+@media (max-width: 1024px) {
+	.right-aside {
+		display: none;
+	}
+	.docs-grid {
+		grid-template-columns: 225px 1fr;
+		padding-top: 2rem;
 	}
 }
-.docs {
-	padding-top: 3rem;
-	padding-bottom: 6rem;
-	display: grid;
-	grid-template-columns: 225px minmax(0, 1fr);
-	gap: 3rem;
-	> nav {
-		margin-top: 24px;
-		border-right: 2px solid var(--border);
-		section {
-			margin: 2rem 0;
-			&:first-child {
-				margin-top: 0;
-			}
-		}
+
+@media (max-width: 768px) {
+	.docs-grid {
+		grid-template-columns: 1fr;
+		padding-top: 1rem;
 	}
-}
-:deep(ol ol) {
-	display: none;
+
+	.left-aside,
+	.right-aside {
+		display: none;
+	}
 }
 </style>
