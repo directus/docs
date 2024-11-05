@@ -2,7 +2,7 @@ summary: List Presets
 tags:
 - Presets
 operationId: getPresets
-description: List the presets.
+description: List all presets that exist in Directus. The data returned in this endpoint will be filtered based on the user's permissions. For example, presets for a role other than the current user's role won't be returned.
 security:
 - Auth: []
 parameters:
