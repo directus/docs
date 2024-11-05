@@ -90,16 +90,16 @@ Fields:
       type: string
 Export:
   name: export
-  description: Saves the API response to a file. Accepts one of "csv", "json", "xml", "yaml".
+  description: Saves the API response to a file. Accepts one of `csv`, `json`, `xml`, `yaml`.
   in: query
   required: false
   schema:
     type: string
     enum:
-      - csv
-      - json
-      - xml
-      - yaml
+      - `csv`
+      - `json`
+      - `xml`
+      - `yaml`
 Version:
   name: version
   description: >-
