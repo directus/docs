@@ -1,5 +1,5 @@
 summary: Create a Folder
-description: Create a new folder.
+description: Create a new (virtual) folder.
 operationId: createFolder
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
