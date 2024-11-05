@@ -13,10 +13,10 @@ properties:
     example: create
     type: string
     enum:
-      - create
-      - read
-      - update
-      - delete
+      - `create`
+      - `read`
+      - `update`
+      - `delete`
   permissions:
     description: JSON structure containing the permissions checks for this permission.
     type: object
