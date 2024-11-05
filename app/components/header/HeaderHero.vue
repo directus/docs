@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const switcherState = ref<'sdk' | 'rest' | 'graphql'>('sdk');
+const switcherState = ref<'data' | 'auth' | 'realtime' | 'file'>('data');
 </script>
 
 <template>
@@ -57,45 +57,60 @@ const switcherState = ref<'sdk' | 'rest' | 'graphql'>('sdk');
 					<div class="code">
 						<div class="switcher">
 							<Button
-								label="Directus SDK"
-								:color="switcherState === 'sdk' ? 'primary' : 'white'"
+								label="Fetch Data"
+								:color="switcherState === 'data' ? 'primary' : 'white'"
 								size="small"
-								@click="switcherState = 'sdk'"
+								@click="switcherState = 'data'"
 							/>
 							<Button
-								label="REST"
-								:color="switcherState === 'rest' ? 'primary' : 'white'"
+								label="Authentication"
+								:color="switcherState === 'auth' ? 'primary' : 'white'"
 								size="small"
-								@click="switcherState = 'rest'"
+								@click="switcherState = 'auth'"
 							/>
 							<Button
-								label="GraphQL"
-								:color="switcherState === 'graphql' ? 'primary' : 'white'"
+								label="Realtime"
+								:color="switcherState === 'realtime' ? 'primary' : 'white'"
 								size="small"
-								@click="switcherState = 'graphql'"
+								@click="switcherState = 'realtime'"
+							/>
+							<Button
+								label="Transform Files"
+								:color="switcherState === 'file' ? 'primary' : 'white'"
+								size="small"
+								@click="switcherState = 'file'"
 							/>
 						</div>
-						<div :style="{ display: switcherState === 'sdk' ? 'block' : 'none' }">
+						<div :style="{ display: switcherState === 'data' ? 'block' : 'none' }">
 							<ContentDoc
-								path="/_partials/hero-sdk"
+								path="/_partials/home-hero/data"
 							>
 								<template #default="{ doc }">
 									<ContentRenderer :value="doc" />
 								</template>
 							</ContentDoc>
 						</div>
-						<div :style="{ display: switcherState === 'rest' ? 'block' : 'none' }">
+						<div :style="{ display: switcherState === 'auth' ? 'block' : 'none' }">
 							<ContentDoc
-								path="/_partials/hero-rest"
+								path="/_partials/home-hero/auth"
 							>
 								<template #default="{ doc }">
 									<ContentRenderer :value="doc" />
 								</template>
 							</ContentDoc>
 						</div>
-						<div :style="{ display: switcherState === 'graphql' ? 'block' : 'none' }">
+						<div :style="{ display: switcherState === 'realtime' ? 'block' : 'none' }">
 							<ContentDoc
-								path="/_partials/hero-graphql"
+								path="/_partials/home-hero/realtime"
+							>
+								<template #default="{ doc }">
+									<ContentRenderer :value="doc" />
+								</template>
+							</ContentDoc>
+						</div>
+						<div :style="{ display: switcherState === 'file' ? 'block' : 'none' }">
+							<ContentDoc
+								path="/_partials/home-hero/file"
 							>
 								<template #default="{ doc }">
 									<ContentRenderer :value="doc" />
