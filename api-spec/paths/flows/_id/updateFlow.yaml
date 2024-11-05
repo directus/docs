@@ -1,5 +1,5 @@
 summary: Update a Flow
-description: Update an existing flow
+description: Update an existing flow.
 operationId: updateFlow
 parameters:
 - $ref: ../../../components/parameters.yaml#/UUId
