@@ -1,5 +1,5 @@
 summary: Delete Multiple Files
-description: Delete multiple existing files.
+description: Delete multiple existing files at once. This will also delete the files from disk.
 tags:
 - Files
 operationId: deleteFiles
