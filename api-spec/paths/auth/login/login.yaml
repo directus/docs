@@ -1,4 +1,4 @@
-summary: Retrieve a Temporary Access Token
+summary: Login
 description: Retrieve a Temporary Access Token
 tags:
 - Authentication
