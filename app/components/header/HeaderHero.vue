@@ -75,30 +75,33 @@ const switcherState = ref<'sdk' | 'rest' | 'graphql'>('sdk');
 								@click="switcherState = 'graphql'"
 							/>
 						</div>
-						<ContentDoc
-							v-if="switcherState === 'sdk'"
-							path="/_partials/hero-sdk"
-						>
-							<template #default="{ doc }">
-								<ContentRenderer :value="doc" />
-							</template>
-						</ContentDoc>
-						<ContentDoc
-							v-if="switcherState === 'rest'"
-							path="/_partials/hero-rest"
-						>
-							<template #default="{ doc }">
-								<ContentRenderer :value="doc" />
-							</template>
-						</ContentDoc>
-						<ContentDoc
-							v-if="switcherState === 'graphql'"
-							path="/_partials/hero-graphql"
-						>
-							<template #default="{ doc }">
-								<ContentRenderer :value="doc" />
-							</template>
-						</ContentDoc>
+						<div :style="{ display: switcherState === 'sdk' ? 'block' : 'none' }">
+							<ContentDoc
+								path="/_partials/hero-sdk"
+							>
+								<template #default="{ doc }">
+									<ContentRenderer :value="doc" />
+								</template>
+							</ContentDoc>
+						</div>
+						<div :style="{ display: switcherState === 'rest' ? 'block' : 'none' }">
+							<ContentDoc
+								path="/_partials/hero-rest"
+							>
+								<template #default="{ doc }">
+									<ContentRenderer :value="doc" />
+								</template>
+							</ContentDoc>
+						</div>
+						<div :style="{ display: switcherState === 'graphql' ? 'block' : 'none' }">
+							<ContentDoc
+								path="/_partials/hero-graphql"
+							>
+								<template #default="{ doc }">
+									<ContentRenderer :value="doc" />
+								</template>
+							</ContentDoc>
+						</div>
 					</div>
 				</div>
 			</div>
