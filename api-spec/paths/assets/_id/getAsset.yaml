@@ -2,7 +2,7 @@ summary: Get an Asset
 tags:
 - Assets
 operationId: getAsset
-description: Image typed files can be dynamically resized and transformed to fit any
+description: Image typed files can be retrieved, dynamically resized and transformed to fit any
   need.
 parameters:
 - name: id
