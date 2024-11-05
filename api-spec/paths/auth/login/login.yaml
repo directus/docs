@@ -1,5 +1,5 @@
 summary: Login
-description: Retrieve a Temporary Access Token
+description: Authenticate as a user.
 tags:
 - Authentication
 operationId: login
