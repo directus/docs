@@ -1,5 +1,5 @@
 summary: List Folders
-description: List the folders.
+description: List all folders that exist in Directus.
 operationId: getFolders
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
