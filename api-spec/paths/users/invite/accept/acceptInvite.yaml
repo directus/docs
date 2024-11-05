@@ -1,5 +1,5 @@
 summary: Accept User Invite
-description: Accepts and enables an invited user using a JWT invitation token.
+description: Accept your invite. The invite user endpoint sends the email a link to the Data Studio. This link includes a token, which is then used to activate the invited user.
 operationId: acceptInvite
 requestBody:
   required: true
