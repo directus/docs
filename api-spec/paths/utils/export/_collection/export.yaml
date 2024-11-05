@@ -1,4 +1,4 @@
-summary: Export Items
+summary: Export Data to a File 
 description: Export a larger data set to a file in the file library.
 operationId: export
 parameters:
