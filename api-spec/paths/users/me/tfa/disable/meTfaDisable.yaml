@@ -1,4 +1,4 @@
-summary: Disable 2FA
+summary: Disable Two-Factor Authentication 
 description: Disables two-factor authentication for the currently authenticated user.
 operationId: meTfaDisable
 responses:
