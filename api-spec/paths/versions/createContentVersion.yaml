@@ -30,11 +30,11 @@ x-codeSamples:
 - label: Directus SDK
   lang: JavaScript
   source: |
-    import { createDirectus, rest, createContentVersion } from '@directus/sdk';
+    import { createDirectus, rest, createContentVersions } from '@directus/sdk';
 
     const client = createDirectus('directus_project_url').with(rest());
 
-    const result = await client.request(createContentVersion(content_version_object));
+    const result = await client.request(createContentVersions(content_version_objects));
 - label: GraphQL
   lang: GraphQL
   source: |
