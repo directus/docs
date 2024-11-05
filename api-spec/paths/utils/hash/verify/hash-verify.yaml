@@ -1,5 +1,5 @@
-summary: Hash a string
-description: Generate a hash for a given string.
+summary: Verify a Hash.
+description: Verify a string with a hash.
 operationId: hash-verify
 requestBody:
   content:
