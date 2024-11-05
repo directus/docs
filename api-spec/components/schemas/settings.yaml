@@ -73,10 +73,10 @@ properties:
           description: Whether to crop the thumbnail to match the size, or maintain the aspect ratio.
           type: string
           enum:
-            - cover
-            - contain
-            - inside
-            - outside
+            - `cover`
+            - `contain`
+            - `inside`
+            - `outside`
         width:
           description: Width of the thumbnail.
           type: integer
