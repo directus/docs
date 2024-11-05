@@ -55,9 +55,9 @@ properties:
     description: What transformations are allowed in the assets endpoint.
     type: string
     enum:
-      - all
-      - none
-      - presets
+      - `all`
+      - `none`
+      - `presets`
     example: all
     nullable: true
   storage_asset_presets:
