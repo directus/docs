@@ -1,19 +1,21 @@
 <script lang="ts" setup>
 defineProps<{
-	article: ArticleNavItem;
+	article: CardItem;
 }>();
 </script>
 
 <template>
 	<NuxtLink
 		:to="article._path"
-		class="card"
+		:external="!article._path.startsWith('/')"
+		:target="article._path.startsWith('/') ? undefined : '_blank'"
+		class="article-card"
 	>
 		<p class="card-title">
 			{{ article.title }}
 		</p>
 
-		<div class="card-footer-row">
+		<div v-if="article.tags || article.category || article.description" class="card-footer-row">
 			<div
 				v-if="article.tags"
 				class="card-tag-row"
@@ -44,7 +46,7 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.card {
+.article-card {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -59,6 +61,7 @@ defineProps<{
 	.card-title {
 		font-size: 1rem;
 		font-weight: 500;
+		margin-bottom: 0rem;
 	}
 
 	.card-description {
