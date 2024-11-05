@@ -182,7 +182,7 @@ tags:
     description: What data is linked to what other data. Allows you to assign authors to articles, products to sales, and whatever other structures you can think of.
     x-collection: directus_relations
   - name: Files
-    description: Files can be saved in any given location. Directus has a powerful assets endpoint that can be used to generate thumbnails for images on the fly.
+    description: Every file managed by the platform is uploaded to the configured storage adapter, and its associated metadata is tracked within the `directus_files` system collection. Any requested file transformations are handled on the fly, and are only saved to storage.
     x-collection: directus_files
   - name: Fields
     description: Fields are individual pieces of content within an item. They are mapped to columns in the database.
