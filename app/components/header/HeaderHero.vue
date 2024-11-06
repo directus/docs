@@ -84,6 +84,7 @@ const switcherState = ref<'data' | 'auth' | 'realtime' | 'file'>('data');
 						<div :style="{ display: switcherState === 'data' ? 'block' : 'none' }">
 							<ContentDoc
 								path="/_partials/home-hero/data"
+								:head="false"
 							>
 								<template #default="{ doc }">
 									<ContentRenderer :value="doc" />
@@ -93,6 +94,7 @@ const switcherState = ref<'data' | 'auth' | 'realtime' | 'file'>('data');
 						<div :style="{ display: switcherState === 'auth' ? 'block' : 'none' }">
 							<ContentDoc
 								path="/_partials/home-hero/auth"
+								:head="false"
 							>
 								<template #default="{ doc }">
 									<ContentRenderer :value="doc" />
@@ -102,6 +104,7 @@ const switcherState = ref<'data' | 'auth' | 'realtime' | 'file'>('data');
 						<div :style="{ display: switcherState === 'realtime' ? 'block' : 'none' }">
 							<ContentDoc
 								path="/_partials/home-hero/realtime"
+								:head="false"
 							>
 								<template #default="{ doc }">
 									<ContentRenderer :value="doc" />
@@ -111,6 +114,7 @@ const switcherState = ref<'data' | 'auth' | 'realtime' | 'file'>('data');
 						<div :style="{ display: switcherState === 'file' ? 'block' : 'none' }">
 							<ContentDoc
 								path="/_partials/home-hero/file"
+								:head="false"
 							>
 								<template #default="{ doc }">
 									<ContentRenderer :value="doc" />
