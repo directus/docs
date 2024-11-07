@@ -40,4 +40,8 @@ a {
 	text-decoration: none;
 	margin-top: 0.5rem;
 }
+
+a:hover {
+	text-decoration: underline;
+}
 </style>
