@@ -1,9 +1,9 @@
 summary: Retrieve Schema Difference
 description: |
   Compare the current instance's schema against the schema snapshot in JSON request body and retrieve the difference. This endpoint is only available to admin users.
-  
-  Alternatively, upload a JSON or YAML schema file. Relies on a `multipart/form-data` encoded request like regular file uploads. 
-  
+
+  Alternatively, upload a JSON or YAML schema file. Relies on a `multipart/form-data` encoded request like regular file uploads.
+
   This endpoint does not allow different Directus versions and database vendors by default. This is to avoid any
 unintentional diffs from being generated. You can opt in to bypass these checks by passing the `force` query parameter.
 operationId: schemaDiff
@@ -54,7 +54,7 @@ x-codeSamples:
 
     import { createDirectus, rest, schemaDiff } from '@directus/sdk';
 
-    const client = createDirectus('https://directus.example.com').with(rest());
+    const client = createDirectus('directus_project_url').with(rest());
 
     const result = await client.request(
     	schemaDiff({

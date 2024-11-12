@@ -1,4 +1,4 @@
-summary: Clear the Internal Cache 
+summary: Clear the Internal Cache
 description: Resets the data cache of Directus. Optionally, can also clear system cache. This endpoint is only available to admin users.
 operationId: clear-cache
 responses:
@@ -12,7 +12,7 @@ x-codeSamples:
     source: |
       import { createDirectus, rest, clearCache } from '@directus/sdk';
 
-      const client = createDirectus('https://directus.example.com').with(rest());
+      const client = createDirectus('directus_project_url').with(rest());
 
       const result = await client.request(clearCache());
   - label: GraphQL
