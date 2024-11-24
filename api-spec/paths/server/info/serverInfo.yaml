@@ -12,14 +12,14 @@ parameters:
     type: integer
 responses:
   '200':
+    description: Successful request
     content:
       application/json:
         schema:
           type: object
           properties:
             data:
-              type: object
-    description: Successful request
+              $ref: ../../../components/schemas/settings.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

@@ -43,3 +43,18 @@ responses:
     $ref: ../../../../components/responses.yaml#/NotFoundError
 tags:
 - Extensions
+x-codeSamples:
+  - label: Directus SDK
+    lang: JavaScript
+    source: |
+      import { createDirectus, rest, updateExtension } from '@directus/sdk';
+
+      const client = createDirectus('directus_project_url').with(rest());
+
+      const result = await client.request(updateExtension(bundle, name, partial_extension_object));
+  - label: GraphQL
+    lang: GraphQL
+    source: |
+      type Mutation {
+        update_extensions_item(bundle: String, name: String!, data: update_directus_extensions_input!): directus_extensions
+      }

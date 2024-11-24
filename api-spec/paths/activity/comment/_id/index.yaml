@@ -1,3 +1,5 @@
+get:
+  $ref: getComment.yaml
 patch:
   $ref: updateComment.yaml
 delete:

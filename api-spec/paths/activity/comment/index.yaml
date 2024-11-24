@@ -1,2 +1,8 @@
+get:
+  $ref: getComments.yaml
 post:
   $ref: createComment.yaml
+patch:
+  $ref: updateComments.yaml
+delete:
+  $ref: deleteComments.yaml

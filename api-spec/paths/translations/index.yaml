@@ -1,0 +1,9 @@
+get:
+  $ref: getTranslations.yaml
+post:
+  - $ref: createTranslation.yaml
+  - $ref: createsTranslations.yaml
+update:
+  $ref: updatesTranslations.yaml
+delete:
+  $ref: deleteTranslations.yaml

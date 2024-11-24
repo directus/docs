@@ -1,0 +1,9 @@
+get:
+  $ref: getpolicies.yaml
+post:
+  - $ref: createpolicy.yaml
+  - $ref: createpolicies.yaml
+update:
+  $ref: updatepolicies.yaml
+delete:
+  $ref: deletepolicy.yaml
