@@ -40,6 +40,7 @@
 
 .feedback-button {
 	padding: 0.5rem !important;
+	color: var(--typography-subdued)
 }
 
 p {

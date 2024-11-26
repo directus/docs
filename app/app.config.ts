@@ -7,8 +7,8 @@ export default defineAppConfig({
 				tokens: {
 					fonts: {
 						heading: '\'Poppins\', sans-serif',
-						body: '\'IBM Plex Sans\', sans-serif',
-						mono: '\'IBM Plex Mono\', monospace',
+						body: '\'Inter\', sans-serif',
+						mono: '\'Fire Mono\', monospace',
 					},
 				},
 			},

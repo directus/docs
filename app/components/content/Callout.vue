@@ -84,7 +84,7 @@ const detailsOpen = ref(false);
 		:href="url"
 		class="callout"
 		:class="type"
-		:style="section.color ? `borderColor: ${section.color}` : ''"
+		:style="section.color ? `--callout-color: ${section.color}` : ''"
 	>
 		<Icon
 			:name="section.icon"
@@ -148,10 +148,12 @@ const detailsOpen = ref(false);
 a.callout {
 	background: transparent;
 	grid-template-columns: 2em auto 2em;
-	border-style: dashed;
+	transition: border 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
 	&:hover {
 		border-style: solid;
 		cursor: pointer;
+		border: 1px solid var(--callout-color, var(--primary));
+		box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--callout-color, var(--primary)) 15%, transparent);
 	}
 	.arrow {
 		margin-left: auto;
@@ -160,7 +162,7 @@ a.callout {
 }
 
 .icon.main {
-	margin-top: 4px;
+	margin-top: 7px;
 }
 
 details.callout {

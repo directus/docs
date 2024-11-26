@@ -186,7 +186,7 @@ a {
 .slideover-nav {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
-	border-bottom: 2px solid var(--border);
+	border-bottom: 1px solid var(--border);
 }
 
 ul {

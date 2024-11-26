@@ -74,7 +74,7 @@ async function subscribe() {
 	h2 {
 		font-weight: 600;
 		font-size: 1rem;
-		margin: 4px 0 0;
+		margin: 0.5rem 0 0;
 		line-height: 1;
 	}
 	p {
@@ -89,7 +89,7 @@ async function subscribe() {
 		border-radius: 6px;
 		border: 1px solid rgba(213, 220, 229, 0.50);
 		background: rgba(213, 220, 229, 0.20);
-		margin-bottom: 4px;
+		margin-bottom: 0.5rem;
 		font-size: 0.9rem;
 		font-weight: 500;
 	}

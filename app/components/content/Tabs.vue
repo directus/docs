@@ -92,9 +92,7 @@ const tabs = computed(() => {
 	display: flex;
 	align-items: center;
 	gap: 0.25rem;
-	&:not(:last-child) {
-		border-right: 1px solid var(--border-subdued);
-	}
+	border-right: 1px solid var(--border-subdued);
 }
 .TabsTrigger:hover {
 	color: var(--primary);

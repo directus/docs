@@ -41,9 +41,6 @@ div {
 		margin-bottom: 0.25rem;
 		margin-top: 0.25rem;
 	}
-	.button {
-		margin-bottom: 1rem;
-	}
 }
 p {
 	font-size: 1rem;
