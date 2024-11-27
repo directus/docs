@@ -201,7 +201,10 @@ h1 {
 	height: 100%;
 	flex: 1;
 	overflow: hidden;
-	min-width: 400px;
+
+	@media (min-width: 400px) {
+		min-width: 400px;
+	}
 }
 
 .code {
@@ -213,6 +216,8 @@ h1 {
 }
 
 .switcher {
+	width: 100%;
+	max-width: 100%;
 	display: flex;
 	gap: 1rem;
 	margin-bottom: 0.5rem;
