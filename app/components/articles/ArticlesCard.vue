@@ -15,7 +15,17 @@ defineProps<{
 			{{ article.title }}
 		</p>
 
-		<div v-if="article.tags || article.category || article.description" class="card-footer-row">
+		<p
+			v-if="article.description"
+			class="card-description"
+		>
+			{{ article.description }}
+		</p>
+
+		<div
+			v-if="article.tags || article.category"
+			class="card-footer-row"
+		>
 			<div
 				v-if="article.tags"
 				class="card-tag-row"
@@ -35,12 +45,6 @@ defineProps<{
 			>
 				{{ article.category }}
 			</p>
-			<p
-				v-if="article.description"
-				class="card-description"
-			>
-				{{ article.description }}
-			</p>
 		</div>
 	</NuxtLink>
 </template>
@@ -50,7 +54,7 @@ defineProps<{
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	justify-content: space-between;
+	justify-content: start;
 	padding: 1rem;
 	border-radius: 0.5rem;
 	transition: background-color 0.2s ease-in-out;
@@ -74,7 +78,8 @@ defineProps<{
 		margin-top: 0.5rem;
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: end;
+		flex-grow: 1;
 	}
 
 	.card-tag-row {

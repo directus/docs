@@ -125,7 +125,7 @@ const navItems = computed(() => {
 }
 .desktop-nav {
 	background: var(--background-subdued);
-	box-shadow: inset 0 0 0 2px
+	box-shadow: inset 0 0 0 1px
 		color-mix(in srgb, var(--border) 50%, var(--border-subdued) 50%);
 	display: flex;
 
@@ -146,7 +146,7 @@ a {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.25rem;
-	border-bottom: 2px solid transparent;
+	border-bottom: 1px solid transparent;
 	font-weight: 500;
 	&:hover,
 	&.active {
