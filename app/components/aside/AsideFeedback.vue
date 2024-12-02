@@ -1,18 +1,52 @@
+<script setup lang="ts">
+const { $clientPosthog } = useNuxtApp();
+
+const buttonLoading = ref<'good' | 'bad' | null>(null);
+const buttonTimeout = 500;
+
+const handleFeedback = (feedback: 'good' | 'bad') => {
+	if (buttonLoading.value) return;
+	buttonLoading.value = feedback;
+	$clientPosthog?.capture(`feedback_${feedback}`);
+	setTimeout(() => {
+		buttonLoading.value = null;
+	}, buttonTimeout);
+};
+</script>
+
 <template>
 	<div class="feedback">
 		<Button
 			color="outline-only"
 			size="small"
 			class="feedback-button"
+			:disabled="buttonLoading !== null"
+			@click="() => handleFeedback('good')"
 		>
-			<Icon name="material-symbols:thumb-up-rounded" />
+			<Icon
+				v-if="buttonLoading === 'good'"
+				name="svg-spinners:180-ring-with-bg"
+			/>
+			<Icon
+				v-else
+				name="material-symbols:thumb-up-rounded"
+			/>
 		</Button>
 		<Button
 			color="outline-only"
 			size="small"
 			class="feedback-button"
+			:disabled="buttonLoading !== null"
+			@click="() => handleFeedback('bad')"
 		>
-			<Icon name="material-symbols:thumb-down-rounded" />
+			<Icon
+				v-if="buttonLoading === 'bad'"
+				name="svg-spinners:180-ring-with-bg"
+			/>
+			<Icon
+				v-else
+				name="material-symbols:thumb-down-rounded"
+			/>
 		</Button>
 		<div>
 			<p class="cta">
@@ -24,9 +58,6 @@
 		</div>
 	</div>
 </template>
-
-<script setup lang="ts">
-</script>
 
 <style scoped lang="scss">
 .feedback {
