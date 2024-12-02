@@ -69,14 +69,6 @@ import '@scalar/api-reference/style.css';
 	top: 0 !important;
 }
 
-.section.introduction-section {
-	padding-top: 48px !important;
-}
-
-.section.introduction-section .section-column:nth-of-type(2) {
-	padding-top: 48px !important;
-}
-
 .introduction-card {
 	display: none !important;
 }
@@ -100,7 +92,7 @@ import '@scalar/api-reference/style.css';
 	border-right: 0px !important;
 }
 
-.sidebar::after {
+/* .sidebar::after {
 	content: "" !important;
 	position: absolute !important;
 	right: 12px !important;
@@ -124,7 +116,7 @@ import '@scalar/api-reference/style.css';
 		--border
 	) !important;
 	z-index: 1 !important;
-}
+} */
 
 .sidebar-heading {
 	font-weight: 400 !important;
@@ -134,7 +126,7 @@ import '@scalar/api-reference/style.css';
 	font-weight: 500 !important;
 }
 
-.sidebar-heading.active_page::after {
+.sidebar-heading::after {
 	content: "" !important;
 	position: absolute !important;
 	right: -11px !important;
@@ -142,22 +134,15 @@ import '@scalar/api-reference/style.css';
 	height: 100% !important;
 	width: 2px !important;
 	background-color: var(
-		--purple
-	) !important;
+		--border
+	);
 	z-index: 50 !important;
 }
 
-.dark-mode .sidebar-heading.active_page::after {
-	content: "" !important;
-	position: absolute !important;
-	right: -11px !important;
-	top: 0 !important;
-	height: 100% !important;
-	width: 2px !important;
+.sidebar-heading.active_page::after {
 	background-color: var(
-		--pink
-	) !important;
-	z-index: 50 !important;
+		--primary
+	);
 }
 
 .light-mode {
@@ -197,11 +182,11 @@ import '@scalar/api-reference/style.css';
 	--scalar-color-1: var(--typography);
 	--scalar-color-2: var(--typography);
 	--scalar-color-3: var(--typography);
-	--scalar-color-accent: var(--secondary);
+	--scalar-color-accent: var(--primary);
 	--scalar-background-1: var(--background);
 	--scalar-background-2: var(--background-subdued);
 	--scalar-background-3: var(--background-subtle);
-	--scalar-background-accent: var(--secondary);
+	--scalar-background-accent: var(--primary);
 
 	--scalar-border-color: var(--border);
 	--scalar-scrollbar-color: rgba(255, 255, 255, 0.24);
@@ -213,7 +198,7 @@ import '@scalar/api-reference/style.css';
 	--scalar-shadow-2: rgba(15, 15, 15, 0.2) 0px 3px 6px,
 	rgba(15, 15, 15, 0.4) 0px 9px 24px, 0 0 0 1px rgba(255, 255, 255, 0.1);
 
-	--scalar-button-1: var(--pink);
+	--scalar-button-1: var(--primary);
 	--scalar-button-1-color: #fff;
 	--scalar-button-1-hover: rgb(28 31 33);
 
@@ -221,7 +206,7 @@ import '@scalar/api-reference/style.css';
 	--scalar-color-orange: var(--red-3);
 	--scalar-color-green: var(--green-3);
 	--scalar-color-blue: var(--blue-3);
-	--scalar-color-purple: var(--pink);
+	--scalar-color-purple: var(--purple);
 }
 
 /* Sidebar */
@@ -247,7 +232,7 @@ import '@scalar/api-reference/style.css';
 	--scalar-sidebar-border-color: var(--scalar-border-color);
 	--scalar-sidebar-color-1: var(--scalar-color-1);
 	--scalar-sidebar-color-2: var(--scalar-color-1);
-	--scalar-sidebar-color-active: var(--pink);
+	--scalar-sidebar-color-active: var(--primary);
 	--scalar-sidebar-search-background: var(--scalar-background-3);
 	--scalar-sidebar-search-border-color: var(--scalar-sidebar-search-background);
 	--scalar-sidebar-search--color: var(--scalar-color-3);

@@ -61,14 +61,14 @@ const inkeepWidget = Inkeep(config.properties.baseSettings).embed(config);
 <style scoped lang="scss">
 .dark-mode .search-box {
 	&:hover {
-		border: 2px solid var(--secondary);
+		border: 1px solid var(--secondary);
 		color: var(--secondary);
 		box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--secondary) 15%, transparent);
 	}
 }
 
 .search-box {
-	border: 2px solid var(--border-subdued);
+	border: 1px solid var(--border-subdued);
 	border-radius: var(--border-radius);
 	width: 100%;
 	max-width: 250px;
@@ -82,7 +82,7 @@ const inkeepWidget = Inkeep(config.properties.baseSettings).embed(config);
 	background-color: var(--background);
 	&:hover {
 		cursor: pointer;
-		border: 2px solid var(--purple);
+		border: 1px solid var(--purple);
 		color: var(--purple);
 		box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--primary) 15%, transparent);
 	}

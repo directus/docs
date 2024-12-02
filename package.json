@@ -38,6 +38,7 @@
         "confbox": "^0.1.8",
         "consola": "^3.2.3",
         "nuxt": "^3.13.2",
+        "nuxt-posthog": "^1.5.4",
         "nuxt-security": "2.0.0",
         "radix-vue": "^1.9.7",
         "ufo": "^1.5.4",

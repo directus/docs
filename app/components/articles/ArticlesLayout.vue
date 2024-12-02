@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-	<div class="page">
+	<div class="page container">
 		<main
 			class="main-content"
 		>

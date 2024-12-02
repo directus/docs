@@ -14,6 +14,8 @@ const breadcrumbs = computed(() => {
 	});
 	return breadcrumbs;
 });
+
+const isOpen = ref(false);
 </script>
 
 <template>
@@ -22,22 +24,38 @@ const breadcrumbs = computed(() => {
 			<div class="page">
 				<div class="left-column">
 					<main v-if="data">
-						<div class="breadcrumbs">
-							<NuxtLink
-								v-for="(breadcrumb, index) in breadcrumbs"
-								:key="breadcrumb.to"
-								class="breadcrumb section-title"
-								:to="breadcrumb.to"
-							>
-								{{ breadcrumb.name }}
-								<Icon
-									v-if="index < breadcrumbs.length - 1"
-									name="material-symbols:chevron-right-rounded"
-									class="breadcrumb-icon"
-								/>
-							</NuxtLink>
-						</div>
+						<div class="page-section-row">
+							<div class="breadcrumbs">
+								<NuxtLink
+									v-for="(breadcrumb, index) in breadcrumbs"
+									:key="breadcrumb.to"
+									class="breadcrumb section-title"
+									:to="breadcrumb.to"
+								>
+									{{ breadcrumb.name }}
+									<Icon
+										v-if="index < breadcrumbs.length - 1"
+										name="material-symbols:chevron-right-rounded"
+										class="breadcrumb-icon"
+									/>
+								</NuxtLink>
+							</div>
 
+							<a
+								v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
+								class="slideover-toggle"
+								@click="isOpen = !isOpen"
+							>
+								<Icon name="material-symbols:menu" />
+								On This Page
+							</a>
+						</div>
+						<AsideSlideover v-model="isOpen">
+							<AsideTableOfContents
+								v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
+								:toc="data.body.toc"
+							/>
+						</AsideSlideover>
 						<article>
 							<ContentRenderer :value="data">
 								<div class="prose">
@@ -45,6 +63,7 @@ const breadcrumbs = computed(() => {
 										{{ data.title }}
 									</h1>
 								</div>
+
 								<div class="tags">
 									<div
 										v-for="tag in data.tags"
@@ -64,6 +83,13 @@ const breadcrumbs = computed(() => {
 								</template>
 							</ContentRenderer>
 						</article>
+						<div class="bottom-aside">
+							<hr>
+							<AsideFeedback />
+							<hr>
+							<AsideNewsletter />
+							<AsideWidget />
+						</div>
 					</main>
 				</div>
 				<aside class="right-aside">
@@ -105,6 +131,41 @@ const breadcrumbs = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.bottom-aside {
+	margin-top: 24px;
+	display: none;
+	flex-direction: column;
+	gap: 12px;
+}
+
+@media (max-width: 1024px) {
+	.bottom-aside {
+		display: flex;
+	}
+}
+
+.slideover-toggle {
+	display: none;
+	align-items: center;
+	gap: 0.25rem;
+	text-decoration: none;
+	font-size: 0.75rem;
+	color: var(--typography-subdued);
+	cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+	.slideover-toggle{
+		display: flex;
+	}
+}
+
+.page-section-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .tags {
 	display: flex;
 	gap: 0.5rem;
@@ -210,6 +271,13 @@ main {
 		width: 100%;
 	}
 }
+
+@media (max-width: 1024px) {
+	.right-aside {
+		display: none;
+	}
+}
+
 .page-layout {
 	margin-top: 24px;
 	display: grid;

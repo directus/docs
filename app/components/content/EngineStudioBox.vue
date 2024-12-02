@@ -114,9 +114,8 @@ const boxes = [
 		align-items: center;
 		justify-content: start;
 		flex-wrap: wrap;
-		gap: 1rem;
-		padding-top: 2rem;
-
+		gap: 0.5rem;
+		padding-top: 1rem;
 	}
 }
 </style>

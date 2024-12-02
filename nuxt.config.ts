@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 		'@nuxt/icon',
 		'@nuxtjs/seo',
 		'@nuxtjs/color-mode',
+		'nuxt-posthog',
 	],
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.scss'],
@@ -126,9 +127,6 @@ export default defineNuxtConfig({
 			},
 		],
 	},
-	image: {
-		domains: [(process.env.NUXT_PUBLIC_PRODUCT_DIRECTUS_URL as string).replace(/https?:\/\//, ''), 'marketing.directus.app'],
-	},
 	ogImage: {
 		fonts: [
 			'Poppins:600',
@@ -147,7 +145,7 @@ export default defineNuxtConfig({
 		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
-				process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+																process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
 		},
 	},
 });

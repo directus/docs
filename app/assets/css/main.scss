@@ -102,7 +102,7 @@ pre {
 			background-size: var(--size);
 			width: var(--size);
 			height: var(--size);
-		}
+			vertical-align: sub;		}
 	}
 	img {
 		border-radius: var(--border-radius);

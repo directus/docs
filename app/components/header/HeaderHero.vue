@@ -132,7 +132,6 @@ const switcherState = ref<'data' | 'auth' | 'realtime' | 'file'>('data');
 .hero {
 	background-image: url("/waves.svg");
 	background-size: cover;
-	border-bottom: 1px solid var(--border);
 }
 
 .dark {
@@ -202,7 +201,10 @@ h1 {
 	height: 100%;
 	flex: 1;
 	overflow: hidden;
-	min-width: 400px;
+
+	@media (min-width: 400px) {
+		min-width: 400px;
+	}
 }
 
 .code {
@@ -214,8 +216,13 @@ h1 {
 }
 
 .switcher {
+	width: 100%;
+	max-width: 100%;
 	display: flex;
 	gap: 1rem;
 	margin-bottom: 0.5rem;
+	white-space: nowrap;
+	overflow-x: auto;
+	scrollbar-width: none;
 }
 </style>
