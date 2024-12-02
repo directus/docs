@@ -4,6 +4,8 @@ defineProps<{
 	allPages: AllPages;
 	allNavigation: NavItems;
 }>();
+
+const isOpen = ref(false);
 </script>
 
 <template>
@@ -28,15 +30,33 @@ defineProps<{
 				v-if="data"
 				class="main-content"
 			>
+				<AsideSlideover v-model="isOpen">
+					<AsideTableOfContents
+						v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
+						:toc="data.body.toc"
+					/>
+				</AsideSlideover>
+
 				<article>
 					<ContentRenderer :value="data">
-						<span
-							v-if="data._dir"
-							v-title
-							class="section-title"
-						>
-							{{ data._dir }}
-						</span>
+						<div class="page-section-row">
+							<span
+								v-if="data._dir"
+								v-title
+								class="section-title"
+							>
+								{{ data._dir }}
+							</span>
+
+							<a
+								v-if="data?.body?.toc && data?.body?.toc?.links?.length > 0"
+								class="slideover-toggle"
+								@click="isOpen = !isOpen"
+							>
+								<Icon name="material-symbols:menu" />
+								On This Page
+							</a>
+						</div>
 						<ContentRendererMarkdown
 							class="prose"
 							:value="data"
@@ -46,6 +66,13 @@ defineProps<{
 						</template>
 					</ContentRenderer>
 				</article>
+				<div class="bottom-aside">
+					<hr>
+					<AsideFeedback />
+					<hr>
+					<AsideNewsletter />
+					<AsideWidget />
+				</div>
 			</main>
 			<aside class="right-aside">
 				<AsideTableOfContents
@@ -63,6 +90,28 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+.slideover-toggle {
+	display: none;
+	align-items: center;
+	gap: 0.25rem;
+	text-decoration: none;
+	font-size: 0.75rem;
+	color: var(--typography-subdued);
+	cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+	.slideover-toggle{
+		display: flex;
+	}
+}
+
+.page-section-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .docs-grid {
 	padding-top: 3rem;
 	padding-bottom: 6rem;
@@ -91,7 +140,7 @@ defineProps<{
 	border-left: 2px solid var(--border);
 	display: flex;
 	flex-direction: column;
-	gap: calc(24px / 2);
+	gap: 12px;
 }
 
 .right-aside > * {
@@ -117,6 +166,19 @@ defineProps<{
 	.left-aside,
 	.right-aside {
 		display: none;
+	}
+}
+
+.bottom-aside {
+	margin-top: 24px;
+	display: none;
+	flex-direction: column;
+	gap: 12px;
+}
+
+@media (max-width: 1024px) {
+	.bottom-aside {
+		display: flex;
 	}
 }
 </style>
