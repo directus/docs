@@ -12,6 +12,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@nuxtjs/color-mode',
 		'nuxt-posthog',
+		'@nuxtjs/algolia',
 	],
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.scss'],
@@ -65,7 +66,7 @@ export default defineNuxtConfig({
 			},
 		},
 		navigation: {
-			fields: ['root', 'tags', 'additional_paths', 'expandable'],
+			fields: ['root', 'tags', 'additional_paths', 'expandable', 'description'],
 		},
 	},
 	runtimeConfig: {
@@ -107,6 +108,14 @@ export default defineNuxtConfig({
 			await buildPages(__dirname);
 		},
 	},
+	algolia: {
+		apiKey: '76eb519cf1a4492777a6991f75c5252b',
+		applicationId: 'T5BDNEU205',
+		// DocSearch key is used to configure DocSearch extension.
+		docSearch: {
+			indexName: 'directus',
+		},
+	},
 	eslint: {
 		config: {
 			stylistic: {
@@ -145,7 +154,7 @@ export default defineNuxtConfig({
 		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
-																process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+																																																																process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
 		},
 	},
 });

@@ -37,6 +37,7 @@ export const docPages = async () => {
 								'id',
 								'slug',
 								'title',
+								'description',
 								'content',
 								'sort',
 								{ tags: [{ tag: ['id', 'icon', 'name'] }] },
@@ -140,6 +141,7 @@ export const buildPages = async (dir: string) => {
 							additional_paths: page.additional_paths?.map(path => path.path),
 							content: undefined,
 							authors: page.authors?.map(author => author.author),
+							...(page.description ? { description: page.description } : { description: undefined }),
 						},
 						page.content,
 					);
