@@ -90,6 +90,7 @@ interface DocumentationPage {
 	additional_paths: DocumentationAdditionalPath[]; // Array of Documentation
 	authors: DocumentationPageAuthor[]; // Array of DocumentationPageAuthor
 	title: string; // String
+	description?: string; // String
 	content: string; // String
 	sort?: number; // Optional Integer
 	user_created?: string; // Optional UUID

@@ -65,7 +65,7 @@ export default defineNuxtConfig({
 			},
 		},
 		navigation: {
-			fields: ['root', 'tags', 'additional_paths', 'expandable'],
+			fields: ['root', 'tags', 'additional_paths', 'expandable', 'description'],
 		},
 	},
 	runtimeConfig: {
