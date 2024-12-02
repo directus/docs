@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 		'@nuxt/icon',
 		'@nuxtjs/seo',
 		'@nuxtjs/color-mode',
+		'nuxt-posthog',
 	],
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.scss'],
@@ -147,7 +148,7 @@ export default defineNuxtConfig({
 		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
-				process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+																process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
 		},
 	},
 });
