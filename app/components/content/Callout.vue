@@ -80,7 +80,7 @@ const detailsOpen = ref(false);
 	<!-- STATIC -->
 	<component
 		:is="componentType()"
-		v-else
+		v-else-if="section"
 		:href="url"
 		class="callout"
 		:class="type"
