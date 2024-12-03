@@ -1,96 +1,92 @@
-<script setup lang="ts">
-import { Inkeep } from '@inkeep/uikit-js';
-import type { InkeepEmbedConfig } from '@inkeep/uikit-js/dist/types';
-import { defu } from 'defu';
-
-const runtimeConfig = useRuntimeConfig();
-const appConfig = useAppConfig();
-
-const inkeepDiv = document.createElement('div');
-inkeepDiv.id = 'inkeepModal';
-inkeepDiv.style.position = 'absolute';
-document.body.appendChild(inkeepDiv);
-
-const handleClose = () => {
-	inkeepWidget.render({
-		...config.properties,
-		isOpen: false,
-	});
-};
-
-const handleOpen = () => {
-	inkeepWidget.render({
-		...config.properties,
-		isOpen: true,
-	});
-};
-
-const config: InkeepEmbedConfig = defu(
-	{
-		targetElement: '#inkeepModal',
-		componentType: 'CustomTrigger',
-		properties: {
-			isOpen: false,
-			onClose: handleClose,
-			onOpen: undefined,
-			baseSettings: {
-				apiKey: runtimeConfig.public.INKEEP_API_KEY,
-				integrationId: runtimeConfig.public.INKEEP_INTEGRATION_ID,
-				organizationId: runtimeConfig.public.INKEEP_ORGANIZATION_ID,
-			},
-		},
-	},
-	{ properties: appConfig.inkeep },
-);
-
-const inkeepWidget = Inkeep(config.properties.baseSettings).embed(config);
-</script>
-
 <template>
-	<div
-		class="search"
-		@click="handleOpen"
-	>
-		<div class="search-box">
-			<Icon name="material-symbols:search-rounded" />
-			Search
-		</div>
+	<div class="search">
+		<AlgoliaDocSearch />
 	</div>
 </template>
 
-<style scoped lang="scss">
-.dark-mode .search-box {
-	&:hover {
-		border: 1px solid var(--secondary);
-		color: var(--secondary);
-		box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--secondary) 15%, transparent);
-	}
+<script lang="ts" setup></script>
+
+<style lang="scss">
+#docsearch {
+	width: 100%;
+	max-width: 205px;
 }
 
-.search-box {
-	border: 1px solid var(--border-subdued);
-	border-radius: var(--border-radius);
-	width: 100%;
-	max-width: 250px;
-	padding: 6px 9px;
-	font-size: 0.8rem;
+.DocSearch-Button {
+	border: 1px solid var(--border-subdued) !important;
+	border-radius: var(--border-radius) !important;
+	width: 100% !important;
+	max-width: 250px !important;
+	padding: 6px 9px !important;
+	margin: 0 !important;
+	font-size: 0.8rem !important;
+	color: var(--typography-subdued) !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 0.5rem !important;
+	transition: border 0.1s ease, box-shadow 0.1s ease, color 0.1s ease,
+		background-color 0.1s ease !important;
+	background-color: var(--background) !important;
+	--docsearch-text-color: var(--typography-subdued);
+}
+
+.DocSearch-Button:hover {
+	cursor: pointer !important;
+	border: 1px solid var(--purple) !important;
+	color: var(--purple) !important;
+	box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--primary) 15%, transparent) !important;
+}
+
+.dark-mode .DocSearch-Button {
+	border: 1px solid var(--border-subdued) !important;
+	color: var(--typography-subdued) !important;
+	background-color: var(--background-dark) !important;
+}
+
+.dark-mode .DocSearch-Button:hover {
+	border: 1px solid var(--secondary) !important;
+	color: var(--secondary) !important;
+	box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--secondary) 15%, transparent) !important;
+	background-color: var(
+		--background-dark-hover
+	) !important;
+}
+
+.DocSearch-Button-Container {
+	gap: 1rem;
+}
+
+.DocSearch-Button .DocSearch-Search-Icon {
 	color: var(--typography-subdued);
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	transition: border 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
-	background-color: var(--background);
-	&:hover {
-		cursor: pointer;
-		border: 1px solid var(--purple);
-		color: var(--purple);
-		box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
+.DocSearch-Button:hover .DocSearch-Search-Icon {
+	color: var(--purple);
+}
+
+.DocSearch-Button-Placeholder {
+	font-size: inherit !important;
+	padding: 0 !important;
+}
+
+.DocSearch-Button-Keys {
+	display: none !important;
+}
+
+.DocSearch-Button-Key {
+	display: none !important;
+}
+
+@media (width <= 768px) {
+	.DocSearch-Button-Keys,
+	.DocSearch-Button-Placeholder {
+		display: none !important;
 	}
 }
 
 .search {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
 }
 </style>

@@ -12,6 +12,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@nuxtjs/color-mode',
 		'nuxt-posthog',
+		'@nuxtjs/algolia',
 	],
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.scss'],
@@ -27,6 +28,7 @@ export default defineNuxtConfig({
 		storage: 'localStorage',
 		storageKey: 'nuxt-color-mode',
 		classSuffix: '',
+		dataValue: 'theme',
 	},
 	content: {
 		highlight: {
@@ -105,6 +107,11 @@ export default defineNuxtConfig({
 	hooks: {
 		async ready() {
 			await buildPages(__dirname);
+		},
+	},
+	algolia: {
+		docSearch: {
+			indexName: 'directus',
 		},
 	},
 	eslint: {
