@@ -3,7 +3,8 @@ properties:
   id:
     description: Primary key of the dashboard;
     example: a79bd1b2-beb2-49fc-8a26-0b3eec0e2697
-    type: uuid
+    type: string
+    format: uuid
   name:
     description: Name of the dashboard.
     example: My dashboard
@@ -19,17 +20,20 @@ properties:
   date_created:
     description: When the dashboard was created.
     example: 2023-01-25T19:16:49.009Z
-    type: Date
+    type: string
+    format: timestamp
   user_created:
     description: User that created the dashboard. Many-to-one to users.
     example: fd066644-c8e5-499d-947b-fe6c6e1a1473
     oneOf:
-      - type: many-to-one
+      - type: string
+      - format: many-to-one
       - $ref: users.yaml
   color:
     description: Accent color for the dashboard.
     example: #6644FF
     type: string
+    format: hexcode
   panels:
     description: Panels that are in this dashboard. One-to-may to panels.
     example: 22640672-eef0-4ee9-ab04-591f3afb2883

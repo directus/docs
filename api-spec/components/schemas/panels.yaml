@@ -3,7 +3,8 @@ properties:
   id:
     description: Primary key of the panel.
     example: 22640672-eef0-4ee9-ab04-591f3afb288
-    type: uuid
+    type: string
+    format: uuid
   dashboard:
     description: Dashboard where this panel is visible. Many-to-one to dashboards.
     example: a79bd1b2-beb2-49fc-8a26-0b3eec0e269
@@ -22,6 +23,7 @@ properties:
     description: Accent color of the panel.
     example: #6B8068
     type: string
+    format: hexcode
   show_header:
     description: Whether or not the header should be rendered for this panel.
     example: true
@@ -53,11 +55,12 @@ properties:
   options:
     description: Description for the panel.
     example: {}
-    type: JSON
+    type: object
   date_created:
     description: When the panel was created
     example: 2023-01-05T19:05:51.884Z
-    type: Date
+    type: string
+    format: timestamp
   user_created:
     description: User that created the panel. Many-to-one to users.
     example: fd066644-c8e5-499d-947b-fe6c6e1a1473

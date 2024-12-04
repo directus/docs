@@ -7,14 +7,15 @@ properties:
   activity:
     description: Unique identifier for the activity record.
     example: 2
+    type: integer
+    relation: many-to-one
     oneOf:
-      - type: integer
       - $ref: activity.yaml
   collection:
     description: Collection of the updated item.
     example: articles
+    type: string
     oneOf:
-      - type: string
       - $ref: collections.yaml
   item:
     description: Primary key of updated item.
@@ -39,11 +40,13 @@ properties:
     description: If the current item was updated relationally, this is the id of the parent revision record
     example: null
     type: integer
+    relation: many-to-one
     nullable: true
   version:
     description: Associated version of this revision.
     example: draft
+    type: string
+    relation: many-to-one
     oneOf:
-      - type: string
       - $ref: versions.yaml
 x-collection: directus_revisions

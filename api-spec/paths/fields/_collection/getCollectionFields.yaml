@@ -8,7 +8,7 @@ parameters:
   required: true
   schema:
     type: string
-- $ref": ../../../components/parameters/Sort
+- $ref: ../../../components/parameters.yaml#/Sort
 responses:
   '200':
     description: Successful request

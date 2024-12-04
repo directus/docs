@@ -1,8 +1,9 @@
 get:
   $ref: getFlows.yaml
 post:
-  - $ref: createFlow.yaml
-  - $ref: createFlows.yaml
+  oneOf:
+    - $ref: createFlow.yaml
+    - $ref: createFlows.yaml
 patch:
   $ref: updateFlows.yaml
 delete:

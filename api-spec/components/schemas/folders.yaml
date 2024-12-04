@@ -4,6 +4,7 @@ properties:
     description: Unique identifier for the folder.
     example: 0cf0e03d-4364-45df-b77b-ca61f61869d2
     type: string
+    format: uuid
   name:
     description: Name of the folder.
     example: New York

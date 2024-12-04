@@ -20,11 +20,13 @@ properties:
     nullable: true
     type: string
   options:
+    type: object
     nullable: true
   display:
     nullable: true
     type: string
   display_options:
+    type: string
     nullable: true
   readonly:
     nullable: false

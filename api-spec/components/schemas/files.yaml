@@ -4,6 +4,7 @@ properties:
     description: Unique identifier for the file.
     example: 8cbb43fe-4cdf-4991-8352-c461779cec02
     type: string
+    format: uuid
   storage:
     description: Where the file is stored. Either `local` for the local filesystem or the name of the storage adapter (for example `s3`).
     example: local
@@ -39,9 +40,9 @@ properties:
       - $ref: users.yaml
   created_on:
     description: When the file was created.
-    example: '2019-12-03T00:10:15+00:00'
+    example: 2019-12-03T00:10:15+00:00
     type: string
-    format: date-time
+    format: timestamp
   modified_by:
     nullable: true
     oneOf:
@@ -51,7 +52,7 @@ properties:
   modified_on:
     nullable: false
     type: string
-    format: date-time
+    format: timestamp
   charset:
     description: Character set of the file.
     example: binary
@@ -105,14 +106,9 @@ properties:
   focal_point_y:
     nullable: true
     type: integer
-  tus_id:
-    nullable: true
-    type: string
-  tus_data:
-    nullable: true
   uploaded_on:
     description: When the file was last uploaded/replaced.
     example: '2019-12-03T00:10:15+00:00'
     type: string
-    format: date-time
+    format: timestamp
 x-collection: directus_files

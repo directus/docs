@@ -15,65 +15,13 @@ requestBody:
         required:
         - file
         properties:
-          title:
-            type: string
-            description: Title for the file. Is extracted from the filename on upload,
-              but can be edited by the user.
-            example: User Avatar
-          filename_download:
-            type: string
-            description: Preferred filename when file is downloaded.
-          description:
-            type: string
-            description: Description for the file.
-            nullable: true
-          folder:
-            description: Virtual folder where this file resides in.
-            example:
-            oneOf:
-            - type: string
-            - $ref: ../../../components/schemas/folders.yaml
-            nullable: true
-          tags:
-            type: array
-            description: Tags for the file. Is automatically populated based on Exif
-              data for images.
-            nullable: true
-            items:
-              type: string
           file:
             description: File contents.
             format: binary
     application/json:
       schema:
-        type: object
-        properties:
-          title:
-            type: string
-            description: Title for the file. Is extracted from the filename on upload,
-              but can be edited by the user.
-            example: User Avatar
-          filename_download:
-            type: string
-            description: Preferred filename when file is downloaded.
-          description:
-            type: string
-            description: Description for the file.
-            nullable: true
-          folder:
-            description: Virtual folder where this file resides in.
-            example:
-            oneOf:
-            - type: string
-            - $ref: ../../../components/schemas/folders.yaml
-            nullable: true
-          tags:
-            type: array
-            description: Tags for the file. Is automatically populated based on Exif
-              data for images.
-            nullable: true
-            items:
-              type: string
+        anyOf:
+        - $ref: ../../../components/schemas/items.yaml
 responses:
   '200':
     description: Successful request

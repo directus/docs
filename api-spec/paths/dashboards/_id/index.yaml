@@ -1,6 +1,6 @@
 get:
   $ref: getDashboard.yaml
 patch:
-  $ref: updatesDashboard.yaml
+  $ref: updateDashboard.yaml
 delete:
   $ref: deleteDashboard.yaml

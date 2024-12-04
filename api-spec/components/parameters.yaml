@@ -1,5 +1,5 @@
 Id:
-  description: Index
+  description: Identifier for the object.
   name: id
   in: path
   required: true

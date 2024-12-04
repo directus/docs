@@ -19,7 +19,7 @@ requestBody:
         properties:
           data:
             anyOf:
-            - $ref: ../../components/schemas/flows.yaml
+              - $ref: ../../components/schemas/flows.yaml
           keys:
             type: array
             items:

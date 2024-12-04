@@ -3,6 +3,7 @@ properties:
   id:
     description: Unique identifier for the flow.
     type: string
+    format: uuid
     example: 2f24211d-d928-469a-aea3-3c8f53d4e426
   name:
     description: The name of the flow.
@@ -15,7 +16,8 @@ properties:
   color:
     description: Color of the icon displayed in the Admin App for the flow.
     type: string
-    example: '#112233'
+    example: #112233
+    format: hexcode
     nullable: true
   description:
     nullable: true
@@ -26,8 +28,8 @@ properties:
     example: active
     default: active
     enum:
-      - `active`
-      - `inactive`
+      - active
+      - inactive
   trigger:
     description: Type of trigger for the flow. One of `hook`, `webhook`, `operation`, `schedule`, `manual`.
     type: string
@@ -46,12 +48,13 @@ properties:
     example: 92e82998-e421-412f-a513-13701e83e4ce
     oneOf:
       - type: string
+      - format: uuid
       - $ref: operations.yaml
   date_created:
     description: Timestamp in ISO8601 when the flow was created.
     type: string
     example: '2022-05-11T13:14:52Z'
-    format: date-time
+    format: timestamp
     nullable: true
   user_created:
     description: The user who created the flow.

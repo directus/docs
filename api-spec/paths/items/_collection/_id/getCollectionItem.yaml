@@ -2,12 +2,8 @@ summary: Retrieve an Item
 description: Retrieves an item in a given collection.
 operationId: getCollectionItem
 parameters:
-- name: id
-  in: path
-  description: Unique identifier of the item.
-  schema:
-    type: string
-  required: true
+- $ref: ../../../../components/parameters.yaml#/Id
+- $ref: ../../../../components/parameters.yaml#/Collection
 - $ref: ../../../../components/parameters.yaml#/Version
 - $ref: ../../../../components/parameters.yaml#/Fields
 - $ref: ../../../../components/parameters.yaml#/Meta

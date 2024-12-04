@@ -3,7 +3,8 @@ properties:
   id:
     description: Primary key of the translations.
     example: sc4346aa4-81a8-4885-b3a8-f647e4f6f769
-    type: uuid
+    type: string
+    format: uuid
   key:
     description: The translation key.
     example: Test

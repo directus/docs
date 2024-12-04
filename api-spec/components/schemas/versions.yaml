@@ -15,13 +15,16 @@ properties:
   collection:
     description: Name of the collection the Content Version is created on.
     example: articles
+    type: string
     oneOf:
-      - type: string
       - $ref: collections.yaml
   item:
     description: The item the Content Version is created on.
     example: '168'
     type: string
+    relation: many-to-one
+    oneOf:
+      - $ref: items.yaml
   hash:
     nullable: true
     type: string
@@ -29,24 +32,29 @@ properties:
     description: When the Content Version was created.
     type: string
     example: '2022-05-11T13:14:52Z'
-    format: date-time
+    format: timestamp
     nullable: true
   date_updated:
     description: When the Content Version was updated.
     type: string
     example: '2022-05-11T13:14:53Z'
-    format: date-time
+    format: timestamp
     nullable: true
   user_created:
     description: User that created the Content Version.
     example: 63716273-0f29-4648-8a2a-2af2948f6f78
+    type: string
+    relation: many-to-one
     oneOf:
-      - type: string
       - $ref: users.yaml
   user_updated:
     description: User that updated the Content Version.
     example: 63716273-0f29-4648-8a2a-2af2948f6f78
+    type: string
+    relation: many-to-one
     oneOf:
-      - type: string
       - $ref: users.yaml
+  delta:
+    description: The current changes compared to the main version of the item.
+    type: object
 x-collection: directus_versions

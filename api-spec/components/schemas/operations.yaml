@@ -3,6 +3,7 @@ properties:
   id:
     description: Unique identifier for the operation.
     type: string
+    format: uuid
     example: 2f24211d-d928-469a-aea3-3c8f53d4e426
   name:
     description: The name of the operation.
@@ -51,7 +52,7 @@ properties:
     description: Timestamp in ISO8601 when the operation was created.
     type: string
     example: '2022-05-11T13:14:52Z'
-    format: date-time
+    format: timestamp
     nullable: true
   user_created:
     description: The user who created the operation.

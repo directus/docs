@@ -5,4 +5,5 @@ post:
   - $ref: createItems.yaml
 patch:
   $ref: updateItems.yaml
-delete: deleteItems.yaml
+delete:
+  $ref: deleteItems.yaml

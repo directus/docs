@@ -63,8 +63,8 @@ paths:
     $ref: paths/flows/index.yaml
   "/flows/{id}":
     $ref: paths/flows/_id/index.yaml
-  "/flows/trigger/{flow_uuid}":
-    $ref: paths/flows/trigger/_flow_uuid/index.yaml
+  "/flows/trigger/{_id}":
+    $ref: paths/flows/trigger/_id/index.yaml
   "/folders":
     $ref: paths/folders/index.yaml
   "/folders/{id}":
