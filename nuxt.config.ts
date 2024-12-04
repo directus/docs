@@ -83,6 +83,9 @@ export default defineNuxtConfig({
 	future: {
 		compatibilityVersion: 4,
 	},
+	experimental: {
+		buildCache: false,
+	},
 	compatibilityDate: '2024-04-03',
 	nitro: {
 		prerender: {
