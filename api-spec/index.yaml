@@ -19,7 +19,7 @@ paths:
     $ref: paths/activity/comment/index.yaml
   "/activity/comment/{id}":
     $ref: paths/activity/comment/_id/index.yaml
-  "/assets/{_id}":
+  "/assets/{id}":
     $ref: paths/assets/_id/index.yaml
   "/auth/login":
     $ref: paths/auth/login/index.yaml
@@ -27,7 +27,7 @@ paths:
     $ref: paths/auth/logout/index.yaml
   "/auth/oauth":
     $ref: paths/auth/oauth/index.yaml
-  "/auth/oauth/{_provider}":
+  "/auth/oauth/{provider}":
     $ref: paths/auth/oauth/_provider/index.yaml
   "/auth/password/request":
     $ref: paths/auth/password/request/index.yaml
@@ -37,7 +37,7 @@ paths:
     $ref: paths/auth/refresh/index.yaml
   "/collections":
     $ref: paths/collections/index.yaml
-  "/collections/{_id}":
+  "/collections/{id}":
     $ref: paths/collections/_id/index.yaml
   "/dashboards":
     $ref: paths/dashboards/index.yaml
@@ -45,45 +45,47 @@ paths:
     $ref: paths/dashboards/_id/index.yaml
   "/extensions":
     $ref: paths/extensions/index.yaml
-  "/extensions/{_bundle}/{_name}":
+  "/extensions/{bundle}/{name}":
     $ref: paths/extensions/_bundle/_name/index.yaml
-  "/extensions/{_name}":
+  "/extensions/{name}":
     $ref: paths/extensions/_name/index.yaml
   "/fields":
     $ref: paths/fields/index.yaml
-  "/fields/{_collection}":
+  "/fields/{collection}":
     $ref: paths/fields/_collection/index.yaml
-  "/fields/{_collection}/{_id}":
+  "/fields/{collection}/{id}":
     $ref: paths/fields/_collection/_id/index.yaml
   "/files":
     $ref: paths/files/index.yaml
-  "/files/{_id}":
+  "/files/{id}":
     $ref: paths/files/_id/index.yaml
   "/flows":
     $ref: paths/flows/index.yaml
-  "/flows/{_id}":
+  "/flows/{id}":
     $ref: paths/flows/_id/index.yaml
+  "/flows/trigger/{flow_uuid}":
+    $ref: paths/flows/trigger/_flow_uuid/index.yaml
   "/folders":
     $ref: paths/folders/index.yaml
-  "/folders/{_id}":
+  "/folders/{id}":
     $ref: paths/folders/_id/index.yaml
-  "/items/{_collection}":
+  "/items/{collection}":
     $ref: paths/items/_collection/index.yaml
-  "/items/{_collection}/singleton":
+  "/items/{collection}/singleton":
     $ref: paths/items/_collection/singleton/index.yaml
-  "/items/{_collection}/{_id}":
+  "/items/{collection}/{id}":
     $ref: paths/items/_collection/_id/index.yaml
   "/notifications":
     $ref: paths/notifications/index.yaml
-  "/notifications/{_id}":
+  "/notifications/{id}":
     $ref: paths/notifications/_id/index.yaml
   "/operations":
     $ref: paths/operations/index.yaml
-  "/operations/{_id}":
+  "/operations/{id}":
     $ref: paths/operations/_id/index.yaml
   "/panels":
     $ref: paths/panels/index.yaml
-  "/panels/{_id}":
+  "/panels/{id}":
     $ref: paths/panels/_id/index.yaml
   "/permissions":
     $ref: paths/permissions/index.yaml
@@ -91,6 +93,8 @@ paths:
     $ref: paths/permissions/_id/index.yaml
   "/permissions/me":
     $ref: paths/permissions/me/index.yaml
+  "/permissions/me/{collection}/{id}":
+    $ref: paths/permissions/me/_collection/_id/index.yaml
   "/policies":
     $ref: paths/policies/index.yaml
   "/policies/{id}":
@@ -151,19 +155,23 @@ paths:
     $ref: paths/users/me/tfa/enable/index.yaml
   "/users/me/track/page":
     $ref: paths/users/me/track/page/index.yaml
+  "/users/register/":
+    $ref: paths/users/register/index.yaml
+  "/users/register/verify-email/{token}":
+    $ref: paths/users/register/verify-email/_token/index.yaml
   "/utils/cache/clear":
     $ref: paths/utils/cache/clear/index.yaml
-  "/utils/export/{_collection}":
+  "/utils/export/{collection}":
     $ref: paths/utils/export/_collection/index.yaml
   "/utils/hash/generate":
     $ref: paths/utils/hash/generate/index.yaml
   "/utils/hash/verify":
     $ref: paths/utils/hash/verify/index.yaml
-  "/utils/import/{_collection}":
+  "/utils/import/{collection}":
     $ref: paths/utils/import/_collection/index.yaml
   "/utils/random/string":
     $ref: paths/utils/random/string/index.yaml
-  "/utils/sort/{_collection}":
+  "/utils/sort/{collection}":
     $ref: paths/utils/sort/_collection/index.yaml
   "/versions":
     $ref: paths/versions/index.yaml

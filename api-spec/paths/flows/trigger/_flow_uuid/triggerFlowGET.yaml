@@ -1,0 +1,35 @@
+summary: Flow with GET webhook trigger
+description: Start a flow with GET webhook trigger.
+operationId: triggerFlowGET
+parameters:
+- $ref: ../../../../components/parameters.yaml#/UUId
+- $ref: ../../../../components/parameters.yaml#/Fields
+- $ref: ../../../../components/parameters.yaml#/Meta
+responses:
+  '200':
+    description: Successful request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data: Result of the flow, if any.
+  '401':
+    $ref: ../../../../components/responses.yaml#/UnauthorizedError
+  '404':
+    $ref: ../../../../components/responses.yaml#/NotFoundError
+tags:
+- Flows
+x-codeSamples:
+- label: Directus SDK
+  lang: JavaScript
+  source: |
+    import { createDirectus, rest, triggerFlow } from '@directus/sdk';
+
+    const client = createDirectus('directus_project_url').with(rest());
+
+    const result = await client.request(triggerFlow('GET', flow_id, query_object));
+- label: GraphQL
+  lang: GraphQL
+  source: |
+    // Not currently available in GraphQL

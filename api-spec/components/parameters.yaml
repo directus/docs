@@ -96,10 +96,10 @@ Export:
   schema:
     type: string
     enum:
-      - `csv`
-      - `json`
-      - `xml`
-      - `yaml`
+    - csv
+    - json
+    - xml
+    - yaml
 Version:
   name: version
   description: >-

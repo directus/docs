@@ -1,7 +1,8 @@
 get:
   $ref: getRoles.yaml
 post:
-  $ref: createRole.yaml
+  - $ref: createRole.yaml
+  - $ref: createRoles.yaml
 patch:
   $ref: updateRoles.yaml
 delete:

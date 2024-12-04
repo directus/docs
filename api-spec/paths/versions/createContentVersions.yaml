@@ -1,6 +1,6 @@
-summary: Create Multiple shares
-description: Create multiple new shares.
-operationId: createShares
+summary: Create Multiple Content Versions
+description: Create multiple new Content Versions.
+operationId: createContentVersions
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
 - $ref: ../../components/parameters.yaml#/Limit
@@ -18,7 +18,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../../components/schemas/shares.yaml
+              $ref: ../../components/schemas/Versions.yaml
 responses:
   '200':
     description: Successful request
@@ -30,27 +30,27 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/shares.yaml
+                $ref: ../../components/schemas/versions.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
-  '404':
-    $ref: ../../components/responses.yaml#/NotFoundError
 tags:
-- Shares
+- Versions
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript
   source: |
-    import { createDirectus, rest, createShare } from '@directus/sdk';
+    import { createDirectus, rest, updateContentVersions } from '@directus/sdk';
 
     const client = createDirectus('directus_project_url').with(rest());
 
-    const result = await client.request(createShares(share_object_array));
+    const result = await client.request(updateContentVersions(content_version_id_array, partial_content_version_object));
 - label: GraphQL
   lang: GraphQL
   source: |
+    POST /graphql/system
+
     type Mutation {
-      create_shares_items(data: [create_directus_shares_input!]!): [directus_shares]
+    	update_versions_items(ids: [ID!]!, data: update_directus_versions_input!): [directus_versions]
     }

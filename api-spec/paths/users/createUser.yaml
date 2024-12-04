@@ -1,13 +1,19 @@
-summary: Create a User
+summary: Create an User
 description: Create a new user.
 operationId: createUser
 parameters:
+- $ref: ../../components/parameters.yaml#/Fields
 - $ref: ../../components/parameters.yaml#/Meta
 requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../components/schemas/users.yaml
+        type: object
+        required:
+          - email
+          - password
+        anyOf:
+          $ref: ../../components/schemas/users.yaml
 responses:
   '200':
     description: Successful request

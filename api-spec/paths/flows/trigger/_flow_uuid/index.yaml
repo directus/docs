@@ -1,0 +1,4 @@
+get:
+  $ref: triggerFlowGET
+post:
+  $ref: triggerFlowPOST

@@ -1,6 +1,6 @@
-summary: Create Multiple shares
-description: Create multiple new shares.
-operationId: createShares
+summary: Create Multiple Flows
+description: Create multiple new flows.
+operationId: createFlows
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
 - $ref: ../../components/parameters.yaml#/Limit
@@ -18,7 +18,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../../components/schemas/shares.yaml
+              $ref: ../../components/schemas/flows.yaml
 responses:
   '200':
     description: Successful request
@@ -30,7 +30,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/shares.yaml
+                $ref: ../../components/schemas/flows.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':
@@ -38,19 +38,21 @@ responses:
   '404':
     $ref: ../../components/responses.yaml#/NotFoundError
 tags:
-- Shares
+- Flows
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript
   source: |
-    import { createDirectus, rest, createShare } from '@directus/sdk';
+    import { createDirectus, rest, createFlows } from '@directus/sdk';
 
     const client = createDirectus('directus_project_url').with(rest());
 
-    const result = await client.request(createShares(share_object_array));
+    const result = await client.request(createFlows(flows_object_array));
 - label: GraphQL
   lang: GraphQL
   source: |
+    POST /graphql/system
+
     type Mutation {
-      create_shares_items(data: [create_directus_shares_input!]!): [directus_shares]
+      create_flows_items(data: [create_directus_flows_input!]!): [directus_flows]
     }

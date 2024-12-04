@@ -1,7 +1,8 @@
 get:
   $ref: getUsers.yaml
 post:
-  $ref: createUser.yaml
+  - $ref: createUser.yaml
+  - $ref: createUsers.yaml
 patch:
   $ref: updateUsers.yaml
 delete:
