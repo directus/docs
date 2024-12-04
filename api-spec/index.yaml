@@ -125,6 +125,12 @@ paths:
     $ref: paths/server/info/index.yaml
   "/server/ping":
     $ref: paths/server/ping/index.yaml
+  "/server/specs/graphql":
+    $ref: paths/server/specs/index.yaml
+  "/server/specs":
+    $ref: paths/server/specs/index.yaml
+  "/server/health":
+    $ref: paths/server/health/index.yaml
   "/settings":
     $ref: paths/settings/index.yaml
   "/shares":
@@ -153,6 +159,8 @@ paths:
     $ref: paths/users/me/tfa/disable/index.yaml
   "/users/me/tfa/enable":
     $ref: paths/users/me/tfa/enable/index.yaml
+  "/users/me/tfa/generate":
+    $ref: paths/users/me/tfa/generate/index.yaml
   "/users/me/track/page":
     $ref: paths/users/me/track/page/index.yaml
   "/users/register/":

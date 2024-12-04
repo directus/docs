@@ -1,5 +1,7 @@
 get:
   $ref: getOperation.yaml
+post:
+  $ref: triggerOperation.yaml
 patch:
   $ref: updateOperation.yaml
 delete:

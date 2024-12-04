@@ -6,7 +6,6 @@ parameters:
 - $ref: ../../../components/parameters.yaml#/Collection
 - $ref: ../../../components/parameters.yaml#/Fields
 - $ref: ../../../components/parameters.yaml#/Limit
-- $ref: ../../../components/parameters.yaml#/Meta
 - $ref: ../../../components/parameters.yaml#/Offset
 - $ref: ../../../components/parameters.yaml#/Sort
 - $ref: ../../../components/parameters.yaml#/Filter
