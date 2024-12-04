@@ -20,6 +20,12 @@ const isOpen = ref(false);
 			<SearchButton style="flex-grow: 1;" />
 			<div class="links">
 				<a
+					href="https://bsky.app/profile/directus.io"
+					target="_blank"
+				>
+					<Icon name="ri:bluesky-fill" />
+				</a>
+				<a
 					href="https://x.com/directus"
 					target="_blank"
 				>
