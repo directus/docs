@@ -46,8 +46,8 @@ const rightNav = [
 		href: 'https://directus.io/tv',
 	},
 	{
-		label: 'Starter Kits',
-		href: 'https://directus.io/plus',
+		label: 'Templates',
+		href: 'https://directus.io/templates',
 	},
 ];
 
