@@ -1,13 +1,21 @@
 summary: Delete Multiple Flows
 description: Delete multiple existing flows.
-tags:
-- Flows
 operationId: deleteFlows
+requestBody:
+  description: An array of flows primary keys.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          type: string
 responses:
   '200':
     description: Successful request
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
+tags:
+- Flows
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

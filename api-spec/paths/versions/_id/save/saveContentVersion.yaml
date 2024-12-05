@@ -7,15 +7,18 @@ requestBody:
   content:
     application/json:
       schema:
-        type: object
+        anyOf:
+        - $ref: ../../components/schemas/items.yaml
 responses:
   '200':
-    description: Successful request
+    description: Successful request, Returns the item object with the new state after save.
     content:
       application/json:
         schema:
           type: object
-          properties: {}
+          properties:
+            data:
+              $ref: ../../../../components/schemas/items.yaml
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

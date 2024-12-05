@@ -1,13 +1,21 @@
 summary: Delete Multiple Operations
 description: Delete multiple existing operations.
-tags:
-- Operations
 operationId: deleteOperations
+requestBody:
+  description: An array of operations primary keys.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          type: string
 responses:
   '200':
     description: Successful request
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
+tags:
+- Operations
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

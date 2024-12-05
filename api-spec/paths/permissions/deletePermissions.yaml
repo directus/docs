@@ -1,13 +1,21 @@
 summary: Delete Multiple Permissions
 description: Delete multiple existing permissions.
-tags:
-- Permissions
 operationId: deletePermissions
+requestBody:
+  description: An array of permissions primary keys.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          type: string
 responses:
   '200':
     description: Successful request
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
+tags:
+- Permissions
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

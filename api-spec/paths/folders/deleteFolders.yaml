@@ -1,13 +1,21 @@
 summary: Delete Multiple Folders
 description: Delete multiple existing folders.
-tags:
-- Folders
 operationId: deleteFolders
+requestBody:
+  description: An array of folder primary keys.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          type: string
 responses:
   '200':
     description: Successful request
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
+tags:
+- Folders
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

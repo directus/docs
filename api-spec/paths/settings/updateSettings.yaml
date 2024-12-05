@@ -1,11 +1,15 @@
 summary: Update Settings
 description: Update the settings
-operationId: updateSetting
+operationId: updateSettings
+parameters:
+- $ref: ../../components/parameters.yaml#/Fields
+- $ref: ../../components/parameters.yaml#/Meta
 requestBody:
   content:
     application/json:
       schema:
-        type: object
+        anyOf:
+        - $ref: ../../components/schemas/settings.yaml
 responses:
   '200':
     description: Successful request
@@ -27,15 +31,15 @@ x-codeSamples:
   lang: JavaScript
   source: |
     import { createDirectus, rest, updateSettings } from '@directus/sdk';
-    
+
     const client = createDirectus('directus_project_url').with(rest());
-    
+
     const result = await client.request(updateSettings(settings_object));
 - label: GraphQL
   lang: GraphQL
   source: |
     POST /graphql/system
-    
+
     type Mutation {
       update_settings(data: update_directus_settings_input!): directus_settings
     }

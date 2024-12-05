@@ -1,4 +1,4 @@
 get:
   $ref: getSettings.yaml
 patch:
-  $ref: updateSetting.yaml
+  $ref: updateSettings.yaml

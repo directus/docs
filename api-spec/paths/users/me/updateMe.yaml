@@ -1,6 +1,9 @@
 summary: Update Current User
 description: Update the currently authenticated user.
 operationId: updateMe
+parameters:
+- $ref: ../../../components/parameters.yaml#/Fields
+- $ref: ../../../components/parameters.yaml#/Meta
 responses:
   '200':
     description: Successful request

@@ -1,9 +1,30 @@
 summary: Enable 2FA
 description: Enables two-factor authentication for the currently authenticated user.
 operationId: meTfaEnable
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - secret
+          - otp
+        properties:
+          secret:
+              description: 'The TFA secret from tfa/generate.'
+              type: string
+          otp:
+              description: OTP generated with the secret, to recheck if the user has a correct TFA setup
+              type: string
 responses:
-  '200':
+  '204':
     description: Successful request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data: {}
   '401':
     $ref: ../../../../../components/responses.yaml#/UnauthorizedError
   '404':

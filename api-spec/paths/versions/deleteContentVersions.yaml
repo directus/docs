@@ -1,6 +1,14 @@
 summary: Delete Multiple Content Versions
 description: Delete multiple existing Content Versions.
 operationId: deleteContentVersions
+requestBody:
+  description: An array of content version primary keys.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          type: string
 responses:
   '200':
     description: Successful request

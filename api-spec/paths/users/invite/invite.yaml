@@ -8,21 +8,34 @@ requestBody:
     application/json:
       schema:
         type: object
+        required:
+          - email
+          - role
         properties:
           email:
+            oneOf:
+              - type: string
+                description: Email addres of the to-be-invited user.
+              - type: array
+                description: Array of email addresses of the to-be-invited users.
+          role:
+            description: Role of the new user
             type: string
-            description: Email address or array of email addresses of the to-be-invited
-              user(s).
+            oneOf:
+              - $ref: ../../../components/schemas/roles.yaml
+          invite_url:
+              description: 'Provide a custom invite url which the link in the email will lead to. The invite token will be passed as a parameter. Note: You need to configure the USER_INVITE_URL_ALLOW_LIST environment variable to enable this feature.'
+              type: string
+              format: url
 responses:
-  '200':
+  '204':
     description: Successful request
     content:
       application/json:
         schema:
           type: object
           properties:
-            data:
-              $ref: ../../../components/schemas/users.yaml
+            data: {}
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':
@@ -33,6 +46,16 @@ x-codeSamples:
   - label: Directus SDK
     lang: JavaScript
     source: |
+      import { createDirectus, rest, inviteUser } from '@directus/sdk';
+
+      const client = createDirectus('directus_project_url').with(rest());
+
+      const result = await client.request(inviteUser('another@example.com', 'c86c2761-65d3-43c3-897f-6f74ad6a5bd7'));
   - label: GraphQL
     lang: GraphQL
     source: |
+      POST /graphql/system
+
+      type Mutation {
+        users_invite(email: String!, role: String!, invite_url: String): Boolean
+      }
