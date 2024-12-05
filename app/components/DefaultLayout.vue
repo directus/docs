@@ -11,5 +11,6 @@ const route = useRoute();
 		</HeaderHat>
 		<HeaderNav />
 		<slot />
+		<LayoutFooter />
 	</div>
 </template>

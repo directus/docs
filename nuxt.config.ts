@@ -1,11 +1,10 @@
 import { resolve } from 'path';
-import { buildPages } from './server/remoteContent';
+import { buildPages } from './server/utils/remote-content';
 
 export default defineNuxtConfig({
 	modules: [
 		'@nuxt/eslint',
 		'@vueuse/nuxt',
-		'@nuxt/image',
 		'@nuxt/content',
 		'nuxt-security',
 		'@nuxt/icon',
@@ -52,6 +51,21 @@ export default defineNuxtConfig({
 				'python',
 				'graphql',
 				'http',
+				'jinja',
+				'dart',
+				'groovy',
+				'kotlin',
+				'svelte',
+				'dockerfile',
+				'ini',
+				'diff',
+				'liquid',
+				'php',
+				'liquid',
+				'java',
+				'xml',
+				'nginx',
+				'scss',
 			],
 		},
 		markdown: {
@@ -67,7 +81,13 @@ export default defineNuxtConfig({
 			},
 		},
 		navigation: {
-			fields: ['root', 'tags', 'additional_paths', 'expandable', 'description'],
+			fields: [
+				'root',
+				'tags',
+				'additional_paths',
+				'expandable',
+				'description',
+			],
 		},
 	},
 	runtimeConfig: {
@@ -85,7 +105,10 @@ export default defineNuxtConfig({
 	future: {
 		compatibilityVersion: 4,
 	},
-	compatibilityDate: '2024-04-03',
+	experimental: {
+		buildCache: false,
+	},
+	compatibilityDate: '2024-11-13',
 	nitro: {
 		prerender: {
 			routes: ['/', '/api'],
@@ -135,10 +158,7 @@ export default defineNuxtConfig({
 		],
 	},
 	ogImage: {
-		fonts: [
-			'Poppins:600',
-			'Fira+Mono:500',
-		],
+		fonts: ['Poppins:600', 'Fira+Mono:500'],
 	},
 	schemaOrg: {
 		identity: {
@@ -152,7 +172,25 @@ export default defineNuxtConfig({
 		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
-																process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+					process.env.NODE_ENV === 'development'
+						? 'unsafe-none'
+						: 'require-corp',
+			contentSecurityPolicy: {
+				'img-src': [
+					'\'self\'',
+					'data:',
+					'https://product-team.directus.app',
+					'https://marketing.directus.io',
+				],
+				'script-src': [
+					'\'self\'', // Fallback value, will be ignored by most modern browsers (level 3)
+					'https:', // Fallback value, will be ignored by most modern browsers (level 3)
+					'\'unsafe-inline\'', // Fallback value, will be ignored by almost any browser (level 2)
+					'\'strict-dynamic\'', // Strict CSP via 'strict-dynamic', supported by most modern browsers (level 3)
+					'\'nonce-{{nonce}}\'', // Enables CSP nonce support for scripts in SSR mode, supported by almost any browser (level 2)
+					'player.vimeo.com',
+				],
+			},
 		},
 	},
 });

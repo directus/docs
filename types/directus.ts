@@ -5,10 +5,6 @@
 interface ArticleArea {
 	id: string; // UUID
 	sort?: number; // Optional Integer
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 	slug: string; // String
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
 	categories: ArticleCategory[]; // Array of ArticleCategory
@@ -20,10 +16,6 @@ interface ArticleArea {
 interface ArticleCategory {
 	id: string; // UUID
 	sort?: number; // Optional Integer
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 	slug: string; // String
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
 	area?: string | ArticleArea; // Optional UUID or ArticleArea
@@ -36,10 +28,6 @@ interface ArticleCategory {
 interface ArticlePost {
 	id: string; // UUID
 	sort?: number; // Optional Integer
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 	slug: string; // String
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
 	category?: string | ArticleCategory; // Optional UUID or ArticleCategory
@@ -52,10 +40,6 @@ interface ArticlePost {
 interface DocumentationArea {
 	id: string; // UUID
 	sort?: number; // Optional Integer
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 	slug: string; // String
 	type: 'documentation' | 'article';
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
@@ -71,10 +55,6 @@ interface DocumentationCategory {
 	slug: string; // String
 	status: 'archived' | 'draft' | 'published' | string; // String or predefined status
 	sort?: number; // Optional Integer
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 	pages: DocumentationPage[]; // Array of DocumentationPage
 }
 
@@ -93,30 +73,18 @@ interface DocumentationPage {
 	description?: string; // String
 	content: string; // String
 	sort?: number; // Optional Integer
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 }
 
 interface DocumentationTag {
 	id: string; // UUID
 	icon: string; // String
 	name?: string; // String
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 }
 
 interface DocumentationAdditionalPath {
 	id: string; // UUID
 	path: string; // String
 	page: DocumentationPage; // UUID or DocumentationPage
-	user_created?: string; // Optional UUID
-	date_created?: string | Date; // Optional DateTime
-	user_updated?: string; // Optional UUID
-	date_updated?: string | Date; // Optional DateTime
 }
 
 interface DocumentationPagesTags {
@@ -144,10 +112,6 @@ interface DocumentationAuthor {
 	name: string;
 	title: string;
 	avatar: string;
-	user_created?: string;
-	date_created?: string;
-	user_updated?: string;
-	date_updated?: string;
 }
 
 interface DocumentationPageAuthor {
@@ -156,6 +120,34 @@ interface DocumentationPageAuthor {
 	author: DocumentationAuthor;
 }
 
+interface DocumentationFooter {
+	id: number;
+	description: string;
+	groups: DocumenationFooterGroup[];
+	socials: {
+		id: number;
+		sort: number;
+		name: string;
+		icon: string;
+		href: string;
+	}[];
+	secondary_links: DocumentationFooterLink[];
+}
+
+interface DocumenationFooterGroup {
+	id: number;
+	sort: number;
+	title: string;
+	links: DocumentationFooterLink[];
+}
+
+interface DocumentationFooterLink {
+	id: number;
+	sort: number;
+	page?: DocumentationPage;
+	text?: string;
+	href?: string;
+}
 export interface DirectusSchema {
 	article_area: ArticleArea[];
 	article_category: ArticleCategory[];
@@ -170,4 +162,7 @@ export interface DirectusSchema {
 	documentation_author: DocumentationAuthor[];
 	documentation_page_author: DocumentationPageAuthor[];
 	documentation_widget: DocumentationWidget[];
+	documentation_footer: DocumentationFooter;
+	documentation_footer_group: DocumenationFooterGroup[];
+	documentation_footer_link: DocumentationFooterLink[];
 }

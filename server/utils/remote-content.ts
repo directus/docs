@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import { stringifyYAML } from 'confbox';
 import formatTitle from '@directus/format-title';
 import { consola } from 'consola';
-import { db, readItems } from '../utils/directus';
+import { db, readItems } from '../../utils/directus';
 
 type PathPart = {
 	sort: number;

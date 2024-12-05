@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { appConfig } from '~~/utils/app-config';
+
 const isOpen = ref(false);
+
+const { data } = await useAsyncData('appConfig', appConfig);
 </script>
 
 <template>
@@ -18,24 +22,17 @@ const isOpen = ref(false);
 				<HeaderLogo />
 			</NuxtLink>
 			<SearchButton style="flex-grow: 1;" />
-			<div class="links">
+			<div
+				v-if="data?.footer"
+				class="links"
+			>
 				<a
-					href="https://x.com/directus"
+					v-for="social in data.footer.socials"
+					:key="social.href"
+					:href="social.href"
 					target="_blank"
 				>
-					<Icon name="ri:twitter-x-fill" />
-				</a>
-				<a
-					href="https://github.com/directus/directus"
-					target="_blank"
-				>
-					<Icon name="ri:github-fill" />
-				</a>
-				<a
-					href="https://directus.chat"
-					target="_blank"
-				>
-					<Icon name="ri:discord-fill" />
+					<Icon :name="social.icon" />
 				</a>
 				<Button
 					type="a"
@@ -112,6 +109,12 @@ const isOpen = ref(false);
 
 	@media (max-width: 768px) {
 		display: none;
+	}
+
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 </style>

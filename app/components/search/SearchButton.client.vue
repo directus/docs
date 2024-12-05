@@ -80,7 +80,7 @@
 @media (width <= 768px) {
 	.DocSearch-Button-Keys,
 	.DocSearch-Button-Placeholder {
-		display: none !important;
+		display: block !important;
 	}
 }
 
