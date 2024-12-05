@@ -26,12 +26,12 @@ const nav = ref<AreaNavigation[]>([
 		dir: '/cloud',
 		color: 'var(--area--cloud)',
 	},
-	// {
-	// 	label: 'Tutorials',
-	// 	to: '/tutorials',
-	// 	dir: '/tutorials',
-	// 	color: 'var(--area--tutorials)',
-	// },
+	{
+		label: 'Tutorials',
+		to: '/tutorials',
+		dir: '/tutorials',
+		color: 'var(--area--tutorials)',
+	},
 	{
 		label: 'Community',
 		to: '/community',
@@ -46,8 +46,8 @@ const rightNav = [
 		href: 'https://directus.io/tv',
 	},
 	{
-		label: 'Starter Kits',
-		href: 'https://directus.io/plus',
+		label: 'Templates',
+		href: 'https://directus.io/templates',
 	},
 ];
 
