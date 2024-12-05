@@ -1,7 +1,5 @@
 summary: Logout
 description: Invalidate the refresh token thus destroying the user's session.
-tags:
-- Authentication
 operationId: logout
 requestBody:
   content:
@@ -23,8 +21,20 @@ requestBody:
             description: Whether the refresh token is submitted in the JSON response,
               or in a `httpOnly` cookie.
 responses:
-  '200':
-    description: Request successful
+  '204':
+    description: Successful request, empty body
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data: {}
+  '401':
+    $ref: ../../components/responses.yaml#/UnauthorizedError
+  '404':
+    $ref: ../../components/responses.yaml#/NotFoundError
+tags:
+- Authentication
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

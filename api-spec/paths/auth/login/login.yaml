@@ -1,7 +1,5 @@
 summary: Login
 description: Authenticate as a user.
-tags:
-- Authentication
 operationId: login
 requestBody:
   content:
@@ -54,6 +52,12 @@ responses:
                 refresh_token:
                   type: string
                   example: yuOJkjdPXMd...
+  '401':
+    $ref: ../../components/responses.yaml#/UnauthorizedError
+  '404':
+    $ref: ../../components/responses.yaml#/NotFoundError
+tags:
+- Authentication
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript
