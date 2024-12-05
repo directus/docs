@@ -1,21 +1,21 @@
 summary: Update a Notification
 description: Update an existing notification.
-operationId: getNotification
+operationId: updateNotification
 parameters:
-- name: id
-  in: path
-  description: Unique identifier of the notification.
-  schema:
-    type: string
-  required: true
-- $ref: ../../../components/parameters.yaml#/Fields
-- $ref: ../../../components/parameters.yaml#/Meta
+  - name: id
+    in: path
+    description: Unique identifier of the notification.
+    schema:
+      type: string
+    required: true
+  - $ref: ../../../components/parameters.yaml#/Fields
+  - $ref: ../../../components/parameters.yaml#/Meta
 requestBody:
   content:
     application/json:
       schema:
         anyOf:
-        - $ref: ../../../components/schemas/notifications.yaml
+          - $ref: ../../../components/schemas/notifications.yaml
 responses:
   '200':
     description: Successful request

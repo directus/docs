@@ -1,2 +1,2 @@
 post:
-  $ref: generate.yaml
+  $ref: generateTwoFactorSecret.yaml

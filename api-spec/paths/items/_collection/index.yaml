@@ -1,8 +1,7 @@
 get:
   $ref: getCollectionItems.yaml
 post:
-  - $ref: createItem.yaml
-  - $ref: createItems.yaml
+  $ref: createItems.yaml
 patch:
   $ref: updateItems.yaml
 delete:

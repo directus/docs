@@ -19,10 +19,9 @@ properties:
     oneOf:
       - $ref: collections.yaml
   item:
-    description: The item the Content Version is created on.
+    description: The item the Content Version is created on. Many-to-one to items.
     example: '168'
     type: string
-    relation: many-to-one
     oneOf:
       - $ref: items.yaml
   hash:
@@ -32,26 +31,24 @@ properties:
     description: When the Content Version was created.
     type: string
     example: '2022-05-11T13:14:52Z'
-    format: timestamp
+    format: date-time
     nullable: true
   date_updated:
     description: When the Content Version was updated.
     type: string
     example: '2022-05-11T13:14:53Z'
-    format: timestamp
+    format: date-time
     nullable: true
   user_created:
-    description: User that created the Content Version.
+    description: User that created the Content Version. Many-to-one to users.
     example: 63716273-0f29-4648-8a2a-2af2948f6f78
     type: string
-    relation: many-to-one
     oneOf:
       - $ref: users.yaml
   user_updated:
-    description: User that updated the Content Version.
+    description: User that updated the Content Version. Many-to-one to users.
     example: 63716273-0f29-4648-8a2a-2af2948f6f78
     type: string
-    relation: many-to-one
     oneOf:
       - $ref: users.yaml
   delta:

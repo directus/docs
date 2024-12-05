@@ -34,7 +34,7 @@ responses:
               items:
                 $ref: ../../../components/schemas/items.yaml
             meta:
-              $ref: ../../components/schemas/x-metadata.yaml
+              $ref: ../../../components/schemas/x-metadata.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

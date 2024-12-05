@@ -18,7 +18,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../components/schemas/Roles.yaml
+              $ref: ../../components/schemas/roles.yaml
 responses:
   '200':
     description: Successful request
@@ -30,7 +30,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/Roles.yaml
+                $ref: ../../components/schemas/roles.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

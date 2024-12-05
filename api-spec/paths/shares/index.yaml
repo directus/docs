@@ -1,9 +1,8 @@
 get:
   $ref: getShares.yaml
 post:
-  - $ref: createShare.yaml
-  - $ref: createShares.yaml
-update:
+  $ref: createShares.yaml
+patch:
   $ref: updateShares.yaml
 delete:
   $ref: deleteShares.yaml

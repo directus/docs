@@ -20,27 +20,24 @@ properties:
     nullable: true
   parent:
     nullable: true
-    description: Optional parent role that this role inherits permissions from.
+    description: Optional parent role that this role inherits permissions from. Many-to-one to roles.
     type: string
     format: uuid
-    relation: many-to-one
     oneOf:
       - $ref: roles.yaml
   children:
     nullable: true
-    description: Nested child roles that inherit this roles permissions. One-to-many to roles.
+    description: Nested child roles that inherit this roles permissions. One-to-many to roles. One-to-many to roles.
     type: array
     format: uuid
-    relation: one-to-many
     items:
       oneOf:
         - $ref: roles.yaml
   policies:
     nullable: true
-    description: The roles in this role. One-to-many to roles.
+    description: The policies in this role. Many-to-many to roles.
     type: array
     format: uuid
-    relation: many-to-many
     items:
       oneOf:
         - $ref: roles.yaml
@@ -49,7 +46,6 @@ properties:
     description: The users in this role. One-to-many to users.
     type: array
     format: uuid
-    relation: one-to-many
     items:
       oneOf:
         - $ref: users.yaml

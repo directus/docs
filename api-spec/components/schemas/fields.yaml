@@ -42,6 +42,7 @@ properties:
     type: string
   translations:
     nullable: true
+    type: array
   note:
     nullable: true
     type: string
@@ -52,8 +53,8 @@ properties:
     type: boolean
   group:
     nullable: true
+    type: integer
     oneOf:
-      - type: integer
       - $ref: fields.yaml
   validation:
     nullable: true

@@ -19,7 +19,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/policys.yaml
+              $ref: ../../../components/schemas/policies.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

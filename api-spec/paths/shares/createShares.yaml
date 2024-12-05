@@ -18,7 +18,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../../components/schemas/shares.yaml
+              $ref: ../../components/schemas/shares.yaml
 responses:
   '200':
     description: Successful request

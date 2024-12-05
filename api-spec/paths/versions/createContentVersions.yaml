@@ -18,7 +18,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../components/schemas/Versions.yaml
+              $ref: ../../components/schemas/versions.yaml
 responses:
   '200':
     description: Successful request

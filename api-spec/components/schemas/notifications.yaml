@@ -8,7 +8,7 @@ properties:
     description: Timestamp in ISO8601 when the notification was created.
     example: '2021-11-24T13:57:35Z'
     type: string
-    format: timestamp
+    format: date-time
   status:
     description: Current status of the notification. One of "inbox", "archived"
     example: inbox

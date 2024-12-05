@@ -1,8 +1,7 @@
 get:
   $ref: getPermissions.yaml
 post:
-    - $ref: createPermission.yaml
-    - $ref: createPermissions.yaml
+  $ref: createPermissions.yaml
 patch:
   $ref: updatePermissions.yaml
 delete:

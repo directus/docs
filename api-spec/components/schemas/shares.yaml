@@ -12,7 +12,6 @@ properties:
   collection:
     description: Collection in which the current item is shared. Many-to-one to Collections.
     example: articles
-    relation: many-to-one
     type: string
     oneOf:
       - $ref: collections.yaml
@@ -21,11 +20,10 @@ properties:
     example: '1'
     type: string
   role:
-    description: Role of which the share will inherit the permissions.
+    description: Role of which the share will inherit the permissions. Many-to-one to shares.
     example: 2b34fba4-a6cb-49f4-a070-2daee7ac44f0
     type: string
     format: uuid
-    relation: many-to-one
     oneOf:
       - $ref: shares.yaml
   password:
@@ -38,24 +36,23 @@ properties:
     example: b13072b7-73e9-4904-89e0-34aaf4403766
     type: string
     format: uuid
-    relation: many-to-one
     oneOf:
       - $ref: users.yaml
   date_created:
     description: When the share was created.
     example: 2023-01-25T19:16:49.009Z
     type: string
-    format: timestamp
+    format: date-time
   date_start:
     description: Optional timestamp that controls from what date/time the shared item can be viewed.
     example: 2023-01-26T17:00:00.000Z
     type: string
-    format: timestamp
+    format: date-time
   date_end:
     description: Optional timestamp that controls until what date/time the shared item can be viewed.
     example: 2023-01-28T17:00:00.000Z
     type: string
-    format: timestamp
+    format: date-time
   times_used:
     description: The number of times the shared item has been viewed.
     example: 0

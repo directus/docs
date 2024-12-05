@@ -1,6 +1,6 @@
 summary: Create Multiple Permission Rules
 description: Create multiple new permission rules
-operationId: getPermissions
+operationId: createPermissions
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
 - $ref: ../../components/parameters.yaml#/Limit

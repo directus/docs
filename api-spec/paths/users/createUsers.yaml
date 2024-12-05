@@ -22,7 +22,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../components/schemas/Users.yaml
+              $ref: ../../components/schemas/users.yaml
 responses:
   '200':
     description: Successful request
@@ -34,7 +34,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/Users.yaml
+                $ref: ../../components/schemas/users.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

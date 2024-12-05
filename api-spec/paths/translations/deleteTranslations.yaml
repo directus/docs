@@ -9,7 +9,7 @@ requestBody:
         type: object
         properties:
           data:
-            $ref: ../../components/schemas/Translations.yaml
+            $ref: ../../components/schemas/translations.yaml
           keys:
             type: array
             items:

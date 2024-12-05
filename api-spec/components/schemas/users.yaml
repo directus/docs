@@ -46,7 +46,6 @@ properties:
   avatar:
     description: The user's avatar. Many-to-one to files.
     example: null
-    relation: many-to-one
     type: string
     oneOf:
       - $ref: files.yaml
@@ -71,10 +70,9 @@ properties:
       - suspended
       - deleted
   role:
-    description: Unique identifier of the role of this user.
+    description: Unique identifier of the role of this user. Many-to-one to roles.
     example: 2f24211d-d928-469a-aea3-3c8f53d4e426
     type: string
-    relation: many-to-one
     oneOf:
       - $ref: roles.yaml
   token:
@@ -86,7 +84,6 @@ properties:
     description: The policies associated with this user. Many-to-many to policies.
     example: 2f24211d-d928-469a-aea3-3c8f53d4e426
     type: string
-    relation: many-to-many
     oneOf:
       - $ref: policies.yaml
   last_access:
@@ -94,7 +91,7 @@ properties:
     example: '2020-05-31T14:32:37Z'
     type: string
     nullable: true
-    format: timestamp
+    format: date-time
   last_page:
     description: Last page that the user was on.
     example: /my-project/settings/collections/a

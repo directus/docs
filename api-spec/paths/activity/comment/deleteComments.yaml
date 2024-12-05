@@ -9,7 +9,7 @@ requestBody:
         type: object
         properties:
           data:
-            $ref: ../../components/schemas/comments.yaml
+            $ref: ../../../components/schemas/comments.yaml
           keys:
             type: array
             items:
@@ -18,9 +18,9 @@ responses:
   '200':
     description: Successful request
   '401':
-    $ref: ../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':
-    $ref: ../../components/responses.yaml#/NotFoundError
+    $ref: ../../../components/responses.yaml#/NotFoundError
 tags:
 - Activity
 x-codeSamples:

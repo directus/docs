@@ -1,9 +1,8 @@
 get:
   $ref: getDashboards.yaml
 post:
-  - $ref: createDashboard.yaml
-  - $ref: createsDashboards.yaml
-update:
-  $ref: updatesDashboards.yaml
+  $ref: createDashboards.yaml
+patch:
+  $ref: updateDashboards.yaml
 delete:
   $ref: deleteDashboards.yaml

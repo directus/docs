@@ -19,7 +19,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/Dashboards.yaml
+              $ref: ../../../components/schemas/dashboards.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

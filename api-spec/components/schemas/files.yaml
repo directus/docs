@@ -28,8 +28,8 @@ properties:
   folder:
     description: Virtual folder where this file resides in.
     example: null
+    type: string
     oneOf:
-      - type: string
       - $ref: folders.yaml
     nullable: true
   uploaded_by:
@@ -42,17 +42,17 @@ properties:
     description: When the file was created.
     example: 2019-12-03T00:10:15+00:00
     type: string
-    format: timestamp
+    format: date-time
   modified_by:
-    nullable: true
+    type: string
+    format: uuid
     oneOf:
-      - type: string
-        format: uuid
       - $ref: users.yaml
+    nullable: true
   modified_on:
     nullable: false
     type: string
-    format: timestamp
+    format: date-time
   charset:
     description: Character set of the file.
     example: binary
@@ -110,5 +110,5 @@ properties:
     description: When the file was last uploaded/replaced.
     example: '2019-12-03T00:10:15+00:00'
     type: string
-    format: timestamp
+    format: date-time
 x-collection: directus_files

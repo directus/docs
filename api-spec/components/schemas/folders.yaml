@@ -12,8 +12,8 @@ properties:
   parent:
     description: Unique identifier of the parent folder. This allows for nested folders.
     example: null
+    type: string
     oneOf:
-      - type: string
       - $ref: folders.yaml
     nullable: true
 x-collection: directus_folders

@@ -2,25 +2,26 @@ summary: Flow with POST webhook trigger
 description: Start a flow with POST webhook trigger.
 operationId: triggerFlowPOST
 parameters:
-- $ref: ../../../../components/parameters.yaml#/UUId
-- $ref: ../../../../components/parameters.yaml#/Fields
-- $ref: ../../../../components/parameters.yaml#/Meta
+  - $ref: ../../../../components/parameters.yaml#/Id
+  - $ref: ../../../../components/parameters.yaml#/Fields
+  - $ref: ../../../../components/parameters.yaml#/Meta
 requestBody:
+  description: Payload for the POST request.
   content:
     application/json:
       schema:
         type: object
         properties:
-          data: Payload for the POST request.
+          data: {}
 responses:
   '200':
-    description: Successful request
+    description: Result of the flow, if any.
     content:
       application/json:
         schema:
           type: object
           properties:
-            data: Result of the flow, if any.
+            data: {}
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

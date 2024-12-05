@@ -9,7 +9,6 @@ parameters:
 - $ref: ../../components/parameters.yaml#/Sort
 - $ref: ../../components/parameters.yaml#/Filter
 - $ref: ../../components/parameters.yaml#/Search
-- $ref: ../../components/parameters.yaml#/Meta
 requestBody:
   content:
     application/json:
@@ -19,7 +18,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../../components/schemas/panels.yaml
+              $ref: ../../components/schemas/panels.yaml
 responses:
   '200':
     description: Successful request

@@ -2,15 +2,15 @@ summary: Check Permissions for a Specific Item
 description:  Check the current user's permissions on a specific item.
 operationId: readItemPermissions
 parameters:
-  - $ref: ../../components/parameters.yaml#/collection
-  - $ref: ../../components/parameters.yaml#/id
+  - $ref: ../../../../../components/parameters.yaml#/Collection
+  - $ref: ../../../../../components/parameters.yaml#/Id
 responses:
   '200':
     description: Successful request
   '401':
-    $ref: ../../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../../../components/responses.yaml#/UnauthorizedError
   '404':
-    $ref: ../../../components/responses.yaml#/NotFoundError
+    $ref: ../../../../../components/responses.yaml#/NotFoundError
 tags:
 - Permissions
 x-codeSamples:

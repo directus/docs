@@ -52,5 +52,3 @@ Users:
   $ref: users.yaml
 Versions:
   $ref: versions.yaml
-Webhooks:
-  $ref: webhooks.yaml

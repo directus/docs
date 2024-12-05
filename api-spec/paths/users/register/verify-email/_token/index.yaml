@@ -1,2 +1,2 @@
 get:
-  $ref: verify-email.yaml
+  $ref: registerUserVerify.yaml

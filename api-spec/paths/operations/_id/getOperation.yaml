@@ -1,6 +1,8 @@
 summary: Retrieve an Operation
 description: Retrieve a single operation by primary key.
 operationId: getOperation
+parameters:
+  - $ref: ../../../components/parameters.yaml#/UUId
 responses:
   '200':
     description: Successful request
@@ -17,8 +19,6 @@ responses:
     $ref: ../../../components/responses.yaml#/NotFoundError
 tags:
 - Operations
-parameters:
-- $ref: ../../../components/parameters.yaml#/UUId
 x-codeSamples:
   - label: Directus SDK
     lang: JavaScript

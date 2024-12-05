@@ -17,9 +17,9 @@ requestBody:
           mode:
             type: string
             enum:
-            - `json`
-            - `cookie`
-            - `session`
+              - json
+              - cookie
+              - session
             description: Whether the refresh token is submitted in the JSON response,
               or in a `httpOnly` cookie.
 responses:

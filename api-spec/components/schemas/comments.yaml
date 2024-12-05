@@ -21,22 +21,22 @@ properties:
     description: Timestamp in ISO8601 when the comment was created.
     example: 2023-01-15T09:14:52Z
     type: string
-    format: timestamp
+    format: date-time
   date_updated:
     description: Timestamp in ISO8601 when the comment was last updated.
     example: 2023-01-15T09:00:00Z
     type: string
-    format: timestamp
+    format: date-time
   user_created:
     description: The user who created the comment. Many-to-one to users.
     example: 12e62fd0-29c7-4fd3-b3d3-c7a39933e8af
+    type: string
     oneOf:
-      - type: string
       - $ref: users.yaml
   user_updated:
     description: The user who last updated the comment. Many-to-one to users.
     example: 12e62fd0-29c7-4fd3-b3d3-c7a39933e8af
+    type: string
     oneOf:
-      - type: string
       - $ref: users.yaml
 x-collection: directus_comments

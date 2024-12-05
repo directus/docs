@@ -1,6 +1,7 @@
 type: object
 properties:
   enabled:
+    description: Whether or not the extension is enabled.
     nullable: false
     type: boolean
   id:

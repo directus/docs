@@ -1,8 +1,7 @@
 get:
   $ref: getFiles.yaml
 post:
-  - $ref: uploadFile.yaml
-  - $ref: importFile.yaml
+  $ref: uploadFile.yaml
 patch:
   $ref: updateFiles.yaml
 delete:

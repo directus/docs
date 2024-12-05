@@ -1,4 +1,4 @@
-summary: Export Data to a File 
+summary: Export Data to a File
 description: Export a larger data set to a file in the file library.
 operationId: export
 parameters:
@@ -15,12 +15,11 @@ requestBody:
         properties:
           format:
             type: string
-            description: What file format to save the export to. One of `csv`, `xml`,
-              `json`
+            description: 'What file format to save the export to. One of `csv`, `xml`,`json`'
             enum:
-            - `csv`
-            - `xml`
-            - `json`
+              - csv
+              - xml
+              - json
           query:
             $ref: ../../../../components/schemas/query.yaml
           file:

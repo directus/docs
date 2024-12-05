@@ -44,15 +44,15 @@ properties:
       - $ref: operations.yaml
   flow:
     nullable: false
+    type: string
+    format: uuid
     oneOf:
-      - type: string
-        format: uuid
       - $ref: flows.yaml
   date_created:
     description: Timestamp in ISO8601 when the operation was created.
     type: string
     example: '2022-05-11T13:14:52Z'
-    format: timestamp
+    format: date-time
     nullable: true
   user_created:
     description: The user who created the operation.

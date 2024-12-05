@@ -36,9 +36,9 @@ properties:
       type: string
     nullable: true
   policy:
+    description: Policy this permission applies to. Many-to-one to policies.
     nullable: false
     format: uuid
-    relation: many-to-one
     type: string
     oneOf:
       - $ref: policies.yaml

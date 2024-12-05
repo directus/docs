@@ -60,7 +60,7 @@ properties:
     description: When the panel was created
     example: 2023-01-05T19:05:51.884Z
     type: string
-    format: timestamp
+    format: date-time
   user_created:
     description: User that created the panel. Many-to-one to users.
     example: fd066644-c8e5-499d-947b-fe6c6e1a1473

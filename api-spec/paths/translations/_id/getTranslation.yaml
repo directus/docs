@@ -1,6 +1,6 @@
 summary: Retrieve a Translation
 description: List an existing Translation by primary key.
-operationId: getTranslations
+operationId: getTranslation
 parameters:
 - name: id
   in: path
@@ -19,7 +19,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/Translations.yaml
+              $ref: ../../../components/schemas/translations.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

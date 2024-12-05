@@ -1,6 +1,6 @@
 get:
   $ref: getTranslation.yaml
 patch:
-  $ref: updatesTranslation.yaml
+  $ref: updateTranslation.yaml
 delete:
   $ref: deleteTranslation.yaml

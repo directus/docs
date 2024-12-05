@@ -15,42 +15,42 @@ requestBody:
             description: What collection this permission applies to.
           comment:
             type: string
-            description: If the user can post comments. `full`.
+            description: If the user can post comments. full.
             enum:
-            - `none`
-            - `create`
-            - `update`
+              - none
+              - create
+              - update
           create:
             type: string
             description: If the user can create items.
             enum:
-            - `none`
-            - `full`
+              - none
+              - full
           delete:
             type: string
             description: If the user can update items.
             enum:
-            - `none`
-            - `mine`
-            - `role`
-            - `full`
+              - none
+              - mine
+              - role
+              - full
           explain:
             type: string
             description: If the user is required to leave a comment explaining what
               was changed.
             enum:
-            - `none`
-            - `create`
-            - `update`
-            - `always`
+              - none
+              - create
+              - update
+              - always
           read:
             type: string
             description: If the user can read items.
             enum:
-            - `none`
-            - `mine`
-            - `role`
-            - `full`
+              - none
+              - mine
+              - role
+              - full
           read_field_blacklist:
             type: object
             description: Explicitly denies read access for specific fields.
@@ -67,10 +67,10 @@ requestBody:
             type: string
             description: If the user can update items.
             enum:
-            - `none`
-            - `mine`
-            - `role`
-            - `full`
+              - none
+              - mine
+              - role
+              - full
           write_field_blacklist:
             type: object
             description: Explicitly denies write access for specific fields.

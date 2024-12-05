@@ -20,6 +20,8 @@ properties:
     nullable: false
     type: boolean
   translations:
+    description: How this collection's name is displayed in the different languages in the Data Studio.
+    type: array
     nullable: true
   archive_field:
     nullable: true
@@ -50,8 +52,8 @@ properties:
     type: integer
   group:
     nullable: true
+    type: string
     oneOf:
-      - type: string
       - $ref: collections.yaml
   collapse:
     nullable: false

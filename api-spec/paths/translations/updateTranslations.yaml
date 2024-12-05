@@ -17,7 +17,7 @@ requestBody:
         type: object
         properties:
           data:
-            $ref: ../../components/schemas/Translations.yaml
+            $ref: ../../components/schemas/translations.yaml
           keys:
             type: array
             items:
@@ -33,7 +33,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/Translations.yaml
+                $ref: ../../components/schemas/translations.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

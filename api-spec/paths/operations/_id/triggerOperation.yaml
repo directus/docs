@@ -2,18 +2,28 @@ summary: Triggering an Operation
 description: Trigger an operation based on primary key.
 operationId: triggerOperation
 parameters:
-- $ref: ../../../components/parameters.yaml#/UUId
+  - $ref: ../../../components/parameters.yaml#/Id
 requestBody:
   description: Payload for the operation, if needed.
+  content:
+    application/json:
+      schema:
+        type: object
 responses:
   '200':
     description: Result of the operation, if any.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data: {}
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':
     $ref: ../../../components/responses.yaml#/NotFoundError
 tags:
-- Operations
+  - Operations
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

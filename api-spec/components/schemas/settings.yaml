@@ -20,27 +20,24 @@ properties:
     example: null
     nullable: true
   project_logo:
-    description: The logo of the project.
+    description: The logo of the project. Many-to-one to files.
     type: string
     example: null
     nullable: true
-    relation: many-to-one
     oneOf:
       - $ref: files.yaml
   public_foreground:
-    description: The foreground of the project.
+    description: The foreground of the project. Many-to-one to files.
     type: string
     example: null
     nullable: true
-    relation: many-to-one
     oneOf:
       - $ref: files.yaml
   public_background:
-    description: The background of the project.
+    description: The background of the project. Many-to-one to files.
     type: object
     example: null
     nullable: true
-    relation: many-to-one
     oneOf:
       - $ref: files.yaml
   public_note:
@@ -160,7 +157,6 @@ properties:
     nullable: true
     description: Favicon for the Data Studio. Many-to-one to files.
     type: string
-    relation: many-to-one
     oneOf:
       - $ref: files.yaml
   default_appearance:
@@ -210,11 +206,12 @@ properties:
   public_registration_role:
     nullable: true
     description: $t:fields.directus_settings.public_registration_role_note
+    type: string
+    format: uuid
     oneOf:
-      - type: string
-        format: uuid
       - $ref: roles.yaml
   public_registration_email_filter:
+    type: string
     nullable: true
     description: $t:fields.directus_settings.public_registration_email_filter_note
 x-collection: directus_settings

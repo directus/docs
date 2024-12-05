@@ -63,7 +63,7 @@ paths:
     $ref: paths/flows/index.yaml
   "/flows/{id}":
     $ref: paths/flows/_id/index.yaml
-  "/flows/trigger/{_id}":
+  "/flows/trigger/{id}":
     $ref: paths/flows/trigger/_id/index.yaml
   "/folders":
     $ref: paths/folders/index.yaml
@@ -126,9 +126,9 @@ paths:
   "/server/ping":
     $ref: paths/server/ping/index.yaml
   "/server/specs/graphql":
-    $ref: paths/server/specs/index.yaml
-  "/server/specs":
-    $ref: paths/server/specs/index.yaml
+    $ref: paths/server/specs/graphql/index.yaml
+  "/server/specs/oas":
+    $ref: paths/server/specs/oas/index.yaml
   "/server/health":
     $ref: paths/server/health/index.yaml
   "/settings":
@@ -163,7 +163,7 @@ paths:
     $ref: paths/users/me/tfa/generate/index.yaml
   "/users/me/track/page":
     $ref: paths/users/me/track/page/index.yaml
-  "/users/register/":
+  "/users/register":
     $ref: paths/users/register/index.yaml
   "/users/register/verify-email/{token}":
     $ref: paths/users/register/verify-email/_token/index.yaml
@@ -191,10 +191,6 @@ paths:
     $ref: paths/versions/_id/promote/index.yaml
   "/versions/{id}/save":
     $ref: paths/versions/_id/save/index.yaml
-  "/webhooks/":
-    $ref: paths/webhooks/index.yaml
-  "/webhooks/{id}":
-    $ref: paths/webhooks/_id/index.yaml
 components:
   parameters:
     $ref: components/parameters.yaml
