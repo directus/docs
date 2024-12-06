@@ -53,9 +53,9 @@ const nav = ref<AreaNavigation[]>([
 		href: 'https://directus.io/tv',
 	},
 	{
-		label: 'Starter Kits',
+		label: 'Templates',
 		icon: 'material-symbols:service-toolbox',
-		href: 'https://directus.io/tv',
+		href: 'https://directus.io/templates',
 	},
 ]);
 
