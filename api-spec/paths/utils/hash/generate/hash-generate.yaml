@@ -20,9 +20,10 @@ responses:
           properties:
             data:
               type: string
-              example: 
+              example:
                 $argon2i$v=19$m=4096,t=3,p=1$pOyIa/zmRAjCVLb2f7kOyg$DasoO6LzMM+6iKfzCDq6JbsYsZWLSm33p7i9NxL9mDc
     description: Successful request
+security: []
 tags:
 - Utilities
 x-codeSamples:
@@ -30,15 +31,15 @@ x-codeSamples:
     lang: JavaScript
     source: |
       import { createDirectus, rest, generateHash } from '@directus/sdk';
-      
+
       const client = createDirectus('directus_project_url').with(rest());
-      
+
       const result = await client.request(generateHash(string_to_hash));
   - label: GraphQL
     lang: GraphQL
     source: |
       POST /graphql/system
-      
+
       type Mutation {
       	utils_hash_generate(string: String!): String
       }

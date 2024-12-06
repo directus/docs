@@ -15,6 +15,7 @@ responses:
     description: Successful request
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
+security: []
 tags:
 - Extensions
 x-codeSamples:
@@ -22,15 +23,15 @@ x-codeSamples:
     lang: JavaScript
     source: |
       import { createDirectus, rest, readExtensions } from '@directus/sdk';
-      
+
       const client = createDirectus('directus_project_url').with(rest());
-      
+
       const result = await client.request(readExtensions());
   - label: GraphQL
     lang: GraphQL
     source: |
       POST /graphql/system
-      
+
       type Query {
       	extensions: [extension]
       }

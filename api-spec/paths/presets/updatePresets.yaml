@@ -1,5 +1,6 @@
 summary: Update Multiple Presets
 description: Update multiple presets at the same time.
+security: []
 tags:
 - Presets
 operationId: updatePresets

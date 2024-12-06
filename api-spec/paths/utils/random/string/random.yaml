@@ -19,6 +19,7 @@ responses:
               type: string
               example: 1>M3+4oh.S
     description: Successful request
+security: []
 tags:
 - Utilities
 x-codeSamples:
@@ -26,15 +27,15 @@ x-codeSamples:
     lang: JavaScript
     source: |
       import { createDirectus, rest, randomString } from '@directus/sdk';
-      
+
       const client = createDirectus('directus_project_url').with(rest());
-      
+
       const result = await client.request(randomString(length));
   - label: GraphQL
     lang: GraphQL
     source: |
       POST /graphql/system
-      
+
       type Mutation {
       	utils_random_string(length: Int): String
       }

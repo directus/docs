@@ -14,6 +14,7 @@ responses:
     description: The resource was deleted successfully.
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
+security: []
 tags:
 - Users
 x-codeSamples:

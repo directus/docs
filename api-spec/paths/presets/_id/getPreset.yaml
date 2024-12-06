@@ -1,4 +1,5 @@
 summary: Retrieve a Preset
+security: []
 tags:
 - Presets
 operationId: getPreset

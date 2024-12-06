@@ -1,5 +1,6 @@
 summary: Update Multiple Flows
 description: Update multiple flows at the same time.
+security: []
 tags:
 - Flows
 operationId: updateFlows

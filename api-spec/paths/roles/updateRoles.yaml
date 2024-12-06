@@ -1,5 +1,6 @@
 summary: Update Multiple Roles
 description: Update multiple roles at the same time.
+security: []
 tags:
 - Roles
 operationId: updateRoles

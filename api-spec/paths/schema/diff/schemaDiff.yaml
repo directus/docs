@@ -38,6 +38,7 @@ responses:
     description: No schema difference.
   '403':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
+security: []
 tags:
 - Schema
 x-codeSamples:

@@ -25,6 +25,7 @@ responses:
     $ref: ../../../../../components/responses.yaml#/UnauthorizedError
   '404':
     $ref: ../../../../../components/responses.yaml#/NotFoundError
+security: []
 tags:
 - Users
 x-codeSamples:

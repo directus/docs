@@ -1,5 +1,6 @@
 summary: Update a File
 description: Update an existing file, and/or replace it's file contents.
+security: []
 tags:
 - Files
 operationId: updateFile

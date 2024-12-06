@@ -1,5 +1,6 @@
 summary: Update Multiple Operations
 description: Update multiple operations at the same time.
+security: []
 tags:
 - Operations
 operationId: updateOperations

@@ -35,6 +35,7 @@ responses:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
+security: []
 tags:
 - Versions
 x-codeSamples:

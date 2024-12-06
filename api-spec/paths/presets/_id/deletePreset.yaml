@@ -1,4 +1,5 @@
 summary: Delete a Preset
+security: []
 tags:
 - Presets
 operationId: deletePreset

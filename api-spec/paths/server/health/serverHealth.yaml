@@ -25,6 +25,7 @@ responses:
               checks:
                 description: Array with the status of all individually connected services.
                 type: array
+security: []
 tags:
 - Server
 x-codeSamples:

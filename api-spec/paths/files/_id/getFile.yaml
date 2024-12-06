@@ -1,5 +1,6 @@
 summary: Retrieve a File
 description: Retrieve a single file by primary key.
+security: []
 tags:
 - Files
 operationId: getFile

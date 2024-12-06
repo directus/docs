@@ -1,5 +1,6 @@
 summary: Update Multiple Permissions
 description: Update multiple permissions at the same time.
+security: []
 tags:
 - Permissions
 operationId: updatePermissions

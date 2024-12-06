@@ -36,7 +36,8 @@ properties:
     example: null
     type: string
     nullable: true
-  tags:
+  security: []
+tags:
     description: The user's tags.
     example: null
     type: array

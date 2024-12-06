@@ -39,6 +39,7 @@ responses:
     $ref: ../../components/responses.yaml#/UnauthorizedError
   '404':
     $ref: ../../components/responses.yaml#/NotFoundError
+security: []
 tags:
 - Policies
 x-codeSamples:

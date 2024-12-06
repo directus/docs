@@ -1,4 +1,5 @@
 summary: List Presets
+security: []
 tags:
 - Presets
 operationId: getPresets

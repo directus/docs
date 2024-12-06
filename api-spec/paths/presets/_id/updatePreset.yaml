@@ -1,4 +1,5 @@
 summary: Update a Preset
+security: []
 tags:
 - Presets
 operationId: updatePreset

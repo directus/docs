@@ -10676,8 +10676,10 @@ snapshots:
       '@vue/babel-helper-vue-transform-on': 1.2.2
       '@vue/babel-plugin-resolve-type': 1.2.2(@babel/core@7.25.2)
       camelcase: 6.3.0
-      html-tags: 3.3.1
-      svg-tags: 1.0.0
+      html-security: []
+tags: 3.3.1
+      svg-security: []
+tags: 1.0.0
     optionalDependencies:
       '@babel/core': 7.25.2
     transitivePeerDependencies:

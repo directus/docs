@@ -1,5 +1,6 @@
 summary: Update Multiple Folders
 description: Update multiple folders at the same time.
+security: []
 tags:
 - Folders
 operationId: updateFolders

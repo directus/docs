@@ -1,4 +1,4 @@
-summary: Import Data from File 
+summary: Import Data from File
 description: Import multiple records from a JSON or CSV file into a collection.
 operationId: import
 parameters:
@@ -20,6 +20,7 @@ requestBody:
 responses:
   '200':
     description: Successful request
+security: []
 tags:
 - Utilities
 x-codeSamples:
@@ -27,12 +28,12 @@ x-codeSamples:
     lang: JavaScript
     source: |
       import { createDirectus, rest, utilsImport } from '@directus/sdk';
-      
+
       const client = createDirectus('directus_project_url').with(rest());
-      
+
       const formData = new FormData();
       formData.append('file', raw_file);
-      
+
       const result = await client.request(utilsImport(formData));
   - label: GraphQL
     lang: GraphQL

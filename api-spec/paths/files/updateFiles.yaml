@@ -1,5 +1,6 @@
 summary: Update Multiple Files
 description: Update multiple files at the same time.
+security: []
 tags:
 - Files
 operationId: updateFiles

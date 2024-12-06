@@ -1,5 +1,6 @@
 summary: Delete a File
 description: Delete an existing file. This will also delete the file from disk.
+security: []
 tags:
 - Files
 operationId: deleteFile

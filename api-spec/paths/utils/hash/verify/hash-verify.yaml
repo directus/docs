@@ -26,6 +26,7 @@ responses:
               type: boolean
               example: true
     description: Successful request
+security: []
 tags:
 - Utilities
 x-codeSamples:
@@ -33,15 +34,15 @@ x-codeSamples:
     lang: JavaScript
     source: |
       import { createDirectus, rest, verifyHash } from '@directus/sdk';
-      
+
       const client = createDirectus('directus_project_url').with(rest());
-      
+
       const result = await client.request(verifyHash(string_to_verify, hash));
   - label: GraphQL
     lang: GraphQL
     source: |
       POST /graphql/system
-      
+
       type Mutation {
       	utils_hash_verify(hash: String!, string: String!): Boolean
       }

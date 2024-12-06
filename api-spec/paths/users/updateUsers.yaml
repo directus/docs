@@ -1,5 +1,6 @@
 summary: Update Multiple Users
 description: Update multiple users at the same time.
+security: []
 tags:
 - Users
 operationId: updateUsers

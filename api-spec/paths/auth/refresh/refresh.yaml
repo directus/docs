@@ -1,5 +1,6 @@
 summary: Refresh Token
 description: Retrieve a new access token using a refresh token.
+security: []
 tags:
 - Authentication
 operationId: refresh

@@ -4,6 +4,7 @@ operationId: clear-cache
 responses:
   '200':
     description: Successful request
+security: []
 tags:
 - Utilities
 x-codeSamples:

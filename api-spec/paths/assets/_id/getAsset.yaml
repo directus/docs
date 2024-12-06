@@ -1,4 +1,5 @@
 summary: Get an Asset
+security: []
 tags:
 - Assets
 operationId: getAsset
