@@ -13,12 +13,12 @@ withDefaults(
 </script>
 
 <template>
-	<NuxtImg
-		:src="uuid"
+	<img
+		:src="`https://product-team.directus.app/assets/${uuid}`"
 		:alt="alt"
 		:width="width"
 		:height="height"
 		format="auto"
 		loading="lazy"
-	/>
+	>
 </template>

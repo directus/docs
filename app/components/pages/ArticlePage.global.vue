@@ -109,12 +109,12 @@ const isOpen = ref(false);
 							:key="author.id"
 							class="author"
 						>
-							<NuxtImg
+							<img
 								class="author-avatar"
 								:src="img(author.avatar)"
 								height="24"
 								width="24"
-							/>
+							>
 							<span class="author-name">
 								{{ author.name }}
 							</span>
@@ -244,6 +244,7 @@ const isOpen = ref(false);
 	margin-right: auto;
 	display: flex;
 	justify-content: center;
+	padding-bottom: 4rem;
 }
 
 main {

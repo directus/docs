@@ -114,7 +114,6 @@ const isOpen = ref(false);
 
 .docs-grid {
 	padding-top: 3rem;
-	padding-bottom: 6rem;
 	display: grid;
 	grid-template-columns: 225px minmax(0, 1fr) 250px;
 	gap: 3rem;
@@ -131,6 +130,7 @@ const isOpen = ref(false);
 
 .main-content {
 	margin-top: 24px;
+	padding-bottom: 4rem;
 }
 
 .right-aside {

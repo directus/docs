@@ -61,7 +61,7 @@ const detailsOpen = ref(false);
 	<!-- TOGGLE -->
 	<details
 		v-if="toggleable"
-		class="callout info"
+		class="callout info toggleable"
 		@toggle="detailsOpen = !detailsOpen"
 	>
 		<summary>
@@ -125,8 +125,11 @@ const detailsOpen = ref(false);
 		);
 	}
 }
-.callout {
+.callout.toggleable {
 	display: block;
+}
+
+.callout {
 	background: var(--background-subdued);
 	border: 1px solid var(--border-subdued);
 	padding: 1rem;

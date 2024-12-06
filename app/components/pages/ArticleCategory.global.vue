@@ -91,13 +91,13 @@ const filteredArticles = computed(() => {
 		|| !allArticlesFlattened.value
 		|| selectedTags.value.length == 0
 	)
-		return allArticlesFlattened.value || [];
+		return allArticlesFlattened.value.map(article => ({ ...article, description: null })) || [];
 	return (
 		allArticlesFlattened.value.filter(
 			article =>
 				article.tags?.some(tag => selectedTags.value.includes(tag.name))
 				?? false,
-		) || []
+		).map(article => ({ ...article, description: null })) || []
 	);
 });
 </script>
