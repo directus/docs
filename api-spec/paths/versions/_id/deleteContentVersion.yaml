@@ -2,8 +2,8 @@ summary: Delete a Content Version
 description: Delete an existing Content Version.
 operationId: deleteContentVersion
 responses:
-  '200':
-    description: Successful request
+  '204':
+    description: The resource was deleted successfully.
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

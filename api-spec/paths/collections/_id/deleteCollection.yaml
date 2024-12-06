@@ -3,8 +3,8 @@ description: 'Delete an existing collection. Warning: This will delete the whole
   including the items within. Proceed with caution.'
 operationId: deleteCollection
 responses:
-  '200':
-    description: Successful request
+  '204':
+    description: The resource was deleted successfully.
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

@@ -9,8 +9,8 @@ parameters:
     type: string
 - $ref: ../../../../components/parameters.yaml#/Collection
 responses:
-  '200':
-    description: Successful request
+  '204':
+    description: The resource was deleted successfully.
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

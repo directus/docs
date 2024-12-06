@@ -4,8 +4,8 @@ operationId: deleteComment
 parameters:
 - $ref: ../../../../components/parameters.yaml#/Id
 responses:
-  '203':
-    description: Deleted successfully
+  '204':
+    description: The resource was deleted successfully.
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':
