@@ -66,6 +66,8 @@ export default defineNuxtConfig({
 				'xml',
 				'nginx',
 				'scss',
+				'jsx',
+				'tsx',
 			],
 		},
 		markdown: {
