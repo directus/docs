@@ -46,6 +46,7 @@ defineProps<{
 	flex: 0 0 auto;
 	width: auto;
 	height: 100%;
+	padding-bottom: 4rem;
 }
 
 .right-aside > * {
