@@ -90,8 +90,7 @@ properties:
     description: Where the file was created. Is automatically populated based on Exif data for images.
     type: string
     nullable: true
-  security: []
-tags:
+  tags:
     description: Tags for the file. Is automatically populated based on Exif data for images.
     type: array
     nullable: true

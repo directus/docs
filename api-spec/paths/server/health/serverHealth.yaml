@@ -9,22 +9,21 @@ responses:
         schema:
           type: object
           properties:
-            items:
-              status:
-                description: One of ok, warn, error.
-                type: string
-                example: warn
-              releaseId:
-                description: Directus version in use.
-                type: string
-                example: '10.0.0'
-              serviceId:
-                description: Public URL of the current Directus instance.
-                type: string
-                example: https://directus.example.com
-              checks:
-                description: Array with the status of all individually connected services.
-                type: array
+            status:
+              description: One of ok, warn, error.
+              type: string
+              example: warn
+            releaseId:
+              description: Directus version in use.
+              type: string
+              example: '10.0.0'
+            serviceId:
+              description: Public URL of the current Directus instance.
+              type: string
+              example: https://directus.example.com
+            checks:
+              description: Array with the status of all individually connected services.
+              type: array
 security: []
 tags:
 - Server

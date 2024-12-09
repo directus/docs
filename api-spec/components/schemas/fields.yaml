@@ -46,8 +46,8 @@ properties:
   note:
     nullable: true
     type: string
-  conditions:
-    nullable: true
+  # conditions:
+  #   nullable: true
   required:
     nullable: true
     type: boolean
@@ -56,8 +56,8 @@ properties:
     type: integer
     oneOf:
       - $ref: fields.yaml
-  validation:
-    nullable: true
+  # validation:
+  #   nullable: true
   validation_message:
     nullable: true
     type: string

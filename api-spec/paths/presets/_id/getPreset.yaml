@@ -4,8 +4,6 @@ tags:
 - Presets
 operationId: getPreset
 description: Retrieve a single preset by unique identifier.
-security:
-- Auth: []
 parameters:
 - $ref: ../../../components/parameters.yaml#/Id
 - $ref: ../../../components/parameters.yaml#/Fields

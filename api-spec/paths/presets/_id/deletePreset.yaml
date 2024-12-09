@@ -4,8 +4,6 @@ tags:
 - Presets
 operationId: deletePreset
 description: Delete an existing preset.
-security:
-- Auth: []
 responses:
   '204':
     description: The resource was deleted successfully.

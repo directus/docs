@@ -3,7 +3,6 @@ summary: Create Multiple Operations
 description: Create multiple new operations.
 operationId: createOperations
 parameters:
-- $ref: ../../components/parameters.yaml#/Collection
 - $ref: ../../components/parameters.yaml#/Fields
 - $ref: ../../components/parameters.yaml#/Limit
 - $ref: ../../components/parameters.yaml#/Meta

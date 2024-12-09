@@ -13,7 +13,7 @@ requestBody:
           - email
           - password
         anyOf:
-          $ref: ../../../components/schemas/users.yaml
+          - $ref: ../../../components/schemas/users.yaml
         properties:
           verification_url:
             type: string

@@ -20,7 +20,7 @@ properties:
   password:
     description: Password of the user.
     type: string
-    format: hash
+    format: string
   location:
     description: The user's location.
     example: null
@@ -36,8 +36,7 @@ properties:
     example: null
     type: string
     nullable: true
-  security: []
-tags:
+  tags:
     description: The user's tags.
     example: null
     type: array
