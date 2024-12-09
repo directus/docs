@@ -1,5 +1,10 @@
 summary: Health
-description: 'The /server/health endpoint shows you a general health status for the server and all connected (third party) services, such as Redis or S3. The output is based on the "Health Check Response for HTTP APIs" draft spec: Health Check Response Format for HTTP APIs Draft Specification. This endpoint can be used to ensure a healthy system when running in a horizontally scaled setup, like Kubernetes, Google Cloud Platform or AWS Elastic Beanstalk. By default, the endpoint only returns a status of ok, warn or error. By authenticating as an admin, it will return more in-depth information about the current health status of the system.'
+description: |
+  Shows you a general health status for the server and all connected (third party) services. 
+
+  By default, the endpoint only returns a status of ok, warn or error. 
+
+  By authenticating as an admin, it will return more in-depth information about the current health status of the system.
 operationId: serverHealth
 responses:
   '200':
@@ -39,7 +44,7 @@ x-codeSamples:
   - label: GraphQL
     lang: GraphQL
     source: |
-      POST /graphql/system
+      GET /graphql/system
 
       type Query {
         server_health: JSON

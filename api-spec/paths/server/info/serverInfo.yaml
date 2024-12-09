@@ -39,7 +39,7 @@ x-codeSamples:
 - label: GraphQL
   lang: GraphQL
   source: |
-    POST /graphql/system
+    GET /graphql/system
 
     type Query {
     	server_info: server_info
