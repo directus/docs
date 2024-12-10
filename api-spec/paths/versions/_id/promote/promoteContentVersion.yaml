@@ -22,8 +22,8 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          properties: {}
+          type: string
+          description: The primary key of the promoted item.
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

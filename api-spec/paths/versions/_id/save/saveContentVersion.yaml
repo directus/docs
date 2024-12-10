@@ -3,12 +3,6 @@ description: Save item changes to an existing Content Version.
 operationId: saveContentVersion
 parameters:
 - $ref: ../../../../components/parameters.yaml#/UUId
-requestBody:
-  content:
-    application/json:
-      schema:
-        anyOf:
-        - $ref: ../../../../components/schemas/items.yaml
 responses:
   '200':
     description: Successful request, Returns the item object with the new state after save.
