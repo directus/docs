@@ -1,5 +1,8 @@
 summary: Update Multiple Folders
-description: Update multiple folders at the same time.
+description: |
+  Update multiple folders at the same time.
+
+  Any files in these folders will be moved to the root folder.
 security: []
 tags:
 - Folders
@@ -17,6 +20,9 @@ requestBody:
     application/json:
       schema:
         type: object
+        required:
+          - data
+          - keys
         properties:
           data:
             type: object
@@ -30,7 +36,7 @@ requestBody:
                 description: Unique identifier of the parent folder. This allows for
                   nested folders.
             required:
-            - name
+              - name
           keys:
             type: array
             items:
