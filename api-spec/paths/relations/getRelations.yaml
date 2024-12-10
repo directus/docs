@@ -1,5 +1,8 @@
 summary: List Relations
-description: List all relations that exist in Directus.
+description: |
+  List all relations that exist in Directus.
+
+  The data returned in this endpoint will be filtered based on the user's permissions. For example, relations that apply to a collection that the current user doesn't have access to are stripped out.
 operationId: getRelations
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
