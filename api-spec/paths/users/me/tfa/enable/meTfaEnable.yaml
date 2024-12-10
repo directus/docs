@@ -19,12 +19,6 @@ requestBody:
 responses:
   '204':
     description: Successful request
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            data: {}
   '401':
     $ref: ../../../../../components/responses.yaml#/UnauthorizedError
   '404':

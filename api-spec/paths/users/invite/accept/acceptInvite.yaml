@@ -7,6 +7,9 @@ requestBody:
     application/json:
       schema:
         type: object
+        required:
+          - token
+          - password
         properties:
           token:
             type: string
@@ -18,15 +21,8 @@ requestBody:
             format: password
             example: d1r3ctu5
 responses:
-  '200':
+  '204':
     description: Successful request
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            data:
-              $ref: ../../../../components/schemas/users.yaml
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

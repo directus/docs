@@ -12,9 +12,19 @@ requestBody:
         required:
           - email
           - password
-        anyOf:
-          - $ref: ../../../components/schemas/users.yaml
         properties:
+          email:
+            type: string
+            description: 'Email for the new user.'
+          password:
+            type: string
+            description: 'Password for the new user.'
+          first_name:
+            type: string
+            description: 'First name for the new user.'
+          last_name:
+            type: string
+            description: 'Last name for the new user.'
           verification_url:
             type: string
             description: 'Provide a custom verification url which the link in the email will lead to. The verification token will be passed as a parameter. Note: You need to configure the USER_REGISTER_URL_ALLOW_LIST environment variable to enable this feature.'

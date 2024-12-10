@@ -1,5 +1,5 @@
-summary: Create Multiple User
-description: Create multiple new user.
+summary: Create Multiple Users
+description: Create multiple new users.
 operationId: createUsers
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
@@ -11,13 +11,11 @@ parameters:
 - $ref: ../../components/parameters.yaml#/Search
 - $ref: ../../components/parameters.yaml#/Page
 requestBody:
+  description: "`email` and `password` are required."
   content:
     application/json:
       schema:
         type: object
-        required:
-          - email
-          - password
         properties:
           data:
             type: array

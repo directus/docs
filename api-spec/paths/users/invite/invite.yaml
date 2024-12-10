@@ -1,5 +1,5 @@
-summary: Invite User(s)
-description: Invites one or more users to this project. It creates a user with an
+summary: Invite User
+description: Invites a user to this project. It creates a user with an
   invited status, and then sends an email to the user with instructions on how to
   activate their account.
 operationId: invite
@@ -13,16 +13,11 @@ requestBody:
           - role
         properties:
           email:
-            oneOf:
-              - type: string
-                description: Email addres of the to-be-invited user.
-              - type: array
-                description: Array of email addresses of the to-be-invited users.
+            type: string
+            description: Email address of the to-be-invited user.
           role:
             description: Role of the new user
             type: string
-            oneOf:
-              - $ref: ../../../components/schemas/roles.yaml
           invite_url:
               description: 'Provide a custom invite url which the link in the email will lead to. The invite token will be passed as a parameter. Note: You need to configure the USER_INVITE_URL_ALLOW_LIST environment variable to enable this feature.'
               type: string
@@ -30,12 +25,6 @@ requestBody:
 responses:
   '204':
     description: Successful request
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            data: {}
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':
