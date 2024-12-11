@@ -1,5 +1,10 @@
 summary: Create a Collection
-description: Create a new collection in Directus.
+description: |
+  Create a new collection in Directus.
+
+  The `collection` and `schema` properties are required. To create a collection folder that doesn't have an underlying table, you can set `schema` to `null`.
+
+  You are able to provide an array of `fields` to be created during the creation of the collection. See the fields object for more information on what properties are available in a field.
 operationId: createCollection
 parameters:
 - $ref: ../../components/parameters.yaml#/Meta

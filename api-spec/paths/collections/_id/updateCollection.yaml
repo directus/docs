@@ -1,5 +1,8 @@
 summary: Update a Collection
-description: Update the metadata for an existing collection.
+description: |
+  Update the metadata for an existing collection.
+
+  You can only update the `meta` values of the collection object. Updating the collection name is not supported at this time.
 operationId: updateCollection
 parameters:
 - name: id
