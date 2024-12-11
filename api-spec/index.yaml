@@ -259,7 +259,7 @@ tags:
     description: Settings are key-value pairs that are stored in the database, and control different aspects of the project. Only administrators have access to manage Settings.
     x-collection: directus_settings
   - name: Permissions
-    description: Permissions control who has access to what and when.
+    description: Permissions are assigned to Policies, and control data access throughout the platform. [Learn more about permissions](/auth/access-control).
     x-collection: directus_permissions
   - name: Collections
     description: Collections are the individual collections of items, similar to tables in a database. Changes to collections will alter the schema of the database.

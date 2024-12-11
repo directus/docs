@@ -1,5 +1,5 @@
-summary: Update a Permission
-description: Update an existing permission
+summary: Update a Permission Rule
+description: Update an existing permission rule
 operationId: updatePermission
 parameters:
 - $ref: ../../../components/parameters.yaml#/Id

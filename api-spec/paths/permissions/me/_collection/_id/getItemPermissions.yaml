@@ -1,5 +1,8 @@
 summary: Check Permissions for a Specific Item
-description:  Check the current user's permissions on a specific item.
+description:  |
+  Check the current user's permissions on a specific item.
+
+  For a singleton where update access is given, the presets and fields properties from the corresponding update permission are additionally returned:
 operationId: readItemPermissions
 parameters:
   - $ref: ../../../../../components/parameters.yaml#/Collection
@@ -7,6 +10,27 @@ parameters:
 responses:
   '200':
     description: Successful request
+    content:
+      application/json:
+        examples:
+          collection:
+            data:
+              update:
+                access: boolean
+              delete:
+                access: boolean
+              share:
+                access: boolean
+          singleton:
+            data:
+              update:
+                access: boolean
+                presets: permission_presets
+                fields: permission_fields
+              delete:
+                access: boolean
+              share:
+                access: boolean
   '401':
     $ref: ../../../../../components/responses.yaml#/UnauthorizedError
   '404':

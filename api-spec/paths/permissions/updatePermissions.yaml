@@ -1,4 +1,4 @@
-summary: Update Multiple Permissions
+summary: Update Multiple Permission Rules
 description: Update multiple permissions at the same time.
 security: []
 tags:
@@ -17,6 +17,9 @@ requestBody:
     application/json:
       schema:
         type: object
+        required:
+          - data
+          - keys
         properties:
           data:
             $ref: ../../components/schemas/permissions.yaml

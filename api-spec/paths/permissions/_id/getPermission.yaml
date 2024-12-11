@@ -1,5 +1,5 @@
-summary: Retrieve a Permission
-description: Retrieve a single permissions object by unique identifier.
+summary: Retrieve a Permission Rule
+description: Retrieve a single permission rules object by unique identifier.
 operationId: getPermission
 parameters:
 - $ref: ../../../components/parameters.yaml#/Id
