@@ -1,5 +1,5 @@
-summary: Update an Extension
-description: Update an existing extension.
+summary: Update an Extension Bundle
+description: Update an existing extension bundle.
 operationId: updateExtensionBundle
 parameters:
 - in: path
