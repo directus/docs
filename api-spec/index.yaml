@@ -256,7 +256,7 @@ tags:
     description: Webhooks.
     x-collection: directus_webhooks
   - name: Settings
-    description: Settings control the way the platform works and acts.
+    description: Settings are key-value pairs that are stored in the database, and control different aspects of the project. Only administrators have access to manage Settings.
     x-collection: directus_settings
   - name: Permissions
     description: Permissions control who has access to what and when.
@@ -273,4 +273,3 @@ tags:
   - name: Roles
     description: Roles are groups of users that share permissions.
     x-collection: directus_roles
-
