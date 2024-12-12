@@ -273,6 +273,9 @@ tags:
     x-collection: directus_settings
   - name: Server
     description: Access to where Directus runs. Allows you to make sure your server has everything needed to run the platform, and check what kind of latency we're dealing with.
+  - name: Translations
+    description: Custom translations in Directus.
+    x-collection: directus_translations
   - name: Utilities
     description: Directus comes with various utility endpoints you can use to simplify your development flow.
     x-authentication: user
