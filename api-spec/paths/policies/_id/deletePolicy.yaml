@@ -1,11 +1,12 @@
 
-summary: Delete an policy
+summary: Delete a policy
 description: Delete an existing policy.
 operationId: deletePolicy
 parameters:
 - name: id
   in: path
   description: Unique identifier of the policy.
+  required: true
   schema:
     type: string
 responses:

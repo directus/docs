@@ -235,12 +235,18 @@ tags:
   - name: Operations
     description: Operations are the building blocks within Data Flows.
     x-collection: directus_operations
-  - name: notifications
+  - name: Notifications
     description: Notifications allow you to send/receive messages to/from other users of the platform.
     x-collection: directus_notifications
+  - name: Panels
+    description: Panels are modular units of data visualization that exist within the Insights module. Each panel exists within a Dashboard and can be positioned and resized as needed.
+    x-collection: directus_panels
   - name: Permissions
     description: Permissions are assigned to Policies, and control data access throughout the platform. [Learn more about permissions](/auth/access-control).
     x-collection: directus_permissions
+  - name: Policies
+    description: Policies define a specific set of access permissions, and are a composable unit that can be assigned to both roles and users.
+    x-collection: directus_policies
   - name: Presets
     description: Presets hold the preferences of individual users of the platform. This allows Directus to show and maintain custom item listings for users of the app.
     x-collection: directus_presets

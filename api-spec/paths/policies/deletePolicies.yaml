@@ -3,17 +3,13 @@ summary: Delete Multiple policies
 description: Delete multiple existing policies.
 operationId: deletePolicies
 requestBody:
+  description: An array of policy primary keys.
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../components/schemas/policies.yaml
-          keys:
-            type: array
-            items:
-              type: string
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.
