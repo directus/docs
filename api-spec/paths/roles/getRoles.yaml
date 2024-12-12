@@ -1,5 +1,5 @@
 summary: List Roles
-description: List the roles.
+description: List all roles that exist in Directus.
 operationId: getRoles
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields

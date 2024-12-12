@@ -271,5 +271,5 @@ tags:
     description: Presets hold the preferences of individual users of the platform. This allows Directus to show and maintain custom item listings for users of the app.
     x-collection: directus_presets
   - name: Roles
-    description: Roles are groups of users that share permissions.
+    description: Roles are the primary organizational structure for users within the platform.
     x-collection: directus_roles
