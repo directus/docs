@@ -17,6 +17,9 @@ requestBody:
     application/json:
       schema:
         type: object
+        required:
+          - data
+          - keys
         properties:
           data:
             anyOf:
