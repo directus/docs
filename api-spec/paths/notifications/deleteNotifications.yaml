@@ -11,17 +11,13 @@ parameters:
 - $ref: ../../components/parameters.yaml#/Filter
 - $ref: ../../components/parameters.yaml#/Search
 requestBody:
+  description: An array of notification primary keys.
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../components/schemas/notifications.yaml
-          keys:
-            type: array
-            items:
-              type: string
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.

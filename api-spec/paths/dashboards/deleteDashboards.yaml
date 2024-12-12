@@ -3,17 +3,13 @@ summary: Delete Multiple Dashboards
 description: Delete multiple existing dashboards.
 operationId: deleteDashboards
 requestBody:
+  description: An array of dashboard primary keys.
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../components/schemas/dashboards.yaml
-          keys:
-            type: array
-            items:
-              type: string
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.

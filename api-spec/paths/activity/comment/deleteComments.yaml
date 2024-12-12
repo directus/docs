@@ -3,17 +3,13 @@ summary: Delete Multiple Comments
 description: Delete multiple existing Comments.
 operationId: deleteComments
 requestBody:
+  description: An array of comment primary keys.
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../../components/schemas/comments.yaml
-          keys:
-            type: array
-            items:
-              type: string
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.

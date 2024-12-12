@@ -14,14 +14,16 @@ requestBody:
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../../components/schemas/items.yaml
-          keys:
-            type: array
+        anyOf:
+          - type: array
+            description: Primary keys of items to be deleted.
             items:
               type: string
+          - type: object
+            description: Object containing either `keys` or `query` to selected what items to update.
+            data:
+              keys:
+              items:
 responses:
   '204':
     description: The resource was deleted successfully.

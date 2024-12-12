@@ -3,17 +3,13 @@ summary: Delete Multiple Translations
 description: Delete multiple existing translations.
 operationId: deleteTranslations
 requestBody:
+  description: An array of translation primary keys.
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../components/schemas/translations.yaml
-          keys:
-            type: array
-            items:
-              type: string
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.

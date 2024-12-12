@@ -3,17 +3,13 @@ summary: Delete Multiple panels
 description: Delete multiple existing panels.
 operationId: deletePanels
 requestBody:
+  description: An array of panel primary keys.
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../components/schemas/panels.yaml
-          keys:
-            type: array
-            items:
-              type: string
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.

@@ -4,6 +4,14 @@ security: []
 tags:
 - Files
 operationId: deleteFiles
+requestBody:
+  description: An array of file primary keys.
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.
