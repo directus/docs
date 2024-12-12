@@ -1,5 +1,8 @@
 summary: Update Singleton
-description: Update a singleton item.
+description: |
+  Update a singleton item.
+
+  The REST and GraphQL requests for singletons are the same as those used to Update Multiple Items but in contrast the request should consist of the plain item object.
 operationId: updateSingleton
 parameters:
 - $ref: ../../../../components/parameters.yaml#/Collection

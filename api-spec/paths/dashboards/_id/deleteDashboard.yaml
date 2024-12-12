@@ -1,11 +1,12 @@
 
-summary: Delete an Dashboard
+summary: Delete a Dashboard
 description: Delete an existing dashboard.
 operationId: deleteDashboard
 parameters:
 - name: id
   in: path
   description: Unique identifier of the dashboard.
+  required: true
   schema:
     type: string
 responses:

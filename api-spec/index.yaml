@@ -202,16 +202,62 @@ components:
     $ref: components/schemas/_index.yaml
 security: []
 tags:
+  - name: Activity
+    description: All events that happen within Directus are tracked and stored in the activities collection. This gives you full accountability over everything that happens.
+    x-collection: directus_activity
   - name: Assets
     description: Image typed files can be dynamically resized and transformed to fit any need.
   - name: Authentication
     description: All data within the platform is private by default. The public role can be configured to expose data without authentication, or you can pass an access token to the API to access private data.
+  - name: Collections
+    description: Collections are the individual collections of items, similar to tables in a database. Changes to collections will alter the schema of the database.
+    x-collection: directus_collections
+  - name: Dashboards
+    description: Dashboards within the Insights module organize different Panels into an at-a-glance view. They can be used to group data based on department, objective, business process or anything you choose.
+  - name: Extensions
+    description: Directus can easily be extended through the addition of several types of extensions, including layouts, interfaces, and modules.
+    x-collection: directus_extensions
+  - name: Fields
+    description: Fields are individual pieces of content within an item. They are mapped to columns in the database.
+    x-collection: directus_fields
+  - name: Files
+    description: Every file managed by the platform is uploaded to the configured storage adapter, and its associated metadata is tracked within the `directus_files` system collection. Any requested file transformations are handled on the fly, and are only saved to storage.
+    x-collection: directus_files
+  - name: Folders
+    description: Folders can be used to organize files within the platform. Folders are virtual, and aren't mirrored within the storage adapter.
+    x-collection: directus_folders
+  - name: Flows
+    description: Flows enable custom, event-driven data processing and task automation.
+    x-collection: directus_flows
+  - name: Items
+    description: Items are individual pieces of data in your database. They can be anything, from articles, to IoT status checks.
+  - name: Operations
+    description: Operations are the building blocks within Data Flows.
+    x-collection: directus_operations
+  - name: Permissions
+    description: Permissions are assigned to Policies, and control data access throughout the platform. [Learn more about permissions](/auth/access-control).
+    x-collection: directus_permissions
+  - name: Presets
+    description: Presets hold the preferences of individual users of the platform. This allows Directus to show and maintain custom item listings for users of the app.
+    x-collection: directus_presets
+  - name: Relations
+    description: What data is linked to what other data. Allows you to assign authors to articles, products to sales, and whatever other structures you can think of.
+    x-collection: directus_relations
+  - name: Revisions
+    description: Revisions are individual changes to items made. Directus keeps track of changes made, so you're able to revert to a previous state at will.
+    x-collection: directus_revisions
+  - name: Roles
+    description: Roles are the primary organizational structure for users within the platform.
+    x-collection: directus_roles
   - name: Schema
     description: Retrieve and update the schema of an instance.
     x-authentication: admin
     x-schemas:
       - Schema
       - Diff
+  - name: Settings
+    description: Settings are key-value pairs that are stored in the database, and control different aspects of the project. Only administrators have access to manage Settings.
+    x-collection: directus_settings
   - name: Server
     description: Access to where Directus runs. Allows you to make sure your server has everything needed to run the platform, and check what kind of latency we're dealing with.
   - name: Utilities
@@ -222,54 +268,12 @@ tags:
       - Folders
       - Users
       - Roles
-  - name: Folders
-    description: Folders can be used to organize files within the platform. Folders are virtual, and aren't mirrored within the storage adapter.
-    x-collection: directus_folders
-  - name: Relations
-    description: What data is linked to what other data. Allows you to assign authors to articles, products to sales, and whatever other structures you can think of.
-    x-collection: directus_relations
-  - name: Files
-    description: Every file managed by the platform is uploaded to the configured storage adapter, and its associated metadata is tracked within the `directus_files` system collection. Any requested file transformations are handled on the fly, and are only saved to storage.
-    x-collection: directus_files
-  - name: Fields
-    description: Fields are individual pieces of content within an item. They are mapped to columns in the database.
-    x-collection: directus_fields
-  - name: Operations
-    description: Operations are the building blocks within Data Flows.
-    x-collection: directus_operations
-  - name: Versions
-    description: Enables users to create unpublished copies of an item, modify them independently from the main version, and promote them to become the new main version when ready.
-    x-collection: directus_versions
-  - name: Revisions
-    description: Revisions are individual changes to items made. Directus keeps track of changes made, so you're able to revert to a previous state at will.
-    x-collection: directus_revisions
   - name: Users
     description: Directus Users are the individual accounts that let you authenticate into the API and App. Each user can belong to a Role.
     x-collection: directus_users
-  - name: Extensions
-    description: Directus can easily be extended through the addition of several types of extensions, including layouts, interfaces, and modules.
-    x-collection: directus_extensions
-  - name: Activity
-    description: All events that happen within Directus are tracked and stored in the activities collection. This gives you full accountability over everything that happens.
-    x-collection: directus_activity
+  - name: Versions
+    description: Enables users to create unpublished copies of an item, modify them independently from the main version, and promote them to become the new main version when ready.
+    x-collection: directus_versions
   - name: Webhooks
     description: Webhooks.
     x-collection: directus_webhooks
-  - name: Settings
-    description: Settings are key-value pairs that are stored in the database, and control different aspects of the project. Only administrators have access to manage Settings.
-    x-collection: directus_settings
-  - name: Permissions
-    description: Permissions are assigned to Policies, and control data access throughout the platform. [Learn more about permissions](/auth/access-control).
-    x-collection: directus_permissions
-  - name: Collections
-    description: Collections are the individual collections of items, similar to tables in a database. Changes to collections will alter the schema of the database.
-    x-collection: directus_collections
-  - name: Flows
-    description: Flows enable custom, event-driven data processing and task automation.
-    x-collection: directus_flows
-  - name: Presets
-    description: Presets hold the preferences of individual users of the platform. This allows Directus to show and maintain custom item listings for users of the app.
-    x-collection: directus_presets
-  - name: Roles
-    description: Roles are the primary organizational structure for users within the platform.
-    x-collection: directus_roles

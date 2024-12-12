@@ -5,6 +5,7 @@ parameters:
 - name: id
   in: path
   description: Unique identifier of the item.
+  required: true
   schema:
     type: string
 - $ref: ../../../../components/parameters.yaml#/Collection

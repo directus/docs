@@ -1,6 +1,8 @@
+summary: Retrieve a Singleton
+description: |
+  Retrieves a singleton of a given collection.
 
-summary: Retrieve an Singleton
-description: Retrieves a singleton of a given collection.
+  The REST and GraphQL requests for singletons are the same as those used to Get Items but in contrast the response consists of a plain item object (the singleton) instead of an array of items.
 operationId: getSingleton
 parameters:
 - $ref: ../../../../components/parameters.yaml#/Collection
