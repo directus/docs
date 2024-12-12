@@ -265,6 +265,9 @@ tags:
     x-schemas:
       - Schema
       - Diff
+  - name: Shares
+    description: Shares are a way to publicly share an otherwise private item.
+    x-collection: directus_shares
   - name: Settings
     description: Settings are key-value pairs that are stored in the database, and control different aspects of the project. Only administrators have access to manage Settings.
     x-collection: directus_settings

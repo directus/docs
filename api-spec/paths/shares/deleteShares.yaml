@@ -3,17 +3,13 @@ summary: Delete Multiple shares
 description: Delete multiple existing shares.
 operationId: deleteShares
 requestBody:
+  description: An array of share primary keys.
   content:
     application/json:
       schema:
-        type: object
-        properties:
-          data:
-            $ref: ../../components/schemas/shares.yaml
-          keys:
-            type: array
-            items:
-              type: string
+        type: array
+        items:
+          type: string
 responses:
   '204':
     description: The resource was deleted successfully.

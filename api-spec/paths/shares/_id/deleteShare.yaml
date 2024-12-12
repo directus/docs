@@ -5,6 +5,7 @@ operationId: deleteShare
 parameters:
 - name: id
   in: path
+  required: true
   description: Unique identifier of the share.
   schema:
     type: string
