@@ -290,6 +290,3 @@ tags:
   - name: Versions
     description: Enables users to create unpublished copies of an item, modify them independently from the main version, and promote them to become the new main version when ready.
     x-collection: directus_versions
-  - name: Webhooks
-    description: Webhooks.
-    x-collection: directus_webhooks
