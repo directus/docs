@@ -40,7 +40,7 @@ responses:
     $ref: ../../components/responses.yaml#/NotFoundError
 security: []
 tags:
-- Items
+- Operations
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

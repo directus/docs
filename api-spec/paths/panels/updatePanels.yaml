@@ -15,6 +15,9 @@ requestBody:
     application/json:
       schema:
         type: object
+        required:
+          - keys
+          - data
         properties:
           data:
             $ref: ../../components/schemas/panels.yaml

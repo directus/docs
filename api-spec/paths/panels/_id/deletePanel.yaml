@@ -6,6 +6,7 @@ parameters:
 - name: id
   in: path
   description: Unique identifier of the panel.
+  required: true
   schema:
     type: string
 responses:

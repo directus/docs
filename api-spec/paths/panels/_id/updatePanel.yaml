@@ -32,7 +32,7 @@ responses:
     $ref: ../../../components/responses.yaml#/NotFoundError
 security: []
 tags:
-- panels
+- Panels
 x-codeSamples:
   - label: Directus SDK
     lang: JavaScript
