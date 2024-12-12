@@ -231,9 +231,13 @@ tags:
     x-collection: directus_flows
   - name: Items
     description: Items are individual pieces of data in your database. They can be anything, from articles, to IoT status checks.
+    x-collection: directus_items
   - name: Operations
     description: Operations are the building blocks within Data Flows.
     x-collection: directus_operations
+  - name: notifications
+    description: Notifications allow you to send/receive messages to/from other users of the platform.
+    x-collection: directus_notifications
   - name: Permissions
     description: Permissions are assigned to Policies, and control data access throughout the platform. [Learn more about permissions](/auth/access-control).
     x-collection: directus_permissions
