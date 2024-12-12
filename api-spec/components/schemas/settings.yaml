@@ -144,10 +144,8 @@ properties:
     type: array
     nullable: true
   project_descriptor:
+    description: Descriptor of the project, shown in the Data Studio.
     nullable: true
-    type: string
-  default_language:
-    nullable: false
     type: string
   custom_aspect_ratios:
     description: Custom aspect ratios in the image editor.
@@ -184,7 +182,41 @@ properties:
     type: object
     nullable: true
   report_error_url:
-    description:  Link to the error report page. This is a template URL that has access to the following object
+    description: |
+      Link to the error report page. This is a template URL that has access to the following object
+
+      ```
+        {
+          error: {
+            name?: string;
+            message?: string;
+          };
+          route: {
+            fullPath: string;
+            hash: string;
+            name: string;
+            path: string;
+            query: string;
+          };
+          navigator: {
+            language: string;
+            userAgent: string;
+          };
+          user: {
+            id?: string | number;
+            first_name?: string;
+            last_name?: string;
+            title?: string;
+            description?: string;
+            location?: string;
+            status?: string;
+          };
+          role: {
+            id?: string;
+            name?: string;
+          };
+        }
+      ```
     nullable: true
     type: string
   report_bug_url:
@@ -195,23 +227,4 @@ properties:
     description: Link to the feature request page.
     nullable: true
     type: string
-  public_registration:
-    nullable: false
-    description: $t:fields.directus_settings.public_registration_note
-    type: boolean
-  public_registration_verify_email:
-    nullable: false
-    description: $t:fields.directus_settings.public_registration_verify_email_note
-    type: boolean
-  public_registration_role:
-    nullable: true
-    description: $t:fields.directus_settings.public_registration_role_note
-    type: string
-    format: uuid
-    oneOf:
-      - $ref: roles.yaml
-  public_registration_email_filter:
-    type: string
-    nullable: true
-    description: $t:fields.directus_settings.public_registration_email_filter_note
 x-collection: directus_settings

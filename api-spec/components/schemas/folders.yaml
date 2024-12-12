@@ -11,7 +11,14 @@ properties:
     type: string
   parent:
     description: Unique identifier of the parent folder. This allows for nested folders.
-    example: null
+    example: |
+      {
+        "data": {
+          "id": "fc02d733-95b8-4e27-bd4b-08a32cbe4e66",
+          "name": "Test",
+          "parent": null
+        }
+      }
     type: string
     oneOf:
       - $ref: folders.yaml

@@ -8,7 +8,7 @@ description: |
 operationId: getUserPermissions
 responses:
   '200':
-    description: The request was successful.
+    description: The request was
     content:
       application/json:
         examples:
