@@ -91,7 +91,6 @@ const boxes = [
 
 .box {
 	background-position: center top;
-	border: 1px solid var(--border);
 	border-radius: calc(var(--border-radius) * 2);
 	padding: 1.5rem;
 	color: white;
