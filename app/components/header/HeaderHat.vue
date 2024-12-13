@@ -64,9 +64,6 @@ const { data } = await useAsyncData('appConfig', appConfig);
 	column-gap: 1rem;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
-	position: sticky;
-	top: 0px;
-	z-index: 900;
 
 	@media (max-width: 768px) {
 		border-bottom: 1px solid var(--border);
