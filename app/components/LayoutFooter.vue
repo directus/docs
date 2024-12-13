@@ -11,10 +11,10 @@ const year = new Date().getFullYear();
 		v-if="data?.footer"
 		class="lined-wrap"
 	>
-		<div class="container base-container footer-container">
+		<div>
 			<footer class="footer">
 				<nav
-					class="primary"
+					class="primary container base-container footer-container"
 				>
 					<ul>
 						<li class="logo">
@@ -52,7 +52,7 @@ const year = new Date().getFullYear();
 
 				<div class="base-divider" />
 
-				<nav class="secondary">
+				<nav class="secondary container base-container">
 					<small>&copy;{{ year }} Monospace Inc</small>
 
 					<ul
@@ -231,6 +231,7 @@ const year = new Date().getFullYear();
 		color: var(--typography-subdued);
 		text-decoration: none;
 		transition: color var(--duration-150) var(--ease-out);
+		font-size: var(--font-size-sm);
 
 		&:hover {
 			transition: none;
@@ -243,6 +244,7 @@ const year = new Date().getFullYear();
 		--columns: 1;
 		--column-size: 1fr;
 
+		padding-block-end: 2rem;
 		display: grid;
 		row-gap: var(--space-9);
 		grid-template-columns: repeat(var(--columns), var(--column-size));
@@ -270,6 +272,10 @@ const year = new Date().getFullYear();
 
 		.description {
 			color: var(--typography-subdued);
+
+			line-height: 1.5;
+			font-size: 14px;
+			text-wrap: balance;
 		}
 
 		@media (width > 25rem) {
@@ -293,7 +299,7 @@ const year = new Date().getFullYear();
 		}
 
 		@media (width > 75rem) {
-			margin-block-end: var(--space-5);
+			margin-block-end: var(--space-4);
 		}
 	}
 
@@ -320,6 +326,7 @@ const year = new Date().getFullYear();
 
 	.secondary {
 		color: var(--typography-subdued);
+		padding-block: var(--space-4);
 
 		@media (width > 60rem) {
 			display: flex;
