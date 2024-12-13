@@ -83,7 +83,6 @@ const buttonProps = computed(() => {
 
 	&:disabled {
 		cursor: not-allowed;
-		opacity: 0.75;
 	}
 }
 
