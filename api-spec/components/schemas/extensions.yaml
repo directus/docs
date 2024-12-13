@@ -42,4 +42,4 @@ properties:
         }
       ```
     type: boolean
-x`-collection: directus_extensions
+x-collection: directus_extensions

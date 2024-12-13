@@ -16,7 +16,7 @@ responses:
       application/json:
         examples:
           collection:
-            data:
+            value:
               update:
                 access: boolean
               delete:
@@ -24,7 +24,7 @@ responses:
               share:
                 access: boolean
           singleton:
-            data:
+            value:
               update:
                 access: boolean
                 presets: permission_presets

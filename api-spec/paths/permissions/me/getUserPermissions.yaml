@@ -8,12 +8,12 @@ description: |
 operationId: getUserPermissions
 responses:
   '200':
-    description: The request was
+    description: The request was successful.
     content:
       application/json:
         examples:
           example:
-            data:
+            value:
               "<collection>":
                 create:
                   access: "none | partial | full"

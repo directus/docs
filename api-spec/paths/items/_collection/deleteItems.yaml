@@ -21,9 +21,13 @@ requestBody:
               type: string
           - type: object
             description: Object containing either `keys` or `query` to selected what items to update.
-            data:
+            properties:
               keys:
+                type: array
+                items:
+                  type: string
               items:
+                type: object
 responses:
   '204':
     description: The resource was deleted successfully.
