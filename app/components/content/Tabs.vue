@@ -86,7 +86,7 @@ const tabs = computed(() => {
 	border-bottom: 1px solid var(--border-subdued);
 	margin-bottom: -1px;
 	cursor: pointer;
-	padding: 0.5rem 0.75rem;
+	padding: 0.5rem 1rem;
 	font-weight: 500;
 	user-select: none;
 	display: flex;
