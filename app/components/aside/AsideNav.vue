@@ -40,14 +40,13 @@ const navigation = computed(() => {
 		<section
 			v-for="section of navigation"
 			:key="section._path"
-			style="margin-bottom: 2rem"
 		>
-			<span
+			<p
 				v-if="section.children"
 				class="section-title"
 			>
 				{{ section.title }}
-			</span>
+			</p>
 			<nav>
 				<NavTree
 					v-if="section.children"
@@ -59,3 +58,13 @@ const navigation = computed(() => {
 		</section>
 	</nav>
 </template>
+
+<style scoped>
+section {
+	margin-bottom: 2rem;
+}
+
+.section-title {
+	margin-bottom: 0.6rem;
+}
+</style>

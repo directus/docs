@@ -10,8 +10,10 @@ const list = props.toc.links.map(link => ({
 </script>
 
 <template>
-	<div class="toc">
-		<span class="section-title">On This Page</span>
+	<div>
+		<p class="section-title">
+			On This Page
+		</p>
 		<nav>
 			<ol>
 				<li
@@ -35,10 +37,12 @@ ol {
 	list-style-type: none;
 	margin: 0;
 }
+
 a {
 	display: block;
 	text-decoration: none;
 	margin-top: 0.5rem;
+	font-size: 14px;
 }
 
 a:hover {
