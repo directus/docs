@@ -69,7 +69,7 @@ const { data } = await useAsyncData('appConfig', appConfig);
 	z-index: 900;
 
 	@media (max-width: 768px) {
-		border-bottom: 2px solid var(--border);
+		border-bottom: 1px solid var(--border);
 		background-color: var(--background);
 	}
 }

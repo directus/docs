@@ -55,8 +55,8 @@ defineProps<{
 
 @media (min-width: 1024px) {
 	.article-grid-area {
-		border-right: 2px solid var(--border);
-		padding-right: 2rem;
+		border-right: 1px solid var(--border);
+		padding-right: 1rem;
 	}
 }
 

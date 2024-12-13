@@ -222,7 +222,7 @@ ul {
 	justify-content: center;
 	align-items: center;
 	margin-right: 10px;
-	border: 2px solid var(--border-subdued);
+	border: 1px solid var(--border-subdued);
 	color: var(--list-color)
 }
 
@@ -239,11 +239,11 @@ ul {
 }
 
 .nav-item:hover .nav-icon {
-	border: 2px solid var(--list-color, var(--typography));
+	border: 1px solid var(--list-color, var(--typography));
 }
 
 .nav-item.active .nav-icon {
-	border: 2px solid var(--list-color, var(--typography));
+	border: 1px solid var(--list-color, var(--typography));
 }
 
 .docs-nav-holder {

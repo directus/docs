@@ -88,7 +88,7 @@ const year = new Date().getFullYear();
 
 <style scoped lang="scss">
 .lined-wrap {
-	border-top: 2px solid var(--border);
+	border-top: 1px solid var(--border);
 }
 
 .base-container {
@@ -191,7 +191,7 @@ const year = new Date().getFullYear();
 	--base-divider-color: var(--border);
 
 	width: 100%;
-	border-top: 2px solid var(--base-divider-color);
+	border-top: 1px solid var(--base-divider-color);
 }
 
 .footer-container {
@@ -208,7 +208,7 @@ const year = new Date().getFullYear();
 
 	.page-section.bg-pristine-white + &,
 	.page-section.bg-pristine-white-lines + & {
-		border-top: 2px solid var(--border);
+		border-top: 1px solid var(--border);
 	}
 }
 

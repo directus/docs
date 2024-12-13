@@ -121,11 +121,11 @@ const isOpen = ref(false);
 
 .left-aside {
 	margin-top: 24px;
-	border-right: 2px solid var(--border);
+	border-right: 1px solid var(--border);
 }
 
 .left-aside-slide {
-	border-right: 2px solid var(--border);
+	border-right: 1px solid var(--border);
 }
 
 .main-content {
@@ -137,7 +137,7 @@ const isOpen = ref(false);
 	margin-top: 24px;
 	padding-left: 2rem;
 	padding-right: 1em;
-	border-left: 2px solid var(--border);
+	border-left: 1px solid var(--border);
 	display: flex;
 	flex-direction: column;
 	gap: 12px;

@@ -93,15 +93,15 @@ li div {
 .dark-mode .active-link {
 	color: var(--pink);
 	font-weight: 500;
-	border-right: 2px solid var(--pink);
-	margin-right: -2px;
+	border-right: 1px solid var(--pink);
+	margin-right: -1px;
 }
 
 .active-link {
 	color: var(--primary);
 	font-weight: 500;
-	border-right: 2px solid var(--primary);
-	margin-right: -2px;
+	border-right: 1px solid var(--primary);
+	margin-right: -1px;
 }
 
 .nested {

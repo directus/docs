@@ -264,7 +264,7 @@ main {
 	margin-top: 24px;
 	padding-left: 2rem;
 	padding-right: 1em;
-	border-left: 2px solid var(--border);
+	border-left: 1px solid var(--border);
 	display: flex;
 	flex-direction: column;
 	gap: calc(24px / 2);
