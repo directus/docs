@@ -64,11 +64,9 @@ async function subscribe() {
 
 <style scoped lang="scss">
 .newsletter {
-	background-image: url("~/assets/img/pink-cta-bg.svg");
 	background-position: center top;
-	border-radius: calc(var(--border-radius) * 2);
 	padding: 0.75rem;
-	color: white;
+	border: 1px solid var(--border);
 
 	h2 {
 		font-weight: 600;
@@ -84,10 +82,8 @@ async function subscribe() {
 	input {
 		padding: 6px 8px;
 		width: 100%;
-		color: white;
 		border-radius: 6px;
 		border: 1px solid rgba(213, 220, 229, 0.50);
-		background: rgba(213, 220, 229, 0.20);
 		margin-bottom: 0.5rem;
 		font-size: 0.9rem;
 		font-weight: 500;
@@ -99,7 +95,6 @@ async function subscribe() {
 	}
 
 	input::placeholder {
-		color: white;
 		opacity: 0.75;
 	}
 }
