@@ -47,6 +47,7 @@
         "zod": "^3.23.8"
     },
     "devDependencies": {
+        "@nuxt/fonts": "0.10.3",
         "@redocly/cli": "^1.25.15",
         "@scalar/cli": "0.2.220",
         "nodemon": "^3.1.7",

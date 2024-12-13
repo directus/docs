@@ -12,6 +12,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/color-mode',
 		'nuxt-posthog',
 		'@nuxtjs/algolia',
+		'@nuxt/fonts',
 	],
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.scss'],
@@ -21,14 +22,14 @@ export default defineNuxtConfig({
 	site: {
 		name: 'Directus Docs',
 	},
-	colorMode: {
-		preference: 'system',
-		fallback: 'light',
-		storage: 'localStorage',
-		storageKey: 'nuxt-color-mode',
-		classSuffix: '',
-		dataValue: 'theme',
-	},
+	// colorMode: {
+	// 	preference: 'system',
+	// 	fallback: 'light',
+	// 	storage: 'localStorage',
+	// 	storageKey: 'nuxt-color-mode',
+	// 	classSuffix: '',
+	// 	dataValue: 'theme',
+	// },
 	content: {
 		highlight: {
 			theme: {
@@ -83,13 +84,7 @@ export default defineNuxtConfig({
 			},
 		},
 		navigation: {
-			fields: [
-				'root',
-				'tags',
-				'additional_paths',
-				'expandable',
-				'description',
-			],
+			fields: ['root', 'tags', 'additional_paths', 'expandable', 'description'],
 		},
 	},
 	runtimeConfig: {
@@ -147,6 +142,11 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	fonts: {
+		experimental: {
+			processCSSVariables: true,
+		},
+	},
 	icon: {
 		customCollections: [
 			{
@@ -174,9 +174,7 @@ export default defineNuxtConfig({
 		rateLimiter: false,
 		headers: {
 			crossOriginEmbedderPolicy:
-					process.env.NODE_ENV === 'development'
-						? 'unsafe-none'
-						: 'require-corp',
+				process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
 			contentSecurityPolicy: {
 				'img-src': [
 					'\'self\'',
