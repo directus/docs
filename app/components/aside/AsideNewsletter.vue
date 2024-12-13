@@ -66,7 +66,6 @@ async function subscribe() {
 .newsletter {
 	background-image: url("~/assets/img/pink-cta-bg.svg");
 	background-position: center top;
-	border: 1px solid var(--border);
 	border-radius: calc(var(--border-radius) * 2);
 	padding: 0.75rem;
 	color: white;
