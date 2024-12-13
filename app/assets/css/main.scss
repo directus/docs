@@ -2,6 +2,10 @@
 @use 'vars';
 @use 'colors';
 
+html {
+	font-size: 15px;
+}
+
 body {
 	background-color: var(--background);
 	font-family: var(--font--body);
@@ -60,8 +64,8 @@ pre {
 }
 
 .prose {
-	font-size: 0.9375rem;
 	line-height: 1.8;
+
 	h1 {
 		font-size: 2rem;
 	}
