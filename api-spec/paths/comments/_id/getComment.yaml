@@ -2,9 +2,9 @@ summary: Get Comment by ID
 description: Returns a single comment by primary key.
 operationId: getComment
 parameters:
-- $ref: ../../../../components/parameters.yaml#/Id
-- $ref: ../../../../components/parameters.yaml#/Fields
-- $ref: ../../../../components/parameters.yaml#/Meta
+- $ref: ../../../components/parameters.yaml#/Id
+- $ref: ../../../components/parameters.yaml#/Fields
+- $ref: ../../../components/parameters.yaml#/Meta
 responses:
   '200':
     description: Successful request
@@ -14,14 +14,14 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../../components/schemas/Comments.yaml
+              $ref: ../../../components/schemas/Comments.yaml
   '401':
-    $ref: ../../../../components/responses.yaml#/UnauthorizedError
+    $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':
-    $ref: ../../../../components/responses.yaml#/NotFoundError
+    $ref: ../../../components/responses.yaml#/NotFoundError
 security: []
 tags:
-- Activity
+- Comments
 x-codeSamples:
 - label: Directus SDK
   lang: JavaScript

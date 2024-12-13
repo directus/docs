@@ -15,10 +15,6 @@ paths:
     $ref: paths/activity/index.yaml
   "/activity/{id}":
     $ref: paths/activity/_id/index.yaml
-  "/activity/comment":
-    $ref: paths/activity/comment/index.yaml
-  "/activity/comment/{id}":
-    $ref: paths/activity/comment/_id/index.yaml
   "/assets/{id}":
     $ref: paths/assets/_id/index.yaml
   "/auth/login":
@@ -39,6 +35,10 @@ paths:
     $ref: paths/collections/index.yaml
   "/collections/{id}":
     $ref: paths/collections/_id/index.yaml
+  "/comments":
+    $ref: paths/comments/index.yaml
+  "/comments/{id}":
+    $ref: paths/comments/_id/index.yaml
   "/dashboards":
     $ref: paths/dashboards/index.yaml
   "/dashboards/{id}":
@@ -212,6 +212,9 @@ tags:
   - name: Collections
     description: Collections are the individual collections of items, similar to tables in a database. Changes to collections will alter the schema of the database.
     x-collection: directus_collections
+  - name: Comments
+    description: Comments are a collaboration tool and can be left on items from the sidebar.
+    x-collection: directus_comments
   - name: Dashboards
     description: Dashboards within the Insights module organize different Panels into an at-a-glance view. They can be used to group data based on department, objective, business process or anything you choose.
   - name: Extensions
