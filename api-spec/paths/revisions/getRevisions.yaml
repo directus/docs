@@ -1,5 +1,8 @@
 summary: List Revisions
-description: List the revisions.
+description: | 
+  List the revisions.
+
+  The data returned in this endpoint will be filtered based on the user's permissions. For example, revisions that apply to a collection that the current user doesn't have access to are stripped out.
 operationId: getRevisions
 parameters:
 - $ref: ../../components/parameters.yaml#/Fields
