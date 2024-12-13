@@ -57,86 +57,42 @@ const allArticlesFlattened = computed(() => {
 });
 
 const allTags = computed(() => {
-	const tags = new Set<ArticleTag>();
+	const tagIds = new Set<string>();
+	const tags: ArticleTags = [];
 	for (const article of allArticlesFlattened.value) {
 		if (article.tags) {
 			for (const tag of article.tags) {
-				tags.add(tag);
+				tagIds.add(tag.id);
+				tags.push(tag);
 			}
 		}
 	}
-	return Array.from(tags);
+	const tagIdsArray = Array.from(tagIds);
+
+	return tagIdsArray.map(tagId => tags.find(tag => tag.id === tagId)).filter(
+		(tag): tag is ArticleTag => tag !== undefined,
+	).sort(
+		(a, b) => a?.name?.localeCompare(b?.name || '') ?? 0,
+	);
 });
 
 const { selectedTags } = useTags();
 
 const filteredArticles = computed(() => {
-	if (!selectedTags.value.length || !allArticlesFlattened.value || selectedTags.value.length == 0) return allArticlesFlattened.value;
+	if (!selectedTags.value.length || !allArticlesFlattened.value || selectedTags.value.length == 0) return allArticlesFlattened.value.map(article => ({ ...article, description: null }));
 	return allArticlesFlattened.value.filter(article =>
-		article.tags?.some(tag => selectedTags.value.includes(tag.id)) ?? false,
-	);
+		article.tags?.some(tag => selectedTags.value.includes(tag.name)) ?? false,
+	).map(article => ({ ...article, description: null }));
 });
 </script>
 
 <template>
-	<div class="testing">
-		<main
-			v-if="data"
-			class="main-content"
-		>
-			<h1>
-				{{ area?.title }}
-			</h1>
-
-			<div class="flex-row">
-				<div
-					class="main-content"
-					style="flex-grow: 1;"
-				>
-					<ArticlesCategoryRow :categories="categories" />
-					<ArticlesGrid
-						:articles="filteredArticles"
-					/>
-				</div>
-
-				<div>
-					<ArticlesTags :all-tags="allTags" />
-				</div>
-			</div>
-		</main>
-	</div>
+	<DefaultLayout>
+		<ArticlesLayout
+			:title="area?.title || 'Articles'"
+			:categories="categories"
+			:articles="filteredArticles"
+			:tags="allTags"
+		/>
+	</DefaultLayout>
 </template>
-
-<style lang="scss" scoped>
-.testing {
-	padding: 1.5rem;
-}
-
-.tag {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-
-	&:hover {
-		cursor: pointer;
-		color: var(--purple)
-	}
-
-	&.selected {
-		color: var(--purple);
-	}
-}
-
-.flex-row {
-	display: flex;
-	gap: 1rem;
-	align-items: flex-start;
-}
-
-.main-content {
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	gap: 1rem;
-}
-</style>

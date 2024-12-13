@@ -3,9 +3,9 @@
 
 :root {
 
-	--font--body: 'IBM Plex Sans', sans-serif;
+	--font--body: 'Inter', sans-serif;
 	--font--header: 'Poppins', sans-serif;
-	--font--code: 'IBM Plex Mono', monospace;
+	--font--code: 'Fira Mono', monospace;
 
 	--width-md: 768px;
 	--width-lg: 1024px;
@@ -35,7 +35,7 @@
 	--area--community: var(--red);
 }
 
-.dark-mode {
+.dark {
 	--typography: var(--white);
 	--typography-subdued: color-mix(in hsl shorter hue, var(--white) 70%, var(--black) 30%);
 

@@ -22,6 +22,7 @@
 <style scoped>
 .directus-cloud {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1rem;
@@ -39,9 +40,6 @@ div {
 		width: 225px;
 		margin-bottom: 0.25rem;
 		margin-top: 0.25rem;
-	}
-	.button {
-		margin-bottom: 1rem;
 	}
 }
 p {

@@ -48,7 +48,8 @@ const props = withDefaults(
 const section = calloutDefinitions[props.type];
 
 function componentType() {
-	if (props.url && props.url.charAt(0) == '/') return resolveComponent('NuxtLink');
+	if (props.url && props.url.charAt(0) == '/')
+		return resolveComponent('NuxtLink');
 	if (props.url) return 'a';
 	else return 'div';
 }
@@ -60,7 +61,7 @@ const detailsOpen = ref(false);
 	<!-- TOGGLE -->
 	<details
 		v-if="toggleable"
-		class="callout info"
+		class="callout info toggleable"
 		@toggle="detailsOpen = !detailsOpen"
 	>
 		<summary>
@@ -79,11 +80,11 @@ const detailsOpen = ref(false);
 	<!-- STATIC -->
 	<component
 		:is="componentType()"
-		v-else
+		v-else-if="section"
 		:href="url"
 		class="callout"
 		:class="type"
-		:style="section.color ? `borderColor: ${section.color}` : ''"
+		:style="section.color ? `--callout-color: ${section.color}` : ''"
 	>
 		<Icon
 			:name="section.icon"
@@ -110,8 +111,25 @@ const detailsOpen = ref(false);
 </template>
 
 <style scoped lang="scss">
-.callout {
+.dark {
+	.callout.warning {
+		background-color: color-mix(
+			in hsl shorter hue,
+			rgba(0, 0, 0, 0.1) 75%,
+			var(--red-6) 25%
+		);
+		border-color: color-mix(
+			in hsl shorter hue,
+			rgba(0, 0, 0, 0) 60%,
+			var(--red-6) 40%
+		);
+	}
+}
+.callout.toggleable {
 	display: block;
+}
+
+.callout {
 	background: var(--background-subdued);
 	border: 1px solid var(--border-subdued);
 	padding: 1rem;
@@ -121,8 +139,10 @@ const detailsOpen = ref(false);
 	display: grid;
 	grid-template-columns: 2em auto;
 	&.warning {
-		background: var(--red-1)
+		background: var(--red-1);
+		border-color: var(--red-2);
 	}
+
 	&:after {
 		display: none !important;
 	}
@@ -131,10 +151,12 @@ const detailsOpen = ref(false);
 a.callout {
 	background: transparent;
 	grid-template-columns: 2em auto 2em;
-	border-style: dashed;
+	transition: border 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
 	&:hover {
 		border-style: solid;
 		cursor: pointer;
+		border: 1px solid var(--callout-color, var(--primary));
+		box-shadow: 0 0 0.5rem 0 color-mix(in srgb, var(--callout-color, var(--primary)) 15%, transparent);
 	}
 	.arrow {
 		margin-left: auto;
@@ -143,7 +165,7 @@ a.callout {
 }
 
 .icon.main {
-	margin-top: 4px;
+	margin-top: 7px;
 }
 
 details.callout {
@@ -158,7 +180,7 @@ details.callout {
 			margin-bottom: 0;
 		}
 		&::marker {
-			content: '';
+			content: "";
 		}
 		&:deep(+ *) {
 			margin-top: 1rem;

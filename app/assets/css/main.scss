@@ -6,6 +6,21 @@ body {
 	background-color: var(--background);
 	font-family: var(--font--body);
 	color: var(--typography);
+	max-width: 100vw;
+}
+
+.light {
+	color-scheme: light;
+}
+
+.dark {
+	color-scheme: dark;
+}
+
+html {
+	overflow: overlay;
+	scrollbar-color: var(--border-subtle) var(--background-subdued);
+	scrollbar-width: thin;
 }
 
 a {
@@ -34,6 +49,9 @@ pre {
 	padding: 0 24px;
 	margin-left: auto;
 	margin-right: auto;
+	@media (max-width: 768px) {
+		padding: 0 12px;
+	}
 }
 
 .container .container {
@@ -62,7 +80,7 @@ pre {
 			font-size: 1.1rem;
 		}
 	}
-	p, img, ul, ol, table, .TabsRoot {
+	p, img, ul, ol, .prose-table-wrapper, .TabsRoot {
 		margin-bottom: 1rem;
 	}
 	.box, .directus-cloud, .callout, .prose-pre {
@@ -74,7 +92,7 @@ pre {
 			margin-top: 0.5rem;
 		}
 	}
-	a:not(.callout):not([href*='directus.io']):not([href*='directus.cloud']):not([href*='localhost']):not([href*='127.0.0.1'])[href*='//']{
+	a:not(.article-card):not(.callout):not([href*='directus.io']):not([href*='directus.cloud']):not([href*='localhost']):not([href*='127.0.0.1'])[href*='//']{
 		display: inline-block;
 		&:after {
 			--size: 1rem;
@@ -84,7 +102,7 @@ pre {
 			background-size: var(--size);
 			width: var(--size);
 			height: var(--size);
-		}
+			vertical-align: sub;		}
 	}
 	img {
 		border-radius: var(--border-radius);
@@ -124,6 +142,12 @@ pre {
 	svg.icon {
 		margin-bottom: 4px;
 	}
+	video {
+		width: 100%;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		margin-bottom: 1rem;
+	}
 }
 
 .section-title {
@@ -131,4 +155,9 @@ pre {
 	text-transform: uppercase;
 	font-size: 14px;
 	font-weight: 500;
+}
+
+hr {
+	border: 0;
+	border-top: 2px solid var(--border);
 }
