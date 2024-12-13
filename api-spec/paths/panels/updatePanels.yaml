@@ -20,7 +20,7 @@ requestBody:
           - data
         properties:
           data:
-            $ref: ../../components/schemas/panels.yaml
+            $ref: ../../components/schemas/Panels.yaml
           keys:
             type: array
             items:
@@ -36,7 +36,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/panels.yaml
+                $ref: ../../components/schemas/Panels.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

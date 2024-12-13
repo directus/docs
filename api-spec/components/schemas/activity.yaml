@@ -17,7 +17,7 @@ properties:
     description: The user who performed this action. Many-to-one to users.
     type: string
     oneOf:
-      - $ref: users.yaml
+      - $ref: Users.yaml
     nullable: true
   timestamp:
     description: When the action happened.
@@ -38,7 +38,7 @@ properties:
     description: Collection identifier in which the item resides.
     oneOf:
       - type: string
-      - $ref: collections.yaml
+      - $ref: Collections.yaml
   item:
     description: Unique identifier for the item the action applied to. This is always a string, even for integer primary keys.
     example: '328'
@@ -58,5 +58,5 @@ properties:
     type: array
     items:
       oneOf:
-        - $ref: revisions.yaml
+        - $ref: Revisions.yaml
 x-collection: directus_activity

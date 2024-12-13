@@ -30,14 +30,14 @@ properties:
     example: null
     type: string
     oneOf:
-      - $ref: folders.yaml
+      - $ref: Folders.yaml
     nullable: true
   uploaded_by:
     description: Who uploaded the file.
     example: 63716273-0f29-4648-8a2a-2af2948f6f78
     oneOf:
       - type: string
-      - $ref: users.yaml
+      - $ref: Users.yaml
   created_on:
     description: When the file was created.
     example: 2019-12-03T00:10:15+00:00
@@ -47,7 +47,7 @@ properties:
     type: string
     format: uuid
     oneOf:
-      - $ref: users.yaml
+      - $ref: Users.yaml
     nullable: true
   modified_on:
     nullable: false

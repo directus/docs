@@ -40,19 +40,19 @@ properties:
     oneOf:
       - type: array
       - format: many-to-many
-      - $ref: users.yaml
+      - $ref: Users.yaml
   roles:
     description: The roles this policy is assigned to. It expects and returns data from the directus_access collection. Many-to-many to roles via access.
     example: ["8b4474c0-288d-4bb8-b62e-8330646bb6aa"]
     oneOf:
       - type: array
       - format: many-to-many
-      - $ref: roles.yaml
+      - $ref: Roles.yaml
   permissions:
     description: The permissions assigned to this policy. One-to-many to permissions.
     example: ["5c74c86f-cab0-4b14-a3c4-cd4f2363e826"]
     oneOf:
       - type: array
       - format: one-to-many
-      - $ref: permissions.yaml
+      - $ref: Permissions.yaml
 x-collection: directus_policies

@@ -28,7 +28,7 @@ properties:
     type: string
     format: relation
     oneOf:
-      - $ref: users.yaml
+      - $ref: Users.yaml
   color:
     description: Accent color for the dashboard.
     example: #6644FF
@@ -39,5 +39,5 @@ properties:
     example: 22640672-eef0-4ee9-ab04-591f3afb2883
     type: string
     oneOf:
-      - $ref: panels.yaml
+      - $ref: Panels.yaml
 x-collection: directus_shares

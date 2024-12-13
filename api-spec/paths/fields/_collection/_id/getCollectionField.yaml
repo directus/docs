@@ -10,7 +10,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../../components/schemas/fields.yaml
+              $ref: ../../../../components/schemas/Fields.yaml
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

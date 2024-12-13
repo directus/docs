@@ -17,13 +17,13 @@ requestBody:
     application/json:
       schema:
         type: object
-        required: 
+        required:
           - data
           - keys
         properties:
           data:
             anyOf:
-            - $ref: ../../components/schemas/operations.yaml
+            - $ref: ../../components/schemas/Operations.yaml
           keys:
             type: array
             items:
@@ -39,7 +39,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/operations.yaml
+                $ref: ../../components/schemas/Operations.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

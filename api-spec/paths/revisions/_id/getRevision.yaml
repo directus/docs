@@ -14,7 +14,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/revisions.yaml
+              $ref: ../../../components/schemas/Revisions.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

@@ -48,7 +48,7 @@ properties:
     example: null
     type: string
     oneOf:
-      - $ref: files.yaml
+      - $ref: Files.yaml
     nullable: true
   language:
     description: The user's language used in Directus. Language the Data Studio is rendered in. See our Crowdin page for all available languages and translations.
@@ -74,7 +74,7 @@ properties:
     example: 2f24211d-d928-469a-aea3-3c8f53d4e426
     type: string
     oneOf:
-      - $ref: roles.yaml
+      - $ref: Roles.yaml
   token:
     description: Static token for the user.
     type: string
@@ -85,7 +85,7 @@ properties:
     example: 2f24211d-d928-469a-aea3-3c8f53d4e426
     type: string
     oneOf:
-      - $ref: policies.yaml
+      - $ref: Policies.yaml
   last_access:
     description: When this user used the API last.
     example: '2020-05-31T14:32:37Z'

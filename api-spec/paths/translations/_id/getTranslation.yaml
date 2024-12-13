@@ -19,7 +19,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/translations.yaml
+              $ref: ../../../components/schemas/Translations.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':
@@ -40,4 +40,3 @@ x-codeSamples:
     lang: GraphQL
     source: |
       // Not currently available in GraphQL
-

@@ -19,7 +19,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/activity.yaml
+                $ref: ../../components/schemas/Activity.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
     description: Successful request

@@ -18,7 +18,7 @@ requestBody:
           data:
             type: array
             items:
-              $ref: ../../components/schemas/flows.yaml
+              $ref: ../../components/schemas/Flows.yaml
 responses:
   '200':
     description: Successful request
@@ -30,7 +30,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/flows.yaml
+                $ref: ../../components/schemas/Flows.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

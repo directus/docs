@@ -21,7 +21,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/permissions.yaml
+                $ref: ../../components/schemas/Permissions.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

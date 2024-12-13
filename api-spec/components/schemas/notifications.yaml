@@ -18,13 +18,13 @@ properties:
     example: 3EE34828-B43C-4FB2-A721-5151579B08EA
     oneOf:
       - type: string
-      - $ref: users.yaml
+      - $ref: Users.yaml
   sender:
     description: User that sent the notification, if any.
     example: 497a495e-5529-4e46-8feb-2f35e9b85601
     oneOf:
       - type: string
-      - $ref: users.yaml
+      - $ref: Users.yaml
   subject:
     description: Subject line of the message.
     example: inbox

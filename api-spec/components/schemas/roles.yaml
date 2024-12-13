@@ -24,7 +24,7 @@ properties:
     type: string
     format: uuid
     oneOf:
-      - $ref: roles.yaml
+      - $ref: Roles.yaml
   children:
     nullable: true
     description: Nested child roles that inherit this roles permissions. One-to-many to roles. One-to-many to roles.
@@ -32,7 +32,7 @@ properties:
     format: uuid
     items:
       oneOf:
-        - $ref: roles.yaml
+        - $ref: Roles.yaml
   policies:
     nullable: true
     description: The policies in this role. Many-to-many to roles.
@@ -40,7 +40,7 @@ properties:
     format: uuid
     items:
       oneOf:
-        - $ref: roles.yaml
+        - $ref: Roles.yaml
   users:
     nullable: true
     description: The users in this role. One-to-many to users.
@@ -48,5 +48,5 @@ properties:
     format: uuid
     items:
       oneOf:
-        - $ref: users.yaml
+        - $ref: Users.yaml
 x-collection: directus_roles

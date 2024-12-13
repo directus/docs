@@ -20,7 +20,7 @@ requestBody:
           - data
         properties:
           data:
-            $ref: ../../components/schemas/shares.yaml
+            $ref: ../../components/schemas/Shares.yaml
           keys:
             type: array
             items:
@@ -36,7 +36,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/shares.yaml
+                $ref: ../../components/schemas/Shares.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

@@ -10,12 +10,12 @@ properties:
   collections:
     type: array
     items:
-      $ref: collections.yaml
+      $ref: Collections.yaml
   fields:
     type: array
     items:
-      $ref: fields.yaml
+      $ref: Fields.yaml
   relations:
     type: array
     items:
-      $ref: relations.yaml
+      $ref: Relations.yaml

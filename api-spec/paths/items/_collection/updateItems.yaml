@@ -21,7 +21,7 @@ requestBody:
           - keys
         properties:
           data:
-            $ref: ../../../components/schemas/items.yaml
+            $ref: ../../../components/schemas/Items.yaml
           keys:
             type: array
             items:
@@ -37,7 +37,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../../components/schemas/items.yaml
+                $ref: ../../../components/schemas/Items.yaml
             meta:
               $ref: ../../../components/schemas/x-metadata.yaml
   '401':

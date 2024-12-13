@@ -1,54 +1,56 @@
-Diff:
-  $ref: diff.yaml
-Query:
-  $ref: query.yaml
-Schema:
-  $ref: schema.yaml
 x-metadata:
   $ref: x-metadata.yaml
-items:
-  $ref: items.yaml
 Activity:
-  $ref: activity.yaml
+  $ref: Activity.yaml
 Collections:
-  $ref: collections.yaml
+  $ref: Collections.yaml
+Comments:
+  $ref: Comments.yaml
+Dashboards:
+  $ref: Dashboards.yaml
+Diff:
+  $ref: Diff.yaml
 Extensions:
-  $ref: extensions.yaml
+  $ref: Extensions.yaml
 Fields:
-  $ref: fields.yaml
+  $ref: Fields.yaml
 Files:
-  $ref: files.yaml
+  $ref: Files.yaml
 Flows:
-  $ref: flows.yaml
+  $ref: Flows.yaml
 Folders:
-  $ref: folders.yaml
+  $ref: Folders.yaml
 Items:
-  $ref: items.yaml
+  $ref: Items.yaml
 Notifications:
-  $ref: notifications.yaml
+  $ref: Notifications.yaml
 Operations:
-  $ref: operations.yaml
+  $ref: Operations.yaml
 Panels:
-  $ref: panels.yaml
+  $ref: Panels.yaml
 Permissions:
-  $ref: permissions.yaml
+  $ref: Permissions.yaml
 Policies:
-  $ref: policies.yaml
+  $ref: Policies.yaml
 Presets:
-  $ref: presets.yaml
+  $ref: Presets.yaml
+Query:
+  $ref: Query.yaml
 Relations:
-  $ref: relations.yaml
+  $ref: Relations.yaml
 Revisions:
-  $ref: revisions.yaml
+  $ref: Revisions.yaml
 Roles:
-  $ref: roles.yaml
+  $ref: Roles.yaml
+Schema:
+  $ref: Schema.yaml
 Settings:
-  $ref: settings.yaml
+  $ref: Settings.yaml
 Shares:
-  $ref: shares.yaml
+  $ref: Shares.yaml
 Translations:
-  $ref: translations.yaml
+  $ref: Translations.yaml
 Users:
-  $ref: users.yaml
+  $ref: Users.yaml
 Versions:
-  $ref: versions.yaml
+  $ref: Versions.yaml

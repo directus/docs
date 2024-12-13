@@ -10,7 +10,7 @@ properties:
     example: a79bd1b2-beb2-49fc-8a26-0b3eec0e269
     oneOf:
       - type: string
-      - $ref: dashboards.yaml
+      - $ref: Dashboards.yaml
   name:
     description: Name of the panel.
     example: 30-day sales
@@ -66,5 +66,5 @@ properties:
     example: fd066644-c8e5-499d-947b-fe6c6e1a1473
     oneOf:
       - type: string
-      - $ref: users.yaml
+      - $ref: Users.yaml
 x-collection: directus_panels

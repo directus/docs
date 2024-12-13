@@ -20,7 +20,7 @@ requestBody:
           - keys
         properties:
           data:
-            $ref: ../../components/schemas/notifications.yaml
+            $ref: ../../components/schemas/Notifications.yaml
           keys:
             type: array
             items:
@@ -36,7 +36,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/notifications.yaml
+                $ref: ../../components/schemas/Notifications.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

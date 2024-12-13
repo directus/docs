@@ -98,7 +98,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/collections.yaml
+              $ref: ../../../components/schemas/Collections.yaml
     description: Successful request
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError

@@ -25,21 +25,21 @@ properties:
     example: null
     nullable: true
     oneOf:
-      - $ref: files.yaml
+      - $ref: Files.yaml
   public_foreground:
     description: The foreground of the project. Many-to-one to files.
     type: string
     example: null
     nullable: true
     oneOf:
-      - $ref: files.yaml
+      - $ref: Files.yaml
   public_background:
     description: The background of the project. Many-to-one to files.
     type: object
     example: null
     nullable: true
     oneOf:
-      - $ref: files.yaml
+      - $ref: Files.yaml
   public_note:
     description: Note rendered on the public pages of the app.
     type: string
@@ -156,7 +156,7 @@ properties:
     description: Favicon for the Data Studio. Many-to-one to files.
     type: string
     oneOf:
-      - $ref: files.yaml
+      - $ref: Files.yaml
   default_appearance:
     description: One of auto, light, dark.
     nullable: false

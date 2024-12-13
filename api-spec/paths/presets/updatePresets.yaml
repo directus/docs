@@ -89,7 +89,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/presets.yaml
+                $ref: ../../components/schemas/Presets.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

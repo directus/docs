@@ -13,7 +13,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/schema.yaml
+              $ref: ../../../components/schemas/Schema.yaml
       text/yaml:
         schema:
           type: string

@@ -14,7 +14,7 @@ properties:
     example: articles
     type: string
     oneOf:
-      - $ref: collections.yaml
+      - $ref: Collections.yaml
   item:
     description: Primary key of the item that's shared.
     example: '1'
@@ -25,7 +25,7 @@ properties:
     type: string
     format: uuid
     oneOf:
-      - $ref: shares.yaml
+      - $ref: Shares.yaml
   password:
     description: Optional password that's required to view this shared item.
     example: '**********'
@@ -37,7 +37,7 @@ properties:
     type: string
     format: uuid
     oneOf:
-      - $ref: users.yaml
+      - $ref: Users.yaml
   date_created:
     description: When the share was created.
     example: 2023-01-25T19:16:49.009Z

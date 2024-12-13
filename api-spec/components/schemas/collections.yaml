@@ -64,7 +64,7 @@ properties:
     description: The name of the parent collection.
     type: string
     oneOf:
-      - $ref: collections.yaml
+      - $ref: Collections.yaml
   collapse:
     nullable: false
     description: What is the default behavior of this collection or "folder" collection when it has nested collections. One of `open`, `closed`, `locked`.

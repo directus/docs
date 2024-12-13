@@ -21,9 +21,9 @@ requestBody:
               - xml
               - json
           query:
-            $ref: ../../../../components/schemas/query.yaml
+            $ref: ../../../../components/schemas/Query.yaml
           file:
-            $ref: ../../../../components/schemas/files.yaml
+            $ref: ../../../../components/schemas/Files.yaml
         required:
         - format
         - query

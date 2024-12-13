@@ -16,7 +16,7 @@ requestBody:
     application/json:
       schema:
         anyOf:
-        - $ref: ../../../../components/schemas/items.yaml
+        - $ref: ../../../../components/schemas/Items.yaml
 responses:
   '200':
     description: Successful request
@@ -26,7 +26,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../../components/schemas/items.yaml
+              $ref: ../../../../components/schemas/Items.yaml
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

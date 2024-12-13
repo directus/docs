@@ -17,13 +17,13 @@ properties:
     example: articles
     type: string
     oneOf:
-      - $ref: collections.yaml
+      - $ref: Collections.yaml
   item:
     description: The item the Content Version is created on. Many-to-one to items.
     example: '168'
     type: string
     oneOf:
-      - $ref: items.yaml
+      - $ref: Items.yaml
   hash:
     nullable: true
     type: string
@@ -44,13 +44,13 @@ properties:
     example: 63716273-0f29-4648-8a2a-2af2948f6f78
     type: string
     oneOf:
-      - $ref: users.yaml
+      - $ref: Users.yaml
   user_updated:
     description: User that updated the Content Version. Many-to-one to users.
     example: 63716273-0f29-4648-8a2a-2af2948f6f78
     type: string
     oneOf:
-      - $ref: users.yaml
+      - $ref: Users.yaml
   delta:
     description: The current changes compared to the main version of the item.
     type: object

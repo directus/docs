@@ -20,7 +20,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../../components/schemas/comments.yaml
+                $ref: ../../../components/schemas/Comments.yaml
             meta:
               $ref: ../../../components/schemas/x-metadata.yaml
     description: Successful request

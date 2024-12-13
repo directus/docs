@@ -6,7 +6,7 @@ requestBody:
     application/json:
       schema:
         anyOf:
-        - $ref: ../../components/schemas/files.yaml
+        - $ref: ../../components/schemas/Files.yaml
 responses:
   '200':
     description: Successful request
@@ -16,7 +16,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../components/schemas/files.yaml
+              $ref: ../../components/schemas/Files.yaml
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
 security: []

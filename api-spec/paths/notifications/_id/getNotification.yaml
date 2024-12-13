@@ -19,7 +19,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/notifications.yaml
+              $ref: ../../../components/schemas/Notifications.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

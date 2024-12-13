@@ -20,7 +20,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/versions.yaml
+                $ref: ../../components/schemas/Versions.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

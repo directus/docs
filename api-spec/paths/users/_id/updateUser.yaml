@@ -9,7 +9,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../../components/schemas/users.yaml
+        $ref: ../../../components/schemas/Users.yaml
 responses:
   '200':
     content:

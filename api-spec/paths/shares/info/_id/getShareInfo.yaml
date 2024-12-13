@@ -17,7 +17,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../../components/schemas/shares.yaml
+              $ref: ../../../../components/schemas/Shares.yaml
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
   '404':

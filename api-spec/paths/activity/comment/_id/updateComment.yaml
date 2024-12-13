@@ -9,7 +9,7 @@ requestBody:
     application/json:
       schema:
         anyOf:
-        - $ref: ../../../../components/schemas/comments.yaml
+        - $ref: ../../../../components/schemas/Comments.yaml
 responses:
   '200':
     content:
@@ -18,7 +18,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../../components/schemas/activity.yaml
+              $ref: ../../../../components/schemas/Activity.yaml
     description: Successful request
   '401':
     $ref: ../../../../components/responses.yaml#/UnauthorizedError
@@ -44,5 +44,3 @@ x-codeSamples:
       type Mutation {
         update_comments_item(id: ID!, data: update_directus_comments_input): directus_comments
       }
-
-

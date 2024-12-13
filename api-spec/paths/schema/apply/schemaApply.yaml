@@ -11,7 +11,7 @@ requestBody:
         type: object
         properties:
           data:
-            $ref: ../../../components/schemas/diff.yaml
+            $ref: ../../../components/schemas/Diff.yaml
     multipart/form-data:
       schema:
         type: object

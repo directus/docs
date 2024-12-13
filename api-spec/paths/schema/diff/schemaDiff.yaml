@@ -1,6 +1,6 @@
 summary: Retrieve Schema Difference
 description: |
-  Compare the current instance's schema against the schema snapshot in JSON request body and retrieve the difference. This endpoint is only available to admin users. 
+  Compare the current instance's schema against the schema snapshot in JSON request body and retrieve the difference. This endpoint is only available to admin users.
 
   Alternatively, upload a JSON or YAML schema file.
 
@@ -21,7 +21,7 @@ requestBody:
         type: object
         properties:
           data:
-            $ref: ../../../components/schemas/schema.yaml
+            $ref: ../../../components/schemas/Schema.yaml
     multipart/form-data:
       schema:
         type: object
@@ -38,7 +38,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/diff.yaml
+              $ref: ../../../components/schemas/Diff.yaml
   '204':
     description: No schema difference.
   '403':

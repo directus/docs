@@ -83,7 +83,7 @@ responses:
           type: object
           properties:
             data:
-              $ref: ../../../components/schemas/permissions.yaml
+              $ref: ../../../components/schemas/Permissions.yaml
   '401':
     $ref: ../../../components/responses.yaml#/UnauthorizedError
   '404':

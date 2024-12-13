@@ -21,7 +21,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/operations.yaml
+                $ref: ../../components/schemas/Operations.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

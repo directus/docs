@@ -20,7 +20,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/flows.yaml
+                $ref: ../../components/schemas/Flows.yaml
             meta:
               $ref: ../../components/schemas/x-metadata.yaml
   '401':

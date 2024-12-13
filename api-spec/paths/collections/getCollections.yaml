@@ -15,7 +15,7 @@ responses:
             data:
               type: array
               items:
-                $ref: ../../components/schemas/collections.yaml
+                $ref: ../../components/schemas/Collections.yaml
   '401':
     $ref: ../../components/responses.yaml#/UnauthorizedError
   '404':

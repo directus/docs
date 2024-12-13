@@ -9,13 +9,13 @@ properties:
     example: 2
     type: integer
     oneOf:
-      - $ref: activity.yaml
+      - $ref: Activity.yaml
   collection:
     description: Collection of the updated item.
     example: articles
     type: string
     oneOf:
-      - $ref: collections.yaml
+      - $ref: Collections.yaml
   item:
     description: Primary key of updated item.
     example: '168'
@@ -45,5 +45,5 @@ properties:
     example: draft
     type: string
     oneOf:
-      - $ref: versions.yaml
+      - $ref: Versions.yaml
 x-collection: directus_revisions
