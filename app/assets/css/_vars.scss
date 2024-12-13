@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-
 	--font--body: 'Inter', sans-serif;
 	--font--header: 'Poppins', sans-serif;
 	--font--code: 'Fira Mono', monospace;
@@ -15,7 +14,7 @@
 	--border-radius: 6px;
 
 	--typography: var(--black);
-	--typography-subdued: color-mix(in hsl shorter hue, var(--black) 70%, var(--white) 30%);
+	--typography-subdued: #A2B5CD;
 
 	--background: var(--white);
 	--background-subdued: color-mix(in hsl shorter hue, var(--white) 95%, var(--black) 5%);
