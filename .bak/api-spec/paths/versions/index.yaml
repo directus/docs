@@ -1,8 +1,0 @@
-get:
-  $ref: getContentVersions.yaml
-post:
-  $ref: createContentVersions.yaml
-patch:
-  $ref: updateContentVersions.yaml
-delete:
-  $ref: deleteContentVersions.yaml

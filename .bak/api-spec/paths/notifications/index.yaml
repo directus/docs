@@ -1,8 +1,0 @@
-get:
-  $ref: getNotifications.yaml
-post:
-  $ref: createNotifications.yaml
-patch:
-  $ref: updateNotifications.yaml
-delete:
-  $ref: deleteNotifications.yaml

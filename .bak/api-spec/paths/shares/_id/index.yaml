@@ -1,6 +1,0 @@
-get:
-  $ref: getShare.yaml
-patch:
-  $ref: updateShare.yaml
-delete:
-  $ref: deleteShare.yaml

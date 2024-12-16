@@ -1,6 +1,0 @@
-get:
-  $ref: getRole.yaml
-patch:
-  $ref: updateRole.yaml
-delete:
-  $ref: deleteRole.yaml

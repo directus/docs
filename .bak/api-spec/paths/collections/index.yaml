@@ -1,4 +1,0 @@
-get:
-  $ref: getCollections.yaml
-post:
-  $ref: createCollection.yaml

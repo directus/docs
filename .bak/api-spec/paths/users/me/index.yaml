@@ -1,4 +1,0 @@
-get:
-  $ref: getMe.yaml
-patch:
-  $ref: updateMe.yaml

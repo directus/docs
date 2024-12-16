@@ -1,4 +1,0 @@
-get:
-  $ref: getRelations.yaml
-post:
-  $ref: createRelation.yaml
