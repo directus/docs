@@ -7,4 +7,16 @@ export default defineNuxtConfig({
 	},
 	extends: ["@nuxt/ui-pro"],
 	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui"],
+	icon: {
+		customCollections: [
+			{
+				prefix: 'directus',
+				dir: './app/assets/icons/products',
+			},
+			{
+				prefix: 'frameworks',
+				dir: './app/assets/icons/frameworks',
+			},
+		],
+	},
 });
