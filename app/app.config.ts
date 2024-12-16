@@ -1,4 +1,8 @@
 export default defineAppConfig({
+	ui: {
+		primary: 'electric-violet'
+	},
+
 	header: {
 		nav: [
 			{
@@ -30,6 +34,11 @@ export default defineAppConfig({
 			}
 		],
 	},
+
+	toc: {
+		title: "On this page",
+	},
+
 	footer: {
 		links: [
 			{
@@ -67,8 +76,5 @@ export default defineAppConfig({
 				to: 'https://github.com/directus/directus'
 			}
 		]
-	},
-	toc: {
-		title: "On this page",
 	},
 });
