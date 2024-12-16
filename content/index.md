@@ -199,7 +199,7 @@ navigation: false
   ---
   icon: material-symbols:error-med
   title: Breaking Changes
-  to: 'https://github.com/directus/directus/releases'
+  to: '/releases/breaking-changes'
   class: col-span-4
   color: red
   ---
