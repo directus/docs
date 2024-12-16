@@ -10,17 +10,6 @@ export default defineNuxtConfig({
 
 	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss"],
 
-	hooks: {
-		// Make all prose components available in content
-		"components:extend": (components) => {
-			const globals = components.filter((c) => {
-				return c.shortPath.startsWith("components/prose/");
-			});
-
-			globals.forEach((c) => (c.global = true));
-		},
-	},
-
 	nitro: {
 		prerender: {
 			routes: ["/"],
