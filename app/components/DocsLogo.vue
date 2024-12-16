@@ -7,6 +7,7 @@ const { preference } = useColorMode();
 		:class="preference"
 		viewBox="0 0 262 40"
 		xmlns="http://www.w3.org/2000/svg"
+		class="fill-slate-800 dark:fill-white"
 	>
 		<g opacity="0.5">
 			<path
@@ -53,17 +54,3 @@ const { preference } = useColorMode();
 		/>
 	</svg>
 </template>
-
-<style scoped>
-svg {
-	fill: none;
-}
-
-path {
-	fill: #172940;
-}
-
-.dark path {
-	fill: #fff;
-}
-</style>
