@@ -10,11 +10,11 @@ const name = computed(
 
 <template>
 	<UButton
-		color="gray"
+		color="white"
 		size="xs"
 		:to="`/${product}`"
 		:icon="`directus:${product}`"
 		:label="name"
-		class="text-primary"
+		class="text-primary align-middle"
 	/>
 </template>
