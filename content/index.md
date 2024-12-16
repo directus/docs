@@ -7,18 +7,26 @@ navigation: false
 ## Try a Demo
 
 ::tabs
-	::tab{label="Local Demo"}
-	Run Docker locally and use the following command to start the project.
+  ::div
+  ---
+  label: Local Demo
+  ---
 
-	```
-	docker run -p 8055:8055 directus/directus
-	```
+  Run Docker locally and use the following command to start the project.
 
-	This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/create-a-project) to learn how to create a project with persistence.
-	::
-	::tab{label="Hosted Demo"}
-	Try our [hosted demo project](https://directus.pizza/?utm_source=directus-docs&utm_campaign=docs-home). This is a public demo project that is occassionally reset but please don't input sensitive data.
-	::
+  ```
+  docker run -p 8055:8055 directus/directus
+  ```
+
+  This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/create-a-project) to learn how to create a project with persistence.
+  ::
+
+  ::div
+  ---
+  label: Hosted Demo
+  ---
+  Try our [hosted demo project](https://directus.pizza/?utm_source=directus-docs&utm_campaign=docs-home). This is a public demo project that is occassionally reset but please don't input sensitive data.
+  ::
 ::
 
 <div style="margin-bottom: 4rem;"></div>
