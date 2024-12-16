@@ -1,9 +1,9 @@
-import { resolve } from 'path';
-import fs from 'node:fs/promises';
-import { stringifyYAML } from 'confbox';
-import formatTitle from '@directus/format-title';
-import { consola } from 'consola';
-import { db, readItems } from '../../utils/directus';
+import fs from "node:fs/promises";
+import formatTitle from "@directus/format-title";
+import { stringifyYAML } from "confbox";
+import { consola } from "consola";
+import { resolve } from "path";
+import { db, readItems } from "../../utils/directus";
 
 type PathPart = {
 	sort: number;
@@ -73,7 +73,7 @@ async function writePage(
 	);
 
 	const pageConfig = stringifyYAML(config);
-	const pageContent = `---\n${pageConfig}\n---\n${content || 'STUB'}`;
+	const pageContent = `---\n${pageConfig}\n---\n${content || 'Explore our resources and powerful data engine to build your projects confidently.'}`;
 	await fs.mkdir(dirPath, { recursive: true });
 	await fs.writeFile(`${pagePath}.md`, pageContent);
 	return;
