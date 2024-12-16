@@ -1,11 +1,8 @@
 ---
-title: Home
+title: Directus Documentation
 description: Learn how to get started and implement Directus through our developer resources.
-additional_paths:
-  - /
+navigation: false
 ---
-
-# Directus Documentation
 
 ## Try a Demo
 
