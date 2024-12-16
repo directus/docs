@@ -14,7 +14,7 @@ const { header } = useAppConfig();
 		</template>
 
 		<template #center>
-			<UHeaderLinks :links="header.nav" />
+			<UHeaderLinks class="hidden lg:flex" :links="header.nav" />
 		</template>
 
 		<template #right>
@@ -31,6 +31,7 @@ const { header } = useAppConfig();
 			<UButton
 				v-for="(link, index) of header.links"
 				:key="index"
+				class="hidden lg:flex"
 				v-bind="{ color: 'gray', variant: 'ghost', ...link }"
 			/>
 		</template>

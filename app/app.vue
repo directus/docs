@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
-
-console.log(navigation);
 provide('navigation', navigation);
 </script>
 
@@ -14,6 +12,8 @@ provide('navigation', navigation);
 				<NuxtPage />
 			</NuxtLayout>
 		</UMain>
+
+		<DocsFooter/>
 	</div>
 </template>
 
