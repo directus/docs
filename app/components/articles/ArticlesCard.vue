@@ -56,7 +56,7 @@ defineProps<{
 	align-items: stretch;
 	justify-content: start;
 	padding: 1rem;
-	border-radius: 0.5rem;
+	border-radius: var(--border-radius);
 	transition: background-color 0.2s ease-in-out;
 	text-decoration: none;
 

@@ -31,6 +31,7 @@ const { data } = await useAsyncData('appConfig', appConfig);
 					:key="social.href"
 					:href="social.href"
 					target="_blank"
+					class="social"
 				>
 					<Icon :name="social.icon" />
 				</a>
@@ -113,5 +114,9 @@ const { data } = await useAsyncData('appConfig', appConfig);
 		justify-content: center;
 		align-items: center;
 	}
+}
+
+.social {
+	color: var(--typography-subdued);
 }
 </style>

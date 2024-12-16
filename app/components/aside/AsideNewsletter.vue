@@ -85,7 +85,7 @@ async function subscribe() {
 		border-radius: 6px;
 		border: 1px solid rgba(213, 220, 229, 0.50);
 		margin-bottom: 0.5rem;
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		font-weight: 500;
 	}
 
