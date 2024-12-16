@@ -5,6 +5,8 @@ definePageMeta({
 	layout: 'docs',
 });
 
+const { toc } = useAppConfig();
+
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
 
@@ -28,6 +30,10 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 
 			<UContentSurround :surround="surround" />
 		</UPageBody>
+
+		<template v-if="page!.toc !== false" #right>
+			<UContentToc :title="toc?.title" :links="page!.body?.toc?.links" />
+		</template>
 	</UPage>
 </template>
 
