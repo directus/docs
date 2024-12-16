@@ -1,0 +1,56 @@
+x-metadata:
+  $ref: x-metadata.yaml
+Activity:
+  $ref: Activity.yaml
+Collections:
+  $ref: Collections.yaml
+Comments:
+  $ref: Comments.yaml
+Dashboards:
+  $ref: Dashboards.yaml
+Diff:
+  $ref: Diff.yaml
+Extensions:
+  $ref: Extensions.yaml
+Fields:
+  $ref: Fields.yaml
+Files:
+  $ref: Files.yaml
+Flows:
+  $ref: Flows.yaml
+Folders:
+  $ref: Folders.yaml
+Items:
+  $ref: Items.yaml
+Notifications:
+  $ref: Notifications.yaml
+Operations:
+  $ref: Operations.yaml
+Panels:
+  $ref: Panels.yaml
+Permissions:
+  $ref: Permissions.yaml
+Policies:
+  $ref: Policies.yaml
+Presets:
+  $ref: Presets.yaml
+Query:
+  $ref: Query.yaml
+Relations:
+  $ref: Relations.yaml
+Revisions:
+  $ref: Revisions.yaml
+Roles:
+  $ref: Roles.yaml
+Schema:
+  $ref: Schema.yaml
+Settings:
+  $ref: Settings.yaml
+Shares:
+  $ref: Shares.yaml
+Translations:
+  $ref: Translations.yaml
+Users:
+  $ref: Users.yaml
+Versions:
+  $ref: Versions.yaml
