@@ -23,6 +23,9 @@ importers:
       typescript:
         specifier: 5.7.2
         version: 5.7.2
+      ufo:
+        specifier: 1.5.4
+        version: 1.5.4
       vue:
         specifier: latest
         version: 3.5.13(typescript@5.7.2)

@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { withoutTrailingSlash } from 'ufo';
+
+definePageMeta({
+	layout: 'docs',
+});
+
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
 
@@ -7,6 +13,8 @@ if (!page.value) {
 }
 
 const headline = computed(() => findPageHeadline(page.value!));
+
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent().where({ _extension: 'md', navigation: { $ne: false }}).only(['title', 'description', '_path']).findSurround(withoutTrailingSlash(route.path)))
 </script>
 
 <template>
@@ -15,6 +23,10 @@ const headline = computed(() => findPageHeadline(page.value!));
 
 		<UPageBody prose>
 			<ContentRenderer v-if="page!.body" :value="page" />
+
+			<hr v-if="surround?.length">
+
+			<UContentSurround :surround="surround" />
 		</UPageBody>
 	</UPage>
 </template>
