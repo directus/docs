@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { NavItem } from '@nuxt/content';
+import type { NavItem } from "@nuxt/content";
 
-const navigation = inject<NavItem[]>('navigation', []);
+const navigation = inject<NavItem[]>("navigation", []);
+const { metaSymbol } = useShortcuts();
 
 const { header } = useAppConfig();
 </script>
@@ -9,7 +10,33 @@ const { header } = useAppConfig();
 <template>
 	<UHeader>
 		<template #logo>
-			<UColorModeImage />
+			<DocsLogo class="w-auto h-8 shrink-0" />
+		</template>
+
+		<template #center>
+			<UHeaderLinks :links="header.nav" />
+		</template>
+
+		<template #right>
+			<UTooltip
+				text="Search"
+				:shortcuts="[metaSymbol, 'K']"
+				:popper="{ strategy: 'absolute' }"
+			>
+				<UContentSearchButton :label="''" />
+			</UTooltip>
+
+			<UColorModeButton class="hidden lg:inline-flex" />
+
+			<UButton
+				v-for="(link, index) of header.links"
+				:key="index"
+				v-bind="{ color: 'gray', variant: 'ghost', ...link }"
+			/>
+		</template>
+
+		<template #panel>
+			<UNavigationTree :links="mapContentNavigation(navigation)" />
 		</template>
 	</UHeader>
 </template>
