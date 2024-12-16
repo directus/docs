@@ -43,7 +43,3 @@ const { header } = useAppConfig();
 		</template>
 	</UHeader>
 </template>
-
-<style scoped>
-/* Your component styles go here */
-</style>

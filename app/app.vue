@@ -16,7 +16,3 @@ provide('navigation', navigation);
 		<DocsFooter/>
 	</div>
 </template>
-
-<style scoped>
-/* Your component styles go here */
-</style>

@@ -36,7 +36,3 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 		</template>
 	</UPage>
 </template>
-
-<style scoped>
-/* Your component styles go here */
-</style>

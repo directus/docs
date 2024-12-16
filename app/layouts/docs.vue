@@ -19,7 +19,3 @@ const navigation = inject<NavItem[]>('navigation', []);
 		</UContainer>
 	</div>
 </template>
-
-<style scoped>
-/* Your component styles go here */
-</style>
