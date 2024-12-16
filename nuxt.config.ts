@@ -8,7 +8,7 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
-	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss"],
+	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxt/scripts"],
 
 	nitro: {
 		prerender: {

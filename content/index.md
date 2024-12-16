@@ -25,13 +25,13 @@ navigation: false
   ---
   label: Hosted Demo
   ---
-  Try our [hosted demo project](https://directus.pizza/?utm_source=directus-docs&utm_campaign=docs-home). This is a public demo project that is occassionally reset but please don't input sensitive data.
+  Try our [hosted demo project](https://directus.pizza/?utm_source=directus-docs&utm_campaign=docs-home). This is a public demo project that is occasionally reset but please don't input sensitive data.
   ::
 ::
 
 <div style="margin-bottom: 4rem;"></div>
 
-:video-embed{type="directus-tv" id="96b44cbc-1b14-4bea-87cd-0c4cb34d261d"}
+:video-embed{video-id="96b44cbc-1b14-4bea-87cd-0c4cb34d261d"}
 
 ## Getting Started
 
