@@ -8,6 +8,9 @@ const { header } = useAppConfig();
 
 <template>
 	<UHeader>
+		<template #logo>
+			<UColorModeImage />
+		</template>
 	</UHeader>
 </template>
 
