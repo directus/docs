@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { NavItem } from '@nuxt/content';
+import type { NavItem } from "@nuxt/content";
 
-const navigation = inject<NavItem[]>('navigation', []);
+const navigation = inject<NavItem[]>("navigation", []);
 </script>
 
 <template>
@@ -10,7 +10,11 @@ const navigation = inject<NavItem[]>('navigation', []);
 			<UPage>
 				<template #left>
 					<UAside>
-						<UNavigationTree :links="mapContentNavigation(navigation)" :multiple="false" default-open />
+						<UNavigationTree
+							:links="mapContentNavigation(navigation)"
+							:multiple="false"
+							default-open
+						/>
 					</UAside>
 				</template>
 
