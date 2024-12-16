@@ -10,7 +10,7 @@ const navigation = inject<NavItem[]>('navigation', []);
 			<UPage>
 				<template #left>
 					<UAside>
-						<UNavigationTree :links="mapContentNavigation(navigation)" />
+						<UNavigationTree :links="mapContentNavigation(navigation)" :multiple="false" default-open />
 					</UAside>
 				</template>
 

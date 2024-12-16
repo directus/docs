@@ -37,7 +37,9 @@ const { header } = useAppConfig();
 		</template>
 
 		<template #panel>
-			<UNavigationTree :links="mapContentNavigation(navigation)" />
+			<UAsideLinks :links="header.nav" />
+			<UDivider type="dashed" class="my-4" />
+			<UNavigationTree :links="mapContentNavigation(navigation)" :multiple="false" default-open />
 		</template>
 	</UHeader>
 </template>
