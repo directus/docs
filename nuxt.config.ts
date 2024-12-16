@@ -5,5 +5,5 @@ export default defineNuxtConfig({
 	future: {
 		compatibilityVersion: 4,
 	},
-	modules: ["@nuxt/eslint"],
+	modules: ["@nuxt/eslint", "@nuxt/content"],
 });

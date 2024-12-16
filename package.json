@@ -15,6 +15,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@nuxt/content": "2.13.4",
     "@nuxt/eslint": "0.7.3"
   }
 }
