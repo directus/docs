@@ -5,5 +5,6 @@ export default defineNuxtConfig({
 	future: {
 		compatibilityVersion: 4,
 	},
-	modules: ["@nuxt/eslint", "@nuxt/content"],
+	extends: ["@nuxt/ui-pro"],
+	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui"],
 });
