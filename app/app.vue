@@ -1,11 +1,21 @@
+<script setup lang="ts">
+const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
+
+console.log(navigation);
+provide('navigation', navigation);
+</script>
+
 <template>
 	<div>
+		<DocsHeader />
+
+		<UMain>
+			<NuxtLayout>
+				<NuxtPage />
+			</NuxtLayout>
+		</UMain>
 	</div>
 </template>
-
-<script setup lang="ts">
-// Your component logic goes here
-</script>
 
 <style scoped>
 /* Your component styles go here */

@@ -2,22 +2,13 @@
 import type { NavItem } from '@nuxt/content';
 
 const navigation = inject<NavItem[]>('navigation', []);
+
+const { header } = useAppConfig();
 </script>
 
 <template>
-	<div>
-		<UContainer>
-			<UPage>
-				<template #left>
-					<UAside>
-						<UNavigationTree :links="mapContentNavigation(navigation)" />
-					</UAside>
-				</template>
-
-				<slot />
-			</UPage>
-		</UContainer>
-	</div>
+	<UHeader>
+	</UHeader>
 </template>
 
 <style scoped>
