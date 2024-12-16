@@ -1,0 +1,7 @@
+type: object
+properties:
+  id:
+    description: Unique identifier for the item.
+    example: 2
+    type: integer
+x-collection: directus_items
