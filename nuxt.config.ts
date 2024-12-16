@@ -8,16 +8,16 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
-	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui"],
+	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss"],
 
 	hooks: {
 		// Make all prose components available in content
 		"components:extend": (components) => {
 			const globals = components.filter((c) => {
-				return c.shortPath.startsWith('components/prose/');
+				return c.shortPath.startsWith("components/prose/");
 			});
 
-			globals.forEach((c) => c.global = true);
+			globals.forEach((c) => (c.global = true));
 		},
 	},
 
@@ -52,25 +52,5 @@ export default defineNuxtConfig({
 				dir: "./app/assets/icons/frameworks",
 			},
 		],
-	},
-
-	tailwindcss: {
-		extend: {
-			colors: {
-				"electric-violet": {
-					"50": "#f3f2ff",
-					"100": "#e9e8ff",
-					"200": "#d6d4ff",
-					"300": "#b8b1ff",
-					"400": "#9585ff",
-					"500": "#6644ff",
-					"600": "#6030f7",
-					"700": "#531ee3",
-					"800": "#4418bf",
-					"900": "#39169c",
-					"950": "#210b6a",
-				},
-			},
-		},
 	},
 });
