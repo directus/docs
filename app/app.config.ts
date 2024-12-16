@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	ui: {
-		primary: 'purple'
+		primary: 'purple' // Tailwind color name
 	},
 
 	header: {

@@ -8,12 +8,23 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
-	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxt/scripts"],
+	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxt/scripts", "@vueuse/nuxt"],
 
 	nitro: {
 		prerender: {
 			routes: ["/"],
 			crawlLinks: true,
+		},
+	},
+
+	hooks: {
+		// Make the Landing components available for use on the homepage in md
+		"components:extend": (components) => {
+			const globals = components.filter((c) => {
+				return c.kebabName.startsWith("u-landing-");
+			});
+
+			globals.forEach((c) => (c.global = true));
 		},
 	},
 

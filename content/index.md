@@ -1,13 +1,20 @@
 ---
 title: Directus Documentation
 description: Learn how to get started and implement Directus through our developer resources.
+links:
+  - label: Get Started
+    size: 'lg'
+    to: '/getting-started'
 navigation: false
 ---
 
 ## Try a Demo
 
-::tabs
-  ::div
+::two-up
+
+#left
+:::tabs
+  ::::div
   ---
   label: Local Demo
   ---
@@ -19,48 +26,281 @@ navigation: false
   ```
 
   This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/create-a-project) to learn how to create a project with persistence.
-  ::
+  ::::
 
-  ::div
+  ::::div
   ---
   label: Hosted Demo
   ---
   Try our [hosted demo project](https://directus.pizza/?utm_source=directus-docs&utm_campaign=docs-home). This is a public demo project that is occasionally reset but please don't input sensitive data.
-  ::
-::
+  ::::
+:::
 
-<div style="margin-bottom: 4rem;"></div>
-
+#right
 :video-embed{video-id="96b44cbc-1b14-4bea-87cd-0c4cb34d261d"}
+
+::
 
 ## Getting Started
 
-:article-cards{:show-description=false :paths='[{"title": "Platform Overview", "_path": "/getting-started/platform-overview"}, "/getting-started/create-a-project", { "title": "Directus Academy", "_path": "https://directus.io/tv/directus-academy"}]'}
+::u-landing-grid{class="gap-4"}
+  :::u-landing-card
+  ---
+  icon: simple-icons:directus
+  title: Platform Overview
+  to: /getting-started/platform-overview
+  class: col-span-6
+  ---
+  :::
+  
+  :::u-landing-card
+  ---
+  icon: material-symbols:live-tv
+  title: Directus Academy
+  to: https://directus.io/tv/directus-academy
+  class: col-span-6
+  ---
+  :::
+::
 
 ## Features
 
-:engine-studio-box
+::u-landing-grid{class="gap-4"}
+  :::u-landing-card
+  ---
+  icon: directus-connect
+  title: Data Engine
+  description: APIs and developer tools for your data.
+  class: col-span-6
+  color: purple
+  ---
+  :product-link{product="connect"} :product-link{product="realtime"} :product-link{product="auth"} :product-link{product="automate"}
+  :::
+  
+  :::u-landing-card
+  ---
+  icon: directus-explore
+  title: Data Studio
+  description: A data web app your whole team will love.
+  class: col-span-6
+  color: pink
+  ---
+  :product-link{product="explore"} :product-link{product="editor"} :product-link{product="insights"} :product-link{product="files"}
+  :::
+::
 
 ## Directus APIs
 
-:article-cards{:show-description=false :paths='["/connect/quickstart", { "title": "API Reference", "_path": "/api"}, "/connect/sdk"]'}
+::u-landing-grid{class="gap-4"}
+  :::u-landing-card
+  ---
+  title: Quickstart
+  to: '/connect/quickstart'
+  class: col-span-4
+  color: pink
+  ---
+  :::
+  
+  :::u-landing-card
+  ---
+  title: API Reference
+  to: '/api'
+  class: col-span-4
+  color: green
+  ---
+  :::
+  
+  :::u-landing-card
+  ---
+  title: SDK
+  to: '/connect/sdk'
+  class: col-span-4
+  color: blue
+  ---
+  :::
+::
 
 ## Tutorials
 
-:article-cards{:show-description=false :paths='[{ "title": "Directus with Next.js", "_path": "/tutorials?tags=nextjs"}, { "title": "Build Projects with Directus", "_path": "/tutorials/projects"}, { "title": "Using Directus Auth", "_path": "/tutorials?tags=directus-auth"}, { "title": "Automate & Integrate", "_path": "/tutorials?tags=directus-automate"}, { "title": "Self-Hosting Guides", "_path": "/tutorials/self-hosting"}, { "title": "SEO Best Practices", "_path": "/tutorials/tips-and-tricks/search-engine-optimization-best-practices"}]'}
+::u-landing-grid{class="gap-4"}
+  :::u-landing-card
+  ---
+  title: Directus with Next.js
+  to: '/tutorials?tags=nextjs'
+  class: col-span-4
+  color: black
+  ---
+  :::
 
-<a href="https://directus.io/tutorials" style="margin-top: 1rem; display: block; text-align: center;">See All Tutorials</a>
+  :::u-landing-card
+  ---
+  title: Build Projects with Directus
+  to: '/tutorials?tags=nextjs'
+  class: col-span-4
+  color: purple
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  title: Using Directus Auth
+  to: '/tutorials?tags=directus-auth'
+  class: col-span-4
+  color: amber
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  title: Automate & Integrate
+  to: '/tutorials?tags=directus-automate'
+  class: col-span-4
+  color: yellow
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  title: Self-Hosting Guide
+  to: '/tutorials/self-hosting'
+  class: col-span-4
+  color: cyan
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  title: SEO Best Practices
+  to: '/tutorials/tips-and-tricks/search-engine-optimization-best-practices'
+  class: col-span-4
+  color: lime
+  ---
+  :::
+
+  :::callout{icon="i-heroicons-light-bulb" to="/tutorials" class="col-span-8"}
+  See All Tutorials
+  :::
+::
 
 ## Releases
 
-:article-cards{:show-description=false :paths='[{"title":"GitHub Releases", "_path": "https://github.com/directus/directus/releases"},"/releases/breaking-changes", { "title": "The Changelog", "_path": "/releases/changelog"}]'}
+::u-landing-grid{class="gap-4"}
+  :::u-landing-card
+  ---
+  icon: simple-icons:github
+  title: GitHub Releases
+  to: 'https://github.com/directus/directus/releases'
+  class: col-span-4
+  color: black
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  icon: material-symbols:error-med
+  title: Breaking Changes
+  to: 'https://github.com/directus/directus/releases'
+  class: col-span-4
+  color: red
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  icon: material-symbols:list-alt-add-outline
+  title: Changelog
+  to: '/releases/changelog'
+  class: col-span-4
+  color: yellow
+  ---
+  :::
+::
 
 ## Community-Maintained Tooling
 
 These are built and maintained by our awesome community. If you are building tooling and want to include it here, please open a [pull request on GitHub](https://github.com/directus/docs).
 
-:article-cards{:show-description=false :paths='[{"title":"Python SDK", "_path": "https://pypi.org/project/directus-sdk-py/"}, { "title": "Go SDK", "_path": "https://pkg.go.dev/github.com/altipla-consulting/directus-go#section-readme"}, { "title": "Dart SDK", "_path": "https://github.com/apstanisic/directus-dart"}, { "title": "Nuxt Module", "_path": "https://nuxt.com/modules/directus"}, { "title": "Helm Charts", "_path": "https://github.com/directus-labs/helm-chart"}]'}
+::u-landing-grid{class="gap-4"}
+  :::u-landing-card
+  ---
+  icon: simple-icons:python
+  title: Python SDK
+  to: 'https://pypi.org/project/directus-sdk-py/'
+  class: col-span-4
+  color: blue
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  icon: simple-icons:go
+  title: Go SDK
+  to: 'https://pkg.go.dev/github.com/altipla-consulting/directus-go#section-readme'
+  class: col-span-4
+  color: cyan
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  icon: simple-icons:dart
+  title: Dart SDK
+  to: 'https://github.com/apstanisic/directus-dart'
+  class: col-span-4
+  color: orange
+  ---
+  :::
+
+  :::u-landing-card
+  ---
+  icon: simple-icons:nuxtdotjs
+  title: Nuxt Module
+  to: 'https://nuxt.com/modules/directus'
+  class: col-span-4
+  color: green
+  ---
+  :::
+  
+  :::u-landing-card
+  ---
+  icon: simple-icons:helm
+  title: Helm Chart
+  to: 'https://github.com/directus-labs/helm-chart'
+  class: col-span-4
+  color: red
+  ---
+  :::
+::
 
 ## Advanced Concepts
+
+::u-landing-grid{class="gap-4"}
+  :::u-landing-card
+  ---
+  title: Environment Variables
+  to: '/self-hosting/configuration/general'
+  class: col-span-4
+  color: red
+  ---
+  :::
+  
+  :::u-landing-card
+  ---
+  title: Building Extensions
+  to: '/extensions/overview'
+  class: col-span-4
+  color: violet
+  ---
+  :::
+  
+  :::u-landing-card
+  ---
+  title: Self-Hosting
+  to: '/self-hosting/overview'
+  class: col-span-4
+  color: emerald
+  ---
+  :::
+::
 
 :article-cards{:show-description=false :paths='[{"title":"Environment Variables", "_path": "/configuration/general"}, { "title": "Building Extensions", "_path": "/extensions/overview"},{ "title": "Self-Hosting", "_path": "/self-hosting/overview"}]'}
