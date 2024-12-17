@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@directus/openapi':
+        specifier: 0.0.6
+        version: 0.0.6
       '@iconify-json/material-symbols':
         specifier: 1.2.11
         version: 1.2.11
@@ -47,6 +50,10 @@ importers:
       vue-router:
         specifier: latest
         version: 4.5.0(vue@3.5.13(typescript@5.7.2))
+    devDependencies:
+      openapi3-ts:
+        specifier: 4.4.0
+        version: 4.4.0
 
 packages:
 
@@ -232,6 +239,9 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       postcss-selector-parser: ^7.0.0
+
+  '@directus/openapi@0.0.6':
+    resolution: {integrity: sha512-x3puloHRsI0ipdbZ93ZFduGSnEm9qqbCYtjJUWuuXP07WIKAOZy4pGMa1wM5gXeGHT+T1DZ4ij8n6BeIXbFuaw==}
 
   '@es-joy/jsdoccomment@0.49.0':
     resolution: {integrity: sha512-xjZTSFgECpb9Ohuk5yMX5RhUEbfeQcuOp8IF60e+wyzWEF0M5xeSgqsfLtvPEX8BIyOX9saZqzuGPmZ8oWc+5Q==}
@@ -3777,6 +3787,9 @@ packages:
     peerDependencies:
       typescript: ^5.x
 
+  openapi3-ts@4.4.0:
+    resolution: {integrity: sha512-9asTNB9IkKEzWMcHmVZE7Ts3kC9G7AFHfs8i7caD8HbI76gEjdkId4z/AkP83xdZsH7PLAnnbl47qZkXuxpArw==}
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -5514,6 +5527,8 @@ snapshots:
   '@csstools/selector-specificity@5.0.0(postcss-selector-parser@7.0.0)':
     dependencies:
       postcss-selector-parser: 7.0.0
+
+  '@directus/openapi@0.0.6': {}
 
   '@es-joy/jsdoccomment@0.49.0':
     dependencies:
@@ -10109,6 +10124,10 @@ snapshots:
       yargs-parser: 21.1.1
     transitivePeerDependencies:
       - encoding
+
+  openapi3-ts@4.4.0:
+    dependencies:
+      yaml: 2.6.1
 
   optionator@0.9.4:
     dependencies:

@@ -10,6 +10,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
+		"@directus/openapi": "0.0.6",
 		"@iconify-json/material-symbols": "1.2.11",
 		"@nuxt/content": "2.13.4",
 		"@nuxt/eslint": "0.7.3",
@@ -23,5 +24,8 @@
 		"ufo": "1.5.4",
 		"vue": "latest",
 		"vue-router": "latest"
+	},
+	"devDependencies": {
+		"openapi3-ts": "4.4.0"
 	}
 }
