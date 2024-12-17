@@ -17,7 +17,7 @@ Requests can be authenticated in the following ways:
 	Append the following query parameter: `?access_token=<token>`.
 
     ::callout{icon="material-symbols:info-outline"}
-      **Exercise caution when using query parameters for authentication
+      **Exercise caution when using query parameters for authentication**  
       Using a query parameter for authentication can lead to it being revealed or logged. If possible, use another method.
     ::
 	::
