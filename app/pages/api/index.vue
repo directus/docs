@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import type { OpenAPIObject } from 'openapi3-ts/oas30';
+
 definePageMeta({
 	layout: 'api',
 });
 
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
+
+const openapi = inject<OpenAPIObject>('openapi')!;
 
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
@@ -16,7 +20,11 @@ if (!page.value) {
 		<UPageHeader
 			:title="page!.title"
 			:description="page!.description"
-		/>
+		>
+			<template #headline>
+				For Directus v{{ openapi.info.version }}+
+			</template>
+		</UPageHeader>
 		<UPageBody prose>
 			<ContentRenderer
 				v-if="page!.body"
