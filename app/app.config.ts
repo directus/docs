@@ -39,6 +39,14 @@ export default defineAppConfig({
 		title: "On this page",
 	},
 
+	cta: {
+		cloud: {
+			link: 'https://directus.cloud',
+			description: 'Everything you need to start building. Provisioned in 90 seconds.',
+			cta: 'Get Started',
+		},
+	},
+
 	footer: {
 		links: [
 			{
