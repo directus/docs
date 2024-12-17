@@ -5,7 +5,11 @@ defineProps<{
 </script>
 
 <template>
-	<ContentQuery v-slot="{ data }" :path="`/_partials/${content}`" find="one">
+	<ContentQuery
+		v-slot="{ data }"
+		:path="`/_partials/${content}`"
+		find="one"
+	>
 		<ContentRenderer :value="data" />
 	</ContentQuery>
 </template>

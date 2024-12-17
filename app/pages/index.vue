@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () =>
-	queryContent(route.path).findOne()
+	queryContent(route.path).findOne(),
 );
 
 if (!page.value) {
 	throw createError({
 		statusCode: 404,
-		statusMessage: "Page not found",
+		statusMessage: 'Page not found',
 		fatal: true,
 	});
 }
@@ -15,16 +15,19 @@ if (!page.value) {
 
 <template>
 	<UContainer>
-	<UPage>
-		<UPageHero
-			:title="page!.title"
-			:description="page!.description"
-			:links="page!.links"
-		/>
+		<UPage>
+			<UPageHero
+				:title="page!.title"
+				:description="page!.description"
+				:links="page!.links"
+			/>
 
-		<UPageBody prose>
-			<ContentRenderer v-if="page!.body" :value="page" />
-		</UPageBody>
-	</UPage>
+			<UPageBody prose>
+				<ContentRenderer
+					v-if="page!.body"
+					:value="page"
+				/>
+			</UPageBody>
+		</UPage>
 	</UContainer>
 </template>

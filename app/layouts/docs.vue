@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { NavItem } from "@nuxt/content";
+import type { NavItem } from '@nuxt/content';
 
-const nav = inject<Ref<NavItem[]>>("navigation")!;
+const nav = inject<Ref<NavItem[]>>('navigation')!;
 const route = useRoute();
 
 // Only render the nav for the current section of the docs (eg docs, api, cloud)

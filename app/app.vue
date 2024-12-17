@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { spec } from '@directus/openapi';
+
+provide('openapi', spec);
+
 const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
 provide('navigation', navigation);
 </script>
@@ -13,6 +17,6 @@ provide('navigation', navigation);
 			</NuxtLayout>
 		</UMain>
 
-		<DocsFooter/>
+		<DocsFooter />
 	</div>
 </template>

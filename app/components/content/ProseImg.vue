@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed, useRuntimeConfig } from "#imports";
-import { joinURL, withLeadingSlash, withTrailingSlash } from "ufo";
+import { joinURL, withLeadingSlash, withTrailingSlash } from 'ufo';
+import { computed, useRuntimeConfig } from '#imports';
 
-import ImageComponent from "#build/mdc-image-component.mjs";
+import ImageComponent from '#build/mdc-image-component.mjs';
 
 const props = defineProps({
 	src: {
 		type: String,
-		default: "",
+		default: '',
 	},
 	alt: {
 		type: String,
-		default: "",
+		default: '',
 	},
 	width: {
 		type: [String, Number],
@@ -24,12 +24,12 @@ const props = defineProps({
 });
 
 const refinedSrc = computed(() => {
-	if (props.src?.startsWith("/") && !props.src.startsWith("//")) {
+	if (props.src?.startsWith('/') && !props.src.startsWith('//')) {
 		const _base = withLeadingSlash(
-			withTrailingSlash(useRuntimeConfig().app.baseURL)
+			withTrailingSlash(useRuntimeConfig().app.baseURL),
 		);
 
-		if (_base !== "/" && !props.src.startsWith(_base)) {
+		if (_base !== '/' && !props.src.startsWith(_base)) {
 			return joinURL(_base, props.src);
 		}
 	}

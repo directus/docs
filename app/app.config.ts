@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	ui: {
-		primary: 'purple' // Tailwind color name
+		primary: 'purple', // Tailwind color name
 	},
 
 	header: {
@@ -28,15 +28,15 @@ export default defineAppConfig({
 		],
 		links: [
 			{
-				icon: 'i-simple-icons-github',
-				to: 'https://github.com/directus/directus',
+				'icon': 'i-simple-icons-github',
+				'to': 'https://github.com/directus/directus',
 				'aria-label': 'Directus on GitHub',
-			}
+			},
 		],
 	},
 
 	toc: {
-		title: "On this page",
+		title: 'On this page',
 	},
 
 	cta: {
@@ -51,38 +51,38 @@ export default defineAppConfig({
 		links: [
 			{
 				label: 'Cloud Policies',
-				to: 'https://directus.io/cloud-policies'
+				to: 'https://directus.io/cloud-policies',
 			},
 			{
 				label: 'License',
-				to: 'https://directus.io/bsl'
+				to: 'https://directus.io/bsl',
 			},
 			{
 				label: 'Terms',
-				to: 'https://directus.io/terms'
+				to: 'https://directus.io/terms',
 			},
 			{
 				label: 'Privacy',
-				to: 'https://directus.io/privacy'
-			}
+				to: 'https://directus.io/privacy',
+			},
 		],
 		socials: [
 			{
 				icon: 'i-simple-icons-bluesky',
-				to: 'https://bsky.app/profile/directus.io'
+				to: 'https://bsky.app/profile/directus.io',
 			},
 			{
 				icon: 'i-simple-icons-x',
-				to: 'https://x.com/directus'
+				to: 'https://x.com/directus',
 			},
 			{
 				icon: 'i-simple-icons-discord',
-				to: 'https://directus.chat/'
+				to: 'https://directus.chat/',
 			},
 			{
 				icon: 'i-simple-icons-github',
-				to: 'https://github.com/directus/directus'
-			}
-		]
+				to: 'https://github.com/directus/directus',
+			},
+		],
 	},
 });

@@ -4,7 +4,7 @@ const props = defineProps<{
 }>();
 
 const name = computed(
-	() => props.product.charAt(0).toUpperCase() + props.product.slice(1)
+	() => props.product.charAt(0).toUpperCase() + props.product.slice(1),
 );
 </script>
 

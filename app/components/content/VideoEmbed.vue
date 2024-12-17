@@ -15,7 +15,7 @@ interface Show {
 }
 
 const show = await $fetch<Show>(
-	`https://tv.directus.app/items/episodes/${props.videoId}?fields=vimeo_id,slug,season.show.slug,season.show.title`
+	`https://tv.directus.app/items/episodes/${props.videoId}?fields=vimeo_id,slug,season.show.slug,season.show.title`,
 );
 </script>
 
@@ -27,13 +27,19 @@ const show = await $fetch<Show>(
 		>
 			<template #awaitingLoad>
 				<div class="absolute inset-0 flex items-center justify-center">
-					<UButton icon="material-symbols:play-circle-outline" size="xl" />
+					<UButton
+						icon="material-symbols:play-circle-outline"
+						size="xl"
+					/>
 				</div>
 			</template>
 
 			<template #loading>
 				<div class="absolute inset-0 flex items-center justify-center">
-					<UButton loading size="xl" />
+					<UButton
+						loading
+						size="xl"
+					/>
 				</div>
 			</template>
 

@@ -11,6 +11,10 @@ const { cta } = useAppConfig();
 			<LogoCloud class="h-8 w-auto" />
 			<span class="text-white text-sm mt-2 block">{{ cta.cloud.description }}</span>
 		</span>
-		<UButton class="block shrink-0" size="lg" color="white">{{ cta.cloud.cta }}</UButton>
+		<UButton
+			class="block shrink-0"
+			size="lg"
+			color="white"
+		>{{ cta.cloud.cta }}</UButton>
 	</NuxtLink>
 </template>
