@@ -10,6 +10,12 @@ export default defineNuxtConfig({
 
 	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxt/scripts", "@vueuse/nuxt"],
 
+	routeRules: {
+		'/docs': { redirect: '/docs/getting-started/platform-overview' },
+		'/cloud': { redirect: '/cloud/getting-started/introduction' },
+		'/community': { redirect: '/community/overview/welcome' },
+	},
+
 	nitro: {
 		prerender: {
 			routes: ["/"],
