@@ -11,7 +11,8 @@ const route = useRoute();
 const links = computed(() =>
 	header.nav.map((link: HeaderLink) => {
 		if (typeof link.to === "string") {
-			link.active = route.path.startsWith(link.to);
+			const prefix = '/' + link.to.split('/')[1];
+			link.active = route.path.startsWith(prefix);
 		}
 
 		return link;
