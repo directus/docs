@@ -7,7 +7,7 @@ export default defineAppConfig({
 		nav: [
 			{
 				label: 'Docs',
-				to: '/docs/getting-started',
+				to: '/docs/getting-started/platform-overview',
 			},
 			{
 				label: 'API',
