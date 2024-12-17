@@ -18,7 +18,7 @@ Learn more about using the Directus UI library.
 
 To avoid Cross Site Request Forgery (CSRF), app extensions cannot make requests to external servers by default. A common approach to achieve this is to create a bundle containing an endpoint that makes the external request, and an app extension that uses the now-internal endpoint to retrieve data.
 
-:callout{type="tutorials" url="/tutorials/extensions"}
+::callout{icon="material-symbols:school-outline" color="pink" to="/tutorials/extensions"}
 Learn more about building extensions through our tutorials.
 ::
 
