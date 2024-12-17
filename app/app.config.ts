@@ -7,7 +7,7 @@ export default defineAppConfig({
 		nav: [
 			{
 				label: 'Docs',
-				to: '/docs',
+				to: '/docs/getting-started',
 			},
 			{
 				label: 'API',
@@ -15,7 +15,7 @@ export default defineAppConfig({
 			},
 			{
 				label: 'Cloud',
-				to: '/cloud',
+				to: '/cloud/getting-started/introduction',
 			},
 			{
 				label: 'Tutorials',
