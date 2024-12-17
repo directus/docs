@@ -1,14 +1,67 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	extends: ["@nuxt/ui-pro"],
+	extends: ['@nuxt/ui-pro'],
 
-	compatibilityDate: "2024-11-01",
+	modules: [
+		'@nuxt/eslint',
+		'@nuxt/content',
+		'@nuxt/ui',
+		'@nuxtjs/tailwindcss',
+		'@nuxt/scripts',
+		'@vueuse/nuxt',
+	],
 
-	future: {
-		compatibilityVersion: 4,
+	devtools: {
+		enabled: true,
 	},
 
-	modules: ["@nuxt/eslint", "@nuxt/content", "@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxt/scripts", "@vueuse/nuxt"],
+	content: {
+		highlight: {
+			theme: {
+				default: 'github-light',
+				dark: 'github-dark',
+			},
+			langs: [
+				'json',
+				'js',
+				'ts',
+				'html',
+				'css',
+				'vue',
+				'shell',
+				'mdc',
+				'md',
+				'yaml',
+				'bash',
+				'swift',
+				'python',
+				'graphql',
+				'http',
+				'jinja',
+				'dart',
+				'groovy',
+				'kotlin',
+				'svelte',
+				'dockerfile',
+				'ini',
+				'diff',
+				'liquid',
+				'php',
+				'liquid',
+				'java',
+				'xml',
+				'nginx',
+				'scss',
+				'jsx',
+				'tsx',
+			],
+		},
+		markdown: {
+			toc: {
+				depth: 1,
+			},
+		},
+	},
 
 	routeRules: {
 		'/docs': { redirect: '/docs/getting-started/platform-overview' },
@@ -16,32 +69,34 @@ export default defineNuxtConfig({
 		'/community': { redirect: '/community/overview/welcome' },
 	},
 
+	future: {
+		compatibilityVersion: 4,
+	},
+
+	compatibilityDate: '2024-11-01',
+
 	nitro: {
 		prerender: {
-			routes: ["/"],
+			routes: ['/'],
 			crawlLinks: true,
 		},
 	},
 
 	hooks: {
 		// Make the Landing components available for use on the homepage in md
-		"components:extend": (components) => {
+		'components:extend': (components) => {
 			const globals = components.filter((c) => {
-				return c.kebabName.startsWith("u-landing-");
+				return c.kebabName.startsWith('u-landing-');
 			});
 
-			globals.forEach((c) => (c.global = true));
+			globals.forEach(c => (c.global = true));
 		},
-	},
-
-	devtools: {
-		enabled: true,
 	},
 
 	eslint: {
 		config: {
 			stylistic: {
-				indent: "tab",
+				indent: 'tab',
 				semi: true,
 			},
 		},
@@ -50,61 +105,13 @@ export default defineNuxtConfig({
 	icon: {
 		customCollections: [
 			{
-				prefix: "directus",
-				dir: "./app/assets/icons/products",
+				prefix: 'directus',
+				dir: './app/assets/icons/products',
 			},
 			{
-				prefix: "frameworks",
-				dir: "./app/assets/icons/frameworks",
+				prefix: 'frameworks',
+				dir: './app/assets/icons/frameworks',
 			},
 		],
-	},
-
-	content: {
-		highlight: {
-			theme: {
-				default: "github-light",
-				dark: "github-dark",
-			},
-			langs: [
-				"json",
-				"js",
-				"ts",
-				"html",
-				"css",
-				"vue",
-				"shell",
-				"mdc",
-				"md",
-				"yaml",
-				"bash",
-				"swift",
-				"python",
-				"graphql",
-				"http",
-				"jinja",
-				"dart",
-				"groovy",
-				"kotlin",
-				"svelte",
-				"dockerfile",
-				"ini",
-				"diff",
-				"liquid",
-				"php",
-				"liquid",
-				"java",
-				"xml",
-				"nginx",
-				"scss",
-				"jsx",
-				"tsx",
-			],
-		},
-		markdown: {
-			toc: {
-				depth: 1,
-			},
-		},
 	},
 });
