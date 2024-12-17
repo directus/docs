@@ -48,7 +48,7 @@ const show = await $fetch<Show>(
 
 		<template #footer>
 			<NuxtLink :href="`https://directus.io/tv/${show.data.season.show.slug}`">
-				Watch {{ show.data.season.show.title }} on <TvLogo />
+				Watch {{ show.data.season.show.title }} on <LogoTv />
 			</NuxtLink>
 		</template>
 	</UCard>

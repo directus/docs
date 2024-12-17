@@ -22,7 +22,7 @@ const links = computed(() =>
 <template>
 	<UHeader :links="links">
 		<template #logo>
-			<DocsLogo class="w-auto h-8 shrink-0" />
+			<LogoDocs class="w-auto h-8 shrink-0" />
 		</template>
 
 		<template #right>
