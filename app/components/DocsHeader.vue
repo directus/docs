@@ -1,20 +1,26 @@
 <script setup lang="ts">
 import type { NavItem } from "@nuxt/content";
+import type { HeaderLink } from "@nuxt/ui-pro/types";
 
 const navigation = inject<NavItem[]>("navigation", []);
 const { metaSymbol } = useShortcuts();
 
 const { header } = useAppConfig();
+const route = useRoute();
+
+const links = header.nav.map((link: HeaderLink) => {
+	if (typeof link.to === 'string') {
+		link.active = route.path.startsWith(link.to);
+	}
+
+	return link;
+});
 </script>
 
 <template>
-	<UHeader>
+	<UHeader :links="links">
 		<template #logo>
 			<DocsLogo class="w-auto h-8 shrink-0" />
-		</template>
-
-		<template #center>
-			<UHeaderLinks class="hidden lg:flex" :links="header.nav" />
 		</template>
 
 		<template #right>
