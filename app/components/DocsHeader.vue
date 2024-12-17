@@ -8,13 +8,15 @@ const { metaSymbol } = useShortcuts();
 const { header } = useAppConfig();
 const route = useRoute();
 
-const links = header.nav.map((link: HeaderLink) => {
-	if (typeof link.to === 'string') {
-		link.active = route.path.startsWith(link.to);
-	}
+const links = computed(() =>
+	header.nav.map((link: HeaderLink) => {
+		if (typeof link.to === "string") {
+			link.active = route.path.startsWith(link.to);
+		}
 
-	return link;
-});
+		return link;
+	})
+);
 </script>
 
 <template>
@@ -45,7 +47,11 @@ const links = header.nav.map((link: HeaderLink) => {
 		<template #panel>
 			<UAsideLinks :links="header.nav" />
 			<UDivider type="dashed" class="my-4" />
-			<UNavigationTree :links="mapContentNavigation(navigation)" :multiple="false" default-open />
+			<UNavigationTree
+				:links="mapContentNavigation(navigation)"
+				:multiple="false"
+				default-open
+			/>
 		</template>
 	</UHeader>
 </template>
