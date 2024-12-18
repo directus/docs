@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { OpenAPIObject } from 'openapi3-ts/oas30';
+import type { OpenAPIObject, RequestBodyObject } from 'openapi3-ts/oas30';
 import type { DerefedOperationObject, FlattenedOperationObject } from '~/types';
 
 const openapi = inject<OpenAPIObject>('openapi')!;
@@ -17,6 +17,22 @@ const responseExample = computed(() => {
 
 	return null;
 });
+
+const requestBodyObject = computed(() => {
+	if (!props.operation.requestBody) return null;
+
+	return '$ref' in props.operation.requestBody ? resolveRef<RequestBodyObject>(openapi, props.operation.requestBody.$ref) : props.operation.requestBody ?? null;
+});
+
+const requestBodySchema = computed(() => {
+	const contentSchema = requestBodyObject.value?.content?.['application/json']?.schema;
+
+	if (contentSchema) {
+		return flattenRequestBodySchema(openapi, contentSchema);
+	}
+
+	return null;
+});
 </script>
 
 <template>
@@ -28,7 +44,7 @@ const responseExample = computed(() => {
 		}"
 		prose
 	>
-		<div class="grow shrink-0 basis-5/12">
+		<div class="grow shrink-0 basis-6/12">
 			<ProseH2 :id="operation.method + operation.path">
 				{{ operation.summary }}
 			</ProseH2>
@@ -37,7 +53,10 @@ const responseExample = computed(() => {
 				{{ operation.description }}
 			</ProseP>
 
-			<template v-if="operation.parameters">
+			<div
+				v-if="operation.parameters"
+				class="mb-12 last:mb-0"
+			>
 				<ProseH4 :id="operation.method + operation.path + '-params'">
 					Query Parameters
 				</ProseH4>
@@ -54,7 +73,20 @@ const responseExample = computed(() => {
 						/>
 					</Field>
 				</FieldGroup>
-			</template>
+			</div>
+
+			<div
+				v-if="requestBodyObject && requestBodySchema"
+				class="mb-12 last:mb-0"
+			>
+				<ProseH4 :id="operation.method + operation.path + '-body'">
+					Request Body
+				</ProseH4>
+				<ProseP v-if="requestBodyObject.description">
+					{{ requestBodyObject.description }}
+				</ProseP>
+				<ApiParams :param="requestBodySchema" />
+			</div>
 		</div>
 
 		<div class="grow sticky top-16">
