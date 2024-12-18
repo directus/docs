@@ -14,31 +14,6 @@ export default function (openapi: OpenAPIObject, root: SchemaObject): unknown | 
 		return null;
 	}
 
-	// function parseLevel(schema: SchemaObject | ReferenceObject, parent: ExampleObject = exampleObject) {
-	// 	if ('$ref' in schema) {
-	// 		const unrefSchema = resolveRef<SchemaObject>(openapi, schema.$ref);
-
-	// 		if (unrefSchema) {
-	// 			parseLevel(unrefSchema, parent);
-	// 		}
-
-	// 		return;
-	// 	}
-
-	// 	if (schema.type === 'object' && schema.properties) {
-	// 		for (const [key, value] of Object.entries(schema.properties)) {
-	// 			if ('$ref' in value || value.type === 'object') {
-	// 				parent[key] = {};
-	// 				parseLevel(value, parent[key] as ExampleObject);
-	// 			}
-
-	// 			else {
-	// 				parent[key] = value.example ?? null;
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 	const parseLevel = (schemaOrRef: SchemaObject | ReferenceObject): unknown => {
 		const schemaObj = '$ref' in schemaOrRef ? resolveRef<SchemaObject>(openapi, schemaOrRef.$ref) : schemaOrRef;
 
