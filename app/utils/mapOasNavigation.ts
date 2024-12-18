@@ -1,20 +1,9 @@
 import type {
 	OpenAPIObject,
 	OperationObject,
-	PathItemObject,
 } from 'openapi3-ts/oas30';
 import type { NavigationLink, NavigationTree } from '#ui-pro/types';
-
-const methods: (keyof PathItemObject)[] = [
-	'get',
-	'put',
-	'post',
-	'delete',
-	'options',
-	'head',
-	'patch',
-	'trace',
-];
+import { methods } from '@/constants';
 
 export default function (spec: OpenAPIObject): NavigationTree[] {
 	const byTag: Record<string, NavigationLink[]> = {};
@@ -23,6 +12,7 @@ export default function (spec: OpenAPIObject): NavigationTree[] {
 		for (const method of methods) {
 			if (pathItemObject[method]) {
 				const operationObject: OperationObject = pathItemObject[method];
+
 				for (const tag of operationObject.tags ?? []) {
 					if (!byTag[tag]) {
 						byTag[tag] = [];
@@ -30,8 +20,10 @@ export default function (spec: OpenAPIObject): NavigationTree[] {
 
 					byTag[tag].push({
 						label: operationObject.summary ?? path,
-						badge: method,
-						to: `/api/${method}${path}`,
+						to: `/api/${tag.toLowerCase()}#${method}${path}`,
+						// badge: method,
+						exact: true,
+						exactHash: true,
 					});
 				}
 			}
@@ -41,6 +33,7 @@ export default function (spec: OpenAPIObject): NavigationTree[] {
 	return Object.entries(byTag).map(([tag, links]) => {
 		return {
 			label: tag,
+			to: `/api/${tag.toLowerCase()}`,
 			children: links,
 		};
 	});
