@@ -12,11 +12,7 @@ export default function codeSamplesMd(codeSamples: CodeSample[]) {
 	let md = '::code-group';
 
 	for (const { lang, source, label } of codeSamples) {
-		md += `
-\`\`\`${linguistToShiki(lang)} [${label}]
-${source}
-\`\`\`
-`;
+		md += preMd(lang, label, source);
 	}
 
 	md += '::';

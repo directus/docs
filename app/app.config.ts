@@ -107,9 +107,20 @@ export default defineAppConfig({
 		],
 		links: [
 			{
-				'icon': 'i-simple-icons-github',
-				'to': 'https://github.com/directus/directus',
-				'aria-label': 'Directus on GitHub',
+				icon: 'simple-icons:bluesky',
+				to: 'https://bsky.app/profile/directus.io',
+			},
+			{
+				icon: 'simple-icons:x',
+				to: 'https://x.com/directus',
+			},
+			{
+				icon: 'simple-icons:discord',
+				to: 'https://directus.chat/',
+			},
+			{
+				icon: 'simple-icons:github',
+				to: 'https://github.com/directus/directus',
 			},
 		],
 	},
@@ -147,19 +158,19 @@ export default defineAppConfig({
 		],
 		socials: [
 			{
-				icon: 'i-simple-icons-bluesky',
+				icon: 'simple-icons:bluesky',
 				to: 'https://bsky.app/profile/directus.io',
 			},
 			{
-				icon: 'i-simple-icons-x',
+				icon: 'simple-icons:x',
 				to: 'https://x.com/directus',
 			},
 			{
-				icon: 'i-simple-icons-discord',
+				icon: 'simple-icons:discord',
 				to: 'https://directus.chat/',
 			},
 			{
-				icon: 'i-simple-icons-github',
+				icon: 'simple-icons:github',
 				to: 'https://github.com/directus/directus',
 			},
 		],
