@@ -6,8 +6,21 @@ export default defineAppConfig({
 	header: {
 		nav: [
 			{
-				label: 'Docs',
-				to: '/docs/getting-started/platform-overview',
+				label: 'Start',
+				children: [
+					{
+						label: 'Getting Started',
+						to: '/getting-started/create-a-project',
+						icon: 'i-ph-play',
+						description: 'Learn about how to create a Directus project.',
+					},
+					{
+						label: 'Framework Quickstarts',
+						to: '/getting-started/frameworks',
+						icon: 'i-ph-plugs-connected',
+						description: 'Connect Directus with your favorite framework.',
+					}
+				]
 			},
 			{
 				label: 'API',
