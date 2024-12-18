@@ -41,7 +41,7 @@ paths:
     $ref: paths/comments/_id/index.yaml
   "/dashboards":
     $ref: paths/dashboards/index.yaml
-  "/dashboards#‎":
+  "/dashboards‎":
     $ref: paths/dashboards/#‎/index.yaml
   "/dashboards/{id}":
     $ref: paths/dashboards/_id/index.yaml
