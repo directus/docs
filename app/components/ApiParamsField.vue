@@ -17,7 +17,11 @@ defineProps<{
 			:value="param.description"
 		/>
 
-		<Collapsible v-if="'children' in param">
+		<Collapsible v-if="param.anyOf">
+			<ApiParamsAnyOf :params="param.anyOf" />
+		</Collapsible>
+
+		<Collapsible v-else-if="'children' in param">
 			<ApiParams
 				v-for="child of param.children"
 				:key="child.name"

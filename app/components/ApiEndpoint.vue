@@ -18,7 +18,7 @@ const requestBodySchema = computed(() => {
 	const contentSchema = requestBodyObject.value?.content?.['application/json']?.schema;
 
 	if (contentSchema) {
-		return flattenRequestBodySchema(openapi, contentSchema);
+		return flattenSchema(openapi, contentSchema);
 	}
 
 	return null;
@@ -36,7 +36,7 @@ const flattenedResponseBodySchema = computed(() => {
 	const contentSchema = responseBodyObject.value?.content?.['application/json']?.schema;
 
 	if (contentSchema) {
-		return flattenRequestBodySchema(openapi, contentSchema);
+		return flattenSchema(openapi, contentSchema);
 	}
 
 	return null;

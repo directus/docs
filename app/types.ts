@@ -8,4 +8,5 @@ export interface FlattenedParam {
 	type: string | undefined;
 	description: string | undefined;
 	children?: FlattenedParam[];
+	anyOf?: FlattenedParam[];
 }

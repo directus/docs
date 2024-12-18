@@ -11,7 +11,12 @@ withDefaults(defineProps<{
 
 <template>
 	<FieldGroup>
-		<template v-if="param.type === 'object' && param.children">
+		<ApiParamsAnyOf
+			v-if="param.anyOf"
+			:params="param.anyOf"
+		/>
+
+		<template v-else-if="param.type === 'object' && param.children">
 			<ApiParamsField
 				v-for="child of param.children"
 				:key="child.name"
