@@ -11,26 +11,17 @@ withDefaults(defineProps<{
 
 <template>
 	<FieldGroup>
-		<Field
-			:key="param.name"
-			:name="param.name || `[${param.type}]`"
-			:type="param.type"
-		>
-			<MDC
-				v-if="param.description"
-				:value="param.description"
+		<template v-if="param.type === 'object' && param.children">
+			<ApiParamsField
+				v-for="child of param.children"
+				:key="child.name"
+				:param="child"
 			/>
+		</template>
 
-			<Collapsible
-				v-if="'children' in param"
-				open
-			>
-				<ApiParamsField
-					v-for="child of param.children"
-					:key="child.name"
-					:param="child"
-				/>
-			</Collapsible>
-		</Field>
+		<ApiParamsField
+			v-else
+			:param="param"
+		/>
 	</FieldGroup>
 </template>

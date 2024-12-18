@@ -8,16 +8,6 @@ const props = defineProps<{
 	operation: FlattenedOperationObject<DerefedOperationObject>;
 }>();
 
-const responseExample = computed(() => {
-	const responseSchema = props.operation.responses?.['200']?.content?.['application/json']?.schema;
-
-	if (responseSchema) {
-		return responseToExample(openapi, responseSchema);
-	}
-
-	return null;
-});
-
 const requestBodyObject = computed(() => {
 	if (!props.operation.requestBody) return null;
 
@@ -29,6 +19,34 @@ const requestBodySchema = computed(() => {
 
 	if (contentSchema) {
 		return flattenRequestBodySchema(openapi, contentSchema);
+	}
+
+	return null;
+});
+
+const responseBodyObject = computed(() => {
+	if (!props.operation.responses?.['200']) return null;
+
+	return '$ref' in props.operation.responses['200']
+		? resolveRef<RequestBodyObject>(openapi, props.operation.responses['200'].$ref)
+		: props.operation.responses['200'] ?? null;
+});
+
+const flattenedResponseBodySchema = computed(() => {
+	const contentSchema = responseBodyObject.value?.content?.['application/json']?.schema;
+
+	if (contentSchema) {
+		return flattenRequestBodySchema(openapi, contentSchema);
+	}
+
+	return null;
+});
+
+const responseBodyExample = computed(() => {
+	const responseSchema = responseBodyObject.value?.content?.['application/json']?.schema;
+
+	if (responseSchema) {
+		return responseToExample(openapi, responseSchema);
 	}
 
 	return null;
@@ -87,13 +105,26 @@ const requestBodySchema = computed(() => {
 				</ProseP>
 				<ApiParams :param="requestBodySchema" />
 			</div>
+
+			<div
+				v-if="responseBodyObject && flattenedResponseBodySchema"
+				class="mb-12 last:mb-0"
+			>
+				<ProseH4 :id="operation.method + operation.path + '-response'">
+					Response
+				</ProseH4>
+				<ProseP v-if="responseBodyObject.description">
+					{{ responseBodyObject.description }}
+				</ProseP>
+				<ApiParams :param="flattenedResponseBodySchema" />
+			</div>
 		</div>
 
 		<div class="grow sticky top-16">
 			<MDC :value="codeSamplesMd(operation['x-codeSamples'])" />
 			<MDC
-				v-if="responseExample"
-				:value="preMd('json', 'Response Example', responseExample)"
+				v-if="responseBodyExample"
+				:value="preMd('json', 'Response Example', responseBodyExample)"
 			/>
 		</div>
 	</UPageBody>
