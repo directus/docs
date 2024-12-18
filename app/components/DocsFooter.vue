@@ -6,6 +6,7 @@ const { footer } = useAppConfig();
 	<UFooter
 		:links="footer.links"
 		class="border-t border-gray-200 dark:border-gray-800"
+		:ui="$route.path.startsWith('/api') ? {bottom: {container: 'max-w-screen'}} : {}"
 	>
 		<template #left>
 			<p class="text-sm font-semibold text-gray-700 dark:text-gray-300">
