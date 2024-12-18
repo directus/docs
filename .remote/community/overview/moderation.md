@@ -1,0 +1,44 @@
+---
+id: 59e95567-c269-46c0-86ba-18fb70942c46
+slug: moderation
+title: Moderation Guidelines
+authors: []
+---
+# Moderation Guidelines
+
+Anyone can help moderate our online community spaces so that everyone has a better time participating. Anyone can flag and report behaviors outside of the Directus [Code of Conduct](https://docs.directus.io/community/overview/conduct) and server rules across GitHub and Discord to the core team.
+
+As well as the core team, we have a set of community moderators who support us in creating a kind and well-organized community on Discord. The role of the moderators is to:
+
+- Remove spam and other content that breaks our server rules.
+- Remove server members who consistently break rules, or break certain rules where there is zero-tolerance.
+- Move questions to help channels when posted elsewhere.
+- Be model community members.
+
+This is an elevated role that is generally given at discretion of the core team. If this is of interest to you, please reach out to a member of the team.
+
+We want to empower and support our volunteer moderators to be able to take action by providing guidelines and understanding on our outlined expectations and actions to consequences paradigm. However, for more delicate and complex moderating situations, we ask that the core team take over in responding in order to coordinate an appropriate response and relieve the moderators from handling it.
+
+---
+
+## Moderation Guidelines
+
+We provide the following guidelines to the moderators:
+
+These guidelines are meant to be a helpful tool to steer the team, moderators and all the community in the right direction with best practices around behavior and moderation, but they’re not going to directly apply to every situation which is why we also have a separate moderation channel to discuss matters if needed.
+
+When users join we set the expectations of the server behaviors which range from generally treating people with respect to avoiding unwanted behavior such as spamming, inappropriate content, and entitlement. 
+
+The general summary is to be nice to people and not spam, when considering how to respond to a questionable post, it is important to consider whether there was any ill-intent in the post and whether a course correction would be more appropriate than a straight delete of a message or kick of a user. Kicking a member from the server is temporary and allows them to rejoin it if they wish. Banning a member is permanent and they will not be allowed to rejoin the server with that account. 
+
+We recommend judging when to kick versus when to ban a user based on how long they’ve been in the Discord server, if it’s in the last week, ban them. If they’ve been here a while, kick them.
+
+- For basic spam (for example, a new account posting crypto discord bot promotion) ban the user and delete the message(s).
+- For anything beyond basic spam but that is clearly unacceptable (disrespectful/hostile language, bullying and promotion of services etc) we ask for a screenshot to be taken and shared before kicking and deleting, this helps us build an idea of any repeat bad actors and any need to escalate across platforms in the unlikely case.
+- For seekers of work - delete the message and explain to the user it isn’t permitted to seek work, instead they should respond to the job offers listed. If they repeat, kick them.
+- DMs: If you receive a DM from a server user who has not been given permission to contact you, please let us know and we can reach out and warn them, plus escalate as needed.
+- We welcome constructive criticism before it gets to the point of gratuitous complaining, this helps us know how to do better and so as long as it is respectful, we keep it and can enter a conversation with the user. If it crosses the disrespectful line (eg calls out a particular team member or is very aggressive), delete the message and remind the user to be respectful, or let the core team handle it.
+- Repeated posting of the same (appropriate) content, can be course-corrected with a warning of ‘thanks for sharing but please refrain from doing so again’ style of message. If they repeat, kick them.
+- When dealing with entitlement of replies, remind users this is a community-powered space and that although it can be frustrating to not get a timely reply, they are not entitled to answers, either in a given timeframe, or at all.
+
+When within a conflicting situation on Discord, it can feel like messages demand an instant response, however, unless there is a message which needs to be deleted due to its inappropriate content, sometimes discussing a response with the team in #moderation before replying is the best way to consider how to de-escalate a situation.
