@@ -14,8 +14,8 @@ const tag = computed(() => {
 	return openapi.tags?.find(tag => tag.name.toLowerCase() === route.params.tag);
 });
 
-const paths = computed(() => {
-	const paths = [];
+const operations = computed(() => {
+	const operations = [];
 
 	for (const [path, pathItemObject] of Object.entries(openapi.paths)) {
 		for (const method of methods) {
@@ -23,7 +23,7 @@ const paths = computed(() => {
 				const operationObject: OperationObject = pathItemObject[method];
 
 				if (operationObject.tags?.includes(tag.value!.name)) {
-					paths.push({
+					operations.push({
 						...operationObject,
 						method, path,
 					});
@@ -32,7 +32,7 @@ const paths = computed(() => {
 		}
 	}
 
-	return paths;
+	return derefOperations(openapi, operations);
 });
 
 if (!tag.value) {
@@ -42,63 +42,52 @@ if (!tag.value) {
 
 <template>
 	<UPage>
-		<div class="flex gap-6 items-center border-b border-gray-200 dark:border-gray-800">
+		<div class="flex gap-10 items-center border-b border-gray-200 dark:border-gray-800 max-w-6xl py-7">
 			<UPageHeader
 				:title="tag!.name"
 				:description="tag!.description"
 				class="shrink basis-6/12 border-0"
 			/>
-			<ApiNav :paths="paths" />
+			<ApiNav :operations="operations" />
 		</div>
 		<UPageBody
-			v-for="path in paths"
-			:key="path.method + path.path"
-			class="flex gap-6 items-center border-b border-gray-200 dark:border-gray-800"
+			v-for="operation in operations"
+			:key="operation.method + operation.path"
+			class="flex gap-10 items-start border-b last:border-0 border-gray-200 dark:border-gray-800"
+			:ui="{
+				prose: 'prose prose-primary dark:prose-invert max-w-6xl',
+			}"
 			prose
 		>
-			<div>
-				<ProseH2 :id="path.method + path.path">
-					{{ path.summary }}
+			<div class="grow shrink-0 basis-6/12">
+				<ProseH2 :id="operation.method + operation.path">
+					{{ operation.summary }}
 				</ProseH2>
 
-				<template v-if="path.parameters">
-					<ProseH3 :id="path.method + path.path + '-params'">
+				<template v-if="operation.parameters">
+					<ProseH4 :id="operation.method + operation.path + '-params'">
 						Query Parameters
-					</ProseH3>
+					</ProseH4>
 					<FieldGroup>
-						<template v-for="param of path.parameters">
-							<Field
-								v-if="'$ref' in param"
-								:key="param.$ref"
-								:name="param.$ref"
-								type="TBD"
-							>
-								{{ param.$ref }}
-							</Field>
-
-							<Field
-								v-else
-								:key="param.name"
-								:name="param.name"
-								:type="param.schema?.type"
-							>
-								{{ param.description }}
-							</Field>
-						</template>
+						<Field
+							v-for="param of operation.parameters"
+							:key="param.name"
+							:name="param.name"
+							:type="param.schema?.type"
+						>
+							<MDC
+								v-if="param.description"
+								:value="param.description"
+							/>
+						</Field>
 					</FieldGroup>
 				</template>
 			</div>
-			<CodeGroup>
-				<ProsePre
-					v-for="(example, index) in path['x-codeSamples']"
-					:key="index"
-					:language="example.language"
-					:filename="example.label"
-					:code="example.source"
-				>
-					{{ example.source }}
-				</ProsePre>
-			</CodeGroup>
+
+			<MDC
+				class="grow basis-6/12 sticky top-16"
+				:value="codeSamplesMd(operation['x-codeSamples'])"
+			/>
 		</UPageBody>
 	</UPage>
 </template>
