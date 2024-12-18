@@ -44,6 +44,12 @@ export default defineAppConfig({
 						description: 'Connect Directus with your favorite framework.',
 					},
 					{
+						label: 'Flows',
+						to: '/guides/flows/quickstart',
+						icon: 'directus-automate',
+						description: 'Connect Directus with your favorite framework.',
+					},
+					{
 						label: 'Insights',
 						to: '/guides/insights/quickstart',
 						icon: 'directus-insights',
@@ -55,20 +61,14 @@ export default defineAppConfig({
 				label: 'Build',
 				children: [
 					{
-						label: 'Automate',
-						to: '/engine/automate/quickstart',
+						label: 'API Reference',
+						to: '/api',
 						icon: 'directus-automate',
 						description: 'Connect Directus with your favorite framework.',
 					},
 					{
-						label: 'Connect',
-						to: '/engine/connect/quickstart',
-						icon: 'directus-connect',
-						description: 'Content Management.',
-					},
-					{
-						label: 'Extend',
-						to: '/engine/extensions/overview',
+						label: 'Extensions',
+						to: '/extensions/overview',
 						icon: 'directus-marketplace',
 						description: 'Connect Directus with your favorite framework.',
 					},
@@ -100,12 +100,6 @@ export default defineAppConfig({
 			{
 				label: 'Resources',
 				children: [
-					{
-						label: 'API',
-						to: '/api',
-						icon: 'directus-automate',
-						description: 'Connect Directus with your favorite framework.',
-					},
 					{
 						label: 'Community',
 						to: '/community',
