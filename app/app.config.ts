@@ -43,23 +43,88 @@ export default defineAppConfig({
 						icon: 'directus-files',
 						description: 'Connect Directus with your favorite framework.',
 					},
+					{
+						label: 'Insights',
+						to: '/guides/insights/quickstart',
+						icon: 'directus-insights',
+						description: 'Connect Directus with your favorite framework.',
+					},
 				],
 			},
 			{
-				label: 'API',
-				to: '/api',
+				label: 'Build',
+				children: [
+					{
+						label: 'Automate',
+						to: '/engine/automate/quickstart',
+						icon: 'directus-automate',
+						description: 'Connect Directus with your favorite framework.',
+					},
+					{
+						label: 'Connect',
+						to: '/engine/connect/quickstart',
+						icon: 'directus-connect',
+						description: 'Content Management.',
+					},
+					{
+						label: 'Extend',
+						to: '/engine/extensions/overview',
+						icon: 'directus-marketplace',
+						description: 'Connect Directus with your favorite framework.',
+					},
+					{
+						label: 'Realtime',
+						to: '/engine/realtime/quickstart',
+						icon: 'directus-realtime',
+						description: 'Connect Directus with your favorite framework.',
+					},
+				],
 			},
 			{
-				label: 'Cloud',
-				to: '/cloud/getting-started/introduction',
+				label: 'Manage',
+				children: [
+					{
+						label: 'Cloud',
+						to: '/cloud/getting-started/introduction',
+						icon: 'directus-automate',
+						description: 'Connect Directus with your favorite framework.',
+					},
+					{
+						label: 'Self Hosting',
+						to: '/self-hosting/overview',
+						icon: 'directus-connect',
+						description: 'Content Management.',
+					},
+				],
 			},
 			{
-				label: 'Tutorials',
-				to: '/tutorials',
-			},
-			{
-				label: 'Community',
-				to: '/community',
+				label: 'Resources',
+				children: [
+					{
+						label: 'API',
+						to: '/api',
+						icon: 'directus-automate',
+						description: 'Connect Directus with your favorite framework.',
+					},
+					{
+						label: 'Community',
+						to: '/community',
+						icon: 'directus-connect',
+						description: 'Content Management.',
+					},
+					{
+						label: 'Tutorials',
+						to: '/tutorials',
+						icon: 'directus-connect',
+						description: 'Content Management.',
+					},
+					{
+						label: 'Releases',
+						to: '/releases',
+						icon: 'directus-connect',
+						description: 'Content Management.',
+					},
+				],
 			},
 		],
 		links: [
