@@ -19,8 +19,31 @@ export default defineAppConfig({
 						to: '/getting-started/frameworks',
 						icon: 'i-ph-plugs-connected',
 						description: 'Connect Directus with your favorite framework.',
-					}
-				]
+					},
+				],
+			},
+			{
+				label: 'Compose',
+				children: [
+					{
+						label: 'Auth',
+						to: '/guides/auth/quickstart',
+						icon: 'directus-auth',
+						description: 'Connect Directus with your favorite framework.',
+					},
+					{
+						label: 'Content',
+						to: '/guides/content/explore',
+						icon: 'directus-explore',
+						description: 'Content Management.',
+					},
+					{
+						label: 'Files',
+						to: '/guides/files/quickstart',
+						icon: 'directus-files',
+						description: 'Connect Directus with your favorite framework.',
+					},
+				],
 			},
 			{
 				label: 'API',
