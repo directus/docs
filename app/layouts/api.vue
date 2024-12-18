@@ -5,21 +5,19 @@ const openapi = inject<OpenAPIObject>('openapi')!;
 </script>
 
 <template>
-	<div>
-		<UContainer>
-			<UPage>
-				<template #left>
-					<UAside>
-						<UNavigationTree
-							:links="mapOasNavigation(openapi)"
-							:multiple="false"
-							default-open
-						/>
-					</UAside>
-				</template>
+	<div class="mx-6">
+		<UPage>
+			<template #left>
+				<UAside>
+					<UNavigationTree
+						:links="mapOasNavigation(openapi)"
+						:multiple="false"
+						default-open
+					/>
+				</UAside>
+			</template>
 
-				<slot />
-			</UPage>
-		</UContainer>
+			<slot />
+		</UPage>
 	</div>
 </template>
