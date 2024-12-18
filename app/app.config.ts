@@ -7,76 +7,50 @@ export default defineAppConfig({
 		nav: [
 			{
 				label: 'Start',
-				children: [
-					{
-						label: 'Getting Started',
-						to: '/getting-started/create-a-project',
-						icon: 'i-ph-play',
-						description: 'Learn about how to create a Directus project.',
-					},
-					{
-						label: 'Framework Quickstarts',
-						to: '/getting-started/frameworks',
-						icon: 'i-ph-plugs-connected',
-						description: 'Connect Directus with your favorite framework.',
-					},
-				],
-			},
-			{
-				label: 'Compose',
-				children: [
-					{
-						label: 'Auth',
-						to: '/guides/auth/quickstart',
-						icon: 'directus-auth',
-						description: 'Connect Directus with your favorite framework.',
-					},
-					{
-						label: 'Content',
-						to: '/guides/content/explore',
-						icon: 'directus-explore',
-						description: 'Content Management.',
-					},
-					{
-						label: 'Files',
-						to: '/guides/files/quickstart',
-						icon: 'directus-files',
-						description: 'Connect Directus with your favorite framework.',
-					},
-					{
-						label: 'Flows',
-						to: '/guides/flows/quickstart',
-						icon: 'directus-automate',
-						description: 'Connect Directus with your favorite framework.',
-					},
-					{
-						label: 'Insights',
-						to: '/guides/insights/quickstart',
-						icon: 'directus-insights',
-						description: 'Connect Directus with your favorite framework.',
-					},
-				],
+				to: '/getting-started',
 			},
 			{
 				label: 'Build',
 				children: [
 					{
-						label: 'API Reference',
-						to: '/api',
-						icon: 'directus-automate',
-						description: 'Connect Directus with your favorite framework.',
+						label: 'Auth',
+						to: '/guides/auth/quickstart',
+						icon: 'directus-auth',
+					},
+					{
+						label: 'Collections',
+						to: '/guides/collections/quickstart',
+						icon: 'directus-connect',
+					},
+					{
+						label: 'Content',
+						to: '/guides/content/explore',
+						icon: 'directus-explore',
 					},
 					{
 						label: 'Extensions',
 						to: '/extensions/overview',
 						icon: 'directus-marketplace',
-						description: 'Connect Directus with your favorite framework.',
+					},
+					{
+						label: 'Files',
+						to: '/guides/files/quickstart',
+						icon: 'directus-files',
+					},
+					{
+						label: 'Flows',
+						to: '/guides/flows/quickstart',
+						icon: 'directus-automate',
+					},
+					{
+						label: 'Insights',
+						to: '/guides/insights/quickstart',
+						icon: 'directus-insights',
 					},
 					{
 						label: 'Realtime',
-						to: '/engine/realtime/quickstart',
+						to: '/guides/realtime/quickstart',
 						icon: 'directus-realtime',
-						description: 'Connect Directus with your favorite framework.',
 					},
 				],
 			},
@@ -86,14 +60,14 @@ export default defineAppConfig({
 					{
 						label: 'Cloud',
 						to: '/cloud/getting-started/introduction',
-						icon: 'directus-automate',
-						description: 'Connect Directus with your favorite framework.',
+						icon: 'i-ph-cloud',
+						// description: 'Connect Directus with your favorite framework.',
 					},
 					{
 						label: 'Self Hosting',
 						to: '/self-hosting/overview',
-						icon: 'directus-connect',
-						description: 'Content Management.',
+						icon: 'i-ph-hard-drives',
+						// description: 'Content Management.',
 					},
 				],
 			},
@@ -103,22 +77,26 @@ export default defineAppConfig({
 					{
 						label: 'Community',
 						to: '/community',
-						icon: 'directus-connect',
-						description: 'Content Management.',
-					},
-					{
-						label: 'Tutorials',
-						to: '/tutorials',
-						icon: 'directus-connect',
-						description: 'Content Management.',
+						icon: 'i-ph-hand-heart',
+						// description: 'Connect Directus with your favorite framework.',
 					},
 					{
 						label: 'Releases',
 						to: '/releases',
-						icon: 'directus-connect',
-						description: 'Content Management.',
+						icon: 'i-ph-notebook',
+						// description: 'Content Management.',
+					},
+					{
+						label: 'Tutorials',
+						to: '/tutorials',
+						icon: 'i-ph-article',
+						// description: 'Content Management.',
 					},
 				],
+			},
+			{
+				label: 'API Reference',
+				to: '/api',
 			},
 		],
 		links: [
