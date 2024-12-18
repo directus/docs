@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { OpenAPIObject, OperationObject } from 'openapi3-ts/oas30';
 import { methods } from '~/constants';
-import type { FlattenedOperationObject } from '~/types';
+import type { FlattenedOperationObject, DerefedOperationObject } from '~/types';
 
 const openapi = inject<OpenAPIObject>('openapi')!;
 
@@ -15,7 +15,7 @@ const tag = computed(() => {
 	return openapi.tags?.find(tag => tag.name.toLowerCase() === route.params.tag);
 });
 
-const operations = computed<FlattenedOperationObject[]>(() => {
+const operations = computed<FlattenedOperationObject<DerefedOperationObject>[]>(() => {
 	const operations = [];
 
 	for (const [path, pathItemObject] of Object.entries(openapi.paths)) {
@@ -47,7 +47,7 @@ if (!tag.value) {
 			<UPageHeader
 				:title="tag!.name"
 				:description="tag!.description"
-				class="shrink basis-5/12 border-0"
+				class="shrink basis-6/12 border-0"
 			/>
 			<ApiNav :operations="operations" />
 		</div>
