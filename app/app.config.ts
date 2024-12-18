@@ -18,8 +18,8 @@ export default defineAppConfig({
 						icon: 'directus-auth',
 					},
 					{
-						label: 'Collections',
-						to: '/guides/collections/quickstart',
+						label: 'Data Model',
+						to: '/guides/data-model/quickstart',
 						icon: 'directus-connect',
 					},
 					{
@@ -38,8 +38,8 @@ export default defineAppConfig({
 						icon: 'directus-files',
 					},
 					{
-						label: 'Flows',
-						to: '/guides/flows/quickstart',
+						label: 'Automations',
+						to: '/guides/automations/quickstart',
 						icon: 'directus-automate',
 					},
 					{
@@ -67,6 +67,12 @@ export default defineAppConfig({
 						label: 'Self Hosting',
 						to: '/self-hosting/overview',
 						icon: 'i-ph-hard-drives',
+						// description: 'Content Management.',
+					},
+					{
+						label: 'Configuration',
+						to: '/configuration/general',
+						icon: 'i-ph-gear',
 						// description: 'Content Management.',
 					},
 				],
