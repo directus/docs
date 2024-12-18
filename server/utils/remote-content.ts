@@ -4,6 +4,7 @@ import { stringifyYAML } from "confbox";
 import { consola } from "consola";
 import { resolve } from "path";
 import { db, readItems } from "../../utils/directus";
+import { createLanguageService } from "typescript";
 
 type PathPart = {
 	sort: number;
@@ -37,12 +38,12 @@ export const docPages = async () => {
 								'id',
 								'slug',
 								'title',
-								'description',
+								// 'description',
 								'content',
-								'sort',
-								{ tags: [{ tag: ['id', 'icon', 'name'] }] },
-								{ additional_paths: ['id', 'path'] },
-								{ authors: [{ author: ['id', 'name', 'title', 'avatar'] }] },
+								// 'sort',
+								// { tags: [{ tag: ['id', 'icon', 'name'] }] },
+								// { additional_paths: ['id', 'path'] },
+								{ authors: [{ author: ['name', 'title'] }] },
 							],
 						},
 					],
@@ -64,15 +65,16 @@ async function writePage(
 	const dirPath = resolve(
 		dir,
 		'.remote',
-		...pathParts.slice(0, -1).map(part => `${part.sort}.${part.slug}`),
+		...pathParts.slice(0, -1).map(part => part.slug),
 	);
 	const pagePath = resolve(
 		dir,
 		'.remote',
-		...pathParts.map(part => `${part.sort}.${part.slug}`),
+		...pathParts.map(part => part.slug),
 	);
 
 	const pageConfig = stringifyYAML(config);
+	console.log(pageConfig);
 	const pageContent = `---\n${pageConfig}\n---\n${content || 'Explore our resources and powerful data engine to build your projects confidently.'}`;
 	await fs.mkdir(dirPath, { recursive: true });
 	await fs.writeFile(`${pagePath}.md`, pageContent);
@@ -117,7 +119,6 @@ export const buildPages = async (dir: string) => {
 						{ sort: category.sort || 0, slug: category.slug },
 					],
 					{
-						style: `${formatTitle(area.type)}Category`,
 						...category,
 						pages: undefined,
 					},
@@ -135,7 +136,6 @@ export const buildPages = async (dir: string) => {
 							{ sort: page.sort || 0, slug: page.slug },
 						],
 						{
-							style: `${formatTitle(area.type)}Page`,
 							...page,
 							tags: page.tags?.map(tag => tag.tag),
 							additional_paths: page.additional_paths?.map(path => path.path),
