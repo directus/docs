@@ -2,7 +2,9 @@
 id: 5e47f786-eddb-4570-bda9-60d6427282af
 slug: proxy-an-external-api-in-a-custom-endpoint-extension
 title: Proxy an External API in a Custom Endpoint Extension
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Endpoints are used in the API to perform certain functions.
 
@@ -41,10 +43,10 @@ would be `/directus-endpoint-pokeapi/`. To change this, replace the code with th
 
 ```js
 export default {
-	id: 'pokeapi',
-	handler: (router, {services}) => {
-		// Router config goes here
-	},
+  id: 'pokeapi',
+  handler: (router, {services}) => {
+    // Router config goes here
+  },
 };
 ```
 
@@ -55,19 +57,19 @@ endpoint that the PokéAPI has, use a wildcard (\*) to run this function for eve
 
 ```js
 router.get('/*', async (req, res) => {
-	try {
-		const response = await fetch(`https://pokeapi.co/api/v2/${req.url}`);
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/${req.url}`);
 
-		if (response.ok) {
-			res.json(await response.json());
-		} else {
-			res.status(response.status);
-			res.send(response.statusText);
-		}
-	} catch (error) {
-		res.status(500);
-		res.send(error.message);
-	}
+    if (response.ok) {
+      res.json(await response.json());
+    } else {
+      res.status(response.status);
+      res.send(response.statusText);
+    }
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
 });
 ```
 
@@ -113,28 +115,28 @@ Then, change the API route to perform this validation:
 
 ```js
 router.get('/*', async (req, res) => {
-	try {
-		const user = req.accountability?.user;
-		const { ItemsService } = services;
-		const users = new ItemsService("directus_users", {schema});
-		const authenticatedUser = await users.readOne(user);
-		if ( authenticatedUser == null) {
-			res.status(403);
-			return res.send(`You don't have permission to access this.`);
-		}
+  try {
+    const user = req.accountability?.user;
+    const { ItemsService } = services;
+    const users = new ItemsService("directus_users", {schema});
+    const authenticatedUser = await users.readOne(user);
+    if ( authenticatedUser == null) {
+      res.status(403);
+      return res.send(`You don't have permission to access this.`);
+    }
 
-		const response = await fetch(`https://pokeapi.co/api/v2/${req.url}`);
+    const response = await fetch(`https://pokeapi.co/api/v2/${req.url}`);
 
-		if (response.ok) {
-			res.json(await response.json());
-		} else {
-			res.status(response.status);
-			res.send(response.statusText);
-		}
-	} catch (error) {
-		res.status(500);
-		res.send(error.message);
-	}
+    if (response.ok) {
+      res.json(await response.json());
+    } else {
+      res.status(response.status);
+      res.send(response.statusText);
+    }
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
 });
 ```
 
@@ -211,32 +213,32 @@ const schema = {
   }
 };
 export default {
-	id: 'pokeapi',
-	handler: (router, {services}) => {
-		router.get('/*', async (req, res) => {
-			try {
-				const user = req.accountability?.user;
-				const { ItemsService } = services;
-				const users = new ItemsService("directus_users", {schema});
-				const authenticatedUser = await users.readOne(user);
-				if ( authenticatedUser == null) {
-					res.status(403);
-					return res.send(`You don't have permission to access this.`);
-				}
+  id: 'pokeapi',
+  handler: (router, {services}) => {
+    router.get('/*', async (req, res) => {
+      try {
+        const user = req.accountability?.user;
+        const { ItemsService } = services;
+        const users = new ItemsService("directus_users", {schema});
+        const authenticatedUser = await users.readOne(user);
+        if ( authenticatedUser == null) {
+          res.status(403);
+          return res.send(`You don't have permission to access this.`);
+        }
 
-				const response = await fetch(`https://pokeapi.co/api/v2/${req.url}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/${req.url}`);
 
-				if (response.ok) {
-					res.json(await response.json());
-				} else {
-					res.status(response.status);
-					res.send(response.statusText);
-				}
-			} catch (error) {
-				res.status(500);
-				res.send(error.message);
-			}
-		});
-	},
+        if (response.ok) {
+          res.json(await response.json());
+        } else {
+          res.status(response.status);
+          res.send(response.statusText);
+        }
+      } catch (error) {
+        res.status(500);
+        res.send(error.message);
+      }
+    });
+  },
 };
 ```

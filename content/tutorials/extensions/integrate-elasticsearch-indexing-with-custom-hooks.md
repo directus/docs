@@ -3,8 +3,8 @@ id: 11878553-5f03-4992-b321-5a983826c983
 slug: integrate-elasticsearch-indexing-with-custom-hooks
 title: Integrate Elasticsearch Indexing with Custom Hooks
 authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+  - name: Taminoturoko Briggs
+    title: Guest Author
 ---
 In this article, we will explore how to index data from Directus in Elasticsearch through a custom hook extension, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications.
 

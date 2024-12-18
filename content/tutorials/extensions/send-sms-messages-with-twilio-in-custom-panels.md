@@ -2,9 +2,9 @@
 id: 9dbc2c00-796b-48ff-8ed6-f01ddf72d7ef
 slug: send-sms-messages-with-twilio-in-custom-panels
 title: Send SMS Messages with Twilio in Custom Panels
-authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Panels are used in dashboards as part of the Insights module. As well as read-only data panels, they can be interactive
 with form inputs.

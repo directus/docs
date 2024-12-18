@@ -2,7 +2,9 @@
 id: b8fa9a76-063b-499f-80e7-737f08f94684
 slug: create-collection-items-in-custom-panels
 title: Create Collection Items in Custom Panels
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Panels are used in dashboards as part of the Insights module. As well as read-only data panels, they can be interactive
 with form inputs. In this guide, you will create a panel that automatically generates a form based on a collection's
@@ -48,43 +50,43 @@ Replace the existing text field with the following fields inside the `options` a
 
 ```js
 {
-	field: 'collection',
-	type: 'string',
-	name: '$t:collection',
-	meta: {
-		interface: 'system-collection',
-		options: {
-			includeSystem: true,
-			includeSingleton: false,
-		},
-		width: 'half',
-	},
+  field: 'collection',
+  type: 'string',
+  name: '$t:collection',
+  meta: {
+    interface: 'system-collection',
+    options: {
+      includeSystem: true,
+      includeSingleton: false,
+    },
+    width: 'half',
+  },
 },
 {
-	field: 'fields',
-	type: 'string',
-	name: 'Included Fields',
-	meta: {
-		interface: 'system-field',
-		options: {
-			collectionField: 'collection',
-			multiple: true,
-		},
-		width: 'half',
-	},
+  field: 'fields',
+  type: 'string',
+  name: 'Included Fields',
+  meta: {
+    interface: 'system-field',
+    options: {
+      collectionField: 'collection',
+      multiple: true,
+    },
+    width: 'half',
+  },
 },
 {
-	field: 'responseFormat',
-	name: 'Response',
-	type: 'string',
-	meta: {
-		interface: 'system-display-template',
-		options: {
-			collectionField: 'collection',
-			placeholder: '{{ field }}',
-		},
-		width: 'full',
-	},
+  field: 'responseFormat',
+  name: 'Response',
+  type: 'string',
+  meta: {
+    interface: 'system-display-template',
+    options: {
+      collectionField: 'collection',
+      placeholder: '{{ field }}',
+    },
+    width: 'full',
+  },
 },
 ```
 
@@ -117,24 +119,24 @@ useful for styling:
 
 ```js
 props: {
-	showHeader: {
-		type: Boolean,
-		default: false,
-	},
-	collection: {
-		type: String,
-		default: '',
-	},
-	fields: {
-		type: Array,
-		default: [],
-	},
-	responseFormat: {
-		type: String,
-		default: '',
-	},
-	width: String,
-	height: String,
+  showHeader: {
+    type: Boolean,
+    default: false,
+  },
+  collection: {
+    type: String,
+    default: '',
+  },
+  fields: {
+    type: Array,
+    default: [],
+  },
+  responseFormat: {
+    type: String,
+    default: '',
+  },
+  width: String,
+  height: String,
 },
 ```
 
@@ -142,18 +144,18 @@ After the `props`, create a `setup(props)` section and create the variables need
 
 ```js
 setup(props) {
-	const { useFieldsStore, usePermissionsStore } = useStores();
-	const fieldsStore = useFieldsStore();
-	const permissionsStore = usePermissionsStore();
-	const hasPermission = permissionsStore.hasPermission(props.collection, 'create');
-	const api = useApi();
-	const { primaryKeyField } = useCollection(props.collection);
-	const formData = ref({});
-	const fieldData = ref([]);
+  const { useFieldsStore, usePermissionsStore } = useStores();
+  const fieldsStore = useFieldsStore();
+  const permissionsStore = usePermissionsStore();
+  const hasPermission = permissionsStore.hasPermission(props.collection, 'create');
+  const api = useApi();
+  const { primaryKeyField } = useCollection(props.collection);
+  const formData = ref({});
+  const fieldData = ref([]);
 
-	const formResponse = ref({});
-	const formError = ref({});
-	const responseDialog = ref(false);
+  const formResponse = ref({});
+  const formError = ref({});
+  const responseDialog = ref(false);
 }
 ```
 
@@ -170,11 +172,11 @@ afterwards so it populates the variable when the panel loads:
 
 ```js
 function getFields() {
-	fieldData.value = [];
+  fieldData.value = [];
 
-	props.fields.forEach((field) => {
-		fieldData.value.push(fieldsStore.getField(props.collection, field));
-	});
+  props.fields.forEach((field) => {
+    fieldData.value.push(fieldsStore.getField(props.collection, field));
+  });
 }
 
 getFields();
@@ -192,17 +194,17 @@ response, resetting the form once successful. If an error occurs, the response i
 
 ```js
 function submitForm() {
-	api
-		.post(`/items/${props.collection}`, formData.value)
-		.then((response) => {
-			formResponse.value = response.data.data;
-			responseDialog.value = true;
-			formData.value = {};
-		})
-		.catch((error) => {
-			formError.value = error;
-			responseDialog.value = true;
-		});
+  api
+    .post(`/items/${props.collection}`, formData.value)
+    .then((response) => {
+      formResponse.value = response.data.data;
+      responseDialog.value = true;
+      formData.value = {};
+    })
+    .catch((error) => {
+      formError.value = error;
+      responseDialog.value = true;
+    });
 }
 ```
 
@@ -213,9 +215,9 @@ the URL for the newly created item:
 
 ```js
 function getLinkForItem(item) {
-	if (item === undefined) return;
-	const primaryKey = item[primaryKeyField.value.field];
-	return `/content/${props.collection}/${encodeURIComponent(primaryKey)}`;
+  if (item === undefined) return;
+  const primaryKey = item[primaryKeyField.value.field];
+  return `/content/${props.collection}/${encodeURIComponent(primaryKey)}`;
 }
 ```
 
@@ -223,15 +225,15 @@ At the end of the script, return the required constants and functions for use in
 
 ```js
 return {
-	hasPermission,
-	primaryKeyField,
-	formData,
-	fieldData,
-	submitForm,
-	formResponse,
-	formError,
-	responseDialog,
-	getLinkForItem,
+  hasPermission,
+  primaryKeyField,
+  formData,
+  fieldData,
+  submitForm,
+  formResponse,
+  formError,
+  responseDialog,
+  getLinkForItem,
 };
 ```
 
@@ -242,12 +244,12 @@ the permissions:
 
 ```vue
 <template>
-	<div v-if="!hasPermission" class="panel-error">
-		<v-notice type="danger" icon="warning">You do not have permissions to {{ collection }}</v-notice>
-	</div>
-	<div v-else :class="['panel-internal-form', { small: width < 30, large: width >= 30, 'has-header': showHeader }]">
-		<!-- Form goes here -->
-	</div>
+  <div v-if="!hasPermission" class="panel-error">
+    <v-notice type="danger" icon="warning">You do not have permissions to {{ collection }}</v-notice>
+  </div>
+  <div v-else :class="['panel-internal-form', { small: width < 30, large: width >= 30, 'has-header': showHeader }]">
+    <!-- Form goes here -->
+  </div>
 </template>
 ```
 
@@ -277,25 +279,25 @@ has value) and Empty:
 
 ```vue
 <v-dialog v-model="responseDialog" @esc="responseDialog = false">
-	<v-sheet>
-		<v-notice type="success" icon="done" v-if="formResponse[primaryKeyField.field]">Saved</v-notice>
-		<v-notice type="danger" icon="warning" v-else-if="formError">An Error Occurred</v-notice>
-		<v-notice type="danger" icon="warning" v-else>No Response</v-notice>
-		<blockquote v-if="formResponse" class="form-response">
-			<router-link :to="getLinkForItem(formResponse)">
-				<render-template
-					:collection="collection"
-					:template="responseFormat"
-					:item="formResponse"
-				/>
-				<v-icon name="launch" small />
-			</router-link>
-		</blockquote>
-		<blockquote v-else-if="formError" class="">
-			{{ formError }}
-		</blockquote>
-		<v-button @click="responseDialog = false">Done</v-button>
-	</v-sheet>
+  <v-sheet>
+    <v-notice type="success" icon="done" v-if="formResponse[primaryKeyField.field]">Saved</v-notice>
+    <v-notice type="danger" icon="warning" v-else-if="formError">An Error Occurred</v-notice>
+    <v-notice type="danger" icon="warning" v-else>No Response</v-notice>
+    <blockquote v-if="formResponse" class="form-response">
+      <router-link :to="getLinkForItem(formResponse)">
+        <render-template
+          :collection="collection"
+          :template="responseFormat"
+          :item="formResponse"
+        />
+        <v-icon name="launch" small />
+      </router-link>
+    </blockquote>
+    <blockquote v-else-if="formError" class="">
+      {{ formError }}
+    </blockquote>
+    <v-button @click="responseDialog = false">Done</v-button>
+  </v-sheet>
 </v-dialog>
 ```
 
@@ -311,36 +313,36 @@ Lastly, replace the CSS at the bottom with this:
 ```vue
 <style scoped>
 .panel-internal-form {
-	padding: 12px;
+  padding: 12px;
 }
 .panel-internal-form.has-header {
-	padding: 0 12px;
+  padding: 0 12px;
 }
 .panel-internal-form.small :deep(.field) {
-	grid-column: start/fill;
+  grid-column: start/fill;
 }
 .panel-internal-form :deep(.v-form) {
-	margin-bottom: var(--theme--form--row-gap);
+  margin-bottom: var(--theme--form--row-gap);
 }
 .form-response {
-	border-radius: var(--theme--border-radius);
-	border: var(--theme--border-width) solid var(--theme--form--field--input--border-color);
-	margin: 1em 0;
-	min-width: 300px;
+  border-radius: var(--theme--border-radius);
+  border: var(--theme--border-width) solid var(--theme--form--field--input--border-color);
+  margin: 1em 0;
+  min-width: 300px;
 }
 .form-response a {
-	position: relative;
-	display: block;
-	padding: var(--theme--form--field--input--padding);
+  position: relative;
+  display: block;
+  padding: var(--theme--form--field--input--padding);
 }
 .form-response a:hover {
-	cursor: pointer;
-	background-color: var(--v-list-item-background-color-hover);
+  cursor: pointer;
+  background-color: var(--v-list-item-background-color-hover);
 }
 .form-response a :deep(.v-icon) {
-	position: absolute;
-	right: var(--theme--form--field--input--padding);
-	top: var(--theme--form--field--input--padding);
+  position: absolute;
+  right: var(--theme--form--field--input--padding);
+  top: var(--theme--form--field--input--padding);
 }
 </style>
 ```
@@ -402,55 +404,55 @@ With this panel, you can create forms to create items in your collections. You h
 import PanelComponent from './panel.vue';
 
 export default {
-	id: 'panel-internal-form',
-	name: 'Internal Form',
-	icon: 'view_day',
-	description: 'Output a form to insert data into a collection.',
-	component: PanelComponent,
-	options: [
-		{
-			field: 'collection',
-			type: 'string',
-			name: '$t:collection',
-			meta: {
-				interface: 'system-collection',
-				options: {
-					includeSystem: true,
-					includeSingleton: false,
-				},
-				width: 'half',
-			},
-		},
-		{
-			field: 'fields',
-			type: 'string',
-			name: 'Included Fields',
-			meta: {
-				interface: 'system-field',
-				options: {
-					collectionField: 'collection',
-					multiple: true,
-				},
-				width: 'half',
-			},
-		},
-		{
-			field: 'responseFormat',
-			name: 'Response',
-			type: 'string',
-			meta: {
-				interface: 'system-display-template',
-				options: {
-					collectionField: 'collection',
-					placeholder: '{{ field }}',
-				},
-				width: 'full',
-			},
-		},
-	],
-	minWidth: 12,
-	minHeight: 8,
-	skipUndefinedKeys: ['responseFormat'],
+  id: 'panel-internal-form',
+  name: 'Internal Form',
+  icon: 'view_day',
+  description: 'Output a form to insert data into a collection.',
+  component: PanelComponent,
+  options: [
+    {
+      field: 'collection',
+      type: 'string',
+      name: '$t:collection',
+      meta: {
+        interface: 'system-collection',
+        options: {
+          includeSystem: true,
+          includeSingleton: false,
+        },
+        width: 'half',
+      },
+    },
+    {
+      field: 'fields',
+      type: 'string',
+      name: 'Included Fields',
+      meta: {
+        interface: 'system-field',
+        options: {
+          collectionField: 'collection',
+          multiple: true,
+        },
+        width: 'half',
+      },
+    },
+    {
+      field: 'responseFormat',
+      name: 'Response',
+      type: 'string',
+      meta: {
+        interface: 'system-display-template',
+        options: {
+          collectionField: 'collection',
+          placeholder: '{{ field }}',
+        },
+        width: 'full',
+      },
+    },
+  ],
+  minWidth: 12,
+  minHeight: 8,
+  skipUndefinedKeys: ['responseFormat'],
 };
 ```
 
@@ -458,35 +460,35 @@ export default {
 
 ```vue
 <template>
-	<div v-if="!hasPermission" class="panel-error">
-		<v-notice type="danger" icon="warning">You do not have permissions to {{ collection }}</v-notice>
-	</div>
-	<div v-else :class="['panel-internal-form', { small: width < 30, large: width >= 30, 'has-header': showHeader }]">
-		<!-- Form goes here -->
-		<v-form v-if="fieldData" v-model="formData" :fields="fieldData" />
-		<v-button v-if="Object.keys(formData).length > 0" @click="submitForm()">Save</v-button>
-		<v-button v-else secondary>Save</v-button>
+  <div v-if="!hasPermission" class="panel-error">
+    <v-notice type="danger" icon="warning">You do not have permissions to {{ collection }}</v-notice>
+  </div>
+  <div v-else :class="['panel-internal-form', { small: width < 30, large: width >= 30, 'has-header': showHeader }]">
+    <!-- Form goes here -->
+    <v-form v-if="fieldData" v-model="formData" :fields="fieldData" />
+    <v-button v-if="Object.keys(formData).length > 0" @click="submitForm()">Save</v-button>
+    <v-button v-else secondary>Save</v-button>
 
-		<v-dialog v-model="responseDialog" @esc="responseDialog = false">
-			<v-sheet>
-				<v-notice v-if="formResponse[primaryKeyField.field]" type="success" icon="done">Saved</v-notice>
-				<v-notice v-else-if="formError" type="danger" icon="warning">An Error Occurred</v-notice>
-				<v-notice v-else type="danger" icon="warning">No Response</v-notice>
-				<blockquote v-if="formResponse" class="form-response">
-					<!-- {{  formResponse }} -->
-					<router-link :to="getLinkForItem(formResponse)">
-						<render-template :collection="collection" :template="responseFormat" :item="formResponse" />
-						<v-icon name="launch" small />
-					</router-link>
-				</blockquote>
-				<blockquote v-else-if="formError" class="">
-					{{ formError }}
-				</blockquote>
+    <v-dialog v-model="responseDialog" @esc="responseDialog = false">
+      <v-sheet>
+        <v-notice v-if="formResponse[primaryKeyField.field]" type="success" icon="done">Saved</v-notice>
+        <v-notice v-else-if="formError" type="danger" icon="warning">An Error Occurred</v-notice>
+        <v-notice v-else type="danger" icon="warning">No Response</v-notice>
+        <blockquote v-if="formResponse" class="form-response">
+          <!-- {{  formResponse }} -->
+          <router-link :to="getLinkForItem(formResponse)">
+            <render-template :collection="collection" :template="responseFormat" :item="formResponse" />
+            <v-icon name="launch" small />
+          </router-link>
+        </blockquote>
+        <blockquote v-else-if="formError" class="">
+          {{ formError }}
+        </blockquote>
 
-				<v-button @click="responseDialog = false">Done</v-button>
-			</v-sheet>
-		</v-dialog>
-	</div>
+        <v-button @click="responseDialog = false">Done</v-button>
+      </v-sheet>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -494,120 +496,120 @@ import { useApi, useCollection, useStores } from '@directus/extensions-sdk';
 import { ref, watch } from 'vue';
 
 export default {
-	props: {
-		showHeader: {
-			type: Boolean,
-			default: false,
-		},
-		collection: {
-			type: String,
-			default: '',
-		},
-		fields: {
-			type: Array,
-			default: () => [],
-		},
-		responseFormat: {
-			type: String,
-			default: '',
-		},
-		width: String,
-		height: String,
-	},
-	setup(props) {
-		const { useFieldsStore, usePermissionsStore } = useStores();
-		const fieldsStore = useFieldsStore();
-		const permissionsStore = usePermissionsStore();
-		const hasPermission = permissionsStore.hasPermission(props.collection, 'create');
-		const api = useApi();
-		const { primaryKeyField } = useCollection(props.collection);
+  props: {
+    showHeader: {
+      type: Boolean,
+      default: false,
+    },
+    collection: {
+      type: String,
+      default: '',
+    },
+    fields: {
+      type: Array,
+      default: () => [],
+    },
+    responseFormat: {
+      type: String,
+      default: '',
+    },
+    width: String,
+    height: String,
+  },
+  setup(props) {
+    const { useFieldsStore, usePermissionsStore } = useStores();
+    const fieldsStore = useFieldsStore();
+    const permissionsStore = usePermissionsStore();
+    const hasPermission = permissionsStore.hasPermission(props.collection, 'create');
+    const api = useApi();
+    const { primaryKeyField } = useCollection(props.collection);
 
-		const formData = ref({});
-		const fieldData = ref([]);
+    const formData = ref({});
+    const fieldData = ref([]);
 
-		const formResponse = ref({});
-		const formError = ref({});
-		const responseDialog = ref(false);
+    const formResponse = ref({});
+    const formError = ref({});
+    const responseDialog = ref(false);
 
-		function getFields() {
-			fieldData.value = [];
+    function getFields() {
+      fieldData.value = [];
 
-			props.fields.forEach((field) => {
-				fieldData.value.push(fieldsStore.getField(props.collection, field));
-			});
-		}
+      props.fields.forEach((field) => {
+        fieldData.value.push(fieldsStore.getField(props.collection, field));
+      });
+    }
 
-		getFields();
+    getFields();
 
-		function submitForm() {
-			api
-				.post(`/items/${props.collection}`, formData.value)
-				.then((response) => {
-					formResponse.value = response.data.data;
-					responseDialog.value = true;
-					formData.value = {};
-				})
-				.catch((error) => {
-					formError.value = error;
-					responseDialog.value = true;
-				});
-		}
+    function submitForm() {
+      api
+        .post(`/items/${props.collection}`, formData.value)
+        .then((response) => {
+          formResponse.value = response.data.data;
+          responseDialog.value = true;
+          formData.value = {};
+        })
+        .catch((error) => {
+          formError.value = error;
+          responseDialog.value = true;
+        });
+    }
 
-		watch([() => props.collection, () => props.fields, () => props.responseFormat], getFields);
+    watch([() => props.collection, () => props.fields, () => props.responseFormat], getFields);
 
-		return {
-			hasPermission,
-			primaryKeyField,
-			formData,
-			fieldData,
-			submitForm,
-			formResponse,
-			formError,
-			responseDialog,
-			getLinkForItem,
-		};
+    return {
+      hasPermission,
+      primaryKeyField,
+      formData,
+      fieldData,
+      submitForm,
+      formResponse,
+      formError,
+      responseDialog,
+      getLinkForItem,
+    };
 
-		function getLinkForItem(item) {
-			if (item === undefined) return;
-			const primaryKey = item[primaryKeyField.value.field];
-			return `/content/${props.collection}/${encodeURIComponent(primaryKey)}`;
-		}
-	},
+    function getLinkForItem(item) {
+      if (item === undefined) return;
+      const primaryKey = item[primaryKeyField.value.field];
+      return `/content/${props.collection}/${encodeURIComponent(primaryKey)}`;
+    }
+  },
 };
 </script>
 
 <style scoped>
 .panel-internal-form {
-	padding: 12px;
+  padding: 12px;
 }
 .panel-internal-form.has-header {
-	padding: 0 12px;
+  padding: 0 12px;
 }
 .panel-internal-form.small :deep(.field) {
-	grid-column: start/fill;
+  grid-column: start/fill;
 }
 .panel-internal-form :deep(.v-form) {
-	margin-bottom: var(--theme--form--row-gap);
+  margin-bottom: var(--theme--form--row-gap);
 }
 .form-response {
-	border-radius: var(--theme--border-radius);
-	border: var(--theme--border-width) solid var(--theme--form--field--input--border-color);
-	margin: 1em 0;
-	min-width: 300px;
+  border-radius: var(--theme--border-radius);
+  border: var(--theme--border-width) solid var(--theme--form--field--input--border-color);
+  margin: 1em 0;
+  min-width: 300px;
 }
 .form-response a {
-	position: relative;
-	display: block;
-	padding: var(--theme--form--field--input--padding);
+  position: relative;
+  display: block;
+  padding: var(--theme--form--field--input--padding);
 }
 .form-response a:hover {
-	cursor: pointer;
-	background-color: var(--v-list-item-background-color-hover);
+  cursor: pointer;
+  background-color: var(--v-list-item-background-color-hover);
 }
 .form-response a :deep(.v-icon) {
-	position: absolute;
-	right: var(--theme--form--field--input--padding);
-	top: var(--theme--form--field--input--padding);
+  position: absolute;
+  right: var(--theme--form--field--input--padding);
+  top: var(--theme--form--field--input--padding);
 }
 </style>
 ```

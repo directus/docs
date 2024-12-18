@@ -2,7 +2,9 @@
 id: dfddca20-1cc7-4d66-bce0-0e88b36daa18
 slug: summarize-relational-items-in-a-custom-display-extension
 title: Summarize Relational Items in a Custom Display Extension
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Displays provide a meaningful way for users to consume data. This guide will show you how to create a display that
 queries another table and returns the `SUM` or `COUNT` of a column.

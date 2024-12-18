@@ -3,8 +3,8 @@ id: 27fd058d-83da-4ea5-b7cc-458c4c696079
 slug: integrate-meilisearch-indexing-with-custom-hooks
 title: Integrate Meilisearch Indexing with Custom Hooks
 authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+  - name: Clara Ekekenta
+    title: Guest Author
 ---
 In this article, we will explore how to index data from Directus in Meilisearch by building a custom hook extension, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications.
 

@@ -2,7 +2,9 @@
 id: a5598c32-0b99-4c24-9e3c-2e9b73b600e8
 slug: read-collection-data-in-custom-layouts
 title: Read Collection Data in Custom Layouts
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Use the `CollectionsService`, `FieldsService` and `RelationsService` to configure and modify the data model of a
 collection.

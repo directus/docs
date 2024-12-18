@@ -2,7 +2,9 @@
 id: 8c3f5a07-162f-4902-8044-dd5fa8b823c2
 slug: format-dates-in-a-custom-display-extension
 title: Format Dates in a Custom Display Extension
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Displays provide a meaningful way for users to consume data. This guide will show you how to create a display to change
 a date of birth to the current age in years and months.
@@ -36,13 +38,13 @@ the field is a date.
 import DisplayComponent from './display.vue';
 
 export default {
-	id: 'directus-display-age',
-	name: 'Display Age',
-	icon: 'calendar_month',
-	description: 'Display the current age from the date of birth',
-	component: DisplayComponent,
-	options: null,
-	types: ['date'],
+  id: 'directus-display-age',
+  name: 'Display Age',
+  icon: 'calendar_month',
+  description: 'Display the current age from the date of birth',
+  component: DisplayComponent,
+  options: null,
+  types: ['date'],
 };
 ```
 
@@ -58,18 +60,18 @@ following object:
 
 ```js
 options: [
-	{
-		field: 'show_months',
-		type: 'boolean',
-		name: 'Show months as well',
-		meta: {
-			interface: 'boolean',
-			options: {
-				label: 'Yes',
-			},
-			width: 'half',
-		},
-	},
+  {
+    field: 'show_months',
+    type: 'boolean',
+    name: 'Show months as well',
+    meta: {
+      interface: 'boolean',
+      options: {
+        label: 'Yes',
+      },
+      width: 'half',
+    },
+  },
 ],
 ```
 
@@ -80,17 +82,17 @@ section, then output in the template:
 
 ```vue
 <template>
-	<div>Value: {{ value }}</div>
+  <div>Value: {{ value }}</div>
 </template>
 
 <script>
 export default {
-	props: {
-		value: {
-			type: String,
-			default: null,
-		},
-	},
+  props: {
+    value: {
+      type: String,
+      default: null,
+    },
+  },
 };
 </script>
 ```
@@ -99,14 +101,14 @@ Import the `boolean` needed to toggle the months value in the `props` object:
 
 ```js
 props: {
-	value: {
-		type: String,
-		default: null,
-	},
-	show_months: { // [!code ++]
-		type: Boolean, // [!code ++]
-		default: false, // [!code ++]
-	}, // [!code ++]
+  value: {
+    type: String,
+    default: null,
+  },
+  show_months: { // [!code ++]
+    type: Boolean, // [!code ++]
+    default: false, // [!code ++]
+  }, // [!code ++]
 },
 ```
 
@@ -121,17 +123,17 @@ Create a function to change the date of birth into the person's age and make it 
 
 ```js
 setup(props) {
-	function calculateAge() {
-		if (props.show_months) {
-			const { years, months } = intervalToDuration({ start: parseISO(props.value), end: new Date() });
-			return `${years} years ${months} months`;
-		} else {
-			const age = differenceInYears(new Date(), parseISO(props.value));
-			return `${age} years`;
-		}
-	}
+  function calculateAge() {
+    if (props.show_months) {
+      const { years, months } = intervalToDuration({ start: parseISO(props.value), end: new Date() });
+      return `${years} years ${months} months`;
+    } else {
+      const age = differenceInYears(new Date(), parseISO(props.value));
+      return `${age} years`;
+    }
+  }
 
-	return calculateAge;
+  return calculateAge;
 },
 ```
 
@@ -142,8 +144,8 @@ Update the template to use the `calculateAge` function instead of the direct val
 
 ```vue
 <template>
-	<div>Value: {{ value }}</div> // [!code --]
-	<div>{{ calculateAge() }}</div> // [!code ++]
+  <div>Value: {{ value }}</div> // [!code --]
+  <div>{{ calculateAge() }}</div> // [!code ++]
 </template>
 ```
 
@@ -195,26 +197,26 @@ will run for every single row in the table.
 import DisplayComponent from './display.vue';
 
 export default {
-	id: 'directus-display-age',
-	name: 'Display Age',
-	icon: 'calendar_month',
-	description: 'Display the current age from the date of birth',
-	component: DisplayComponent,
-	options: [
-		{
-			field: 'show_months',
-			type: 'boolean',
-			name: 'Show Months as well',
-			meta: {
-				interface: 'boolean',
-				options: {
-					label: 'Yes',
-				},
-				width: 'half',
-			},
-		},
-	],
-	types: ['date'],
+  id: 'directus-display-age',
+  name: 'Display Age',
+  icon: 'calendar_month',
+  description: 'Display the current age from the date of birth',
+  component: DisplayComponent,
+  options: [
+    {
+      field: 'show_months',
+      type: 'boolean',
+      name: 'Show Months as well',
+      meta: {
+        interface: 'boolean',
+        options: {
+          label: 'Yes',
+        },
+        width: 'half',
+      },
+    },
+  ],
+  types: ['date'],
 };
 ```
 
@@ -222,35 +224,35 @@ export default {
 
 ```vue
 <template>
-	<div>{{ calculateAge() }}</div>
+  <div>{{ calculateAge() }}</div>
 </template>
 
 <script>
 import { differenceInYears, intervalToDuration, parseISO } from 'date-fns';
 export default {
-	props: {
-		value: {
-			type: String,
-			default: null,
-		},
-		show_months: {
-			type: Boolean,
-			default: false,
-		}
-	},
-	setup(props){
-		function calculateAge(){
-			if(props.show_months){
-				const { years, months } = intervalToDuration({ start: parseISO(props.value), end: new Date()});
-				return `${years} years ${months} months`;
-			} else {
-				const age = differenceInYears(new Date(), parseISO(props.value));
-				return `${age} years`;
-			}
-		}
+  props: {
+    value: {
+      type: String,
+      default: null,
+    },
+    show_months: {
+      type: Boolean,
+      default: false,
+    }
+  },
+  setup(props){
+    function calculateAge(){
+      if(props.show_months){
+        const { years, months } = intervalToDuration({ start: parseISO(props.value), end: new Date()});
+        return `${years} years ${months} months`;
+      } else {
+        const age = differenceInYears(new Date(), parseISO(props.value));
+        return `${age} years`;
+      }
+    }
 
-		return calculateAge;
-	},
+    return calculateAge;
+  },
 };
 </script>
 ```

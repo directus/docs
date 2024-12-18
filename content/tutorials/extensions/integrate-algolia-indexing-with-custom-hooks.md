@@ -2,9 +2,9 @@
 id: bb540f00-8933-46f1-a2ef-e353e2df160d
 slug: integrate-algolia-indexing-with-custom-hooks
 title: Integrate Algolia Indexing with Custom Hooks
-authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+authors: 
+  - name: Marvel Ken-Anele
+    title: Guest Author
 ---
 
 In this article, we will explore how to index data from Directus in Algolia, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications. Given that Algolia only support their official JavaScript client and not the REST API directly, we will build a hook extension which utilizes the client. 

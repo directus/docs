@@ -2,7 +2,9 @@
 id: 46046425-151c-4bb3-bd47-6274b5e24ecb
 slug: understand-available-slots-in-custom-modules
 title: Understand Available Slots in Custom Modules
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 This guide follows on [Create a Custom Portal Module](/tutorials/extensions/implement-navigation-in-multipage-custom-modules), where you created
 a landing page module. You will learn how to add native sidebar dropdown element, action buttons and search, a split

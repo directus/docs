@@ -2,7 +2,9 @@
 id: b538fa8c-2e0c-4aaa-93f1-f06106c5efaa
 slug: create-comments-in-custom-operations
 title: Create Comments in Custom Operations
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Operations allow you to trigger your own code in a Flow. This guide will show you how to add comments to a record using
 built-in services and make it available as a configurable Flow operation.
@@ -49,36 +51,36 @@ need to know the collection, item id and the comment itself. Replace the placeho
 
 ```js
 options: [
-	{
-		field: 'collection',
-		name: '$t:collection',
-		type: 'string',
-		meta: {
-			width: 'half',
-			interface: 'system-collection',
-		},
-	},
-	{
-		field: 'comment_key',
-		name: 'ID',
-		type: 'string',
-		meta: {
-			width: 'half',
-			interface: 'tags',
-			options: {
-				iconRight: 'vpn_key',
-			},
-		},
-	},
-	{
-		field: 'comment',
-		name: 'Comment',
-		type: 'text',
-		meta: {
-			width: 'full',
-			interface: 'input-multiline',
-		},
-	},
+  {
+    field: 'collection',
+    name: '$t:collection',
+    type: 'string',
+    meta: {
+      width: 'half',
+      interface: 'system-collection',
+    },
+  },
+  {
+    field: 'comment_key',
+    name: 'ID',
+    type: 'string',
+    meta: {
+      width: 'half',
+      interface: 'tags',
+      options: {
+        iconRight: 'vpn_key',
+      },
+    },
+  },
+  {
+    field: 'comment',
+    name: 'Comment',
+    type: 'text',
+    meta: {
+      width: 'full',
+      interface: 'input-multiline',
+    },
+  },
 ],
 ```
 
@@ -100,14 +102,14 @@ the options (`collection` and `comment`) as properties. Replace the placeholder 
 
 ```js
 overview: ({ collection, comment }) => [
-	{
-		label: '$t:collection',
-		text: collection,
-	},
-	{
-		label: 'Comment',
-		text: comment,
-	},
+  {
+    label: '$t:collection',
+    text: collection,
+  },
+  {
+    label: 'Comment',
+    text: comment,
+  },
 ],
 ```
 
@@ -137,9 +139,9 @@ const { ActivityService } = services;
 const schema = await getSchema({ database });
 
 const activityService = new ActivityService({
-	schema: schema,
-	accountability: accountability,
-	knex: database,
+  schema: schema,
+  accountability: accountability,
+  knex: database,
 });
 ```
 
@@ -149,7 +151,7 @@ into the field.
 
 ```js
 if (!Array.isArray(comment_key) && comment_key.includes('[') === false) {
-	comment_key = [comment_key];
+  comment_key = [comment_key];
 }
 
 const keys = Array.isArray(comment_key) ? comment_key : JSON.parse(Array.isArray(comment_key));
@@ -166,21 +168,21 @@ let results = [];
 let activity = null;
 
 for await (const key of keys) {
-	try {
-		activity = await activityService.createOne({
-			action: 'comment',
-			comment: comment,
-			user: accountability?.user ?? null,
-			collection: collection,
-			ip: accountability?.ip ?? null,
-			user_agent: accountability?.userAgent ?? null,
-			origin: accountability?.origin ?? null,
-			item: key,
-		});
-		results.push(activity);
-	} catch (error) {
-		return error;
-	}
+  try {
+    activity = await activityService.createOne({
+      action: 'comment',
+      comment: comment,
+      user: accountability?.user ?? null,
+      collection: collection,
+      ip: accountability?.ip ?? null,
+      user_agent: accountability?.userAgent ?? null,
+      origin: accountability?.origin ?? null,
+      item: key,
+    });
+    results.push(activity);
+  } catch (error) {
+    return error;
+  }
 };
 return results;
 ```
@@ -247,81 +249,81 @@ investigate other ways to extend your operations.
 
 ```js
 export default {
-	id: 'your-extension-id',
-	name: 'Add Comment',
-	icon: 'chat',
-	description: 'Add a comment to a record',
-	overview: ({ collection, comment }) => [
-		{
-			label: '$t:collection',
-			text: collection,
-		},
-		{
-			label: 'Comment',
-			text: comment,
-		},
-	],
-	options: [
-		{
-			field: 'collection',
-			name: '$t:collection',
-			type: 'string',
-			meta: {
-				width: 'half',
-				interface: 'system-collection',
-			},
-		},
-		{
-			field: 'permissions',
-			name: '$t:permissions',
-			type: 'string',
-			schema: {
-				default_value: '$trigger',
-			},
-			meta: {
-				width: 'half',
-				interface: 'select-dropdown',
-				options: {
-					choices: [
-						{
-							text: 'From Trigger',
-							value: '$trigger',
-						},
-						{
-							text: 'Public Role',
-							value: '$public',
-						},
-						{
-							text: 'Full Access',
-							value: '$full',
-						},
-					],
-					allowOther: true,
-				},
-			},
-		},
-		{
-			field: 'comment_key',
-			name: 'ID',
-			type: 'string',
-			meta: {
-				width: 'half',
-				interface: 'tags',
-				options: {
-					iconRight: 'vpn_key',
-				},
-			},
-		},
-		{
-			field: 'comment',
-			name: 'Comment',
-			type: 'text',
-			meta: {
-				width: 'full',
-				interface: 'input-multiline',
-			},
-		},
-	],
+  id: 'your-extension-id',
+  name: 'Add Comment',
+  icon: 'chat',
+  description: 'Add a comment to a record',
+  overview: ({ collection, comment }) => [
+    {
+      label: '$t:collection',
+      text: collection,
+    },
+    {
+      label: 'Comment',
+      text: comment,
+    },
+  ],
+  options: [
+    {
+      field: 'collection',
+      name: '$t:collection',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'system-collection',
+      },
+    },
+    {
+      field: 'permissions',
+      name: '$t:permissions',
+      type: 'string',
+      schema: {
+        default_value: '$trigger',
+      },
+      meta: {
+        width: 'half',
+        interface: 'select-dropdown',
+        options: {
+          choices: [
+            {
+              text: 'From Trigger',
+              value: '$trigger',
+            },
+            {
+              text: 'Public Role',
+              value: '$public',
+            },
+            {
+              text: 'Full Access',
+              value: '$full',
+            },
+          ],
+          allowOther: true,
+        },
+      },
+    },
+    {
+      field: 'comment_key',
+      name: 'ID',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'tags',
+        options: {
+          iconRight: 'vpn_key',
+        },
+      },
+    },
+    {
+      field: 'comment',
+      name: 'Comment',
+      type: 'text',
+      meta: {
+        width: 'full',
+        interface: 'input-multiline',
+      },
+    },
+  ],
 };
 ```
 
@@ -329,48 +331,48 @@ export default {
 
 ```js
 export default {
-	id: 'your-extension-id',
-	handler: async ({ collection, comment_key, comment }, { services, database, accountability, getSchema }) => {
-		const { ActivityService } = services;
-		const schema = await getSchema({ database });
+  id: 'your-extension-id',
+  handler: async ({ collection, comment_key, comment }, { services, database, accountability, getSchema }) => {
+    const { ActivityService } = services;
+    const schema = await getSchema({ database });
 
-		const activityService = new ActivityService({
-			schema: schema,
-			accountability: accountability,
-			knex: database,
-		});
+    const activityService = new ActivityService({
+      schema: schema,
+      accountability: accountability,
+      knex: database,
+    });
 
-		if (!Array.isArray(comment_key) && comment_key.includes('[') === false) {
-			comment_key = [comment_key];
-		}
+    if (!Array.isArray(comment_key) && comment_key.includes('[') === false) {
+      comment_key = [comment_key];
+    }
 
-		const keys = Array.isArray(comment_key) ? comment_key : JSON.parse(Array.isArray(comment_key));
+    const keys = Array.isArray(comment_key) ? comment_key : JSON.parse(Array.isArray(comment_key));
 
-		console.log(`Converted ${keys}`);
+    console.log(`Converted ${keys}`);
 
-		let results = [];
-		let activity = null;
+    let results = [];
+    let activity = null;
 
-		for await (const key of keys) {
-			try {
-				activity = await activityService.createOne({
-					action: 'comment',
-					comment: comment,
-					user: accountability?.user ?? null,
-					collection: collection,
-					ip: accountability?.ip ?? null,
-					user_agent: accountability?.userAgent ?? null,
-					origin: accountability?.origin ?? null,
-					item: key,
-				});
+    for await (const key of keys) {
+      try {
+        activity = await activityService.createOne({
+          action: 'comment',
+          comment: comment,
+          user: accountability?.user ?? null,
+          collection: collection,
+          ip: accountability?.ip ?? null,
+          user_agent: accountability?.userAgent ?? null,
+          origin: accountability?.origin ?? null,
+          item: key,
+        });
 
-				results.push(activity);
-			} catch (error) {
-				return error;
-			}
-		}
+        results.push(activity);
+      } catch (error) {
+        return error;
+      }
+    }
 
-		return results;
-	},
+    return results;
+  },
 };
 ```

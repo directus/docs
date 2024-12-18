@@ -2,9 +2,9 @@
 id: 20e049fb-529f-4a71-8a34-1e4e61d34af1
 slug: validate-phone-numbers-with-twilio-in-a-custom-hook
 title: Validate Phone Numbers with Twilio in a Custom Hook
-authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Hooks allow you to trigger your own code when events are emitted from Directus. This guide will show you how to prevent
 a record from saving if a phone number is not valid using the Twilio Lookup API.

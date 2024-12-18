@@ -2,7 +2,9 @@
 id: 05df72da-c73d-4f68-a651-a95343227e85
 slug: monitor-and-error-track-with-sentry-in-custom-hooks
 title: Monitor and Error Track with Sentry in Custom Hooks
-authors: []
+authors:
+  - name: Salma Alam-Naylor
+    title: Senior Developer Advocate, Sentry
 ---
 If you self-host Directus, it becomes your responsibility to ensure your project is running smoothly. Part of this is knowing when things are going wrong so you can triage issues, fix errors, and get on with your day. 
 

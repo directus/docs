@@ -2,9 +2,9 @@
 id: ba5c9666-330f-4349-9f1e-da113fb84d27
 slug: create-new-customers-in-stripe-in-a-custom-hook
 title: Create New Customers in Stripe in a Custom Hook
-authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Hooks allow you to trigger your own code under certain conditions. This tutorial will show you how to create a Stripe
 account when an item is created in Directus and write the customer ID back to the record.
@@ -53,7 +53,7 @@ the `MailService` to send yourself an email if the Stripe API fails.
 
 ```js
 export default ({ action }, { env, services }) => {
-	const { MailService, ItemsService } = services; // [!code ++]
+  const { MailService, ItemsService } = services; // [!code ++]
 };
 ```
 
@@ -68,7 +68,7 @@ restrictions. Inside the action, exclude anything that’s not in the customers 
 
 ```js
 action('items.create', async ({ key, collection, payload }, { schema }) => {
-	if (collection !== 'customers') return; // [!code ++]
+  if (collection !== 'customers') return; // [!code ++]
 });
 ```
 
@@ -85,12 +85,12 @@ Create a new customer with the customer's name and email as the input values.
 
 ```js
 stripe.customers
-	.create({
-		name: `${payload.first_name} ${payload.last_name}`,
-		email: payload.email_address,
-	})
-	.then((customer) => {})
-	.catch((error) => {});
+  .create({
+    name: `${payload.first_name} ${payload.last_name}`,
+    email: payload.email_address,
+  })
+  .then((customer) => {})
+  .catch((error) => {});
 ```
 
 If successful, update the record with the new customer id from stripe. The API call returns the customer object into the
@@ -100,12 +100,12 @@ Use the `ItemsService` to update the customer record. Initialize the service and
 
 ```js
 stripe.customers
-	.create({})
-	.then((customer) => {
-		const customers = new ItemsService(collection, { schema }); // [!code ++]
-		customers.updateByQuery({ filter: { id: key } }, { stripe_id: customer.id }, { emitEvents: false }); // [!code ++]
-	})
-	.catch((error) => {});
+  .create({})
+  .then((customer) => {
+    const customers = new ItemsService(collection, { schema }); // [!code ++]
+    customers.updateByQuery({ filter: { id: key } }, { stripe_id: customer.id }, { emitEvents: false }); // [!code ++]
+  })
+  .catch((error) => {});
 ```
 
 By setting `emitEvents` to `false`, the `items.update` event will not trigger, which prevents flows or hooks from
@@ -115,17 +115,17 @@ Add an exception if the Stripe API fails.
 
 ```js
 stripe.customers
-	.create({})
-	.then((customer) => {})
-	.catch((error) => {
-		const mailService = new MailService({ schema });
-		mailService.send({ // [!code ++]
-			to: 'sharedmailbox@directus.io', // [!code ++]
-			from: 'noreply@directus.io', // [!code ++]
-			subject: `An error has occurred with Stripe API`, // [!code ++]
-			text: `The following error occurred for ${payload.first_name} ${payload.last_name} when attempting to create an account in Stripe.\r\n\r\n${error}\r\n\r\nPlease investigate.\r\n\r\nID: ${key}\r\nEmail: ${payload.email_address}`, // [!code ++]
-		}); // [!code ++]
-	});
+  .create({})
+  .then((customer) => {})
+  .catch((error) => {
+    const mailService = new MailService({ schema });
+    mailService.send({ // [!code ++]
+      to: 'sharedmailbox@directus.io', // [!code ++]
+      from: 'noreply@directus.io', // [!code ++]
+      subject: `An error has occurred with Stripe API`, // [!code ++]
+      text: `The following error occurred for ${payload.first_name} ${payload.last_name} when attempting to create an account in Stripe.\r\n\r\n${error}\r\n\r\nPlease investigate.\r\n\r\nID: ${key}\r\nEmail: ${payload.email_address}`, // [!code ++]
+    }); // [!code ++]
+  });
 ```
 
 Build the hook with the latest changes.
@@ -168,30 +168,30 @@ other endpoints that Stripe has to offer.
 import Stripe from 'stripe';
 
 export default ({ action }, { env, services }) => {
-	const { MailService, ItemsService } = services;
+  const { MailService, ItemsService } = services;
 
-	action('items.create', async ({ key, collection, payload }, { schema }) => {
-		if (collection !== 'customers') return;
-		const stripe = new Stripe(env.STRIPE_TOKEN);
+  action('items.create', async ({ key, collection, payload }, { schema }) => {
+    if (collection !== 'customers') return;
+    const stripe = new Stripe(env.STRIPE_TOKEN);
 
-		stripe.customers
-			.create({
-				name: `${payload.first_name} ${payload.last_name}`,
-				email: payload.email_address,
-			})
-			.then((customer) => {
-				const customers = new ItemsService(collection, { schema });
-				customers.updateByQuery({ filter: { id: key } }, { stripe_id: customer.id }, { emitEvents: false });
-			})
-			.catch((error) => {
-				const mailService = new MailService({ schema });
-				mailService.send({
-					to: 'sharedmailbox@directus.io',
-					from: 'noreply@directus.io',
-					subject: `An error has occurred with Stripe API`,
-					text: `The following error occurred for ${payload.first_name} ${payload.last_name} when attempting to create an account in Stripe.\r\n\r\n${error}\r\n\r\nPlease investigate.\r\n\r\nID: ${key}\r\nEmail: ${payload.email_address}`,
-				});
-			});
-	});
+    stripe.customers
+      .create({
+        name: `${payload.first_name} ${payload.last_name}`,
+        email: payload.email_address,
+      })
+      .then((customer) => {
+        const customers = new ItemsService(collection, { schema });
+        customers.updateByQuery({ filter: { id: key } }, { stripe_id: customer.id }, { emitEvents: false });
+      })
+      .catch((error) => {
+        const mailService = new MailService({ schema });
+        mailService.send({
+          to: 'sharedmailbox@directus.io',
+          from: 'noreply@directus.io',
+          subject: `An error has occurred with Stripe API`,
+          text: `The following error occurred for ${payload.first_name} ${payload.last_name} when attempting to create an account in Stripe.\r\n\r\n${error}\r\n\r\nPlease investigate.\r\n\r\nID: ${key}\r\nEmail: ${payload.email_address}`,
+        });
+      });
+  });
 };
 ```

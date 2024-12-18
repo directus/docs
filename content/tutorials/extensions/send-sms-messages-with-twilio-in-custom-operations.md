@@ -2,9 +2,9 @@
 id: 79c82730-7768-4722-8538-7f3fecac3d43
 slug: send-sms-messages-with-twilio-in-custom-operations
 title: Send SMS Messages with Twilio in Custom Operations
-authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Operations allow you to trigger your own code in a Flow. This guide will show you how to use the Twilio Node.js helper
 library to send SMS messages in Flows.

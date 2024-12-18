@@ -2,7 +2,9 @@
 id: cb0c443f-e261-4d33-a420-aef1a97f9b06
 slug: display-external-api-data-from-vonage-in-custom-panels
 title: Display External API Data From Vonage In Custom Panels
-authors: []
+authors: 
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Panels are used in dashboards as part of the Insights module, and typically allow users to better-understand data held
 in their Directus collections. In this guide, you will instead fetch data from an external API and display it in a table
@@ -58,30 +60,30 @@ import { createError } from '@directus/errors';
 const ForbiddenError = createError('VONAGE_FORBIDDEN', 'You need to be authenticated to access this endpoint');
 
 export default {
-	id: 'vonage',
-	handler: (router, { env }) => {
-		const { VONAGE_API_KEY, VONAGE_API_SECRET } = env;
-		const baseURL = 'https://api.nexmo.com';
-		const token = Buffer.from(`${VONAGE_API_KEY}:${VONAGE_API_SECRET}`).toString('base64');
-		const headers = { Authorization: `Basic ${token}` };
+  id: 'vonage',
+  handler: (router, { env }) => {
+    const { VONAGE_API_KEY, VONAGE_API_SECRET } = env;
+    const baseURL = 'https://api.nexmo.com';
+    const token = Buffer.from(`${VONAGE_API_KEY}:${VONAGE_API_SECRET}`).toString('base64');
+    const headers = { Authorization: `Basic ${token}` };
 
-		router.get('/records', async (req, res) => {
-			if (req.accountability == null) throw new ForbiddenError();
+    router.get('/records', async (req, res) => {
+      if (req.accountability == null) throw new ForbiddenError();
 
-			try {
-				const url = baseURL + `/v2/reports/records?account_id=${VONAGE_API_KEY}&${req._parsedUrl.query}`;
-				const response = await fetch(url, { headers });
+      try {
+        const url = baseURL + `/v2/reports/records?account_id=${VONAGE_API_KEY}&${req._parsedUrl.query}`;
+        const response = await fetch(url, { headers });
 
-				if (response.ok) {
-					res.json(await response.json());
-				} else {
-					res.status(response.status).send(response.statusText);
-				}
-			} catch (error) {
-				res.status(500).send(response.statusText);
-			}
-		});
-	},
+        if (response.ok) {
+          res.json(await response.json());
+        } else {
+          res.status(response.status).send(response.statusText);
+        }
+      } catch (error) {
+        res.status(500).send(response.statusText);
+      }
+    });
+  },
 };
 ```
 
@@ -120,19 +122,19 @@ For the product type, add a selection field with the options `SMS` and `MESSAGES
 
 ```js
 {
-	field: 'type',
-	name: 'Product Type',
-	type: 'string',
-	meta: {
-		width: 'half',
-		interface: 'select-dropdown',
-		options: {
-			choices: [
-				{ text: 'SMS', value: 'SMS' },
-				{ text: 'Messages', value: 'MESSAGES' }
-			],
-		},
-	},
+  field: 'type',
+  name: 'Product Type',
+  type: 'string',
+  meta: {
+    width: 'half',
+    interface: 'select-dropdown',
+    options: {
+      choices: [
+        { text: 'SMS', value: 'SMS' },
+        { text: 'Messages', value: 'MESSAGES' }
+      ],
+    },
+  },
 },
 ```
 
@@ -140,19 +142,19 @@ Add another selection field for the ‘direction’ of the messages, inbound and
 
 ```js
 {
-	field: 'direction',
-	name: 'Direction',
-	type: 'string',
-	meta: {
-		width: 'half',
-		interface: 'select-dropdown',
-		options: {
-			choices: [
-				{ text: 'Outbound', value: 'outbound' },
-				{ text: 'Inbound', value: 'inbound' }
-			],
-		}
-	}
+  field: 'direction',
+  name: 'Direction',
+  type: 'string',
+  meta: {
+    width: 'half',
+    interface: 'select-dropdown',
+    options: {
+      choices: [
+        { text: 'Outbound', value: 'outbound' },
+        { text: 'Inbound', value: 'inbound' }
+      ],
+    }
+  }
 },
 ```
 
@@ -161,25 +163,25 @@ option for the user to select a range:
 
 ```js
 {
-	field: 'range',
-	type: 'dropdown',
-	name: '$t:date_range',
-	schema: { default_value: '1 day' },
-	meta: {
-		interface: 'select-dropdown',
-		width: 'half',
-		options: {
-			choices: [
-				{ text: 'Past 5 Minutes', value: '5 minutes' },
-				{ text: 'Past 15 Minutes', value: '15 minutes' },
-				{ text: 'Past 30 Minutes', value: '30 minutes' },
-				{ text: 'Past 1 Hour', value: '1 hour' },
-				{ text: 'Past 4 Hours', value: '4 hours' },
-				{ text: 'Past 1 Day', value: '1 day' },
-				{ text: 'Past 2 Days', value: '2 days' }
-			]
-		}
-	}
+  field: 'range',
+  type: 'dropdown',
+  name: '$t:date_range',
+  schema: { default_value: '1 day' },
+  meta: {
+    interface: 'select-dropdown',
+    width: 'half',
+    options: {
+      choices: [
+        { text: 'Past 5 Minutes', value: '5 minutes' },
+        { text: 'Past 15 Minutes', value: '15 minutes' },
+        { text: 'Past 30 Minutes', value: '30 minutes' },
+        { text: 'Past 1 Hour', value: '1 hour' },
+        { text: 'Past 4 Hours', value: '4 hours' },
+        { text: 'Past 1 Day', value: '1 day' },
+        { text: 'Past 2 Days', value: '2 days' }
+      ]
+    }
+  }
 },
 ```
 
@@ -188,16 +190,16 @@ but for larger datasets may impact the performance of the API. Create an option 
 
 ```js
 {
-	field: 'includeMessage',
-	name: 'Include Message',
-	type: 'boolean',
-	meta: {
-		interface: 'boolean',
-		width: 'half',
-	},
-	schema: {
-		default_value: false,
-	}
+  field: 'includeMessage',
+  name: 'Include Message',
+  type: 'boolean',
+  meta: {
+    interface: 'boolean',
+    width: 'half',
+  },
+  schema: {
+    default_value: false,
+  }
 },
 ```
 
@@ -206,29 +208,29 @@ Lastly, add the option to limit the messages to a specific state such as deliver
 
 ```js
 {
-	field: 'status',
-	name: 'Status',
-	type: 'string',
-	schema: {
-		default_value: 'any',
-	},
-	meta: {
-		width: 'half',
-		interface: 'select-dropdown',
-		options: {
-			choices: [
-				{ text: 'Any', value: 'any' },
-				{ text: 'Delivered', value: 'delivered' },
-				{ text: 'Expired', value: 'expired' },
-				{ text: 'Failed', value: 'failed' },
-				{ text: 'Rejected', value: 'rejected' },
-				{ text: 'Accepted', value: 'accepted' },
-				{ text: 'buffered', value: 'buffered' },
-				{ text: 'Unknown', value: 'unknown' },
-				{ text: 'Deleted', value: 'deleted' }
-			]
-		}
-	}
+  field: 'status',
+  name: 'Status',
+  type: 'string',
+  schema: {
+    default_value: 'any',
+  },
+  meta: {
+    width: 'half',
+    interface: 'select-dropdown',
+    options: {
+      choices: [
+        { text: 'Any', value: 'any' },
+        { text: 'Delivered', value: 'delivered' },
+        { text: 'Expired', value: 'expired' },
+        { text: 'Failed', value: 'failed' },
+        { text: 'Rejected', value: 'rejected' },
+        { text: 'Accepted', value: 'accepted' },
+        { text: 'buffered', value: 'buffered' },
+        { text: 'Unknown', value: 'unknown' },
+        { text: 'Deleted', value: 'deleted' }
+      ]
+    }
+  }
 },
 ```
 
@@ -261,30 +263,30 @@ showing. Remove the text property and add all the options that were created in t
 
 ```js
 props: {
-	showHeader: {
-		type: Boolean,
-		default: false,
-	},
-	type: {
-		type: String,
-		default: '',
-	},
-	direction: {
-		type: String,
-		default: '',
-	},
-	range: {
-		type: String,
-		default: '',
-	},
-	includeMessage: {
-		type: Boolean,
-		default: false,
-	},
-	status: {
-		type: String,
-		default: '',
-	},
+  showHeader: {
+    type: Boolean,
+    default: false,
+  },
+  type: {
+    type: String,
+    default: '',
+  },
+  direction: {
+    type: String,
+    default: '',
+  },
+  range: {
+    type: String,
+    default: '',
+  },
+  includeMessage: {
+    type: Boolean,
+    default: false,
+  },
+  status: {
+    type: String,
+    default: '',
+  },
 },
 ```
 
@@ -293,11 +295,11 @@ After the `props`, create a `setup(props)` section and create the variables need
 ```js
 
 setup(props) {
-	const api = useApi();
-	const activityData = ref([]);
-	const now = ref(new Date());
-	const isLoading = ref(true);
-	const errorMessage = ref();
+  const api = useApi();
+  const activityData = ref([]);
+  const now = ref(new Date());
+  const isLoading = ref(true);
+  const errorMessage = ref();
 },
 
 ```
@@ -309,31 +311,31 @@ Use the `isLoading` variable to hide or show the progress spinner to indicate th
 
 ```js
 async function fetchData() {
-	isLoading.value = true;
-	activityData.value = [];
+  isLoading.value = true;
+  activityData.value = [];
 
-	const dateStart = adjustDate(now.value, props.range ? `-${props.range}` : '-1 day');
+  const dateStart = adjustDate(now.value, props.range ? `-${props.range}` : '-1 day');
 
-	const params = {
-		product: props.type || 'SMS',
-		direction: props.direction || 'outbound',
-		include_message: props.includeMessage.toString(),
-		date_start: dateStart ? formatISO(dateStart) : '',
-		status: props.status || 'any',
-	};
+  const params = {
+    product: props.type || 'SMS',
+    direction: props.direction || 'outbound',
+    include_message: props.includeMessage.toString(),
+    date_start: dateStart ? formatISO(dateStart) : '',
+    status: props.status || 'any',
+  };
 
-	if (props.status) params.status = props.status;
+  if (props.status) params.status = props.status;
 
-	const url_params = new URLSearchParams(params);
+  const url_params = new URLSearchParams(params);
 
-	try {
-		const response = await api.get(`/vonage/records?${url_params.toString()}`);
-		activityData.value = response.data.records;
-	} catch {
-		errorMessage.value = 'Internal Server Error';
-	} finally {
-		isLoading.value = false;
-	}
+  try {
+    const response = await api.get(`/vonage/records?${url_params.toString()}`);
+    activityData.value = response.data.records;
+  } catch {
+    errorMessage.value = 'Internal Server Error';
+  } finally {
+    isLoading.value = false;
+  }
 }
 
 fetchData();
@@ -346,8 +348,8 @@ If any of the properties are changed, the function will need to update the activ
 
 ```js
 watch(
-	[() => props.type, () => props.direction, () => props.range, () => props.includeMessage, () => props.status],
-	fetchData
+  [() => props.type, () => props.direction, () => props.range, () => props.includeMessage, () => props.status],
+  fetchData
 );
 ```
 
@@ -364,12 +366,12 @@ essential information is missing. Start with this:
 
 ```vue
 <template>
-	<div class="messages-table" :class="{ 'has-header': showHeader }">
-		<v-progress-circular v-if="isLoading" class="is-loading" indeterminate />
-		<v-notice v-else-if="errorMessage" type="danger">{{ errorMessage }}</v-notice>
-		<v-notice v-else-if="activityData.length == 0" type="info">No Messages</v-notice>
-		<!-- Table goes here -->
-	</div>
+  <div class="messages-table" :class="{ 'has-header': showHeader }">
+    <v-progress-circular v-if="isLoading" class="is-loading" indeterminate />
+    <v-notice v-else-if="errorMessage" type="danger">{{ errorMessage }}</v-notice>
+    <v-notice v-else-if="activityData.length == 0" type="info">No Messages</v-notice>
+    <!-- Table goes here -->
+  </div>
 </template>
 ```
 
@@ -380,29 +382,29 @@ Next, build a table to present the data:
 
 ```vue
 <table cellpadding="0" cellspacing="0" border="0">
-	<thead>
-		<tr>
-			<th v-if="direction == 'outbound'">Status</th>
-			<th v-if="direction == 'outbound'">Sent</th>
-			<th v-else>Received</th>
-			<th v-if="includeMessage">Message</th>
-			<th v-if="direction == 'outbound'">Recipient</th>
-			<th v-else>From</th>
-			<th>Provider</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr v-for="message in activityData" :key="message.message_id">
-			<td v-if="direction == 'outbound'" class="ucwords">{{ message.status }}</td>
-			<td class="nowrap">
-				{{ formatDistanceToNow(parseISO(message.date_finalized ? message.date_finalized : message.date_received)) }} ago
-			</td>
-			<td v-if="includeMessage" class="message">{{ message.message_body }}</td>
-			<td v-if="direction == 'outbound'">{{ message.to }}</td>
-			<td v-else>{{ message.from }}</td>
-			<td class="ucwords">{{ type == 'MESSAGES' ? message.provider : message.network_name }}</td>
-		</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th v-if="direction == 'outbound'">Status</th>
+      <th v-if="direction == 'outbound'">Sent</th>
+      <th v-else>Received</th>
+      <th v-if="includeMessage">Message</th>
+      <th v-if="direction == 'outbound'">Recipient</th>
+      <th v-else>From</th>
+      <th>Provider</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="message in activityData" :key="message.message_id">
+      <td v-if="direction == 'outbound'" class="ucwords">{{ message.status }}</td>
+      <td class="nowrap">
+        {{ formatDistanceToNow(parseISO(message.date_finalized ? message.date_finalized : message.date_received)) }} ago
+      </td>
+      <td v-if="includeMessage" class="message">{{ message.message_body }}</td>
+      <td v-if="direction == 'outbound'">{{ message.to }}</td>
+      <td v-else>{{ message.from }}</td>
+      <td class="ucwords">{{ type == 'MESSAGES' ? message.provider : message.network_name }}</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
@@ -486,30 +488,30 @@ import { createError } from '@directus/errors';
 const ForbiddenError = createError('VONAGE_FORBIDDEN', 'You need to be authenticated to access this endpoint');
 
 export default {
-	id: 'vonage',
-	handler: (router, { env }) => {
-		const { VONAGE_API_KEY, VONAGE_API_SECRET } = env;
-		const baseURL = 'https://api.nexmo.com';
-		const token = Buffer.from(`${VONAGE_API_KEY}:${VONAGE_API_SECRET}`).toString('base64');
-		const headers = { Authorization: `Basic ${token}` };
+  id: 'vonage',
+  handler: (router, { env }) => {
+    const { VONAGE_API_KEY, VONAGE_API_SECRET } = env;
+    const baseURL = 'https://api.nexmo.com';
+    const token = Buffer.from(`${VONAGE_API_KEY}:${VONAGE_API_SECRET}`).toString('base64');
+    const headers = { Authorization: `Basic ${token}` };
 
-		router.get('/records', async (req, res) => {
-			if (req.accountability == null) throw new ForbiddenError();
+    router.get('/records', async (req, res) => {
+      if (req.accountability == null) throw new ForbiddenError();
 
-			try {
-				const url = baseURL + `/v2/reports/records?account_id=${VONAGE_API_KEY}&${req._parsedUrl.query}`;
-				const response = await fetch(url, { headers });
+      try {
+        const url = baseURL + `/v2/reports/records?account_id=${VONAGE_API_KEY}&${req._parsedUrl.query}`;
+        const response = await fetch(url, { headers });
 
-				if (response.ok) {
-					res.json(await response.json());
-				} else {
-					res.status(response.status).send(response.statusText);
-				}
-			} catch (error) {
-				res.status(500).send(response.statusText);
-			}
-		});
-	},
+        if (response.ok) {
+          res.json(await response.json());
+        } else {
+          res.status(response.status).send(response.statusText);
+        }
+      } catch (error) {
+        res.status(500).send(response.statusText);
+      }
+    });
+  },
 };
 ```
 
@@ -521,105 +523,105 @@ export default {
 import PanelComponent from './panel.vue';
 
 export default {
-	id: 'panel-vonage-sms-activity',
-	name: 'Vonage Reports',
-	icon: 'list_alt',
-	description: 'View recent SMS activity.',
-	component: PanelComponent,
-	options: [
-		{
-			field: 'type',
-			name: 'Product Type',
-			type: 'string',
-			meta: {
-				width: 'half',
-				interface: 'select-dropdown',
-				options: {
-					choices: [
-						{ text: 'SMS', value: 'SMS' },
-						{ text: 'Messages', value: 'MESSAGES' },
-					],
-				},
-			},
-		},
-		{
-			field: 'direction',
-			name: 'Direction',
-			type: 'string',
-			meta: {
-				width: 'half',
-				interface: 'select-dropdown',
-				options: {
-					choices: [
-						{ text: 'Outbound', value: 'outbound' },
-						{ text: 'Inbound', value: 'inbound' },
-					],
-				},
-			},
-		},
-		{
-			field: 'range',
-			type: 'dropdown',
-			name: '$t:date_range',
-			schema: {
-				default_value: '1 day',
-			},
-			meta: {
-				interface: 'select-dropdown',
-				width: 'half',
-				options: {
-					choices: [
-						{ text: 'Past 5 Minutes', value: '5 minutes' },
-						{ text: 'Past 15 Minutes', value: '15 minutes' },
-						{ text: 'Past 30 Minutes', value: '30 minutes' },
-						{ text: 'Past 1 Hour', value: '1 hour' },
-						{ text: 'Past 4 Hours', value: '4 hours' },
-						{ text: 'Past 1 Day', value: '1 day' },
-						{ text: 'Past 2 Days', value: '2 days' },
-					],
-				},
-			},
-		},
-		{
-			field: 'includeMessage',
-			name: 'Include Message',
-			type: 'boolean',
-			meta: {
-				interface: 'boolean',
-				width: 'half',
-			},
-			schema: {
-				default_value: false,
-			},
-		},
-		{
-			field: 'status',
-			name: 'Status',
-			type: 'string',
-			schema: {
-				default_value: 'any',
-			},
-			meta: {
-				width: 'half',
-				interface: 'select-dropdown',
-				options: {
-					choices: [
-						{ text: 'Any', value: 'any' },
-						{ text: 'Delivered', value: 'delivered' },
-						{ text: 'Expired', value: 'expired' },
-						{ text: 'Failed', value: 'failed' },
-						{ text: 'Rejected', value: 'rejected' },
-						{ text: 'Accepted', value: 'accepted' },
-						{ text: 'buffered', value: 'buffered' },
-						{ text: 'Unknown', value: 'unknown' },
-						{ text: 'Deleted', value: 'deleted' },
-					],
-				},
-			},
-		},
-	],
-	minWidth: 24,
-	minHeight: 18,
+  id: 'panel-vonage-sms-activity',
+  name: 'Vonage Reports',
+  icon: 'list_alt',
+  description: 'View recent SMS activity.',
+  component: PanelComponent,
+  options: [
+    {
+      field: 'type',
+      name: 'Product Type',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'select-dropdown',
+        options: {
+          choices: [
+            { text: 'SMS', value: 'SMS' },
+            { text: 'Messages', value: 'MESSAGES' },
+          ],
+        },
+      },
+    },
+    {
+      field: 'direction',
+      name: 'Direction',
+      type: 'string',
+      meta: {
+        width: 'half',
+        interface: 'select-dropdown',
+        options: {
+          choices: [
+            { text: 'Outbound', value: 'outbound' },
+            { text: 'Inbound', value: 'inbound' },
+          ],
+        },
+      },
+    },
+    {
+      field: 'range',
+      type: 'dropdown',
+      name: '$t:date_range',
+      schema: {
+        default_value: '1 day',
+      },
+      meta: {
+        interface: 'select-dropdown',
+        width: 'half',
+        options: {
+          choices: [
+            { text: 'Past 5 Minutes', value: '5 minutes' },
+            { text: 'Past 15 Minutes', value: '15 minutes' },
+            { text: 'Past 30 Minutes', value: '30 minutes' },
+            { text: 'Past 1 Hour', value: '1 hour' },
+            { text: 'Past 4 Hours', value: '4 hours' },
+            { text: 'Past 1 Day', value: '1 day' },
+            { text: 'Past 2 Days', value: '2 days' },
+          ],
+        },
+      },
+    },
+    {
+      field: 'includeMessage',
+      name: 'Include Message',
+      type: 'boolean',
+      meta: {
+        interface: 'boolean',
+        width: 'half',
+      },
+      schema: {
+        default_value: false,
+      },
+    },
+    {
+      field: 'status',
+      name: 'Status',
+      type: 'string',
+      schema: {
+        default_value: 'any',
+      },
+      meta: {
+        width: 'half',
+        interface: 'select-dropdown',
+        options: {
+          choices: [
+            { text: 'Any', value: 'any' },
+            { text: 'Delivered', value: 'delivered' },
+            { text: 'Expired', value: 'expired' },
+            { text: 'Failed', value: 'failed' },
+            { text: 'Rejected', value: 'rejected' },
+            { text: 'Accepted', value: 'accepted' },
+            { text: 'buffered', value: 'buffered' },
+            { text: 'Unknown', value: 'unknown' },
+            { text: 'Deleted', value: 'deleted' },
+          ],
+        },
+      },
+    },
+  ],
+  minWidth: 24,
+  minHeight: 18,
 };
 ```
 
@@ -627,37 +629,37 @@ export default {
 
 ```vue
 <template>
-	<div class="messages-table" :class="{ 'has-header': showHeader }">
-		<v-progress-circular v-if="isLoading" class="is-loading" indeterminate />
-		<v-notice v-else-if="errorMessage" type="danger">{{ errorMessage }}</v-notice>
-		<v-notice v-else-if="activityData.length == 0" type="info">No Messages</v-notice>
-		<table v-else cellpadding="0" cellspacing="0" border="0">
-			<thead>
-				<tr>
-					<th v-if="direction == 'outbound'">Status</th>
-					<th v-if="direction == 'outbound'">Sent</th>
-					<th v-else>Received</th>
-					<th v-if="includeMessage">Message</th>
-					<th v-if="direction == 'outbound'">Recipient</th>
-					<th v-else>From</th>
-					<th>Provider</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="message in activityData" :key="message.message_id">
-					<td v-if="direction == 'outbound'" class="ucwords">{{ message.status }}</td>
-					<td class="nowrap">
-						{{ formatDistanceToNow(parseISO(message.date_finalized ? message.date_finalized : message.date_received)) }}
-						ago
-					</td>
-					<td v-if="includeMessage" class="message">{{ message.message_body }}</td>
-					<td v-if="direction == 'outbound'">{{ message.to }}</td>
-					<td v-else>{{ message.from }}</td>
-					<td class="ucwords">{{ type == 'MESSAGES' ? message.provider : message.network_name }}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+  <div class="messages-table" :class="{ 'has-header': showHeader }">
+    <v-progress-circular v-if="isLoading" class="is-loading" indeterminate />
+    <v-notice v-else-if="errorMessage" type="danger">{{ errorMessage }}</v-notice>
+    <v-notice v-else-if="activityData.length == 0" type="info">No Messages</v-notice>
+    <table v-else cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th v-if="direction == 'outbound'">Status</th>
+          <th v-if="direction == 'outbound'">Sent</th>
+          <th v-else>Received</th>
+          <th v-if="includeMessage">Message</th>
+          <th v-if="direction == 'outbound'">Recipient</th>
+          <th v-else>From</th>
+          <th>Provider</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="message in activityData" :key="message.message_id">
+          <td v-if="direction == 'outbound'" class="ucwords">{{ message.status }}</td>
+          <td class="nowrap">
+            {{ formatDistanceToNow(parseISO(message.date_finalized ? message.date_finalized : message.date_received)) }}
+            ago
+          </td>
+          <td v-if="includeMessage" class="message">{{ message.message_body }}</td>
+          <td v-if="direction == 'outbound'">{{ message.to }}</td>
+          <td v-else>{{ message.from }}</td>
+          <td class="ucwords">{{ type == 'MESSAGES' ? message.provider : message.network_name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -666,119 +668,119 @@ import { adjustDate } from '@directus/utils';
 import { formatISO, formatDistanceToNow, parseISO } from 'date-fns';
 import { ref, watch } from 'vue';
 export default {
-	props: {
-		showHeader: {
-			type: Boolean,
-			default: false,
-		},
-		type: {
-			type: String,
-			default: '',
-		},
-		direction: {
-			type: String,
-			default: '',
-		},
-		range: {
-			type: String,
-			default: '',
-		},
-		includeMessage: {
-			type: Boolean,
-			default: false,
-		},
-		status: {
-			type: String,
-			default: '',
-		},
-	},
-	setup(props) {
-		const api = useApi();
-		const activityData = ref([]);
-		const now = ref(new Date());
-		const isLoading = ref(true);
-		const errorMessage = ref();
+  props: {
+    showHeader: {
+      type: Boolean,
+      default: false,
+    },
+    type: {
+      type: String,
+      default: '',
+    },
+    direction: {
+      type: String,
+      default: '',
+    },
+    range: {
+      type: String,
+      default: '',
+    },
+    includeMessage: {
+      type: Boolean,
+      default: false,
+    },
+    status: {
+      type: String,
+      default: '',
+    },
+  },
+  setup(props) {
+    const api = useApi();
+    const activityData = ref([]);
+    const now = ref(new Date());
+    const isLoading = ref(true);
+    const errorMessage = ref();
 
-		async function fetchData() {
-			isLoading.value = true;
-			activityData.value = [];
+    async function fetchData() {
+      isLoading.value = true;
+      activityData.value = [];
 
-			const dateStart = adjustDate(now.value, props.range ? `-${props.range}` : '-1 day');
+      const dateStart = adjustDate(now.value, props.range ? `-${props.range}` : '-1 day');
 
-			const params = {
-				product: props.type || 'SMS',
-				direction: props.direction || 'outbound',
-				include_message: props.includeMessage.toString(),
-				date_start: dateStart ? formatISO(dateStart) : '',
-				status: props.status || 'any',
-			};
+      const params = {
+        product: props.type || 'SMS',
+        direction: props.direction || 'outbound',
+        include_message: props.includeMessage.toString(),
+        date_start: dateStart ? formatISO(dateStart) : '',
+        status: props.status || 'any',
+      };
 
-			if (props.status) params.status = props.status;
+      if (props.status) params.status = props.status;
 
-			const url_params = new URLSearchParams(params);
+      const url_params = new URLSearchParams(params);
 
-			try {
-				const response = await api.get(`/vonage/records?${url_params.toString()}`);
-				activityData.value = response.data.records;
-			} catch {
-				errorMessage.value = 'Internal Server Error';
-			} finally {
-				isLoading.value = false;
-			}
-		}
+      try {
+        const response = await api.get(`/vonage/records?${url_params.toString()}`);
+        activityData.value = response.data.records;
+      } catch {
+        errorMessage.value = 'Internal Server Error';
+      } finally {
+        isLoading.value = false;
+      }
+    }
 
-		fetchData();
+    fetchData();
 
-		watch(
-			[() => props.type, () => props.direction, () => props.range, () => props.includeMessage, () => props.status],
-			fetchData
-		);
+    watch(
+      [() => props.type, () => props.direction, () => props.range, () => props.includeMessage, () => props.status],
+      fetchData
+    );
 
-		return { activityData, isLoading, errorMessage, formatDistanceToNow, parseISO };
-	},
+    return { activityData, isLoading, errorMessage, formatDistanceToNow, parseISO };
+  },
 };
 </script>
 
 <style scoped>
 .messages-table {
-	padding: 12px;
-	height: 100%;
-	overflow: scroll;
+  padding: 12px;
+  height: 100%;
+  overflow: scroll;
 }
 .messages-table table {
-	width: 100%;
-	min-width: 600px;
+  width: 100%;
+  min-width: 600px;
 }
 .messages-table table tr td,
 .messages-table table tr th {
-	vertical-align: top;
-	border-top: var(--theme--border-width) solid var(--border-subdued);
-	padding: 10px;
+  vertical-align: top;
+  border-top: var(--theme--border-width) solid var(--border-subdued);
+  padding: 10px;
 }
 .ucwords {
-	text-transform: capitalize;
+  text-transform: capitalize;
 }
 .nowrap {
-	white-space: nowrap;
+  white-space: nowrap;
 }
 .message {
-	min-width: 260px;
+  min-width: 260px;
 }
 .messages-table table tr th {
-	font-weight: bold;
-	text-align: left;
-	font-size: 0.8em;
-	text-transform: uppercase;
-	line-height: 1;
-	padding: 8px 10px;
+  font-weight: bold;
+  text-align: left;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 8px 10px;
 }
 .text.has-header {
-	padding: 0 12px;
+  padding: 0 12px;
 }
 .is-loading {
-	position: absolute;
-	left: calc(50% - 14px);
-	top: calc(50% - 28px);
+  position: absolute;
+  left: calc(50% - 14px);
+  top: calc(50% - 28px);
 }
 </style>
 ```

@@ -3,8 +3,8 @@ id: a2177488-2e50-4206-97a2-a36f3a506541
 slug: check-permissions-in-a-custom-endpoint
 title: Check Permissions in a Custom Endpoint
 authors:
-  - name: Kevin Lewis
-    title: Director Developer Experience
+  - name: Tim Butterfield
+    title: Guest Author
 ---
 Endpoints are used in the API to perform certain functions. In this guide, you will use internal Directus permissions
 when creating a custom endpoint.
@@ -42,10 +42,10 @@ would be `/directus-endpoint-stripe/`. To change this, replace the code with the
 import Stripe from 'stripe';
 
 export default {
-	id: 'stripe',
-	handler: (router) => {
-		// Router config goes here
-	},
+  id: 'stripe',
+  handler: (router) => {
+    // Router config goes here
+  },
 };
 ```
 
@@ -66,19 +66,19 @@ Request your permissions from your project's API using `fetch`:
 
 ```js
 router.get('/payments', async (req, res) => {
-	try {
-			const response = await fetch("http://directus.example.com/permissions/me", {
-				headers: {
-					'Authorization': `Bearer ${req.token}`,
-					'Content-Type': 'application/json'
-				}
-			});
+  try {
+      const response = await fetch("http://directus.example.com/permissions/me", {
+        headers: {
+          'Authorization': `Bearer ${req.token}`,
+          'Content-Type': 'application/json'
+        }
+      });
 
-			const permissions = await response.json();
-	}
-	catch(e) {
-		res.sendStatus(401);
-	}
+      const permissions = await response.json();
+  }
+  catch(e) {
+    res.sendStatus(401);
+  }
 });
 ```
 
@@ -90,33 +90,33 @@ permission, respond with the 401 (unauthorized) code.
 
 ```js
 router.get('/payments', async (req, res) => {
-	try {
-		const response = await fetch("http://directus.example.com/permissions/me", {
-			headers: {
-				'Authorization': `Bearer ${req.token}`,
-				'Content-Type': 'application/json'
-			}
-		});
-		const permissions = await response.json();
+  try {
+    const response = await fetch("http://directus.example.com/permissions/me", {
+      headers: {
+        'Authorization': `Bearer ${req.token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const permissions = await response.json();
 
-		let output = []; // [!code ++]
+    let output = []; // [!code ++]
 
-		if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) { // [!code ++]
-			stripe.paymentIntents // [!code ++]
-				.list({ limit: 100 }) // [!code ++]
-				.autoPagingEach((payments) => { // [!code ++]
-					output.push(payments); // [!code ++]
-				}) // [!code ++]
-				.then(() => { // [!code ++]
-					res.json(output); // [!code ++]
-				}); // [!code ++]
-		} else { // [!code ++]
-			res.sendStatus(401); // [!code ++]
-		} // [!code ++]
-	}
-	catch(e) {
-		res.sendStatus(401);
-	}
+    if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) { // [!code ++]
+      stripe.paymentIntents // [!code ++]
+        .list({ limit: 100 }) // [!code ++]
+        .autoPagingEach((payments) => { // [!code ++]
+          output.push(payments); // [!code ++]
+        }) // [!code ++]
+        .then(() => { // [!code ++]
+          res.json(output); // [!code ++]
+        }); // [!code ++]
+    } else { // [!code ++]
+      res.sendStatus(401); // [!code ++]
+    } // [!code ++]
+  }
+  catch(e) {
+    res.sendStatus(401);
+  }
 });
 ```
 
@@ -128,29 +128,29 @@ You can use this pattern for any endpoint offered by the Stripe Node.js library.
 
 ```js{8}
 router.get('/customers', async (req, res) => {
-	try {
-		const response = await fetch("http://directus.example.com/permissions/me", {
-			headers: {
-				'Authorization': `Bearer ${req.token}`,
-				'Content-Type': 'application/json'
-			}
-		});
-		const permissions = await response.json();
+  try {
+    const response = await fetch("http://directus.example.com/permissions/me", {
+      headers: {
+        'Authorization': `Bearer ${req.token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const permissions = await response.json();
 
-		let output = [];
-		if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
-			stripe.customers.list({limit: 100}).autoPagingEach((customer) => {
-				output.push(customer);
-			}).then(() => {
-				res.json(output);
-			});
-		} else {
-			res.sendStatus(401);
-		}
-	}
-	catch(e) {
-		res.sendStatus(401);
-	}
+    let output = [];
+    if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
+      stripe.customers.list({limit: 100}).autoPagingEach((customer) => {
+        output.push(customer);
+      }).then(() => {
+        res.json(output);
+      });
+    } else {
+      res.sendStatus(401);
+    }
+  }
+  catch(e) {
+    res.sendStatus(401);
+  }
 });
 ```
 
@@ -159,32 +159,32 @@ parameter in the path (`/:customer_id`) and the additional parameter in the Stri
 
 ```js{1,9}
 router.get('/payments/:customer_id', async (req, res) => {
-	try {
-		const response = await fetch("http://directus.example.com/permissions/me", {
-			headers: {
-				'Authorization': `Bearer ${req.token}`,
-				'Content-Type': 'application/json'
-			}
-		});
-		const permissions = await response.json();
+  try {
+    const response = await fetch("http://directus.example.com/permissions/me", {
+      headers: {
+        'Authorization': `Bearer ${req.token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const permissions = await response.json();
 
-		let output = [];
-		if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
-			stripe.paymentIntents.list({
-				customer: req.params.customer_id,
-				limit: 100
-			}).autoPagingEach(function(payments) {
-				output.push(payments);
-			}).then(() => {
-				res.json(output);
-			});
-		} else {
-			res.sendStatus(401);
-		}
-	}
-	catch(e) {
-		res.sendStatus(401);
-	}
+    let output = [];
+    if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
+      stripe.paymentIntents.list({
+        customer: req.params.customer_id,
+        limit: 100
+      }).autoPagingEach(function(payments) {
+        output.push(payments);
+      }).then(() => {
+        res.json(output);
+      });
+    } else {
+      res.sendStatus(401);
+    }
+  }
+  catch(e) {
+    res.sendStatus(401);
+  }
 });
 ```
 
@@ -194,38 +194,38 @@ the permission service to check for 'create' permissions:
 
 ```js
 router.post('/customers', async (req, res) => {
-	try {
-		const response = await fetch("http://directus.example.com/permissions/me", {
-			headers: {
-				'Authorization': `Bearer ${req.token}`,
-				'Content-Type': 'application/json'
-			}
-		});
-		const permissions = await response.json();
+  try {
+    const response = await fetch("http://directus.example.com/permissions/me", {
+      headers: {
+        'Authorization': `Bearer ${req.token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const permissions = await response.json();
 
-		if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
-			if (req.body.email) {
-				const customer = {
-					email: req.body.email,
-				};
+    if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
+      if (req.body.email) {
+        const customer = {
+          email: req.body.email,
+        };
 
-				if (req.body.name) {
-					customer.name = req.body.name;
-				}
+        if (req.body.name) {
+          customer.name = req.body.name;
+        }
 
-				stripe.customers.create(customer).then((response) => {
-					res.json(response);
-				});
-			} else {
-				res.sendStatus(400); // Bad Request
-			}
-		} else {
-			res.sendStatus(401);
-		}
-	} 
-	catch(e) {
-		res.sendStatus(401);
-	}
+        stripe.customers.create(customer).then((response) => {
+          res.json(response);
+        });
+      } else {
+        res.sendStatus(400); // Bad Request
+      }
+    } else {
+      res.sendStatus(401);
+    }
+  } 
+  catch(e) {
+    res.sendStatus(401);
+  }
 });
 ```
 
@@ -270,8 +270,8 @@ sure that you change the URL for your project's URL)
 
 ```json
 {
-	"email": "your-email@example.com",
-	"name": "Joe Bloggs"
+  "email": "your-email@example.com",
+  "name": "Joe Bloggs"
 }
 ```
 
@@ -289,130 +289,130 @@ them with the Permissions Service, you can discover more endpoints in Stripe and
 import Stripe from 'stripe';
 
 export default {
-	id: 'stripe',
-	handler: (router, { env, services }) => {
-		const secretKey = env.STRIPE_LIVE_SECRET_KEY;
-		const stripe = new Stripe(secretKey);
+  id: 'stripe',
+  handler: (router, { env, services }) => {
+    const secretKey = env.STRIPE_LIVE_SECRET_KEY;
+    const stripe = new Stripe(secretKey);
 
-		router.get('/payments', async (req, res) => {
-			try {
-				const response = await fetch("http://directus.example.com/permissions/me", {
-					headers: {
-						'Authorization': `Bearer ${req.token}`,
-						'Content-Type': 'application/json'
-					}
-				});
-				const permissions = await response.json();
+    router.get('/payments', async (req, res) => {
+      try {
+        const response = await fetch("http://directus.example.com/permissions/me", {
+          headers: {
+            'Authorization': `Bearer ${req.token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        const permissions = await response.json();
 
-				let output = []; // [!code ++]
+        let output = []; // [!code ++]
 
-				if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
-					stripe.paymentIntents
-						.list({ limit: 100 })
-						.autoPagingEach((payments) => {
-							output.push(payments);
-						})
-						.then(() => {
-							res.json(output);
-						});
-				} else {
-					res.sendStatus(401);
-				}
-			}
-			catch(e) {
-				res.sendStatus(401);
-			}
-		});
+        if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
+          stripe.paymentIntents
+            .list({ limit: 100 })
+            .autoPagingEach((payments) => {
+              output.push(payments);
+            })
+            .then(() => {
+              res.json(output);
+            });
+        } else {
+          res.sendStatus(401);
+        }
+      }
+      catch(e) {
+        res.sendStatus(401);
+      }
+    });
 
-		router.get('/payments/:customer_id', async (req, res) => {
-			try {
-				const response = await fetch("http://directus.example.com/permissions/me", {
-					headers: {
-						'Authorization': `Bearer ${req.token}`,
-						'Content-Type': 'application/json'
-					}
-				});
-				const permissions = await response.json();
+    router.get('/payments/:customer_id', async (req, res) => {
+      try {
+        const response = await fetch("http://directus.example.com/permissions/me", {
+          headers: {
+            'Authorization': `Bearer ${req.token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        const permissions = await response.json();
 
-				let output = [];
-				if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
-					stripe.paymentIntents.list({
-						customer: req.params.customer_id,
-						limit: 100
-					}).autoPagingEach(function(payments) {
-						output.push(payments);
-					}).then(() => {
-						res.json(output);
-					});
-				} else {
-					res.sendStatus(401);
-				}
-			}
-			catch(e) {
-				res.sendStatus(401);
-			}
-		});
+        let output = [];
+        if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
+          stripe.paymentIntents.list({
+            customer: req.params.customer_id,
+            limit: 100
+          }).autoPagingEach(function(payments) {
+            output.push(payments);
+          }).then(() => {
+            res.json(output);
+          });
+        } else {
+          res.sendStatus(401);
+        }
+      }
+      catch(e) {
+        res.sendStatus(401);
+      }
+    });
 
-		router.get('/customers', async (req, res) => {
-			try {
-				const response = await fetch("http://directus.example.com/permissions/me", {
-					headers: {
-						'Authorization': `Bearer ${req.token}`,
-						'Content-Type': 'application/json'
-					}
-				});
-				const permissions = await response.json();
+    router.get('/customers', async (req, res) => {
+      try {
+        const response = await fetch("http://directus.example.com/permissions/me", {
+          headers: {
+            'Authorization': `Bearer ${req.token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        const permissions = await response.json();
 
-				let output = [];
-				if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
-					stripe.customers.list({limit: 100}).autoPagingEach((customer) => {
-						output.push(customer);
-					}).then(() => {
-						res.json(output);
-					});
-				} else {
-					res.sendStatus(401);
-				}
-			}
-			catch(e) {
-				res.sendStatus(401);
-			}
-		});
+        let output = [];
+        if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
+          stripe.customers.list({limit: 100}).autoPagingEach((customer) => {
+            output.push(customer);
+          }).then(() => {
+            res.json(output);
+          });
+        } else {
+          res.sendStatus(401);
+        }
+      }
+      catch(e) {
+        res.sendStatus(401);
+      }
+    });
 
-		router.post('/customers', async (req, res) => {
-			try {
-				const response = await fetch("http://directus.example.com/permissions/me", {
-					headers: {
-						'Authorization': `Bearer ${req.token}`,
-						'Content-Type': 'application/json'
-					}
-				});
-				const permissions = await response.json();
+    router.post('/customers', async (req, res) => {
+      try {
+        const response = await fetch("http://directus.example.com/permissions/me", {
+          headers: {
+            'Authorization': `Bearer ${req.token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        const permissions = await response.json();
 
-				if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
-					if (req.body.email) {
-						const customer = {
-							email: req.body.email,
-						};
+        if (permissions.data[env.STRIPE_CUSTOMERS_COLLECTION]?.read?.access === "full")) {
+          if (req.body.email) {
+            const customer = {
+              email: req.body.email,
+            };
 
-						if (req.body.name) {
-							customer.name = req.body.name;
-						}
+            if (req.body.name) {
+              customer.name = req.body.name;
+            }
 
-						stripe.customers.create(customer).then((response) => {
-							res.json(response);
-						});
-					} else {
-						res.sendStatus(400); // Bad Request
-					}
-				} else {
-					res.sendStatus(401);
-				}
-			} 
-			catch(e) {
-				res.sendStatus(401);
-			}
-		});
-	},
+            stripe.customers.create(customer).then((response) => {
+              res.json(response);
+            });
+          } else {
+            res.sendStatus(400); // Bad Request
+          }
+        } else {
+          res.sendStatus(401);
+        }
+      } 
+      catch(e) {
+        res.sendStatus(401);
+      }
+    });
+  },
 };
 ```
