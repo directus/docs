@@ -63,7 +63,7 @@ const responseBodyExample = computed(() => {
 		prose
 	>
 		<div class="grow shrink-0 basis-6/12">
-			<ProseH2 :id="operation.method + operation.path">
+			<ProseH2 :id="slugify(operation.summary!)">
 				{{ operation.summary }}
 			</ProseH2>
 
@@ -75,7 +75,7 @@ const responseBodyExample = computed(() => {
 				v-if="operation.parameters"
 				class="mb-12 last:mb-0"
 			>
-				<ProseH4 :id="operation.method + operation.path + '-params'">
+				<ProseH4 :id="slugify(operation.summary!) + '-params'">
 					Query Parameters
 				</ProseH4>
 				<FieldGroup>
@@ -97,7 +97,7 @@ const responseBodyExample = computed(() => {
 				v-if="requestBodyObject && requestBodySchema"
 				class="mb-12 last:mb-0"
 			>
-				<ProseH4 :id="operation.method + operation.path + '-body'">
+				<ProseH4 :id="slugify(operation.summary!) + '-request'">
 					Request Body
 				</ProseH4>
 				<ProseP v-if="requestBodyObject.description">
@@ -110,7 +110,7 @@ const responseBodyExample = computed(() => {
 				v-if="responseBodyObject && flattenedResponseBodySchema"
 				class="mb-12 last:mb-0"
 			>
-				<ProseH4 :id="operation.method + operation.path + '-response'">
+				<ProseH4 :id="slugify(operation.summary!) + '-response'">
 					Response
 				</ProseH4>
 				<ProseP v-if="responseBodyObject.description">

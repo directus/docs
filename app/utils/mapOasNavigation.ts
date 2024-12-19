@@ -20,8 +20,7 @@ export default function (spec: OpenAPIObject): NavigationTree[] {
 
 					byTag[tag].push({
 						label: operationObject.summary ?? path,
-						to: `/api/${tag.toLowerCase()}#${method}${path}`,
-						// badge: method,
+						to: `/api/${tag.toLowerCase()}#${slugify(operationObject.summary!)}`,
 						exact: true,
 						exactHash: true,
 					});
