@@ -63,7 +63,7 @@ export async function handle({ event, resolve }) {
 ::callout{type="info" title="Directus HTTP Requests"} 
 
 Theoretically you could also make HTTP requests to your Directus server endpoint directly via SvelteKit's `fetch`
-implementation. However the Directus SDK offers some nice [additional features](/guides/sdk/getting-started).
+implementation. However the Directus SDK offers some nice [additional features](/getting-started/connect/sdk).
 
 ::
 
