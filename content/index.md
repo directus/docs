@@ -278,7 +278,7 @@ These are built and maintained by our awesome community. If you are building too
   :::u-landing-card
   ---
   title: Environment Variables
-  to: '/self-hosting/configuration/general'
+  to: '/configuration/general'
   class: col-span-4
   color: red
   ---
@@ -287,7 +287,7 @@ These are built and maintained by our awesome community. If you are building too
   :::u-landing-card
   ---
   title: Building Extensions
-  to: '/extensions/overview'
+  to: '/guides/extensions/overview'
   class: col-span-4
   color: violet
   ---

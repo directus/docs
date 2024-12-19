@@ -285,5 +285,5 @@ Preparing a detailed migration plan, and carefully executing the data migration,
 
 Hopefully, this process has provided you with an opportunity to rethink and optimize how content is managed, delivered, and experienced across different channels.
 
-To build on the knowledge you have gotten here you can learn more about [relationships](/data-modeling/relationships) and how it can be use in Directus. This will come in handy for more complex migrations.
+To build on the knowledge you have gotten here you can learn more about [relationships](/guides/data-model/relationships) and how it can be use in Directus. This will come in handy for more complex migrations.
 Here is the [code repo](https://github.com/directus-labs/blog-example-migrating-wordpress-directus) for this article.

@@ -35,9 +35,9 @@ field `status` that controls the published state.
 
 1. Under Settings, go to Data Model.
 
-2. Choose your content [Collection](/data-modeling/collections).
+2. Choose your content [Collection](/guides/data-model/collections).
 
-3. [Add a new field](/data-modeling/fields) to your content Collection.
+3. [Add a new field](/guides/data-model/fields) to your content Collection.
 
    ![The interface for creating a new field is shown. The field type Datetime is selected. The Key is named date_published. The field for Use 24-Hour format is checked.](https://product-team.directus.app/assets/85ebd577-ed0d-4d7a-a1d4-4b43b9076b94.webp)
 

@@ -152,7 +152,7 @@ But this can be surprisingly brittle. As soon as the slug for the Contact page c
 
 Luckily Directus makes a more dynamic approach possible with relationships.
 
-When creating your data model for links to other items from the same or different collections, try using the conditional fields and [many to one relationships](/data-modeling/relationships.html) to build a powerful, resilient way to link items.
+When creating your data model for links to other items from the same or different collections, try using the conditional fields and [many to one relationships](/guides/data-model/relationships.html) to build a powerful, resilient way to link items.
 
 1. Within your content collection, add the following fields for linking. (Note: This example is extremely simplified so you can learn the logic involved. - name these depending on what makes the most sense to you and your use case.)
     
@@ -288,7 +288,7 @@ For educational items like blog posts or documentation, semantic hierarchy and d
 
 ![A blog page on the Directus website. The page title is highlighted and labeled as H1. Another headline within the blog post is also highlighted and labeled H2.](https://product-team.directus.app/assets/4a9c2805-9265-4b14-b447-0ed6ffc3f053.webp)
 
-But for other items like that are more dynamic like landing pages or homepages, the [Builder (Many To Any Relationships)](/data-modeling/relationships) really shine inside Directus. You can let your marketing or content teams build pages on their own with predefined collections or `blocks` without involving a developer at all. It also pairs beautifully with the [Live Preview feature](/content/live-preview) to allow them to see exactly what the site will look like before publishing. 
+But for other items like that are more dynamic like landing pages or homepages, the [Builder (Many To Any Relationships)](/guides/data-model/relationships) really shine inside Directus. You can let your marketing or content teams build pages on their own with predefined collections or `blocks` without involving a developer at all. It also pairs beautifully with the [Live Preview feature](/content/live-preview) to allow them to see exactly what the site will look like before publishing. 
 
 However, handling the semantic markup you need for proper SEO versus the fact that blocks  could be placed anywhere on a page can be a real challenge when developing your site.
 
@@ -325,7 +325,7 @@ To render this on the frontend, you’d use dynamic components. Most frontend to
 
 Sitemaps are important tools for crawlers like Googlebot to index your site properly. It’s easy to skip over this step when launching a new site, but it’s an important step that makes sure all the pages on your site can be found in search engines.
 
-There’s not much to really manage inside Directus for a sitemap beyond properly [creating your content collections](/data-modeling/collections). The heavy lifting for a sitemap is on the frontend. 
+There’s not much to really manage inside Directus for a sitemap beyond properly [creating your content collections](/guides/data-model/collections). The heavy lifting for a sitemap is on the frontend. 
 
 Some frontend frameworks have an official or community-supported sitemap module / plugin. Others have instructions on how to generate a sitemap without the need to another package. 
 

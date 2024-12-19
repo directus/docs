@@ -10,7 +10,7 @@ authors:
 
 CRUDS permissions define what a role can and can't do to all items in a collection. Custom access permissions take
 things a step further and let you define what a role can and can't do to each item in a collection, _based on its
-[field values](/data-modeling/fields)_.
+[field values](/guides/data-model/fields)_.
 
 Workflows are when you use these permissions techniques to create structured stages to content or data creation. In
 simplest terms, it is when you have two or more roles, and you give them different permissions at each stage in the
@@ -43,7 +43,7 @@ This whole workflow is created with permissions. All we need to do to create the
 
 To implement a workflow, you'll need:
 
-- An understanding of [permissions](/auth/access-control) and
+- An understanding of [permissions](/guides/auth/access-control) and
   filters in Directus.
 - A collection with some kind of content. In this recipe, we'll use a collection called `articles`.
 - A field on that collection to validate conditionally. We'll use a `status` field.
@@ -57,9 +57,9 @@ To implement a workflow, you'll need:
 
 To create a structured workflow for `articles`, follow these steps.
 
-1. First, [create a field](/data-modeling/fields) to track the article status. We'll call this
+1. First, [create a field](/guides/data-model/fields) to track the article status. We'll call this
    field `status`, but it could be named anything.
-2. [Create a field](/data-modeling/fields) with a Dropdown Interface. Name it `status` and add
+2. [Create a field](/guides/data-model/fields) with a Dropdown Interface. Name it `status` and add
    the stages _(`draft`, `under review` and `published`)_ needed for your content creation process.
 3. Next, create two roles: `author` and `editor`.
 4. Finally, configure custom access permissions for each role based on the value of the `status` field.

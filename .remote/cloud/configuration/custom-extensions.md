@@ -6,7 +6,7 @@ authors: []
 ---
 # Custom Extensions
 
-Custom Extensions is an Enterprise-tier feature that lets you deploy custom extensions to your Cloud project, offering more flexibility to tailor your project to your needs. [Learn more about Extensions](/extensions/overview).
+Custom Extensions is an Enterprise-tier feature that lets you deploy custom extensions to your Cloud project, offering more flexibility to tailor your project to your needs. [Learn more about Extensions](/guides/extensions/overview).
 
 ## Enabling Custom Extensions
 

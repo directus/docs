@@ -95,7 +95,7 @@ To keep things organized, we recommend that you namespace each collection with a
 
 ### Create the Rich Text Block
 
-1. [Create a new Collection](/data-modeling/collections) named `block_richtext` and add the
+1. [Create a new Collection](/guides/data-model/collections) named `block_richtext` and add the
    following fields.
 
    ```md
@@ -108,7 +108,7 @@ To keep things organized, we recommend that you namespace each collection with a
 
 ### Create the Hero Block
 
-2. [Create a new Collection](/data-modeling/collections) named `block_hero` and add the following
+2. [Create a new Collection](/guides/data-model/collections) named `block_hero` and add the following
    fields.
 
    ```md
@@ -126,7 +126,7 @@ To keep things organized, we recommend that you namespace each collection with a
 
 ### Create the Card Group Block
 
-1. [Create a new Collection](/data-modeling/collections) named `block_cardgroup` and add the
+1. [Create a new Collection](/guides/data-model/collections) named `block_cardgroup` and add the
    following fields.
 
    ```md
@@ -142,7 +142,7 @@ To keep things organized, we recommend that you namespace each collection with a
 
 ### Create the Pages Collection
 
-4. [Create a new Collection](/data-modeling/collections) named `pages` and add the following
+4. [Create a new Collection](/guides/data-model/collections) named `pages` and add the following
    fields.
 
    ```md
@@ -171,7 +171,7 @@ To keep things organized, we recommend that you namespace each collection with a
    'sort'). This will allow you to sort the blocks in the editor.
 
    d. Save the field. Directus will create a new, hidden
-   [junction collection](/data-modeling/relationships) for you automatically.
+   [junction collection](/guides/data-model/relationships) for you automatically.
 
 ::: tip
 
@@ -197,11 +197,11 @@ Mode option.
 ### Fetching Page Data From the APIs
 
 Next, you'll want to access these with the API. If you try to use `/items/pages` then `blocks` returns an array of IDs.
-Instead, you'll want to add a [field parameter](/data-modeling/relationships) to get nested relational data.
+Instead, you'll want to add a [field parameter](/guides/data-model/relationships) to get nested relational data.
 
 ::callout{type="info"}
 
-Study the [Global Query Parameters > Fields > Many-To-Any](/data-modeling/relationships) article to learn
+Study the [Global Query Parameters > Fields > Many-To-Any](/guides/data-model/relationships) article to learn
 how to properly fetch nested relational M2A data without over-fetching data that you might not need.
 
 ::
@@ -357,14 +357,14 @@ We recommend adding types for each of your different collections to your fronten
 
 ### Organize Your Data Model with Folders
 
-Consider using [data model folders](/data-modeling/collections) to keep things nicely organized and
+Consider using [data model folders](/guides/data-model/collections) to keep things nicely organized and
 your collections easy to find.
 
 ![In the data model settings, a folder is highlighted. It is named blocks. There is a caption that reads "Data Model Folders help you keep collections well-organized and easy to find."](https://product-team.directus.app/assets/8eee6c8d-cdcc-40b1-ab54-93911f8d494f.webp)
 
 ### Use Translations for Collection Names
 
-When [setting up Collections](/data-modeling/collections) within your data model, use the Collection
+When [setting up Collections](/guides/data-model/collections) within your data model, use the Collection
 Naming Translations to create names that easier for the Data Studio users to understand.
 
 ![In the data model settings for the hero collection a section is highlighted. It reads "Collection naming translations" with a single item called "Hero".](https://product-team.directus.app/assets/0e6e47ee-554d-4a9c-8a79-d704eaecb121.webp)

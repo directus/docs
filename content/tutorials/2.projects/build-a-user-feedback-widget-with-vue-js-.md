@@ -455,7 +455,7 @@ Right now, if we try to submit some feedback, we’re probably to going receive 
 
 This is because all collections have zero public permissions by default. While this is great for security, it’s not so great if we want to store our feedback data. 
 
-Open up the Public role with the [Access Control settings](/auth/access-control). Then scroll to find the `docs_feedback` collection.
+Open up the Public role with the [Access Control settings](/guides/auth/access-control). Then scroll to find the `docs_feedback` collection.
 
 ![Directus Roles and Permissions settings page, the docs_feedback collection is highlighted and all CRUD permission settings are set to not allowed](https://product-team.directus.app/assets/61bf4b98-d0e6-4682-b523-b4893065ecfe.webp)
 

@@ -29,7 +29,7 @@ export default defineAppConfig({
 					},
 					{
 						label: 'Extensions',
-						to: '/extensions/overview',
+						to: '/guides/extensions/overview',
 						icon: 'directus-marketplace',
 					},
 					{
@@ -38,8 +38,8 @@ export default defineAppConfig({
 						icon: 'directus-files',
 					},
 					{
-						label: 'Automations',
-						to: '/guides/automations/quickstart',
+						label: 'Automate',
+						to: '/guides/automate/quickstart',
 						icon: 'directus-automate',
 					},
 					{

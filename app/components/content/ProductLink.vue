@@ -12,7 +12,7 @@ const name = computed(
 	<UButton
 		color="white"
 		size="xs"
-		:to="`/docs/${product}`"
+		:to="`/guides/${product}`"
 		:icon="`directus:${product}`"
 		:label="name"
 		class="text-primary align-middle"
