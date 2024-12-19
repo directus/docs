@@ -179,7 +179,7 @@ module.exports = async function(data) {
 
 Within `rtnData` we now store all the relevant values such as battery details, heart rate and oxygen level. As the JSON data is stored as a raw string with the value attribute, the run operation already parses the string and returns the following JSON object back to the Flow
 
-```Json
+```json
 {
   "ox": 0,
   "hr": 0,
