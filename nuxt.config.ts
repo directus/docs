@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@nuxt/scripts',
 		'@vueuse/nuxt',
+		'nuxt-posthog',
 	],
 
 	devtools: {
