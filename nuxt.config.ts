@@ -9,7 +9,6 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@nuxt/scripts',
 		'@vueuse/nuxt',
-		'nuxt-link-checker',
 	],
 
 	devtools: {
