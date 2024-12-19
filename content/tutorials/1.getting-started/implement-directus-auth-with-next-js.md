@@ -12,7 +12,7 @@ In this tutorial, you will learn how to implement authentication in a Next.js pr
 
 You will need:
 - [Node.js](https://nodejs.org/en/download/) v18 and above installed on your computer.
-- A Directus project - follow our [quickstart guide](/getting-started/create-a-project) if you don't already have one.
+- A Directus project - follow our [quickstart guide](/getting-started/quickstart) if you don't already have one.
 - Some experience with Next.js and a newly-created project.
 
 You will also need a a `posts` collection. Ensure `user_created` is enabled as an optional as it will be used to create permissions so a user can only edit or delete their own posts. Also create a `title` input field and a `content` QYSIWYG field.

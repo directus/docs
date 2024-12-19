@@ -10,7 +10,7 @@ authors:
 
 ## Before You Start
 
-You will need a [Directus project](/getting-started/create-a-project) and a Clarifai API Key.
+You will need a [Directus project](/getting-started/quickstart) and a Clarifai API Key.
 
 ## Create a Flow
 

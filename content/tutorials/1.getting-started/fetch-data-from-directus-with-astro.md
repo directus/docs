@@ -13,7 +13,7 @@ authors:
 You will need:
 
 - To install [Node.js](https://nodejs.org/en/) and a code editor on your computer.
-- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started/create-a-project).
+- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started/quickstart).
 - Some knowledge of TypeScript and Astro framework
 
 ## Initializing Astro

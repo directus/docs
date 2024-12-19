@@ -72,7 +72,7 @@ Persistent file uploads require an external storage volume. On the DigitalOcean 
 3. You'll encounter a page with an auto-generated name for your app. You should see the name of your repository below. This setup is recognized as a web service suitable for Directus.
 4. Adjust the app's plan to your requirements, including the number of containers and their capabilities. 
 5. Connect to the managed database you crafted earlier. Attaching the database to the app is a recommended best practice, ensuring smooth firewall and security settings. Then, select your database cluster and user.
-6. Input the necessary [environment variables](https://docs.directus.io/self-hosted/config-options.html) for Directus. A set of basic variables will help you start, but ensure you complete all necessary fields. The bulk editor simplifies this task, and you can always return to edit or add more variables later.
+6. Input the necessary [environment variables](/configuration/general) for Directus. A set of basic variables will help you start, but ensure you complete all necessary fields. The bulk editor simplifies this task, and you can always return to edit or add more variables later.
 
 ```
 KEY="randomly-generated-key"

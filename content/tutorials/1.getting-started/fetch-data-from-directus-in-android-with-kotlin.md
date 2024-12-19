@@ -10,7 +10,7 @@ In this tutorial, you will learn how to set up an Android project with Kotlin an
 
 ## Before You Start
 You will need:
-- A Directus project - follow our [quickstart guide](/getting-started/create-a-project) if you don't already have one.
+- A Directus project - follow our [quickstart guide](/getting-started/quickstart) if you don't already have one.
 - knowledge of Kotlin
 - [Android Studio](https://developer.android.com/studio) installed on your computer
 

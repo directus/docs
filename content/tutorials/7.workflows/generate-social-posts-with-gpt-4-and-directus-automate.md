@@ -10,7 +10,7 @@ Directus Automate provide a really powerful interface to integrating with AI ser
 
 ## Before We Start
 
-You will need a [Directus project](/getting-started/create-a-project) and an OpenAI API Key from your account dashboard. 
+You will need a [Directus project](/getting-started/quickstart) and an OpenAI API Key from your account dashboard. 
 
 In your Directus project, create a new collection called `posts` with the following fields:
 - `title`: input, string

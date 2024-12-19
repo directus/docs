@@ -12,7 +12,7 @@ The Vonage Number Insight V2 API assigns a fraud score to numbers, along with a 
 
 ## Before You Start
 
-You will need a Directus project - check out [our quickstart guide](/getting-started/create-a-project) if you don't already have one. You will also need a [Vonage Developer API account](https://developer.vonage.com/sign-up), taking note of your API Key and Secret. You should also have a high-risk number to test with (I used the last spam caller I had). 
+You will need a Directus project - check out [our quickstart guide](/getting-started/quickstart) if you don't already have one. You will also need a [Vonage Developer API account](https://developer.vonage.com/sign-up), taking note of your API Key and Secret. You should also have a high-risk number to test with (I used the last spam caller I had). 
 
 Finally, in Your Directus project, add an input field called `phone_number` to the `directus_users` collection. This is a system collection, so you will need to expand them in the Data Model settings in order to see the `directus_users` collection.
 

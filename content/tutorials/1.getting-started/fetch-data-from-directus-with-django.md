@@ -13,7 +13,7 @@ Django is a popular Python framework known for its "battery included" philosophy
 You will need:
 
 - Python installed and a code editor on your computer.
-- A Directus project - Use the [quickstart guide](/getting-started/create-a-project) to create a project if you dont already have one.
+- A Directus project - Use the [quickstart guide](/getting-started/quickstart) to create a project if you dont already have one.
 
 
 ## Create a Django Project

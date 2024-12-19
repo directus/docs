@@ -25,7 +25,7 @@ navigation: false
   docker run -p 8055:8055 directus/directus
   ```
 
-  This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/create-a-project) to learn how to create a project with persistence.
+  This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/quickstart) to learn how to create a project with persistence.
   ::::
 
   ::::div

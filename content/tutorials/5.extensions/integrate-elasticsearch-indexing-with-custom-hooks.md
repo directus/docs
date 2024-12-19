@@ -10,7 +10,7 @@ In this article, we will explore how to index data from Directus in Elasticsearc
 
 ## Setting Up Directus
 
-You will need to have a [local Directus project running](/getting-started/create-a-project) to develop extensions. 
+You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions. 
 
 In your new project, create a collection called `books` with a `title` and a `description` field.
 

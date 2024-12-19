@@ -12,7 +12,7 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   title: Read Items
   class: col-span-6
-  to: '/api/get/items/{collection}'
+  to: '/api/items#list-all-items-in-a-collection-'
   ---
   ::
   
@@ -20,7 +20,7 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   title: Create Items
   class: col-span-6
-  to: '/api/post/items/{collection}'
+  to: '/api/items#create-multiple-items'
   ---
   ::
 ::
@@ -32,7 +32,7 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   title: Upload a File
   class: col-span-6
-  to: '/api/post/files'
+  to: '/api/files#upload-a-file'
   ---
   ::
 
@@ -40,7 +40,7 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   title: Generate Thumbnails
   class: col-span-6
-  to: '/api/get/assets'
+  to: '/api/assets'
   ---
   ::
 ::

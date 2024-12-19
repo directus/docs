@@ -13,7 +13,7 @@ In this tutorial, we will setup a testimonial widget using SvelteKit and Directu
 You will need:
 
 - To install Node.js and a code editor on your computer.
-- A Directus project - follow our [quickstart guide](/getting-started/create-a-project) if you don't already have one.
+- A Directus project - follow our [quickstart guide](/getting-started/quickstart) if you don't already have one.
 - Some knowledge of Svelte and SvelteKit.
 
 ## Setting Up Your Directus Project

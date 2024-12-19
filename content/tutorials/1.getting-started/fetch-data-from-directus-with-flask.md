@@ -14,7 +14,7 @@ authors:
 You will need:
 
 - To have Python installed on your machine
-- A Directus project - [follow our quickstart guide](/getting-started/create-a-project) if you don't already have one.
+- A Directus project - [follow our quickstart guide](/getting-started/quickstart) if you don't already have one.
 - Knowledge of Python and Flask
 
 ### Creating Page Templates
