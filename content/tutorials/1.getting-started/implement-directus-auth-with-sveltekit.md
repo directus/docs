@@ -16,7 +16,7 @@ In this guide, we will use the most secure form via Server-Side Cookies using th
 
 ## Adapt Directus Wrapper
 
-In [Getting Started with Directus and SvelteKit](/tutorials/getting-started/fetch-data-from-directus-with-svelte-kit), we created a wrapper around the Directus JavaScript SDK to use with SvelteKit. This guide assumes you have worked through the previous post. 
+In [Getting Started with Directus and SvelteKit](/tutorials/getting-started/fetch-data-from-directus-with-sveltekit), we created a wrapper around the Directus JavaScript SDK to use with SvelteKit. This guide assumes you have worked through the previous post. 
 
 First we need to define the Domain the Cookie is valid for in the  `.env` file of our root project:
 
@@ -25,7 +25,7 @@ PUBLIC_APIURL='https://directus.example.com'
 PUBLIC_COOKIE_DOMAIN='example.com' // [!code ++]
 ```
 
-In [Getting Started with Directus and SvelteKit](/tutorials/getting-started/fetch-data-from-directus-with-svelte-kit), we create a wrapper which makes the Directus SDK available to our project. In this project, we will adapt the `libs/directus.js` wrapper to utilize the token and define a global cookie options schema:
+In [Getting Started with Directus and SvelteKit](/tutorials/getting-started/fetch-data-from-directus-with-sveltekit), we create a wrapper which makes the Directus SDK available to our project. In this project, we will adapt the `libs/directus.js` wrapper to utilize the token and define a global cookie options schema:
 
 ```js
 import { createDirectus, rest  } from "@directus/sdk"; // [!code --]

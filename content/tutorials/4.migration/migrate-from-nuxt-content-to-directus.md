@@ -128,7 +128,7 @@ Now data exists within Directus, Nuxt Content could be replaced within the Nuxt 
 npm install @directus/sdk
 ```
 
-Following the same steps as our guide "[Build a Website With Nuxt 3 and the Directus JavaScript SDK](/getting-started/fetch-data-from-directus-with-nuxt)", I created a plugin. However, being Nuxt 2, this looks slightly different:
+Following the same steps as our guide "[Build a Website With Nuxt 3 and the Directus JavaScript SDK](/tutorials/getting-started/fetch-data-from-directus-with-nuxt)", I created a plugin. However, being Nuxt 2, this looks slightly different:
 
 ```js
 import { Directus } from '@directus/sdk';

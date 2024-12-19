@@ -10,7 +10,7 @@ If you self-host Directus, it becomes your responsibility to ensure your project
 
 This is where [Sentry](https://sentry.io/welcome/) comes in. Sentry is an error tracking and performance monitoring platform built for developers. With Sentry you can track and triage issues, warnings and crashes, and see issues replayed as they happened. Additionally, you can use Sentry to quickly identify [performance issues](https://docs.sentry.io/product/issues/issue-details/performance-issues/), and dive deep into the stack trace and breadcrumb trails that led to an error. Sentry is also Open Source, and supports a broad spectrum of [programming languages and platforms via official SDKs](https://docs.sentry.io/platforms/).
 
-In this post, we’ll create a [hook extension](/extensions/api-extensions/hooks) to set up Sentry error tracking on both the APIs that Directus generates, and the Data Studio applications. 
+In this post, we’ll create a [hook extension](/guides/extensions/api-extensions/hooks) to set up Sentry error tracking on both the APIs that Directus generates, and the Data Studio applications. 
 
 ## Set up a New Directus Project for Extensions Development
 

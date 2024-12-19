@@ -4,13 +4,13 @@
 
 To access internal systems like the API or the stores in app extensions, you can use the `useApi()` and `useStores()` composables exported by the `@directus/extensions-sdk` package.
 
-::callout{icon="material-symbols:menu-book-outline" color="purple" to="/extensions/app-extensions/composables"}
+::callout{icon="material-symbols:menu-book-outline" color="purple" to="/guides/extensions/app-extensions/composables"}
 Learn more about using Directus composables.
 ::
 
 Directus UI components are globally registered, making them accessible throughout your extension without the need to import them.
 
-::callout{icon="material-symbols:menu-book-outline" color="purple" to="/extensions/app-extensions/ui-library"}
+::callout{icon="material-symbols:menu-book-outline" color="purple" to="/guides/extensions/app-extensions/ui-library"}
 Learn more about using the Directus UI library.
 ::
 

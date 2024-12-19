@@ -77,7 +77,7 @@ an icon inside a circle. The icon relates to the current page such as the collec
 The icon is `rounded`, `disabled` and `secondary`. This will keep the same look as the rest of Directus but you can
 remove these to customize the look and feel.
 
-[Learn more about the usage of Directus UI Components ->](/extensions/app-extensions/ui-library)
+[Learn more about the usage of Directus UI Components ->](/guides/extensions/app-extensions/ui-library)
 
 ::
 

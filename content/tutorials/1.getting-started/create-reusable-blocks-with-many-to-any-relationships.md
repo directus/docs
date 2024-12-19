@@ -182,7 +182,7 @@ Mode option.
 
 ### Create Your Page Content
 
-6. [Create a new item](/content/editor) in the `pages` collection
+6. [Create a new item](/guides/content/editor) in the `pages` collection
 
    <video title="Create Your Page Content" autoplay muted loop controls playsinline>
    <source src="https://product-team.directus.app/assets/c3124836-eabe-4c05-a4ac-05b4a430458f.mp3"> type="video/mp4" />

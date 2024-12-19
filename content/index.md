@@ -48,7 +48,7 @@ navigation: false
   ---
   icon: simple-icons:directus
   title: Platform Overview
-  to: /getting-started/platform-overview
+  to: /getting-started
   class: col-span-6
   ---
   :::
@@ -95,7 +95,7 @@ navigation: false
   :::u-landing-card
   ---
   title: Quickstart
-  to: '/connect/quickstart'
+  to: '/getting-started/connect'
   class: col-span-4
   color: pink
   ---
@@ -113,7 +113,7 @@ navigation: false
   :::u-landing-card
   ---
   title: SDK
-  to: '/connect/sdk'
+  to: '/getting-started/connect/sdk'
   class: col-span-4
   color: blue
   ---

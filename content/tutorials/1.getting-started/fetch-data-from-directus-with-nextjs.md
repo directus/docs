@@ -331,7 +331,7 @@ If you want to change what is user-accessible, consider setting up more restrict
 at build-time.
 
 If you want to build more complex dynamic pages made out of reusable components, check out
-[our recipe on doing just this](/guides/headless-cms/reusable-components).
+[our recipe on doing just this](/tutorials/getting-started/create-reusable-blocks-with-many-to-any-relationships).
 
 If you want to see the code for this project, you can find it
 [on GitHub](https://github.com/directus/examples/blob/main/website-next13).

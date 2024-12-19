@@ -354,6 +354,6 @@ Through this guide, you have set up a Flask project, created a Directus module, 
 
 If you want to change what is user-accessible, consider setting up more restrictive roles and accessing only valid data at build-time.
 
-If you want to build more complex dynamic pages made out of reusable components, [check out our recipe on doing just this](https://docs.directus.io/guides/headless-cms/reusable-components.html).
+If you want to build more complex dynamic pages made out of reusable components, [check out our recipe on doing just this](/tutorials/getting-started/create-reusable-blocks-with-many-to-any-relationships).
 
 If you want to see the code for this project, you can find it [on GitHub](https://github.com/directus-labs/blog-example-flask).

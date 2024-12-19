@@ -128,6 +128,6 @@ Your final flow should look like this:
 
 In this post, you have learned how to use the Vonage Number Insight V2 API to check a phone number for the likelihood of fraud at the time of new user registration. Based on the outcome, users are created, flagged, or blocked from being created. 
 
-Based on the `allow`, `flag`, or `block` recommendation, you can add any operations from those provided by Directus, or through [building your own](/extensions/api-extensions/operations). 
+Based on the `allow`, `flag`, or `block` recommendation, you can add any operations from those provided by Directus, or through [building your own](/guides/extensions/api-extensions/operations). 
 
 If you have any questions, please feel free to [join our Discord server](https://directus.chat) and ask them. 

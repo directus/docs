@@ -49,7 +49,7 @@ field `status` that controls the published state.
 
 ### Add Some Content and Set a Publish Date
 
-4. [Create or update an Item](/content/editor) inside your Collection
+4. [Create or update an Item](/guides/content/editor) inside your Collection
 
    ![A content item within the Articles collection is shown. The title is "What is Headless CMS?". English translations are also shown with a Summary field. The Summary reads "A quick overview of what Headless CMS is and how it's beneficial to your team."](https://product-team.directus.app/assets/dde30ee7-e06b-4617-965d-371463624a5e.webp)
 
@@ -177,7 +177,7 @@ articles that have a publish date AND have the `published` state are displayed o
 
 ::
 
-Using the [Directus JavaScript SDK](/connect/sdk) (preferred)
+Using the [Directus JavaScript SDK](/getting-started/connect/sdk) (preferred)
 
 ```js
 // Initialize the SDK.
