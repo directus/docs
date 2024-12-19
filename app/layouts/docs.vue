@@ -15,21 +15,19 @@ const navigation = computed(() => {
 </script>
 
 <template>
-	<div>
-		<UContainer>
-			<UPage>
-				<template #left>
-					<UAside>
-						<UNavigationTree
-							:links="mapContentNavigation(navigation)"
-							:multiple="false"
-							default-open
-						/>
-					</UAside>
-				</template>
+	<UContainer>
+		<UPage>
+			<template #left>
+				<UAside>
+					<UNavigationTree
+						:links="mapContentNavigation(navigation)"
+						:multiple="false"
+						default-open
+					/>
+				</UAside>
+			</template>
 
-				<slot />
-			</UPage>
-		</UContainer>
-	</div>
+			<slot />
+		</UPage>
+	</UContainer>
 </template>
