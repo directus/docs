@@ -7,8 +7,8 @@ This API reference is generated from our OpenAPI specification. Found an error? 
 
 ## Reading and Modifying Items
 
-::u-landing-grid{class="mt-6"}
-  ::u-landing-card
+::shiny-grid{class="mt-6"}
+  ::shiny-card
   ---
   title: Read Items
   class: col-span-6
@@ -16,7 +16,7 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   ::
   
-  ::u-landing-card
+  ::shiny-card
   ---
   title: Create Items
   class: col-span-6
@@ -27,8 +27,8 @@ This API reference is generated from our OpenAPI specification. Found an error? 
 
 ## Working with Files
 
-::u-landing-grid{class="mt-6"}
-  ::u-landing-card
+::shiny-grid{class="mt-6"}
+  ::shiny-card
   ---
   title: Upload a File
   class: col-span-6
@@ -36,7 +36,7 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   ::
 
-  ::u-landing-card
+  ::shiny-card
   ---
   title: Generate Thumbnails
   class: col-span-6

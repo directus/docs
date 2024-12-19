@@ -1,5 +1,5 @@
-::u-landing-grid{class="gap-4"}
-  :::u-landing-card
+::shiny-grid
+  :::shiny-card
   ---
   icon: directus-connect
   title: Data Engine
@@ -10,7 +10,7 @@
   :product-link{product="connect"} :product-link{product="realtime"} :product-link{product="auth"} :product-link{product="automate"}
   :::
   
-  :::u-landing-card
+  :::shiny-card
   ---
   icon: directus-explore
   title: Data Studio
