@@ -302,5 +302,3 @@ These are built and maintained by our awesome community. If you are building too
   ---
   :::
 ::
-
-:article-cards{:show-description=false :paths='[{"title":"Environment Variables", "_path": "/configuration/general"}, { "title": "Building Extensions", "_path": "/extensions/overview"},{ "title": "Self-Hosting", "_path": "/self-hosting/overview"}]'}
