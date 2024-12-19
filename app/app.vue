@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { spec } from '@directus/openapi';
-
-provide('openapi', spec);
+import type { ParsedContent } from '@nuxt/content';
 
 const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false });
+
+provide('openapi', spec);
 provide('navigation', navigation);
 </script>
 
@@ -18,5 +20,13 @@ provide('navigation', navigation);
 		</UMain>
 
 		<DocsFooter />
+
+		<ClientOnly>
+			<LazyUContentSearch
+				:files="files"
+				:navigation="navigation"
+				:links="[]"
+			/>
+		</ClientOnly>
 	</div>
 </template>
