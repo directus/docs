@@ -10,7 +10,7 @@ In Directus, different environments (development, staging, production) are manag
 
 ## Schema Changes
 
-Schema changes should originate in your development environment. Use the [Schema API](/api#tag/Schema) to promote these changes to other environments. The API provides endpoints for taking snapshots, comparing schemas, and applying changes.
+Schema changes should originate in your development environment. Use the [Schema API](/api/schema) to promote these changes to other environments. The API provides endpoints for taking snapshots, comparing schemas, and applying changes.
 
 ## Content Management
 
@@ -25,7 +25,7 @@ When you need to migrate content as part of schema updates, you have several opt
 
 1. **Data Studio**: Use the built-in interface to export/import data in CSV, JSON, or XML formats.
 
-2. **Import/Export API**: Automate migrations using the [Import and Export](/api#tag/files) endpoints.
+2. **Import/Export API**: Automate migrations using the [Import and Export](/api/files) endpoints.
 
 3. **Advanced Options**:
    - [Custom extensions migrations](/self-hosting/including-extensions)
