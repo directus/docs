@@ -90,7 +90,7 @@ One better option would be creating a single collection to standardize all the S
     
     ```
     
-<span v-pre>4.  Then pass that to your frameworks specific method of add SEO metadata within your `<head>` tags.</span>
+4.  Then pass that to your frameworks specific method of add SEO metadata within your `<head>` tags.
 
 **Frontend Framework Metadata Documentation** 
 
@@ -284,7 +284,7 @@ The structure of your content matters a lot for SEO. Crawlers like well structur
 
 For educational items like blog posts or documentation, semantic hierarchy and design usually align well. Most of these items also have a well defined “template” or “layout” on the frontend.
 
-<span v-pre>The `<h1>` tag contains the title of the article and is the visually the largest header on the page. Other header tags like `<h2>` or `<h3>` get smaller visually and have less priority for SEO.</span>
+The `<h1>` tag contains the title of the article and is the visually the largest header on the page. Other header tags like `<h2>` or `<h3>` get smaller visually and have less priority for SEO.
 
 ![A blog page on the Directus website. The page title is highlighted and labeled as H1. Another headline within the blog post is also highlighted and labeled H2.](https://product-team.directus.app/assets/4a9c2805-9265-4b14-b447-0ed6ffc3f053.webp)
 
@@ -294,11 +294,11 @@ However, handling the semantic markup you need for proper SEO versus the fact th
 
 Let’s take header tags for example. You need proper semantic hierarchy for SEO. But our hierarchy for SEO doesn’t always equal our visual hierarchy required for good design.
 
-<span v-pre>Having the keyword optimized `<h1>` tag be the largest visually - is not always ideal.</span>
+Having the keyword optimized `<h1>` tag be the largest visually - is not always ideal.
 
 ![An events page on the Directus website that highlights the difference in size between the H1 and H2 tags. A small badge with the text Events is the H1. A large headline is the H2.](https://product-team.directus.app/assets/0269f212-856d-433f-b771-229b40dba31a.webp)
 
-But in other cases, the <span v-pre>`<h1>`</span> tag should be the largest visually.
+But in other cases, the `<h1>` tag should be the largest visually.
 
 ![Screenshot of the Directus website with the page heading highlighted. Callouts are pointing to the H2 and H1 elements within the page heading. The H2 tag is above the H1 tag and much smaller.](https://product-team.directus.app/assets/614c38a1-f987-4da8-8919-3441d3f0e727.webp)
 

@@ -76,7 +76,7 @@ This script will return only concepts with a confidence greater than 0.95 (you c
 
 ## Save Tags
 
-Create an **Update Data** operation called `Save Tags`. The collection should be set to `directus_files` (you may have to hit the Raw Value button and type this in), with Full Access permissions.  Set the IDs to <span v-pre>`{{$trigger.key}}`</span> and set the payload to the following:
+Create an **Update Data** operation called `Save Tags`. The collection should be set to `directus_files` (you may have to hit the Raw Value button and type this in), with Full Access permissions.  Set the IDs to `{{$trigger.key}}` and set the payload to the following:
 
 ```json
 {

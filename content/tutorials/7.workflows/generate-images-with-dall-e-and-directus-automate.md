@@ -53,9 +53,9 @@ It should take a few seconds while the image is being generated. Once the spinne
 
 ## Save Generated Image
 
-Add a new File Import operation, provided by the extension mentioned at the start of this post. The Import URL is <span v-pre>`{{generate.data.data[0].url}}`</span> . Save the operation, which will return the ID of the newly-imported image once complete. 
+Add a new File Import operation, provided by the extension mentioned at the start of this post. The Import URL is `{{generate.data.data[0].url}}` . Save the operation, which will return the ID of the newly-imported image once complete. 
 
-Create one final step — an Update Data operation — on the Generations collection with an ID of <span v-pre>`{{$trigger.body.keys[0]}}`</span> (be sure to hit enter to save the ID). Set the payload to the following: 
+Create one final step — an Update Data operation — on the Generations collection with an ID of `{{$trigger.body.keys[0]}}` (be sure to hit enter to save the ID). Set the payload to the following: 
 
 ```json
 {

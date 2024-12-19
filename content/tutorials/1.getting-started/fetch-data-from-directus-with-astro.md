@@ -224,7 +224,6 @@ This query will retrieve the first 100 items (default), sorted by publish date (
 Display the fetched data in HTML:
 
 ```ts
-
 <Layout title="Blog">
   <main>
     <h1>Blog Posts</h1>
@@ -244,7 +243,6 @@ Display the fetched data in HTML:
  </ul>
   </main>
 </Layout>
-
 ```
 
 Visit `http://localhost:4321/blog` and you'll find a blog post listing, with the latest items first.

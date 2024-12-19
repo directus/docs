@@ -29,7 +29,7 @@ If you run a flow with the operation above, it will work if there is a public cr
 
 ## Returned Data
 
-As we are using the API directly, this operation returns a full response body. That means the `id` of the new file is available at <span v-pre>`{{ step.data.data.id }}`</span> , where `step` is your operation key, or `$last` in the following operation. 
+As we are using the API directly, this operation returns a full response body. That means the `id` of the new file is available at `{{ step.data.data.id }}`, where `step` is your operation key, or `$last` in the following operation. 
 
 ## Limitations
 

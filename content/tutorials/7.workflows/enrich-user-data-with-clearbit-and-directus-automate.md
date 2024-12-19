@@ -26,7 +26,7 @@ Create a new Flow from your Directus project settings - call it "Enrich New User
 
 ## Enrich User Data 
 
-Create a **Webhook / Request URL** operation and set the key to `clearbit`. Set the Method to GET and the URL to <span v-pre>`https://person.clearbit.com/v1/people/email/{{$trigger.payload.email}}`</span>. This will assume that all users will have an email address at the time of creation. 
+Create a **Webhook / Request URL** operation and set the key to `clearbit`. Set the Method to GET and the URL to `https://person.clearbit.com/v1/people/email/{{$trigger.payload.email}}`. This will assume that all users will have an email address at the time of creation. 
 
 Add a `Authorization` header with the value `Bearer YOUR_KEY`, replacing `YOUR_KEY` with your Clearbit API Key. 
 
@@ -40,7 +40,7 @@ The dropdown in the collection field will only show user-created collections. To
 
 :::
 
-Add one item to the IDs tags - <span v-pre>`{{$trigger.key}}`</span> - which represents the ID of the new user that was created and triggered the Flow to run. 
+Add one item to the IDs tags - `{{$trigger.key}}` - which represents the ID of the new user that was created and triggered the Flow to run. 
 
 Clearbit provides a huge amount of data in the returned payload. To update fields, set the Payload to the following:
 

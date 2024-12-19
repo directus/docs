@@ -199,7 +199,7 @@ list.
 <img alt="The full form is filled with values." src="https://product-team.directus.app/assets/c42f757f-734c-4c11-96c5-6090e7e7bc97.webp" style="padding: 8px;">
 
 - For the **Phone Number**, you can use a dynamic value from a payload such as
-  <span v-pre>`{{$trigger.payload.phone_number}}`</span> or type a static number in the field.
+  `{{$trigger.payload.phone_number}}` or type a static number in the field.
 - For the **Message**, type anything that you would like to send and remember to shorten your links.
 
 Save the operation, save the Flow, and then trigger the flow by creating a record in the chosen collection.

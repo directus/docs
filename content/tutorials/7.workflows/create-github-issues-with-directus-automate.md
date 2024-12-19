@@ -30,7 +30,7 @@ IMAGE
 
 ## Read Feedback Item
 
-The current payload only contains the feedback item's `id` - we need the whole item. Create a **Read Data** operation called "Get Feedback" with full permissions on the Feedback collection. In **IDs**, set the value to <span v-pre>{{$trigger.body.keys[0]}}</span>.
+The current payload only contains the feedback item's `id` - we need the whole item. Create a **Read Data** operation called "Get Feedback" with full permissions on the Feedback collection. In **IDs**, set the value to `{{$trigger.body.keys[0]}}`.
 
 The `get_feedback` object in the data chain will now contain the full feedback item. 
 
@@ -61,12 +61,12 @@ If you run the Flow again from an item page, a new issue will appear in your Git
 
 ## Save Issue Data
 
-Create an **Update Data** operation for the Feedback collection with full access permissions. Set the **IDs** to <span v-pre>{{$trigger.body.keys[0]}}</span> and provide the following payload:
+Create an **Update Data** operation for the Feedback collection with full access permissions. Set the **IDs** to `{{$trigger.body.keys[0]}}` and provide the following payload:
 
 ```json
 {
 	"issue_title": "{{$trigger.body.title}}",
-    "issue_number": "{{github.data.number}}"
+	"issue_number": "{{github.data.number}}"
 }
 ```
 

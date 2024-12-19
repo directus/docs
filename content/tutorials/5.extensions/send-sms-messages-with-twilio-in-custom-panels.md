@@ -362,8 +362,8 @@ function parseValue(item, key) {
 }
 ```
 
-The outcome of the above functions will change "<span v-pre>{{ name }}</span>, <span v-pre>{{ phone_number }}</span>" to
-"Tim, +0123456789".
+The outcome of the above functions will change `"{{ name }}, {{ phone_number }}"` to
+`"Tim, +0123456789"`.
 
 When the phone number field is specified and batch send is disabled, the user will need a way to select a contact or
 contacts. Directus has an interface called `v-select`. When items are selected, write the selection into the

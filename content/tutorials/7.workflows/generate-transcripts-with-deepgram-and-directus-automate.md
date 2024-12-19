@@ -60,7 +60,7 @@ The dropdown in the collection field will only show user-created collections. To
 
 :::
 
-Add one item to the IDs tags - <span v-pre>`{{$trigger.key}}`</span> - which represents the ID of the file that was uploaded and triggered the Flow to run. 
+Add one item to the IDs tags - `{{$trigger.key}}` - which represents the ID of the file that was uploaded and triggered the Flow to run. 
 
 Deepgram provides a huge nested object in response to requests. To set the file description to the formatted transcript provided by Deepgram, set payload to the following: 
 

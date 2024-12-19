@@ -110,7 +110,7 @@ Please manually validate this user's profile before approving their jobs.
 
 ## Reject New User Item If Blocked
 
-From the reject path of **Is Flagged** create a **Send Email** operation. Form a rejection message and send it to the user who tried to register using <span v-pre>`{{$trigger.payload.email}}`</span> as the recipient. 
+From the reject path of **Is Flagged** create a **Send Email** operation. Form a rejection message and send it to the user who tried to register using `{{$trigger.payload.email}}` as the recipient. 
 
 When a Blocking Flow concludes, data is entered into the database. Currently, there is no elegant way to stop this, but there is a reliable way to make this happen. After the email operation that sends the rejection, create a **Run Script** operation from the resolved path: 
 

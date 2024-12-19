@@ -81,7 +81,7 @@ Request 2:
 - Key: `get_mini_token`
 - POST `https://ayla-sso.eu.owletdata.com/mini/`
 - Headers: 
-  - `Authorization`: <span v-pre>`{{$last.data.idToken}}`</span>
+  - `Authorization`: `{{$last.data.idToken}}`
 
 Request 3:
 - Key: `token_sign_in`
@@ -118,7 +118,7 @@ As header parameter, we set the following:
 
 | Header | Value |
 | --- | --- |
-| Authorization | <span v-pre>`auth_token {{$last.data.access_token}}`</span> |
+| Authorization | `auth_token {{$last.data.access_token}}` |
 
 If everything works so far, the JSON we receive looks something like this, but for security reasons, some data was removed or masked as it also contains coordinates, MAC addresses, IP addresses, and so on:
 
@@ -152,12 +152,12 @@ Create one more Request operation to actually, finally, fetch sensor data.
 
 | Method | URL |
 | --- | --- |
-| GET | <span v-pre>`https://ads-field-eu-1a2039d9.aylanetworks.com/apiv1/dsns/{{$last.data[0].device.dsn}}/properties.json`</span> |
+| GET | `https://ads-field-eu-1a2039d9.aylanetworks.com/apiv1/dsns/{{$last.data[0].device.dsn}}/properties.json` |
 As a header parameter, we set the following:
 
 | Header | Value |
 | ---- | ---- |
-| Authorization | <span v-pre>`auth_token {{token_sign_in.data.access_token}}`</span> |
+| Authorization | `auth_token {{token_sign_in.data.access_token}}` |
 As you can see, the named operation becomes handy now.
 
 This request returns every property the device currently has. In total, we received over 1600 lines of JSON this time. The good thing, we only have a single property object here. All properties have a name attribute. 
@@ -245,7 +245,7 @@ Within the dynamic "Time Series" charts we can reuse the global variable by addi
 
 ![Usage of the syntax for variables within the dashboard panels.](https://product-team.directus.app/assets/02d8a4a7-97cc-4690-8c14-2278be350a30.webp)
 
-You can use the <span v-pre>`{{…}}`</span> syntax, followed by a lower `h` to identify the value that should work as hours. If you use the same variable for all three slides, they will change altogether once you've selected a new amount of hours within the global variable slider.
+You can use the `{{…}}` syntax, followed by a lower `h` to identify the value that should work as hours. If you use the same variable for all three slides, they will change altogether once you've selected a new amount of hours within the global variable slider.
 
 ### 3rd Party Alerting Integration
 

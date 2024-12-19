@@ -21,7 +21,7 @@ In your Directus project, create a new collection called `posts` with the follow
 
 In the Settings Module, go to the Flows section and create a new Flow called “Generate Social Post”. Use a Manual Flow Trigger and select the Posts collection. 
 
-The trigger will only return the `ID` of the article, but the whole post is needed to send to OpenAI. Create a **Read Data** operation called "Article" and give it full access permissions. On the Articles collection, access the <span v-pre>{{$trigger.body.keys[0]}}</span> item. 
+The trigger will only return the `ID` of the article, but the whole post is needed to send to OpenAI. Create a **Read Data** operation called "Article" and give it full access permissions. On the Articles collection, access the `{{$trigger.body.keys[0]}}` item. 
 
 ## Generate Social Post
 
@@ -53,7 +53,7 @@ The second message is the actual prompt - write a post for Twitter. The only dyn
 
 ## Save Social Post
 
-Running the flow will generate a new social post, and now it must be saved in the item. Create an **Update Data** operation and give it full access permissions. On the Articles collection, access the <span v-pre>{{$trigger.body.keys[0]}}</span> item. 
+Running the flow will generate a new social post, and now it must be saved in the item. Create an **Update Data** operation and give it full access permissions. On the Articles collection, access the `{{$trigger.body.keys[0]}}` item. 
 
 Add the following Payload: 
 

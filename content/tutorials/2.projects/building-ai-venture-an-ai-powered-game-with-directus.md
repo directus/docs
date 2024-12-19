@@ -69,7 +69,7 @@ Let’s see what this looks like in Directus. First, we set up a flow called “
 
 ![Selecting “Another Flow” as our Trigger](https://product-team.directus.app/assets/c09e1b67-8c76-4566-a53d-57d959d68b8e.webp)
 
-Next we want to add our main flow. This will be called from our frontend so should have a “Webhook” trigger - for ease of testing in the browser, let’s use the GET method. Then we add a new operation to our flow of type “Trigger Flow” and select our “SubCommand” flow from above. Our payload should include the data from the subcommand, ie. <span v-pre>`{{ $last }}`</span>.
+Next we want to add our main flow. This will be called from our frontend so should have a “Webhook” trigger - for ease of testing in the browser, let’s use the GET method. Then we add a new operation to our flow of type “Trigger Flow” and select our “SubCommand” flow from above. Our payload should include the data from the subcommand, ie. `{{ $last }}`.
 
 ![Main parent flow triggering a sub-command](https://product-team.directus.app/assets/ed069891-0bbb-4acd-8838-b6027c6415af.webp)
 
