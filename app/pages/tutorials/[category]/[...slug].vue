@@ -3,8 +3,6 @@ definePageMeta({
 	layout: 'tutorial',
 });
 
-const { toc } = useAppConfig();
-
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
 
@@ -31,9 +29,10 @@ if (!page.value) {
 			v-if="page!.toc !== false"
 			#right
 		>
-			<UContentToc
-				:title="toc?.title"
+			<DocsToc
 				:links="page!.body?.toc?.links"
+				:authors="page!.authors"
+				:file="page!._file!"
 			/>
 		</template>
 	</UPage>

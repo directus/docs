@@ -127,6 +127,17 @@ export default defineAppConfig({
 
 	toc: {
 		title: 'On this page',
+
+		newsletter: true,
+
+		// Has "edit page" dynamically added in the first position in PageAuthors.vue
+		links: [
+			{
+				icon: 'material-symbols:star-rate-outline-rounded',
+				label: 'Star on GitHub',
+				to: 'https://github.com/directus/directus',
+			},
+		],
 	},
 
 	cta: {

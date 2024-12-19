@@ -43,9 +43,10 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			v-if="page!.toc !== false"
 			#right
 		>
-			<UContentToc
-				:title="toc?.title"
+			<DocsToc
 				:links="page!.body?.toc?.links"
+				:authors="page!.authors"
+				:file="page!._file!"
 			/>
 		</template>
 	</UPage>
