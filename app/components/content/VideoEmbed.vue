@@ -3,7 +3,7 @@ const props = defineProps<{ videoId: string }>();
 
 interface Show {
 	data: {
-		vimeo_id: string;
+		vimeo_id: number;
 		slug: string;
 		season: {
 			show: {
@@ -24,6 +24,7 @@ const show = await $fetch<Show>(
 		<ScriptVimeoPlayer
 			:id="show.data.vimeo_id"
 			:root-attrs="{ style: { width: '100%' } }"
+			above-the-fold
 		>
 			<template #awaitingLoad>
 				<div class="absolute inset-0 flex items-center justify-center">

@@ -16,10 +16,11 @@ if (!page.value) {
 <template>
 	<UContainer>
 		<UPage>
-			<UPageHero
+			<UPageHeader
 				:title="page!.title"
 				:description="page!.description"
 				:links="page!.links"
+				:ui="{}"
 			/>
 
 			<UPageBody prose>
