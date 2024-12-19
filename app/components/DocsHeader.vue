@@ -13,9 +13,11 @@ const route = useRoute();
 
 const links = computed(() =>
 	header.nav.map((link: HeaderLink) => {
-		if (typeof link.to === 'string') {
-			const prefix = '/' + link.to.split('/')[1];
-			link.active = route.path.startsWith(prefix);
+		if (link.children) {
+			link.active = link.children.some((child: HeaderLink) => {
+				const prefix = '/' + (child.to as string).split('/')[1];
+				return route.path.startsWith(prefix);
+			});
 		}
 
 		return link;
