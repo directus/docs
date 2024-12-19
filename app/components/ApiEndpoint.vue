@@ -120,7 +120,7 @@ const responseBodyExample = computed(() => {
 			</div>
 		</div>
 
-		<div class="grow sticky top-16">
+		<div class="grow sticky top-16 w-full">
 			<MDC :value="codeSamplesMd(operation['x-codeSamples'])" />
 			<MDC
 				v-if="responseBodyExample"
