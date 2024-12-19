@@ -29,7 +29,10 @@ const navigationTree = computed(() => {
 </script>
 
 <template>
-	<UHeader :links="links" :ui="$route.path.startsWith('/api') ? {container: 'max-w-screen'} : {}">
+	<UHeader
+		:links="links"
+		:ui="route.path.startsWith('/api') ? { container: 'max-w-screen' } : {}"
+	>
 		<template #logo>
 			<LogoDocs class="w-auto h-8 shrink-0" />
 		</template>
