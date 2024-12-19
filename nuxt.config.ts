@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@nuxt/scripts',
 		'@vueuse/nuxt',
+		'nuxt-link-checker',
 	],
 
 	devtools: {
@@ -65,9 +66,14 @@ export default defineNuxtConfig({
 	},
 
 	routeRules: {
-		'/docs': { redirect: '/docs/getting-started/platform-overview' },
-		'/cloud': { redirect: '/cloud/getting-started/introduction' },
-		'/community': { redirect: '/community/overview/welcome' },
+		'/guides/auth': { redirect: '/guides/auth/quickstart' },
+		'/guides/automate': { redirect: '/guides/automate/quickstart' },
+		'/guides/content': { redirect: '/guides/content/explore' },
+		'/guides/data-model': { redirect: '/guides/data-model/quickstart' },
+		'/guides/extensions': { redirect: '/guides/extensions/overview' },
+		'/guides/files': { redirect: '/guides/files/quickstart' },
+		'/guides/insights': { redirect: '/guides/insights/overview' },
+		'/guides/realtime': { redirect: '/guides/realtime/quickstart' },
 	},
 
 	future: {
