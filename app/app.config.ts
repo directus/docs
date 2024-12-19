@@ -10,7 +10,7 @@ export default defineAppConfig({
 				to: '/getting-started',
 			},
 			{
-				label: 'Build',
+				label: 'Guides',
 				children: [
 					{
 						label: 'Auth',
@@ -61,19 +61,16 @@ export default defineAppConfig({
 						label: 'Cloud',
 						to: '/cloud/getting-started/introduction',
 						icon: 'i-ph-cloud',
-						// description: 'Connect Directus with your favorite framework.',
 					},
 					{
 						label: 'Self Hosting',
 						to: '/self-hosting/overview',
 						icon: 'i-ph-hard-drives',
-						// description: 'Content Management.',
 					},
 					{
 						label: 'Configuration',
 						to: '/configuration/general',
 						icon: 'i-ph-gear',
-						// description: 'Content Management.',
 					},
 				],
 			},
@@ -82,21 +79,18 @@ export default defineAppConfig({
 				children: [
 					{
 						label: 'Community',
-						to: '/community',
+						to: '/community/overview/welcome',
 						icon: 'i-ph-hand-heart',
-						// description: 'Connect Directus with your favorite framework.',
 					},
 					{
 						label: 'Releases',
 						to: '/releases',
 						icon: 'i-ph-notebook',
-						// description: 'Content Management.',
 					},
 					{
 						label: 'Tutorials',
 						to: '/tutorials',
 						icon: 'i-ph-article',
-						// description: 'Content Management.',
 					},
 				],
 			},

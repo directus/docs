@@ -289,7 +289,7 @@ def get_post_by_slug(slug):
 ::callout{type="info" title="File ID"}
 
 Note that this code is reassigning `post["image"]`, this is because Directus returns the image ID, and you need to explicitly say where it is placed in your code, following this structure: `<directus-base-url>/assets/<image-id>`.
-You can read more about it [in the files reference](/guides/guides/files/quickstart).
+You can read more about it [in the files reference](/guides/files/quickstart).
 
 ::
 
