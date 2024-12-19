@@ -122,9 +122,13 @@ export default defineAppConfig({
 	toc: {
 		title: 'On this page',
 
+		// Turn the feedback widget on/off globally
+		feedback: true,
+
+		// Turn the newsletter signup on/off globally
 		newsletter: true,
 
-		// Has "edit page" dynamically added in the first position in PageAuthors.vue
+		// Has "edit page" dynamically added in the first position in DocsTocAuthors.vue
 		links: [
 			{
 				icon: 'material-symbols:star-rate-outline-rounded',

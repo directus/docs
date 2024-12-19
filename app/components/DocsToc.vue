@@ -30,7 +30,12 @@ const communityLinks = computed(() => {
 			<UDivider type="dashed" />
 
 			<template v-if="authors">
-				<PageAuthors :authors="authors" />
+				<DocsTocAuthors :authors="authors" />
+				<UDivider type="dashed" />
+			</template>
+
+			<template v-if="toc.feedback">
+				<DocsTocFeedback />
 				<UDivider type="dashed" />
 			</template>
 
