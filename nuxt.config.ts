@@ -86,17 +86,6 @@ export default defineNuxtConfig({
 		},
 	},
 
-	hooks: {
-		// Make the Landing components available for use on the homepage in md
-		'components:extend': (components) => {
-			const globals = components.filter((c) => {
-				return c.kebabName.startsWith('u-landing-');
-			});
-
-			globals.forEach(c => (c.global = true));
-		},
-	},
-
 	eslint: {
 		config: {
 			stylistic: {
