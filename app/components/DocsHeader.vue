@@ -48,6 +48,15 @@ const navigationTree = computed(() => {
 
 			<UColorModeButton class="hidden lg:inline-flex" />
 
+			<UDivider
+				orientation="vertical"
+				:ui="{
+					border: {
+						vertical: 'h-8 mx-2',
+					},
+				}"
+			/>
+
 			<UButton
 				v-for="(link, index) of header.links"
 				:key="index"
