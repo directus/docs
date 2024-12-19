@@ -288,7 +288,7 @@ For educational items like blog posts or documentation, semantic hierarchy and d
 
 ![A blog page on the Directus website. The page title is highlighted and labeled as H1. Another headline within the blog post is also highlighted and labeled H2.](https://product-team.directus.app/assets/4a9c2805-9265-4b14-b447-0ed6ffc3f053.webp)
 
-But for other items like that are more dynamic like landing pages or homepages, the [Builder (Many To Any Relationships)](/guides/data-model/relationships) really shine inside Directus. You can let your marketing or content teams build pages on their own with predefined collections or `blocks` without involving a developer at all. It also pairs beautifully with the [Live Preview feature](/content/live-preview) to allow them to see exactly what the site will look like before publishing. 
+But for other items like that are more dynamic like landing pages or homepages, the [Builder (Many To Any Relationships)](/guides/data-model/relationships) really shine inside Directus. You can let your marketing or content teams build pages on their own with predefined collections or `blocks` without involving a developer at all. It also pairs beautifully with the [Live Preview feature](/guides/content/live-preview) to allow them to see exactly what the site will look like before publishing. 
 
 However, handling the semantic markup you need for proper SEO versus the fact that blocks  could be placed anywhere on a page can be a real challenge when developing your site.
 

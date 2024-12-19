@@ -8,7 +8,7 @@ authors:
 ---
 <iframe style="width:100%; aspect-ratio:16/9; margin-top: 2em;" src="https://www.youtube.com/embed/7vBcWUxC6PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-In this post, you will learn how to fetch data from an external data source and display it in a custom panel extension for [Directus Insights](https://directus.io/toolkit/insights). 
+In this post, you will learn how to fetch data from an external data source and display it in a custom panel extension for [Directus Insights](https://directus.io/toolkit/guides/insights). 
 
 Panels can only talk to internal Directus services, and can't reliably make external web requests because browser security protections prevent these cross-origin requests from being made. To create a panel that can interact with external APIs, you will create bundle including an endpoint (that can make external requests) and a panel (that uses the endpoint).
 

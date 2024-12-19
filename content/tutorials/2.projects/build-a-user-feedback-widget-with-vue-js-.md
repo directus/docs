@@ -497,7 +497,7 @@ Here’s a few of the next steps you may want to explore beyond this tutorial.
 
 Collecting feedback is just one half of the equation. Analyzing and taking action on the data you receive is the more important part.
 
-Our module for creating [no-code dashboards - Directus Insights](/insights/overview) - can help you understand the data you collect much easier and faster than browsing through a list of feedback. 
+Our module for creating [no-code dashboards - Directus Insights](/guides/insights/overview) - can help you understand the data you collect much easier and faster than browsing through a list of feedback. 
 
 ### Secure form submissions
 

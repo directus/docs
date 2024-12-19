@@ -10,7 +10,7 @@ authors:
 
 This guide explains how to schedule content to be published on a future date for a statically generated site (SSG).
 
-We'll be using [Flows](/automate/flows) to publish articles when the current date matches the published date.
+We'll be using [Flows](/guides/automate/flows) to publish articles when the current date matches the published date.
 
 First we'll schedule a flow to run at regular intervals.
 
@@ -61,13 +61,13 @@ field `status` that controls the published state.
 
 ### Create and Configure Your Flow
 
-5. [Create a new flow](/automate/flows)
+5. [Create a new flow](/guides/automate/flows)
 
    ![Under the Creating a New Flow interface, the Flow Setup tab is shown. The name of the new flow is Published Scheduled Articles. The status is Active. The Description field reads "This is triggered every 15 minutes to publish any scheduled articles". The icon selected is "Fiber New". For the Color field, a green color with the hex code #2ECDA7 is selected. Track Activity & Logs is selected.](https://product-team.directus.app/assets/2040227f-7536-480e-b458-20a8878dea47.webp)
 
    Give it a memorable name and short description like `Publish Scheduled Articles`.
 
-6. [Complete the trigger setup](/automate/triggers)
+6. [Complete the trigger setup](/guides/automate/triggers)
 
    ![Under the Creating New Flow interface, the Trigger Setup tab is shown. The selected trigger is Schedule(CRON). The Interval field has a value of "* 15 * * * *".](https://product-team.directus.app/assets/dde30ee7-e06b-4617-965d-371463624a5e.webp)
 
@@ -83,7 +83,7 @@ field `status` that controls the published state.
 
 ### Add an Operation to Check The Published Date and Update Data
 
-7. [Create a new operation](/automate/operations)
+7. [Create a new operation](/guides/automate/operations)
 
    ![Inside a Directus Flow, the Create Operation interface is shown. The Name of the operation is "Update Articles". The Key is "update_articles". The type of Operation is "Update Data". The Collection for the operation is "Articles". The Payload for the operation is a JSON object with key - status and value of published. There is also a JSON object for the Query field. A filter that checks that the item status is equal to "scheduled" and the date_published is less than or equal to the current timestamp.](https://product-team.directus.app/assets/0424a6b8-7bd2-4c1a-ba8a-5c7c36edd7ea.webp)
 

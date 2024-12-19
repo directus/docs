@@ -289,7 +289,7 @@ def get_post_by_slug(slug):
 ::callout{type="info" title="File ID"}
 
 Note that this code is reassigning `post["image"]`, this is because Directus returns the image ID, and you need to explicitly say where it is placed in your code, following this structure: `<directus-base-url>/assets/<image-id>`.
-You can read more about it [in the files reference](/files/quickstart).
+You can read more about it [in the files reference](/guides/guides/files/quickstart).
 
 ::
 
@@ -312,7 +312,7 @@ Then create the page template on the `templates/post.html` file:
 ::callout{type="info" title="Images transformation"}
 
 Note that the template code appends a query string to the image URL, it is used to dynamically convert the image to the webp format and set a width of 400px to it, allowing you to prevent users from loading an excessively large image.
-You can learn more about this [in the files reference](/files/transform).
+You can learn more about this [in the files reference](/guides/files/transform).
 
 ::
 

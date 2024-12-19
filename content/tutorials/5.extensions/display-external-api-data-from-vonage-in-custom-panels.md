@@ -49,7 +49,7 @@ This will add an entry to the `directus:extension` metadata in your `package.jso
 ## Build the Endpoint
 
 As there is a more detailed guide on
-[building an authenticated custom endpoint to proxy external APIs](/guides/extensions/endpoints-api-proxy-twilio), this
+[building an authenticated custom endpoint to proxy external APIs](/tutorials/extensions/proxy-an-external-api-in-a-custom-endpoint-extension), this
 guide will be more brief in this section.
 
 Open the `src/directus-endpoint-vonage/index.js` file and replace it with the following:

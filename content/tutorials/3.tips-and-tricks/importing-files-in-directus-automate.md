@@ -12,7 +12,7 @@ Directus doesn’t ship with an operation to import files via URL the same way y
 
 ## Setting Up the Operation
 
-In an existing Flow, create a **Webhook / Request URL** operation. All of the settings will match the [File Import endpoint](/files/quickstart):
+In an existing Flow, create a **Webhook / Request URL** operation. All of the settings will match the [File Import endpoint](/guides/files/quickstart):
 
 - Method: POST
 - URL: `your-directus-project/files/import` , replacing `your-directus-project` your project URL

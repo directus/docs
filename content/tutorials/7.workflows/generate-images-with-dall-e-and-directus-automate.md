@@ -20,7 +20,7 @@ In your Directus project, create a new collection called `generations` and add a
 
 In the Settings Module, go to the Flows section and create a new Flow called “Generate Image”. Use a Manual Flow Trigger and select the Generations collection. In the Location dropdown, select Item Page Only. Finally, select Require Confirmation.
 
-[Confirmation Dialogs](/automate/triggers) are shown in a modal before a flow is triggered, and any data entered is made available to the flow.
+[Confirmation Dialogs](/guides/automate/triggers) are shown in a modal before a flow is triggered, and any data entered is made available to the flow.
 
 In the dialog, configure one field with the key of `prompt` , name of “Prompt”, a Type of String, and an Interface of Input. 
 

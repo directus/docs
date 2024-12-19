@@ -17,7 +17,7 @@ Imagine Directus as your trusty companion on the journey to multilingual content
 When discussing Directus and multilingual projects, there are two different places to take action:
 
 1. **Multilingual Content**: Storing versions of content in collections in different languages. This is often exposed in a separate application like a website or phone app. 
-2. **Directus Data Studio**: Making the Directus web application multilingual through [translation strings](/content/translations). This is commonly an internal or authoring interface, but some users have many or all users touch the Data Studio.
+2. **Directus Data Studio**: Making the Directus web application multilingual through [translation strings](/guides/content/translations). This is commonly an internal or authoring interface, but some users have many or all users touch the Data Studio.
 
 There are many translation strings built-in to the Directus project for elements that appear in every project, but you can create as many custom strings as you want, to utilize them/ inside of your project - both inside of the data studio, and via API. 
 
@@ -34,7 +34,7 @@ This post will focus on translating the Directus Data Studio, but here is a summ
 7. **Displaying Localized Content**: Develop your app's front-end and integrate with the Directus API to retrieve content in the desired language. 
 8. **Testing and Continuous Improvement**: Thoroughly test your app for localized content, gather user feedback, and make iterative improvements for an optimal user experience.
 
-For detailed step-by-step instructions, explore the [content translation reference](/content/translations). 
+For detailed step-by-step instructions, explore the [content translation reference](/guides/content/translations). 
 
 ## Contribute Translations To The Directus Data Studio
 
