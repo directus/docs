@@ -1,5 +1,5 @@
-import { methods } from '~/constants';
+import { METHODS } from '~/constants';
 
-export default function (method: string): method is typeof methods[number] {
-	return methods.includes(method as typeof methods[number]);
+export default function (method: string): method is typeof METHODS[number] {
+	return METHODS.includes(method as typeof METHODS[number]);
 }

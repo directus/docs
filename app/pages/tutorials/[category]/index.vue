@@ -35,6 +35,8 @@ if (!page.value) {
 				v-if="page!.body"
 				:value="page"
 			/>
+
+			<TutorialsArticles :path="route.path" />
 		</UPageBody>
 	</UPage>
 </template>

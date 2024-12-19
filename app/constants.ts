@@ -2,7 +2,7 @@ import type {
 	PathItemObject,
 } from 'openapi3-ts/oas30';
 
-export const methods: (keyof PathItemObject)[] = [
+export const METHODS: (keyof PathItemObject)[] = [
 	'get',
 	'put',
 	'post',

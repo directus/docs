@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { OpenAPIObject, OperationObject } from 'openapi3-ts/oas30';
-import { methods } from '~/constants';
+import { METHODS } from '~/constants';
 import type { FlattenedOperationObject, DerefedOperationObject } from '~/types';
 
 const openapi = inject<OpenAPIObject>('openapi')!;
@@ -19,7 +19,7 @@ const operations = computed<FlattenedOperationObject<DerefedOperationObject>[]>(
 	const operations = [];
 
 	for (const [path, pathItemObject] of Object.entries(openapi.paths)) {
-		for (const method of methods) {
+		for (const method of METHODS) {
 			if (pathItemObject[method]) {
 				const operationObject: OperationObject = pathItemObject[method];
 
