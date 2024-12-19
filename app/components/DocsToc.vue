@@ -27,19 +27,30 @@ const communityLinks = computed(() => {
 		:links="links"
 	>
 		<template #bottom>
-			<UDivider type="dashed" />
+			<div class="hidden lg:block">
+				<UDivider
+					type="dashed"
+					class="my-5"
+				/>
 
-			<template v-if="authors">
-				<DocsTocAuthors :authors="authors" />
-				<UDivider type="dashed" />
-			</template>
+				<template v-if="authors">
+					<DocsTocAuthors :authors="authors" />
+					<UDivider
+						type="dashed"
+						class="my-5"
+					/>
+				</template>
 
-			<template v-if="toc.feedback">
-				<DocsTocFeedback />
-				<UDivider type="dashed" />
-			</template>
+				<template v-if="toc.feedback">
+					<DocsTocFeedback />
+					<UDivider
+						type="dashed"
+						class="my-5"
+					/>
+				</template>
 
-			<UPageLinks :links="communityLinks" />
+				<UPageLinks :links="communityLinks" />
+			</div>
 		</template>
 	</UContentToc>
 </template>
