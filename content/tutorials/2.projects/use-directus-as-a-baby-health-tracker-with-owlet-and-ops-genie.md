@@ -164,7 +164,7 @@ This request returns every property the device currently has. In total, we recei
 
 Create a Run Script operation to find the properties we need:
 
-```Javascript
+```js
 module.exports = async function(data) {
   let rtnData
 	data.read_dns.data.forEach(p => {
@@ -269,7 +269,7 @@ To get more details about the API, please check the [official documentation for 
 
 For checking the battery level the code looks like this:
 
-```javascript
+```js
 module.exports = async function(data) {
     var rtn = {
     	"create_alert": false
@@ -341,7 +341,7 @@ As a last method of reporting and integration Directus, we can create an iOS wid
 
 For the Directus integration this time I have created a new role that can have view access to the data collection only. A user in this role has set a static token that I can use within the widget. Using the query parameter `limit` and `sort` I can define to get only the very last entry sorted by the create date column.
 
-```javascript
+```js
 const url = "https://my-directus.app/items/sensor_data?limit=1&sort=sort,-date_created"
 const token = "xy-my-static-token"
 async function getData(url) {

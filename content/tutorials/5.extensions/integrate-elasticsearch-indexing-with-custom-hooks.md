@@ -30,7 +30,7 @@ Navigate into your new extension directory, run `npm install @elastic/elasticsea
 
 At the top of your extension's `src/index.js` file, initialize the Elasticsearch client:
 
-```javascript
+```js
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const { Client } = require("@elastic/elasticsearch");
@@ -45,7 +45,7 @@ export default ({ action }, { env }) => {
 Because Elasticsearch is a CommonJS package, the `require()` function is constructed using the `createRequire()` Node utility method and used to import it to avoid errors. 
 ## Saving Items to Index
 Add the following lines of code after the `client` variable:
-```javascript
+```js
 action("books.items.create", async (meta) => {
   await client.index({
     index: "books",
@@ -59,7 +59,7 @@ When executed a document will be created in an Elasticsearch `books` index conta
 Although the `books` index was not explicitly created, that will be done automatically if doesn’t exist and a new document is been created which is the default behavior.
 ## Updating Items in Index
 Add the following lines of code below the existing action:
-```javascript
+```js
 action("books.items.update", async (meta) => {
   await Promise.all(
     meta.keys.map(
@@ -77,7 +77,7 @@ For an update event, the `meta` object will includes an array of `keys` along wi
 
 ## Deleting Items in Index
 For a delete event, the `meta` object includes an array of keys of the of the deleted items. Fields are not included. Add the following lines of code after the `books.items.update` action:
-```javascript
+```js
 action("books.items.delete", async (meta) => {
   await Promise.all(
     meta.keys.map(

@@ -38,7 +38,7 @@ Navigate into your new extension directory, run `npm install meilisearch`, and t
 
 At the top of your extension's `src/index.js` file, initialize the Meilisearch client:
 
-```javascript
+```js
 import { MeiliSearch } from 'meilisearch'
 
 const client = new MeiliSearch({
@@ -52,7 +52,7 @@ const index = client.index('directus_index')
 
 Update your extension's exported function to process create events when a new `article` is added to the collection:
 
-```javascript
+```js
 export default ({ action }) => {
   action('articles.items.create', async (meta) => {
     await index.addDocuments([{ id: meta.key, ...meta.payload }])
@@ -66,7 +66,7 @@ The `articles.items.create` action hook triggers after item creation. The `meta`
 
 Add another action hook to process updates when one or more articles are modified:
 
-```javascript
+```js
 action('articles.items.update', async (meta) => {
   await Promise.all(
     meta.keys.map(async (key) => 
@@ -82,7 +82,7 @@ The `articles.items.update` action hook triggers when articles are updated. It r
 
 Add an action hook to remove items from Meilisearch when they're deleted in Directus:
 
-```javascript
+```js
 action('articles.items.delete', async (meta) => {
   await index.deleteDocuments(meta.keys)
 })

@@ -103,7 +103,7 @@ The `userSession` function retrieves user session information from cookies, incl
 ## Setting up a Next.js Layout
 
 Create a `components` directory with `navbar` subdirectory. Inside  `navbar` create `Navbar.jsx` and add the following:
-```javascript
+```js
 import Link from "next/link"
 import Links from "./links/Links"
 import { auth } from "@/lib/auth";
@@ -124,7 +124,7 @@ const Navbar = async () => {
 export default Navbar
 ```
 In `navbar` create a `links` directory with `Links.jsx` and add the following:
-```javascript
+```js
 "use client";
 import { useState } from "react";
 import NavLink from "./navLink/navLink";
@@ -170,7 +170,7 @@ const Links = ({session}) => {
 export default Links;
 ```
 In `links` create a `navLink` directory with `navLink.jsx` and add the following:
-```javascript
+```js
 "use client";
 import Link from "next/link";
 
@@ -187,7 +187,7 @@ const NavLink = ({ item }) => {
 export default NavLink;
 ```
 To render the `Navbar` component on all pages, update `Layout.js` as follows:
-```javascript
+```js
 import Navbar from "@/components/navbar/Navbar";
 
 export const metadata = {
@@ -211,7 +211,7 @@ export default function RootLayout({ children }) {
 }
 ```
 In the `app` directory, create `Loading.jsx` with the content:
-```javascript
+```js
 const Loading = () => {
   return (
     <div>Loading</div>
@@ -221,7 +221,7 @@ export default Loading
 ```
 ## Protecting Routes
 To handle route protection, Create the `post/layout.jsx` file and add the following:
-```javascript
+```js
 "use client"
 import { userSession } from "@/lib/action";
 import { useRouter } from "next/navigation";
@@ -253,7 +253,7 @@ export default function PostLayout({ children }) {
 This will ensure that only authenticated users can access the create post and update post pages.
 ## Implementing Registration
 To send user credentials to the `Directus` backend on the user register form submission, navigate to the `action.js` file and add the following:
-```javascript
+```js
 ...
 
 export const register = async (previousState, formData) => {
@@ -283,7 +283,7 @@ export const register = async (previousState, formData) => {
 };
 ```
 In the `components` directory, create a `registerForm` subdirectory. Inside `registerForm` create `registerForm.jsx` and add the following:
-```javascript
+```js
 //src/app/components/registerForm/registerForm.jsx
 "use client";
 import { register } from "@/lib/action";
@@ -322,7 +322,7 @@ const RegisterForm = () => {
 export default RegisterForm;
 ```
 Create `(auth)` directory inside the `app` director. In the `(auth)`, create a `register` subdirectory. Inside `register` create `page.jsx` and add the following:
-```javascript
+```js
 //src/app/(auth)/register/page.jsx
 import RegisterForm from "@/components/registerForm/registerForm";
 
@@ -350,7 +350,7 @@ Navigate to `http://localhost:3000/register` in your browser and you should see 
 
 To send user credentials to the `Directus` backend on the user login form submission, navigate to the `lib` directory. Inside `lib` create `auth.js` and add the following:
 
-```javascript
+```js
 //src/lib/auth.js
 import { COOKIE_NAME } from "@/constants";
 import { cookies } from "next/headers";
@@ -373,7 +373,7 @@ export const directusLogin = async (credentials) => {
 
 Navigate to the `action.js` file and add the following:
 
-```javascript
+```js
 ...
 export const login = async (prevState, formData) => {
   const { email, password } = Object.fromEntries(formData);
@@ -394,7 +394,7 @@ export const login = async (prevState, formData) => {
 
 Create a `loginForm` subdirectory in the `components` directory. Inside `loginForm` create `loginForm.jsx` and add the following:
 
-```javascript
+```js
 //src/app/components/loginForm/loginForm.jsx
 "use client";
 import { login } from "@/lib/action";
@@ -419,7 +419,7 @@ export default LoginForm;
 
 In the `(auth)` directory, create a `login` subdirectory. Inside `login` create `page.jsx` and add the following:
 
-```javascript
+```js
 //src/app/(auth)/login/page.jsx
 import LoginForm from "@/components/loginForm/loginForm";
 const LoginPage = () => {
@@ -445,7 +445,7 @@ Navigate to `http://localhost:3000/login` in your browser and you should see the
 
 To create post from `Directus` backend, navigate to the `lib/action.js` file and add the following:
 
-```javascript
+```js
 export const addPost = async (prevState, formData) => {
   const { title, content, userId } = Object.fromEntries(formData);
   
@@ -484,7 +484,7 @@ export const getAuthUser = async (token) => {
 
 In the `post` directory, create a subdirectory `create-post`. Inside `create-post`  create `page.jsx` with the content:
 
-```javascript
+```js
 //src/app/post/create-post/page.jsx
 import CreatePostForm from "@/components/createPostForm/createPostForm";
 import { COOKIE_NAME } from "@/constants";
@@ -512,7 +512,7 @@ export default CreatePostPage;
 
 In the `components` directory, create a subdirectory `createPostForm`. Inside `createPostForm`  create `createPostForm.jsx` with the content:
 
-```javascript
+```js
 //src/components/createPostForm/createPostForm.jsx
 "use client"
 import { addPost } from "@/lib/action";
@@ -549,7 +549,7 @@ To render a list of all blog posts, you need to send a request to the Directus b
 
 Navigate to `lib/action.js` and add the following:
 
-```javascript
+```js
 //src/lib/action.js
 export const getPosts = async () => {
   try {
@@ -571,7 +571,7 @@ export const getPosts = async () => {
 };
 ```
 In the `app` directory, create a `blog` subdirectory. Inside `blog` create `page.jsx` and add the following to render the retrieved data:
-```javascript
+```js
 //src/app/blog/page.jsx
 import PostCard from "@/components/postCard/postCard";
 import { getPosts } from "@/lib/action";
@@ -593,7 +593,7 @@ export default BlogPage;
 ```
 The blog page fetches posts data asynchronously using the `getPosts` function and renders a `PostCard` component for each post fetched.
 In the `components` directory, create a `postCard` subdirectory. Inside `postCard` create `postCard.jsx` and add the following to render the posts data:
-```javascript
+```js
 //src/components/postCard/postCard.jsx
 import Link from "next/link"
 import PostUser from "../postUser/postUser"
@@ -618,7 +618,7 @@ export default PostCard
 ```
 Click on the `READ MORE`  link to get to the corresponding detail blog post page .
 In the `components` directory, create a `postUser` subdirectory. Inside `postUser` create `postUser.jsx` and add the following to render the post creator data:
-```javascript
+```js
 //src/components/postUser/postUser.jsx
 import directus from "@/lib/directus";
 
@@ -653,7 +653,7 @@ Navigate to `http://localhost:3000/blog` in your browser and you should see all 
 ## Viewing Single Posts
 ### Creating Server Action
 To fetch a single post data from `Directus` backend, navigate to the `lib/action.js` file and add the following:
-```JavaScript
+```js
 //src/lib/action.js
 export const getPost = async (slug) => {
   try {
@@ -678,7 +678,7 @@ export const getPost = async (slug) => {
 The `getPost` function makes a request to Directus using the `directus.request()` method, specifying to read a single item from the "posts" collection based on the provided `slug`. Within the request, it specifies the fields to retrieve for the post.
 ### Creating the Page
 Each blog post links to a single post detail page. In the `blog` directory, create a subdirectory `[slug]`. Inside `[slug]`  create `page.jsx` with the content:
-```JavaScript
+```js
 //src/app/blog/[slug]/page.jsx
 import { redirect } from 'next/navigation'
 import PostUser from "@/components/postUser/postUser";
@@ -750,7 +750,7 @@ Click on the `READ MORE`  link in a post to get to the corresponding detail blog
 # Updating a Post
 ## Creating Server Action
 To update post data from `Directus` backend, navigate to the `lib/action.js` file and add the following:
-```javascript
+```js
 export const updatePost = async (formData) => {
   const { id, title, content, userId } = formData;
   try {
@@ -774,7 +774,7 @@ export const updatePost = async (formData) => {
 The `updatePost` function handles both the case of updating the post content and the case of updating the associated image. If a new image is uploaded, it first uploads the image and then updates the post with the new image ID. If an existing image is used, it directly updates the post with the existing image ID.
 ### Creating the Page
 In the `post` directory, create a subdirectory `update-post`. Inside `update-post`  create a subdirectory `[slug]`. Inside `[slug]` create `pages.jsx` with the content:
-```javascript
+```js
 //src/app/post/update-post/[slug]/page.jsx
 import { getAuthUser, getPost } from "@/lib/action";
 import { cookies } from "next/headers";
@@ -802,7 +802,7 @@ const UpdatePage = async ({ params }) => {
 export default UpdatePage;
 ```
 In the `components` directory, create a subdirectory `updatePostForm`. Inside `updatePostForm`  create `updatePostForm.jsx` with the content:
-```javascript
+```js
 //src/components/updatePostForm/updatePostForm.jsx
 "use client"
 import { updatePost } from "@/lib/action";
@@ -838,7 +838,7 @@ Click on the `Edit`  link in a detail post page to get to the corresponding upda
 
 ## Deleting Posts
 To delete post data from the `Directus` backend, navigate to the `lib/action.js` file and add the following:
-```javascript
+```js
 export const deletePost = async (postId) => {
   try {
     await directus.request(deleteItem('posts', postId));

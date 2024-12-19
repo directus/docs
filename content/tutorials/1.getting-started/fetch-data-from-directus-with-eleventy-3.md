@@ -33,7 +33,7 @@ Open `my-website` in your code editor. Add `"type": "module"` to the object in y
 
 Create a new directory in your 11ty project called `_includes`. Inside of it, another directory called `layouts`. And, finally, a file called `base.njk`: 
 
-```njk
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +88,7 @@ Data from the global collection in Directus will now be available throughout you
 
 Create a new file in the root directory of your 11ty project called `index.njk`:
 
-```njk
+```html
 ---
 layout: layouts/base.njk
 eleventyComputed:
@@ -122,7 +122,7 @@ export default async () => {
 
 Create a new file in the root directory of your 11ty project called `_page.njk`:
 
-```njk
+```html
 ---
 layout: layouts/base.njk
 pagination:
@@ -183,7 +183,7 @@ This data file will retrieve the first 100 items (default), sorted by publish da
 
 Create a new file in the root directory of your 11ty project called `blog.njk`:
 
-```njk
+```html
 ---
 layout: layouts/base.njk
 permalink: "blog/index.html"
@@ -211,7 +211,7 @@ Visit http://localhost:3000 and you should now see a blog post listing, with lat
 
 Each blog post links to a page that does not yet exist. Create a new file in the root directory of your 11ty project called `_post.njk`:
 
-```njk
+```html
 ---
 layout: layouts/base.njk
 pagination:
