@@ -31,6 +31,7 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 				:loading="buttonLoading && savedValue === 'good'"
 				:disabled="savedValue !== null"
 				class="mr-2"
+				:class="{ 'disabled:text-primary disabled:bg-primary-100 disabled:ring-primary': !buttonLoading && savedValue === 'good' }"
 				@click="handleFeedback('good')"
 			/>
 			<UButton
@@ -39,6 +40,7 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 				color="gray"
 				:loading="buttonLoading && savedValue === 'bad'"
 				:disabled="savedValue !== null"
+				:class="{ 'disabled:text-primary disabled:bg-primary-100 disabled:ring-primary': !buttonLoading && savedValue === 'bad' }"
 				@click="handleFeedback('bad')"
 			/>
 		</div>
