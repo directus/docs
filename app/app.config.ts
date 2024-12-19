@@ -101,18 +101,6 @@ export default defineAppConfig({
 		],
 		links: [
 			{
-				icon: 'simple-icons:bluesky',
-				to: 'https://bsky.app/profile/directus.io',
-			},
-			{
-				icon: 'simple-icons:x',
-				to: 'https://x.com/directus',
-			},
-			{
-				icon: 'simple-icons:discord',
-				to: 'https://directus.chat/',
-			},
-			{
 				icon: 'simple-icons:github',
 				to: 'https://github.com/directus/directus',
 			},
@@ -125,8 +113,10 @@ export default defineAppConfig({
 		// Turn the feedback widget on/off globally
 		feedback: true,
 
-		// Turn the newsletter signup on/off globally
-		newsletter: true,
+		newsletter: {
+			hsPortal: 20534155,
+			hsForm: 'd57a69e4-6f43-4768-a600-5f7d30306260',
+		},
 
 		// Has "edit page" dynamically added in the first position in DocsTocAuthors.vue
 		links: [
