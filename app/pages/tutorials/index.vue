@@ -33,6 +33,7 @@ if (!page.value) {
 				:title="category.title!"
 				:description="category.description!"
 				:path="category._path!"
+				class="mb-8 pb-8 last:mb-0 border-b border-gray-200 dark:border-gray-800"
 			/>
 		</UPageBody>
 	</UPage>

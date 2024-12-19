@@ -16,9 +16,6 @@ const { data: articles } = await useAsyncData(props.path, () => queryContent(pro
 		<ProseP>
 			{{ description }}
 		</ProseP>
-		<UButton :to="path">
-			See all
-		</UButton>
 
 		<ULandingGrid class="mt-8">
 			<ULandingCard
@@ -32,9 +29,19 @@ const { data: articles } = await useAsyncData(props.path, () => queryContent(pro
 				}"
 			>
 				<template #icon>
-					<UBadge>{{ title }}</UBadge>
+					<UBadge color="gray">
+						{{ title }}
+					</UBadge>
 				</template>
 			</ULandingCard>
+
+			<Callout
+				class="col-span-6 mt-6 font-bold"
+				:to="path"
+				icon="material-symbols:arrow-outward"
+			>
+				See all {{ title }} tutorials
+			</Callout>
 		</ULandingGrid>
 	</div>
 </template>
