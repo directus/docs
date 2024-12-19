@@ -104,5 +104,9 @@ export default defineNuxtConfig({
 				dir: './app/assets/icons/products',
 			},
 		],
+		clientBundle: {
+			scan: true,
+			includeCustomCollections: true,
+		},
 	},
 });
