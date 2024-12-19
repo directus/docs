@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@directus/openapi": "0.0.6",
 		"@iconify-json/material-symbols": "1.2.11",
+		"@iconify-json/simple-icons": "1.2.16",
 		"@nuxt/content": "2.13.4",
 		"@nuxt/eslint": "0.7.3",
 		"@nuxt/scripts": "0.9.5",
