@@ -14,7 +14,7 @@ export default defineAppConfig({
 				children: [
 					{
 						label: 'Data Model',
-						to: '/guides/data-model/quickstart',
+						to: '/guides/data-model/collections',
 						icon: 'directus-connect',
 					},
 					{
@@ -24,17 +24,17 @@ export default defineAppConfig({
 					},
 					{
 						label: 'Auth',
-						to: '/guides/auth/quickstart',
+						to: '/guides/auth/tokens-cookies',
 						icon: 'directus-auth',
 					},
 					{
 						label: 'Files',
-						to: '/guides/files/quickstart',
+						to: '/guides/files/upload',
 						icon: 'directus-files',
 					},
 					{
 						label: 'Automate',
-						to: '/guides/automate/quickstart',
+						to: '/guides/automate/flows',
 						icon: 'directus-automate',
 					},
 					{
@@ -44,7 +44,7 @@ export default defineAppConfig({
 					},
 					{
 						label: 'Realtime',
-						to: '/guides/realtime/quickstart',
+						to: '/guides/realtime/authentication',
 						icon: 'directus-realtime',
 					},
 					{
