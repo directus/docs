@@ -1,5 +1,4 @@
 ---
-title: TK Projects
+title: Projects
 ---
 
-TK Projects

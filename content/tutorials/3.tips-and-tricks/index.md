@@ -1,5 +1,5 @@
 ---
-title: TK Tips & Tricks
+title: Tips & Tricks
 ---
 
-TK Tips & Tricks
+Tips & Tricks

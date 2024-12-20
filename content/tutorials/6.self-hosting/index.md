@@ -1,5 +1,5 @@
 ---
-title: TK Self Hosting
+title: Self Hosting
 ---
 
-TK Self Hosting
+Self Hosting

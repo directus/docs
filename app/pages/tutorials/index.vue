@@ -27,10 +27,12 @@ defineOgImage({
 			:title="page!.title"
 		>
 			<template #description>
-				<ContentRenderer
-					v-if="page!.body"
-					:value="page"
-				/>
+				<div class="max-w-prose">
+					<ContentRenderer
+						v-if="page!.body"
+						:value="page"
+					/>
+				</div>
 			</template>
 		</UPageHeader>
 

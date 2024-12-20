@@ -5,7 +5,9 @@ title: Create Reusable Blocks with Many-to-Any Relationships
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer
+description: Many websites are made of common, repeating sections or groups of content.
 ---
+
 Many websites are made of common, repeating sections or groups of content.
 
 A common use case when using Directus as a Headless CMS is creating individual blocks that can be re-used on many

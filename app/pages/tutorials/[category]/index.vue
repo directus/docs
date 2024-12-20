@@ -38,12 +38,7 @@ defineOgImage({
 			</template>
 		</UPageHeader>
 
-		<UPageBody prose>
-			<ContentRenderer
-				v-if="page!.body"
-				:value="page"
-			/>
-
+		<UPageBody>
 			<TutorialsArticles :path="route.path" />
 		</UPageBody>
 	</UPage>
