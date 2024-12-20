@@ -29,7 +29,7 @@ export default defineAppConfig({
 					},
 					{
 						label: 'Connect',
-						to: '/guides/auth/authentication',
+						to: '/guides/connect/authentication',
 						icon: 'directus-connect',
 					},
 					{
