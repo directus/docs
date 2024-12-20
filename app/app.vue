@@ -1,35 +1,32 @@
 <script setup lang="ts">
-import { ConfigProvider } from 'radix-vue';
+import { spec } from '@directus/openapi';
+import type { ParsedContent } from '@nuxt/content';
 
-const site = useSiteConfig();
+const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false });
 
-// Base HTML Head Configuration
-useHead({
-	meta: [
-		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-	],
-	link: [
-		{ rel: 'icon', href: '/favicon.ico' },
-	],
-	htmlAttrs: {
-		lang: 'en',
-	},
-});
-
-// Base SEO Configuration
-useSeoMeta({
-	titleTemplate: `%s - ${site.name}`,
-	ogSiteName: site.name,
-	twitterCard: 'summary_large_image',
-});
-
-const useIdFunction = () => useId();
+provide('openapi', spec);
+provide('navigation', navigation);
 </script>
 
 <template>
-	<ConfigProvider :use-id="useIdFunction">
-		<NuxtLayout>
-			<NuxtPage />
-		</NuxtLayout>
-	</ConfigProvider>
+	<div>
+		<DocsHeader />
+
+		<UMain>
+			<NuxtLayout>
+				<NuxtPage />
+			</NuxtLayout>
+		</UMain>
+
+		<DocsFooter />
+
+		<ClientOnly>
+			<LazyUContentSearch
+				:files="files"
+				:navigation="navigation"
+				:links="[]"
+			/>
+		</ClientOnly>
+	</div>
 </template>

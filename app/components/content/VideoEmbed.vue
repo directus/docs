@@ -1,7 +1,9 @@
 <script setup lang="ts">
+const props = defineProps<{ videoId: string }>();
+
 interface Show {
 	data: {
-		vimeo_id: string;
+		vimeo_id: number;
 		slug: string;
 		season: {
 			show: {
@@ -12,79 +14,51 @@ interface Show {
 	};
 }
 
-const props = defineProps<{
-	type: string;
-	id: string;
-}>();
-
-let show: Show | false = false;
-if (props.type === 'directus-tv') {
-	show = await $fetch(`https://tv.directus.app/items/episodes/${props.id}?fields=vimeo_id,slug,season.show.slug,season.show.title`);
-}
+const show = await $fetch<Show>(
+	`https://tv.directus.app/items/episodes/${props.videoId}?fields=vimeo_id,slug,season.show.slug,season.show.title`,
+);
 </script>
 
 <template>
-	<div v-if="type === 'youtube'">
-		<iframe
-			:src="`https://www.youtube.com/embed/${id}`"
-			title="YouTube video player"
-			frameborder="0"
-			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-			referrerpolicy="strict-origin-when-cross-origin"
-			allowfullscreen
-		/>
-	</div>
-
-	<div
-		v-if="type === 'directus-tv' && show"
-		class="tv-frame"
-	>
-		<iframe
-			:src="`https://player.vimeo.com/video/${show.data.vimeo_id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`"
-			frameborder="0"
-			allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-		/>
-		<a :href="`https://directus.io/tv/${show.data.season.show.slug}`">
-			<span>Watch {{ show.data.season.show.title }} on</span>
-			<img
-				alt="Directus TV"
-				src="~/assets/img/tv-logo.svg"
+	<ClientOnly>
+		<UCard class="w-full">
+			<ScriptVimeoPlayer
+				:id="show.data.vimeo_id"
+				:root-attrs="{ style: { width: '100%' } }"
+				above-the-fold
 			>
-		</a>
-	</div>
+				<template #awaitingLoad>
+					<div class="absolute inset-0 flex items-center justify-center">
+						<UButton
+							icon="material-symbols:play-circle-outline"
+							size="xl"
+						/>
+					</div>
+				</template>
+
+				<template #loading>
+					<div class="absolute inset-0 flex items-center justify-center">
+						<UButton
+							loading
+							size="xl"
+						/>
+					</div>
+				</template>
+
+				<template #error>
+					<UAlert
+						color="red"
+						title="Video player failed to load"
+						description="Please refresh the page to try again."
+					/>
+				</template>
+			</ScriptVimeoPlayer>
+
+			<template #footer>
+				<NuxtLink :href="`https://directus.io/tv/${show.data.season.show.slug}`">
+					Watch {{ show.data.season.show.title }} on <LogoTv />
+				</NuxtLink>
+			</template>
+		</UCard>
+	</ClientOnly>
 </template>
-
-<style>
-iframe {
-	width: 100%;
-	aspect-ratio: 16 / 9;
-	border-radius: var(--border-radius);
-}
-
-.tv-frame {
-	background-color: #0F172A;
-	padding: 8px;
-	border-radius: var(--border-radius);
-}
-
-.tv-frame iframe {
-	border-radius: calc(var(--border-radius) / 2);
-}
-
-.tv-frame a {
-	color: white;
-	text-decoration: none;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	gap: 0.5rem;
-	padding-right: 0.25rem;
-	font-weight: bold;
-}
-
-.tv-frame a img {
-	height: 1.5rem;
-	margin-bottom: 0;
-	width: auto;
-}
-</style>

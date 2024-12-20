@@ -1,4 +1,0 @@
-get:
-  $ref: getSingleton.yaml
-patch:
-  $ref: updateSingleton.yaml

@@ -1,1 +1,1 @@
-This extension type is loaded into the Directus Data Studio. They are are built with Vue 3, and can use the provided [composables](/extensions/app-extensions/composables) exported by the `@directus/extensions-sdk` package. Extensions can be written in JavaScript or TypeScript.
+This extension type is loaded into the Directus Data Studio. They are are built with Vue 3, and can use the provided [composables](/guides/extensions/app-extensions/composables) exported by the `@directus/extensions-sdk` package. Extensions can be written in JavaScript or TypeScript.

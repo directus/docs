@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface OgProps {
 	title: string;
-	breadcrumbs?: string[];
+	breadcrumb?: string[];
 }
 
 // inherited attrs can mess up the satori parser
@@ -49,7 +49,7 @@ defineProps<OgProps>();
 			"
 		>
 			<div
-				v-if="breadcrumbs"
+				v-if="breadcrumb"
 				style="display: flex; gap: 10px; margin-bottom: 20px"
 			>
 				<div
@@ -62,7 +62,7 @@ defineProps<OgProps>();
 						line-height: 100%;
 					"
 				>
-					{{ breadcrumbs.join(" > ").toUpperCase() }}
+					{{ breadcrumb.join(" > ").toUpperCase() }}
 				</div>
 			</div>
 			<h1

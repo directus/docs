@@ -1,73 +1,70 @@
-import { resolve } from 'path';
-import { buildPages } from './server/utils/remote-content';
-
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+
+	extends: ['@nuxt/ui-pro'],
+
 	modules: [
 		'@nuxt/eslint',
-		'@vueuse/nuxt',
 		'@nuxt/content',
-		'nuxt-security',
-		'@nuxt/icon',
+		'@nuxt/ui',
+		'@nuxtjs/tailwindcss',
+		'@nuxt/scripts',
 		'@nuxtjs/seo',
-		'@nuxtjs/color-mode',
+		'@vueuse/nuxt',
 		'nuxt-posthog',
-		'@nuxtjs/algolia',
 	],
-	devtools: { enabled: true },
-	css: ['~/assets/css/main.scss'],
-	vue: {
-		runtimeCompiler: true,
+
+	devtools: {
+		enabled: true,
 	},
 	site: {
+		url: 'https://docs.directus.io',
 		name: 'Directus Docs',
+		description: 'Explore our resources and powerful data engine to build your projects confidently.',
+		defaultLocale: 'en',
 	},
-	colorMode: {
-		preference: 'system',
-		fallback: 'light',
-		storage: 'localStorage',
-		storageKey: 'nuxt-color-mode',
-		classSuffix: '',
-		dataValue: 'theme',
-	},
+
 	content: {
 		highlight: {
 			theme: {
 				default: 'github-light',
+				light: 'github-light',
 				dark: 'github-dark',
 			},
 			langs: [
-				'json',
-				'js',
-				'ts',
-				'html',
-				'css',
-				'vue',
-				'shell',
-				'mdc',
-				'md',
-				'yaml',
 				'bash',
-				'swift',
-				'python',
-				'graphql',
-				'http',
-				'jinja',
+				'cpp',
+				'css',
 				'dart',
-				'groovy',
-				'kotlin',
-				'svelte',
-				'dockerfile',
-				'ini',
 				'diff',
-				'liquid',
-				'php',
-				'liquid',
+				'dockerfile',
+				'graphql',
+				'groovy',
+				'html',
+				'http',
+				'ini',
 				'java',
-				'xml',
-				'nginx',
-				'scss',
+				'jinja',
+				'js',
+				'json',
 				'jsx',
+				'kotlin',
+				'liquid',
+				'liquid',
+				'md',
+				'mdc',
+				'nginx',
+				'php',
+				'python',
+				'scss',
+				'shell',
+				'svelte',
+				'swift',
+				'ts',
 				'tsx',
+				'vue',
+				'xml',
+				'yaml',
 			],
 		},
 		markdown: {
@@ -75,70 +72,29 @@ export default defineNuxtConfig({
 				depth: 1,
 			},
 		},
-		sources: {
-			remote: {
-				driver: 'fs',
-				prefix: '/',
-				base: resolve(__dirname, '.remote'),
-			},
-		},
-		navigation: {
-			fields: [
-				'root',
-				'tags',
-				'additional_paths',
-				'expandable',
-				'description',
-			],
-		},
 	},
-	runtimeConfig: {
-		public: {
-			INKEEP_API_KEY: '',
-			INKEEP_INTEGRATION_ID: '',
-			INKEEP_ORGANIZATION_ID: '',
-			NEWSLETTER_URL: '',
-			PRODUCT_DIRECTUS_URL: 'https://product-team.directus.app',
-		},
-	},
-	routeRules: {
-		'/**': { prerender: true },
-	},
+
 	future: {
 		compatibilityVersion: 4,
 	},
-	experimental: {
-		buildCache: false,
-	},
-	compatibilityDate: '2024-11-13',
+
+	compatibilityDate: '2024-11-01',
+
 	nitro: {
 		prerender: {
-			routes: ['/', '/api'],
-			crawlLinks: false,
+			routes: [
+				'/',
+			],
+			crawlLinks: true,
+
+			// TODO
+			// This is a dirty hack to get around a build blocking error..
+			// I can't for the life of me figure out where this magic </span link comes from
+			// ~ Rijk 12/19/2024
+			ignore: ['/api/</span'],
 		},
 	},
-	vite: {
-		css: {
-			preprocessorOptions: {
-				scss: {
-					api: 'modern-compiler',
-				},
-			},
-		},
-	},
-	typescript: {
-		// typeCheck: true,
-	},
-	hooks: {
-		async ready() {
-			await buildPages(__dirname);
-		},
-	},
-	algolia: {
-		docSearch: {
-			indexName: 'directus',
-		},
-	},
+
 	eslint: {
 		config: {
 			stylistic: {
@@ -147,52 +103,17 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+
 	icon: {
 		customCollections: [
 			{
 				prefix: 'directus',
 				dir: './app/assets/icons/products',
 			},
-			{
-				prefix: 'frameworks',
-				dir: './app/assets/icons/frameworks',
-			},
 		],
-	},
-	ogImage: {
-		fonts: ['Poppins:600', 'Fira+Mono:500'],
-	},
-	schemaOrg: {
-		identity: {
-			type: 'Organization',
-			name: 'Directus',
-			url: 'https://directus.io',
-			logo: 'https://directus.io/images/logo-dark.svg',
-		},
-	},
-	security: {
-		rateLimiter: false,
-		headers: {
-			crossOriginEmbedderPolicy:
-					process.env.NODE_ENV === 'development'
-						? 'unsafe-none'
-						: 'require-corp',
-			contentSecurityPolicy: {
-				'img-src': [
-					'\'self\'',
-					'data:',
-					'https://product-team.directus.app',
-					'https://marketing.directus.io',
-				],
-				'script-src': [
-					'\'self\'', // Fallback value, will be ignored by most modern browsers (level 3)
-					'https:', // Fallback value, will be ignored by most modern browsers (level 3)
-					'\'unsafe-inline\'', // Fallback value, will be ignored by almost any browser (level 2)
-					'\'strict-dynamic\'', // Strict CSP via 'strict-dynamic', supported by most modern browsers (level 3)
-					'\'nonce-{{nonce}}\'', // Enables CSP nonce support for scripts in SSR mode, supported by almost any browser (level 2)
-					'player.vimeo.com',
-				],
-			},
+		clientBundle: {
+			scan: true,
+			includeCustomCollections: true,
 		},
 	},
 });

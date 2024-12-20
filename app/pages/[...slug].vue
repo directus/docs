@@ -1,81 +1,59 @@
 <script setup lang="ts">
-const { data: allNavigation } = await useAsyncData(`all_navigation`, () =>
-	fetchContentNavigation(),
-);
+import { withoutTrailingSlash } from 'ufo';
+
+definePageMeta({
+	layout: 'docs',
+});
 
 const route = useRoute();
-
-if (!allNavigation.value) {
-	throw createError({
-		statusCode: 404,
-		fatal: true,
-	});
-}
-
-if (route.path === '/' && allNavigation.value?.length) {
-	prerenderRoutes(allRoutes(allNavigation.value));
-}
-
-const { data: allPages } = await useAsyncData(`all_page`, () =>
-	queryContent()
-		.where({ _partial: false })
-		.only(['_path', 'additional_paths'])
-		.find(),
-);
-
-if (!allPages.value) {
-	throw createError({
-		statusCode: 404,
-		fatal: true,
-	});
-}
-
-const resolvedRoute = resolveRoute(route.path, allPages.value, allNavigation.value);
-
-if (!resolvedRoute) {
-	throw createError({
-		statusCode: 404,
-		fatal: true,
-	});
-}
-
-const { data: page } = await useAsyncData(`page_data:${resolvedRoute}`, () =>
-	queryContent()
-		.where({ $or: [{ _path: { $eq: resolvedRoute } }] })
-		.findOne(),
-);
+const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
 
 if (!page.value) {
-	throw createError({
-		statusCode: 404,
-		fatal: true,
-	});
+	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-definePageMeta({});
+const headline = computed(() => findPageHeadline(page.value!));
 
-useSeoMeta({
-	title: page.value.title,
-	description: page.value.description,
-});
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent().where({ _extension: 'md', navigation: { $ne: false } }).only(['title', 'description', '_path']).findSurround(withoutTrailingSlash(route.path)));
 
 defineOgImage({
 	component: 'OgImageDefault',
 	props: {
 		title: page.value.title,
-		breadcrumbs: resolvedRoute.split('/').slice(1, -1),
+		breadcrumb: pageBreadcrumb(page.value._path!),
 	},
 });
 </script>
 
 <template>
-	<div>
-		<component
-			:is="`Pages${page?.style || 'DocumentationPage'}`"
-			v-if="page"
-			:data="page"
-			:all-pages="allPages"
-			:all-navigation="allNavigation"
+	<UPage>
+		<UPageHeader
+			:title="page!.title"
+			:description="page!.description"
+			:links="page!.links"
+			:headline="headline"
 		/>
-	</div>
+
+		<UPageBody prose>
+			<ContentRenderer
+				v-if="page!.body"
+				:value="page"
+			/>
+
+			<hr v-if="surround?.length">
+
+			<UContentSurround :surround="surround" />
+		</UPageBody>
+
+		<template
+			v-if="page!.toc !== false"
+			#right
+		>
+			<DocsToc
+				:links="page!.body?.toc?.links"
+				:authors="page!.authors"
+				:file="page!._file!"
+			/>
+		</template>
+	</UPage>
 </template>

@@ -5,20 +5,29 @@ Each user can have a single Static Tokens that does not expire (though can be re
 Requests can be authenticated in the following ways:
 
 ::tabs
-	::tab{label="Authorization Header"}
-	Add the following header: `Authorization: Bearer <token>`.
-	::
+  ::div
+  ---
+  label: Authorization Header
+  ---
+  Add the following header: `Authorization: Bearer <token>`.
+  ::
 
-	::tab{label="Session Cookies"}
-	You do not need to set anything. The `directus_session_token` is used automatically.
-	::
+  ::div
+  ---
+  label: Session Cookies
+  ---
+  You do not need to set anything. The `directus_session_token` is used automatically.
+  ::
 
-	::tab{label="Query Parameter"}
-	Append the following query parameter: `?access_token=<token>`.
+  ::div
+  ---
+  label: Query Parameter
+  ---
+  Append the following query parameter: `?access_token=<token>`.
 
-		::callout{type="info" title="Exercise caution when using query parameters for authentication"}
-		Using a query parameter for authentication can lead to it being revealed or logged. If possible, use another method.
-		::
-
+    ::callout{icon="material-symbols:info-outline"}
+      **Exercise caution when using query parameters for authentication**  
+      Using a query parameter for authentication can lead to it being revealed or logged. If possible, use another method.
+    ::
 	::
 ::
