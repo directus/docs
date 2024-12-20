@@ -20,7 +20,7 @@ onMounted(() => {
 <template>
 	<div
 		id="pre-footer"
-		class="border-t border-gray-200 dark:border-gray-800"
+		class="border-t border-gray-200 dark:border-gray-800 py-8 mt-14"
 	>
 		<div
 			:class="route.path.startsWith('/api') ? 'max-screen' : 'max-w-7xl'"
@@ -32,7 +32,7 @@ onMounted(() => {
 					:ui="{ base: 'justify-start' }"
 				/>
 			</div>
-			<div></div>
+			<div />
 			<div class="text-sm">
 				<ClientOnly>
 					<h2 class="text-sm font-bold">
