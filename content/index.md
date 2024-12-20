@@ -4,8 +4,8 @@ description: Learn how to get started and implement Directus through our develop
 navigation: false
 ---
 
-::callout{icon="material-symbols:favorite-rounded"}
-  **This documentation is brand new and we need your feedback while we finish them up.**<br> On each page you'll find a :icon{name="material-symbols:thumb-up-outline"} and :icon{name="material-symbols:thumb-down-outline"} button with the chance to share more feedback or open an issue directly on the [directus/docs](https://github.com/directus/docs) repo.<br> We look forward reading it. With love — the Directus Core Team.
+::callout{icon="material-symbols:favorite-rounded" class="max-w-2xl" color="red"}
+  **This documentation is brand new and we'd love your feedback while we finish the details.**<br> On each page you'll find a :icon{name="material-symbols:thumb-up-outline"} and :icon{name="material-symbols:thumb-down-outline"} button with the chance to share more feedback or open an issue directly on the [directus/docs](https://github.com/directus/docs) repo. Thanks in advance!
 ::
 
 
@@ -185,10 +185,10 @@ navigation: false
   ---
   :::
 
-::
-  :::callout{icon="heroicons-outline:light-bulb" to="/tutorials" class="col-span-6"}
+  :::callout{icon="heroicons-outline:light-bulb" to="/tutorials" class="col-span-8"}
   See All Tutorials
   :::
+::
 
 ## Releases
 
@@ -277,7 +277,7 @@ navigation: false
   ---
   :::
 
-  :::callout{icon="material-symbols:lightbulb-2-outline" class="col-span-6"}
+  :::callout{icon="material-symbols:lightbulb-2-outline" class="col-span-8"}
   These are built and maintained by our awesome community. If you are building tooling and want to include it here, please open a [pull request on GitHub](https://github.com/directus/docs).
   :::
 ::
