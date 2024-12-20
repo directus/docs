@@ -16,7 +16,7 @@ You will need:
 - [PHP 7.4](https://www.php.net/releases/7_4_0.php) or higher
 - [Composer](https://getcomposer.org/)
 - A code editor on your computer.
-- A Directus project - follow our [quickstart guide](/getting-started/quickstart) if you don't already have one.
+- A Directus project - follow our [quickstart guide](/getting-started) if you don't already have one.
 - Some knowledge of Laravel.
 
 The code for this tutorial is available on my [GitHub repository](https://github.com/directus-labs/blog-example-getting-started-laravel).

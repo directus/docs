@@ -20,7 +20,7 @@ the endpoint).
 
 ## Before You Start
 
-You will need a Directus project - check out our [quickstart guide](/getting-started/quickstart)
+You will need a Directus project - check out our [quickstart guide](/getting-started)
 if you don't already have one. You will also need a
 [Vonage Developer API account](https://developer.vonage.com/sign-up), taking note of your API Key and Secret.
 

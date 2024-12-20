@@ -14,7 +14,7 @@ description: Learn how to integrate Directus in your Astro web application.
 You will need:
 
 - To install [Node.js](https://nodejs.org/en/) and a code editor on your computer.
-- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started/quickstart).
+- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started).
 - Some knowledge of TypeScript and Astro framework
 
 ## Initializing Astro

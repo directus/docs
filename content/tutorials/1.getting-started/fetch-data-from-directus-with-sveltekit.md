@@ -14,7 +14,7 @@ description: Learn how to integrate Directus in your SvelteKit web application.
 You will need:
 
 - To install Node.js and a code editor on your computer.
-- A Directus project - follow our [quickstart guide](/getting-started/quickstart) if you don't already have one.
+- A Directus project - follow our [quickstart guide](/getting-started) if you don't already have one.
 - Some knowledge of Svelte.
 
 ## Initialize SvelteKit Project
@@ -64,7 +64,7 @@ export async function handle({ event, resolve }) {
 ::callout{icon="material-symbols:info-outline"}
 
 Theoretically you could also make HTTP requests to your Directus server endpoint directly via SvelteKit's `fetch`
-implementation. However the Directus SDK offers some nice [additional features](/getting-started/connect/sdk).
+implementation. However the Directus SDK offers some nice [additional features](/guides/connect/sdk).
 
 ::
 

@@ -20,7 +20,7 @@ whenever the published date is less than or equal the current timestamp.
 
 Last, we'll kick off a new deployment of your static site at your hosting provider using one of the recipes below.
 
-- [Triggering a static site build at Netlify](/tutorials//workflows/trigger-netlify-site-builds-with-directus-automate)
+- [Triggering a static site build at Netlify](/tutorials/workflows/trigger-netlify-site-builds-with-directus-automate)
 - [Triggering a static site build at Vercel](/tutorials/workflows/trigger-vercel-site-builds-with-directus-automate)
 
 ## How-To Guide
@@ -143,7 +143,7 @@ process for your site. This approach helps keep everything modular and easier to
 
 If you haven't already, you'll want to configure one of the recipes below.
 
-- [Triggering a static site build at Netlify](/tutorials//workflows/trigger-netlify-site-builds-with-directus-automate)
+- [Triggering a static site build at Netlify](/tutorials/workflows/trigger-netlify-site-builds-with-directus-automate)
 - [Triggering a static site build at Vercel](/tutorials/workflows/trigger-vercel-site-builds-with-directus-automate)
 
 You checked Emit Events in the operation during Step 7. This will emit an `item.update` event which is a trigger for the
@@ -178,7 +178,7 @@ articles that have a publish date AND have the `published` state are displayed o
 
 ::
 
-Using the [Directus JavaScript SDK](/getting-started/connect/sdk) (preferred)
+Using the [Directus JavaScript SDK](/guides/connect/sdk) (preferred)
 
 ```js
 // Initialize the SDK.

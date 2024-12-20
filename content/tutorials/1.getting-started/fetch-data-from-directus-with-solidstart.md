@@ -14,7 +14,7 @@ description: Learn how to integrate Directus in your SolidStart web application.
 You will need:
 
 - Node.js and a code editor.
-- A Directus project - [follow our quickstart guide](/getting-started/quickstart) if you don't already have one.
+- A Directus project - [follow our quickstart guide](/getting-started) if you don't already have one.
 - (Bonus) SolidJS knowledge will definitely help, but is not required.
 
 ## Initialize SolidStart Project

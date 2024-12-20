@@ -12,7 +12,7 @@ In this article, we will explore how to index data from Directus in Algolia, ena
 
 ## Setting Up Directus
 
-You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions.
+You will need to have a [local Directus project running](/getting-started) to develop extensions.
 
 In your new project, create a collection called `posts` with a `title`, `content`, and `author` field.
 

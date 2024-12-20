@@ -119,7 +119,7 @@ But an item’s **primary key value can not be changed after they are created**,
 
 To avoid this, use the auto-incremented ids or UUIDs for the primary key `id` and create a separate field input for the `slug` . You can require uniqueness which means only one item in a collection can have a given slug.
 
-You can no longer use API endpoints or SDK functions for reading a single item, as this relies on using the primary key. Instead, query the whole collection and use [Filter Rules](https://docs.directus.io/reference/filter-rules.html) to get the single item that has the slug:
+You can no longer use API endpoints or SDK functions for reading a single item, as this relies on using the primary key. Instead, query the whole collection and use [Filter Rules](/guides/connect/filter-rules) to get the single item that has the slug:
 
 ```js
 import { createDirectus, rest, readItems } from '@directus/sdk';

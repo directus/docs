@@ -13,7 +13,7 @@ The Vonage Number Insight V2 API assigns a fraud score to numbers, along with a 
 
 ## Before You Start
 
-You will need a Directus project - check out [our quickstart guide](/getting-started/quickstart) if you don't already have one. You will also need a [Vonage Developer API account](https://developer.vonage.com/sign-up), taking note of your API Key and Secret. You should also have a high-risk number to test with (I used the last spam caller I had).
+You will need a Directus project - check out [our quickstart guide](/getting-started) if you don't already have one. You will also need a [Vonage Developer API account](https://developer.vonage.com/sign-up), taking note of your API Key and Secret. You should also have a high-risk number to test with (I used the last spam caller I had).
 
 Finally, in Your Directus project, add an input field called `phone_number` to the `directus_users` collection. This is a system collection, so you will need to expand them in the Data Model settings in order to see the `directus_users` collection.
 
@@ -45,7 +45,7 @@ In the body, send the following JSON:
 }
 ```
 
-Navigate to the Users Module in the module bar and create a new user. You can leave all information blank apart from the phone number - [make sure it's in E.164 format](https://developer.vonage.com/en/voice/voice-api/concepts/numbers). If you need to format numbers, check out a section in [our post on building a wedding invite system](https://docs.directus.io/blog/wedding-invite-vonage.html#standardize-phone-numbers) - it also uses a Vonage API so you can reuse your credentials.
+Navigate to the Users Module in the module bar and create a new user. You can leave all information blank apart from the phone number - [make sure it's in E.164 format](https://developer.vonage.com/en/voice/voice-api/concepts/numbers).
 
 Come back to your flow and open the logs in the sidebar. You can see the operation outputs an object containing a `fraud_score` and related information. The `risk_score` is a scale of 0 to 100. This project will use the `risk_recommendation` value of `allow`, `flag`, or `block` in future steps.
 

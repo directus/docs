@@ -15,7 +15,7 @@ description: Learn how to integrate Directus in your Flask web application.
 You will need:
 
 - To have Python installed on your machine
-- A Directus project - [follow our quickstart guide](/getting-started/quickstart) if you don't already have one.
+- A Directus project - [follow our quickstart guide](/getting-started) if you don't already have one.
 - Knowledge of Python and Flask
 
 ### Creating Page Templates
@@ -290,7 +290,7 @@ def get_post_by_slug(slug):
 ::callout{icon="material-symbols:info-outline"}
 
 Note that this code is reassigning `post["image"]`, this is because Directus returns the image ID, and you need to explicitly say where it is placed in your code, following this structure: `<directus-base-url>/assets/<image-id>`.
-You can read more about it [in the files reference](/guides/files/quickstart).
+You can read more about it [in the files reference](/getting-started/upload-files).
 
 ::
 

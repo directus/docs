@@ -13,7 +13,7 @@ You will need:
 
 - [Node.js v20.11.1](https://nodejs.org/) or later.
 - A code editor on your computer.
-- A Directus project - follow our [quickstart guide](/getting-started/quickstart) if you don't already have one.
+- A Directus project - follow our [quickstart guide](/getting-started) if you don't already have one.
 - Some knowledge of React and Svelte.
 
 The code for this tutorial is available on this [GitHub repository](https://github.com/directus-labs/blog-example-sveltekit-i18n).

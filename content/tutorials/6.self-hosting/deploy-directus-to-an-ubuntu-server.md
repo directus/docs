@@ -13,14 +13,14 @@ This guide covers setting up Docker, configuring Docker Compose, using Nginx as 
 
 ## Prerequisites
 
-1. **A Directus Project:** Prepare a local Directus project for deployment. Follow the [Directus quickstart guide](https://docs.directus.io/self-hosted/quickstart) if you need to create a new project.
+1. **A Directus Project:** Prepare a local Directus project for deployment. Follow the [Directus quickstart guide](/getting-started/create-a-project) if you need to create a new project.
 2. **Ubuntu Server:** Access an Ubuntu server via SSH. You can obtain one from cloud providers like Azure, DigitalOcean, Linode, or AWS. Configure SSH access from your local machine. This tutorial has been tested with version 20.04 or 22.04.
 3. **Domain Name:** Register a custom domain name and have access to its DNS settings.
 4. **Command Line Familiarity:** Basic knowledge of Linux command-line operations, including file uploads using `scp` and editing files with `nano`.
 
 ## Upload Your Local Directus Application Folder to the Server
 
-If you have successfully followed the [Self-Hosted Quickstart](/getting-started/quickstart), you should have a directory with a `docker-compose.yml` file, `database/` directory with a `data.db` file, `uploads/` directory, and `extensions/` directory.
+If you have successfully followed the [Self-Hosted Quickstart](/getting-started), you should have a directory with a `docker-compose.yml` file, `database/` directory with a `data.db` file, `uploads/` directory, and `extensions/` directory.
 
 Use `scp` (Secure Copy Protocol) to upload the local folder to your server.
 

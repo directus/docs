@@ -11,7 +11,7 @@ Voice is one of the most common ways we communicate and yet one of the hardest f
 
 ## Before You Start
 
-You will need a Directus project - check out [our quickstart guide](/getting-started/quickstart) if you don't already have one and generate an API Token that allows access to the location where your audio files will be uploaded. You will also need a [Deepgram account](https://console.deepgram.com/) and API Key with "Member" privileges. You should also have a MP3 file to test with - [here's one you can download and use](/img/aaedf2bb-bb9a-41b8-9b47-f68f4293e813.mp3).
+You will need a Directus project - check out [our quickstart guide](/getting-started) if you don't already have one and generate an API Token that allows access to the location where your audio files will be uploaded. You will also need a [Deepgram account](https://console.deepgram.com/) and API Key with "Member" privileges. You should also have a MP3 file to test with - [here's one you can download and use](/img/aaedf2bb-bb9a-41b8-9b47-f68f4293e813.mp3).
 
 ## Set Up Trigger
 

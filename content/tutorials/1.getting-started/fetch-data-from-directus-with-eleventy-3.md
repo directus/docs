@@ -14,7 +14,7 @@ Eleventy (sometimes referred to 11ty) is a lightweight and unopinionated static 
 You will need:
 
 - Node.js and a code editor.
-- A Directus project - [follow our quickstart guide](/getting-started/quickstart) if you don't already have one.
+- A Directus project - [follow our quickstart guide](/getting-started) if you don't already have one.
 
 Open your terminal and run the following commands to create a new 11ty project and the Directus JavaScript SDK:
 

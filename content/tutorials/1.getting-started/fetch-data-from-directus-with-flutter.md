@@ -11,7 +11,7 @@ description: Learn how to integrate Directus in your Flutter app with Dart.
 You will need:
 
 - Flutter SDK: Follow the official [Flutter installation guide](https://docs.flutter.dev/get-started/install) for your operating system (Windows, macOS, or Linux). This will also install the Dart programming language, which is required for Flutter development.
-- A Directus project - [follow our quickstart guide](/getting-started/quickstart) if you don't already have one.
+- A Directus project - [follow our quickstart guide](/getting-started) if you don't already have one.
 -  A code editor installed.
 - Knowledge of Dart.
 

@@ -12,7 +12,7 @@ description: Learn how to integrate Directus in your Angular web application.
 ## Before You Start
 
 - Some knowledge of TypeScript and [Angular](https://angular.io/)
-- A Directus project. Follow the [Quickstart guide](/getting-started/quickstart) to create one.
+- A Directus project. Follow the [Quickstart guide](/getting-started) to create one.
 - [Node.js](https://nodejs.org/en/download) and a development environment of your choice
 - Install the Angular CLI - use the Angular [guide](https://angular.io/guide/setup-local) to achieve this.
 

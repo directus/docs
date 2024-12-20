@@ -15,7 +15,7 @@ You will need:
 
 - Knowledge of Java programming language and Thymeleaf templating.
 - [Java development kit(JDK)8](https://www.oracle.com/ke/java/technologies/javase/javase8-archive-downloads.html) or above.
-- Directus project - Use the [quickstart guide](/getting-started/quickstart) if you don't already have one.
+- Directus project - Use the [quickstart guide](/getting-started) if you don't already have one.
 - An IDE with support for Java.
 
 In your Directus project, set up a collection named `articles` with the fields `id`, `title`, `featuredImage`, and `body`. These fields will be used to store the contents of an article. In your Access Control settings, grant public read access to the `articles` and `directus_images` collections.

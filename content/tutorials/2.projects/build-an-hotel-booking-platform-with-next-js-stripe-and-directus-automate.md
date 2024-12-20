@@ -16,7 +16,7 @@ You will create different room types, create and store rooms based on the room t
 You will need:
 
 - [Node.js](https://nodejs.org/) installed and a code editor on your computer.
-- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](getting-started/create-a-project).
+- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started/create-a-project).
 - A [Stripe](https://stripe.com/) account with a business already set up
 - [Stripe CLI](https://docs.stripe.com/stripe-cli) installed in your computer
 - Some knowledge of TypeScript and React.
@@ -865,7 +865,7 @@ Some possible steps to carry out next might include:
 
 - **User Authentication:** Consider adding user authentication so users can sign up, log in, and manage their bookings. This adds a layer of security and personalization to the application.
 - **Admin Dashboard:** Create an admin dashboard where hotel staff can manage room availability, view reservations, and update booking details. This can be achieved by implementing user roles and permissions in Directus.
-- **Email Notifications:** Set up email notifications to confirm bookings, send reminders, and provide updates on reservation status. This can also be implemented in Directus using [Directus Flows](https://docs.directus.io/app/flows).
+- **Email Notifications:** Set up email notifications to confirm bookings, send reminders, and provide updates on reservation status. This can also be implemented in Directus using [Directus Flows](/getting-started/create-an-automation).
 - **Reviews and Ratings:** Add a feature for users to leave reviews and ratings for booked rooms. This can help future guests make informed decisions and provide valuable feedback to the hotel.
 - **Proper Error Handling:** Consider handling errors properly and displaying the errors in the UI, such as error form fields were not filled, payment was unsuccessful, or an error occurred.
 - **Styling the Application:** The project is made with HTML. To make it, consider styling the application with CSS or a CSS framework of your choice.
