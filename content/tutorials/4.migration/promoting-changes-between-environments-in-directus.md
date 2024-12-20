@@ -31,9 +31,3 @@ When you need to migrate content as part of schema updates, you have several opt
    - [Custom extensions migrations](/self-hosting/including-extensions)
    - Direct database operations (being careful with system tables)
    - Using and modifying the [template CLI](https://github.com/directus-community/directus-template-cli) to extract and load of all schema, system collections and content.
-
-::callout{type="info" title="Need help?"}
-
-Visit our [Community Help](https://directus.chat/) channel.
-
-::

@@ -13,11 +13,6 @@ export default defineAppConfig({
 				label: 'Guides',
 				children: [
 					{
-						label: 'Auth',
-						to: '/guides/auth/quickstart',
-						icon: 'directus-auth',
-					},
-					{
 						label: 'Data Model',
 						to: '/guides/data-model/quickstart',
 						icon: 'directus-connect',
@@ -28,9 +23,9 @@ export default defineAppConfig({
 						icon: 'directus-explore',
 					},
 					{
-						label: 'Extensions',
-						to: '/guides/extensions/overview',
-						icon: 'directus-marketplace',
+						label: 'Auth',
+						to: '/guides/auth/quickstart',
+						icon: 'directus-auth',
 					},
 					{
 						label: 'Files',
@@ -51,6 +46,11 @@ export default defineAppConfig({
 						label: 'Realtime',
 						to: '/guides/realtime/quickstart',
 						icon: 'directus-realtime',
+					},
+					{
+						label: 'Extensions',
+						to: '/guides/extensions/overview',
+						icon: 'directus-marketplace',
 					},
 				],
 			},
