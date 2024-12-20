@@ -38,7 +38,7 @@ Copy the connection name for later usage.
 
 ## Set Up the Docker Container
 
-::callout{icon="material-symbols:info-outline" title="Directus Version"}
+::callout{icon="material-symbols:info-outline"}
 
 In this section, we will specify the version of Directus as `10.10.4` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
 
@@ -56,7 +56,9 @@ Next, Build the docker image and tag it to be `directus:10.10.4`:
 docker build -t directus:10.10.4 --platform linux/amd64 .
 ```
 
-::callout{icon="material-symbols:info-outline" title="Using an Apple Silicon Machine?"}
+::callout{icon="material-symbols:info-outline"}
+
+### Using an Apple Silicon Machine?
 
 ```bash
 docker buildx build -t directus:10.10.4 --platform linux/amd64 .
@@ -84,7 +86,7 @@ Click on **Create** to create a new repository.
 
 To push the `Dockerfile` to the created repository, you must first be authenticated via the CLI that ships Google Cloud SDK. 
 
-::callout{icon="material-symbols:info-outline" title="Google Cloud Region"}
+::callout{icon="material-symbols:info-outline"}
     
 In this section, we will specify `us-central1` as the region. If you used a different region, please replace it.
     
@@ -179,4 +181,3 @@ STORAGE_GCS_CREDENTIALS: YOUR_SERVICE_ACCOUNT_KEY_JSON
 Some steps you could consider moving forward toward improving your deployment include implementing improved security permissions for connecting to the created resources or using [Google Secret Manager](https://cloud.google.com/security/products/secret-manager) for managing your `ENV` variables.
 
 This setup is a good start, but you may need to consider setting up backups, round-the-clock monitoring, upgrading Directus, and the inability to restart automatically in the event of a crash. Each of these can be configured and maintained separately.
-

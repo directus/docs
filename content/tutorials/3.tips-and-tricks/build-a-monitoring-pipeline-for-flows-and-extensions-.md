@@ -102,7 +102,7 @@ module.exports = async function(data) {
 
 Initialize the logger, with the context `import-participants` and participant count from last step. This custom operation creates a unique `execution_id` for us:
 
-::callout{type="details" title="Show app definition of `initialize_logger`"}
+### App definition of `initialize_logger`
 
 ```ts
 import { defineOperationApp } from '@directus/extensions-sdk';
@@ -147,9 +147,7 @@ export default defineOperationApp({
 });
 ```
 
-::
-
-::callout{type="details" title="Show API definition of `initialize_logger`"}
+### API Definition of `initialize_logger`
 
 ```ts
 import { defineOperationApi } from '@directus/extensions-sdk';
@@ -184,8 +182,6 @@ export default defineOperationApi<Options>({
 });
 ```
 
-::
-
 Create the participants from the payload's body, and then log either a success or error. 
 
 In this case, we would log an error if the required email is missing in one of the payload's participants.
@@ -200,7 +196,7 @@ We configure the "Notify by Mail" operation by entering all receiving email addr
 
 ![Settings of the operation notify_by_mail. Input field "To" takes a list of e-mail addresses; input field "Events" takes a list of event names. Only specified events are sent out by mail](https://product-team.directus.app/assets/5617545a-13a1-42b9-b877-c7923d6813a5.webp)
 
-::callout{type="details" title="Show app definition of `notify_on_event`"}
+### App definition of `notify_on_event`
 
 ```ts
 import { defineOperationApp } from '@directus/extensions-sdk';
@@ -250,9 +246,7 @@ export default defineOperationApp({
 });
 ```
 
-::
-
-::callout{type="details" title="Show API definition of `notify_on_event`"}
+### API Definition of `notify_on_event`
 
 ```ts
 import { defineOperationApi } from '@directus/extensions-sdk';
@@ -300,9 +294,7 @@ function liquifyMeta(meta: Object) {
 }
 ```
 
-::
-
-::callout{type="details" title="Email template used in `notify_on_event`"}
+### Email Template Used in `notify_on_event`
 
 ```html
 <body>
@@ -318,8 +310,6 @@ function liquifyMeta(meta: Object) {
   Execution ID: {{ execution_id }}
 </body>
 ```
-
-::
 
 ## Summary
 

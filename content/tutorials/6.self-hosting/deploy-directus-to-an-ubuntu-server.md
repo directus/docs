@@ -37,7 +37,7 @@ In the example below, I am copying the whole Directus folder to the home directo
 
 ![Copying files to the server with scp](https://product-team.directus.app/assets/09e1807d-271e-4d52-91f6-951d3436ce34.webp)
 
-::callout{icon="material-symbols:info-outline" title="Database Note"}
+::callout{icon="material-symbols:info-outline"}
 
 Note that the database used in this tutorial is SQLite. For other types of databases like MySQL and PostgreSQL, you might have to create a database dump and export the dump to your remote server.
 
@@ -322,6 +322,3 @@ After the setup is complete, visit your Directus application using `https://dire
 This tutorial guided you through hosting a Directus application on an Ubuntu server, covering essential steps such as Docker setup, firewall configuration, and SSL encryption. By following these instructions, you have ensured a secure, accessible, and continuously running environment for your Directus project.
 
 If you have any questions or encounter difficulties, don't hesitate to revisit this guide or seek support from the [Directus community Discord server](https://directus.chat). Happy hosting!
-
-
-

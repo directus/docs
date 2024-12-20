@@ -164,7 +164,7 @@ Copy the name of the bucket and region to using in your `docker-compose.yml` con
   STORAGE_S3_ENDPOINT: s3.amazonaws.com
 ```
 
-::callout{icon="material-symbols:info-outline" title="AWS ACCESS KEY"}
+::callout{icon="material-symbols:info-outline"}
 
 To retrieve your AWS access key details, follow this [guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey).
 

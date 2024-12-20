@@ -213,7 +213,7 @@ Before you open `http://localhost:5173/signup` and create a new test user, let's
 
 Public user registration is disabled by default. To make use of it, it must first be enabled via your project settings. When enabling it, select your new author role as the role given to newly-registered users.
 
-::callout{icon="material-symbols:info-outline" title="Email Verification"}
+::callout{icon="material-symbols:info-outline"}
 
 If you want to test the registration process, you should also disable "Verify Email" on the same screen. Otherwise, you will need to adapt the registration code above to not directly login the user but instead show a message that the user needs to verify their email first.
 
@@ -454,4 +454,3 @@ Add a `data-sveltekit-reload` attribute to your logout links and it will automat
 # Summary
 
 In this guide, we have set up authentication and authorization in SvelteKit using Directus. It allows complex role based authorization schemas with granular control over what a logged-in user can access and do in your Directus-backed App.
-

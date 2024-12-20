@@ -60,7 +60,7 @@ export async function handle({ event, resolve }) {
 }
 ```
 
-::callout{icon="material-symbols:info-outline" title="Directus HTTP Requests"}
+::callout{icon="material-symbols:info-outline"}
 
 Theoretically you could also make HTTP requests to your Directus server endpoint directly via SvelteKit's `fetch`
 implementation. However the Directus SDK offers some nice [additional features](/getting-started/connect/sdk).
@@ -174,7 +174,7 @@ single item with that slug is retrieved, and the page should show your data. `re
 `slug` field.
 SvelteKit populates the data property and also updates it on the client automatically should any dependency(variable, url, etc.) used inside our load function change. In this case whenever `params.slug` changes.
 
-::callout{icon="material-symbols:warning-outline-rounded" title="404s and Trusted Content"}
+::callout{icon="material-symbols:warning-outline-rounded"}
 
 Non-existing IDs will result in a forbidden error, which we catch and then throw svelte's internal error
 object to respond with a 404. Additionally,
@@ -298,7 +298,7 @@ Click on any of the blog post links, and it will take you to a blog post page co
 ![A blog post page shows an image, a title, and a number of paragraphs.](https://product-team.directus.app/assets/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
 
 
-::callout{icon="material-symbols:info-outline" title="No Image?"}
+::callout{icon="material-symbols:info-outline"}
 
 If the image is not showing up for you, you might have forgotten to also give the `directus_files` collection read
 access as described above. This is due to that by default the file object only includes the image name, but not the

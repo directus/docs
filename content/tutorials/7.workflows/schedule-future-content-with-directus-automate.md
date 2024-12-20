@@ -24,7 +24,7 @@ Last, we'll kick off a new deployment of your static site at your hosting provid
 
 ## How-To Guide
 
-::callout{icon="material-symbols:info-outline" title="Requirements"}
+::callout{icon="material-symbols:info-outline"}
 
 You’ll need to have already created a collection for your site content like `articles` or `posts` or `pages` with a
 field `status` that controls the published state.

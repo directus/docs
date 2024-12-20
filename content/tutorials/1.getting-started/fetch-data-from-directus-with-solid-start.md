@@ -57,7 +57,7 @@ export const directus = createDirectus("YOUR_DIRECTUS_PROJECT_URL").with(rest())
 
 We have some unused `import` statements at the moment since now we are only instantiating the Directus client.
 
-::callout{icon="material-symbols:info-outline" title="Provide Your Directus Project URL"}
+::callout{icon="material-symbols:info-outline"}
 
 Remember to replace `YOUR_DIRECTUS_PROJECT_URL` with your real project URL.
 
@@ -175,7 +175,7 @@ export default function UserPage() {
 }
 ```
 
-::callout{icon="material-symbols:info-outline" title="Dynamic Route Precedence"}
+::callout{icon="material-symbols:info-outline"}
 
 It's important to note that exact matches take precedence over dynamic routes. If it exists, a `about.jsx` file will render instead of `[slug].jsx` for the `/about` URL.
 

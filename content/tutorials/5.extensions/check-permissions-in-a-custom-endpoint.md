@@ -252,7 +252,7 @@ variables.
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline" title="Required files"}
+::callout{icon="material-symbols:info-outline"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

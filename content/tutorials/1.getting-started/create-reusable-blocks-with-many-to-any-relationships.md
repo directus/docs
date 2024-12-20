@@ -24,7 +24,7 @@ To achieve this, you will:
 
 ## How-To Guide
 
-:: callout {icon="material-symbols:info-outline" title="Requirements"}
+:: callout {icon="material-symbols:info-outline"}
 
 You’ll need to have either a Directus Cloud project configured and running or a self-hosted instance of Directus up and
 running.
@@ -244,7 +244,7 @@ const pages = await directus.request(
 const page = page[0];
 ```
 
-::callout{type="details" title="Toggle Open to See Sample Response"}
+**Sample Response**
 
 ```json
 {
@@ -308,8 +308,6 @@ const page = page[0];
 	]
 }
 ```
-
-::
 
 ### Structuring Your Front End
 

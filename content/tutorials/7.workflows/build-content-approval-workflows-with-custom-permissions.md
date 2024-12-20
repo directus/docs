@@ -39,7 +39,7 @@ This whole workflow is created with permissions. All we need to do to create the
 
 ## How-To Guide
 
-::callout{icon="material-symbols:info-outline" title="Requirements"}
+::callout{icon="material-symbols:info-outline"}
 
 To implement a workflow, you'll need:
 
@@ -113,7 +113,7 @@ A minor misconfiguration here could ruin academic integrity. Here's a few potent
 When creating your own workflow, its a good idea to define each role involved, each stage in the workflow, and the
 explicit set of permissions each role has at each stage.
 
-::callout{icon="material-symbols:info-outline" title="Next Steps"}
+::callout{icon="material-symbols:info-outline"}
 
 Workflows can be further enhanced with custom [Interfaces](/guides/extensions/app-extensions/interfaces) as well as [flows](/guides/automate/flows).
 

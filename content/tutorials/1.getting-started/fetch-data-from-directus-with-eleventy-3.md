@@ -23,7 +23,7 @@ npm init -y
 npm install @11ty/eleventy@3.0.0-alpha.2 @directus/sdk
 ```
 
-::callout{icon="material-symbols:info-outline" title="Eleventy 3.0 in Alpha"}
+::callout{icon="material-symbols:info-outline"}
 
 When Eleventy 3.0 leaves alpha, we'll update this post with any changes required.
 

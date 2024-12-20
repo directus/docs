@@ -194,7 +194,7 @@ router.patch('/', async (req, res) => {
 });
 ```
 
-::callout{icon="material-symbols:warning-outline-rounded" title="Field Name"}
+::callout{icon="material-symbols:warning-outline-rounded"}
 
 Updating the field name is not supported at this time.
 
@@ -312,7 +312,7 @@ router.delete('/', async (req, res) => {
 });
 ```
 
-::callout{icon="material-symbols:info-outline" title="Explore Services In-Depth"}
+::callout{icon="material-symbols:info-outline"}
 
 Refer to the full list of methods [in our codebase](https://github.com/directus/directus/blob/main/api/src/services).
 

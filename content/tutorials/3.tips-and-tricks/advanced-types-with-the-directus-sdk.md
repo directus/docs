@@ -36,7 +36,7 @@ interface MySchema {
 }
 ```
 
-::callout{icon="material-symbols:info-outline" title="Improving Results"}
+::callout{icon="material-symbols:info-outline"}
 
 For the most reliable results, the root schema types should be kept as pure as possible. This means avoiding unions
 (`CollectionA | null`), optional types (`optional_collection?: CollectionA[]`), and preferably inline relational types
@@ -282,7 +282,7 @@ const results2 = await directusClient.request(readItems("collection_a", {
 }));
 ```
 
-::callout{icon="material-symbols:info-outline" title="Alias Unsupported"}
+::callout{icon="material-symbols:info-outline"}
 
 At this time, `alias` has not been typed yet for use in other query parameters like `deep`.
 

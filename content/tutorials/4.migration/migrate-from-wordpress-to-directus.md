@@ -73,7 +73,7 @@ Now we will create the fields that will hold the data items. If you are using my
 ![Pages fields](https://product-team.directus.app/assets/285156db-942e-49df-b9d2-ffb9c89bc9ac.webp)
 ![Fields for Collection](https://product-team.directus.app/assets/bb47c0fb-0ca5-4ba2-984a-ba40f9d15cba.webp)
 
-::{callout icon="material-symbols:info-outline" title="Field Types"}
+::{callout icon="material-symbols:info-outline"}
 
 *Note that the “Content” field has a Field type of ***WYSIWYG***, the rest are ***Input*** type. we are using ***WYSIWYG*** because the exported data is in raw HTML
 
