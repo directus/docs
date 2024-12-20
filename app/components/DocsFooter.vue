@@ -1,6 +1,20 @@
 <script setup lang="ts">
-const { preFooter, footer } = useAppConfig();
+const { onLoaded } = useScript('https://js.hsforms.net/forms/embed/v2.js');
+
+const { preFooter, footer, toc } = useAppConfig();
 const route = useRoute();
+
+onMounted(() => {
+	onLoaded(() => {
+		// @ts-expect-error - HubSpot Forms is not typed
+		hbspt.forms.create({
+			region: 'na1',
+			portalId: toc.newsletter.hsPortal,
+			formId: toc.newsletter.hsForm,
+			target: '#nl-form',
+		});
+	});
+});
 </script>
 
 <template>
@@ -12,21 +26,26 @@ const route = useRoute();
 			:class="route.path.startsWith('/api') ? 'max-screen' : 'max-w-7xl'"
 			class="mx-auto grid md:grid-cols-3 gap-4 px-4 sm:px-6 lg:px-8 py-8 lg:py-4"
 		>
-			<div class="col-span-2">
-				<UPageLinks :links="preFooter.links" />
+			<div>
+				<UPageLinks
+					:links="preFooter.links"
+					:ui="{ base: 'justify-start' }"
+				/>
 			</div>
-			<div class="">
-				<UFormGroup
-					label="Sign up for developer updates"
-					help="You can unsubscribe at any point."
-				>
-					<UButtonGroup orientation="horizontal">
-						<UInput icon="i-heroicons-envelope" />
-						<UButton color="gray">
-							Sign up
-						</UButton>
-					</UButtonGroup>
-				</UFormGroup>
+			<div></div>
+			<div class="text-sm">
+				<ClientOnly>
+					<h2 class="text-sm font-bold">
+						Newsletter
+					</h2>
+					<div
+						id="nl-form"
+						class="my-2"
+					/>
+					<p class="text-xs italic">
+						Get insights, releases, and updates delivered directly to your inbox once a month. Unsubscribe any time.
+					</p>
+				</ClientOnly>
 			</div>
 		</div>
 	</div>
@@ -55,3 +74,27 @@ const route = useRoute();
 		</template>
 	</UFooter>
 </template>
+
+<style lang="postcss">
+#pre-footer form.hs-form {
+	@apply flex gap-2;
+	.hs_email {
+		@apply flex-1;
+		input[type=email] {
+			@apply w-full;
+			@apply rounded-md text-xs sm:text-sm;
+			@apply placeholder-gray-400 dark:placeholder-gray-500;
+			@apply border border-gray-200 dark:border-gray-800 p-2;
+		}
+	}
+	input[type=submit] {
+		@apply rounded-md text-xs sm:text-sm font-bold;
+		@apply bg-purple-500 text-white;
+		@apply border border-purple-200 dark:border-purple-800 py-2 px-4;
+		@apply flex-none;
+	}
+	.hs-error-msg {
+
+	}
+}
+</style>
