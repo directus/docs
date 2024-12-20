@@ -123,7 +123,7 @@ const responseBodyExample = computed(() => {
 		<div class="grow sticky top-16 w-full">
 			<MDC
 				v-if="'x-codeSamples' in operation"
-				:value="codeSamplesMd(operation['x-codeSamples'])"
+				:value="codeSamplesMd(operation)"
 			/>
 			<MDC
 				v-if="responseBodyExample"
