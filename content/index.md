@@ -43,7 +43,7 @@ navigation: false
   :::shiny-card
   ---
   title: Platform Overview
-  description: TK Developer tooling that's super cool
+  description: Get starting with using Directus.
   icon: simple-icons:directus
   to: /getting-started
   class: col-span-6
@@ -53,7 +53,7 @@ navigation: false
   :::shiny-card
   ---
   title: Directus Academy
-  description: TK Developer tooling that's super cool
+  description: Learn to use Directus in our video series.
   icon: heroicons-outline:play
   to: https://directus.io/tv/directus-academy
   class: col-span-6
@@ -91,7 +91,7 @@ navigation: false
   :::shiny-card
   ---
   title: Quickstart
-  description: TK Developer tooling that's super cool
+  description: Learn to connect with Directus.
   icon: heroicons-outline:star
   to: '/getting-started/connect'
   class: col-span-4
@@ -101,7 +101,7 @@ navigation: false
   :::shiny-card
   ---
   title: API Reference
-  description: TK Developer tooling that's super cool
+  description: Learn how to use the Directus API.
   icon: heroicons-outline:play
   to: '/api'
   class: col-span-4
@@ -111,7 +111,7 @@ navigation: false
   :::shiny-card
   ---
   title: SDK
-  description: TK Developer tooling that's super cool
+  description: A JavaScript and TypeScript library that simplifies working with Directus.
   icon: heroicons-outline:code
   to: '/getting-started/connect/sdk'
   class: col-span-4
@@ -124,10 +124,10 @@ navigation: false
 ::shiny-grid
   :::shiny-card
   ---
-  title: Directus with Next.js
-  description: TK Developer tooling that's super cool
+  title: Get Started with Directus
+  description: Learn how to build a website using Directus as a Headless CMS using various frameworks.
   icon: simple-icons:nextdotjs
-  to: '/tutorials?tags=nextjs'
+  to: '/tutorials/getting-started/fetch-data-from-directus-with-nextjs'
   class: col-span-4
   ---
   :::
@@ -135,49 +135,49 @@ navigation: false
   :::shiny-card
   ---
   title: Build Projects with Directus
-  description: TK Developer tooling that's super cool
+  description: Learn from a variety of different usecases you can build using Directus.
   icon: heroicons-outline:command-line
-  to: '/tutorials?tags=nextjs'
+  to: '/tutorials/projects'
   class: col-span-4
   ---
   :::
 
   :::shiny-card
   ---
-  title: Using Directus Auth
-  description: TK Developer tooling that's super cool
-  icon: heroicons-outline:lock-closed
-  to: '/tutorials?tags=directus-auth'
+  title: Tips and Tricks
+  description: Learn advanced concepts and techniques with Directus.
+  icon: heroicons-outline:light-bulb
+  to: '/tutorials/tips-and-tricks'
   class: col-span-4
   ---
   :::
 
   :::shiny-card
   ---
-  title: Automate & Integrate
-  description: TK Developer tooling that's super cool
-  icon: heroicons-outline:adjustments
-  to: '/tutorials?tags=directus-automate'
+  title: Migrate
+  description: Migrate from other platforms to Directus.
+  icon: heroicons-outline:map
+  to: '/tutorials/migration'
   class: col-span-4
   ---
   :::
 
   :::shiny-card
   ---
-  title: Self-Hosting Guide
-  description: TK Developer tooling that's super cool
-  icon: heroicons-outline:cloud
-  to: '/tutorials/self-hosting'
+  title: Extensions
+  description: Learn to build extensions from examples that amplify Directus' functionality.
+  icon: heroicons-outline:puzzle
+  to: '/tutorials/extensions'
   class: col-span-4
   ---
   :::
 
   :::shiny-card
   ---
-  title: SEO Best Practices
-  description: TK Developer tooling that's super cool
-  icon: heroicons-outline:search
-  to: '/tutorials/tips-and-tricks/search-engine-optimization-best-practices'
+  title: Workflows
+  description: Learn to automate Directus.
+  icon: heroicons-outline:wrench
+  to: '/tutorials/workflows'
   class: col-span-4
   ---
   :::
@@ -193,7 +193,7 @@ navigation: false
   :::shiny-card
   ---
   title: GitHub Releases
-  description: TK Developer tooling that's super cool
+  description: See the latest updates and changelogs to Directus.
   icon: simple-icons:github
   to: 'https://github.com/directus/directus/releases'
   class: col-span-4
@@ -203,7 +203,7 @@ navigation: false
   :::shiny-card
   ---
   title: Breaking Changes
-  description: TK Developer tooling that's super cool
+  description: Breaking changes may require action on your part before upgrading.
   icon: heroicons-outline:exclamation-circle
   to: '/releases/breaking-changes'
   class: col-span-4
@@ -213,7 +213,7 @@ navigation: false
   :::shiny-card
   ---
   title: Changelog
-  description: TK Developer tooling that's super cool
+  description: A monthly summary of what's new from the Directus team.
   icon: heroicons-outline:document-text
   to: '/releases/changelog'
   class: col-span-4
@@ -227,7 +227,7 @@ navigation: false
   :::shiny-card
   ---
   title: Python SDK
-  description: TK Developer tooling that's super cool
+  description: Interact with Directus using Python.
   icon: simple-icons:python
   to: 'https://pypi.org/project/directus-sdk-py/'
   class: col-span-4
@@ -237,7 +237,7 @@ navigation: false
   :::shiny-card
   ---
   title: Go SDK
-  description: TK Developer tooling that's super cool
+  description: Interact with Directus using Go.
   icon: simple-icons:go
   to: 'https://pkg.go.dev/github.com/altipla-consulting/directus-go#section-readme'
   class: col-span-4
@@ -247,7 +247,7 @@ navigation: false
   :::shiny-card
   ---
   title: Dart SDK
-  description: TK Developer tooling that's super cool
+  description: Interact with Directus using Dart.
   icon: simple-icons:dart
   to: 'https://github.com/apstanisic/directus-dart'
   class: col-span-4
@@ -257,7 +257,7 @@ navigation: false
   :::shiny-card
   ---
   title: Nuxt Module
-  description: TK Developer tooling that's super cool
+  description: Easily connect your Nuxt application to your Directus project.
   icon: simple-icons:nuxtdotjs
   to: 'https://nuxt.com/modules/directus'
   class: col-span-4
@@ -267,7 +267,7 @@ navigation: false
   :::shiny-card
   ---
   title: Helm Chart
-  description: TK Developer tooling that's super cool
+  description: Community-maintained Helm Charts repository for Directus.
   icon: simple-icons:helm
   to: 'https://github.com/directus-labs/helm-chart'
   class: col-span-4
@@ -285,7 +285,7 @@ navigation: false
   :::shiny-card
   ---
   title: Environment Variables
-  description: TK Developer tooling that's super cool
+  description: Configure Directus at an advanced level.
   icon: heroicons-outline:cog
   to: '/configuration/general'
   class: col-span-4
@@ -295,7 +295,7 @@ navigation: false
   :::shiny-card
   ---
   title: Building Extensions
-  description: TK Developer tooling that's super cool
+  description: Learn to build Extensions for Directus.
   icon: heroicons-outline:puzzle
   to: '/guides/extensions/overview'
   class: col-span-4
@@ -305,7 +305,7 @@ navigation: false
   :::shiny-card
   ---
   title: Self-Hosting
-  description: TK Developer tooling that's super cool
+  description: Learn to self-host Directus in your infrastructure.
   icon: heroicons-outline:cloud
   to: '/self-hosting/overview'
   class: col-span-4
