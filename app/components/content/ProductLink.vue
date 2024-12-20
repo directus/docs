@@ -8,14 +8,15 @@ const name = computed(
 );
 
 const linkMap = {
-	'auth': '/guides/auth/quickstart',
-	'automate': '/guides/automate/quickstart',
+	'auth': '/guides/auth/tokens-cookies',
+	'automate': '/guides/automate/flows',
 	'content': '/guides/content/explore',
-	'data-model': '/guides/data-model/quickstart',
+	'connect': '/guides/connect/authentication',
+	'data-model': '/guides/data-model/collections',
 	'extensions': '/guides/extensions/overview',
-	'files': '/guides/files/quickstart',
+	'files': '/guides/files/upload',
 	'insights': '/guides/insights/overview',
-	'realtime': '/guides/realtime/quickstart',
+	'realtime': '/guides/realtime/subscriptions',
 } as const;
 </script>
 

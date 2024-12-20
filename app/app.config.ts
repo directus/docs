@@ -15,17 +15,22 @@ export default defineAppConfig({
 					{
 						label: 'Data Model',
 						to: '/guides/data-model/collections',
-						icon: 'directus-connect',
+						icon: 'directus-explore',
 					},
 					{
 						label: 'Content',
 						to: '/guides/content/explore',
-						icon: 'directus-explore',
+						icon: 'directus-editor',
 					},
 					{
 						label: 'Auth',
 						to: '/guides/auth/tokens-cookies',
 						icon: 'directus-auth',
+					},
+					{
+						label: 'Connect',
+						to: '/guides/auth/authentication',
+						icon: 'directus-connect',
 					},
 					{
 						label: 'Files',
