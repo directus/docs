@@ -26,7 +26,12 @@ const links = computed(() =>
 
 const navigationTree = computed(() => {
 	if (route.path.startsWith('/api')) return mapOasNavigation(oasSpec);
-	return mapContentNavigation(navigation);
+
+	const routePrefix = '/' + route.path.split('/')[1]!;
+
+	return mapContentNavigation(navigation.value.find((item) => {
+		return item._path.startsWith(routePrefix);
+	})?.children ?? []);
 });
 </script>
 
@@ -68,16 +73,22 @@ const navigationTree = computed(() => {
 		</template>
 
 		<template #panel>
-			<UNavigationTree :links="header.nav" />
-			<UDivider
-				type="dashed"
-				class="my-4"
-			/>
 			<UNavigationTree
-				:links="navigationTree"
+				:links="header.nav"
 				:multiple="false"
 				default-open
 			/>
+			<template v-if="route.path !== '/'">
+				<UDivider
+					type="dashed"
+					class="my-4"
+				/>
+				<UNavigationTree
+					:links="navigationTree"
+					:multiple="false"
+					default-open
+				/>
+			</template>
 		</template>
 	</UHeader>
 </template>
