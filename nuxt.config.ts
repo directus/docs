@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+
 	extends: ['@nuxt/ui-pro'],
 
 	modules: [
@@ -15,6 +16,12 @@ export default defineNuxtConfig({
 
 	devtools: {
 		enabled: true,
+	},
+	site: {
+		url: 'https://docs.directus.io',
+		name: 'Directus Docs',
+		description: 'Explore our resources and powerful data engine to build your projects confidently.',
+		defaultLocale: 'en',
 	},
 
 	content: {
