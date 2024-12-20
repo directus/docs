@@ -226,7 +226,7 @@ def get_posts():
     return response.json().get("data")
 ```
 
-::callout{type="info" title="Directus Query Parameters"}
+::callout{icon="material-symbols:info-outline" title="Directus Query Parameters"}
 
 The `fields` parameter tells Directus to return only the specified fields. The `sort` parameter tells Directus to return the most recent posts first.
 
@@ -286,7 +286,7 @@ def get_post_by_slug(slug):
     return post
 ```
 
-::callout{type="info" title="File ID"}
+::callout{icon="material-symbols:info-outline" title="File ID"}
 
 Note that this code is reassigning `post["image"]`, this is because Directus returns the image ID, and you need to explicitly say where it is placed in your code, following this structure: `<directus-base-url>/assets/<image-id>`.
 You can read more about it [in the files reference](/guides/files/quickstart).
@@ -309,7 +309,7 @@ Then create the page template on the `templates/post.html` file:
 </article>
 {% endblock %}
 ```
-::callout{type="info" title="Images transformation"}
+::callout{icon="material-symbols:info-outline" title="Images transformation"}
 
 Note that the template code appends a query string to the image URL, it is used to dynamically convert the image to the webp format and set a width of 400px to it, allowing you to prevent users from loading an excessively large image.
 You can learn more about this [in the files reference](/guides/files/transform).

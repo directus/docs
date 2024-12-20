@@ -266,7 +266,7 @@ API.
 <v-button v-else secondary>Save</v-button>
 ```
 
-::callout{type="info" title="Secondary Button"}
+::callout{icon="material-symbols:info-outline" title="Secondary Button"}
 
 The secondary button shows an inactive button when the form is not ready to submit. Use this conditional for any further
 validation.
@@ -372,7 +372,7 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-::callout{type="info" title="Required files"}
+::callout{icon="material-symbols:info-outline" title="Required files"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

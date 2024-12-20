@@ -21,7 +21,7 @@ existing content changes.
 
 ## How-To Guide
 
-::callout{type="info" title="Requirements"}
+::callout{icon="material-symbols:info-outline" title="Requirements"}
 
 You’ll need to have already created a collection for your site content like `articles` or `posts` or `pages` with a
 field `status` that controls the published state. You'll also need to have a Netlify account and a site already hosted
@@ -80,7 +80,7 @@ with them.
 
 ### Configure Netlify Build Hook
 
-::callout{type="info"}
+::callout{icon="material-symbols:info-outline"}
 
 You can learn more about Netlify Build Hooks on their documentation.
 

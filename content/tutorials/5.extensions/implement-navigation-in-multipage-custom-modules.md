@@ -346,7 +346,7 @@ export default{
 This uses the built-in `v-list` and `v-list-item` to render the navigation from the pages property. The current property
 is used to set the `v-list-item` to active when the current page matches the navigation item.
 
-::callout{type="info" title="Export Names"}
+::callout{icon="material-symbols:info-outline" title="Export Names"}
 
 The export names the component `PageNavigation`. This must match the component import in the module.vue.
 
@@ -372,7 +372,7 @@ Now this can be used in the template. After the `breadcrumbs`, add the following
 </template>
 ```
 
-::callout{type="info" title="Linting"}
+::callout{icon="material-symbols:info-outline" title="Linting"}
 
 `PageNavigation` must be a `page-navigation` when used in the template to meet lint syntax standards.
 
@@ -501,7 +501,7 @@ api.get(`/items/pages?fields=title,banner,content&filter[uri][_eq]=${page}`).the
 
 ### Work With Images
 
-::callout{type="warning" title="DEPRECATED"}
+::callout{icon="material-symbols:warning-outline-rounded" title="DEPRECATED"}
 
 Since [Directus version 10.10.0](/releases/breaking-changes.html#version-10-10-0) the query parameter authentication is
 no longer required and considered deprecated, you can rely on
@@ -575,7 +575,7 @@ Then wrap any internal images with this function:
 page_banner.value = addTokenToURL(`/assets/${item.banner}?width=2000&height=563&fit=cover`);
 ```
 
-::callout{type="info" title="External Images"}
+::callout{icon="material-symbols:info-outline" title="External Images"}
 
 If you are using images from external sources, the host must be added to the Content Security Policy (CSP) inside the
 environment or config file.
@@ -673,7 +673,7 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-::callout{type="info" title="Required files"}
+::callout{icon="material-symbols:info-outline" title="Required files"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

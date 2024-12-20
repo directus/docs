@@ -72,7 +72,7 @@ an icon inside a circle. The icon relates to the current page such as the collec
 
 ![An icon is shown to the left of the title and breadcrumbs](https://product-team.directus.app/assets/51558a50-8edf-490b-9c54-5c39a4d3b14d.webp)
 
-::callout{type="info" title="Styling Icon"}
+::callout{icon="material-symbols:info-outline" title="Styling Icon"}
 
 The icon is `rounded`, `disabled` and `secondary`. This will keep the same look as the rest of Directus but you can
 remove these to customize the look and feel.
@@ -98,7 +98,7 @@ bookmarks. In this example, the slot is used for a clickable icon button.
 
 ![An icon is shown to the right of the title and breadcrumbs](https://product-team.directus.app/assets/31933ee3-786f-4615-aad7-277fc9d23b89.webp)
 
-::callout{type="info" title="Adding Logic"}
+::callout{icon="material-symbols:info-outline" title="Adding Logic"}
 
 Any functions for button click actions will need to be included in the `setup` and returned to the template.
 
@@ -142,7 +142,7 @@ You will also need to style the search. I suggest matching the existing one in D
 
 ![A search box and button with an icon](https://product-team.directus.app/assets/b84c2f45-0db0-4d48-a60d-d8edeb0eef1a.webp)
 
-::callout{type="info" title="Adding Logic"}
+::callout{icon="material-symbols:info-outline" title="Adding Logic"}
 
 Include functions for the search and any action buttons in your setup and return them to the template.
 
@@ -161,7 +161,7 @@ to ensure it outputs on a single line.
 
 ![To the left of the search box is the text 'ACTION PREPEND' broken over two lines and unstyled.](https://product-team.directus.app/assets/42c337a1-61a8-4d75-88fb-85b1e1c9dac6.webp)
 
-::callout{type="info" title="Limits"}
+::callout{icon="material-symbols:info-outline" title="Limits"}
 
 This space is quite limited due to the length of the page title and the amount of actions.
 
@@ -190,7 +190,7 @@ section outputs some custom text.
 
 ![Sidebar shows a title called Information with a close button, and a collapsible section called Sidebar Item with text inside of it.](https://product-team.directus.app/assets/7c814289-e3ed-4c29-a29e-eca48ffb432a.webp)
 
-::callout{type="info" title="Close Attribute"}
+::callout{icon="material-symbols:info-outline" title="Close Attribute"}
 
 The close attribute on the first sidebar-detail component changes the chevron icon to a close button and when clicked,
 the sidebar collapses. This is highly recommended for usability.
@@ -327,7 +327,7 @@ when the permission constant is `false`:
 
 ![Large unauthorized error page](https://product-team.directus.app/assets/e04a2d6e-6633-4606-9cb5-709168bbc629.webp)
 
-::callout{type="info" title="Other Slots"}
+::callout{icon="material-symbols:info-outline" title="Other Slots"}
 
 The `navigation`, `actions`, and `sidebar` slots have not been rendered because it’s using a separate `private-view`.
 Consider using the `permissions` variable to also prevent the related functions from running as well. This will improve

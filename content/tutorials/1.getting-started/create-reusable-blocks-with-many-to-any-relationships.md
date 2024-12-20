@@ -24,7 +24,7 @@ To achieve this, you will:
 
 ## How-To Guide
 
-:: callout {type="info" title="Requirements"}
+:: callout {icon="material-symbols:info-outline" title="Requirements"}
 
 You’ll need to have either a Directus Cloud project configured and running or a self-hosted instance of Directus up and
 running.
@@ -199,7 +199,7 @@ Mode option.
 Next, you'll want to access these with the API. If you try to use `/items/pages` then `blocks` returns an array of IDs.
 Instead, you'll want to add a [field parameter](/guides/data-model/relationships) to get nested relational data.
 
-::callout{type="info"}
+::callout{icon="material-symbols:info-outline"}
 
 Study the [Global Query Parameters > Fields > Many-To-Any](/guides/data-model/relationships) article to learn
 how to properly fetch nested relational M2A data without over-fetching data that you might not need.

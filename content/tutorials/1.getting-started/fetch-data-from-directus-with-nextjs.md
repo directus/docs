@@ -63,7 +63,7 @@ const directus = createDirectus('https://directus.example.com').with(rest());
 export default directus;
 ```
 
-::callout{type="info" title="Next.js Caching"}
+::callout{icon="material-symbols:info-outline" title="Next.js Caching"}
 
 Next.js extends the native fetch API with a `force-cache` configuration by default. This means you may sometimes run
 into scenarios where Next.js returns stale data. To fix this, update the `rest()` composable as follows:

@@ -37,7 +37,7 @@ In the example below, I am copying the whole Directus folder to the home directo
 
 ![Copying files to the server with scp](https://product-team.directus.app/assets/09e1807d-271e-4d52-91f6-951d3436ce34.webp)
 
-::callout{type="info" title="Database Note"}
+::callout{icon="material-symbols:info-outline" title="Database Note"}
 
 Note that the database used in this tutorial is SQLite. For other types of databases like MySQL and PostgreSQL, you might have to create a database dump and export the dump to your remote server.
 

@@ -38,7 +38,7 @@ Copy the connection name for later usage.
 
 ## Set Up the Docker Container
 
-::callout{type="info" title="Directus Version"}
+::callout{icon="material-symbols:info-outline" title="Directus Version"}
 
 In this section, we will specify the version of Directus as `10.10.4` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
 
@@ -56,7 +56,7 @@ Next, Build the docker image and tag it to be `directus:10.10.4`:
 docker build -t directus:10.10.4 --platform linux/amd64 .
 ```
 
-::callout{type="info" title="Using an Apple Silicon Machine?"}
+::callout{icon="material-symbols:info-outline" title="Using an Apple Silicon Machine?"}
 
 ```bash
 docker buildx build -t directus:10.10.4 --platform linux/amd64 .
@@ -84,7 +84,7 @@ Click on **Create** to create a new repository.
 
 To push the `Dockerfile` to the created repository, you must first be authenticated via the CLI that ships Google Cloud SDK. 
 
-::callout{type="info" title="Google Cloud Region"}
+::callout{icon="material-symbols:info-outline" title="Google Cloud Region"}
     
 In this section, we will specify `us-central1` as the region. If you used a different region, please replace it.
     

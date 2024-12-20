@@ -164,7 +164,7 @@ Because all routes must be determined at build time in Astro, a dynamic route mu
 
 Go to `http://localhost:4321/about`, replacing `about` with any of your item slugs. Using the Directus JavaScript SDK, the item with that slug is retrieved, and the page should show your data.
 
-::callout{type="warning" title="404s and Trusted Content"}
+::callout{icon="material-symbols:warning-outline-rounded" title="404s and Trusted Content"}
 
 Non-existing slugs will result in a 404 error. Additionally,
 [`set:html` should only be used for trusted content.](https://docs.astro.build/en/reference/directives-reference/#sethtml)_

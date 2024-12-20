@@ -14,7 +14,7 @@ local API endpoint and credentials, and eliminating Cross-Origin issues.
 
 As an example, this guide will proxy the PokéAPI, but the same approach can be used for any API.
 
-::callout{type="warning" title="Consider Authenticating Proxies"}
+::callout{icon="material-symbols:warning-outline-rounded" title="Consider Authenticating Proxies"}
 
 This guide will show you how to proxy an API that does not require authentication. In production, you should consider
 requiring authentication in your proxy endpoints to avoid abuse, especially if the target API performs write operations
@@ -158,7 +158,7 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-::callout{type="info" title="Required files"}
+::callout{icon="material-symbols:info-outline" title="Required files"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.
