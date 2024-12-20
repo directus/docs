@@ -86,6 +86,7 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
+		preset: 'node_server',
 		output: {
 			publicDir: '.output/public/docs',
 		},
