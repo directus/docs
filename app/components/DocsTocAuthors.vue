@@ -13,9 +13,9 @@ defineProps<{
 			<li
 				v-for="author in authors"
 				:key="author.name"
-				class="text-sm/6 truncate text-gray-500 dark:text-gray-400"
+				class="text-sm/6 text-gray-500 dark:text-gray-400 mt-2"
 			>
-				{{ author.name }}, {{ author.title }}
+				<span class="font-semibold">{{ author.name }}</span><br>{{ author.title }}
 			</li>
 		</ul>
 	</div>
