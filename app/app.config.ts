@@ -136,6 +136,31 @@ export default defineAppConfig({
 		},
 	},
 
+	preFooter: {
+		links: [
+			{
+				icon: 'ic:baseline-support',
+				label: 'Need help? Contact Support.',
+				to: 'https://directus.io/support',
+			},
+			{
+				icon: 'ic:baseline-discord',
+				label: 'Join our Discord community.',
+				to: 'https://directus.chat',
+			},
+			{
+				icon: 'ic:baseline-rocket-launch',
+				label: 'Check out our product changelog.',
+				to: '/releases/changelog',
+			},
+			{
+				icon: 'ic:outline-help-outline',
+				label: 'Need a license? Contact Sales.',
+				to: 'https://directus.io/demo',
+			},
+		],
+	},
+
 	footer: {
 		links: [
 			{
