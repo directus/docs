@@ -4,6 +4,11 @@ description: Learn how to get started and implement Directus through our develop
 navigation: false
 ---
 
+::callout{icon="material-symbols:favorite-rounded"}
+  **This documentation is brand new and we need your feedback while we finish them up.**<br> On each page you'll find a :icon{name="material-symbols:thumb-up-outline"} and :icon{name="material-symbols:thumb-down-outline"} button with the chance to share more feedback or open an issue directly on the [directus/docs](https://github.com/directus/docs) repo.<br> We look forward reading it. With love — the Directus Core Team.
+::
+
+
 ## Try a Demo
 
 ::two-up
@@ -109,7 +114,7 @@ navigation: false
   :::shiny-card
   ---
   title: SDK
-  description: A JavaScript and TypeScript library that simplifies working with Directus.
+  description: Official JavaScript and TypeScript library.
   icon: heroicons-outline:code
   to: '/guides/connect/sdk'
   class: col-span-4
@@ -143,7 +148,7 @@ navigation: false
   :::shiny-card
   ---
   title: Tips and Tricks
-  description: Learn advanced concepts and techniques with Directus.
+  description: Small concepts and techniques to get the most from Directus.
   icon: heroicons-outline:light-bulb
   to: '/tutorials/tips-and-tricks'
   class: col-span-4
@@ -153,7 +158,7 @@ navigation: false
   :::shiny-card
   ---
   title: Migrate
-  description: Migrate from other platforms to Directus.
+  description: Techniques and considerations when migrating from other platforms to Directus.
   icon: carbon:migrate
   to: '/tutorials/migration'
   class: col-span-4
@@ -173,17 +178,17 @@ navigation: false
   :::shiny-card
   ---
   title: Workflows
-  description: Learn to automate Directus.
+  description: Learn to set up common patterns to build complex workflows and integrations.
   icon: material-symbols:flowchart-outline
   to: '/tutorials/workflows'
   class: col-span-4
   ---
   :::
 
+::
   :::callout{icon="heroicons-outline:light-bulb" to="/tutorials" class="col-span-6"}
   See All Tutorials
   :::
-::
 
 ## Releases
 
@@ -191,7 +196,7 @@ navigation: false
   :::shiny-card
   ---
   title: GitHub Releases
-  description: See the latest updates and changelogs to Directus.
+  description: See the complete and latest updates and release notes for Directus.
   icon: simple-icons:github
   to: 'https://github.com/directus/directus/releases'
   class: col-span-4
