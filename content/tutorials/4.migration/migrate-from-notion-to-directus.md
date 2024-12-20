@@ -104,7 +104,7 @@ Migrating my blog content to Directus was a smooth process. In my Directus insta
 
 Based on the data model created, I transferred the blog content from Notion to Directus.
 
-![Table in Directus showing a populated blogs collection](https://product-team.directus.app/assets/0827de4e-f894-4053-8d52-ed361cd3950b.webp)
+![Table in Directus showing a populated blogs collection](/img/0827de4e-f894-4053-8d52-ed361cd3950b.webp)
 
 ## Updating the Frontend Code
 

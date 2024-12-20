@@ -81,7 +81,7 @@ await mailService.send({
 
 If you are using Flows, you can also inject data into emails:
 
-![Type template. Template name 'my custom template' and data is a JSON object with a property named first name and a value of trigger.payload.firstname.](https://product-team.directus.app/assets/36562249-81e0-483e-9943-54c88db33ae1.webp)
+![Type template. Template name 'my custom template' and data is a JSON object with a property named first name and a value of trigger.payload.firstname.](/img/36562249-81e0-483e-9943-54c88db33ae1.webp)
 
 In your template, you can use the `firstname` variable like this:
 
@@ -121,12 +121,12 @@ You can provide an array of data to a template and use a for loop to render the 
 A team needs a weekly update of how many new subscriptions were created in the last week. The company has a base
 template called `example-base` and looks like this:
 
-![A designed boilerplate email with clear placeholders for header text and content](https://product-team.directus.app/assets/b3415f15-7272-40f3-aea2-e670ce4d22bc.webp)
+![A designed boilerplate email with clear placeholders for header text and content](/img/b3415f15-7272-40f3-aea2-e670ce4d22bc.webp)
 
 Using Flows, create a Schedule trigger with the value `0 8 * * 1` to send the email every Monday at 8am, then add a Read
 Data operation with the following filters:
 
-![A query on the customers collections showing a filter of active users in the last 7 days, aggregated by customer ID and grouped by subscription name.](https://product-team.directus.app/assets/dfb9b9b9-afb2-4b0e-9527-af35ce175a7c.webp)
+![A query on the customers collections showing a filter of active users in the last 7 days, aggregated by customer ID and grouped by subscription name.](/img/dfb9b9b9-afb2-4b0e-9527-af35ce175a7c.webp)
 
 The response may look like this:
 
@@ -162,7 +162,7 @@ The response may look like this:
 Create an operation to Send an Email and change the type to Template. In the Data field, add the results of `{{$last}}`
 to a variable such as `report`.
 
-![An email showing the custom template and passing in an object with one property - report - and the value of last.](https://product-team.directus.app/assets/db1c8ac4-1173-4907-8e68-a799fcf3ffc8.webp)
+![An email showing the custom template and passing in an object with one property - report - and the value of last.](/img/db1c8ac4-1173-4907-8e68-a799fcf3ffc8.webp)
 
 For this report, the template uses a for loop to generate a table of results and capitalize the name for better
 appearance:

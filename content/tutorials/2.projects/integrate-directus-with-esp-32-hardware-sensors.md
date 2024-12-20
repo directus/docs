@@ -29,7 +29,7 @@ You will also need to install the [Arduino IDE](https://www.arduino.cc/en/softwa
 
 Since you will program your ESP32 using the Arduino IDE, you must install the [DHT sensor library by Adafruit](https://www.arduino.cc/reference/en/libraries/dht-sensor-library/). Search for the "DHT Sensor Library" in your library manager and install the corresponding library authored by Adafruit. Use the image below as a reference.
 
-![Installing the DHT22 sensor library](https://product-team.directus.app/assets/a8b0217b-f6cf-47ea-9e21-359cb762bdc5.webp)
+![Installing the DHT22 sensor library](/img/a8b0217b-f6cf-47ea-9e21-359cb762bdc5.webp)
 
 ## Creating the `temperature_and_humidity` Collection
 
@@ -50,17 +50,17 @@ Create a new user in this role called "ESP32-Writer" and generate a static acces
 
 A DHT22 sensor can connect directly to an ESP32 using three pins. DHT22 comes in two types, 3-pin type and 4-pin type. The 3-pin type doesn't require extra configuration. You connect ground to ground, VCC to 5V output, and data to a GPIO pin, say pin 13. For the 4-pin type, ignore the 3rd pin from the left and connect as shown in the image below:
 
-![DHT22 to ESP32](https://product-team.directus.app/assets/c76ad8a2-520e-45f5-95bf-599bcfb377e1.webp)
+![DHT22 to ESP32](/img/c76ad8a2-520e-45f5-95bf-599bcfb377e1.webp)
 
 ### Connecting the ESP32 Board to your Computer
 
 You can see the values from the DHT22 sensor in the Arduino serial monitor. After connecting your ESP32 to your computer, choose a board and port that corresponds to your purchased board and available port on your computer.
 
-![Board selector page](https://product-team.directus.app/assets/edb74018-5fc4-46da-b69c-f892a2645082.webp)
+![Board selector page](/img/edb74018-5fc4-46da-b69c-f892a2645082.webp)
 
 If you are using the ESP32 Wroom 32D, choose the ESP 32 DA Module and the COM port that appears after you plug in the ESP32 to your computer via the USB cable.
 
-![Selecting board and port](https://product-team.directus.app/assets/7e81eed4-78a9-4065-8c8a-bb834d1858ed.webp)
+![Selecting board and port](/img/7e81eed4-78a9-4065-8c8a-bb834d1858ed.webp)
 
 ## Logging temperature and humidity data to Serial
 
@@ -259,7 +259,7 @@ void loop() {
 
 When you open your Directus content section, you will see the values logged so far. You can increase the delay to reduce the number of logs you get per hour. Currently, the rate is 2 logs per minute (1 log every 30 seconds), so 120 logs per hour. This may or may not work for you depending on your use case.
 
-![Dashboard with logs](https://product-team.directus.app/assets/15307d78-1632-4a5d-87d9-cb7f2a8ebaae.webp)
+![Dashboard with logs](/img/15307d78-1632-4a5d-87d9-cb7f2a8ebaae.webp)
 
 ## Visualizing Data in Directus Insights
 
@@ -276,7 +276,7 @@ To show the change over time for temperature, create a bar chart with the follow
 
 You can repeat this for humidity, and any other data inside of your project.
 
-![temperature and humidity trends over time](https://product-team.directus.app/assets/a20044e9-3d4f-4e48-8750-84ba5552132b.webp)
+![temperature and humidity trends over time](/img/a20044e9-3d4f-4e48-8750-84ba5552132b.webp)
 
 ## Summary
 

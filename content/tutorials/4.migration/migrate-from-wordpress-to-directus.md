@@ -62,7 +62,7 @@ The JSON file we will use in this tutorial is a collection of blog posts from a 
 
 You can use this same step to export the [Pages JSON data](https://github.com/directus-labs/blog-example-migrating-wordpress-directus/blob/main/pages-export.json). This file contains two pages with its title, content, and date it was created.
 
-![JSON export from Wordpress](https://product-team.directus.app/assets/8640fc5b-8b19-4533-a9cb-4465cc1a8255.webp)
+![JSON export from Wordpress](/img/8640fc5b-8b19-4533-a9cb-4465cc1a8255.webp)
 
 ### Designing Your Directus Schema
 Before importing data into Directus, design your schema in Directus by creating collections (equivalent to WordPress's post types. In the JSON exports Post Type "post" and "page" ) and fields (similar to WordPress's fields: Title, Content, Date, etc). This step is critical and requires a deep understanding of your content structure to ensure the data is imported correctly into your Directus setup.
@@ -71,8 +71,8 @@ In our case, we have two export with post types "post" and "page" so in the Dire
 
 Now we will create the fields that will hold the data items. If you are using my JSON exports create the following fields:
 
-![Pages fields](https://product-team.directus.app/assets/285156db-942e-49df-b9d2-ffb9c89bc9ac.webp)
-![Fields for Collection](https://product-team.directus.app/assets/bb47c0fb-0ca5-4ba2-984a-ba40f9d15cba.webp)
+![Pages fields](/img/285156db-942e-49df-b9d2-ffb9c89bc9ac.webp)
+![Fields for Collection](/img/bb47c0fb-0ca5-4ba2-984a-ba40f9d15cba.webp)
 
 ::{callout icon="material-symbols:info-outline"}
 
@@ -83,7 +83,7 @@ Now we will create the fields that will hold the data items. If you are using my
 ## Importing Data into Directus
 After the JSON file is extracted and the schema is developed on Directus, you can go to your Collections page on Directus admin and you will see a button there to import and export. Just choose export and select the JSON file you downloaded.
 
-![Import in Directus Collection](https://product-team.directus.app/assets/ec2f9808-5775-45a1-bac8-715095434502.webp)
+![Import in Directus Collection](/img/ec2f9808-5775-45a1-bac8-715095434502.webp)
 
 If you have images in the post or pages, you won’t be able to access them. With the Directus REST API we will be able to manipulate the JSON to extact the images and save to Directus Files so we can access the files in the post.
 
@@ -274,7 +274,7 @@ python directus.py
 ```
 After the code is complete you should be able to see your items on Directus.
 
-![Items on Directus](https://product-team.directus.app/assets/1f9d38a1-e7e1-42f3-9589-02f48eaadbd1.webp)
+![Items on Directus](/img/1f9d38a1-e7e1-42f3-9589-02f48eaadbd1.webp)
 
 ## Testing and Validation
 

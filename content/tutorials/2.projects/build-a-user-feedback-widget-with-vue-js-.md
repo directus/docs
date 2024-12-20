@@ -17,7 +17,7 @@ So I decided to build my own so our team could make better decisions on where to
 
 While this project was built in the context of Vitepress, this post will show you how to do it with Vue generally. Here’s what our finished product will look like.
 
-![Screenshot of Directus documentation article with a highlighted feedback widget at the bottom of the screen.](https://product-team.directus.app/assets/b3d6f78c-e8e6-4b5d-82f4-0c74b0188472.webp)
+![Screenshot of Directus documentation article with a highlighted feedback widget at the bottom of the screen.](/img/b3d6f78c-e8e6-4b5d-82f4-0c74b0188472.webp)
 
 ## **Prerequisites**
 
@@ -458,7 +458,7 @@ This is because all collections have zero public permissions by default. While t
 
 Open up the Public role with the [Access Control settings](/guides/auth/access-control). Then scroll to find the `docs_feedback` collection.
 
-![Directus Roles and Permissions settings page, the docs_feedback collection is highlighted and all CRUD permission settings are set to not allowed](https://product-team.directus.app/assets/61bf4b98-d0e6-4682-b523-b4893065ecfe.webp)
+![Directus Roles and Permissions settings page, the docs_feedback collection is highlighted and all CRUD permission settings are set to not allowed](/img/61bf4b98-d0e6-4682-b523-b4893065ecfe.webp)
 
 **Create and Update Operations**
 
@@ -472,11 +472,11 @@ Click the button for the Read column, and choose Custom Permissions.
 
 On the Field Permissions tab, check only the `id` field.
 
-![Custom permission settings screen for docs_feedback Read operation. List of fields with checkboxes but only the id field is checked.](https://product-team.directus.app/assets/3e56d4d1-062a-4dc3-8508-fa6cf36fc280.webp)
+![Custom permission settings screen for docs_feedback Read operation. List of fields with checkboxes but only the id field is checked.](/img/3e56d4d1-062a-4dc3-8508-fa6cf36fc280.webp)
 
 When you’re all done, it should look like this screenshot.
 
-![Directus Roles and Permissions settings page, the docs_feedback collection is highlighted, Create and Update operation permissions are set to Allowed, Read operation has custom permissions](https://product-team.directus.app/assets/80d24253-ace1-46dc-8c04-9421449b8552.webp)
+![Directus Roles and Permissions settings page, the docs_feedback collection is highlighted, Create and Update operation permissions are set to Allowed, Read operation has custom permissions](/img/80d24253-ace1-46dc-8c04-9421449b8552.webp)
 
 Awesome! Now on to testing.
 
@@ -484,11 +484,11 @@ Awesome! Now on to testing.
 
 Let’s open this up our Vue app and our Directus instance to test that everything is working as intended.
 
-![Demo of the Vue feedback widget being used](https://product-team.directus.app/assets/d01e883f-2813-4f62-a810-b41a87f011b5.gif)
+![Demo of the Vue feedback widget being used](/img/d01e883f-2813-4f62-a810-b41a87f011b5.gif)
 
 Make sure you check that the form submissions are correct inside Directus.
 
-![A Directus detail page for the an item in docs_feedback collection](https://product-team.directus.app/assets/d5b600f1-39ff-4914-9e2d-d50c70f9fae9.webp)
+![A Directus detail page for the an item in docs_feedback collection](/img/d5b600f1-39ff-4914-9e2d-d50c70f9fae9.webp)
 
 ## Next Steps
 

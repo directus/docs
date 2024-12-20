@@ -11,7 +11,7 @@ Voice is one of the most common ways we communicate and yet one of the hardest f
 
 ## Before You Start
 
-You will need a Directus project - check out [our quickstart guide](/getting-started/quickstart) if you don't already have one and generate an API Token that allows access to the location where your audio files will be uploaded. You will also need a [Deepgram account](https://console.deepgram.com/) and API Key with "Member" privileges. You should also have a MP3 file to test with - [here's one you can download and use](https://product-team.directus.app/assets/aaedf2bb-bb9a-41b8-9b47-f68f4293e813.mp3).
+You will need a Directus project - check out [our quickstart guide](/getting-started/quickstart) if you don't already have one and generate an API Token that allows access to the location where your audio files will be uploaded. You will also need a [Deepgram account](https://console.deepgram.com/) and API Key with "Member" privileges. You should also have a MP3 file to test with - [here's one you can download and use](/img/aaedf2bb-bb9a-41b8-9b47-f68f4293e813.mp3).
 
 ## Set Up Trigger
 
@@ -77,7 +77,7 @@ Save your flow and test it by uploading an audio file. Wait a few seconds and ch
 
 The final flow should look like this:
 
-![A flow with an event hook trigger and three operations: a condition, a request URL with a Deepgram URL, and update data.](https://product-team.directus.app/assets/33853971-09b7-45b3-a59a-638151c65dba.webp)
+![A flow with an event hook trigger and three operations: a condition, a request URL with a Deepgram URL, and update data.](/img/33853971-09b7-45b3-a59a-638151c65dba.webp)
 
 ## Summary & Next Steps
 

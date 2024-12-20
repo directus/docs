@@ -11,7 +11,7 @@ Panels are used in dashboards as part of the Insights module, and typically allo
 in their Directus collections. In this guide, you will instead fetch data from an external API and display it in a table
 as part of a panel.
 
-<img src="https://product-team.directus.app/assets/2d0a1c96-9974-4943-841c-736fa0cb6419.webp" alt="Table with header Messages shows several items with status, sent delative date, a recipient ID, and a provider">
+<img src="/img/2d0a1c96-9974-4943-841c-736fa0cb6419.webp" alt="Table with header Messages shows several items with status, sent delative date, a recipient ID, and a provider">
 
 Panels can only talk to internal Directus services, and can't reliably make external web requests because browser
 security protections prevent these cross-origin requests from being made. To create a panel that can interact with
@@ -245,7 +245,7 @@ minHeight: 18,
 
 The output of these options will look like this:
 
-<img src="https://product-team.directus.app/assets/eaa5c05d-17ff-4466-82ed-4a50d74c11e6.webp" alt="Form shows product type dropdown, direction dropdown, date range dropdown, included message checkbox, and status dropdown." style="padding: 2px 12px;">
+<img src="/img/eaa5c05d-17ff-4466-82ed-4a50d74c11e6.webp" alt="Form shows product type dropdown, direction dropdown, date range dropdown, included message checkbox, and status dropdown." style="padding: 2px 12px;">
 
 ## Prepare the View
 
@@ -470,7 +470,7 @@ Fill in the configuration fields as needed:
 
 Save the panel and dashboard. It will look something like this:
 
-<img src="https://product-team.directus.app/assets/2d0a1c96-9974-4943-841c-736fa0cb6419.webp" alt="Table with header Messages shows several items with status, sent delative date, a recipient ID, and a provider">
+<img src="/img/2d0a1c96-9974-4943-841c-736fa0cb6419.webp" alt="Table with header Messages shows several items with status, sent delative date, a recipient ID, and a provider">
 
 ## Summary
 

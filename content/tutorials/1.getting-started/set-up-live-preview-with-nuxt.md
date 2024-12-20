@@ -86,7 +86,7 @@ Navigate to Settings -> Data Model and select the `posts` collection. In the "Pr
 URL for your Nuxt project by selecting ID from the dropdown and entering a URL in this format:
 `http://your-website-url/ID?preview=true`
 
-![Data Studio configuration for Posts collection. The Preview URL is filled in with the dynamic ID and preview true query parameter.](https://product-team.directus.app/assets/ad8a3384-4a75-4760-be20-551d49cc5fa2.webp)
+![Data Studio configuration for Posts collection. The Preview URL is filled in with the dynamic ID and preview true query parameter.](/img/ad8a3384-4a75-4760-be20-551d49cc5fa2.webp)
 
 ## Set Up Preview Plugin
 
@@ -146,7 +146,7 @@ In an item page, toggle "Enable Preview" at the top of the page. Whenever you cr
 and “click” save, you should see a live preview of the item on the right-hand side of the screen.
 
 <video title="Enable Preview Mode in Directus" autoplay playsinline muted loop controls>
-	<source src="https://product-team.directus.app/assets/088b8fa3-da4d-48ae-bb2d-a4df5b875c56.mp4" type="video/mp4" />
+	<source src="/img/088b8fa3-da4d-48ae-bb2d-a4df5b875c56.mp4" type="video/mp4" />
 </video>
 
 Clicking on the "Dimensions Display" icon also lets you preview your content on desktop and mobile screens.

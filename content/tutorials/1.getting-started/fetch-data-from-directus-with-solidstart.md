@@ -68,7 +68,7 @@ Remember to replace `YOUR_DIRECTUS_PROJECT_URL` with your real project URL.
 
 In your Directus project, navigate to Settings -> Data Model and create a new collection called **global**. Under the Singleton option, select 'Treat as a single object', as this collection will have just a single entry containing global website metadata.
 
-![A form named Global has two inputs - a title and a description, each filled with some text.](https://product-team.directus.app/assets/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
+![A form named Global has two inputs - a title and a description, each filled with some text.](/img/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
 
 By default, new collections are not accessible to the public. Navigate to Settings -> Access Policies -> Public and give Read access to the Global collection.
 
@@ -258,7 +258,7 @@ export default function PostsList() {
 }
 ```
 
-![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](https://product-team.directus.app/assets/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
+![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](/img/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
 
 ## Add Navigation
 

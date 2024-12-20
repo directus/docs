@@ -36,7 +36,7 @@ On the **Project Metadata** section, enter the following:
 
 Add the following dependencies: Spring Web, Lombok, and Thymeleaf.
 
-![A Spring Initializr page showing user configuration and three dependencies.](https://product-team.directus.app/assets/017a82c3-c948-4110-9411-0e83b7fe4e8b.webp)
+![A Spring Initializr page showing user configuration and three dependencies.](/img/017a82c3-c948-4110-9411-0e83b7fe4e8b.webp)
 
 Next, click the **GENERATE** button to generate a zip file of your project. Extract the zip file to a desired location on your computer then import the extracted Spring Boot project in your IDE.
 
@@ -240,7 +240,7 @@ Since the articles were added in the controller as model attributes and you are 
 
 Run the application. If your application runs successfully without any errors, go to [localhost:8080](http://localhost:8080/) on your browser and you should see the articles you created in your Directus project displayed on the page. The following image shows the final view of the application that you have created.
 
-![Displaying the article using Thymeleaf](https://product-team.directus.app/assets/1239f277-1e1c-429c-a231-5f82ab3f4f82.webp)
+![Displaying the article using Thymeleaf](/img/1239f277-1e1c-429c-a231-5f82ab3f4f82.webp)
 
 ## Summary
 

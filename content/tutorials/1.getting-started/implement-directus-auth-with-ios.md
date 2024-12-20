@@ -31,7 +31,7 @@ This configuration ensures that users can read all posts but are restricted to u
 
 In Xcode, create a new project and add the following code to the ContentView.swift file. This code presents a welcome screen with two buttons `Register` and `Login`. After logging in, users will see a `create post` along with a `logout` button. Additionally, the view includes the function responsible for making the `POST` request from logging out.
 
-![An app displays a large login and register button](https://product-team.directus.app/assets/2dfd9184-ddd2-4655-ac14-8f2632188c97.webp)
+![An app displays a large login and register button](/img/2dfd9184-ddd2-4655-ac14-8f2632188c97.webp)
 
 ```swift
 
@@ -192,7 +192,7 @@ Triggers the `logout()` function when tapped.
 
 Create a file named `UserRegisterView.swift`, which facilitates user registration by providing two input fields for email and password. The registration process involves sending a POST request.
 
-![The app shows an email and password field and register button](https://product-team.directus.app/assets/9cdb1cbd-a74a-4b50-9a24-cad7fe43be7a.webp)
+![The app shows an email and password field and register button](/img/9cdb1cbd-a74a-4b50-9a24-cad7fe43be7a.webp)
 
 ```swift
 import SwiftUI

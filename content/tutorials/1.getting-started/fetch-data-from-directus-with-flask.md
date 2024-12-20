@@ -81,7 +81,7 @@ Create two text input fields - one with the key of `title` and one `description`
 
 Navigate to the content module and enter the `global` collection. Collections will generally display a list of items, but as a singleton, it will launch directly into the one-item form. Enter information in the title and description field and hit save.
 
-![Global metadata fields filled with custom text](https://product-team.directus.app/assets/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
+![Global metadata fields filled with custom text](/img/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
 
 By default, new collections are not accessible to the public. Navigate to **Settings** -> **Access Policies** -> **Public** and give Read access to the Global collection.
 
@@ -195,7 +195,7 @@ This route fetches page data using the `directus.get_page_by_slug` method and th
 
 Navigate to `http://localhost:3000/about` and see the result
 
-![About page displaying configured data](https://product-team.directus.app/assets/199fab96-daa7-4342-a601-b0e28c60af35.webp)
+![About page displaying configured data](/img/199fab96-daa7-4342-a601-b0e28c60af35.webp)
 
 # Creating Blog Posts With Directus
 
@@ -270,7 +270,7 @@ def blog_page():
 
 Now navigate to`http://localhost:5000/blog` and you will see this result:
 
-![Blog page displaying data stored in Directus collection](https://product-team.directus.app/assets/caa2f7e9-1c5c-471e-b53b-ea9807cfe97c.webp)
+![Blog page displaying data stored in Directus collection](/img/caa2f7e9-1c5c-471e-b53b-ea9807cfe97c.webp)
 
 ### Create Blog Post Page
 
@@ -329,7 +329,7 @@ def post_page(slug):
 
 Now navigate to one of your posts listed on the previous page an see the result.
 
-![Post page displaying post data that came from Directus posts collection](https://product-team.directus.app/assets/6465a004-0e06-43b6-adbd-dbcd2aff62e0?cache-buster=2024-11-14T10:18:16.419Z&key=system-large-contain)
+![Post page displaying post data that came from Directus posts collection](/img/6465a004-0e06-43b6-adbd-dbcd2aff62e0?cache-buster=2024-11-14T10:18:16.419Z&key=system-large-contain)
 
 ## Add Navigation
 

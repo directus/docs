@@ -17,15 +17,15 @@ This project also used [Nuxt](https://nuxt.com) and Vue on the frontend, along w
 
 Each event gets a landing page and allows users to register. Once registered, they are prompted to make a ‘Rabbitar’ by selecting a set of characteristics. The image patches on the rabbit’s arms are dynamic based on the company website URL and company selected.
 
-![Customize Your Rabbitar page with traits and avatar options](https://product-team.directus.app/assets/d493d425-0e7d-4a56-8722-828e11637b13.webp)
+![Customize Your Rabbitar page with traits and avatar options](/img/d493d425-0e7d-4a56-8722-828e11637b13.webp)
 
 Once registration is complete, each ticket has a separate URL that can be shared. If new people register from the ticket page, another giveaway entry is added for that user.
 
-![The confirmation page with the URL field for referring others](https://product-team.directus.app/assets/3c90e82f-d182-4926-8208-22fc7f08a088.webp)
+![The confirmation page with the URL field for referring others](/img/3c90e82f-d182-4926-8208-22fc7f08a088.webp)
 
 When a unique ticket link is shared, we use that avatar to create a personalized social sharing image.
 
-![A personalized social sharing image generated from an attendee's avatar](https://product-team.directus.app/assets/d4bc7e95-91e9-4e20-9ea8-7afe6805912e.webp)
+![A personalized social sharing image generated from an attendee's avatar](/img/d4bc7e95-91e9-4e20-9ea8-7afe6805912e.webp)
 
 ## Landing Page Builder
 
@@ -33,7 +33,7 @@ Directus runs the whole backend of this project from ticketing and registration 
 
 The concept of `blocks` is one we use a lot at Directus, utilizing the Many-to-Any (M2A) relation type to create flexible page builders. We also utilized it in the project for building event landing pages - blocks include elements like schedules, call-to-actions (CTAs), speakers, and cards. They can be added in any order or quantity when creating a page.
 
-![4 frames of the Directus Data Model, Page Content, landing page and launch countdown](https://product-team.directus.app/assets/cc5e63cf-c90b-49bc-9273-44672912dd52.webp)
+![4 frames of the Directus Data Model, Page Content, landing page and launch countdown](/img/cc5e63cf-c90b-49bc-9273-44672912dd52.webp)
 
 It all comes together on the Nuxt side. The data is fetched from the Directus backend, and then passed to a `PageBuilder` component that is responsible for looping through an array of blocks and rendering the components dynamically.
 
@@ -186,7 +186,7 @@ To track this, we tag the visitor with a `referral_ticket_id` cookie whenever th
 
 This is surfaced to the registrant as a “Swag-O-Meter” on their personalized ticket page.
 
-![The swag-o-meter count bar on the landing page](https://product-team.directus.app/assets/3c90e82f-d182-4926-8208-22fc7f08a088.webp)
+![The swag-o-meter count bar on the landing page](/img/3c90e82f-d182-4926-8208-22fc7f08a088.webp)
 
 ## **Function Timeouts**
 
@@ -297,7 +297,7 @@ export default defineEventHandler(async (event) => {
 
 I also put together a nice dashboard for the team to track sign ups and view all the different countries users were from. This is baked into Directus and took me all of like 5 minutes.
 
-![Dashboard tracking sign ups and views with a panel showing total number of Rabbitars generated](https://product-team.directus.app/assets/af455b55-e14b-41d4-8516-b71d162537cd.webp)
+![Dashboard tracking sign ups and views with a panel showing total number of Rabbitars generated](/img/af455b55-e14b-41d4-8516-b71d162537cd.webp)
 
 ## In Summary
 

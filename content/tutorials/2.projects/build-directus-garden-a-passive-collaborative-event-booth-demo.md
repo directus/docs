@@ -15,7 +15,7 @@ The team at Directus are proud sponsors of VueJS Amsterdam, and I had the pleasu
 
 One of my favorite iOS games — [Neko Atsume](https://www.nekoatsume.com/en/) — does not vie for your attention and is remarkably laid back. As well as being super cute, it’s an app you open at your leisure to tend to your yard and see which kittens have chosen to grace you with their presence.
 
-![Neo Astume Kitty Collector. A set of cute cats are playing on some decking.](https://product-team.directus.app/assets/201d06a8-5667-4cc4-b7fc-e3fe77c29703.webp)
+![Neo Astume Kitty Collector. A set of cute cats are playing on some decking.](/img/201d06a8-5667-4cc4-b7fc-e3fe77c29703.webp)
 
 This is a perfect vibe — passive, laid-back, and incredibly cute. With this in mind, as well as real business needs, here were the requirements:
 
@@ -26,7 +26,7 @@ This is a perfect vibe — passive, laid-back, and incredibly cute. With this in
 
 ## Introducing Directus Garden
 
-![A cartoon garden has several birds, bunnies, and other decroative items placed in it.](https://product-team.directus.app/assets/4abfb5f8-aacf-414a-bdb3-083de8f73c33.webp)
+![A cartoon garden has several birds, bunnies, and other decroative items placed in it.](/img/4abfb5f8-aacf-414a-bdb3-083de8f73c33.webp)
 
 In this small demo built in a day, attendees become gardeners helping us build a beautiful and lively garden by placing items in the scene.
 
@@ -65,11 +65,11 @@ The **Display** role is created for the screen showing the garden. It has read a
 
 The **Public** role is given access on the `events` and `placeables` collection.
 
-![The public Directus Users create permissions allows access to only the name, email, password, and contact fields. The field validation requires name, email, and password to not be empty.](https://product-team.directus.app/assets/a987fc90-c4b2-4148-8f26-d483ebec8fbd.webp)
+![The public Directus Users create permissions allows access to only the name, email, password, and contact fields. The field validation requires name, email, and password to not be empty.](/img/a987fc90-c4b2-4148-8f26-d483ebec8fbd.webp)
 
 Before users register, their API requests will be made with the permissions of the Public role. The role’s create permissions for the `directus_users` collection only allow for them to touch five fields, and requires that all required fields are not empty.
 
-![The field presets configure the role to a hardcoded ID for the gardener role](https://product-team.directus.app/assets/37b1084a-ff46-43e8-891b-dd54acd24e2b.webp)
+![The field presets configure the role to a hardcoded ID for the gardener role](/img/37b1084a-ff46-43e8-891b-dd54acd24e2b.webp)
 
 Then, using Field Presets, all new users created with the public role are automatically given the Gardener role - a field that the Public role can not set.
 
@@ -79,7 +79,7 @@ In the original design, attendees would effectively be given an API reference an
 
 Using the [`simple-code-editor`](https://simple-code-editor.vicuxd.com/) Vue 3 component, a page is created on a per-event basis that would allow these requests to be made. When a user successfully registers, it automatically populates the next request’s body. When they log in, we populate the Authorization header, and so on. The final request even picks a random placeable and coordinate set as default, to make participation really easy.
 
-![Four HTTP requests shown in code editors, and 4 empty repsonses. Each box has a button under it to make the request. The steps are: register a user, login, list placeables, and place item.](https://product-team.directus.app/assets/cd311e29-83a4-43f2-a225-09755af282e8.webp)
+![Four HTTP requests shown in code editors, and 4 empty repsonses. Each box has a button under it to make the request. The steps are: register a user, login, list placeables, and place item.](/img/cd311e29-83a4-43f2-a225-09755af282e8.webp)
 
 Taking part in our raffle shouldn’t be a test of technical skill - it should be a chance to educate users about what Directus is and show it off in it’s best light. You don’t do that if attendees are frustrated.
 
@@ -89,7 +89,7 @@ These code editors make real requests and display real results (and errors) when
 
 Using Directus Flows, a confirmation email is sent as soon as a new item is placed. In the flow, we retrieve the associated event and user information, and then send an email with dynamic variables that contain raffle information as well as some other interesting links to read.
 
-![A flow with four steps -an items create event hook on the place collection, read data on the directus users collection, read data on the events collection, and send email.](https://product-team.directus.app/assets/5b537af3-471c-42c9-bb5d-5d1a3cbadb0b.webp)
+![A flow with four steps -an items create event hook on the place collection, read data on the directus users collection, read data on the events collection, and send email.](/img/5b537af3-471c-42c9-bb5d-5d1a3cbadb0b.webp)
 
 ## Building the Garden Display
 

@@ -27,7 +27,7 @@ This will create a new PostgreSQL database for you on RDS.
 
 Go to your newly created database page and on the connectivity page copy the `Endpoint` and `Port`
 
-![An AWS RDS database creation page to set up the connectivity options to the database](https://product-team.directus.app/assets/14acb1f1-1604-4704-b014-e9b274254b81.webp)
+![An AWS RDS database creation page to set up the connectivity options to the database](/img/14acb1f1-1604-4704-b014-e9b274254b81.webp)
 
 These details will serve as your credentials when connecting to the database to your Directus deployment:
 
@@ -50,11 +50,11 @@ Add a name for the server called `Directus Server` and select the Amazon Linux i
 
 Create a key pair that you can use for logging in to the EC2 instance and for network settings, select the existing security group and choose the default security group for connecting to the EC2 instance.
 
-![An AWS EC2 creation page with options to configure the VPC security group](https://product-team.directus.app/assets/a89e44e3-3b02-43c5-9baa-8cc3ccc45ee8.webp)
+![An AWS EC2 creation page with options to configure the VPC security group](/img/a89e44e3-3b02-43c5-9baa-8cc3ccc45ee8.webp)
 
 For storage options, the default selection meets the requirements for running a Directus instance.
 
-![An AWS EC2 creation page with options to configure the Network settings](https://product-team.directus.app/assets/245d2e24-f519-4368-a4e5-a480a8388f8e.webp)
+![An AWS EC2 creation page with options to configure the Network settings](/img/245d2e24-f519-4368-a4e5-a480a8388f8e.webp)
 
 Click on the `Launch Instance` button, and a new EC2 instance will be created.
 
@@ -141,7 +141,7 @@ Run the command `docker-compose up`, which should spin up a Directus instance on
 
 Head to the EC2 dashboard and click on the instance ID; this will open the properties of your EC2 instance; here, you'll find the `Public IPv4 DNS.`
 
-![An EC2 instance properties page showing the location of the Public IPv4 DNS value](https://product-team.directus.app/assets/fab3f756-dfaf-4bc6-96ef-44f5ae7dd745.webp)
+![An EC2 instance properties page showing the location of the Public IPv4 DNS value](/img/fab3f756-dfaf-4bc6-96ef-44f5ae7dd745.webp)
 
 Open this URL and you should find Directus running.
 
@@ -151,7 +151,7 @@ If you want to use AWS S3 for media storage, follow these additional steps:
 
 Search for S3 on the console or navigate to the [s3 page](https://s3.console.aws.amazon.com/s3/home) to create a new storage bucket. When creating a new bucket, disable ACLs (access control lists)  and block public access for the bucket for privacy (you can update these settings to suit your needs).
 
-![An AWS RDS database creation page to set up the connectivity options to the database](https://product-team.directus.app/assets/5ae4dffc-bcd5-4078-9c5e-ba326808c903.webp)
+![An AWS RDS database creation page to set up the connectivity options to the database](/img/5ae4dffc-bcd5-4078-9c5e-ba326808c903.webp)
 
 Copy the name of the bucket and region to using in your `docker-compose.yml` configs:
 

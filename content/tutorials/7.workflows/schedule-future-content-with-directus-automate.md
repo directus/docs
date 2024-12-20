@@ -40,7 +40,7 @@ field `status` that controls the published state.
 
 3. [Add a new field](/guides/data-model/fields) to your content Collection.
 
-   ![The interface for creating a new field is shown. The field type Datetime is selected. The Key is named date_published. The field for Use 24-Hour format is checked.](https://product-team.directus.app/assets/85ebd577-ed0d-4d7a-a1d4-4b43b9076b94.webp)
+   ![The interface for creating a new field is shown. The field type Datetime is selected. The Key is named date_published. The field for Use 24-Hour format is checked.](/img/85ebd577-ed0d-4d7a-a1d4-4b43b9076b94.webp)
 
    a. Choose **Timestamp** for the Type.
 
@@ -52,7 +52,7 @@ field `status` that controls the published state.
 
 4. [Create or update an Item](/guides/content/editor) inside your Collection
 
-   ![A content item within the Articles collection is shown. The title is "What is Headless CMS?". English translations are also shown with a Summary field. The Summary reads "A quick overview of what Headless CMS is and how it's beneficial to your team."](https://product-team.directus.app/assets/dde30ee7-e06b-4617-965d-371463624a5e.webp)
+   ![A content item within the Articles collection is shown. The title is "What is Headless CMS?". English translations are also shown with a Summary field. The Summary reads "A quick overview of what Headless CMS is and how it's beneficial to your team."](/img/dde30ee7-e06b-4617-965d-371463624a5e.webp)
 
    a. Set the `status` field to `scheduled`
 
@@ -64,13 +64,13 @@ field `status` that controls the published state.
 
 5. [Create a new flow](/guides/automate/flows)
 
-   ![Under the Creating a New Flow interface, the Flow Setup tab is shown. The name of the new flow is Published Scheduled Articles. The status is Active. The Description field reads "This is triggered every 15 minutes to publish any scheduled articles". The icon selected is "Fiber New". For the Color field, a green color with the hex code #2ECDA7 is selected. Track Activity & Logs is selected.](https://product-team.directus.app/assets/2040227f-7536-480e-b458-20a8878dea47.webp)
+   ![Under the Creating a New Flow interface, the Flow Setup tab is shown. The name of the new flow is Published Scheduled Articles. The status is Active. The Description field reads "This is triggered every 15 minutes to publish any scheduled articles". The icon selected is "Fiber New". For the Color field, a green color with the hex code #2ECDA7 is selected. Track Activity & Logs is selected.](/img/2040227f-7536-480e-b458-20a8878dea47.webp)
 
    Give it a memorable name and short description like `Publish Scheduled Articles`.
 
 6. [Complete the trigger setup](/guides/automate/triggers)
 
-   ![Under the Creating New Flow interface, the Trigger Setup tab is shown. The selected trigger is Schedule(CRON). The Interval field has a value of "* 15 * * * *".](https://product-team.directus.app/assets/dde30ee7-e06b-4617-965d-371463624a5e.webp)
+   ![Under the Creating New Flow interface, the Trigger Setup tab is shown. The selected trigger is Schedule(CRON). The Interval field has a value of "* 15 * * * *".](/img/dde30ee7-e06b-4617-965d-371463624a5e.webp)
 
    a. For **Type**, Select Schedule (CRON). This will trigger this flow at regular
    intervals of time.
@@ -86,7 +86,7 @@ field `status` that controls the published state.
 
 7. [Create a new operation](/guides/automate/operations)
 
-   ![Inside a Directus Flow, the Create Operation interface is shown. The Name of the operation is "Update Articles". The Key is "update_articles". The type of Operation is "Update Data". The Collection for the operation is "Articles". The Payload for the operation is a JSON object with key - status and value of published. There is also a JSON object for the Query field. A filter that checks that the item status is equal to "scheduled" and the date_published is less than or equal to the current timestamp.](https://product-team.directus.app/assets/0424a6b8-7bd2-4c1a-ba8a-5c7c36edd7ea.webp)
+   ![Inside a Directus Flow, the Create Operation interface is shown. The Name of the operation is "Update Articles". The Key is "update_articles". The type of Operation is "Update Data". The Collection for the operation is "Articles". The Payload for the operation is a JSON object with key - status and value of published. There is also a JSON object for the Query field. A filter that checks that the item status is equal to "scheduled" and the date_published is less than or equal to the current timestamp.](/img/0424a6b8-7bd2-4c1a-ba8a-5c7c36edd7ea.webp)
 
    a. For the type of operation, select **Update Item**
 

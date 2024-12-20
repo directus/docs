@@ -26,7 +26,7 @@ In your terminal, navigate to your `extensions` directory and run `npx create-di
 
 Sign up for a Meilisearch account if you haven't already. Once you have your Meilisearch instance details, you will be able to copy your credentials in your dashboard.
 
-![Melisearch dashboard](https://product-team.directus.app/assets/d1aab892-21de-402a-84c5-024c0c0f2f88.webp)
+![Melisearch dashboard](/img/d1aab892-21de-402a-84c5-024c0c0f2f88.webp)
 
 Add the following environment variables to your project:
 
@@ -93,7 +93,7 @@ The `articles.items.delete` action hook triggers when articles are deleted. It r
 
 Now add 3 items to your articles collection and you should see them in your Meilisearch index.
 
-![Melisearch with data from Directus](https://product-team.directus.app/assets/90307d1c-889f-4067-a031-57b621898eaf.webp)
+![Melisearch with data from Directus](/img/90307d1c-889f-4067-a031-57b621898eaf.webp)
 
 
 ## Summary

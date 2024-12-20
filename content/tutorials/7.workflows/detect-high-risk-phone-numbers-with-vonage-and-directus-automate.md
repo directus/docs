@@ -21,7 +21,7 @@ Finally, in Your Directus project, add an input field called `phone_number` to t
 
 Create a new Flow from your Directus project settings - call it "Check Phone Fraud Risk". Create an **Event Hook** trigger that is Blocking - this means the flow will run before the data is entered in the database. Set the Scope to `items.create` on the `directus_users` collection - this means the flow will start whenever a new user is created.
 
-![A Flow showing the Event Hook trigger with a Filter/Blocking type, items dot create scope, and only the Directus Users collection checked. ](https://product-team.directus.app/assets/94d67356-cad8-416c-9a0f-64526a56b9af.webp)
+![A Flow showing the Event Hook trigger with a Filter/Blocking type, items dot create scope, and only the Directus Users collection checked. ](/img/94d67356-cad8-416c-9a0f-64526a56b9af.webp)
 
 ## Set Up Number Insight Check
 
@@ -49,7 +49,7 @@ Navigate to the Users Module in the module bar and create a new user. You can le
 
 Come back to your flow and open the logs in the sidebar. You can see the operation outputs an object containing a `fraud_score` and related information. The `risk_score` is a scale of 0 to 100. This project will use the `risk_recommendation` value of `allow`, `flag`, or `block` in future steps.
 
-![Sidebar open with the Webhook / Request URL Payload expanded. A large object is shown with a data object containing a fraud_score object.](https://product-team.directus.app/assets/4cb62154-f51a-4535-b5c8-7a00d5e69dde.webp)
+![Sidebar open with the Webhook / Request URL Payload expanded. A large object is shown with a data object containing a fraud_score object.](/img/4cb62154-f51a-4535-b5c8-7a00d5e69dde.webp)
 
 ## Set Up Conditionals For Fraud Recommendation Result
 
@@ -91,7 +91,7 @@ The resolved path will be `flag`, and the reject path will be `block`.
 
 The flow now looks like this:
 
-![A flow has one trigger and three operations. The first operation makes a request to a Vonage API. The second is a conditional called Is Allowed, and from the reject path, another conditional called Is Flagged.](https://product-team.directus.app/assets/5e02b984-16fd-4f21-90ff-6429b1b49cda.webp)
+![A flow has one trigger and three operations. The first operation makes a request to a Vonage API. The second is a conditional called Is Allowed, and from the reject path, another conditional called Is Flagged.](/img/5e02b984-16fd-4f21-90ff-6429b1b49cda.webp)
 
 ## Send Emails If Flagged or Blocked
 
@@ -123,7 +123,7 @@ This will cause the Flow to fail and not enter the item into the `directus_users
 
 Your final flow should look like this:
 
-![After the Is Flagged operation, the resolved path sends an email and the reject path sends an email and then runs a script.](https://product-team.directus.app/assets/0d92e88d-ca4d-4525-907e-9f7c126ce3dc.webp)
+![After the Is Flagged operation, the resolved path sends an email and the reject path sends an email and then runs a script.](/img/0d92e88d-ca4d-4525-907e-9f7c126ce3dc.webp)
 
 ## Summary
 

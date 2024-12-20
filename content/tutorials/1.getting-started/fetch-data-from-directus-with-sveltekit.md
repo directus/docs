@@ -82,7 +82,7 @@ Create two text input fields - one with the key of `title` and one `description`
 
 Navigate to the content module and enter the global collection. Collections will generally display a list of items, but as a singleton, it will launch directly into the one-item form. Enter information in the title and description field and hit save.
 
-![A form named Global has two inputs - a title and a description, each filled with some text.](https://product-team.directus.app/assets/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
+![A form named Global has two inputs - a title and a description, each filled with some text.](/img/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
 
 By default, new collections are not accessible to the public. Navigate to Settings -> Access Control -> Public and give Read access to the Global collection.
 
@@ -250,7 +250,7 @@ Likewise to before we create a template file `+page.svelte` to show our newly fe
 
 Visit `http://localhost:5173/blog` and you should now see a blog post listing, with latest items first.
 
-![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](https://product-team.directus.app/assets/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
+![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](/img/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
 
 ### Create Blog Post Listing
 
@@ -296,7 +296,7 @@ Some key notes about this code snippet.
 
 Click on any of the blog post links, and it will take you to a blog post page complete with a header image.
 
-![A blog post page shows an image, a title, and a number of paragraphs.](https://product-team.directus.app/assets/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
+![A blog post page shows an image, a title, and a number of paragraphs.](/img/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
 
 
 ::callout{icon="material-symbols:info-outline"}

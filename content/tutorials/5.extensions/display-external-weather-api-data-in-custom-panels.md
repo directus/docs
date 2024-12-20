@@ -177,8 +177,8 @@ Run `npm run build` from the bundle directory, and restart Directus.
 
 Create a new Insights Dashboard and add a **Weather** panel. Add coordinates, and you should see external data displayed in the panel.
 
-![Panel configutation showing a longitude and latitude input field](https://product-team.directus.app/assets/db49529d-70e3-4fed-aacb-8ea321b8cb6b.webp)
+![Panel configutation showing a longitude and latitude input field](/img/db49529d-70e3-4fed-aacb-8ea321b8cb6b.webp)
 
-![A panel showing a JSON payload of weather data](https://product-team.directus.app/assets/83e31e33-7ceb-44d9-8da9-74b03fa66d86.webp)
+![A panel showing a JSON payload of weather data](/img/83e31e33-7ceb-44d9-8da9-74b03fa66d86.webp)
 
 You can now create panels using external data. If you have any questions at all, feel free to join our [Discord community](https://directus.chat).

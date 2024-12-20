@@ -356,7 +356,7 @@ To use data from Directus in the page we must export a `data` variable.
 
 You should now see a simple profile page if you are logged in under `http://localhost:5173/profile`.
 
-![An example of a profile page showing the users email](https://product-team.directus.app/assets/f55a140e-95b5-4c8d-a3d1-dcf4c7372daf.webp)
+![An example of a profile page showing the users email](/img/f55a140e-95b5-4c8d-a3d1-dcf4c7372daf.webp)
 
 ## Authenticated Client Requests
 

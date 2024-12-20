@@ -48,7 +48,7 @@ include a professional prefix. You can choose an icon from the library [here](ht
 
 With the information above, the operation will appear in the list like this:
 
-<img src="https://product-team.directus.app/assets/56c1aba5-523b-4af5-a458-4aa794466736.webp" alt="Custom operation featuring the previously set icon, name and description" style="padding:3px 2px 2px;"/>
+<img src="/img/56c1aba5-523b-4af5-a458-4aa794466736.webp" alt="Custom operation featuring the previously set icon, name and description" style="padding:3px 2px 2px;"/>
 
 ### Accepting Inputs
 

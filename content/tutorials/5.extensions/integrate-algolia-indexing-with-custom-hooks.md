@@ -26,7 +26,7 @@ In your terminal, navigate to your `extensions` directory and run `npx create-di
 
 To integrate Directus and Algolia we will need our Algolia application ID and write API key. If you don't have an account already, [create one](https://www.algolia.com/users/sign_up), and you will see the credentials in your dashboard.
 
-![An image of Algolia Dashboard](https://product-team.directus.app/assets/97c2157a-9b88-4d31-8b16-ac4e47c3ffac.webp)
+![An image of Algolia Dashboard](/img/97c2157a-9b88-4d31-8b16-ac4e47c3ffac.webp)
 
 In your `docker-compose.yml` file, create an `ALGOLIA_APP_ID` and `ALGOLIA_ADMIN_KEY` environment variable and set them to the value from your Algolia dashboard. Restart your project as you have changed your environment variables.
 
@@ -84,7 +84,7 @@ To test if the extension works, create a new post in Directus.
 
 To verify that the indexing process is functioning as expected, navigate to the Algolia Dashboard. Click on "Search" in the navigation menu on the left side of your screen, then select the index. You should see that Algolia has recognized the new data:
 
-![An image of the created blog post](https://product-team.directus.app/assets/3d583367-334f-48dc-bb55-c65c6b4d849b.webp)
+![An image of the created blog post](/img/3d583367-334f-48dc-bb55-c65c6b4d849b.webp)
 
 Also try updating and deleting posts and check if the index reflects the change.
 

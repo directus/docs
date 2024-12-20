@@ -10,7 +10,7 @@ description: Learn how to build a custom operation that uses the Twilio SDK.
 Operations allow you to trigger your own code in a Flow. This guide will show you how to use the Twilio Node.js helper
 library to send SMS messages in Flows.
 
-![A Twilio SMS operation in a Flow](https://product-team.directus.app/assets/63e8cd6f-d2d4-49a9-ab2f-0bb9d0da4446.webp)
+![A Twilio SMS operation in a Flow](/img/63e8cd6f-d2d4-49a9-ab2f-0bb9d0da4446.webp)
 
 ## Install Dependencies
 
@@ -52,7 +52,7 @@ include a professional prefix. You can choose an icon from the library [here](ht
 
 With the information above, the operation will appear in the list like this:
 
-<img src="https://product-team.directus.app/assets/95933155-54a6-4292-82c0-4b4a9eaaffb6.webp" alt="Twilio SMS - Send SMS using the Twilio API. A chat icon is displayed in the box." style="padding: 2px 6px;">
+<img src="/img/95933155-54a6-4292-82c0-4b4a9eaaffb6.webp" alt="Twilio SMS - Send SMS using the Twilio API. A chat icon is displayed in the box." style="padding: 2px 6px;">
 
 `options` are the fields presented in the frontend when adding this operation to the Flow. To send an SMS, you will need
 the phone number and a message. Replace the placeholder options with the following:
@@ -83,7 +83,7 @@ options: [
 - `phone_number` is a standard string input to allow for international numbers that begin with a plus (+).
 - `message` uses an input-multiline field (textarea) to allow for a long message to be sent.
 
-<img alt="A form shows all of the defined fields above" src="https://product-team.directus.app/assets/e33c42fd-584c-4c13-9711-c6355980df1c.webp" style="padding: 8px 12px;">
+<img alt="A form shows all of the defined fields above" src="/img/e33c42fd-584c-4c13-9711-c6355980df1c.webp" style="padding: 8px 12px;">
 
 The `overview` section defines what is visible inside the operation’s card on the Flow canvas. An overview object
 contains 2 parameters, `label` and `text`. The label can be any string and does not need to match the field name. The
@@ -106,7 +106,7 @@ overview: ({ phone_number, message }) => [
 
 Now, the overview of the operation looks like this:
 
-<img src="https://product-team.directus.app/assets/63ed0382-11ba-49db-b458-e8ddcacfb035.webp" alt="The flow overview card shows a phone number and message." style="max-width: 400px;"/>
+<img src="/img/63ed0382-11ba-49db-b458-e8ddcacfb035.webp" alt="The flow overview card shows a phone number and message." style="max-width: 400px;"/>
 
 ## Build the API Function
 
@@ -197,7 +197,7 @@ If the payload does not contain the phone number, use the **Read Data** operatio
 relevant collection. Add a new operation by clicking the tick/plus on the card, then choose **Twilio SMS** from the
 list.
 
-<img alt="The full form is filled with values." src="https://product-team.directus.app/assets/c42f757f-734c-4c11-96c5-6090e7e7bc97.webp" style="padding: 8px;">
+<img alt="The full form is filled with values." src="/img/c42f757f-734c-4c11-96c5-6090e7e7bc97.webp" style="padding: 8px;">
 
 - For the **Phone Number**, you can use a dynamic value from a payload such as
   `{{$trigger.payload.phone_number}}` or type a static number in the field.

@@ -56,11 +56,11 @@ Clearbit provides a huge amount of data in the returned payload. To update field
 
 Save your flow and test it by creating a user with just an email address. Wait a few seconds and check out the User Module and observe the updated fields:
 
-![A user profile for Ben Haynes showing a Location and Title. The Description is empty with an annotation that reads 'Empty as returned value was null'.](https://product-team.directus.app/assets/3bcdf77e-b0c0-432d-b687-638b273ff403.webp)
+![A user profile for Ben Haynes showing a Location and Title. The Description is empty with an annotation that reads 'Empty as returned value was null'.](/img/3bcdf77e-b0c0-432d-b687-638b273ff403.webp)
 
 The final flow should look like this:
 
-![A flow with an event hook trigger and two operations - a request URL with a Clearbit URL, and update data. ](https://product-team.directus.app/assets/9c4ba132-e9b2-4f72-a034-f5e963bd2461.webp)
+![A flow with an event hook trigger and two operations - a request URL with a Clearbit URL, and update data. ](/img/9c4ba132-e9b2-4f72-a034-f5e963bd2461.webp)
 
 ## Summary and Improvements
 

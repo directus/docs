@@ -79,7 +79,7 @@ Navigate to the content module and enter the global collection. Collections will
 as a singleton, it will launch directly into the one-item form. Enter information in the title and description field and
 hit save.
 
-![A form named "Global" has two inputs - a title and a description, each filled with some text.](https://product-team.directus.app/assets/7ea2d6b3-d7ca-4a71-bdaa-cd2ce8c75ec1.webp)
+![A form named "Global" has two inputs - a title and a description, each filled with some text.](/img/7ea2d6b3-d7ca-4a71-bdaa-cd2ce8c75ec1.webp)
 
 By default, new collections are not accessible to the public. Navigate to Settings -> Access Policies -> Public and give
 Read access to the Global collection.
@@ -210,7 +210,7 @@ Update the `<template>` section:
 
 Visit http://localhost:3000 and you should now see a blog post listing, with latest items first.
 
-![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](https://product-team.directus.app/assets/bcbab1ac-e4b3-4614-b4b5-2be97e71a2ae.webp)
+![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](/img/bcbab1ac-e4b3-4614-b4b5-2be97e71a2ae.webp)
 
 ### Create Blog Post Pages
 
@@ -253,7 +253,7 @@ Some key notes about this code snippet.
 
 Click on any of the blog post links, and it will take you to a blog post page complete with a header image.
 
-![A blog post page shows an image, a title, and a number of paragraphs.](https://product-team.directus.app/assets/5603-4992-9c5b-b08765a9186a.webp)
+![A blog post page shows an image, a title, and a number of paragraphs.](/img/5603-4992-9c5b-b08765a9186a.webp)
 
 ## Add Navigation
 

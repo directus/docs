@@ -49,7 +49,7 @@ services:
 
 Head on over to Sentry and set up two new projects — one for your back end project (Node.js), and one for the front end Directus Data Studio (Browser JavaScript).
 
-![Sentry project listing showing two projects - a Node project for the backend and a browser JavaScript project for the frontend.](https://product-team.directus.app/assets/dd1f905c-74a3-4c93-a5e1-75d81e279d23.webp)
+![Sentry project listing showing two projects - a Node project for the backend and a browser JavaScript project for the frontend.](/img/dd1f905c-74a3-4c93-a5e1-75d81e279d23.webp)
 
 In Sentry, select your back end project, navigate to project settings, click on Client Keys (DSN), and copy the DSN (Data Source Name) value. Replace the `SENTRY_DSN` value in the `docker-compose.yml` file with the value from your Sentry project.
 
@@ -134,7 +134,7 @@ export default ({ init }, { env }) => {
 
 Next, let’s build the hook. In the `directus-extension-hook-sentry` directory, run `npm run build`. Restart the Directus Docker container, and you’ll see the two logs in your terminal.
 
-![A terminal showing the command docker compose up. Several info logs are shown, and two logs read 'sentry request handler added' and 'sentry error handler added'](https://product-team.directus.app/assets/97a17e04-8bae-4fbd-9812-d69fa65333b8.webp)
+![A terminal showing the command docker compose up. Several info logs are shown, and two logs read 'sentry request handler added' and 'sentry error handler added'](/img/97a17e04-8bae-4fbd-9812-d69fa65333b8.webp)
 
 ## Monitor the Directus Data Studio Using the Sentry Loader Script
 
@@ -192,7 +192,7 @@ export default {
 
 In the root of the new extension directory, run `npm run build`, restart the Directus Docker container again, and navigate to `http://localhost:8055/fail` in your browser. You will see an error message on the browser page, in the terminal, and in your back end project's Sentry issues list. Boom!
 
-![An error is shown in the Sentry issues dashboard](https://product-team.directus.app/assets/e6c7e914-6c31-4315-81d9-3362cd30ef81.webp)
+![An error is shown in the Sentry issues dashboard](/img/e6c7e914-6c31-4315-81d9-3362cd30ef81.webp)
 
 ## Test Front End Error Tracking
 
@@ -228,15 +228,15 @@ export default {
 
 From the extension directory, run `npm run build`, restart the Directus Docker container, and navigate to `http://localhost:8055/admin/settings/project` in your browser. Sign in to Directus using the credentials in your `docker-compose.yml` file. Scroll down to Modules, and check the checkbox to enable the new custom module. For reference, the name of the module is defined in the `index.js` file of the module extension.
 
-![The Directus Project Setting showing the new custom module checkbox is enabled](https://product-team.directus.app/assets/5877631a-f9f7-4722-b262-b21e14d42050.webp)
+![The Directus Project Setting showing the new custom module checkbox is enabled](/img/5877631a-f9f7-4722-b262-b21e14d42050.webp)
 
 Navigate to the new custom module using the icon on the left menu bar, and click the **Trigger Error** button.
 
-![A custom module page with just one button reading 'trigger error'](https://product-team.directus.app/assets/5203541f-0848-4785-92a7-045a90b1d97d.webp)
+![A custom module page with just one button reading 'trigger error'](/img/5203541f-0848-4785-92a7-045a90b1d97d.webp)
 
 You’ll now see the error message in your front end project's Sentry issue list. We’re done!
 
-![An error shown in the sentry dashboard](https://product-team.directus.app/assets/fee718f4-ea8d-4801-9bc7-5d785a1379a9.webp)
+![An error shown in the sentry dashboard](/img/fee718f4-ea8d-4801-9bc7-5d785a1379a9.webp)
 
 ## Summary
 

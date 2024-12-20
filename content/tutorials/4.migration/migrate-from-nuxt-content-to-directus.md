@@ -11,7 +11,7 @@ Away from my day job here at Directus I run a [free library of online content fo
 
 Up until now, I leveraged [Nuxt Content](https://content.nuxtjs.org/), a file-based CMS, for content management. Nuxt Content served the project well, providing nice utilities for fetching and displaying data from a content directory in the repository. Being file-based, authoring used a git-based workflow, meaning content is stored as files, and changes are tracked using version control.
 
-![GitHub repo showing a content directory. Inside, several subdirectories such as "library", "events", and "people". The sidebar shows further subdirectories for individual items and markdown files within them.](https://product-team.directus.app/assets/00c581bc-69f3-4f3b-a977-773f6f2dd1f8.webp)
+![GitHub repo showing a content directory. Inside, several subdirectories such as "library", "events", and "people". The sidebar shows further subdirectories for individual items and markdown files within them.](/img/00c581bc-69f3-4f3b-a977-773f6f2dd1f8.webp)
 
 Recently, I've been lucky enough to bring on a team member for a few hours a week to help run the project, and while I feel at home spinning up the application locally, working in code to add and edit content, it isn't fair or reasonable to expect that of others.
 

@@ -30,7 +30,7 @@ Directus connects to an existing database, so it's time to create one. Enter you
 
 In the Azure Marketplace pane, search for and select a Azure Database for PostgreSQL resource. Secure your new database with PostgreSQL authentication, a strong password, and consider firewall rules for additional protection.
 
-![Credentials for Azure PostgreSQL.](https://product-team.directus.app/assets/462fae47-6e45-4d5f-8a59-b70003b566b6.webp)
+![Credentials for Azure PostgreSQL.](/img/462fae47-6e45-4d5f-8a59-b70003b566b6.webp)
 
 Save the server's name, username, and password for later use when configuring Directus.
 
@@ -80,13 +80,13 @@ Within the Azure Marketplace, select the Web App resource. When creating a Web A
 - Subscription/Resource Group: select the same resource group we created and used earlier.
 - Publish: Select "Docker Container".
 
-![Azure Web App Basic Configuration](https://product-team.directus.app/assets/35c156ce-4a44-408f-a698-7d6fe14c1015.webp)
+![Azure Web App Basic Configuration](/img/35c156ce-4a44-408f-a698-7d6fe14c1015.webp)
 
 ### Docker
 
 Select Docker Compose and Docker Hub as the source for your app's configuration. Set the Docker Hub Access Type to Public and upload your `docker-compose.yml` file prepared earlier.
 
-![Docker configuration settings](https://product-team.directus.app/assets/100acd23-a234-48b0-8b08-b2dc1cc58ee1.webp)
+![Docker configuration settings](/img/100acd23-a234-48b0-8b08-b2dc1cc58ee1.webp)
 
 Following the creation of the Web App Resource, Directus is now successfully deployed and can be visited via the default domain in the Azure Web App page.
 

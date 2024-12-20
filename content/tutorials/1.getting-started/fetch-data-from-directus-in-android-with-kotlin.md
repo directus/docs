@@ -128,7 +128,7 @@ Dirctus collections are not accessible to the public by default, click on **Sett
 
 Then click on the content module and select the global collection. A collection would normally display a list of items, but since this is a singleton, it will launch directly into the one-item form. Enter information in the title and description field and hit save.
 
-![Creating global collection](https://product-team.directus.app/assets/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
+![Creating global collection](/img/d8c92df8-63c3-404e-8e0f-b086d27d960a.webp)
 
 Update the code in your `DirectusHelper.kt` file in your network package to define a Get endpoint to fetch the global metadata from Directus:
 
@@ -286,7 +286,7 @@ Update your `AndroidManifest.xml` file in `app/src/main/` directory and grant yo
 
 Now click on the Run icon at the top of your Android Studio Window to run the application.
 
-![Showing metadata from Directus global collection](https://product-team.directus.app/assets/1e118359-6727-45c4-90e3-17c412ab0ef2.webp)
+![Showing metadata from Directus global collection](/img/1e118359-6727-45c4-90e3-17c412ab0ef2.webp)
 
 ## Creating Pages With Directus
 Create a new collection called `pages` - give it a text input field called `slug`, which will correlate with the URL for the page. For example, `about` will later correlate to the page `localhost:3000/about`.
@@ -426,7 +426,7 @@ fun markdownToHtml(markdownText: String): String {
 
 Refresh the app to see the changes.
 
-![Displaying the pages](https://product-team.directus.app/assets/c9ded927-e28a-43da-9432-31d383e54da0.webp)
+![Displaying the pages](/img/c9ded927-e28a-43da-9432-31d383e54da0.webp)
 
 ## Creating Blog Posts With Directus
 Back to your Directus Data studio, create a collection to store and manage your user's blog posts. First, create a collection named `author` with a single text input field named `name`. Add one or more authors to the collection.
@@ -580,7 +580,7 @@ fun BlogItem(blog: Blog, navController: NavController) {
 
 Refresh your application to see the updates.
 
-![Display the blog listing page](https://product-team.directus.app/assets/7e427b9d-2f8e-4a7e-a3fb-86d81afcddd8.webp)
+![Display the blog listing page](/img/7e427b9d-2f8e-4a7e-a3fb-86d81afcddd8.webp)
 
 ## Create Blog Post Listing
 Each blog post links to a screen that does not yet exist. Right-click the `ui` package and create a new Kotlin file named `BlogDetailScreen`:
@@ -789,7 +789,7 @@ class MainActivity : ComponentActivity() {
 
 Now click on any of the blogs to navigate to the details page.
 
-![Show the blog details pages](https://product-team.directus.app/assets/f41ab897-09f9-407e-a940-6bbaea37225a.webp)
+![Show the blog details pages](/img/f41ab897-09f9-407e-a940-6bbaea37225a.webp)
 
 ## Next Steps
 Throughout this guide, you have set up an Android project, created a Directus plugin, and set up an Android project with Kotlin to interact with Directus, covering project initialization, creating a helper library for the Directus SDK, global configurations, dynamic pages, and navigation setup.

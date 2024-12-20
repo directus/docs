@@ -48,7 +48,7 @@ One better option would be creating a single collection to standardize all the S
     - sitemap_priority (Type: Decimal, Interface: Input, Note: Valid values range from 0.0 to 1.0. This value does not affect how your pages are compared to pages on other sites, it only lets the search engines know which pages you deem most important for the crawlers.)
 
     ```
-    ![Screenshot of the SEO collection data model inside settings. Several fields are displayed like title, meta_description, canonical_url, and others related to the sitemap.](https://product-team.directus.app/assets/fa4c5682-1773-4078-9b17-00f6345e6733.webp)
+    ![Screenshot of the SEO collection data model inside settings. Several fields are displayed like title, meta_description, canonical_url, and others related to the sitemap.](/img/fa4c5682-1773-4078-9b17-00f6345e6733.webp)
 
     Beyond the basic `title` and `meta_description` , the other fields you add to your SEO collection are totally up to you.
 
@@ -147,7 +147,7 @@ When building a website, you’ll need both links for internal content and links
 
 One common pattern I’ve noticed is creating string inputs for internal links to other content.
 
-![Screenshot of a form within Directus. Two fields are shown. Label and Href. The Href field value is a string /contact-us](https://product-team.directus.app/assets/2f8a38d2-a6dd-4810-b097-a158e9677d7b.webp)
+![Screenshot of a form within Directus. Two fields are shown. Label and Href. The Href field value is a string /contact-us](/img/2f8a38d2-a6dd-4810-b097-a158e9677d7b.webp)
 
 But this can be surprisingly brittle. As soon as the slug for the Contact page changes from `/contact-us` to `/contact-directus-team` , the link will break and this can really crash your search engine rankings.
 
@@ -224,7 +224,7 @@ When creating your data model for links to other items from the same or differen
     ```
 
     <video controls="true">
-      <source src="https://product-team.directus.app/assets/cd5bd4f3-02f1-46be-b82e-570052483379.mp4" type="video/mp4">
+      <source src="/img/cd5bd4f3-02f1-46be-b82e-570052483379.mp4" type="video/mp4">
     </video>
 
     Fields for page, post, and external url are only visible when the related type is selected so there is no confusion about which fields to enter data for. And it also allows you to use that relationship to fetch the proper slug or permalink for posts and pages.
@@ -287,7 +287,7 @@ For educational items like blog posts or documentation, semantic hierarchy and d
 
 The `<h1>` tag contains the title of the article and is the visually the largest header on the page. Other header tags like `<h2>` or `<h3>` get smaller visually and have less priority for SEO.
 
-![A blog page on the Directus website. The page title is highlighted and labeled as H1. Another headline within the blog post is also highlighted and labeled H2.](https://product-team.directus.app/assets/4a9c2805-9265-4b14-b447-0ed6ffc3f053.webp)
+![A blog page on the Directus website. The page title is highlighted and labeled as H1. Another headline within the blog post is also highlighted and labeled H2.](/img/4a9c2805-9265-4b14-b447-0ed6ffc3f053.webp)
 
 But for other items like that are more dynamic like landing pages or homepages, the [Builder (Many To Any Relationships)](/guides/data-model/relationships) really shine inside Directus. You can let your marketing or content teams build pages on their own with predefined collections or `blocks` without involving a developer at all. It also pairs beautifully with the [Live Preview feature](/guides/content/live-preview) to allow them to see exactly what the site will look like before publishing.
 
@@ -297,17 +297,17 @@ Let’s take header tags for example. You need proper semantic hierarchy for SEO
 
 Having the keyword optimized `<h1>` tag be the largest visually - is not always ideal.
 
-![An events page on the Directus website that highlights the difference in size between the H1 and H2 tags. A small badge with the text Events is the H1. A large headline is the H2.](https://product-team.directus.app/assets/0269f212-856d-433f-b771-229b40dba31a.webp)
+![An events page on the Directus website that highlights the difference in size between the H1 and H2 tags. A small badge with the text Events is the H1. A large headline is the H2.](/img/0269f212-856d-433f-b771-229b40dba31a.webp)
 
 But in other cases, the `<h1>` tag should be the largest visually.
 
-![Screenshot of the Directus website with the page heading highlighted. Callouts are pointing to the H2 and H1 elements within the page heading. The H2 tag is above the H1 tag and much smaller.](https://product-team.directus.app/assets/614c38a1-f987-4da8-8919-3441d3f0e727.webp)
+![Screenshot of the Directus website with the page heading highlighted. Callouts are pointing to the H2 and H1 elements within the page heading. The H2 tag is above the H1 tag and much smaller.](/img/614c38a1-f987-4da8-8919-3441d3f0e727.webp)
 
 A great solution to this problem can be to create separate fields within the collection that allow the content editor to choose both the proper header tag and the visual size.
 
 Here’s an example.
 
-![Content editing form within Directus collection. Several fields are highlighted - Preheading Tag, Heading Size, and Heading Tag. Preheading Tag has a value of H1, Heading Size has a value of X-Large, and Heading Tag has a value of H2.](https://product-team.directus.app/assets/09148a86-24ef-45d8-a275-a3908e0f6d49.webp)
+![Content editing form within Directus collection. Several fields are highlighted - Preheading Tag, Heading Size, and Heading Tag. Preheading Tag has a value of H1, Heading Size has a value of X-Large, and Heading Tag has a value of H2.](/img/09148a86-24ef-45d8-a275-a3908e0f6d49.webp)
 
 This provides a ton of flexibility. And with just a little training, editors can create pages that look great on screen and also perform well for SEO.
 
@@ -423,7 +423,7 @@ It sucks having to pull yourself away from a fun (or important) project to manua
     ])
     ```
 
-    ![Screenshot of the Redirects collection data model within Directus settings. Fields included in the data model are url_old, url_new, and response_code.](https://product-team.directus.app/assets/9cad8803-53cb-4c2c-9e51-e05041ba9b87.webp)
+    ![Screenshot of the Redirects collection data model within Directus settings. Fields included in the data model are url_old, url_new, and response_code.](/img/9cad8803-53cb-4c2c-9e51-e05041ba9b87.webp)
 
 2. Add redirects dynamically when building your frontend. This is often done by creating a function to fetch the redirects from your Directus API and then passing those redirects to your frontend framework using a specific syntax inside a config file, plugin, or module.
 
@@ -472,7 +472,7 @@ A good way to manage image alt tags is on the files themselves as you upload the
 
 I prefer using the `description` field on files to store alt text. This way you don’t have to input alt text every single time you use this same image in different contexts.
 
-![Screenshot of a File library item form that shows a large image of Directus Flows. Within the form there are two fields - Title and Description.](https://product-team.directus.app/assets/cb73c2c8-e3b1-42f7-9632-abdb8aed0c21.webp)
+![Screenshot of a File library item form that shows a large image of Directus Flows. Within the form there are two fields - Title and Description.](/img/cb73c2c8-e3b1-42f7-9632-abdb8aed0c21.webp)
 
 For items like blog posts or articles you might have an `image` or `featured_image`  field so you can have a nice hero image or a thumbnail if shown inside a card.
 

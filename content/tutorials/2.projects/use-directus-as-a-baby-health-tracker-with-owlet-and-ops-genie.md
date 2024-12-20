@@ -232,7 +232,7 @@ The last step within the Flow is to save the gathered data within the collection
 
 As the Insights module is built in Directus, you can create any report with the data just as you need it. In our case, we've created the following dashboard:
 
-![An insights dashboard with three sections. Two of them render a time based graph for the heart rate, oxygen level, and temperature. Another section displays the latest senor data as well as the battery level.](https://product-team.directus.app/assets/18585ae9-828a-4d11-8e22-06db6515907a.webp)
+![An insights dashboard with three sections. Two of them render a time based graph for the heart rate, oxygen level, and temperature. Another section displays the latest senor data as well as the battery level.](/img/18585ae9-828a-4d11-8e22-06db6515907a.webp)
 
 The dashboard is split into three sections, on the left, the last 30 minutes of data are displayed. On the right, you can select the amount of hours you'd like to review. This is done by a slide that is used as a global variable for the 3 charts underneath. In between, some stats are displayed, in detail, in the very last dataset for the oxygen level, heart rate, temperature and battery stats.
 
@@ -240,11 +240,11 @@ All the charts are using the "Time Series" chart. The left side uses the default
 
 To achieve the dynamic time window, we have to create the "Global Variable" with the name 'last_x_hours' first:
 
-![Configuration screen of a global variable within the inisghts dashboard. Different settings for name, min, max values, or default can be set.](https://product-team.directus.app/assets/9e204338-aa13-4463-b334-127abbd69366.webp)
+![Configuration screen of a global variable within the inisghts dashboard. Different settings for name, min, max values, or default can be set.](/img/9e204338-aa13-4463-b334-127abbd69366.webp)
 
 Within the dynamic "Time Series" charts we can reuse the global variable by adding its name to the date range:
 
-![Usage of the syntax for variables within the dashboard panels.](https://product-team.directus.app/assets/02d8a4a7-97cc-4690-8c14-2278be350a30.webp)
+![Usage of the syntax for variables within the dashboard panels.](/img/02d8a4a7-97cc-4690-8c14-2278be350a30.webp)
 
 You can use the `{{…}}` syntax, followed by a lower `h` to identify the value that should work as hours. If you use the same variable for all three slides, they will change altogether once you've selected a new amount of hours within the global variable slider.
 
@@ -258,11 +258,11 @@ For the alerting system, we're using OpsGenie, usually used for system, infrastr
 
 To build this, a new Flow listens to every created event within the `sensor_data` collection. Every new record in this collection is evaluated and under certain conditions, a new item is created within an additional collection called `opsgenie_alert`. The collection looks something like this to store all relevant data that OpsGenie can use:
 
-![Item view of an alert that is created once the battery level is reaching a low level.](https://product-team.directus.app/assets/6ee06987-7338-412f-bca0-30b76a8b556a.webp)
+![Item view of an alert that is created once the battery level is reaching a low level.](/img/6ee06987-7338-412f-bca0-30b76a8b556a.webp)
 
 The related Flow looks like this:
 
-![The complete Flow to create new alert items based on newly created sensor data items. After the trigger more data is read, evaluated within a Run Script operation and based on a condtion new alert items are created or not.](https://product-team.directus.app/assets/6f659c8c-339e-407c-824d-e434a80d2acb.webp)
+![The complete Flow to create new alert items based on newly created sensor data items. After the trigger more data is read, evaluated within a Run Script operation and based on a condtion new alert items are created or not.](/img/6f659c8c-339e-407c-824d-e434a80d2acb.webp)
 
 Within the Run Script operation the data is evaluated and based on the met conditions, the returning JSON is passed over to the next operation.
 
@@ -324,11 +324,11 @@ Within the create operation, the following payload is used to create the OpenGen
 
 Once the alert is created within Directus, of course, it has to be created within OpsGenie as well. For this – again a new Flow is needed. This time we have to use the Timeout operation as OpsGenie queues all incoming requests and does not provide the result immediately.
 
-![A Flow that posts data to the OpsGenie API, sleeps for some time and read out the newly created alert, once OpsGenie fulfilled the initial request. The external alert ID is entered into the related item wihtin Directus.](https://product-team.directus.app/assets/07db9384-e4f9-4ffa-8740-fa3d944f3eb9.webp)
+![A Flow that posts data to the OpsGenie API, sleeps for some time and read out the newly created alert, once OpsGenie fulfilled the initial request. The external alert ID is entered into the related item wihtin Directus.](/img/07db9384-e4f9-4ffa-8740-fa3d944f3eb9.webp)
 
 Once triggered, we read out all the data first and pass the needed data to the OpsGenie API with a user key and the JSON data from the alert collection. As the API does not return the actual result but only an ID of the incoming task, we now wait 2 seconds before requesting the current status of our queued task with the 2nd web request. The request URL gets the returning ID from the first web request:
 
-![A simple GET webrequest with a dynamic value as part of the request URL. The values is using data from another Flow operation and accessed by using the mustache syntax.](https://product-team.directus.app/assets/e5ca10c2-3072-49e1-809c-276636623212.webp)
+![A simple GET webrequest with a dynamic value as part of the request URL. The values is using data from another Flow operation and accessed by using the mustache syntax.](/img/e5ca10c2-3072-49e1-809c-276636623212.webp)
 
 This request will return the current status and therefore all the data (including an ID) of this alert. With the update operation, we saved the alert ID to be able to refer to the OpsGenie alert if needed.
 
@@ -408,7 +408,7 @@ Script.complete()
 
 In the end, the widget would look like this. In case the wearable is charging, the current battery level is displayed.
 
-![Screenshot of an smartphone lockscreen that shows the latest health data provided by the Directus backend. Small icons are used to identify which value stands for which senor data. A timestamp is underneath.](https://product-team.directus.app/assets/6f5d1ae4-96bc-4599-8d81-85f6a2e86ee3.webp)
+![Screenshot of an smartphone lockscreen that shows the latest health data provided by the Directus backend. Small icons are used to identify which value stands for which senor data. A timestamp is underneath.](/img/6f5d1ae4-96bc-4599-8d81-85f6a2e86ee3.webp)
 
 ## Summary
 

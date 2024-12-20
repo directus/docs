@@ -290,7 +290,7 @@ Update your `+page.svelte` file:
 
 Your page should change to something similar to the following.
 
-![Svelte Testimonial Carousel](https://product-team.directus.app/assets/155ded4b-87c7-445b-b1c9-4cb9024ba464.webp)
+![Svelte Testimonial Carousel](/img/155ded4b-87c7-445b-b1c9-4cb9024ba464.webp)
 
 ## Creating the Add Testimonial Form
 
@@ -550,7 +550,7 @@ Update your `./src/routes/+page.svelte` to the following to add the create testi
 </style>
 ```
 
-![Svelte Testimonial Carousel](https://product-team.directus.app/assets/b27bc4c0-727d-4f9c-be9d-b70b49775e8e.gif)
+![Svelte Testimonial Carousel](/img/b27bc4c0-727d-4f9c-be9d-b70b49775e8e.gif)
 
 ## Summary
 

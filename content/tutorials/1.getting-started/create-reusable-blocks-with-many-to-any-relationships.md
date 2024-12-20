@@ -39,7 +39,7 @@ Before creating Collections inside Directus, it’s helpful to map out your data
 
 Consider this sample page below.
 
-![Website wireframe that shows three different sections. A hero block with a headline and image, a group of content cards, and a block of rich text.](https://product-team.directus.app/assets/a979b0c2-08e8-4813-9ef2-c8bdd1cc2a3e.webp)
+![Website wireframe that shows three different sections. A hero block with a headline and image, a group of content cards, and a block of rich text.](/img/a979b0c2-08e8-4813-9ef2-c8bdd1cc2a3e.webp)
 
 There are three main “blocks” that could be broken down into separate components.
 
@@ -51,7 +51,7 @@ Let’s break down the data model for each section.
 
 ---
 
-![Simple wireframe of a hero section on a sample website.](https://product-team.directus.app/assets/21ee8ffb-89c7-48b8-8817-6c9342af8f62.webp)
+![Simple wireframe of a hero section on a sample website.](/img/21ee8ffb-89c7-48b8-8817-6c9342af8f62.webp)
 
 **Hero**
 
@@ -65,7 +65,7 @@ Let’s break down the data model for each section.
 
 ---
 
-![Simple wireframe of a group of content cards on a sample website.](https://product-team.directus.app/assets/766eb3aa-31e5-4fc8-b8c4-c02bca94a406.webp)
+![Simple wireframe of a group of content cards on a sample website.](/img/766eb3aa-31e5-4fc8-b8c4-c02bca94a406.webp)
 
 **Card Group**
 
@@ -78,7 +78,7 @@ Let’s break down the data model for each section.
 
 ---
 
-![Simple wireframe of a block of rich text on a sample website.](https://product-team.directus.app/assets/3ec7c067-0ca5-46dd-860a-617a6fc94bc2.webp)
+![Simple wireframe of a block of rich text on a sample website.](/img/3ec7c067-0ca5-46dd-860a-617a6fc94bc2.webp)
 
 **Rich Text**
 
@@ -159,7 +159,7 @@ To keep things organized, we recommend that you namespace each collection with a
 
 5. Create a new Builder (M2A) field inside the `pages` data model.
 
-   ![In the data model settings for the pages collection, a new Many-To-Any relationship is being created. The key is named blocks. There are 3 related collections selected - Block Cardgroup, Block Hero, and Block Rich text.](https://product-team.directus.app/assets/611b2dcb-b30a-427a-8876-10fa585a5dac.webp)
+   ![In the data model settings for the pages collection, a new Many-To-Any relationship is being created. The key is named blocks. There are 3 related collections selected - Block Cardgroup, Block Hero, and Block Rich text.](/img/611b2dcb-b30a-427a-8876-10fa585a5dac.webp)
 
    a. For the **Key**, use `blocks`.
 
@@ -187,7 +187,7 @@ Mode option.
 6. [Create a new item](/guides/content/editor) in the `pages` collection
 
    <video title="Create Your Page Content" autoplay muted loop controls playsinline>
-   <source src="https://product-team.directus.app/assets/c3124836-eabe-4c05-a4ac-05b4a430458f.mp3"> type="video/mp4" />
+   <source src="/img/c3124836-eabe-4c05-a4ac-05b4a430458f.mp3"> type="video/mp4" />
    </video>
 
    a. Enter the page **Title** and **Slug**.
@@ -360,14 +360,14 @@ We recommend adding types for each of your different collections to your fronten
 Consider using [data model folders](/guides/data-model/collections) to keep things nicely organized and
 your collections easy to find.
 
-![In the data model settings, a folder is highlighted. It is named blocks. There is a caption that reads "Data Model Folders help you keep collections well-organized and easy to find."](https://product-team.directus.app/assets/8eee6c8d-cdcc-40b1-ab54-93911f8d494f.webp)
+![In the data model settings, a folder is highlighted. It is named blocks. There is a caption that reads "Data Model Folders help you keep collections well-organized and easy to find."](/img/8eee6c8d-cdcc-40b1-ab54-93911f8d494f.webp)
 
 ### Use Translations for Collection Names
 
 When [setting up Collections](/guides/data-model/collections) within your data model, use the Collection
 Naming Translations to create names that easier for the Data Studio users to understand.
 
-![In the data model settings for the hero collection a section is highlighted. It reads "Collection naming translations" with a single item called "Hero".](https://product-team.directus.app/assets/0e6e47ee-554d-4a9c-8a79-d704eaecb121.webp)
+![In the data model settings for the hero collection a section is highlighted. It reads "Collection naming translations" with a single item called "Hero".](/img/0e6e47ee-554d-4a9c-8a79-d704eaecb121.webp)
 
 For example:
 

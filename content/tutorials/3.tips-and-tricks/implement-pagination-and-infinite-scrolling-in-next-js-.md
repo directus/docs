@@ -106,7 +106,7 @@ export default async function Home() {
 This is a Server Component that will fetch all your posts from Directus using the `getPost()` function and render HTML in the server which will then be sent to the client.
 If you navigate to `http://localhost:3000` in your browser you should see all your posts:
 
-![All items from the posts collection in your Directus project](https://product-team.directus.app/assets/24ce3ca1-e2d2-4906-92e0-e36257eaef1e.webp)
+![All items from the posts collection in your Directus project](/img/24ce3ca1-e2d2-4906-92e0-e36257eaef1e.webp)
 
 To add pagination, first, modify the `app/page.js` file to the following:
 
@@ -254,7 +254,7 @@ export default async function Home({ searchParams }) {
 
 With this, you can now navigate between pages from the UI:
 
-![Demonstrates how the pagination functionality works by navigating between different pages using the pagination navs at the bottom of the page](https://product-team.directus.app/assets/f5f3a41e-37d5-4860-9273-f47d0d5adfeb.webp)
+![Demonstrates how the pagination functionality works by navigating between different pages using the pagination navs at the bottom of the page](/img/f5f3a41e-37d5-4860-9273-f47d0d5adfeb.webp)
 
 ## Implementing Infinite Scrolling
 
@@ -313,7 +313,7 @@ export default async function Home() {
 ```
 Here a Server Action is created which is used to fetch all posts and pass the result as props to the `PostList` component. If you navigate to `http://localhost:3000` in your browser you should see all your posts:
 
-![All items from the posts collection in your Directus project](https://product-team.directus.app/assets/24ce3ca1-e2d2-4906-92e0-e36257eaef1e.webp)
+![All items from the posts collection in your Directus project](/img/24ce3ca1-e2d2-4906-92e0-e36257eaef1e.webp)
 
 To add infinite scrolling, first, modify the `app/page.js` file to the following:
 
@@ -441,7 +441,7 @@ const handleObserver = (entries) => {
 Here in the `useEffect` hook the Intersection Observer API is used to observe the `<span>` element of the loading indicator. At initial mount and when the `<span>` enters and exists the viewport, the `handleObserver()` callback function is called which will then call `fetchMorePosts()` to fetch new posts and update the state whenever there are more posts and the `<span>` element enters the viewport.
 
 With this, the infinite scrolling should now be working:
-![Demonstrates the infinte scrolling functionality. When the page is scrolled down to the bottom, the loading indicator is displayed, and new posts are displayed afterwards. Finally, when the bottom of the page is reached again the text No more posts is displayed.](https://product-team.directus.app/assets/f6dd7960-6296-4242-abc2-5a1232f06143.webp)
+![Demonstrates the infinte scrolling functionality. When the page is scrolled down to the bottom, the loading indicator is displayed, and new posts are displayed afterwards. Finally, when the bottom of the page is reached again the text No more posts is displayed.](/img/f6dd7960-6296-4242-abc2-5a1232f06143.webp)
 
 ## Which To Use
 As with most topics, the answer is "it depends". Paginated lists tend to have better performance Search Engine Optimization (SEO) as all page content (typically smaller) is initially loaded on the page. Infinite scrolling is better at maintaining attention and exploration

@@ -29,13 +29,13 @@ Add an instance ID and a password for the default admin user `postgres` and sele
 
 Click on the `Create Instance` button to create your new instance.
 
-![Screenshot of a Cloud SQL creation page](https://product-team.directus.app/assets/5527868d-e61c-474a-a8f9-27afc5dfd13c.webp)
+![Screenshot of a Cloud SQL creation page](/img/5527868d-e61c-474a-a8f9-27afc5dfd13c.webp)
 
 After successful creation, you will be redirected to the instance page; here, you'll find details about the PostgreSQL database instance created, such as the connection name and other information.
 
 Copy the connection name for later usage.
 
-![A PostgreSQL database instance details page. Highlighted is the connection name under the Connect to this instance header](https://product-team.directus.app/assets/726fa639-23e2-4ea8-a699-689c27554336.webp)
+![A PostgreSQL database instance details page. Highlighted is the connection name under the Connect to this instance header](/img/726fa639-23e2-4ea8-a699-689c27554336.webp)
 
 ## Set Up the Docker Container
 
@@ -158,7 +158,7 @@ To connect Cloud SQL to Cloud Run, click on the Cloud SQL instance select box to
 
 Click on the create button to create your new Cloud Run service; when successfully deployed, click on the service name to show more details about the service; on the dashboard, you'll find the URL where Directus is running.
 
-![Google Cloud Run dashboard page](https://product-team.directus.app/assets/d381e4fb-077f-40fe-9163-3c502bef7caa.webp)
+![Google Cloud Run dashboard page](/img/d381e4fb-077f-40fe-9163-3c502bef7caa.webp)
 
 ## Connect Cloud Storage (Optional)
 

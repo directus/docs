@@ -179,7 +179,7 @@ Update the your `routes/+page.svelte` file to use the `getVideos` function to fe
 
 Directus stores file metadata in the `directus_files` collection.
 
-![Video Listing](https://product-team.directus.app/assets/13cb8233-1038-4ab9-9391-16159d6440b0.webp)
+![Video Listing](/img/13cb8233-1038-4ab9-9391-16159d6440b0.webp)
 
 ## Building the Video Player Page
 
@@ -269,7 +269,7 @@ Create a nested route in your `routes` folder in the format `video/[id]/+page.sv
 ```
 Now click on any of the videos to stream it.
 
-![Video Player](https://product-team.directus.app/assets/a165dcf8-9f68-4512-a658-b8dc4ded4b66.webp)
+![Video Player](/img/a165dcf8-9f68-4512-a658-b8dc4ded4b66.webp)
 
 ## Creating Search Functionality
 
@@ -356,7 +356,7 @@ Update the code in your `routes/+page.svelte` file to use the `searchVideos` fun
 
 You can now search and stream any video of your choice.
 
-![Search videos](https://product-team.directus.app/assets/d5ca3932-ab29-4bcc-8110-c72a800cc8e3.webp)
+![Search videos](/img/d5ca3932-ab29-4bcc-8110-c72a800cc8e3.webp)
 
 ## Summary
 

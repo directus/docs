@@ -11,7 +11,7 @@ Modules are an empty canvas in Directus with an empty navigation panel on the le
 sidebar on the right. This guide will help you set up a multi-page module with navigation in the navigation bar and link
 breadcrumbs.
 
-![A custom module has three items in the navigation - Home, Hello World, and Contact Us. The homepage displays an image, three navigation tiles, and some copy.](https://product-team.directus.app/assets/db55ac3f-016e-4531-8282-a9445482c02e.webp)
+![A custom module has three items in the navigation - Home, Hello World, and Contact Us. The homepage displays an image, three navigation tiles, and some copy.](/img/db55ac3f-016e-4531-8282-a9445482c02e.webp)
 
 ## Install Dependencies
 
@@ -34,7 +34,7 @@ the source code is located - `index.js` and `module.vue`. Any new files that are
 
 As it stands, this module will load an empty page wrapped by the Directus UI:
 
-![An empty module.](https://product-team.directus.app/assets/02345e5c-1742-4382-92cc-78c8651bfd1d.webp)
+![An empty module.](/img/02345e5c-1742-4382-92cc-78c8651bfd1d.webp)
 
 Open `index.js` and make the following changes:
 
@@ -218,11 +218,11 @@ view is linked to the `page` property from the URI.
 
 Looking at this now, the page title will be Home for the root page and the breadcrumbs are above the title:
 
-![Breadcrumb showing only Home](https://product-team.directus.app/assets/8ecff87c-69f1-4524-87f4-7a997ffa889f.webp)
+![Breadcrumb showing only Home](/img/8ecff87c-69f1-4524-87f4-7a997ffa889f.webp)
 
 When the page changes to `/admin/landing-page/hello-world`, the page title changes and the breadcrumbs are updated:
 
-![Breadcrumb showing both Home and Hello World as a second level item](https://product-team.directus.app/assets/ed29fd15-abf7-40e7-bb74-22ed5365ac3e.webp)
+![Breadcrumb showing both Home and Hello World as a second level item](/img/ed29fd15-abf7-40e7-bb74-22ed5365ac3e.webp)
 
 ## Implement Page Navigation
 
@@ -381,7 +381,7 @@ Now this can be used in the template. After the `breadcrumbs`, add the following
 
 The navigation panel now shows the available pages and will change the page when clicked.
 
-![A module is empty but shows the navigation with three items.](https://product-team.directus.app/assets/23e71113-b765-4ded-8bb6-54e7026ee8c6.webp)
+![A module is empty but shows the navigation with three items.](/img/23e71113-b765-4ded-8bb6-54e7026ee8c6.webp)
 
 ## Add Content and Styling
 
@@ -655,7 +655,7 @@ as possible so your module appears part of Directus.
 
 Now the page will look like this:
 
-![A custom module has three items in the navigation - Home, Hello World, and Contact Us. The homepage displays an image, three navigation tiles, and some copy.](https://product-team.directus.app/assets/db55ac3f-016e-4531-8282-a9445482c02e.webp)
+![A custom module has three items in the navigation - Home, Hello World, and Contact Us. The homepage displays an image, three navigation tiles, and some copy.](/img/db55ac3f-016e-4531-8282-a9445482c02e.webp)
 
 Our files are now complete. Build the module with the latest changes:
 

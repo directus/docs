@@ -25,7 +25,7 @@ You will need:
 
 Before setting up Directus, let's understand how the different data models you will set up in Directus are related. You need 3 data collections - `categories`, `products`, `orders`. A product can only be in one category in this data model.
 
-![Diagram of a Data Model Relationship for products, orders and categories](https://product-team.directus.app/assets/6f0ea29b-2590-4044-bd8c-61a0b103ee15.webp)
+![Diagram of a Data Model Relationship for products, orders and categories](/img/6f0ea29b-2590-4044-bd8c-61a0b103ee15.webp)
 
 In your Directus project, head to Settings -> Data Model to create these data models with the following fields:
 
@@ -57,7 +57,7 @@ Create some items in the Categories and Products collections - [here's some samp
 
 In Settings -> Access Control -> Public, enable permission for the models created so they can be accessed from the Next.js application.
 
-![Permission settings for data models in Directus. categories read. orders create and read. products read and edit. directus_files read.](https://product-team.directus.app/assets/9f65db4d-a52e-448d-ad22-1ac415190b64.webp)
+![Permission settings for data models in Directus. categories read. orders create and read. products read and edit. directus_files read.](/img/9f65db4d-a52e-448d-ad22-1ac415190b64.webp)
 
 ## Set Up a Next.js Application
 
@@ -462,7 +462,7 @@ In the `app/layout.tsx` file, update the rendered component with the `NavBar`
 ...
 ```
 
-![Navbar with Cart](https://product-team.directus.app/assets/e02b1bbb-83a7-4441-91de-ea9917cdc5c0.webp)
+![Navbar with Cart](/img/e02b1bbb-83a7-4441-91de-ea9917cdc5c0.webp)
 
 ### Create The Product Components
 
@@ -553,7 +553,7 @@ export default async function Search({
 
 The component above uses the `searchProducts` function to search for products from Directus and passes them as props to `ProductList` to display.
 
-![Search Result Page](https://product-team.directus.app/assets/98cc9cce-11a8-4591-89b5-2686e41e0319.webp)
+![Search Result Page](/img/98cc9cce-11a8-4591-89b5-2686e41e0319.webp)
 
 ## Display all Products from The Store
 
@@ -577,7 +577,7 @@ export default async function Home() {
 
 Using the `getAllProducts` function this component will get all available products and display them on the homepage.
 
-![All Products Page](https://product-team.directus.app/assets/a4fe678f-92fe-4216-8ad8-268df9c5d0ba.webp)
+![All Products Page](/img/a4fe678f-92fe-4216-8ad8-268df9c5d0ba.webp)
 
 ## Show Items in the Cart
 
@@ -633,7 +633,7 @@ export default function CheckoutCartPage() {
 
 This page displays all the items in the cart, a link to the next step of the checkout and also displays a `clearCart` button to remove all items from the cart.
 
-![Cart page listing all items in cart](https://product-team.directus.app/assets/7967264d-8b24-4219-8ab9-a1074347b676.webp)
+![Cart page listing all items in cart](/img/7967264d-8b24-4219-8ab9-a1074347b676.webp)
 
 ## Set up Stripe for Receiving Payments
 
@@ -840,11 +840,11 @@ export default function ShippingPage() {
 }
 ```
 
-![Shipping form page](https://product-team.directus.app/assets/342468a7-b270-4569-87c2-1e69e1e05c91.webp)
+![Shipping form page](/img/342468a7-b270-4569-87c2-1e69e1e05c91.webp)
 
 Clicking on the `Procced to Payment` button to submit the form will trigger a Stripe payment and take you to a Stripe checkout:
 
-![Stripe checkout page](https://product-team.directus.app/assets/49f98d4c-985c-4788-8ab3-d69bcb8c47ff.webp)
+![Stripe checkout page](/img/49f98d4c-985c-4788-8ab3-d69bcb8c47ff.webp)
 
 This form will trigger a stripe payment to pay for the selected products.
 
@@ -906,7 +906,7 @@ export default function SuccessPage({ searchParams }: SuccessPageProps) {
 }
 ```
 
-![Checkout success page](https://product-team.directus.app/assets/4fcb5def-53d3-4935-bf15-d1c08f2b882d.webp)
+![Checkout success page](/img/4fcb5def-53d3-4935-bf15-d1c08f2b882d.webp)
 
 ## Configure A Webhook for Stripe Payment Events
 
@@ -1039,7 +1039,7 @@ stripe trigger payment_intent.succeeded
 
 You will receive a response that looks like this:
 
-![Stripe webhook terminal](https://product-team.directus.app/assets/c6710dae-d757-4fd6-9c7b-daff5c04f221.webp)
+![Stripe webhook terminal](/img/c6710dae-d757-4fd6-9c7b-daff5c04f221.webp)
 
 ## Summary
 

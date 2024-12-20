@@ -252,7 +252,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-![Showing the contents from the pages collection in flutter application](https://product-team.directus.app/assets/93903c78-1437-49e9-9c7c-2f7fa17bd367.webp)
+![Showing the contents from the pages collection in flutter application](/img/93903c78-1437-49e9-9c7c-2f7fa17bd367.webp)
 
 ## Creating Blog Posts With Directus
 Similar to creating pages, you can also create and manage blog posts using Directus CMS. Create a new collection called `authors` with a single text input field called `name`. Add one or more authors to the collection.
@@ -420,7 +420,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-![Display the contents from the posts collection](https://product-team.directus.app/assets/033e07f5-122d-4457-b026-5a96a45b711b.webp)
+![Display the contents from the posts collection](/img/033e07f5-122d-4457-b026-5a96a45b711b.webp)
 
 ## Create Blog Post Detail
 
@@ -500,7 +500,7 @@ class BlogPostItem extends StatelessWidget {
 
 With the above code, when the user taps on the `BlogPostItem`, it triggers the `onTap` callback function. Inside this function, the `Navigator.push` will navigate to a new screen. `MaterialPageRoute` will define the widget to be displayed on the new screen as `BlogPostWidget`. Also, the `blogPost` data is passed as a parameter to the `BlogPostWidget` widget. This will allow you to display detailed information about the selected `blog` post on the new screen.
 
-![Navigating to the blog single page](https://product-team.directus.app/assets/c17cbbe5-174a-4b37-a3bd-2eb31a518bfa.webp)
+![Navigating to the blog single page](/img/c17cbbe5-174a-4b37-a3bd-2eb31a518bfa.webp)
 
 ## Summary
 

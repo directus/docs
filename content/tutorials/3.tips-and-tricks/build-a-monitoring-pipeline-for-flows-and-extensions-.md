@@ -57,7 +57,7 @@ The fields of the table **log_events** need a short explanation:
 
 With our collection setup, let's create a trigger Flow whose purpose is to set the event date and merge all metadata. This flow will be triggered by other flows each time we want to log an event.
 
-![A Flow which creates event logs](https://product-team.directus.app/assets/93c22dac-7237-4bff-b6a9-f109807e4561.webp)
+![A Flow which creates event logs](/img/93c22dac-7237-4bff-b6a9-f109807e4561.webp)
 
 The flow expects the following input payload:
 
@@ -91,7 +91,7 @@ module.exports = async function(data) {
 
 Create a dummy flow that imports participants via webhook.
 
-![Flow that imports participants via webhook and logs success and error events](https://product-team.directus.app/assets/337e89f3-f2d2-4f86-9230-710bb5af0a26.webp)
+![Flow that imports participants via webhook and logs success and error events](/img/337e89f3-f2d2-4f86-9230-710bb5af0a26.webp)
 
 Firstly, count the number of participants that are passed in the request:
 
@@ -187,15 +187,15 @@ Create the participants from the payload's body, and then log either a success o
 
 In this case, we would log an error if the required email is missing in one of the payload's participants.
 
-![How to trigger a log event. Select trigger flow operation, use Create log event as flow, and pass event_name, context_id, execution_id, and meta as JS object](https://product-team.directus.app/assets/aad3b771-ffc1-4963-b69a-3b8f90258338.webp)
+![How to trigger a log event. Select trigger flow operation, use Create log event as flow, and pass event_name, context_id, execution_id, and meta as JS object](/img/aad3b771-ffc1-4963-b69a-3b8f90258338.webp)
 
 We can store events but still need a way to receive notifications. Additionally, we might only want to receive a subset of the events we create. Let's build a notification Flow that is triggered by created events and sends emails for the events we are interested in.
 
-![A Flow that listens on the create event_logs hook and sends out an email if an event with one of the given names was created](https://product-team.directus.app/assets/1acdc681-4329-45cf-a461-d78ed9ea19c6.webp)
+![A Flow that listens on the create event_logs hook and sends out an email if an event with one of the given names was created](/img/1acdc681-4329-45cf-a461-d78ed9ea19c6.webp)
 
 We configure the "Notify by Mail" operation by entering all receiving email addresses into the "To" field. The names of all events for which we want to receive notifications should be entered into the "Events" field. In this case, enter `import-participants-failed`.
 
-![Settings of the operation notify_by_mail. Input field "To" takes a list of e-mail addresses; input field "Events" takes a list of event names. Only specified events are sent out by mail](https://product-team.directus.app/assets/5617545a-13a1-42b9-b877-c7923d6813a5.webp)
+![Settings of the operation notify_by_mail. Input field "To" takes a list of e-mail addresses; input field "Events" takes a list of event names. Only specified events are sent out by mail](/img/5617545a-13a1-42b9-b877-c7923d6813a5.webp)
 
 ### App definition of `notify_on_event`
 

@@ -11,7 +11,7 @@ Imagine being able to create different versions of your content, and then easily
 
 In this post, I'll show you how to set up your Live Preview-enabled Next.js application to also allow previewing of specific content versions.
 
-![Live Preview and Content Versioning Overview](https://product-team.directus.app/assets/b38d9a2e-f6ac-46f8-a9bb-507db3f88f4c.gif)
+![Live Preview and Content Versioning Overview](/img/b38d9a2e-f6ac-46f8-a9bb-507db3f88f4c.gif)
 
 ## Prerequisites:
 - A Directus project with at least one content versioned collection. In this tutorial, we will use a collection called `Posts`.

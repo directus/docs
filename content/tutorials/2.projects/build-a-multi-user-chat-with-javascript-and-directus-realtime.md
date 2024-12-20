@@ -197,7 +197,7 @@ document.querySelector('#new').addEventListener('submit', function (event) {
 _Refresh your browser, login, and submit a new message. Check the `Messages` collection in your Directus project and you
 should see a new item._
 
-![Directus Data Studio Content Module showing the Messages collection with one item in it. Visible is the text, User, and Date Created.](https://product-team.directus.app/assets/4192fde7-f2cb-40d1-abf8-800eba526be0.webp)
+![Directus Data Studio Content Module showing the Messages collection with one item in it. Visible is the text, User, and Date Created.](/img/4192fde7-f2cb-40d1-abf8-800eba526be0.webp)
 
 ## Display New Messages
 
@@ -223,7 +223,7 @@ if (data.type == 'subscription' && data.event == 'create') {
 _Refresh your browser, login, and submit a new message. The result should be shown on the page. Open a second browser
 and navigate to your index.html file, login and submit a message there and both pages should immediately update_
 
-![Web page showing the login form, new message form, and one message shown. The message reads “Kevin: This is brilliant!”](https://product-team.directus.app/assets/2617f9b2-da8b-406f-b56b-a2ead5abdac8.webp)
+![Web page showing the login form, new message form, and one message shown. The message reads “Kevin: This is brilliant!”](/img/2617f9b2-da8b-406f-b56b-a2ead5abdac8.webp)
 
 ## Display Historical Messages
 

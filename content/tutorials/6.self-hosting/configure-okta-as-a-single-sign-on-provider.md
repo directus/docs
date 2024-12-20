@@ -19,13 +19,13 @@ This step-by-step guide explains the process of configuring SSO in a Directus ap
 1. Access Okta Admin Workspace: Navigate to `https://<OUR-WORKSPACE-NAME>-admin.okta.com/admin/getting-started`.
 2. Create App Integration: In our Okta admin workspace, under the **Applications** tab, select **Create App Integration** and select the desired method (**SAML 2.0** in our case). Click **Next**.
 
-![Selecting a sign-in method - SAML 2.0](https://product-team.directus.app/assets/95ed84fb-6779-439e-9a9c-8e7c1e694c71.webp)
+![Selecting a sign-in method - SAML 2.0](/img/95ed84fb-6779-439e-9a9c-8e7c1e694c71.webp)
 
 ### General Settings
 
 Configure App Details: On the first screen of the new application settings, we need to enter the name of our app, as well as upload a logo and set up its visibility to users. Let's name our app **My Directus App** and leave the rest of the settings as default. Click **Next**.
 
-![Setting the application name, logo, and its visibility](https://product-team.directus.app/assets/ebddeaa4-c4a9-46ea-b168-be3b8fba39bf.webp)
+![Setting the application name, logo, and its visibility](/img/ebddeaa4-c4a9-46ea-b168-be3b8fba39bf.webp)
 
 ### Configure SAML
 
@@ -39,7 +39,7 @@ SAML Settings: the most important part of our integration with Directus. Fill in
 
 Note: Use `localhost:8055` for local development. For deployment to other domains, change values to your domain, which will most likely work over the https protocol (e.g., `https://example.com/...`). Alternatively, we can create as many Okta applications as needed for each environment.
 
-![Configure general SAML settings](https://product-team.directus.app/assets/db80a8a3-fb1d-44e1-98b2-027e2b79281d.webp)
+![Configure general SAML settings](/img/db80a8a3-fb1d-44e1-98b2-027e2b79281d.webp)
 
 Next, fill in the **Attribute Statements**.
 Note: Although it is labelled as optional, it is critical to fill in at least the email attribute for authentication to work.
@@ -52,7 +52,7 @@ The attributes will look like this:
 | `first_name` | Basic       | user.firstName | The field by which Directus will match the first name from the Okta account with the first name in our app. Add it if we want the user's first name to be pre-filled in the app. |
 | `last_name`  | Basic       | user.lastName  | The field by which Directus will match the last name from the Okta account with the last name in our app. Add it if we want the user's last name to be pre-filled in the app.    |
 
-![Configure SAML attributes](https://product-team.directus.app/assets/89bc56f4-ca29-44ed-b722-1431476b2906.webp)
+![Configure SAML attributes](/img/89bc56f4-ca29-44ed-b722-1431476b2906.webp)
 
 Click **Next**, select **I'm an Okta customer adding an internal app** when asked for feedback and finish the app creation wizard.
 
@@ -69,7 +69,7 @@ Choose which people from our organization can access Directus through Okta SSO:
 ### Result
 Go to the **Sign On** tab in our Okta app(**Applications** -> **Applications** -> **My Directus app** -> **Sign On**) and copy the **Metadata URL**. We will need this to configure our Directus project.
 
-![Final screen with the Metadata URL](https://product-team.directus.app/assets/677a0bdc-dcc7-4a71-ae92-3e60161e9f1c.webp)
+![Final screen with the Metadata URL](/img/677a0bdc-dcc7-4a71-ae92-3e60161e9f1c.webp)
 
 ## Configuring SSO in the Directus application
 
@@ -127,11 +127,11 @@ AUTH_OKTA_SP_metadata='<EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:m
 ## Testing
 Launch the Directus project, go to http://localhost:8055/ in the browser, and immediately see the change - we have a **Log In with Okta** button.
 
-![Directus login screen with Log In with Okta button](https://product-team.directus.app/assets/7cb859fc-eec5-4b92-8e8b-fe24e32a8ce9.webp)
+![Directus login screen with Log In with Okta button](/img/7cb859fc-eec5-4b92-8e8b-fe24e32a8ce9.webp)
 
 Clicking on it takes us to the Okta login screen. Enter our email, authenticate by any available method. Successful authentication with Okta should redirect us to the Directus admin panel. Here, go to User Directory and confirm that we have a new user with a pre-filled email, first name, and last name.
 
-![User authenticated via Okta with pre-filled fields](https://product-team.directus.app/assets/9f949b05-23f3-4839-802b-c94c11e667e2.webp)
+![User authenticated via Okta with pre-filled fields](/img/9f949b05-23f3-4839-802b-c94c11e667e2.webp)
 
 Note: If a user is not added to the list of assigned users in the Okta app, they cannot log in to our app.
 

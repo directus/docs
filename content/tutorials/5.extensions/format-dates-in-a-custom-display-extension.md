@@ -10,7 +10,7 @@ description: Learn how to build a custom display to format data in Directus.
 Displays provide a meaningful way for users to consume data. This guide will show you how to create a display to change
 a date of birth to the current age in years and months.
 
-![A table of data is shown with a value reading '22 years 10 months'](https://product-team.directus.app/assets/1f418678-6467-419c-a08b-baa87125663a.webp)
+![A table of data is shown with a value reading '22 years 10 months'](/img/1f418678-6467-419c-a08b-baa87125663a.webp)
 
 ## Install Dependencies
 
@@ -54,7 +54,7 @@ include a professional prefix. You can choose an icon from the library [here](ht
 
 With the information above, the display will appear in the list like this:
 
-![A new display option is shown - Datetime.](https://product-team.directus.app/assets/4bf75eb5-a39f-4493-9ca5-ace7c0f1b225.webp)
+![A new display option is shown - Datetime.](/img/4bf75eb5-a39f-4493-9ca5-ace7c0f1b225.webp)
 
 Currently the options object is `null`. To provide the option to include months, replace the `options` value with the
 following object:
@@ -180,9 +180,9 @@ Now the display will appear in the list of available displays for a date field. 
 select this display from the list and make sure to add some data. The results will appear in the layout if you have that
 column showing.
 
-![Display age settings showing a checkbox to display months](https://product-team.directus.app/assets/f6721667-7957-4b8e-a897-3d3c18dc4e81.webp)
+![Display age settings showing a checkbox to display months](/img/f6721667-7957-4b8e-a897-3d3c18dc4e81.webp)
 
-![A table of data is shown with a value reading '22 years 10 months'](https://product-team.directus.app/assets/1f418678-6467-419c-a08b-baa87125663a.webp)
+![A table of data is shown with a value reading '22 years 10 months'](/img/1f418678-6467-419c-a08b-baa87125663a.webp)
 
 ## Summary
 

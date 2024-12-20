@@ -345,7 +345,7 @@ npm run dev
 With the above implementation, users should be able to register.
 Navigate to `http://localhost:3000/register` in your browser and you should see the following:
 
-![Register page](https://product-team.directus.app/assets/87161df8-6ef7-4663-a786-358a759ae558.webp)
+![Register page](/img/87161df8-6ef7-4663-a786-358a759ae558.webp)
 
 ## Implementing Login
 
@@ -438,7 +438,7 @@ export default LoginPage;
 With the above implementation, registered users should be able to sign in.
 Navigate to `http://localhost:3000/login` in your browser and you should see the following:
 
-![Login page](https://product-team.directus.app/assets/91913c3e-7315-433a-82ff-0b57aec6dd67.webp)
+![Login page](/img/91913c3e-7315-433a-82ff-0b57aec6dd67.webp)
 
 ## Creating New Posts
 
@@ -542,7 +542,7 @@ The `CreatePostForm` component provides a form for creating a new post. When the
 With the above implementation, registered users should be able to create new posts.
 Navigate to `http://localhost:3000/create-post` in your browser and you should see the following:
 
-![Create post](https://product-team.directus.app/assets/d464f9e6-ddb0-444b-bbef-93ff1727a155.webp)
+![Create post](/img/d464f9e6-ddb0-444b-bbef-93ff1727a155.webp)
 
 ## Creating a Listing
 
@@ -649,7 +649,7 @@ export default PostUser;
 With the above implementation, users should be able to view all posts.
 Navigate to `http://localhost:3000/blog` in your browser and you should see all posts:
 
-![Post list](https://product-team.directus.app/assets/a25fb64d-b522-46b1-8c99-9d47345348e2.webp)
+![Post list](/img/a25fb64d-b522-46b1-8c99-9d47345348e2.webp)
 
 ## Viewing Single Posts
 ### Creating Server Action
@@ -746,7 +746,7 @@ The  `SinglePostPage`  renders the  single post detail with options for editing 
 The post content is rendered using `dangerouslySetInnerHTML` to handle HTML content safely. It can only be used for trusted content.
 Click on the `READ MORE`  link in a post to get to the corresponding detail blog post page as follows:
 
-![Single post detail](https://product-team.directus.app/assets/6d98097e-49fe-4522-be0c-7c79a95d1b37.webp)
+![Single post detail](/img/6d98097e-49fe-4522-be0c-7c79a95d1b37.webp)
 
 # Updating a Post
 ## Creating Server Action
@@ -835,7 +835,7 @@ export default UpdatePostForm;
 The `UpdatePostForm` component provides a form for updating an existing post. When the form is submitted, it calls the `updatePost` function to update the post in the Directus backend.
 Click on the `Edit`  link in a detail post page to get to the corresponding update post page as follows:
 
-![Edit page](https://product-team.directus.app/assets/b398cd20-3538-4c4c-ba53-6ab18e93dcee.webp)
+![Edit page](/img/b398cd20-3538-4c4c-ba53-6ab18e93dcee.webp)
 
 ## Deleting Posts
 To delete post data from the `Directus` backend, navigate to the `lib/action.js` file and add the following:

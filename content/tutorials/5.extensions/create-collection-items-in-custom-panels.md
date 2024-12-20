@@ -11,7 +11,7 @@ Panels are used in dashboards as part of the Insights module. As well as read-on
 with form inputs. In this guide, you will create a panel that automatically generates a form based on a collection's
 fields, and allows item creation from an Insights dashboard.
 
-![A panel shows a form called Add Customer. It has a name, surname, and phone number text input.](https://product-team.directus.app/assets/2d35e9e1-5f77-4d2f-9df4-fe7cf181fe67.webp)
+![A panel shows a form called Add Customer. It has a name, surname, and phone number text input.](/img/2d35e9e1-5f77-4d2f-9df4-fe7cf181fe67.webp)
 
 ## Install Dependencies
 
@@ -102,7 +102,7 @@ skipUndefinedKeys: ['responseFormat'],
 
 The output of these options will look like this:
 
-<img src="https://product-team.directus.app/assets/59c3e459-d004-4f19-a666-e915bc25ecb3.webp" alt="Form with collections and fields selection." style="padding: 0 8px 8px 10px">
+<img src="/img/59c3e459-d004-4f19-a666-e915bc25ecb3.webp" alt="Form with collections and fields selection." style="padding: 0 8px 8px 10px">
 
 ## Prepare the View
 
@@ -350,11 +350,11 @@ Lastly, replace the CSS at the bottom with this:
 
 When it's all put together, the panel looks like this:
 
-![A panel shows a form called Add Customer. It has a name, surname, and phone number text input.](https://product-team.directus.app/assets/2d35e9e1-5f77-4d2f-9df4-fe7cf181fe67.webp)
+![A panel shows a form called Add Customer. It has a name, surname, and phone number text input.](/img/2d35e9e1-5f77-4d2f-9df4-fe7cf181fe67.webp)
 
 And the response looks like this:
 
-![A popup reads 'Saved - User Added!' with a link to the user and a but purple Done button.](https://product-team.directus.app/assets/70eecfe0-060e-4996-96f4-89e56c56afa3.webp)
+![A popup reads 'Saved - User Added!' with a link to the user and a but purple Done button.](/img/70eecfe0-060e-4996-96f4-89e56c56afa3.webp)
 
 Both files are now complete. Build the panel with the latest changes.
 
@@ -390,7 +390,7 @@ Fill in the configuration fields as needed:
 - Select all the fields to include from that collection.
 - Create a custom response message.
 
-<img src="https://product-team.directus.app/assets/b1e3c16e-25f1-4bec-82ac-66ff75e029c6.webp" alt="Form showing a collection is selected, 3 items are included, and a response is formed as a string with two dynamic variables." style="padding: 0 0 0 10px">
+<img src="/img/b1e3c16e-25f1-4bec-82ac-66ff75e029c6.webp" alt="Form showing a collection is selected, 3 items are included, and a response is formed as a string with two dynamic variables." style="padding: 0 0 0 10px">
 
 ## Summary
 

@@ -46,7 +46,7 @@ This image generation request will use the DALL-E 3 model and generate a single 
 
 Your operation should look like this:
 
-![Operation options as detailed in the post](https://product-team.directus.app/assets/7778b5e8-c3ee-4883-8e83-f75623c8a4b6.webp)
+![Operation options as detailed in the post](/img/7778b5e8-c3ee-4883-8e83-f75623c8a4b6.webp)
 
 Test it out - save your flow and create a single empty item in the Generations collection. Enter the Editor page, and you should see Flows in the sidebar on the right - click the button and enter a prompt such as “Lego Kit of the Directus Logo Rabbit.”
 
@@ -66,12 +66,12 @@ Create one final step — an Update Data operation — on the Generations collec
 
 The full Flow should look like this:
 
-![Flow with a manual trigger and three operations - generate image, import image, and update data](https://product-team.directus.app/assets/839d9500-a1b6-4cb9-9928-832c1340c5b0.webp)
+![Flow with a manual trigger and three operations - generate image, import image, and update data](/img/839d9500-a1b6-4cb9-9928-832c1340c5b0.webp)
 
 Test the Flow again inside of your Generations collection item, and you should see an image appear below. If you don’t like it, re-run the flow and the image will be replaced.
 
-![Prompt reads A bunny rabbit playing in a green field](https://product-team.directus.app/assets/b0fbb3cb-6130-4e89-99dc-240481dc7913.webp)
+![Prompt reads A bunny rabbit playing in a green field](/img/b0fbb3cb-6130-4e89-99dc-240481dc7913.webp)
 
-![A rabbit is shown in the image field of the item](https://product-team.directus.app/assets/922b9c87-dba3-4fc4-bc11-6b1f1b59cd30.webp)
+![A rabbit is shown in the image field of the item](/img/922b9c87-dba3-4fc4-bc11-6b1f1b59cd30.webp)
 
 You can apply this logic to any existing collection, or use other OpenAI APIs to generate summaries of posts. If you don't like what is made, you can re-run the flow and the image will be replaced.

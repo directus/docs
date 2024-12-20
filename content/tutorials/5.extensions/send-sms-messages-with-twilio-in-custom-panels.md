@@ -10,7 +10,7 @@ description: Learn how to build a form inside a panel extension and use external
 Panels are used in dashboards as part of the Insights module. As well as read-only data panels, they can be interactive
 with form inputs.
 
-![An insights panel showing a form called message customer. The form has a dropdown with 4 items selected, and a text box for a message. The button reads send message.](https://product-team.directus.app/assets/f379b16d-b170-4355-a94d-8d23b32ef777.webp)
+![An insights panel showing a form called message customer. The form has a dropdown with 4 items selected, and a text box for a message. The button reads send message.](/img/f379b16d-b170-4355-a94d-8d23b32ef777.webp)
 
 ## Install Dependencies
 
@@ -51,7 +51,7 @@ include a professional prefix. You can choose an icon from the library [here](ht
 
 With the information above, the panel will appear in the list like this:
 
-<img alt="Twilio SMS - Send a SMS from a panel. A chat icon is shown in the box." src="https://product-team.directus.app/assets/f3b1eb51-7e82-4689-8b56-d231ccbfb1e4.webp" style="padding: 6px 7px 8px 8px;">
+<img alt="Twilio SMS - Send a SMS from a panel. A chat icon is shown in the box." src="/img/f3b1eb51-7e82-4689-8b56-d231ccbfb1e4.webp" style="padding: 6px 7px 8px 8px;">
 
 The Panel will need some configuration to be able to send messages such as the Twilio account, the sending number, where
 to find the contacts and some visual customization. In the `options` section, add two fields to collect the Twilio Phone
@@ -182,7 +182,7 @@ It is important to include `skipUndefinedKeys` which is a list of system-display
 
 This completes the `index.js` file. The output of the options will look like this:
 
-![A long form showing Twilio credential fields, collection and field selection, a filter, message, button information, an optional Send to All checkbox, and a display template.](https://product-team.directus.app/assets/e8aa63f8-769d-41e3-912d-60a150223aea.webp)
+![A long form showing Twilio credential fields, collection and field selection, a filter, message, button information, an optional Send to All checkbox, and a display template.](/img/e8aa63f8-769d-41e3-912d-60a150223aea.webp)
 
 ## Prepare the View
 
@@ -639,11 +639,11 @@ Add the following CSS:
 
 When it’s all together, the panel looks like this:
 
-<img src="https://product-team.directus.app/assets/cc5ee14f-0d50-4033-ab42-6d688292a4c0.webp" alt="A form with a select contacts dropdown and a text box. A disabled button reads Send Message." style="max-width: 400px; padding: 6px 0 0 8px;"/>
+<img src="/img/cc5ee14f-0d50-4033-ab42-6d688292a4c0.webp" alt="A form with a select contacts dropdown and a text box. A disabled button reads Send Message." style="max-width: 400px; padding: 6px 0 0 8px;"/>
 
 The confirmation panel looks like this:
 
-<img src="https://product-team.directus.app/assets/e74dbaa6-ee26-4f30-b82b-1423ac31216c.webp" alt="Popup box reads 'Send the following message to 3 recipients: This is awesome. With a cancel and confirm button." style="max-width: 400px;"/>
+<img src="/img/e74dbaa6-ee26-4f30-b82b-1423ac31216c.webp" alt="Popup box reads 'Send the following message to 3 recipients: This is awesome. With a cancel and confirm button." style="max-width: 400px;"/>
 
 Both files are now complete. Build the panel with the latest changes.
 

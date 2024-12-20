@@ -12,7 +12,7 @@ a landing page module. You will learn how to add native sidebar dropdown element
 view window, and layout options using the built-in functions of Directus. These help provide a more coherent experience
 from other Directus modules and collections.
 
-![A module showing title icon and append, action prepend, search box, and several UI buttons in the header](https://product-team.directus.app/assets/1c75b5c3-226d-4e1f-bac4-4568e59e2684.webp)
+![A module showing title icon and append, action prepend, search box, and several UI buttons in the header](/img/1c75b5c3-226d-4e1f-bac4-4568e59e2684.webp)
 
 ## Available Slots
 
@@ -56,7 +56,7 @@ This is the area above the page title utilized for the breadcrumbs. Use the foll
 ]
 ```
 
-![Two examples of breadcrumbs. One showing just Home, and one adding a second-level page called Hello World](https://product-team.directus.app/assets/8284cf66-1d53-4113-b2f7-532d8d8498c3.webp)
+![Two examples of breadcrumbs. One showing just Home, and one adding a second-level page called Hello World](/img/8284cf66-1d53-4113-b2f7-532d8d8498c3.webp)
 
 ## `title-outer:prepend`
 
@@ -71,7 +71,7 @@ an icon inside a circle. The icon relates to the current page such as the collec
 </template>
 ```
 
-![An icon is shown to the left of the title and breadcrumbs](https://product-team.directus.app/assets/51558a50-8edf-490b-9c54-5c39a4d3b14d.webp)
+![An icon is shown to the left of the title and breadcrumbs](/img/51558a50-8edf-490b-9c54-5c39a4d3b14d.webp)
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -97,7 +97,7 @@ bookmarks. In this example, the slot is used for a clickable icon button.
 </template>
 ```
 
-![An icon is shown to the right of the title and breadcrumbs](https://product-team.directus.app/assets/31933ee3-786f-4615-aad7-277fc9d23b89.webp)
+![An icon is shown to the right of the title and breadcrumbs](/img/31933ee3-786f-4615-aad7-277fc9d23b89.webp)
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -141,7 +141,7 @@ You will also need to style the search. I suggest matching the existing one in D
 }
 ```
 
-![A search box and button with an icon](https://product-team.directus.app/assets/b84c2f45-0db0-4d48-a60d-d8edeb0eef1a.webp)
+![A search box and button with an icon](/img/b84c2f45-0db0-4d48-a60d-d8edeb0eef1a.webp)
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -160,7 +160,7 @@ to ensure it outputs on a single line.
 </template>
 ```
 
-![To the left of the search box is the text 'ACTION PREPEND' broken over two lines and unstyled.](https://product-team.directus.app/assets/42c337a1-61a8-4d75-88fb-85b1e1c9dac6.webp)
+![To the left of the search box is the text 'ACTION PREPEND' broken over two lines and unstyled.](/img/42c337a1-61a8-4d75-88fb-85b1e1c9dac6.webp)
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -189,7 +189,7 @@ section outputs some custom text.
 </template>
 ```
 
-![Sidebar shows a title called Information with a close button, and a collapsible section called Sidebar Item with text inside of it.](https://product-team.directus.app/assets/7c814289-e3ed-4c29-a29e-eca48ffb432a.webp)
+![Sidebar shows a title called Information with a close button, and a collapsible section called Sidebar Item with text inside of it.](/img/7c814289-e3ed-4c29-a29e-eca48ffb432a.webp)
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -290,7 +290,7 @@ Add the following CSS to your style for the default styling of the `SplitView` c
 This outputs an eye button in the `actions` slot. When clicked, the `SplitView` container slides in from the right.
 Clicking the button again slides the container out to the right.
 
-![The screen is split into two panes. The left contains the existing module. The right contains a minimally-styled and quite empty split view.](https://product-team.directus.app/assets/9ec199ec-8a5b-4de7-8653-5200df6def9d.webp)
+![The screen is split into two panes. The left contains the existing module. The right contains a minimally-styled and quite empty split view.](/img/9ec199ec-8a5b-4de7-8653-5200df6def9d.webp)
 
 ## Permissions
 
@@ -326,7 +326,7 @@ when the permission constant is `false`:
 </private-view>
 ```
 
-![Large unauthorized error page](https://product-team.directus.app/assets/e04a2d6e-6633-4606-9cb5-709168bbc629.webp)
+![Large unauthorized error page](/img/e04a2d6e-6633-4606-9cb5-709168bbc629.webp)
 
 ::callout{icon="material-symbols:info-outline"}
 

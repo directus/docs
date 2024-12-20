@@ -36,7 +36,7 @@ Also, replace `username` with your server's username and `server_ip` with your s
 
 In the example below, I am copying the whole Directus folder to the home directory (`~`) of my server.
 
-![Copying files to the server with scp](https://product-team.directus.app/assets/09e1807d-271e-4d52-91f6-951d3436ce34.webp)
+![Copying files to the server with scp](/img/09e1807d-271e-4d52-91f6-951d3436ce34.webp)
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -210,7 +210,7 @@ Run the following command to check the status of the service:
 sudo systemctl status directus.service
 ```
 
-![Terminal showing the Directus service status](https://product-team.directus.app/assets/d3700c60-97c5-4595-ace6-2d2a88c798c3.webp)
+![Terminal showing the Directus service status](/img/d3700c60-97c5-4595-ace6-2d2a88c798c3.webp)
 
 You can also confirm if your application is still running at `http://your_server_ip:8055`.
 
@@ -225,7 +225,7 @@ Configuring DNS settings for your domain is a crucial step in making your Direct
 
 You can confirm your changes by visiting the application by visiting `http://directus.exampledomain.com:8055`.
 
-![Directus application accessed by the domain at port 8055. The browser marks the page as Not Secure.](https://product-team.directus.app/assets/5025c36f-e7e2-4232-9d4e-184a3c8c2039.webp)
+![Directus application accessed by the domain at port 8055. The browser marks the page as Not Secure.](/img/5025c36f-e7e2-4232-9d4e-184a3c8c2039.webp)
 
 ## Setting Up Nginx as a Reverse Proxy
 
@@ -312,11 +312,11 @@ Certbot will interactively guide you through the setup process.
 
 Ensure you select the option to redirect HTTP traffic to HTTPS when prompted. Certbot will automatically configure Nginx to use the SSL certificate. Also make sure to renew the certificate before it expires to maintain a secure connection.
 
-![HTTP to HTTPS redirect with certbot. The terminal shows an interactive prompt providing options to either redirect or not redirect.](https://product-team.directus.app/assets/4b3aeef8-f1a0-4fdc-9704-3988f4026cd6.webp)
+![HTTP to HTTPS redirect with certbot. The terminal shows an interactive prompt providing options to either redirect or not redirect.](/img/4b3aeef8-f1a0-4fdc-9704-3988f4026cd6.webp)
 
 After the setup is complete, visit your Directus application using `https://directus.exampledomain.com` in a web browser to verify the SSL Certificate. You should see a padlock icon indicating a secure SSL connection. You should also be automatically redirected from `http` to `https`.
 
-![URL in the browser uses http and is marked as secure.](https://product-team.directus.app/assets/480c9f17-8819-48e4-9d01-ed0e8afc2322.webp)
+![URL in the browser uses http and is marked as secure.](/img/480c9f17-8819-48e4-9d01-ed0e8afc2322.webp)
 
 ## Summary
 

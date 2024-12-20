@@ -27,7 +27,7 @@ You will need:
 
 Before setting up Directus, let's understand how the different data models you will set up in Directus are related. You need 3 data collections - `roomtypes`, `rooms`, `reservations`.
 
-![An ER diagram showing the fields and relationships defined below.](https://product-team.directus.app/assets/d518b80b-1fc0-4151-854f-c1a973aac4b6.webp)
+![An ER diagram showing the fields and relationships defined below.](/img/d518b80b-1fc0-4151-854f-c1a973aac4b6.webp)
 
 - `room_types` are the hotel's different types of rooms and can have multiple `rooms`.
 - `rooms` are all the rooms the hotel has. A single room can only be of one `room_types` and can contain multiple reservations.
@@ -362,7 +362,7 @@ export default function Home() {
 }
 ```
 
-![Screenshot of the application homepage with a data picker](https://product-team.directus.app/assets/aace075b-cdac-411d-95dc-0377aa413c90.webp)
+![Screenshot of the application homepage with a data picker](/img/aace075b-cdac-411d-95dc-0377aa413c90.webp)
 
 ## Show Available Rooms
 
@@ -424,7 +424,7 @@ export default async function Rooms({
 - Displays the available room types fetched from the `getRoomTypes` function and displays in HTML
 - Checks the `roomTypes.rooms` array to determine if a room is available and displays a link to book that room. If there's an available room, it renders a link to the booking form that room. Otherwise, it renders an `Room unavailable` text.
 
-![Screenshot of available rooms by room types page in Next.js when booking a room](https://product-team.directus.app/assets/06d43baa-5a0e-41eb-a27f-410b6295a167.webp)
+![Screenshot of available rooms by room types page in Next.js when booking a room](/img/06d43baa-5a0e-41eb-a27f-410b6295a167.webp)
 
 ## Set up Stripe for Receiving Payments
 
@@ -691,11 +691,11 @@ export default async function Bookings({
 }
 ```
 
-![Screenshot of the booking form with room widget component](https://product-team.directus.app/assets/07368fc6-100f-4942-bae2-6ee6167a3a08.webp)
+![Screenshot of the booking form with room widget component](/img/07368fc6-100f-4942-bae2-6ee6167a3a08.webp)
 
 Clicking on the `Book Room` button to submit the form will trigger a Stripe payment and take you to a Stripe checkout:
 
-![A Stripe checkout](https://product-team.directus.app/assets/3e7bde10-d959-4d31-bd61-9f5aeceed004.webp)
+![A Stripe checkout](/img/3e7bde10-d959-4d31-bd61-9f5aeceed004.webp)
 
 This form will trigger a stripe payment to pay for the selected room.
 
@@ -722,7 +722,7 @@ export default function SuccessPage() {
 }
 ```
 
-![A page showing a success message and a link to the homepage](https://product-team.directus.app/assets/c4903fb9-5155-4cab-bc6d-cb3f36a86aff.webp)
+![A page showing a success message and a link to the homepage](/img/c4903fb9-5155-4cab-bc6d-cb3f36a86aff.webp)
 
 ## Configure A Webhook for Stripe Payment Events
 
@@ -853,7 +853,7 @@ stripe trigger payment_intent.succeeded
 
 You will receive a response that looks like this:
 
-![Screenshot of the Stripe webhook logs](https://product-team.directus.app/assets/79bb025b-f65e-4513-9e76-edf1fe1f807f.webp)
+![Screenshot of the Stripe webhook logs](/img/79bb025b-f65e-4513-9e76-edf1fe1f807f.webp)
 
 ## Summary
 

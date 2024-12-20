@@ -143,7 +143,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
 ```
 
-![Home page withg global metadata settings](https://product-team.directus.app/assets/8c4581b7-59f0-4584-94ed-5f3ae27c5239.webp)
+![Home page withg global metadata settings](/img/8c4581b7-59f0-4584-94ed-5f3ae27c5239.webp)
 
 ## Creating Pages With Directus
 
@@ -208,7 +208,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Navigate to `http://127.0.0.1:8000/page/about` to view the About page.
 
-![dynamic about page](https://product-team.directus.app/assets/3eaa88b8-b18c-4f81-9a33-17f178f80c2f.webp)
+![dynamic about page](/img/3eaa88b8-b18c-4f81-9a33-17f178f80c2f.webp)
 
 ### Creating Blog Posts With Directus
 
@@ -323,7 +323,7 @@ Route::get('/', [HomeController::class, 'index']);
 ```
 Navigate to `http://127.0.0.1:8000/blog` to access the blogs page.
 
-![blog list page](https://product-team.directus.app/assets/37562bf0-164e-436d-a7e1-6f42ef1afe9a.webp)
+![blog list page](/img/37562bf0-164e-436d-a7e1-6f42ef1afe9a.webp)
 
 ## Add Navigation
 
@@ -377,7 +377,7 @@ Update all your views files in the **views** directory to add the navigation:
 </nav>
 ```
 
-![A content page with three navigation links at the top.](https://product-team.directus.app/assets/e55b9b9f-a74f-44d8-926e-29a274c8a41e.webp)
+![A content page with three navigation links at the top.](/img/e55b9b9f-a74f-44d8-926e-29a274c8a41e.webp)
 
 ## Summary
 

@@ -23,15 +23,15 @@ Create a new collection called `notes` with all optional fields enabled. Create 
 -   `website` - new field with type `string`
 -   `note` - new field with type `string`
 
-![Notes Collection showing all optional fields and the website and note custom fields](https://product-team.directus.app/assets/435034e2-60bd-4ed4-b9a2-46685662c54e.webp)
+![Notes Collection showing all optional fields and the website and note custom fields](/img/435034e2-60bd-4ed4-b9a2-46685662c54e.webp)
 
 ### Set Up Roles
 
 In order to create new note, edit note or delete note on behalf of user, we need to create separate role. Create a `customer` role for new users. In the access control settings for the role, allow creation on the `notes` collection and custom read, edit, and delete permissions: `user_created equals $CURRENT_USER`.
 
-![Customer Role Permissions](https://product-team.directus.app/assets/43a3c72b-f0e5-4f08-98d1-188d630c9509.webp)
+![Customer Role Permissions](/img/43a3c72b-f0e5-4f08-98d1-188d630c9509.webp)
 
-![Filter Notes](https://product-team.directus.app/assets/0ce9a861-27a4-44d7-93fb-5481b7711945.webp)
+![Filter Notes](/img/0ce9a861-27a4-44d7-93fb-5481b7711945.webp)
 
 # Initialize Extension
 
@@ -219,7 +219,7 @@ Add the route in `routes`
     },
 ```
 
-![Signup](https://product-team.directus.app/assets/58b010e0-8981-4ef2-b08f-2a94614cfa1b.webp)
+![Signup](/img/58b010e0-8981-4ef2-b08f-2a94614cfa1b.webp)
 
 ## Setup Login
 
@@ -287,7 +287,7 @@ import LoginView from "../views/login.vue";
     },
 ```
 
-![Login](https://product-team.directus.app/assets/12292511-522d-4142-baca-ad63c7af8a31.webp)
+![Login](/img/12292511-522d-4142-baca-ad63c7af8a31.webp)
 
 
 ## Setup Home Page
@@ -375,7 +375,7 @@ import HomeView from "../views/home.vue";
 },
 ```
 
-![Home Page](https://product-team.directus.app/assets/0f21f1a5-ee69-4e45-8535-2200bf985184.webp)
+![Home Page](/img/0f21f1a5-ee69-4e45-8535-2200bf985184.webp)
 
 ## Create and Edit Notes
 
@@ -469,9 +469,9 @@ import Upsert from "../views/upsert.vue";
     },
 ```
 
-![Create Note](https://product-team.directus.app/assets/0f21f1a5-ee69-4e45-8535-2200bf985184.webp)
+![Create Note](/img/0f21f1a5-ee69-4e45-8535-2200bf985184.webp)
 
-![Edit Note](https://product-team.directus.app/assets/a5946d5b-75cd-45b6-9f8b-fcded5eb8916.webp)
+![Edit Note](/img/a5946d5b-75cd-45b6-9f8b-fcded5eb8916.webp)
 
 ## Summary
 

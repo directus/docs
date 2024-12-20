@@ -10,7 +10,7 @@ description: Learn how to work with relational data in display extensions.
 Displays provide a meaningful way for users to consume data. This guide will show you how to create a display that
 queries another table and returns the `SUM` or `COUNT` of a column.
 
-![In a table, a new field called 'Test Junction' is shown. The values are '5 items' and '2 items'.](https://product-team.directus.app/assets/ea21a1b0-0eeb-4f3d-a89c-6ee3b469f8fe.webp)
+![In a table, a new field called 'Test Junction' is shown. The values are '5 items' and '2 items'.](/img/ea21a1b0-0eeb-4f3d-a89c-6ee3b469f8fe.webp)
 
 ## Install Dependencies
 
@@ -59,7 +59,7 @@ include a professional prefix. You can choose an icon from the library [here](ht
 
 With the information above, the display will appear in the list like this:
 
-![A new display option is shown - Related Values.](https://product-team.directus.app/assets/c7978989-5045-4443-bf49-695bf77e9fff.webp)
+![A new display option is shown - Related Values.](/img/c7978989-5045-4443-bf49-695bf77e9fff.webp)
 
 Currently the options object is `null`. To provide the option to include months, update the `options` object with the
 following code:
@@ -191,7 +191,7 @@ the performance of Directus.
 
 Here is a preview of how this appears in Directus:
 
-![New display options showing a select field for column, a checkbox for calculate sum, and text fields for prefix and suffix.](https://product-team.directus.app/assets/bdeff396-adf1-4e4a-a996-f20b51846baa.webp)
+![New display options showing a select field for column, a checkbox for calculate sum, and text fields for prefix and suffix.](/img/bdeff396-adf1-4e4a-a996-f20b51846baa.webp)
 
 ## Build the View
 
@@ -318,7 +318,7 @@ display:
 2. After saving the new field, edit the field to configure the display and populate the fields as needed.
 3. Save changes and add some data to the table. You will see the relational fields at work in the layout.
 
-![In a table, a new field called 'Test Junction' is shown. The values are '5 items' and '2 items'.](https://product-team.directus.app/assets/ea21a1b0-0eeb-4f3d-a89c-6ee3b469f8fe.webp)
+![In a table, a new field called 'Test Junction' is shown. The values are '5 items' and '2 items'.](/img/ea21a1b0-0eeb-4f3d-a89c-6ee3b469f8fe.webp)
 
 ## Summary
 

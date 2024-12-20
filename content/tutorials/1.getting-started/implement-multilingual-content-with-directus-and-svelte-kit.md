@@ -65,7 +65,7 @@ The `direction` field enables support for languages that read right to left.
 
 To enable content translation in your `news` collection, create a `translations` field using translation interface. Select `name` as the **Language Indicator Field**, `direction` as the **Language Direction Field** and `en-US` as the Default Language.
 
-![Creating Directus translations collection](https://product-team.directus.app/assets/32a90fbb-0616-468d-af51-449d2aac052a.webp)
+![Creating Directus translations collection](/img/32a90fbb-0616-468d-af51-449d2aac052a.webp)
 
 Once you save, a new collection named `news_translations` will be created for you. In the `news_translations` collection, you will add the fields that need translations.
 
@@ -76,11 +76,11 @@ Add the following fields to the `news_translations` collection:
 
 Add each language you want to support as items in the `languages` collection.
 
-![Creating new entries in the languages collections](https://product-team.directus.app/assets/41f0e97d-d934-4f17-98c4-8db109432921.webp)
+![Creating new entries in the languages collections](/img/41f0e97d-d934-4f17-98c4-8db109432921.webp)
 
 The item page for the `news` collection now includes a translations interface.
 
-![Creating new entries in the news collections](https://product-team.directus.app/assets/2d057209-f494-4b16-8de3-32a5cc6f9416.webp)
+![Creating new entries in the news collections](/img/2d057209-f494-4b16-8de3-32a5cc6f9416.webp)
 
 llow the Public role to read the `news`, `languages` and `news_translations` collections in the Access Control settings to ensure the frontend can access these collections.
 
@@ -288,7 +288,7 @@ export async function load({ fetch, params, url }) {
 }
 ```
 
-![News translation using Directus i18n API](https://product-team.directus.app/assets/ef8530fc-593e-4a55-9697-d38b7758f59b.webp)
+![News translation using Directus i18n API](/img/ef8530fc-593e-4a55-9697-d38b7758f59b.webp)
 
 Now you translate the news in English, German, and French.
 
@@ -336,7 +336,7 @@ The above code will:
 - Render an input field and a button to allow the user to enter a search query and trigger the search.
 - Display the searched news or all the news if no search is made.
 
-![News list with search functionality](https://product-team.directus.app/assets/20803090-76ff-49af-af4c-2f5e70735703.webp)
+![News list with search functionality](/img/20803090-76ff-49af-af4c-2f5e70735703.webp)
 
 ## Summary
 
