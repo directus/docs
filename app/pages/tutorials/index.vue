@@ -11,6 +11,14 @@ const { data: categories } = await useAsyncData(route.path + '-categories', () =
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
+
+defineOgImage({
+	component: 'OgImageDefault',
+	props: {
+		title: page.value.title,
+		breadcrumb: pageBreadcrumb(page.value._path!),
+	},
+});
 </script>
 
 <template>

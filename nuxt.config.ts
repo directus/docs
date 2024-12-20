@@ -8,6 +8,7 @@ export default defineNuxtConfig({
 		'@nuxt/ui',
 		'@nuxtjs/tailwindcss',
 		'@nuxt/scripts',
+		'@nuxtjs/seo',
 		'@vueuse/nuxt',
 		'nuxt-posthog',
 	],

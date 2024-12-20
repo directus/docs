@@ -15,6 +15,14 @@ if (!page.value) {
 const headline = computed(() => findPageHeadline(page.value!));
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent().where({ _extension: 'md', navigation: { $ne: false } }).only(['title', 'description', '_path']).findSurround(withoutTrailingSlash(route.path)));
+
+defineOgImage({
+	component: 'OgImageDefault',
+	props: {
+		title: page.value.title,
+		breadcrumb: pageBreadcrumb(page.value._path!),
+	},
+});
 </script>
 
 <template>
@@ -24,7 +32,6 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			:description="page!.description"
 			:links="page!.links"
 			:headline="headline"
-
 		/>
 
 		<UPageBody prose>
