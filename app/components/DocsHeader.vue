@@ -68,7 +68,7 @@ const navigationTree = computed(() => {
 		</template>
 
 		<template #panel>
-			<UAsideLinks :links="header.nav" />
+			<UNavigationTree :links="header.nav" />
 			<UDivider
 				type="dashed"
 				class="my-4"
