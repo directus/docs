@@ -13,6 +13,8 @@ const linkMap = {
 	'content': '/guides/content/explore',
 	'connect': '/guides/connect/authentication',
 	'data-model': '/guides/data-model/collections',
+	'editor': '/guides/content/edior',
+	'explore': '/guides/content/explore',
 	'extensions': '/guides/extensions/overview',
 	'files': '/guides/files/upload',
 	'insights': '/guides/insights/overview',

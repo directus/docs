@@ -21,7 +21,7 @@ navigation: false
   docker run -p 8055:8055 directus/directus
   ```
 
-  This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/quickstart) to learn how to create a project with persistence.
+  This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/create-a-project) to learn how to create a project with persistence.
   ::::
 
   ::::div{class="pr-6"}
@@ -49,7 +49,7 @@ navigation: false
   class: col-span-6
   ---
   :::
-  
+
   :::shiny-card
   ---
   title: Directus Academy
@@ -68,17 +68,15 @@ navigation: false
   ---
   title: Data Engine
   description: APIs and developer tools for your data.
-  icon: directus-connect
   class: col-span-6
   ---
   :product-link{product="connect"} :product-link{product="realtime"} :product-link{product="auth"} :product-link{product="automate"}
   :::
-  
+
   :::shiny-card
   ---
   title: Data Studio
   description: A data web app your whole team will love.
-  icon: directus-explore
   class: col-span-6
   ---
   :product-link{product="explore"} :product-link{product="editor"} :product-link{product="insights"} :product-link{product="files"}
@@ -93,11 +91,11 @@ navigation: false
   title: Quickstart
   description: Learn to connect with Directus.
   icon: heroicons-outline:star
-  to: '/getting-started/connect'
+  to: '/getting-started/use-the-api'
   class: col-span-4
   ---
   :::
-  
+
   :::shiny-card
   ---
   title: API Reference
@@ -107,13 +105,13 @@ navigation: false
   class: col-span-4
   ---
   :::
-  
+
   :::shiny-card
   ---
   title: SDK
   description: A JavaScript and TypeScript library that simplifies working with Directus.
   icon: heroicons-outline:code
-  to: '/getting-started/connect/sdk'
+  to: '/guides/connect/sdk'
   class: col-span-4
   ---
   :::
@@ -124,10 +122,10 @@ navigation: false
 ::shiny-grid
   :::shiny-card
   ---
-  title: Get Started with Directus
+  title: Integrate Your Frontend
   description: Learn how to build a website using Directus as a Headless CMS using various frameworks.
-  icon: simple-icons:nextdotjs
-  to: '/tutorials/getting-started/fetch-data-from-directus-with-nextjs'
+  icon: material-symbols:web
+  to: '/tutorials/getting-started'
   class: col-span-4
   ---
   :::
@@ -136,7 +134,7 @@ navigation: false
   ---
   title: Build Projects with Directus
   description: Learn from a variety of different usecases you can build using Directus.
-  icon: heroicons-outline:command-line
+  icon: heroicons-outline:wrench
   to: '/tutorials/projects'
   class: col-span-4
   ---
@@ -156,7 +154,7 @@ navigation: false
   ---
   title: Migrate
   description: Migrate from other platforms to Directus.
-  icon: heroicons-outline:map
+  icon: carbon:migrate
   to: '/tutorials/migration'
   class: col-span-4
   ---
@@ -176,7 +174,7 @@ navigation: false
   ---
   title: Workflows
   description: Learn to automate Directus.
-  icon: heroicons-outline:wrench
+  icon: material-symbols:flowchart-outline
   to: '/tutorials/workflows'
   class: col-span-4
   ---
@@ -263,7 +261,7 @@ navigation: false
   class: col-span-4
   ---
   :::
-  
+
   :::shiny-card
   ---
   title: Helm Chart
@@ -291,7 +289,7 @@ navigation: false
   class: col-span-4
   ---
   :::
-  
+
   :::shiny-card
   ---
   title: Building Extensions
@@ -301,7 +299,7 @@ navigation: false
   class: col-span-4
   ---
   :::
-  
+
   :::shiny-card
   ---
   title: Self-Hosting
