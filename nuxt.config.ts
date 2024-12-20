@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-
 	extends: ['@nuxt/ui-pro'],
 
 	modules: [
@@ -17,6 +16,11 @@ export default defineNuxtConfig({
 	devtools: {
 		enabled: true,
 	},
+
+	app: {
+		baseURL: '/docs/',
+	},
+
 	site: {
 		url: 'https://docs.directus.io',
 		name: 'Directus Docs',
@@ -91,7 +95,7 @@ export default defineNuxtConfig({
 			// This is a dirty hack to get around a build blocking error..
 			// I can't for the life of me figure out where this magic </span link comes from
 			// ~ Rijk 12/19/2024
-			ignore: ['/api/</span'],
+			ignore: ['/docs/api/</span'],
 		},
 	},
 
