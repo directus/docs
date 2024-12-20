@@ -39,7 +39,7 @@ export default defineAppConfig({
 					},
 					{
 						label: 'Insights',
-						to: '/guides/insights/quickstart',
+						to: '/guides/insights/overview',
 						icon: 'directus-insights',
 					},
 					{
