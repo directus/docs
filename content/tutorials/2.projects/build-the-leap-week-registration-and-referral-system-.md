@@ -2,11 +2,12 @@
 id: 86f258e4-f1ef-4e33-8dd8-fce88161e748
 slug: build-the-leap-week-registration-and-referral-system-
 title: Build the Leap Week Registration and Referral System
-authors: 
+authors:
   - name: Bryant Gillespie
     title: Growth Engineer
+description: Learn how we built our referral-based ticketing and raffle system with AI-generated rabbitars.
 ---
-I recently shipped the ticketing system for [Leap Week 3](https://leapweek.dev) - our week long launch celebration for developers at Directus. There are product announcements, workshops, giveaways, and more. 
+I recently shipped the ticketing system for [Leap Week 3](https://leapweek.dev) - our week long launch celebration for developers at Directus. There are product announcements, workshops, giveaways, and more.
 
 While the live events are broadcast via [Directus TV](https://directus.io/tv), the registration has typically been powered by existing ticketing platforms. This time, we decided to build our own, powered by Directus.
 
@@ -28,7 +29,7 @@ When a unique ticket link is shared, we use that avatar to create a personalize
 
 ## Landing Page Builder
 
-Directus runs the whole backend of this project from ticketing and registration to serving data for the landing page. 
+Directus runs the whole backend of this project from ticketing and registration to serving data for the landing page.
 
 The concept of `blocks` is one we use a lot at Directus, utilizing the Many-to-Any (M2A) relation type to create flexible page builders. We also utilized it in the project for building event landing pages - blocks include elements like schedules, call-to-actions (CTAs), speakers, and cards. They can be added in any order or quantity when creating a page.
 
@@ -157,7 +158,7 @@ export default defineEventHandler(async (event) => {
 
 ## Nuxt Route Rules
 
-Nuxt Route Rules keep the site speedy by allowing different rendering modes based on specific routes – an uncommon feature for other frameworks. 
+Nuxt Route Rules keep the site speedy by allowing different rendering modes based on specific routes – an uncommon feature for other frameworks.
 
 ```jsx
 export default defineNuxtConfig({
@@ -177,9 +178,9 @@ export default defineNuxtConfig({
 
 ## Referral Tracking
 
-We wanted to offer more chances in the giveaway for referrals so we needed to build a mechanism to control that. 
+We wanted to offer more chances in the giveaway for referrals so we needed to build a mechanism to control that.
 
-Once you generate your personalized rabbitar - you can share it to increase your odds of winning. Each person your refer earns you another entry in the giveaway. 
+Once you generate your personalized rabbitar - you can share it to increase your odds of winning. Each person your refer earns you another entry in the giveaway.
 
 To track this, we tag the visitor with a `referral_ticket_id` cookie whenever they visit a registrant personal url. Whenever a visitor registers for the event, we check for the cookie, and update a `referred_by` field inside our Directus backend.
 
@@ -189,9 +190,9 @@ This is surfaced to the registrant as a “Swag-O-Meter” on their personalized
 
 ## **Function Timeouts**
 
-[leapweek.dev](http://Leapweek.dev) is hosted on Netlify. We’ve got a number of our other projects hosted there and I’m pretty familiar with the workflow. With Nuxt, there’s not really much configuration to be done, aside from connecting your repo and adding your ENV variables. 
+[leapweek.dev](http://Leapweek.dev) is hosted on Netlify. We’ve got a number of our other projects hosted there and I’m pretty familiar with the workflow. With Nuxt, there’s not really much configuration to be done, aside from connecting your repo and adding your ENV variables.
 
-But Dall•E 3 currently takes roughly between ~15-21 seconds to generate a rabbitar for the site. In local development this wasn’t a problem, but once deployed to Netlify, we were getting timeouts on the serverless functions because the default timeout is 10 secs. 
+But Dall•E 3 currently takes roughly between ~15-21 seconds to generate a rabbitar for the site. In local development this wasn’t a problem, but once deployed to Netlify, we were getting timeouts on the serverless functions because the default timeout is 10 secs.
 
 The Netlify support team was right there to help us out. They increased our limit to 26 secs and we’ve not had anymore issues.
 
@@ -219,15 +220,15 @@ definePageMeta({
 </script>
 ```
 
-Which gives us a final url like `https://leapweek.dev/t/bryant-gillespie` 
+Which gives us a final url like `https://leapweek.dev/t/bryant-gillespie`
 
 ## **Dynamic Social Images and Caching**
 
 Dynamically generated OG images are cool, but it’s hard to ensure they render perfectly on different social media platforms. Each platform tends to have it’s own cache for OG images, making it harder to figure out than the Water Temple in Ocarina of Time.
 
-For actually generating the dynamic social share images and caching them, we use the [Nuxt OG-Image module](https://nuxt.com/modules/og-image) by Harlan Wilton. It abstracts away a lot of the complexities of serving up dynamic social images. 
+For actually generating the dynamic social share images and caching them, we use the [Nuxt OG-Image module](https://nuxt.com/modules/og-image) by Harlan Wilton. It abstracts away a lot of the complexities of serving up dynamic social images.
 
-Under the hood, it uses [Satori by Vercel](https://github.com/vercel/satori) to render the images from a Vue component. But because of that there are some caveats about component structure and how you can style your images. 
+Under the hood, it uses [Satori by Vercel](https://github.com/vercel/satori) to render the images from a Vue component. But because of that there are some caveats about component structure and how you can style your images.
 
 When someone updates their avatar, we also need to purge the cached image so we don’t show the previous one. That’s handled inside a Nuxt server route as well.
 
@@ -300,6 +301,6 @@ I also put together a nice dashboard for the team to track sign ups and view all
 
 ## In Summary
 
-This was a really fun project which brings together a lot of powerful Directus features and usage patterns into an application that solves our team’s needs. There were a lot of interesting small edge cases that we have shared here so you can build your own. 
+This was a really fun project which brings together a lot of powerful Directus features and usage patterns into an application that solves our team’s needs. There were a lot of interesting small edge cases that we have shared here so you can build your own.
 
 [Leap Week 3](https://leapweek.dev) starts June 17 2024 and it’s not too late to build your rabbitar and enter our prize raffle.

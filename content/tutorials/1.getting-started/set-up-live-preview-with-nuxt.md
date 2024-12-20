@@ -5,6 +5,7 @@ title: Set Up Live Preview with Nuxt
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to create a Nuxt preview plugin to configure Live Preview.
 ---
 Directus' Live Preview feature allows you to show changes in your website collection before publishing and without the
 need to refresh the browser.

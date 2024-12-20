@@ -1,10 +1,11 @@
 ---
 id: 3da7bf05-c74c-4e24-bf83-1d2598b89004
-slug: fetch-data-from-directus-with-solid-start
+slug: fetch-data-from-directus-with-solidstart
 title: Fetch Data from Directus with SolidStart
 authors:
   - name: Atila Fassina
     title: Guest Author
+description: Learn how to integrate Directus in your SolidStart web application.
 ---
 [SolidStart](https://start.solidjs.com) a meta-framework built around [SolidJS](https://solidjs.com) - SolidStart is a framework aiming to allow people and teams to built high-end applications without being too opinionated. In this tutorial, you will learn how to build a website using Directus as a CMS. You will store, retrieve, and use global metadata such as the site title, create new pages dynamically based on Directus items, and build a blog.
 

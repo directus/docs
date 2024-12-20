@@ -2,16 +2,17 @@
 id: bb540f00-8933-46f1-a2ef-e353e2df160d
 slug: integrate-algolia-indexing-with-custom-hooks
 title: Integrate Algolia Indexing with Custom Hooks
-authors: 
+authors:
   - name: Marvel Ken-Anele
     title: Guest Author
+description: Learn how to maintain an Algolia index when data is created, updated, and deleted.
 ---
 
-In this article, we will explore how to index data from Directus in Algolia, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications. Given that Algolia only support their official JavaScript client and not the REST API directly, we will build a hook extension which utilizes the client. 
+In this article, we will explore how to index data from Directus in Algolia, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications. Given that Algolia only support their official JavaScript client and not the REST API directly, we will build a hook extension which utilizes the client.
 
 ## Setting Up Directus
 
-You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions. 
+You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions.
 
 In your new project, create a collection called `posts` with a `title`, `content`, and `author` field.
 
@@ -23,7 +24,7 @@ In your terminal, navigate to your `extensions` directory and run `npx create-di
 
 ## Setting Up Algolia
 
-To integrate Directus and Algolia we will need our Algolia application ID and write API key. If you don't have an account already, [create one](https://www.algolia.com/users/sign_up), and you will see the credentials in your dashboard.  
+To integrate Directus and Algolia we will need our Algolia application ID and write API key. If you don't have an account already, [create one](https://www.algolia.com/users/sign_up), and you will see the credentials in your dashboard.
 
 ![An image of Algolia Dashboard](https://product-team.directus.app/assets/97c2157a-9b88-4d31-8b16-ac4e47c3ffac.webp)
 
@@ -51,7 +52,7 @@ export default ({ action }) => {
 };
 ```
 
-An `action` hook runs after an item has been created. Data passed in the `meta` property includes the new `key` (ID) of the item, and all the value of all fields created in the `payload` property. 
+An `action` hook runs after an item has been created. Data passed in the `meta` property includes the new `key` (ID) of the item, and all the value of all fields created in the `payload` property.
 
 For item creation (posts.items.create), the code registers a hook that triggers when a new item is added to the posts collection. The item is saved with an `objectID` set to the Directus item `id`, ensuring it can be accurately referenced and managed in Algolia.
 

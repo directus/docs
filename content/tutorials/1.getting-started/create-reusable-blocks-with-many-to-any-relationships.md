@@ -5,7 +5,7 @@ title: Create Reusable Blocks with Many-to-Any Relationships
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer
-description: Many websites are made of common, repeating sections or groups of content.
+description: Learn how to data model for multiple, repeating sections of content.
 ---
 
 Many websites are made of common, repeating sections or groups of content.

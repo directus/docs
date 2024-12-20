@@ -5,6 +5,7 @@ title: Fetch Data from Directus with Flask
 authors:
   - name: Guilherme Souza
     title: Guest Author
+description: Learn how to integrate Directus in your Flask web application.
 ---
 
 [Flask](https://flask.palletsprojects.com/en/3.0.x/) is a minimal Python framework used to build web applications. In this tutorial, you will store, retrieve, and use global metadata, pages, and posts based on a Directus project.
@@ -241,7 +242,7 @@ Then create a `templates/blog.html` file to display the posts data to users.
 	<h1>Blog posts</h1>
 	<ol>
 		{% for post in posts %}
-		<li>	
+		<li>
 			<article>
 				<h2>{{ post["title"] }}</h2>
 				<span>

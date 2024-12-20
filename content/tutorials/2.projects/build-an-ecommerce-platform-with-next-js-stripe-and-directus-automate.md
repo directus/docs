@@ -2,9 +2,10 @@
 id: e9fd65f3-e853-4ecb-8706-74c8fa342b43
 slug: build-an-ecommerce-platform-with-next-js-stripe-and-directus-automate
 title: Build an Ecommerce Platform with Next.js, Stripe, and Directus Automate
-authors: 
+authors:
   - name: Trust Jamin
     title: Guest Author
+description: Learn to integrate Stripe with Directus Automate to build an e-commerce website.
 ---
 E-commerce websites are among the most popular for businesses as they enable customers to purchase items from your store from the comfort of their homes. In this article, you'll build an e-commerce store with Next.js as its front end, Directus as its backend services, and Stripe for payment processing.
 
@@ -51,13 +52,13 @@ In your Directus project, head to Settings -> Data Model to create these data mo
    - `payment_id`:  A string input for the order payment that happened on Stripe.
    - `total_amount`: A string input for the total cost of the order
    - `products`: A One to Many relational field related to the `products` collection, signifying that an order can have multiple products.
-   
+
 Create some items in the Categories and Products collections - [here's some sample data.](https://github.com/directus-labs/blog-example-ecommerce/tree/main/sample-data)
 
 In Settings -> Access Control -> Public, enable permission for the models created so they can be accessed from the Next.js application.
 
 ![Permission settings for data models in Directus. categories read. orders create and read. products read and edit. directus_files read.](https://product-team.directus.app/assets/9f65db4d-a52e-448d-ad22-1ac415190b64.webp)
-   
+
 ## Set Up a Next.js Application
 
 Run the following commandsto initialize a Next.js projects and install dependencies:

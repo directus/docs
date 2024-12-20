@@ -5,6 +5,7 @@ title: Deploy Directus to Azure Web Apps
 authors:
   - name: Durojaye Olusegun
     title: Guest Author
+description: Learn how to deploy Directus on a Docker container on Azure.
 ---
 This guide outlines the steps to deploy Directus on Azure using Docker, with a focus on utilizing PostgreSQL as a database.
 

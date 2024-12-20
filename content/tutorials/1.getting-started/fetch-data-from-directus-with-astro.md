@@ -5,6 +5,7 @@ title: Fetch Data from Directus with Astro
 authors:
   - name: Trust Jamin
     title: Guest Author
+description: Learn how to integrate Directus in your Astro web application.
 ---
 [Astro](https://astro.build/) is a web framework used for building content-heavy websites. In this tutorial, you will learn how to build a website using Directus as a headless CMS. You will store, retrieve, and use global metadata such as the site title, create new pages dynamically based on Directus items, and build a blog.
 

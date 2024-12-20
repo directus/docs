@@ -2,9 +2,10 @@
 id: 95197ebe-fc70-4f80-a053-a894f3b0b00a
 slug: build-a-testimonial-widget-with-sveltekit-and-directus
 title: Build a Testimonial Widget with SvelteKit and Directus
-authors: 
+authors:
   - name: Quadri Sheriff
     title: Guest Author
+description: Learn how to set up a testimonial widget using SvelteKit and Directus.
 ---
 In this tutorial, we will setup a testimonial widget using SvelteKit and Directus as a backend.
 
@@ -34,7 +35,7 @@ Initialize a new Svelte project by running the following command:
 
 ```bash
 npm create svelte@latest testimonial-frontend # Choose Skeleton project
-cd testimonial-frontend 
+cd testimonial-frontend
 npm install
 npm install @directus/sdk
 ```

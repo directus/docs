@@ -2,9 +2,10 @@
 id: 02b0514b-0ee9-426e-89f9-14dc73bfd62d
 slug: implement-navigation-in-multipage-custom-modules
 title: Implement Navigation in Multipage Custom Modules
-authors: 
+authors:
   - name: Tim Butterfield
     title: Guest Author
+description: Learn how to navigate between multiple pages in module extensions.
 ---
 Modules are an empty canvas in Directus with an empty navigation panel on the left, page header at the top and the
 sidebar on the right. This guide will help you set up a multi-page module with navigation in the navigation bar and link

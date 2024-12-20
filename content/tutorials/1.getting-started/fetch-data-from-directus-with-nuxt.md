@@ -5,6 +5,7 @@ title: Fetch Data from Directus with Nuxt
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to integrate Directus in your Nuxt web application.
 ---
 [Nuxt](https://nuxt.com/) is a popular JavaScript framework based on Vue.js. In this tutorial, you will learn how to
 build a website using Directus as a [Headless CMS](https://directus.io/solutions/headless-cms). You will store,

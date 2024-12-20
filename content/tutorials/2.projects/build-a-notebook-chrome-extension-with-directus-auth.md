@@ -2,9 +2,10 @@
 id: e974c49f-cd78-4cf0-8cfe-72f650346c80
 slug: build-a-notebook-chrome-extension-with-directus-auth
 title: Build a Notebook Chrome Extension with Directus Auth
-authors: 
+authors:
   - name: Jay Bharadia
     title: Guest Author
+description: Learn to build and integrate a Chrome Extension with Directus Auth.
 ---
 
 This article will guide you through building a Chrome extension using Vite and Directus. The extension will leverage Directus as the backend to store and manage data.

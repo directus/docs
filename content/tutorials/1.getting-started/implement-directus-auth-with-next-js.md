@@ -5,6 +5,7 @@ title: Implement Directus Auth with Next.js
 authors:
   - name: Emmanuel John
     title: Guest Author
+description: Learn how to register, login, and protect content in your Next.js application.
 ---
 In this tutorial, you will learn how to implement authentication in a Next.js project using Directus Auth. You’ll register new users, login, handle refresh tokens, and perform create, read, update, and delete operations (CRUD), with the ability to only update or delete a user's own items.
 
@@ -448,7 +449,7 @@ To create post from `Directus` backend, navigate to the `lib/action.js` file and
 ```js
 export const addPost = async (prevState, formData) => {
   const { title, content, userId } = Object.fromEntries(formData);
-  
+
   try {
       const result = await directus.request(
         createItem("posts", {
@@ -519,7 +520,7 @@ import { addPost } from "@/lib/action";
 import { useFormState } from "react-dom";
 const CreatePostForm = ({userId}) => {
   const [state, formAction] = useFormState(addPost, undefined);
-  
+
   return (
     <div>
       <form action={formAction} >
@@ -740,7 +741,7 @@ const SinglePostPage = async ({ params }) => {
   );
 };
 export default SinglePostPage;
-```  
+```
 The  `SinglePostPage`  renders the  single post detail with options for editing and deleting the post if the logged in user is the post creator.
 The post content is rendered using `dangerouslySetInnerHTML` to handle HTML content safely. It can only be used for trusted content.
 Click on the `READ MORE`  link in a post to get to the corresponding detail blog post page as follows:
@@ -817,7 +818,7 @@ const UpdatePostForm = ({userId, post}) => {
   const handleSubmit = () => {
     updatePost(formState)
   }
-  
+
   return (
     <div>
       <form onSubmit={handleSubmit}>

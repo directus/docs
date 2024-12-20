@@ -5,6 +5,7 @@ title: Deploy Directus to AWS EC2
 authors:
   - name: Trust Jamin
     title: Guest Author
+description: Learn how to deploy a Directus to AWS EC2, with a RDS database and a S3 storage bucket.
 ---
 In this tutorial, you will learn how to deploy a self-hosted instance of Directus to Amazon Web Services (AWS) EC2, connect it to an AWS RDS PostgreSQL database and S3 storage bucket.
 
@@ -128,7 +129,7 @@ services:
       WEBSOCKETS_ENABLED: true
 ```
 
-Save the file and exit `nano`. 
+Save the file and exit `nano`.
 
 To ensure that Directus can write and save data in the `extensions` and `uploads` directories, enter the following command to grant the current user ownership of the directory:
 
@@ -182,4 +183,4 @@ Some steps you could consider moving forward towards improving your deployment i
 - Consider utilizing [AWS Secrets Manager](https://us-east-1.console.aws.amazon.com/secretsmanager/) for managing your `ENV` variables
 - Consider implementing a load balancer for scaling the incoming requests to your Directus project.
 
-Compared to using [Directus Cloud](https://directus.io/cloud), using a self-hosted instance of Directus on AWS has several limitations by default, like no backups, no rolling updates, round-the-clock monitoring, and the inability to automatically restart in the event of a crash. Each of these can be configured and maintained separately. 
+Compared to using [Directus Cloud](https://directus.io/cloud), using a self-hosted instance of Directus on AWS has several limitations by default, like no backups, no rolling updates, round-the-clock monitoring, and the inability to automatically restart in the event of a crash. Each of these can be configured and maintained separately.

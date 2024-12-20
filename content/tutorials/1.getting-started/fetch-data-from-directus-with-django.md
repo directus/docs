@@ -5,6 +5,7 @@ title: Fetch Data from Directus with Django
 authors:
   - name: Omu Inetimi
     title: Guest Author
+description: Learn how to integrate Directus in your Django web application.
 ---
 Django is a popular Python framework known for its "battery included" philosophy. In this tutorial, you will learn how to integrate Django with Directus, and build an application that uses the Django templating engine to display data from the API.
 
@@ -30,10 +31,10 @@ pip install django requests
 
 Open the new Django project in your code editor of choice and activate your virtual environment and start your Django development server to run the application at `http://localhost:8000`:
 
- ```bash 
- python manage.py runserver  
+ ```bash
+ python manage.py runserver
  ```
- 
+
 After you've started your server, create a Django app that will contain your views, integrations and URLs. Run the following command in your project directory:
 
  ```bash
@@ -51,14 +52,14 @@ INSTALLED_APPS = [
 TEMPLATES = [
     {
         ...
-        "DIRS": [BASE_DIR / "templates"],  
+        "DIRS": [BASE_DIR / "templates"],
         ...
     },
 ]
 ```
 
 ## Using Global Metadata and Settings
- 
+
 In your Directus project, navigate to Settings -> Data Model and create a new collection called global. Under the Singleton option, select 'Treat as a single object', as this collection will have just a single entry containing global website metadata.
 
 Create two text input fields - one with the key of title and one description.
@@ -174,7 +175,7 @@ Now, when you visit `http://localhost:8000/your-page-slug`, replacing `your-page
 In the Directus Data Studio, create two collections:
 
 - authors: with a field for the author's `name`.
-- posts: with fields for: 
+- posts: with fields for:
    - `slug` - a text input
    - `title` - a text input
    - `content` - a rich text field
@@ -230,7 +231,7 @@ Within the the `templates` directory, create a `blog_list.html` file:
 
 ### Create Single Post Page
 
-Create another view in `views.py` to handle individual blog posts: 
+Create another view in `views.py` to handle individual blog posts:
 
 ```python
 def blog_post_detail(request, slug):

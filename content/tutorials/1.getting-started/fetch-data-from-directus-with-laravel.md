@@ -5,6 +5,7 @@ title: Fetch Data from Directus with Laravel
 authors:
   - name: Ekekenta Clinton
     title: Guest Author
+description: Learn how to integrate Directus in your Laravel web application.
 ---
 In this tutorial, you will learn how to build a website using Directus as a Headless CMS. You will store, retrieve, and use global metadata such as the site title, create new pages dynamically based on Directus items, and build a blog.
 

@@ -2,9 +2,10 @@
 id: 1fdbc354-3c98-458e-97f6-587eccab6c16
 slug: build-a-multi-user-chat-with-javascript-and-directus-realtime
 title: Build a Multi-User Chat with JavaScript and Directus Realtime
-authors: 
+authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to send and receive data over a realtime connection with JavaScript.
 ---
 In this guide, you will build a multi-user chat application with Directus’ WebSockets interface that authenticate users
 with an existing account, show historical messages stored in Directus, allow users to send new messages, and immediately

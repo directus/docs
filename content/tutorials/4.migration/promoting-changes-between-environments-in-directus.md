@@ -2,9 +2,10 @@
 id: 38c78e29-8fad-46f8-8855-f18864310d00
 slug: promoting-changes-between-environments-in-directus
 title: Promoting Changes Between Environments in Directus
-authors: 
+authors:
   - name: Carmen Huidobro
     title: Developer Educator
+description: Learn the options to migrate schema and data between Directus projects.
 ---
 In Directus, different environments (development, staging, production) are managed as separate project instances. This guide explains how to safely promote changes between these environments.
 

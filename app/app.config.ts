@@ -63,7 +63,7 @@ export default defineAppConfig({
 						icon: 'i-ph-cloud',
 					},
 					{
-						label: 'Self Hosting',
+						label: 'Self-Hosting',
 						to: '/self-hosting/overview',
 						icon: 'i-ph-hard-drives',
 					},

@@ -5,10 +5,11 @@ title: Importing Files in Directus Automate
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to use the Request URL operation to import files in Directus Automate.
 ---
-In this quick tip, you will learn how to import files inside of Flows as part of Directus Automate. 
+In this quick tip, you will learn how to import files inside of Flows as part of Directus Automate.
 
-Directus doesn’t ship with an operation to import files via URL the same way you can across the Data Studio. Thankfully, you can utilize the Directus API inside of Flows to achieve the same result. 
+Directus doesn’t ship with an operation to import files via URL the same way you can across the Data Studio. Thankfully, you can utilize the Directus API inside of Flows to achieve the same result.
 
 ## Setting Up the Operation
 
@@ -29,7 +30,7 @@ If you run a flow with the operation above, it will work if there is a public cr
 
 ## Returned Data
 
-As we are using the API directly, this operation returns a full response body. That means the `id` of the new file is available at `{{ step.data.data.id }}`, where `step` is your operation key, or `$last` in the following operation. 
+As we are using the API directly, this operation returns a full response body. That means the `id` of the new file is available at `{{ step.data.data.id }}`, where `step` is your operation key, or `$last` in the following operation.
 
 ## Limitations
 

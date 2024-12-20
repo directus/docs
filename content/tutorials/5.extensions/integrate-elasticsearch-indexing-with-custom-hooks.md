@@ -5,12 +5,13 @@ title: Integrate Elasticsearch Indexing with Custom Hooks
 authors:
   - name: Taminoturoko Briggs
     title: Guest Author
+description: Learn how to maintain an Elasticsearch index when data is created, updated, and deleted.
 ---
 In this article, we will explore how to index data from Directus in Elasticsearch through a custom hook extension, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications.
 
 ## Setting Up Directus
 
-You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions. 
+You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions.
 
 In your new project, create a collection called `books` with a `title` and a `description` field.
 
@@ -42,7 +43,7 @@ export default ({ action }, { env }) => {
   });
 };
 ```
-Because Elasticsearch is a CommonJS package, the `require()` function is constructed using the `createRequire()` Node utility method and used to import it to avoid errors. 
+Because Elasticsearch is a CommonJS package, the `require()` function is constructed using the `createRequire()` Node utility method and used to import it to avoid errors.
 ## Saving Items to Index
 Add the following lines of code after the `client` variable:
 ```js
@@ -54,7 +55,7 @@ action("books.items.create", async (meta) => {
   });
 });
 ```
-This `action` hook will be triggered when an item is created in `books` collection. This is achieved by specifying `books.items.create` as the event name. 
+This `action` hook will be triggered when an item is created in `books` collection. This is achieved by specifying `books.items.create` as the event name.
 When executed a document will be created in an Elasticsearch `books` index containing the newly created item fields which was accessed from the `meta` object. The `meta` object includes the ID of the newly created item in the `key` property and the item fields in the `payload` property.
 Although the `books` index was not explicitly created, that will be done automatically if doesn’t exist and a new document is been created which is the default behavior.
 ## Updating Items in Index

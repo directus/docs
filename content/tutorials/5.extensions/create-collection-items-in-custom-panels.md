@@ -2,9 +2,10 @@
 id: b8fa9a76-063b-499f-80e7-737f08f94684
 slug: create-collection-items-in-custom-panels
 title: Create Collection Items in Custom Panels
-authors: 
+authors:
   - name: Tim Butterfield
     title: Guest Author
+description: Learn how to use built-in interfaces and composables to create new collections.
 ---
 Panels are used in dashboards as part of the Insights module. As well as read-only data panels, they can be interactive
 with form inputs. In this guide, you will create a panel that automatically generates a form based on a collection's

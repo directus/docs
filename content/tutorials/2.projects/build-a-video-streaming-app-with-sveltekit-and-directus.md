@@ -2,9 +2,10 @@
 id: 21c0643a-570f-45ae-9f7e-21ae9613a494
 slug: build-a-video-streaming-app-with-sveltekit-and-directus
 title: Build a Video Streaming App with SvelteKit and Directus
-authors: 
+authors:
   - name: Clara Ekekenta
     title: Guest Author
+description: Learn how to store and retrieve video metadata, and then build a streaming application.
 ---
 In this tutorial, you will learn how to build an application using Directus as a backend. You will store and retrieve video metadata in a Directus project as a content management system, and use them to build a video streaming application that tracks views.
 
@@ -176,7 +177,7 @@ Update the your `routes/+page.svelte` file to use the `getVideos` function to fe
 {/if}
 ```
 
-Directus stores file metadata in the `directus_files` collection. 
+Directus stores file metadata in the `directus_files` collection.
 
 ![Video Listing](https://product-team.directus.app/assets/13cb8233-1038-4ab9-9391-16159d6440b0.webp)
 
@@ -266,7 +267,7 @@ Create a nested route in your `routes` folder in the format `video/[id]/+page.sv
   }
 </style>
 ```
-Now click on any of the videos to stream it. 
+Now click on any of the videos to stream it.
 
 ![Video Player](https://product-team.directus.app/assets/a165dcf8-9f68-4512-a658-b8dc4ded4b66.webp)
 

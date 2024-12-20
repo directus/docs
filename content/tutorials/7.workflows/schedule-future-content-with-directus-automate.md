@@ -2,9 +2,10 @@
 id: c773724c-cc1b-4f79-bc46-208b26e8fd7f
 slug: schedule-future-content-with-directus-automate
 title: Schedule Future Content with Directus Automate
-authors: 
+authors:
   - name: Bryant Gillespie
     title: Growth Engineer
+description: Learn how to set content to be scheduled on a future date with Directs Automate.
 ---
 ## Explanation
 
@@ -156,7 +157,7 @@ Flows in the recipes above.
 - As you add other collections that are published on your static site or frontend, make sure you update this flow to
   include those collections in your Trigger.
 
-## Dynamic Sites 
+## Dynamic Sites
 
 Scheduling content has fewer steps for a dynamic site. Since you are calling your Directus API at the time that a
 visitor requests a page from your site, all you need to do is add a filter to your query.

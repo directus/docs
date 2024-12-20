@@ -2,19 +2,20 @@
 id: dc13157c-95a1-4486-9dd3-3d0c43876bdc
 slug: build-a-user-feedback-widget-with-vue-js
 title: Build a User Feedback Widget with Vue.js
-authors: 
+authors:
   - name: Bryant Gillespie
     title: Growth Engineer
+description: Learn how we built our docs feedback widget with Directus.
 ---
 One of our DevRel initiatives at Directus is constantly improving our documentation. As a small team with finite time and resources, we rely a lot on user feedback to help guide our writing efforts. But we were missing the most important bit there – your feedback.
 
 ## What We’re Building
 
-At the time of this post, the Directus Docs runs on VitePress (which in turn is based on Vue.js and Vite). Vitepress is a nice bit of kit for quickly generating a static documentation site, but sadly there’s no built-in feature for gathering user feedback. 
+At the time of this post, the Directus Docs runs on VitePress (which in turn is based on Vue.js and Vite). Vitepress is a nice bit of kit for quickly generating a static documentation site, but sadly there’s no built-in feature for gathering user feedback.
 
-So I decided to build my own so our team could make better decisions on where to spend our precious time and attention. 
+So I decided to build my own so our team could make better decisions on where to spend our precious time and attention.
 
-While this project was built in the context of Vitepress, this post will show you how to do it with Vue generally. Here’s what our finished product will look like. 
+While this project was built in the context of Vitepress, this post will show you how to do it with Vue generally. Here’s what our finished product will look like.
 
 ![Screenshot of Directus documentation article with a highlighted feedback widget at the bottom of the screen.](https://product-team.directus.app/assets/b3d6f78c-e8e6-4b5d-82f4-0c74b0188472.webp)
 
@@ -33,7 +34,7 @@ Before we hop 🐰 in , here’s what you’ll need to follow along:
 
 ## Preparing Directus Collection
 
-First off, we're going to need a place to store all this valuable feedback we'll be gathering. 
+First off, we're going to need a place to store all this valuable feedback we'll be gathering.
 
 Create a **`docs_feedback`** collection with the following data model:
 
@@ -86,7 +87,7 @@ Create a new file in our `components` directory named `ArticleFeedback.vue` . Th
 </style>
 ```
 
-We’ve got three different states (or steps as I’m calling them) we’ll need to build. 
+We’ve got three different states (or steps as I’m calling them) we’ll need to build.
 
 1. An initial state that shows the feedback prompt and rating buttons.
 2. Once a rating has been selected, a state which asks for comments and feedback.
@@ -153,7 +154,7 @@ With the logic roughed in, let’s add our rating buttons.
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 
-const props = defineProps<{ title: string; url: string }>(); 
+const props = defineProps<{ title: string; url: string }>();
 
 const feedback = reactive<{
 	id?: string;
@@ -246,7 +247,7 @@ Add a new div to Step 1 below the feedback prompt that will contain our rating o
 </template>
 ```
 
-In Step 2 of the process, we’re showing the user the rating they chose using our `getRatingOption` helper function we created. 
+In Step 2 of the process, we’re showing the user the rating they chose using our `getRatingOption` helper function we created.
 
 To improve the user experience, we’ll also let users go back and choose a different rating in case they picked the wrong one by mistake. Whenever they click the close button we’ll set the `feedback.rating` property to `undefined` which will take the user back to Step 1 based on the `v-if` logic we created.
 
@@ -451,9 +452,9 @@ Sweet! Now there’s just one last step before we have a working component.
 
 ## Updating Permissions inside Directus
 
-Right now, if we try to submit some feedback, we’re probably to going receive an `Permission denied` error from Directus. 
+Right now, if we try to submit some feedback, we’re probably to going receive an `Permission denied` error from Directus.
 
-This is because all collections have zero public permissions by default. While this is great for security, it’s not so great if we want to store our feedback data. 
+This is because all collections have zero public permissions by default. While this is great for security, it’s not so great if we want to store our feedback data.
 
 Open up the Public role with the [Access Control settings](/guides/auth/access-control). Then scroll to find the `docs_feedback` collection.
 
@@ -481,7 +482,7 @@ Awesome! Now on to testing.
 
 ## Testing the Feedback Widget
 
-Let’s open this up our Vue app and our Directus instance to test that everything is working as intended. 
+Let’s open this up our Vue app and our Directus instance to test that everything is working as intended.
 
 ![Demo of the Vue feedback widget being used](https://product-team.directus.app/assets/d01e883f-2813-4f62-a810-b41a87f011b5.gif)
 
@@ -497,15 +498,15 @@ Here’s a few of the next steps you may want to explore beyond this tutorial.
 
 Collecting feedback is just one half of the equation. Analyzing and taking action on the data you receive is the more important part.
 
-Our module for creating [no-code dashboards - Directus Insights](/guides/insights/overview) - can help you understand the data you collect much easier and faster than browsing through a list of feedback. 
+Our module for creating [no-code dashboards - Directus Insights](/guides/insights/overview) - can help you understand the data you collect much easier and faster than browsing through a list of feedback.
 
 ### Secure form submissions
 
-To post our form submissions, we just enabled Public create and update access for the `docs_feedback` collection inside Directus. 
+To post our form submissions, we just enabled Public create and update access for the `docs_feedback` collection inside Directus.
 
-There’s not a lot to gain by spamming documentation feedback submissions but you never know with folks these days. 
+There’s not a lot to gain by spamming documentation feedback submissions but you never know with folks these days.
 
-**Security wise - we could do better.** 
+**Security wise - we could do better.**
 
 Here’s a few options:
 

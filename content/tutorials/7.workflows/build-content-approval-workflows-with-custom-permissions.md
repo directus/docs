@@ -2,11 +2,11 @@
 id: 8ab7ca33-2534-42b0-9857-ce840a001a50
 slug: build-content-approval-workflows-with-custom-permissions
 title: Build Content Approval Workflows with Custom Permissions
-authors: 
+authors:
   - name: Eron Powell
     title: Technical Writer
+description: Learn how to configure roles and permissions for complex automations.
 ---
-## Explanation
 
 CRUDS permissions define what a role can and can't do to all items in a collection. Custom access permissions take
 things a step further and let you define what a role can and can't do to each item in a collection, _based on its

@@ -5,13 +5,14 @@ title: Migrate from WordPress to Directus
 authors:
   - name: Muhammed Ali
     title: Guest Author
+description: Learn how to migrate posts and images to Directus, with tips on plugins.
 ---
-## Introduction
+
 If you are considering transitioning your content management system from WordPress to Directus, this tutorial is for you. By the end, you will understand the process in migrating content, data, and other functionality from WordPress to Directus.
 
 ## Understanding the Differences
 
-WordPress is often used as an integrated CMS, meaning it tightly couples content management with presentation. This approach simplifies many tasks but can limit flexibility and performance. 
+WordPress is often used as an integrated CMS, meaning it tightly couples content management with presentation. This approach simplifies many tasks but can limit flexibility and performance.
 
 Directus on the other hand, being a headless CMS, separates the content repository from the presentation layer, offering freedom to use any frontend technology while managing content through a REST or GraphQL API. This separation implies a paradigm shift in how content is being managed and served.
 
@@ -22,7 +23,7 @@ Here is some key terminology you will come across while following this article o
 Collections in Directus are similar to tables in a database. They are used to organize and store data of a similar type. For example, you might have a collection for blog posts, another for users, and another for products. Each collection contains fields that define the structure of the data stored within it.
 
 ### Fields
-Fields are the individual data points within a collection, similar to columns in a database table. Fields define the type of data that can be stored in them, such as text, numbers, dates, or relationships to other collections. 
+Fields are the individual data points within a collection, similar to columns in a database table. Fields define the type of data that can be stored in them, such as text, numbers, dates, or relationships to other collections.
 
 ### Items
 Items are the individual records within a collection, similar to rows in a database table. An item is a single unit of data that adheres to the structure defined by the fields in its collection. For instance, in a blog post collection, each blog post would be an item.
@@ -39,7 +40,7 @@ Directus exposes a RESTful API and a GraphQL API, allowing external applications
 ## Auditing WordPress Plugins
 Before the migration, audit your WordPress plugins to understand their functionality and the need they fulfill. Unlike WordPress, Directus might not offer direct plugin equivalents, so it is important to understand the **why** behind each plugin being used. Also note that not all plugins need alternatives and the outcomes might be achievable within the Directus' core functionality.
 
-This understanding will guide you in seeking or developing alternatives that align with Directus's architecture. 
+This understanding will guide you in seeking or developing alternatives that align with Directus's architecture.
 
 Start by making a comprehensive list of all the plugins currently active on your WordPress site. For each plugin, note down what it does. You might have something like **Yoast SEO** for your blog which enhances SEO capabilities, including meta tags, sitemaps, and readability analysis.
 
@@ -49,15 +50,15 @@ Directus doesn't have a built-in SEO plugin equivalent as a headless system - it
 This transition requires a systematic approach to ensure that all data is accurately transferred and that the new system is configured to meet your specific needs. In the following sections, you will export your posts and pages from WordPress. We will then use a Python script to import the data into Directus.
 
 ### Exporting WordPress Data
-Start by exporting your WordPress data. Here it is assumed you already have a Wordpress site. 
+Start by exporting your WordPress data. Here it is assumed you already have a Wordpress site.
 
-WordPress offers a built-in export tool that generates an XML file of your content. However, for a more comprehensive export, especially for custom post types and metadata, we will be using a plugin that can export to formats more conducive to manipulation like JSON. 
+WordPress offers a built-in export tool that generates an XML file of your content. However, for a more comprehensive export, especially for custom post types and metadata, we will be using a plugin that can export to formats more conducive to manipulation like JSON.
 
-On your Wordpress Admin, in the **Plugins** tab search for “**WP Import Export Lite”**. Install and activate it. 
+On your Wordpress Admin, in the **Plugins** tab search for “**WP Import Export Lite”**. Install and activate it.
 
 After the installation select “**WP Imp Exp**” on the tab then select “**Post**” and select the format JSON in “**Advanced Options**” dropdown. Now you can download the [JSON file](https://github.com/directus-labs/blog-example-migrating-wordpress-directus/blob/main/WP-data.json).
 
-The JSON file we will use in this tutorial is a collection of blog posts from a WordPress site, each containing information such as the post ID, title, content, date, and permalink. 
+The JSON file we will use in this tutorial is a collection of blog posts from a WordPress site, each containing information such as the post ID, title, content, date, and permalink.
 
 You can use this same step to export the [Pages JSON data](https://github.com/directus-labs/blog-example-migrating-wordpress-directus/blob/main/pages-export.json). This file contains two pages with its title, content, and date it was created.
 
@@ -80,7 +81,7 @@ Now we will create the fields that will hold the data items. If you are using my
 ::
 
 ## Importing Data into Directus
-After the JSON file is extracted and the schema is developed on Directus, you can go to your Collections page on Directus admin and you will see a button there to import and export. Just choose export and select the JSON file you downloaded. 
+After the JSON file is extracted and the schema is developed on Directus, you can go to your Collections page on Directus admin and you will see a button there to import and export. Just choose export and select the JSON file you downloaded.
 
 ![Import in Directus Collection](https://product-team.directus.app/assets/ec2f9808-5775-45a1-bac8-715095434502.webp)
 
@@ -92,7 +93,7 @@ To use the API we need to get the API token at User Directory → Administrator 
 
 In this section, we will work on the code to export the JSON data into our Directus fields. We will use Python to develop the script but if you are not familiar with Python don’t worry, I will explain everything and show you how to run the code.
 
-The files gotten from WordPress have the following keys, but what we will be extracting will be "Title", "Content", and "Date". 
+The files gotten from WordPress have the following keys, but what we will be extracting will be "Title", "Content", and "Date".
 
 ```json
 {
@@ -108,7 +109,7 @@ The files gotten from WordPress have the following keys, but what we will be ext
 
 ### Uploading Images
 
-As you notice in the [JSON file](https://github.com/directus-labs/blog-example-migrating-wordpress-directus/blob/main/WP-data.json), the image URLs (e.g directus-test.local:33913\/wp-content\/uploads\/2024\/04\/image-1.png) can not be accessed by Directus. All images present in posts must be extracted and saved to Directus. 
+As you notice in the [JSON file](https://github.com/directus-labs/blog-example-migrating-wordpress-directus/blob/main/WP-data.json), the image URLs (e.g directus-test.local:33913\/wp-content\/uploads\/2024\/04\/image-1.png) can not be accessed by Directus. All images present in posts must be extracted and saved to Directus.
 
 Here we will develop the function to post each downloaded image to Directus and get the new URL.
 To start, first, create a file with the name `extract-image.py`. The name is arbitrary.
@@ -184,7 +185,7 @@ with open(output_file_path, "w") as file:
 print("The JSON data has been updated with Directus image URLs.")
 ```
 
-The code above opens and reads a JSON file specified by `json_file_path`. It then loops through `"Content"` field.  Within each post's content, the code checks for the presence of an `<img>` tag by looking for the substring `'<img src="'`. If such a substring is found, it means the post contains an image. The code then extracts the URL of this image by locating the substring that starts immediately after `'<img src="'` and ends at the next double-quote (`"`). 
+The code above opens and reads a JSON file specified by `json_file_path`. It then loops through `"Content"` field.  Within each post's content, the code checks for the presence of an `<img>` tag by looking for the substring `'<img src="'`. If such a substring is found, it means the post contains an image. The code then extracts the URL of this image by locating the substring that starts immediately after `'<img src="'` and ends at the next double-quote (`"`).
 
 The extracted image URL is then passed to a function named `upload_to_directus` (this will be created next) to upload the image to Directus. The function returns `new_image_url` to this loop to replace the old URL in the post's content with this new URL.
 
@@ -229,7 +230,7 @@ directus_url = "https://your.directus.app"
 api_key = "your-api-token"
 # Uncomment the line below to run the function with your actual Directus URL and API key
 import_posts_to_directus(json_file_path, directus_url, api_key)
-``` 
+```
 ::: info Replace Data
 
 Note: Replace `https://your.directus.app` and `your-api-token` with the appropriate details.
@@ -238,7 +239,7 @@ Note: Replace `https://your.directus.app` and `your-api-token` with the appropri
 The code above:
 1. Opens and reading a JSON file specified by `json_file_path`. It expects the file to contain an array of posts, with each post represented as a dictionary. These dictionaries must at least include keys for `"Title"`, `"Content"`, and `"Date"`.
 2. Sets up HTTP headers for the request to the Directus API, including authorization via a Bearer token (specified by `api_key`) and setting `"Content-Type"` to `"application/json"` to indicate that the payload will be in JSON format.
-3. For each post in the JSON file, it constructs a payload dictionary that contains the post's title, content, and date. 
+3. For each post in the JSON file, it constructs a payload dictionary that contains the post's title, content, and date.
 4. Sends a `POST` request to the Directus API to create a new item in the `article` collection (or table) using the prepared payload. The Directus URL and the specific endpoint (`/items/article`) are constructed using the `directus_url` parameter. Authentication and content type are handled by the previously prepared headers.
 
 To post the Pages to its collection, your code will be a little different since it has different endpoints. Everything will remain as before except the `response` section:
@@ -259,7 +260,7 @@ def import_posts_to_directus(json_file_path, directus_url, api_key):
         # POST the data to the Directus API
         response = requests.post(
             f"{directus_url}/items/Pages", headers=headers, json=payload
-        ) 
+        )
         if response.status_code in [200, 201]:
             print(f"Post '{post['Title']}' imported successfully.")
         else:
@@ -277,7 +278,7 @@ After the code is complete you should be able to see your items on Directus.
 
 ## Testing and Validation
 
-Because you are moving from one platform to another, you might have some text formatting not appearing right. It’s unlikely but possible so look through the imported content in Directus to ensure all data has been accurately migrated and maintains its formatting. 
+Because you are moving from one platform to another, you might have some text formatting not appearing right. It’s unlikely but possible so look through the imported content in Directus to ensure all data has been accurately migrated and maintains its formatting.
 
 ## Summary
 

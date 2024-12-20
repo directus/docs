@@ -5,10 +5,11 @@ title: Search Engine Optimization Best Practices
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer
+description: Learn some best practices for enabling SEO in your projects using Directus.
 ---
 Search engine optimization (SEO) is an ever-changing but super important part of getting your website in front of visitors.
 
-When using Directus as a[ Headless CMS](https://directus.io/solutions/headless-cms), it is incredibly un-opinionated about what you do with your data and content on the frontend, leaving how you build your website up to you. 
+When using Directus as a[ Headless CMS](https://directus.io/solutions/headless-cms), it is incredibly un-opinionated about what you do with your data and content on the frontend, leaving how you build your website up to you.
 
 But if you’re just starting out, being so open-ended can leave you wondering about the best way to handle things like SEO.
 
@@ -23,19 +24,19 @@ In this post, I’ll share a few tips for managing SEO with Directus. I’ll als
 
 ## Create a Separate Collection for SEO Data
 
-At the end of the day, page titles and meta tags are just data. And you have to store that SEO data for your pages and blog posts somewhere. 
+At the end of the day, page titles and meta tags are just data. And you have to store that SEO data for your pages and blog posts somewhere.
 
-For simple sites, you could easily manage all your meta tag data by duplicating fields like `title` and `meta_description` from one collection to another. 
+For simple sites, you could easily manage all your meta tag data by duplicating fields like `title` and `meta_description` from one collection to another.
 
 But beyond a couple collections, this approach becomes cumbersome and potentially dangerous. What if you forget to copy one field? What if there’s a typo and the names become inconsistent? These oversights could break your SEO practices and ,at worst, your whole site.
 
 One better option would be creating a single collection to standardize all the SEO data for your content collections:
 
 1. Create an `seo` collection
-    
+
     ```md
     seo
-    
+
     - id (Type: uuid)
     - title (Type: String, Interface: Input, Note: This item's title, defaults to item.title. Max 70 characters including the site name.)
     - meta_description (Type: Text, Interface: Textarea, Note: This item's meta description. Max 160 characters.)
@@ -45,26 +46,26 @@ One better option would be creating a single collection to standardize all the S
     - og_image (Type: Image, Note: This item's OG image. Defaults to global site OG image. The recommended size is 1200px x 630px. The image will be focal cropped to this dimension.)
     - sitemap_change_frequency (Type: String, Interface: Input, Note: How often to instruct search engines to crawl.)
     - sitemap_priority (Type: Decimal, Interface: Input, Note: Valid values range from 0.0 to 1.0. This value does not affect how your pages are compared to pages on other sites, it only lets the search engines know which pages you deem most important for the crawlers.)
-    
+
     ```
     ![Screenshot of the SEO collection data model inside settings. Several fields are displayed like title, meta_description, canonical_url, and others related to the sitemap.](https://product-team.directus.app/assets/fa4c5682-1773-4078-9b17-00f6345e6733.webp)
-    
-    Beyond the basic `title` and `meta_description` , the other fields you add to your SEO collection are totally up to you. 
-    
+
+    Beyond the basic `title` and `meta_description` , the other fields you add to your SEO collection are totally up to you.
+
     Adding the fields within Directus is only one half of the work - you need to use these fields in your frontend within your `<head>` tags and sitemap.
-    
+
 2. For each of your content collections that have a route on your frontend, inside Directus –  create a many-to-one (M2O) relationship with the SEO collection.
-    
+
     ![Screenshot of adding a new many-to-one relationship within the Directus pages collection.](https://marketing.directus.app/assets/8ed6695f-0090-4531-a7c9-4ab4c5cf59cd)
-    
+
 3. When fetching your content on the frontend, use the `fields` parameter to expand the SEO data within a single API call.
-    
+
     ```js
     import { createDirectus, rest, readItem } from '@directus/sdk';
     const client = createDirectus('directus_project_url').with(rest());
-    
+
     const postId = '234ee-3fdsafa-dfadfa-dfada';
-    
+
     const post = await client.request(
     	readItem('posts', postId, {
     		fields: [
@@ -87,12 +88,12 @@ One better option would be creating a single collection to standardize all the S
     		],
     	}),
     );
-    
+
     ```
-    
+
 4.  Then pass that to your frameworks specific method of add SEO metadata within your `<head>` tags.
 
-**Frontend Framework Metadata Documentation** 
+**Frontend Framework Metadata Documentation**
 
 - [Next.js - Dynamic Metadata](https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata)
 - [Nuxt - SEO and Meta](https://nuxt.com/docs/getting-started/seo-meta#seo-and-meta)
@@ -103,18 +104,18 @@ One better option would be creating a single collection to standardize all the S
 
 ## Don’t Use Slugs as a Primary Key
 
-The actual url for a page on your website is a key factor for search engine rankings. Because of that, your content editors will want to experiment and adjust urls and slugs for items as needed. 
+The actual url for a page on your website is a key factor for search engine rankings. Because of that, your content editors will want to experiment and adjust urls and slugs for items as needed.
 
-When adding a new collection Directus lets you choose from several types of primary keys for your collection. 
+When adding a new collection Directus lets you choose from several types of primary keys for your collection.
 
 - Auto-incremented integer
 - Auto-incremented big integer
 - Generated UUID
 - Manually entered string
 
-I’ve seen lots of folks name the primary key field `slug` and use the `Manually entered string` . It’s easy to understand. It makes fetching that item easier because you can get the item by its id (the slug) directly instead of constructing a query to match the slug. 
+I’ve seen lots of folks name the primary key field `slug` and use the `Manually entered string` . It’s easy to understand. It makes fetching that item easier because you can get the item by its id (the slug) directly instead of constructing a query to match the slug.
 
-But an item’s **primary key value can not be changed after they are created**, while this protects your database and all of your relationships, it makes it hard to experiment or change URLs if, for example, a product name changes. 
+But an item’s **primary key value can not be changed after they are created**, while this protects your database and all of your relationships, it makes it hard to experiment or change URLs if, for example, a product name changes.
 
 To avoid this, use the auto-incremented ids or UUIDs for the primary key `id` and create a separate field input for the `slug` . You can require uniqueness which means only one item in a collection can have a given slug.
 
@@ -147,18 +148,18 @@ When building a website, you’ll need both links for internal content and links
 One common pattern I’ve noticed is creating string inputs for internal links to other content.
 
 ![Screenshot of a form within Directus. Two fields are shown. Label and Href. The Href field value is a string /contact-us](https://product-team.directus.app/assets/2f8a38d2-a6dd-4810-b097-a158e9677d7b.webp)
-  
-But this can be surprisingly brittle. As soon as the slug for the Contact page changes from `/contact-us` to `/contact-directus-team` , the link will break and this can really crash your search engine rankings. 
+
+But this can be surprisingly brittle. As soon as the slug for the Contact page changes from `/contact-us` to `/contact-directus-team` , the link will break and this can really crash your search engine rankings.
 
 Luckily Directus makes a more dynamic approach possible with relationships.
 
 When creating your data model for links to other items from the same or different collections, try using the conditional fields and [many to one relationships](/guides/data-model/relationships.html) to build a powerful, resilient way to link items.
 
 1. Within your content collection, add the following fields for linking. (Note: This example is extremely simplified so you can learn the logic involved. - name these depending on what makes the most sense to you and your use case.)
-    
+
     ```md
     your_content_collection
-    
+
     - link_type (Type: String, Interface: Dropdown, Note: Choices: [
         {
             "text": "Internal - Page",
@@ -219,19 +220,19 @@ When creating your data model for links to other items from the same or differen
             "hidden": false,
         }
     ])
-    
+
     ```
-    
+
     <video controls="true">
       <source src="https://product-team.directus.app/assets/cd5bd4f3-02f1-46be-b82e-570052483379.mp4" type="video/mp4">
     </video>
-    
+
     Fields for page, post, and external url are only visible when the related type is selected so there is no confusion about which fields to enter data for. And it also allows you to use that relationship to fetch the proper slug or permalink for posts and pages.
-    
-2. On the frontend, when you are fetching data via the API, use the fields parameter to get the related posts and pages in a single API call. 
+
+2. On the frontend, when you are fetching data via the API, use the fields parameter to get the related posts and pages in a single API call.
 
 Then make sure you’re getting the proper url based on the `link_type`:
-    
+
 ```js
 const post = await client.request(
     readItem('your_content_collection', 'your_content_item_id', {
@@ -261,13 +262,13 @@ function getUrl(item) {
     return undefined
 }
 ```
-  
- 
+
+
 ```
 <!-- Inside your template -->
 <a href="{getUrl(item)}">{item.link_label}</a>
 ```
-    
+
 
 **Frontend Framework Link Documentation**
 
@@ -280,7 +281,7 @@ function getUrl(item) {
 
 ## Add Fields to Control Semantic Elements When Using Dynamic Page Builder
 
-The structure of your content matters a lot for SEO. Crawlers like well structured pages with a clear hierarchy. 
+The structure of your content matters a lot for SEO. Crawlers like well structured pages with a clear hierarchy.
 
 For educational items like blog posts or documentation, semantic hierarchy and design usually align well. Most of these items also have a well defined “template” or “layout” on the frontend.
 
@@ -288,7 +289,7 @@ The `<h1>` tag contains the title of the article and is the visually the largest
 
 ![A blog page on the Directus website. The page title is highlighted and labeled as H1. Another headline within the blog post is also highlighted and labeled H2.](https://product-team.directus.app/assets/4a9c2805-9265-4b14-b447-0ed6ffc3f053.webp)
 
-But for other items like that are more dynamic like landing pages or homepages, the [Builder (Many To Any Relationships)](/guides/data-model/relationships) really shine inside Directus. You can let your marketing or content teams build pages on their own with predefined collections or `blocks` without involving a developer at all. It also pairs beautifully with the [Live Preview feature](/guides/content/live-preview) to allow them to see exactly what the site will look like before publishing. 
+But for other items like that are more dynamic like landing pages or homepages, the [Builder (Many To Any Relationships)](/guides/data-model/relationships) really shine inside Directus. You can let your marketing or content teams build pages on their own with predefined collections or `blocks` without involving a developer at all. It also pairs beautifully with the [Live Preview feature](/guides/content/live-preview) to allow them to see exactly what the site will look like before publishing.
 
 However, handling the semantic markup you need for proper SEO versus the fact that blocks  could be placed anywhere on a page can be a real challenge when developing your site.
 
@@ -302,7 +303,7 @@ But in other cases, the `<h1>` tag should be the largest visually.
 
 ![Screenshot of the Directus website with the page heading highlighted. Callouts are pointing to the H2 and H1 elements within the page heading. The H2 tag is above the H1 tag and much smaller.](https://product-team.directus.app/assets/614c38a1-f987-4da8-8919-3441d3f0e727.webp)
 
-A great solution to this problem can be to create separate fields within the collection that allow the content editor to choose both the proper header tag and the visual size. 
+A great solution to this problem can be to create separate fields within the collection that allow the content editor to choose both the proper header tag and the visual size.
 
 Here’s an example.
 
@@ -325,20 +326,20 @@ To render this on the frontend, you’d use dynamic components. Most frontend to
 
 Sitemaps are important tools for crawlers like Googlebot to index your site properly. It’s easy to skip over this step when launching a new site, but it’s an important step that makes sure all the pages on your site can be found in search engines.
 
-There’s not much to really manage inside Directus for a sitemap beyond properly [creating your content collections](/guides/data-model/collections). The heavy lifting for a sitemap is on the frontend. 
+There’s not much to really manage inside Directus for a sitemap beyond properly [creating your content collections](/guides/data-model/collections). The heavy lifting for a sitemap is on the frontend.
 
-Some frontend frameworks have an official or community-supported sitemap module / plugin. Others have instructions on how to generate a sitemap without the need to another package. 
+Some frontend frameworks have an official or community-supported sitemap module / plugin. Others have instructions on how to generate a sitemap without the need to another package.
 
 The exact implementation details will vary based on your selected framework but the general approach looks like this.
 
 1. Create a function that fetches the items for each collection that has a route on your frontend.
 2. Loop through those items formatting each as proper xml (or as the specific syntax your plugin requires).
-3. Create a route like `/sitemap.xml` that returns the XML file. 
+3. Create a route like `/sitemap.xml` that returns the XML file.
 
 Here’s an example that’s specific to Nuxt but the logic could be extracted to other frameworks.
-    
+
 ```js
-// This example is based on Nuxt and uses a third party package. 
+// This example is based on Nuxt and uses a third party package.
 // Consult your own frontend framework's documentation for how to properly generate a sitemap in their ecosystem.
 // /server/routes/sitemap.xml.ts
 
@@ -387,7 +388,7 @@ export default defineEventHandler(async (event) => {
     return streamToPromise(sitemap)
 })
 ```
-    
+
 
 **Frontend Framework Sitemap Resources**
 
@@ -403,10 +404,10 @@ export default defineEventHandler(async (event) => {
 It sucks having to pull yourself away from a fun (or important) project to manually add some redirects for a page. Do yourself a favor and let your content team add and manage redirects within the CMS.
 
 1. Create a `redirects` collection
-    
+
     ```md
     redirects
-    
+
     - id (Type: uuid)
     - url_old (Type: String, Interface: Input)
     - url_new (Type: Integer, Interface: Slider)
@@ -421,36 +422,36 @@ It sucks having to pull yourself away from a fun (or important) project to manua
         }
     ])
     ```
-    
+
     ![Screenshot of the Redirects collection data model within Directus settings. Fields included in the data model are url_old, url_new, and response_code.](https://product-team.directus.app/assets/9cad8803-53cb-4c2c-9e51-e05041ba9b87.webp)
-    
+
 2. Add redirects dynamically when building your frontend. This is often done by creating a function to fetch the redirects from your Directus API and then passing those redirects to your frontend framework using a specific syntax inside a config file, plugin, or module.
-    
+
     ```js
     // Though it depends on your specific framework, this logic would probably be called during build time
     import { createDirectus, readItems, rest } from '@directus/sdk'
-    
+
     const directus = createDirectus(directusUrl).with(rest())
-    
+
     const redirects = await directus.request(readItems('redirects'))
-    
+
     for (const redirect of redirects) {
     	let responseCode = redirect.response_code
     		? parseInt(redirect.response_code)
     		: 301
-    
+
     	// If response code doesn't match what we expect, use 301
     	if (responseCode !== 301 && responseCode !== 302) {
     		responseCode = 301
     	}
-    
+
     	// Add Logic here to add the redirects to a config file or tell your frontend framework how to handle them
     	// ** Your Logic **
     }
     ```
-    
 
-**Frontend Framework Redirect Documentation** 
+
+**Frontend Framework Redirect Documentation**
 
 - [Next.js Redirects](https://nextjs.org/docs/pages/api-reference/next-config-js/redirects)
 - [Nuxt Redirects](https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering)
@@ -461,7 +462,7 @@ It sucks having to pull yourself away from a fun (or important) project to manua
 
 ## Don’t Forget Image Alt Text
 
-Often overlooked, image alt text is important for SEO and critical for proper accessibility. 
+Often overlooked, image alt text is important for SEO and critical for proper accessibility.
 
 ```
 <img src="https://example.com/image.png" alt="An example image of how alt text works" width="500" height="500" />
@@ -502,7 +503,7 @@ And remember – the actual alt text itself is just as important as rendering it
 
 And if you’ve got 100s of images without alt text and you’re dreading doing all that work manually, try a boost from this extension - [Directus Media AI Bundle](https://github.com/Arood/directus-extension-media-ai-bundle) - a winner in a recent AI Hackathon submitted by community member [Arood](https://github.com/Arood). It uses several different AI tools to write image alt text or descriptions for you.
 
-**Frontend Framework Image Documentation** 
+**Frontend Framework Image Documentation**
 
 - [Next.js Images](https://nextjs.org/docs/pages/api-reference/components/image)
 - [Nuxt Images](https://image.nuxt.com/)

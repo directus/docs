@@ -5,6 +5,7 @@ title: Build a Monitoring Pipeline For Flows And Extensions
 authors:
   - name: Daniel Band
     title: Guest Author
+description: Learn how to set up complex pipelines to monitor automations and extensions.
 ---
 Directus offers a flexible and extensible foundation for creating a wide range of applications. However, to address more complex use cases such as "Backend as a Service" or "Internal Apps," it's important to develop a strategy for monitoring your application's health.
 
@@ -12,7 +13,7 @@ There are lots of benefits to monitoring: gaining insights into the flow of data
 
 ## Event Monitoring vs Activity Logs and Revisions
 
-In the context of Directus, activity logs enable us to identify changes on a per-item basis, providing a trail to retrace the execution of workflows and view the input/output of operations. Event logs, on the other hand, focus on tracking specific pieces of data. 
+In the context of Directus, activity logs enable us to identify changes on a per-item basis, providing a trail to retrace the execution of workflows and view the input/output of operations. Event logs, on the other hand, focus on tracking specific pieces of data.
 
 The difference in granularity between activity tracking and event logging makes them complementary. For example, in a monitoring pipeline, when a particular event triggers an alert, revisions can be used to trace the execution flow and analyze the context.
 
@@ -20,7 +21,7 @@ The difference in granularity between activity tracking and event logging makes 
 
 There are two main categories of events that serve different purposes.
 
-First, events that help us **debug errors**. These should contain information on what, when, and where something went wrong, accompanied by metadata to make debugging easier. 
+First, events that help us **debug errors**. These should contain information on what, when, and where something went wrong, accompanied by metadata to make debugging easier.
 
 The second type of events provides **analytical data** about the application state. Consider a scenario where we periodically import participants from an event ticketing app. In such cases, we want to track whether the import process started, the number of participants successfully imported, any import failures, and the reasons behind those failures. Event logs are instrumental in answering these questions without having to look at flow revisions.
 
@@ -48,9 +49,9 @@ The fields of the table **log_events** need a short explanation:
 
 - **event_name** is a resource identifier with a common meaning across all events. It can be specific (triggered only at one location) or generic (triggered from multiple locations) with added meta data. For example, a generic event *resource-not-found* could be enriched with the meta data *collection: string, id: any*, while an event *import-participants-failed* is a specific locator.
 - **context** identifies the location where the event takes place. While the **event_name** is reusable, the **context** should be distinct. We can build context hierarchies, e.g. to locate events in subflows. The event *import-participants-failed* could be in the **context** (flow) *import-participants*. For this article we stick with a string input.
-- **execution_id** is a grouping identifier. For each execution within a **context**, all events share the same identifier. This gives us the possibility to look at the event from a broader perspective. 
+- **execution_id** is a grouping identifier. For each execution within a **context**, all events share the same identifier. This gives us the possibility to look at the event from a broader perspective.
 - **event_date** is a unix timestamp, which is set when the event is triggered, before it's inserted into the database.
-- **meta** is a JSON object, holding all additional information. 
+- **meta** is a JSON object, holding all additional information.
 
 ## Create a Monitoring and Logging Pipeline
 
@@ -88,7 +89,7 @@ module.exports = async function(data) {
 }
 ```
 
-Create a dummy flow that imports participants via webhook. 
+Create a dummy flow that imports participants via webhook.
 
 ![Flow that imports participants via webhook and logs success and error events](https://product-team.directus.app/assets/337e89f3-f2d2-4f86-9230-710bb5af0a26.webp)
 
@@ -182,7 +183,7 @@ export default defineOperationApi<Options>({
 });
 ```
 
-Create the participants from the payload's body, and then log either a success or error. 
+Create the participants from the payload's body, and then log either a success or error.
 
 In this case, we would log an error if the required email is missing in one of the payload's participants.
 

@@ -5,6 +5,7 @@ title: Configure Okta as a Single Sign-On Provider
 authors:
   - name: Maksym Yakubov
     title: Guest Author
+description: Learn how to set up Okta SSO with the SAML authentication mechanism.
 ---
 Directus has an excellent built-in implementation of Single Sign-On (SSO) across a variety of standards, with adapters for a large number of providers. However, tweaking it all together to make it work like a charm can be tricky.
 

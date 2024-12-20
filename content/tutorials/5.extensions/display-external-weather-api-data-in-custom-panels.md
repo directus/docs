@@ -2,19 +2,20 @@
 id: 4cf07b05-bd1a-41cf-acf7-14891f44dae6
 slug: display-external-weather-api-data-in-custom-panels
 title: Display External Weather API Data In Custom Panels
-authors: 
+authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to display external data in panels with a bundle and endpoint.
 ---
 <iframe style="width:100%; aspect-ratio:16/9; margin-top: 2em;" src="https://www.youtube.com/embed/7vBcWUxC6PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-In this post, you will learn how to fetch data from an external data source and display it in a custom panel extension for [Directus Insights](https://directus.io/toolkit/guides/insights). 
+In this post, you will learn how to fetch data from an external data source and display it in a custom panel extension for [Directus Insights](https://directus.io/toolkit/guides/insights).
 
 Panels can only talk to internal Directus services, and can't reliably make external web requests because browser security protections prevent these cross-origin requests from being made. To create a panel that can interact with external APIs, you will create bundle including an endpoint (that can make external requests) and a panel (that uses the endpoint).
 
 ## Add an Extensions Volume
 
-Follow our Directus [Self-Hosted Quickstart](/getting-started/quickstart), adding a volume for extensions: 
+Follow our Directus [Self-Hosted Quickstart](/getting-started/quickstart), adding a volume for extensions:
 
 ```
 volumes:
@@ -25,7 +26,7 @@ volumes:
 
 ## Create a Bundle
 
-Once you have run `docker compose up` for the first time, local directories for the volumes will be created. Navigate to the `extensions` directory and use the Directus Extensions CLI to create a bundle: 
+Once you have run `docker compose up` for the first time, local directories for the volumes will be created. Navigate to the `extensions` directory and use the Directus Extensions CLI to create a bundle:
 
 ```
 npx create-directus-extension@latest
@@ -56,10 +57,10 @@ export default {
         router.get('/', async (req, res) => {
             try {
                 const response = await fetch(`https://api.open-meteo.com/v1/forecast?current_weather=true&${req._parsedUrl.query}`);
-                
+
                 if (response.ok) {
                     res.json(await response.json());
-                } else { 
+                } else {
                     res.status(response.status).send(response.statusText);
                 }
             } catch(error) {
@@ -72,7 +73,7 @@ export default {
 
 From the `directus-extension-bundle-weather` directory, run `npm run build`. Restart your Directus project, and you should now be able to access `http://localhost:8055/weather?longitude=0&latitude=0`.
 
-The [Open-Meteo API](https://open-meteo.com/) requires a longitude and latitude, so they must always be provided. 
+The [Open-Meteo API](https://open-meteo.com/) requires a longitude and latitude, so they must always be provided.
 
 ## Create a Panel
 
@@ -146,7 +147,7 @@ Create a `setup` method which will run when the panel is loaded:
 setup(props) {
 	const api = useApi();
 	const weather = ref({});
-	
+
 	async function fetchData() {
 		const response = await api.get(`/weather?longitude=${props.longitude}&latitude=${props.latitude}`);
 		weather.value = response.data;
@@ -170,11 +171,11 @@ Finally, update the template:
 </template>
 ```
 
-Run `npm run build` from the bundle directory, and restart Directus. 
+Run `npm run build` from the bundle directory, and restart Directus.
 
 ## Use the Panel
 
-Create a new Insights Dashboard and add a **Weather** panel. Add coordinates, and you should see external data displayed in the panel. 
+Create a new Insights Dashboard and add a **Weather** panel. Add coordinates, and you should see external data displayed in the panel.
 
 ![Panel configutation showing a longitude and latitude input field](https://product-team.directus.app/assets/db49529d-70e3-4fed-aacb-8ea321b8cb6b.webp)
 

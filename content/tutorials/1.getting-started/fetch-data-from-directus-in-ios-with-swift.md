@@ -5,8 +5,9 @@ title: Fetch Data from Directus in iOS with Swift
 authors:
   - name: Harshpal Bhirth
     title: Guest Author
+description: Learn how to integrate Directus in your iOS app with Swift.
 ---
-In this tutorial, you will learn how to configure an iOS project to fetch and showcase posts in your SwiftUI-based app. 
+In this tutorial, you will learn how to configure an iOS project to fetch and showcase posts in your SwiftUI-based app.
 
 ## Before You Start
 
@@ -18,7 +19,7 @@ You will need:
 
 ## Create Post Structs and Helpers
 
-Create a new file in your Xcode project and name it `Post.swift` you can do this by: 
+Create a new file in your Xcode project and name it `Post.swift` you can do this by:
 
 1. Right-click on the project navigator in the root of the project.
 2. Choose "New File..." from the context menu.
@@ -26,7 +27,7 @@ Create a new file in your Xcode project and name it `Post.swift` you can do this
 4. Name the file as "Post.swift".
 5. Click "Create."
 
-In the `Post.swift` file, create a Swift `struct` named `Post` to represent the data structure of the posts you'll be fetching from the Directus API. This `struct` should conform to the `Codable` and `Identifiable` protocols. 
+In the `Post.swift` file, create a Swift `struct` named `Post` to represent the data structure of the posts you'll be fetching from the Directus API. This `struct` should conform to the `Codable` and `Identifiable` protocols.
 
 ```swift
 struct Post: Codable, Identifiable {
@@ -56,7 +57,7 @@ func stripHTML() -> String {
 
 ## Create a ContentView
 
-Create a `ContentView.swift` file if you haven't got one already you can do this by: 
+Create a `ContentView.swift` file if you haven't got one already you can do this by:
 
 1. Right-click on the project navigator in the root of the project.
 2. Choose "New File...".
@@ -245,7 +246,7 @@ struct PostDetailView: View {
 
 After checking that `selectedPost` has a value, various values are rendered to the view. `AsyncImage` asynchronously loads and displays the post image, handling different loading phases and displaying a placeholder or an error message if necessary. The `Button` clears the `selectedPost` which hides the view.
 
-Take note that the `fetchPost` function is also run with the ID of the post. During this request, you can ask or more data and only load what's absolutely needed in the list view. 
+Take note that the `fetchPost` function is also run with the ID of the post. During this request, you can ask or more data and only load what's absolutely needed in the list view.
 
 ## Summary
 

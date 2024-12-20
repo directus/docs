@@ -5,6 +5,7 @@ title: Set Up Live Preview with Next.js
 authors:
   - name: Esther Agbaje
     title: Developer Advocate
+description: Learn how to confgure Live Preview with Next.js' draft mode.
 ---
 Directus' Live Preview feature allows you to show changes in your website before publishing and without the need to
 refresh the browser. This is useful when using Directus as a [Headless CMS](https://directus.io/solutions/headless-cms).

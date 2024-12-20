@@ -5,6 +5,7 @@ title: Fetch Data from Directus with Angular
 authors:
   - name: David Mbochi
     title: Guest Author
+description: Learn how to integrate Directus in your Angular web application.
 ---
 [Angular](https://angular.dev/) is a popular front-end web framework. In this tutorial, you will use the framework to implement the front-end for the Directus headless CMS. You will implement a blog that loads blog posts dynamically and also serves global metadata.
 
@@ -13,7 +14,7 @@ authors:
 - Some knowledge of TypeScript and [Angular](https://angular.io/)
 - A Directus project. Follow the [Quickstart guide](/getting-started/quickstart) to create one.
 - [Node.js](https://nodejs.org/en/download) and a development environment of your choice
-- Install the Angular CLI - use the Angular [guide](https://angular.io/guide/setup-local) to achieve this. 
+- Install the Angular CLI - use the Angular [guide](https://angular.io/guide/setup-local) to achieve this.
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -117,7 +118,7 @@ Navigate to your project directory in a terminal and create a `global` component
 ```bash
 ng g c component/global
 ```
-This command will generate four files under the *component* directory. 
+This command will generate four files under the *component* directory.
 
 Replace the code in the `src/app/component/global/global.component.ts` file with the following code:
 
@@ -150,7 +151,7 @@ export class GlobalComponent implements OnInit{
 
 }
 ```
-When this component is initialized, it will retrieve the singleton and store it in the `global` object. 
+When this component is initialized, it will retrieve the singleton and store it in the `global` object.
 
 To display the contents of the object, replace the code in the `src/app/component/global/global.component.html` file with the following code:
 
@@ -389,7 +390,7 @@ export class PostComponent implements OnInit{
 ```
 When the component is initialized, it will retrieve the path variable using the `ActivatedRoute` and pass it to the `readItems()` function to get the post with that slug.
 
-Note that this will happen when you click on a blog post from the list of blog posts. 
+Note that this will happen when you click on a blog post from the list of blog posts.
 
 The retrieved post is stored in the `post` object. To display the contents of the object, replace the code in the `src/app/component/post/post.component.html` file with the following code:
 

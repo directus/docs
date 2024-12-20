@@ -5,6 +5,7 @@ title: Implement Directus Auth with SvelteKit
 authors:
   - name: Eike Thies
     title: Guest Author
+description: Learn how to register, login, and protect content in your SvelteKit app.
 ---
 In this guide, we will set up a complete authentication and authorization mechanism in SvelteKit using Directus. The user session will be persisted via Server-Side Cookies and be used by the Directus SDK to make authenticated requests. As an example, we will create a new Role showing how authorization works.
 
@@ -16,7 +17,7 @@ In this guide, we will use the most secure form via Server-Side Cookies using th
 
 ## Adapt Directus Wrapper
 
-In [Getting Started with Directus and SvelteKit](/tutorials/getting-started/fetch-data-from-directus-with-sveltekit), we created a wrapper around the Directus JavaScript SDK to use with SvelteKit. This guide assumes you have worked through the previous post. 
+In [Getting Started with Directus and SvelteKit](/tutorials/getting-started/fetch-data-from-directus-with-sveltekit), we created a wrapper around the Directus JavaScript SDK to use with SvelteKit. This guide assumes you have worked through the previous post.
 
 First we need to define the Domain the Cookie is valid for in the  `.env` file of our root project:
 
@@ -50,19 +51,19 @@ export default getDirectusInstance;
 export const constructCookieOpts = (age) => { // [!code ++]
 	return { // [!code ++]
     	'domain': PUBLIC_COOKIE_DOMAIN, // [!code ++]
-        
+
         // send cookie for every page // [!code ++]
         'path': '/', // [!code ++]
-        
+
         // server side only cookie so you can't use `document.cookie` // [!code ++]
         'httpOnly': true, // [!code ++]
-        
+
         // only requests from same site can send cookies // [!code ++]
         'sameSite': "strict", // [!code ++]
-        
+
         // only sent over HTTPS in production // [!code ++]
         'secure': process.env.NODE_ENV === 'production', // [!code ++]
- 
+
         // set cookie to expire after a given time // [!code ++]
         'maxAge': age // [!code ++]
 	} // [!code ++]
@@ -73,7 +74,7 @@ export const constructCookieOpts = (age) => { // [!code ++]
 
 Let's start the user journey from adding a login/signup form with a `/signin/+page.svelte` file:
 
-```svelte 
+```svelte
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import { page } from '$app/stores';
@@ -91,13 +92,13 @@ Let's start the user journey from adding a login/signup form with a `/signin/+pa
 	method="POST">
 	<div>
 		<label for="email">Email</label>
-		<input id="email" name="email" type="text" bind:value={email}	
+		<input id="email" name="email" type="text" bind:value={email}
 		/>
 	</div>
 
 	<div>
 		<label for="password">Password</label>
-		<input id="password" name="password" type="password" required bind:value={password}	
+		<input id="password" name="password" type="password" required bind:value={password}
 		/>
 	</div>
 
@@ -106,7 +107,7 @@ Let's start the user journey from adding a login/signup form with a `/signin/+pa
 </form>
 ```
 
-The small function lets us redirect the user to a page they were trying to access before needing to login/signup. Also any message from the server side will be displayed, e.g. if the user entered a wrong password. The SvelteKit form action below will handle the actual request. 
+The small function lets us redirect the user to a page they were trying to access before needing to login/signup. Also any message from the server side will be displayed, e.g. if the user entered a wrong password. The SvelteKit form action below will handle the actual request.
 
 The Directus SDK is not saving Cookies with the HTTP-only Option enabled and we want to set the Cookie on the server, thus we need to access the Directus API directly from SvelteKit ourself and save the tokens in a secure cookie via SvelteKit's cookie handler. Open a `/signin/+page.server.js` file:
 
@@ -116,7 +117,7 @@ import { PUBLIC_APIURL } from '$env/static/public';
 import { constructCookieOpts } from '$lib/directus';
 
 // Set in days - sync this with the Setting from Directus.
-const REFRESH_TOKEN_TTL = 7; 
+const REFRESH_TOKEN_TTL = 7;
 
 // This makes sure that the login page is only available if the user is not logged in yet
 export const load = async ({ locals,url }) => {
@@ -398,7 +399,7 @@ An example to use the Directus SDK on the client is now to change the user's ema
 	export let data;
 
 	const directus = getContext('directus'); // [!code ++]
-    
+
 	async function changeEmail() { // [!code ++]
 		await directus.request(updateMe({email:data.user.email})) // [!code ++]
 	} // [!code ++]
@@ -421,7 +422,7 @@ Open `http://localhost:5173/profile` and change the email of your current logged
 
 Lastly, let's define a server endpoint to enable logout functionality. Create a `/(protected)/logout/+server.js` file:
 
-```js 
+```js
 import { redirect,error } from '@sveltejs/kit';
 import { PUBLIC_APIURL } from '$env/static/public';
 
@@ -449,7 +450,7 @@ export async function GET({locals,request,cookies}) {
 
 This will simply delete the cookies and also calls the Directus API to invalidate the stored session in the Database. Then redirecting the user back to the login page. You can try this out by just opening `http://localhost:5173/logout`.
 
-Add a `data-sveltekit-reload` attribute to your logout links and it will automatically update layouts with your new logged-out status. 
+Add a `data-sveltekit-reload` attribute to your logout links and it will automatically update layouts with your new logged-out status.
 
 # Summary
 

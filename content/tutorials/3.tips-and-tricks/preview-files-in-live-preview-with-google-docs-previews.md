@@ -2,9 +2,10 @@
 id: d204a3d5-d674-4a21-862e-6c9c8ac82ab3
 slug: preview-files-in-live-preview-with-google-docs-previews
 title: Preview Files in Live Preview with Google Docs Previews
-authors: 
+authors:
   - name: Alex van der Valk
     title: Sales Engineer
+description: Learn how to use Google Gview to preview many file formats in Directus Editor.
 ---
 Using the file interface, you can store all types of files inside items in your Directus projects. However, there is no built-in way to preview files directly in the editor. I found an easy and reliable way to do this using Directus' Live Preview feature and Google Gview to preview many file formats without first having to download each file.
 

@@ -2,11 +2,12 @@
 id: 73b10a4d-0da8-48c7-9753-4a3addd2c5ff
 slug: tag-images-with-clarifai-and-directus-automate
 title: Tag Images with Clarifai and Directus Automate
-authors: 
+authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to integrate Clarifai's image recognition APIs with Directus Automate.
 ---
-[Clarifai](https://clarifai.com) allow you to train and use machine learning models via APIs. In this tutorial, you will use Clarfai's image recognition model with Directus Automate to automatically tag new image files in your project. 
+[Clarifai](https://clarifai.com) allow you to train and use machine learning models via APIs. In this tutorial, you will use Clarfai's image recognition model with Directus Automate to automatically tag new image files in your project.
 
 ## Before You Start
 
@@ -14,9 +15,9 @@ You will need a [Directus project](/getting-started/quickstart) and a Clarifai A
 
 ## Create a Flow
 
-Flows are Directus' no-code automation builder provided as part of Directus Automate. Create a new flow with a non-blocking event hook and the `files.upload` scope. This means that it will run asynchronously and not block the file upload. 
+Flows are Directus' no-code automation builder provided as part of Directus Automate. Create a new flow with a non-blocking event hook and the `files.upload` scope. This means that it will run asynchronously and not block the file upload.
 
-Whenever a few file is uploaded, the flow will be triggered. The payload will include a file type and ID - both will be used in future steps. 
+Whenever a few file is uploaded, the flow will be triggered. The payload will include a file type and ID - both will be used in future steps.
 
 ## Limit File Type
 
@@ -38,7 +39,7 @@ The resolve path of this condition will only be followed when the image is an im
 
 ## Recognize Image
 
-Create a new **Webhook / Request URL** operation called `Clarifai`. Make a POST request to `https://api.clarifai.com/v2/users/clarifai/apps/main/models/general-image-recognition/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs`, which is a pre-trained model provided by Clarifai. 
+Create a new **Webhook / Request URL** operation called `Clarifai`. Make a POST request to `https://api.clarifai.com/v2/users/clarifai/apps/main/models/general-image-recognition/versions/aa7f35c01e0642fda5cf400f543e7c40/outputs`, which is a pre-trained model provided by Clarifai.
 
 Create a `Authorization` header with the value of `key YOUR-CLARIFAI-API-KEY`, being sure to provide your specific key from the Clarifai dashboard. The request body should look like this:
 
@@ -56,7 +57,7 @@ Create a `Authorization` header with the value of `key YOUR-CLARIFAI-API-KEY`, b
 }
 ```
 
-This is the direct URL to the newly-uploaded file that triggered this flow to run. If your file is not accessible publicly, append the URL with `?access_token=TOKEN`, replacing `TOKEN` with a static token from a Directus user who has permission to access the file. 
+This is the direct URL to the newly-uploaded file that triggered this flow to run. If your file is not accessible publicly, append the URL with `?access_token=TOKEN`, replacing `TOKEN` with a static token from a Directus user who has permission to access the file.
 
 When it runs, this operation will return data from Clarifai including a list of concepts. Each concept has a confidence score between 0 and 1.
 
@@ -72,7 +73,7 @@ module.exports = async function(data) {
 }
 ```
 
-This script will return only concepts with a confidence greater than 0.95 (you can tweak this), and extracts just the concept names into an array of strings. 
+This script will return only concepts with a confidence greater than 0.95 (you can tweak this), and extracts just the concept names into an array of strings.
 
 ## Save Tags
 
@@ -86,5 +87,5 @@ Create an **Update Data** operation called `Save Tags`. The collection should be
 
 ## Summary
 
-This example shows you how to leverage Clarifai's image recognition model and Directus Flows to 
-automatically tags new image uploads. You can do a lot more with this data, building on top of it once it's saved. 
+This example shows you how to leverage Clarifai's image recognition model and Directus Flows to
+automatically tags new image uploads. You can do a lot more with this data, building on top of it once it's saved.

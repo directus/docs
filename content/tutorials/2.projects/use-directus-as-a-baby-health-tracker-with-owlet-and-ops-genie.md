@@ -2,9 +2,10 @@
 id: 2aa59541-f1aa-4b2e-bdc4-64fa74d4af83
 slug: use-directus-as-a-baby-health-tracker-with-owlet-and-ops-genie
 title: Use Directus as a Baby Health Tracker with Owlet and OpsGenie
-authors: 
+authors:
   - name: Andreas Morgner
     title: Guest Author
+description: Learn how to integrate Directus with hardware sensors and incident repsonse systems.
 ---
 I have a baby and like many parents rely on monitors and sensors to make sure they're ok. In this article, we will explore Directus as a backend for a smart wearable device, and how to extend the functionality of the the apps shipped with the device. I personally use the [Owlet Smart Sock](https://owletcare.com/products/owlet-smart-sock), but the approaches covered in this article can be adapted for many other sensors.
 
@@ -71,7 +72,7 @@ For this specific API, the authentication is a bit more complex compared to basi
 Request 1:
 - Key: `verifyPw`
 - POST `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=##########`
-- Headers: 
+- Headers:
   - `X-Android-Package`: `com.owletcare.owletcare`
   - `X-Android-Cert`: `##some secret value##`
   - `Content-Type`: `application/json`
@@ -80,16 +81,16 @@ Request 1:
 Request 2:
 - Key: `get_mini_token`
 - POST `https://ayla-sso.eu.owletdata.com/mini/`
-- Headers: 
+- Headers:
   - `Authorization`: `{{$last.data.idToken}}`
 
 Request 3:
 - Key: `token_sign_in`
 - POST `https://user-field-eu-1a2039d9.aylanetworks.com/api/v1/token_sign_in`
-- Headers: 
+- Headers:
   - `Content-Type`: `application/json`
   - `Accept`: `application/json`
-- Body: 
+- Body:
   ```json
   {
     "app_id": "OwletCare-Android-EU-fw-id",
@@ -97,15 +98,15 @@ Request 3:
     "provider": "owl_id",
     "token": "{{$last.data.mini_token}}"
   }
-  ``` 
+  ```
 
 :::
 
 ### Reading Data from the Sensor
 
-Compared to the auth process, fetching actual data from the API is done with fewer requests – just two are needed. As the vendor supports multiple devices, we have to get a list of devices first. In theory, we can also do this in preparation and hard-code the device ID within the next operation. But again, as there is no official documentation of the API this might change or the ID might not that unique and may change within any future updates. 
+Compared to the auth process, fetching actual data from the API is done with fewer requests – just two are needed. As the vendor supports multiple devices, we have to get a list of devices first. In theory, we can also do this in preparation and hard-code the device ID within the next operation. But again, as there is no official documentation of the API this might change or the ID might not that unique and may change within any future updates.
 
-So let's identify the device name, or `dsn` as it is called by the external API. 
+So let's identify the device name, or `dsn` as it is called by the external API.
 
 Create a Request operation with the final token we got from the authentication operations.
 
@@ -160,7 +161,7 @@ As a header parameter, we set the following:
 | Authorization | `auth_token {{token_sign_in.data.access_token}}` |
 As you can see, the named operation becomes handy now.
 
-This request returns every property the device currently has. In total, we received over 1600 lines of JSON this time. The good thing, we only have a single property object here. All properties have a name attribute. 
+This request returns every property the device currently has. In total, we received over 1600 lines of JSON this time. The good thing, we only have a single property object here. All properties have a name attribute.
 
 Create a Run Script operation to find the properties we need:
 
@@ -233,9 +234,9 @@ As the Insights module is built in Directus, you can create any report with the 
 
 ![An insights dashboard with three sections. Two of them render a time based graph for the heart rate, oxygen level, and temperature. Another section displays the latest senor data as well as the battery level.](https://product-team.directus.app/assets/18585ae9-828a-4d11-8e22-06db6515907a.webp)
 
-The dashboard is split into three sections, on the left, the last 30 minutes of data are displayed. On the right, you can select the amount of hours you'd like to review. This is done by a slide that is used as a global variable for the 3 charts underneath. In between, some stats are displayed, in detail, in the very last dataset for the oxygen level, heart rate, temperature and battery stats. 
+The dashboard is split into three sections, on the left, the last 30 minutes of data are displayed. On the right, you can select the amount of hours you'd like to review. This is done by a slide that is used as a global variable for the 3 charts underneath. In between, some stats are displayed, in detail, in the very last dataset for the oxygen level, heart rate, temperature and battery stats.
 
-All the charts are using the "Time Series" chart. The left side uses the default values for the data range of 30 minutes. For each measurement, the min and max values are set to render the most common values including some border values. The dynamic charts on the right are set up similarly. 
+All the charts are using the "Time Series" chart. The left side uses the default values for the data range of 30 minutes. For each measurement, the min and max values are set to render the most common values including some border values. The dynamic charts on the right are set up similarly.
 
 To achieve the dynamic time window, we have to create the "Global Variable" with the name 'last_x_hours' first:
 
@@ -286,7 +287,7 @@ module.exports = async function(data) {
             "description": "The battery is low. Right now it has "+data.$trigger.payload.battery_level+"%"
         }
     }
-    // ... 
+    // ...
 	return rtn;
 }
 ```
@@ -319,13 +320,13 @@ Within the create operation, the following payload is used to create the OpenGen
 }
 ```
 
-#### Escalating to OpsGenie    
+#### Escalating to OpsGenie
 
 Once the alert is created within Directus, of course, it has to be created within OpsGenie as well. For this – again a new Flow is needed. This time we have to use the Timeout operation as OpsGenie queues all incoming requests and does not provide the result immediately.
 
 ![A Flow that posts data to the OpsGenie API, sleeps for some time and read out the newly created alert, once OpsGenie fulfilled the initial request. The external alert ID is entered into the related item wihtin Directus.](https://product-team.directus.app/assets/07db9384-e4f9-4ffa-8740-fa3d944f3eb9.webp)
 
-Once triggered, we read out all the data first and pass the needed data to the OpsGenie API with a user key and the JSON data from the alert collection. As the API does not return the actual result but only an ID of the incoming task, we now wait 2 seconds before requesting the current status of our queued task with the 2nd web request. The request URL gets the returning ID from the first web request: 
+Once triggered, we read out all the data first and pass the needed data to the OpsGenie API with a user key and the JSON data from the alert collection. As the API does not return the actual result but only an ID of the incoming task, we now wait 2 seconds before requesting the current status of our queued task with the 2nd web request. The request URL gets the returning ID from the first web request:
 
 ![A simple GET webrequest with a dynamic value as part of the request URL. The values is using data from another Flow operation and accessed by using the mustache syntax.](https://product-team.directus.app/assets/e5ca10c2-3072-49e1-809c-276636623212.webp)
 
@@ -333,11 +334,11 @@ This request will return the current status and therefore all the data (includin
 
 In the moment an actual alert is created within OpsGenie, any connected system is yelling for attention, just as configured in the tool.
 
-If Directus tries to create a new alert with the same data (in case the battery or oxygen level is still on the same level) no new alert is created by the design of OpsGenie. But it's hard to miss any alert as it sends SMS, critical push notifications, or even calling a phone number if needed and no reaction is noticed. 
+If Directus tries to create a new alert with the same data (in case the battery or oxygen level is still on the same level) no new alert is created by the design of OpsGenie. But it's hard to miss any alert as it sends SMS, critical push notifications, or even calling a phone number if needed and no reaction is noticed.
 
 ## Build an iOS Widget
 
-As a last method of reporting and integration Directus, we can create an iOS widget, that sits right on my lock and home screen. As this is not about iOS development we chose the easy way and used Scriptable for this. This free app can be used to run JavaScript and display the data as a widget. The only downside of these Scriptable widgets is, that iOS decides WHEN to update the content of the widget. So you can not force the widget to reload actively. This is a limitation to prevent battery drainage and high load due to the demanding JavaScript. Usually, the script runs every 1 to 15 minutes. To know how "outdated" the displayed data is, we've added the create-timestamp as part of the widgets. 
+As a last method of reporting and integration Directus, we can create an iOS widget, that sits right on my lock and home screen. As this is not about iOS development we chose the easy way and used Scriptable for this. This free app can be used to run JavaScript and display the data as a widget. The only downside of these Scriptable widgets is, that iOS decides WHEN to update the content of the widget. So you can not force the widget to reload actively. This is a limitation to prevent battery drainage and high load due to the demanding JavaScript. Usually, the script runs every 1 to 15 minutes. To know how "outdated" the displayed data is, we've added the create-timestamp as part of the widgets.
 
 For the Directus integration this time I have created a new role that can have view access to the data collection only. A user in this role has set a static token that I can use within the widget. Using the query parameter `limit` and `sort` I can define to get only the very last entry sorted by the create date column.
 

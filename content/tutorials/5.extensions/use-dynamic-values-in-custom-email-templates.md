@@ -2,9 +2,10 @@
 id: ca326a34-f92f-4967-96d8-4c9be74a23fd
 slug: use-dynamic-values-in-custom-email-templates
 title: Use Dynamic Values in Custom Email Templates
-authors: 
+authors:
   - name: Tim Butterfield
     title: Guest Author
+description: Learn how to inject dynamic data into liquid templates.
 ---
 Email templates allow you to design your own email look and feel, then populate the template with data from Directus
 before sending it to the recipient. This guide will introduce you to the basics of LiquidJS and how to render data

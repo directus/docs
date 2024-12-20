@@ -5,6 +5,7 @@ title: Implement Pagination and Infinite Scrolling in Next.js
 authors:
   - name: Taminoturoko Briggs
     title: Guest Author
+description: Learn various techniques to load paginated data in your Next.js application.
 ---
 When working with a large set of data fetching and rendering them at once can cause performance issues for your application, especially for devices with poor internet connections. To prevent this, several techniques are used to fetch and render data in chunks. Two of the most common ones are pagination and infinite scrolling.
 

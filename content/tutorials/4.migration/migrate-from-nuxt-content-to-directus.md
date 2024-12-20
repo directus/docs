@@ -5,18 +5,19 @@ title: Migrate from Nuxt Content to Directus
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to move from a flat-file CMS to Directus.
 ---
-Away from my day job here at Directus I run a [free library of online content focused around core skills](https://yougotthis.io). 
+Away from my day job here at Directus I run a [free library of online content focused around core skills](https://yougotthis.io).
 
 Up until now, I leveraged [Nuxt Content](https://content.nuxtjs.org/), a file-based CMS, for content management. Nuxt Content served the project well, providing nice utilities for fetching and displaying data from a content directory in the repository. Being file-based, authoring used a git-based workflow, meaning content is stored as files, and changes are tracked using version control.
 
 ![GitHub repo showing a content directory. Inside, several subdirectories such as "library", "events", and "people". The sidebar shows further subdirectories for individual items and markdown files within them.](https://product-team.directus.app/assets/00c581bc-69f3-4f3b-a977-773f6f2dd1f8.webp)
 
-Recently, I've been lucky enough to bring on a team member for a few hours a week to help run the project, and while I feel at home spinning up the application locally, working in code to add and edit content, it isn't fair or reasonable to expect that of others. 
+Recently, I've been lucky enough to bring on a team member for a few hours a week to help run the project, and while I feel at home spinning up the application locally, working in code to add and edit content, it isn't fair or reasonable to expect that of others.
 
-Directus is an API-driven [Headless CMS](https://directus.io/solutions/headless-cms). Unlike file-based CMSs like Nuxt Content, Directus separates the content from the presentation layer. This decoupling means that non-developers can handle content updates without needing to understand the underlying code. They can work in a user-friendly interface, updating content, and the website pulls data from the API to construct pages. 
+Directus is an API-driven [Headless CMS](https://directus.io/solutions/headless-cms). Unlike file-based CMSs like Nuxt Content, Directus separates the content from the presentation layer. This decoupling means that non-developers can handle content updates without needing to understand the underlying code. They can work in a user-friendly interface, updating content, and the website pulls data from the API to construct pages.
 
-Many projects start the same way as mine, and I hope sharing this journey of maturing our tooling and processes helps! 
+Many projects start the same way as mine, and I hope sharing this journey of maturing our tooling and processes helps!
 
 ## Hacky Fixes With Nuxt Content
 
@@ -24,13 +25,13 @@ I was pretty happy with the latest iteration of the You Got This! website prior 
 
 ### Co-Locating Assets With Content
 
-Nuxt Content allows you to create, query, and fetch data in the `content` directory such as markdown. However, assets like blog post images can't be served relative to the data files. 
+Nuxt Content allows you to create, query, and fetch data in the `content` directory such as markdown. However, assets like blog post images can't be served relative to the data files.
 
-In the past, this meant any given piece of content needed to be split between the `content` and directly-served `static` directory. I built a helper which would, on server boot, copy all non-markdown files to a mirrored file structure in the `static` directory (not checked in to git). This means I could still use relative file paths. 
+In the past, this meant any given piece of content needed to be split between the `content` and directly-served `static` directory. I built a helper which would, on server boot, copy all non-markdown files to a mirrored file structure in the `static` directory (not checked in to git). This means I could still use relative file paths.
 
 This was quite hacky and had some major drawbacks:
-1. Only run on server boot. I'm sure I could have utilized a hook which could re-copy files when content is updated, but that's not how my utility worked. 
-2. If the content file structure is not the same as the routing structure, which it often wasn't, it led to hacky file path construction. For example, an article would be stored in the `/content/2023/post-slug` directory, but served at `/library/post-slug`, meaning the directory mirroring did not help. 
+1. Only run on server boot. I'm sure I could have utilized a hook which could re-copy files when content is updated, but that's not how my utility worked.
+2. If the content file structure is not the same as the routing structure, which it often wasn't, it led to hacky file path construction. For example, an article would be stored in the `/content/2023/post-slug` directory, but served at `/library/post-slug`, meaning the directory mirroring did not help.
 
 ### Grappling With No Relationships
 
@@ -51,11 +52,11 @@ const items = library.filter(libItem => collection.items.find(colItem => libItem
 
 This is two distinct round-trips for data, and then manual work to reconcile them. If there are one-character typos, expect things to not act as expected.
 
-## Setting Up A Directus Project 
+## Setting Up A Directus Project
 
-I had a loose concept of relationships through manual creation of lists within markdown files, but for the first time, I had to sit down and think properly about the relationships between every data type in my project. 
+I had a loose concept of relationships through manual creation of lists within markdown files, but for the first time, I had to sit down and think properly about the relationships between every data type in my project.
 
-There were some clear low-level entities to start with that don't rely on others - people and sponsors. The library is next - which has a many-to-many (M2M) relationship with people. The content collections link to the library and sponsors. Finally, events link to people and sponsors. It was important to create these in the right order (mostly to make sure I didn't get confused). I also created asset folders for each of these collections. 
+There were some clear low-level entities to start with that don't rely on others - people and sponsors. The library is next - which has a many-to-many (M2M) relationship with people. The content collections link to the library and sponsors. Finally, events link to people and sponsors. It was important to create these in the right order (mostly to make sure I didn't get confused). I also created asset folders for each of these collections.
 
 ## Moving Data To Directus
 
@@ -90,7 +91,7 @@ const CONTENT_API_BASE = 'http://localhost:3000/_content/sponsors/'
       url: `https://yougotthis.io${item.dir}/${item.file}`,
       data: { title: item.title, folder }
     })
-    
+
     // Push all frontmatter, Directus asset id, and slug to items array
     items.push({ ...item, image, id: dir })
   }
@@ -112,13 +113,13 @@ const CONTENT_API_BASE = 'http://localhost:3000/_content/sponsors/'
 
 Here's some notable parts of the script:
 
-1. The first couple of lines get the asset folder id, which is needed later to upload assets to the right folder. 
+1. The first couple of lines get the asset folder id, which is needed later to upload assets to the right folder.
 2. Then each directory inside of content/sponsors is returned in an array.
-3. For each sponsor directory, the data is fetched using the Nuxt Content Development API. This is only available when running the Nuxt dev server. 
-4. With this additional information, the main sponsor image is imported from the live web URL, in the correct folder. 
-5. The array of items is then formed into the correct payload for Directus, and bulk-created using the SDK items().createMany() method. 
+3. For each sponsor directory, the data is fetched using the Nuxt Content Development API. This is only available when running the Nuxt dev server.
+4. With this additional information, the main sponsor image is imported from the live web URL, in the correct folder.
+5. The array of items is then formed into the correct payload for Directus, and bulk-created using the SDK items().createMany() method.
 
-This exercise was repeated for each content type in the Nuxt project. Once completed, there was one collection in Directus for each content subdirectory. The only addition was a `featured` singleton collection to control what collections and sponsors were shown on the home and library pages. 
+This exercise was repeated for each content type in the Nuxt project. Once completed, there was one collection in Directus for each content subdirectory. The only addition was a `featured` singleton collection to control what collections and sponsors were shown on the home and library pages.
 
 ## Consuming Directus From A Nuxt Application
 
@@ -170,7 +171,7 @@ async asyncData({ $directus }) {
 }
 ```
 
-The main difference is that relationships are real, as opposed to something that needs to be hacked together after fetching data. 
+The main difference is that relationships are real, as opposed to something that needs to be hacked together after fetching data.
 
 ### Working With Assets
 
@@ -213,9 +214,9 @@ The `$asset` helper is available globally, for free. No need to import it. If yo
 This was a super fun project that marked a point of maturity in my personal project where a robust CMS was required for others to be successful in their work. The broad process was:
 
 1. Set up Directus data model.
-2. Write and run migration scripts. 
-3. Replace `$content` with `$directus` throughout. 
+2. Write and run migration scripts.
+3. Replace `$content` with `$directus` throughout.
 
-I've got to remove a load of hacky code and feel more confident in this project going forward. In the future, I may allow speakers to access their own profiles (through the Directus Data Studio, or through a custom-built frontend), and build a better authoring workflow that supports non-published states (like 'draft' and 'archived'). 
+I've got to remove a load of hacky code and feel more confident in this project going forward. In the future, I may allow speakers to access their own profiles (through the Directus Data Studio, or through a custom-built frontend), and build a better authoring workflow that supports non-published states (like 'draft' and 'archived').
 
-If you are considering moving from a file-based CMS to a headless API-based CMS, Directus is a great choice. We're always happy to answer questions over in our [Discord server](https://directus.chat). 
+If you are considering moving from a file-based CMS to a headless API-based CMS, Directus is a great choice. We're always happy to answer questions over in our [Discord server](https://directus.chat).

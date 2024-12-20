@@ -5,6 +5,7 @@ title: Deploy Directus to Google Cloud Platform
 authors:
   - name: Trust Jamin
     title: Guest Author
+description: Learn how to deploy Directus on GCP with a Cloud SQL database and Cloud Storage Bucket.
 ---
 In this tutorial, you will learn how to deploy a self-hosted instance of Directus to Google Cloud Platform (GCP) Cloud Run and connect it with a Cloud SQL database (PostgreSQL) and Cloud Storage for storing assets.
 
@@ -84,12 +85,12 @@ Click on **Create** to create a new repository.
 
 ### Pushing the Dockerfile to Google Cloud
 
-To push the `Dockerfile` to the created repository, you must first be authenticated via the CLI that ships Google Cloud SDK. 
+To push the `Dockerfile` to the created repository, you must first be authenticated via the CLI that ships Google Cloud SDK.
 
 ::callout{icon="material-symbols:info-outline"}
-    
+
 In this section, we will specify `us-central1` as the region. If you used a different region, please replace it.
-    
+
 ::
 
 Open your terminal, log in to Google Cloud, and select the project you previously created:

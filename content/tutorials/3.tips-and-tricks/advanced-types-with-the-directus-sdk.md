@@ -5,6 +5,7 @@ title: Advanced Types with the Directus SDK
 authors:
   - name: Tim de Heiden
     title: Engineer
+description: Learn how to more-easily work with types and the Directus SDK.
 ---
 # Directus SDK Types
 

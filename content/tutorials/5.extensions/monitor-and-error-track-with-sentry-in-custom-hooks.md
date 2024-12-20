@@ -5,12 +5,13 @@ title: Monitor and Error Track with Sentry in Custom Hooks
 authors:
   - name: Salma Alam-Naylor
     title: Senior Developer Advocate, Sentry
+description: Learn how to integrate Sentry error tracking in both your API and Data Studio.
 ---
-If you self-host Directus, it becomes your responsibility to ensure your project is running smoothly. Part of this is knowing when things are going wrong so you can triage issues, fix errors, and get on with your day. 
+If you self-host Directus, it becomes your responsibility to ensure your project is running smoothly. Part of this is knowing when things are going wrong so you can triage issues, fix errors, and get on with your day.
 
 This is where [Sentry](https://sentry.io/welcome/) comes in. Sentry is an error tracking and performance monitoring platform built for developers. With Sentry you can track and triage issues, warnings and crashes, and see issues replayed as they happened. Additionally, you can use Sentry to quickly identify [performance issues](https://docs.sentry.io/product/issues/issue-details/performance-issues/), and dive deep into the stack trace and breadcrumb trails that led to an error. Sentry is also Open Source, and supports a broad spectrum of [programming languages and platforms via official SDKs](https://docs.sentry.io/platforms/).
 
-In this post, we’ll create a [hook extension](/guides/extensions/api-extensions/hooks) to set up Sentry error tracking on both the APIs that Directus generates, and the Data Studio applications. 
+In this post, we’ll create a [hook extension](/guides/extensions/api-extensions/hooks) to set up Sentry error tracking on both the APIs that Directus generates, and the Data Studio applications.
 
 ## Set up a New Directus Project for Extensions Development
 
@@ -18,9 +19,9 @@ If you’re not already signed up to Sentry, [create a free account](https://sen
 
 1. Install Docker
 2. Create a new directory, for example `directus-self-hosted`
-3. At the root of the new directory, create the following `docker-compose.yml` file, replacing the `KEY` and `SECRET` with random values. 
+3. At the root of the new directory, create the following `docker-compose.yml` file, replacing the `KEY` and `SECRET` with random values.
 
-Head on over to Sentry and set up two new projects — one for your back end project (Node.js), and one for the front end Directus Data Studio (Browser JavaScript). 
+Head on over to Sentry and set up two new projects — one for your back end project (Node.js), and one for the front end Directus Data Studio (Browser JavaScript).
 
 ```
 version: '3'
@@ -46,7 +47,7 @@ services:
       SENTRY_DSN: 'replace-with-back end-project-dsn'
 ```
 
-Head on over to Sentry and set up two new projects — one for your back end project (Node.js), and one for the front end Directus Data Studio (Browser JavaScript). 
+Head on over to Sentry and set up two new projects — one for your back end project (Node.js), and one for the front end Directus Data Studio (Browser JavaScript).
 
 ![Sentry project listing showing two projects - a Node project for the backend and a browser JavaScript project for the frontend.](https://product-team.directus.app/assets/dd1f905c-74a3-4c93-a5e1-75d81e279d23.webp)
 
@@ -83,15 +84,15 @@ Open `index.js` inside the `src` directory and delete the boilerplate. We’re r
 
 Custom API Hooks allow you to inject logic when specific events occur within your Directus project. These events include creating, updating, and deleting items in a collection, on a schedule, and at several points during Directus' startup process.
 
-For this extension project, we'll use the `init` hooks to monitor the API by registering Sentry's `requestHandler`. For error tracking in the front end Data Studio application, we’ll use the `embed` method to inject custom JavaScript needed to track front end events in Sentry. 
+For this extension project, we'll use the `init` hooks to monitor the API by registering Sentry's `requestHandler`. For error tracking in the front end Data Studio application, we’ll use the `embed` method to inject custom JavaScript needed to track front end events in Sentry.
 
 ## Monitor the Directus API Using the Sentry Node SDK
 
-Copy and paste the following code to the `index.js` file in your new hook directory. This imports the Sentry SDK, creates the initial export, and initializes the SDK. Due to how the Sentry SDK is built and the fact that Directus extensions are exclusively [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), we need to use `createRequire` from the `node:module` API: 
+Copy and paste the following code to the `index.js` file in your new hook directory. This imports the Sentry SDK, creates the initial export, and initializes the SDK. Due to how the Sentry SDK is built and the fact that Directus extensions are exclusively [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), we need to use `createRequire` from the `node:module` API:
 
 ```js
-import { createRequire } from "module"; 
-const require = createRequire(import.meta.url); 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const Sentry = require('@sentry/node');
 const { nodeProfilingIntegration } = require("@sentry/profiling-node");
 
@@ -114,8 +115,8 @@ To start monitoring your back end application with Sentry, add an `init` hook be
 If you’d like more context about this implementation, you can read more about the [Sentry Express SDK](https://docs.sentry.io/platforms/node/guides/express/) in the Sentry documentation.
 
 ```js
-import { createRequire } from "module"; 
-const require = createRequire(import.meta.url); 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const Sentry = require('@sentry/node');
 
 export default ({ init }, { env }) => {
@@ -124,20 +125,20 @@ export default ({ init }, { env }) => {
 		tracesSampleRate: 1.0
 	});
 
-	init('routes.custom.after', ({ app }) => { 
+	init('routes.custom.after', ({ app }) => {
 		Sentry.setupExpressErrorHandler(app);
-		console.log('-- Sentry Error Handler Added --'); 
-	}); 
+		console.log('-- Sentry Error Handler Added --');
+	});
 };
 ```
 
-Next, let’s build the hook. In the `directus-extension-hook-sentry` directory, run `npm run build`. Restart the Directus Docker container, and you’ll see the two logs in your terminal. 
+Next, let’s build the hook. In the `directus-extension-hook-sentry` directory, run `npm run build`. Restart the Directus Docker container, and you’ll see the two logs in your terminal.
 
 ![A terminal showing the command docker compose up. Several info logs are shown, and two logs read 'sentry request handler added' and 'sentry error handler added'](https://product-team.directus.app/assets/97a17e04-8bae-4fbd-9812-d69fa65333b8.webp)
 
 ## Monitor the Directus Data Studio Using the Sentry Loader Script
 
-Next, we’re going to add Sentry monitoring to your front end application (Directus Data Studio). To do this, we’ll need to inject some custom JavaScript to the page, and we can do this using embed hook events. Embed hook events allow custom JavaScript and CSS to be added to the `<head>` and `<body>` within the Directus Data Studio. 
+Next, we’re going to add Sentry monitoring to your front end application (Directus Data Studio). To do this, we’ll need to inject some custom JavaScript to the page, and we can do this using embed hook events. Embed hook events allow custom JavaScript and CSS to be added to the `<head>` and `<body>` within the Directus Data Studio.
 
 Head over to Sentry, and navigate to the front end project you created earlier. Go to project settings, click on Loader Script, and copy the provided script tag code.
 
@@ -154,9 +155,9 @@ Below the two `init` hooks you created to monitor the back end application, add 
 
 ```js
 embed(
-	`head`, 
+	`head`,
 	`<script src="your-front end-project-loader-script-url" crossorigin="anonymous"></script>`
-); 
+);
 ```
 
 Next, rebuild the extension with `npm run build`, restart Directus again, and you have successfully implemented full stack Sentry error tracking and monitoring to your Directus project.
@@ -179,13 +180,13 @@ npx create-directus-extension@latest
 You’ll now see a new directory, `directus-extension-endpoint-fail` in your extensions directory. Open the `index.js` file in the newly created directory and replace it with the following code, which will throw a new error intentionally.
 
 ```js
-export default { 	
-  id: 'fail', 	
-  handler: (router) => { 		
-    router.get('/', (req, res) => { 			
-      throw new Error('Intentional back end error for Sentry test'); 	
-        }); 	
-    } 
+export default {
+  id: 'fail',
+  handler: (router) => {
+    router.get('/', (req, res) => {
+      throw new Error('Intentional back end error for Sentry test');
+        });
+    }
 };
 ```
 
@@ -204,7 +205,7 @@ npx create-directus-extension@latest
 └ language: javascript
 ```
 
-Open the newly created extension's `module.vue` file and replace it with the following code: 
+Open the newly created extension's `module.vue` file and replace it with the following code:
 
 ```vue
 <template>
@@ -241,4 +242,4 @@ You’ll now see the error message in your front end project's Sentry issue list
 
 If you’re self-hosting Directus, you need a reliable way to monitor, triage and be alerted to issues in your back end and front end applications. Sentry makes this possible and ensures you spend less time searching for clues, and more time fixing what’s broken. Additionally, you can configure [Distributed Tracing](https://docs.sentry.io/product/sentry-basics/tracing/) with Sentry to provide a connected view of related errors and transactions by capturing interactions among your entire suite of Directus extensions and software applications.
 
-Head over to the [Sentry docs to learn about the wide range of language and platform support](https://docs.sentry.io/platforms/), and if you’re still not convinced, try out the [Sentry Sandbox](https://sandbox.sentry.io) to explore the platform with a bucket load of pre-populated real-world data. 
+Head over to the [Sentry docs to learn about the wide range of language and platform support](https://docs.sentry.io/platforms/), and if you’re still not convinced, try out the [Sentry Sandbox](https://sandbox.sentry.io) to explore the platform with a bucket load of pre-populated real-world data.

@@ -5,6 +5,7 @@ title: Check Permissions in a Custom Endpoint
 authors:
   - name: Tim Butterfield
     title: Guest Author
+description: Learn how to use internal Directus permissions when creating a custom endpoint.
 ---
 Endpoints are used in the API to perform certain functions. In this guide, you will use internal Directus permissions
 when creating a custom endpoint.
@@ -59,7 +60,7 @@ handler: (router, { env }) => {
 ```
 
 Being sensitive information, it’s best practice to control who can access your Stripe account especially if you have
-public enrollment in your Directus project. 
+public enrollment in your Directus project.
 
 
 Request your permissions from your project's API using `fetch`:
@@ -222,7 +223,7 @@ router.post('/customers', async (req, res) => {
     } else {
       res.sendStatus(401);
     }
-  } 
+  }
   catch(e) {
     res.sendStatus(401);
   }
@@ -408,7 +409,7 @@ export default {
         } else {
           res.sendStatus(401);
         }
-      } 
+      }
       catch(e) {
         res.sendStatus(401);
       }

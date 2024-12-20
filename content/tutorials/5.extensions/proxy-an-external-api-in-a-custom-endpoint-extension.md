@@ -2,9 +2,10 @@
 id: 5e47f786-eddb-4570-bda9-60d6427282af
 slug: proxy-an-external-api-in-a-custom-endpoint-extension
 title: Proxy an External API in a Custom Endpoint Extension
-authors: 
+authors:
   - name: Tim Butterfield
     title: Guest Author
+description: Learn how to make external APIs available via Directus in a custom endpoint.
 ---
 Endpoints are used in the API to perform certain functions.
 

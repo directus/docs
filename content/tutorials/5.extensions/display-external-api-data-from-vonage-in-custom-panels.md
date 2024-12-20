@@ -2,9 +2,10 @@
 id: cb0c443f-e261-4d33-a420-aef1a97f9b06
 slug: display-external-api-data-from-vonage-in-custom-panels
 title: Display External API Data From Vonage In Custom Panels
-authors: 
+authors:
   - name: Tim Butterfield
     title: Guest Author
+description: Learn how to display records from external systems in Directus Insights.
 ---
 Panels are used in dashboards as part of the Insights module, and typically allow users to better-understand data held
 in their Directus collections. In this guide, you will instead fetch data from an external API and display it in a table

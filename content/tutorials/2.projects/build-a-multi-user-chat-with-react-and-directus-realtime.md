@@ -2,9 +2,10 @@
 id: 03c6db5a-029b-4207-8786-c1478e173e6b
 slug: build-a-multi-user-chat-with-react-and-directus-realtime
 title: Build a Multi-User Chat with React and Directus Realtime
-authors: 
+authors:
   - name: Esther Agbaje
     title: Developer Advocate
+description: Learn how to send and receive data over a realtime connection in React applications.
 ---
 In this guide, you will build a multi-user chat application with Directus’ WebSockets interface that authenticates users
 with an existing account, shows historical messages stored in Directus, allows users to send new messages, and

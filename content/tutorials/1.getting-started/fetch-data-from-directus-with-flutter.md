@@ -5,6 +5,7 @@ title: Fetch Data from Directus with Flutter
 authors:
   - name: Clara Ekekenta
     title: Guest Author
+description: Learn how to integrate Directus in your Flutter app with Dart.
 ---
 ## Before You Start
 You will need:
@@ -51,7 +52,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future main() async {
   await dotenv.load(fileName: ".env");
   runApp(MyApp());
-} 
+}
 ```
 
 # Using Global Metadata and Settings

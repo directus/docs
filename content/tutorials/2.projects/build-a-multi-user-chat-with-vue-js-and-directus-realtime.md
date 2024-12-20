@@ -2,9 +2,10 @@
 id: 418e29e7-1a2f-44a3-82ad-99dc118cccd0
 slug: build-a-multi-user-chat-with-vue-js-and-directus-realtime
 title: Build a Multi-User Chat with Vue.js and Directus Realtime
-authors: 
+authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to send and receive data over a realtime connection in a Vue.js application.
 ---
 In this guide, you will build a multi-user chat application with Directus’ WebSockets interface that authenticate users
 with an existing account, show historical messages stored in Directus, allow users to send new messages, and immediately

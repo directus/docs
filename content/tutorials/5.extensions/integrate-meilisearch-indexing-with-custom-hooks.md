@@ -5,13 +5,14 @@ title: Integrate Meilisearch Indexing with Custom Hooks
 authors:
   - name: Clara Ekekenta
     title: Guest Author
+description: Learn how to maintain an Meilisearch index when data is created, updated, and deleted.
 ---
 In this article, we will explore how to index data from Directus in Meilisearch by building a custom hook extension, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications.
 
 
 ## Setting Up Directus
 
-You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions. 
+You will need to have a [local Directus project running](/getting-started/quickstart) to develop extensions.
 
 In your new project, create a collection called `articles` with a `title`, `content`, and `author` field.
 
@@ -23,11 +24,11 @@ In your terminal, navigate to your `extensions` directory and run `npx create-di
 
 ## Setting Up Meilisearch
 
-Sign up for a Meilisearch account if you haven't already. Once you have your Meilisearch instance details, you will be able to copy your credentials in your dashboard. 
+Sign up for a Meilisearch account if you haven't already. Once you have your Meilisearch instance details, you will be able to copy your credentials in your dashboard.
 
 ![Melisearch dashboard](https://product-team.directus.app/assets/d1aab892-21de-402a-84c5-024c0c0f2f88.webp)
 
-Add the following environment variables to your project: 
+Add the following environment variables to your project:
 
 ```dockerfile
 MEILISEARCH_HOST=your_meilisearch_host
@@ -69,7 +70,7 @@ Add another action hook to process updates when one or more articles are modifie
 ```js
 action('articles.items.update', async (meta) => {
   await Promise.all(
-    meta.keys.map(async (key) => 
+    meta.keys.map(async (key) =>
       await index.updateDocuments([{ id: key, ...meta.payload }])
     )
   )

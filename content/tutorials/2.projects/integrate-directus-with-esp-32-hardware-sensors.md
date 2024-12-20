@@ -2,9 +2,10 @@
 id: f6bf9070-0fb6-4cc0-ba6d-99e1b83e2b87
 slug: integrate-directus-with-esp-32-hardware-sensors
 title: Integrate Directus with ESP32 Hardware Sensors
-authors: 
+authors:
   - name: Osinachi Chukwujama
     title: Guest Author
+description: Learn how to integrate Directus with IoT systems by reading and publishing sensor data.
 ---
 Internet of Things (IoT) systems often need to log their collected data. In this tutorial, you will build a temperature logging system using a DHT22 as a temperature and humidity module, and an ESP32 microcontroller board with onboard WiFi for connecting to a Directus project.
 

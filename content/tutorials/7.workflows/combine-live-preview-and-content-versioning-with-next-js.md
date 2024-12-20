@@ -2,9 +2,10 @@
 id: 422c9d3c-d5da-45ff-abec-fdbf71a54721
 slug: combine-live-preview-and-content-versioning-with-next-js
 title: Combine Live Preview and Content Versioning with Next.js
-authors: 
+authors:
   - name: Esther Agbaje
     title: Developer Advocate
+description: Learn how to set up Live Preview with different content versions in your Next.js application.
 ---
 Imagine being able to create different versions of your content, and then easily preview them while still in draft mode. With Directus, you can integrate Content Versioning and Live Preview in your Next.js application, making it easier for your team to manage and preview multiple content versions.
 
@@ -36,7 +37,7 @@ export default async function Post({
 }) {
   const { isEnabled } = draftMode();
 
-  const post = await getPostById(id, searchParams.version?.toString()); 
+  const post = await getPostById(id, searchParams.version?.toString());
 
   if (!post) {
     return null;

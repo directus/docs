@@ -5,6 +5,7 @@ title: Implement Multilingual Content with Directus and SvelteKit
 authors:
   - name: Ekekenta Clinton
     title: Guest Author
+description: Learn how to handle internationalization in your SvelteKit application.
 ---
 ## Before You Start
 
@@ -182,7 +183,7 @@ export async function load({ fetch, params, url }) {
 
 The above code will:
 
-- Use the `readItem` funtion to find and get the news that matches the primary key field (slug) in the news collection. 
+- Use the `readItem` funtion to find and get the news that matches the primary key field (slug) in the news collection.
 - Fetch all the available languages from the `languages` collection.
 
 Create a `+page.svelte` file in the `routes/news` directory and add the code:

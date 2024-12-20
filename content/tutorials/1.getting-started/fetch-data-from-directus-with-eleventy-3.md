@@ -5,8 +5,9 @@ title: Fetch Data from Directus with Eleventy 3
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to integrate Directus in your 11ty web application.
 ---
-Eleventy (sometimes referred to 11ty) is a lightweight and unopinionated static site generator. You can use any templating language, and it ships with zero client-side JavaScript by default. In this guide, you will learn how to build a website with Directus as a Headless CMS. 
+Eleventy (sometimes referred to 11ty) is a lightweight and unopinionated static site generator. You can use any templating language, and it ships with zero client-side JavaScript by default. In this guide, you will learn how to build a website with Directus as a Headless CMS.
 
 ## Before You Start
 
@@ -31,7 +32,7 @@ When Eleventy 3.0 leaves alpha, we'll update this post with any changes required
 
 Open `my-website` in your code editor. Add `"type": "module"` to the object in your `package.json` file, and type `npx @11ty/eleventy --serve --watch` in your terminal to start the 11ty development server and open <http://localhost:8080> in your browser.
 
-Create a new directory in your 11ty project called `_includes`. Inside of it, another directory called `layouts`. And, finally, a file called `base.njk`: 
+Create a new directory in your 11ty project called `_includes`. Inside of it, another directory called `layouts`. And, finally, a file called `base.njk`:
 
 ```html
 <!DOCTYPE html>
@@ -99,7 +100,7 @@ eleventyComputed:
 <p>{{ global.description }}</p>
 ```
 
-`eleventyComputed` is being used so there is a `title` key, which is used by the main layout created at the start of this tutorial to populate the `<title>` element in the `<head>`. 
+`eleventyComputed` is being used so there is a `title` key, which is used by the main layout created at the start of this tutorial to populate the `<title>` element in the `<head>`.
 
 Refresh your browser. You should see data from your Directus Global collection in your page.
 

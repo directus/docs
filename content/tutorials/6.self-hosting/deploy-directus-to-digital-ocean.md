@@ -5,8 +5,9 @@ title: Deploy Directus to Digital Ocean
 authors:
   - name: Matthew Ruffino
     title: Guest Author
+description: Learn how to deploy Directus on the Digital Ocean App Platform.
 ---
-In this post, I will guide you through deploying Directus on the DigitalOcean (DO) App Platform. With DO Apps, you can effortlessly establish a Directus environment using just a Dockerfile. This post will guide you through a more advanced setup with a separate persistent database, file storage, and cluster synchronization. 
+In this post, I will guide you through deploying Directus on the DigitalOcean (DO) App Platform. With DO Apps, you can effortlessly establish a Directus environment using just a Dockerfile. This post will guide you through a more advanced setup with a separate persistent database, file storage, and cluster synchronization.
 
 DigitalOcean is a well-loved cloud hosting provider with automatic scaling. It's perfect for both rapid development and full-scale production, and if you find yourself already ingrained into the DO product line, this is an excellent choice for you.
 
@@ -44,12 +45,12 @@ CMD : \
 - It's recommended to specify a version of the Directus image. If this is omitted, the latest version will always be used, which could cause errors if there are any breaking changes. You can update the version here to update Directus.
 - Corepack is enabled as it allows us to use the pnpm package manager (used by Directus) without installing it.
 - Chown gives the proper permissions needed for node to access the files.
-- Port 8055 is exposed, which DigitalOcean will read and handle automatically during deployment. 
+- Port 8055 is exposed, which DigitalOcean will read and handle automatically during deployment.
 - The bootstrap command is run to pull info from the ENV to either install the database (if it's empty) or migrate it to the latest version (if it already exists and has missing migrations).
 
 ## Create a Managed Database
 
-If you already have an existing database, you don't have to create a new one now and can move on to the next section. 
+If you already have an existing database, you don't have to create a new one now and can move on to the next section.
 
 DigitalOcean offers hosted [databases](https://cloud.digitalocean.com/databases). Create a new one (I recommend starting with PostgreSQL) and take note of the connection details.
 
@@ -61,7 +62,7 @@ Directus currently does not support clustered Redis. If this changes, this proce
 
 ## Setup DigitalOcean Spaces Object Storage:
 
-Persistent file uploads require an external storage volume. On the DigitalOcean App Platform, this means using the Spaces Object Storage, which has a S3-compatible API. 
+Persistent file uploads require an external storage volume. On the DigitalOcean App Platform, this means using the Spaces Object Storage, which has a S3-compatible API.
 
 [Set up DigitalOcean Spaces here](https://cloud.digitalocean.com/spaces).
 
@@ -70,7 +71,7 @@ Persistent file uploads require an external storage volume. On the DigitalOcean 
 1. In your DigitalOcean dashboard, navigate to the Apps section and click **Create App**.
 2. Link the repository with your Dockerfile that you created earlier. You may need to connect your account to GitHub/GitLab to access your repository.
 3. You'll encounter a page with an auto-generated name for your app. You should see the name of your repository below. This setup is recognized as a web service suitable for Directus.
-4. Adjust the app's plan to your requirements, including the number of containers and their capabilities. 
+4. Adjust the app's plan to your requirements, including the number of containers and their capabilities.
 5. Connect to the managed database you crafted earlier. Attaching the database to the app is a recommended best practice, ensuring smooth firewall and security settings. Then, select your database cluster and user.
 6. Input the necessary [environment variables](/configuration/general) for Directus. A set of basic variables will help you start, but ensure you complete all necessary fields. The bulk editor simplifies this task, and you can always return to edit or add more variables later.
 
@@ -78,8 +79,8 @@ Persistent file uploads require an external storage volume. On the DigitalOcean 
 KEY="randomly-generated-key"
 SECRET="randomly-generated-secret"
 DB_CLIENT="pg"
-DB_HOST="dbhost"  
-DB_PORT="25060" 
+DB_HOST="dbhost"
+DB_PORT="25060"
 DB_DATABASE="your_db"
 DB_USER="doadmin"
 DB_PASSWORD="dbpass"
@@ -116,7 +117,7 @@ Once you've reviewed your configurations and confirmed everything's in order, cl
 
 ## Deploy Your Project
 
-During this step, all that's left for you is to patiently wait as your tailored Directus application undergoes construction and deployment. Digital Ocean will cache the image you've just built, ensuring it's available for spawning new containers during any auto-scaling events.  
+During this step, all that's left for you is to patiently wait as your tailored Directus application undergoes construction and deployment. Digital Ocean will cache the image you've just built, ensuring it's available for spawning new containers during any auto-scaling events.
 
 After the build, the deployment process takes the stage. This phase initializes Directus, oversees its bootstrap operations, and verifies the backend's functionality. If everything transpires without a hitch, you'll witness a successful deployment notification.
 

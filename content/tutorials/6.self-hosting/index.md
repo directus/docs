@@ -1,5 +1,3 @@
 ---
-title: Self Hosting
+title: Self-Hosting
 ---
-
-Self Hosting

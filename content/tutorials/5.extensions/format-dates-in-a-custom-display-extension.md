@@ -2,9 +2,10 @@
 id: 8c3f5a07-162f-4902-8044-dd5fa8b823c2
 slug: format-dates-in-a-custom-display-extension
 title: Format Dates in a Custom Display Extension
-authors: 
+authors:
   - name: Tim Butterfield
     title: Guest Author
+description: Learn how to build a custom display to format data in Directus.
 ---
 Displays provide a meaningful way for users to consume data. This guide will show you how to create a display to change
 a date of birth to the current age in years and months.

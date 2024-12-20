@@ -5,6 +5,7 @@ title: Implement Directus Auth with iOS
 authors:
   - name: Harshpal Bhirth
     title: Guest Author
+description: Learn how to register, login, and protect content in your iOS app.
 ---
 In this tutorial, you will learn how to configure an iOS project with Directus Auth. You'll cover registering, logging in, logging out, viewing all posts from all users, creating a post, and editing and deleting posts from your user account.
 
@@ -20,7 +21,7 @@ Create a `posts` collection with the `created_by` and `created_on` optional fiel
 
 ## Enabling User Registration
 
-Public user registration is disabled by default. To make use of it, it must first be enabled via your project settings. 
+Public user registration is disabled by default. To make use of it, it must first be enabled via your project settings.
 
 Create a new role inside of the user registration settings called `iOS App User`. For the `posts` collection, enable Create and Read actions. For Update and Delete, use custom permissions with the filter `user_created -> id Equals $CURRENT_USER.id`.
 
@@ -293,7 +294,7 @@ struct UserRegisterView: View {
 This function is called when the user taps the "Register" button.
 
 - It first checks if the email and password fields are not empty. If they are empty, it sets the `alertMessage` and shows the alert.
-- It sends a POST request to the '/user/register' endpoint with a payload containing the email and password. The 
+- It sends a POST request to the '/user/register' endpoint with a payload containing the email and password. The
    request is executed asynchronously using `URLSession.shared.dataTask`, and upon completion, it handles the response or any encountered errors. If successful, it dismisses the current view.
 
 ### showAlert Function:
@@ -309,7 +310,7 @@ import SwiftUI
 
 struct LoginData: Codable {
     let access_token: String
-    
+
  let refresh_token: String
 }
 
@@ -401,10 +402,10 @@ struct LoginView: View {
     }
 }
 ```
-    
+
 ### LoginData Struct:
 
-Codable protocol indicates that instances of this type can be encoded and decoded, typically used for JSON encoding and decoding. 
+Codable protocol indicates that instances of this type can be encoded and decoded, typically used for JSON encoding and decoding.
 
 ### Properties:
 
@@ -476,14 +477,14 @@ struct CreatePostView: View {
             alertMessage = "Invalid URL"
             return
         }
-        
+
         let postData = ["title": title, "content": content]
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
+
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: postData, options: [])
         } catch {
@@ -491,14 +492,14 @@ struct CreatePostView: View {
             alertMessage = "Error encoding post data"
             return
         }
-        
+
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse, error == nil else {
                 showAlert = true
                 alertMessage = error?.localizedDescription ?? "Unknown error"
                 return
             }
-            
+
             if (200..<300).contains(httpResponse.statusCode) {
                 print("Post created successfully")
             } else {
@@ -525,7 +526,7 @@ struct CreatePostView: View {
 - If the status code indicates success (between 200 and 299), it prints a success message.
 - If the status code indicates a failure, it shows an alert with an appropriate error message.
 
-## TokenManager 
+## TokenManager
 
 Create a new file named `TokenManager.swift`. This defines a struct named `TokenManager` responsible for managing access tokens.
 
@@ -538,8 +539,8 @@ struct TokenManager {
 
     static func saveToken(_ accessToken: String) {
         UserDefaults.standard.set(accessToken, forKey: accessTokenKey)
-        
-      
+
+
 
     static func saveRefreshToken(_ refreshToken: String) {
         UserDefaults.standard.set(refreshToken, forKey: refreshTokenKey)
@@ -562,11 +563,11 @@ struct TokenManager {
 - `getToken()`: This static method retrieves the access token stored in UserDefaults using the `accessTokenKey`. It returns an optional String representing the access token.
 - `getRefreshToken()`: This static method retrieves the refresh token stored in UserDefaults using the `refreshTokenKey`. It returns an optional String representing the refresh token.
 
-## PostView 
+## PostView
 
 Create a new file named `PostView.swift`. This code fetches and displays the current posts by users by sending a GET request.
 
-``` swift 
+``` swift
 import SwiftUI
 
 struct PostResponse: Codable {
@@ -664,7 +665,7 @@ The `PostResponse` struct conforming to `Codable` and represents the structure o
 - If successful, it decodes the response into a PostResponse object and updates the posts array with the received posts on the main thread.
 - Uses the `/items/posts` endpoint to fetch posts.
 
-## PostDetailView 
+## PostDetailView
 
 Create a new file named `PostDetailView.swift`. This view enables users to click on a post to expand it, providing options to edit and delete the post.
 
@@ -724,7 +725,7 @@ struct PostDetailView: View {
 
 - Renders a `DeletePostView`, passing the post's ID and access token. It also passes the `showAlert` state variable, allowing the `DeletePostView` to control the display of an alert if needed.
 
-## EditPostView 
+## EditPostView
 
 Create a new file named `EditPostView.swift`. This code allows the editing of an existing post by sending a PATCH request.
 
@@ -845,11 +846,11 @@ struct EditPostView: View {
 - If successful (status code 200), sets `isEditMode` to false to exit the edit mode.
 - Uses the `/items/posts/\(postId)` endpoint.
 
-## Delete Post View 
+## Delete Post View
 
 Create a new file named `DeletePostView.swift`. This code enables the deletion of a post by sending a DELETE request.
 
-``` swift 
+``` swift
 import SwiftUI
 
 struct DeletePostView: View {
@@ -929,7 +930,6 @@ struct DeletePostView: View {
 - Endpoint: `/items/posts/\(postId)`.
 
 
-## Summary 
+## Summary
 
 By following this tutorial you've integrated Directus APIs for authentication in a SwiftUI iOS app. You've covered user registration, login, post creation, viewing, editing, deletion, and logout functionalities. This knowledge equips you to develop efficient and secure social apps, enabling users to interact seamlessly with content and manage their accounts with ease.
-    

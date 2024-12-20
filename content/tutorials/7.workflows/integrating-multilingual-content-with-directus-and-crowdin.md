@@ -2,9 +2,10 @@
 id: 84f37f00-629b-4b38-8d18-9d92cc4b2f0c
 slug: integrating-multilingual-content-with-directus-and-crowdin
 title: Integrating Multilingual Content with Directus and Crowdin
-authors: 
+authors:
   - name: Diana Voroniak
     title: Product Marketing Manager, Crowdin
+description: Learn how to localize content in Directus using Crowdin's connector with Directus.
 ---
 Picture this: your app welcomes users with a friendly "hello" in English, a warm "hola" in Spanish, or a cheerful "bonjour" in French. That's the magic of content localization, and it's your ticket to connecting with users worldwide. If you're new to the multilingual game, fear not! Let's dive into a world where Directus and Crowdin play the hero's role, guiding you to create multilingual apps and automate most of the work.
 
@@ -16,14 +17,14 @@ Imagine Directus as your trusty companion on the journey to multilingual content
 
 When discussing Directus and multilingual projects, there are two different places to take action:
 
-1. **Multilingual Content**: Storing versions of content in collections in different languages. This is often exposed in a separate application like a website or phone app. 
+1. **Multilingual Content**: Storing versions of content in collections in different languages. This is often exposed in a separate application like a website or phone app.
 2. **Directus Data Studio**: Making the Directus web application multilingual through [translation strings](/guides/content/translations). This is commonly an internal or authoring interface, but some users have many or all users touch the Data Studio.
 
-There are many translation strings built-in to the Directus project for elements that appear in every project, but you can create as many custom strings as you want, to utilize them/ inside of your project - both inside of the data studio, and via API. 
+There are many translation strings built-in to the Directus project for elements that appear in every project, but you can create as many custom strings as you want, to utilize them/ inside of your project - both inside of the data studio, and via API.
 
 ## Set Up Multilingual Content
 
-This post will focus on translating the Directus Data Studio, but here is a summary brief summary on how to set up multilingual content translations in Directus: 
+This post will focus on translating the Directus Data Studio, but here is a summary brief summary on how to set up multilingual content translations in Directus:
 
 1. **Project Preparation**: Begin by backing up your data and configurations in Directus to ensure a safe starting point.
 2. **Language Setup**: Introduce multiple languages effortlessly in Directus by accessing project settings and adding the languages you need.
@@ -31,10 +32,10 @@ This post will focus on translating the Directus Data Studio, but here is a summ
 4. **Preparing for Translation**: Gather textual content for translation and export it using Directus' export features.
 5. **Collaboration with Translators**: Collaborate effectively with professionals or community contributors to your translation team to ensure accurate translations.
 6. **Entering Translations**: Input translations into your Directus project by navigating to relevant collections and entries and pasting the translated content.
-7. **Displaying Localized Content**: Develop your app's front-end and integrate with the Directus API to retrieve content in the desired language. 
+7. **Displaying Localized Content**: Develop your app's front-end and integrate with the Directus API to retrieve content in the desired language.
 8. **Testing and Continuous Improvement**: Thoroughly test your app for localized content, gather user feedback, and make iterative improvements for an optimal user experience.
 
-For detailed step-by-step instructions, explore the [content translation reference](/guides/content/translations). 
+For detailed step-by-step instructions, explore the [content translation reference](/guides/content/translations).
 
 ## Contribute Translations To The Directus Data Studio
 
@@ -45,9 +46,9 @@ Contributing to the translation process and translating the Directus project its
 3. **Translating Strings**: Inside the Directus project, you'll find various languages and files with strings and phrases that require translation. Go to Language > Files or Translate All, and click on each string to enter translations for different languages.
 4. **Collaboration:** Crowdin enables collaboration with other translators. You can discuss translations, ask questions, and provide context to ensure accurate translations.
 
-The core team behind Directus have set up an automation that will open a pull request as soon as there are community-generated changes to the translation strings. They are then merged pending a review, same as changes to code or docs, to become part of the subsequent releases. 
+The core team behind Directus have set up an automation that will open a pull request as soon as there are community-generated changes to the translation strings. They are then merged pending a review, same as changes to code or docs, to become part of the subsequent releases.
 
-If you're interested in contributing new languages that aren't already in the Directus Translation Project, please reach out to the Directus core team! 
+If you're interested in contributing new languages that aren't already in the Directus Translation Project, please reach out to the Directus core team!
 
 ##  Change Language In The Directus Data Studio
 

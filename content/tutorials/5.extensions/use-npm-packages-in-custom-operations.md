@@ -2,9 +2,10 @@
 id: 9e2efc14-27b4-4fa0-9632-71d922947fa2
 slug: use-npm-packages-in-custom-operations
 title: Use npm Packages in Custom Operations
-authors: 
+authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
+description: Learn how to expose an npm package as an operation in Directus Automate.
 ---
 This guide will show you how to expose an NPM package as a custom operation in Flows. We will use `lodash` here, but the
 process should be the same for any package.

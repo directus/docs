@@ -5,6 +5,7 @@ title: Understanding Kubernetes
 authors:
   - name: Eike Thies
     title: Guest Author
+description: Learn about key Kubernetes concepts and how they interact with each other.
 ---
 While running applications in Docker containers may not seem to complex, the reality of multi-container setups — like needing a database, secrets, hosts, backups, updates, and more — can get quite messy. This is where an orchestrator comes in.
 
@@ -14,7 +15,7 @@ If you never used Kubernetes, you may be surprised that you very often already h
 
 There are a lot of hosted Kubernetes solutions for you to choose from - like Amazon's [EKS](https://aws.amazon.com/eks/), Google's [GKE](https://cloud.google.com/kubernetes-engine), and Microsoft's [AKS](https://azure.microsoft.com/en-us/products/kubernetes-service).
 
-In this post, I walk through of some of the basic pieces of the Kubernetes puzzle, and what they mean in a Directus context. This post contains lots of small examples which are for illustrative purpose to help explain the various concepts. 
+In this post, I walk through of some of the basic pieces of the Kubernetes puzzle, and what they mean in a Directus context. This post contains lots of small examples which are for illustrative purpose to help explain the various concepts.
 
 ## YAML and APIs
 
@@ -360,6 +361,4 @@ So, if we create a DNS-record for `directus.app`, pointing to your K8s cluster, 
 
 ## Summary
 
-With this, you have learned how you could orchestrate your containers, your volumes, config, secrets, and more with Kubernetes. We've also covered some of the common terminology needed to fully understand a Kubernetes setup. 
-
-
+With this, you have learned how you could orchestrate your containers, your volumes, config, secrets, and more with Kubernetes. We've also covered some of the common terminology needed to fully understand a Kubernetes setup.

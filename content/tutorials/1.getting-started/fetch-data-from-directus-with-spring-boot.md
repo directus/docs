@@ -5,12 +5,13 @@ title: Fetch Data from Directus with Spring Boot
 authors:
   - name: David Mbochi
     title: Guest Author
+description: Learn how to integrate Directus in your Spring Boot web application.
 ---
 This tutorial will show you how to integrate Spring Boot in Directus. At the end of this tutorial, you will have an application that uses Thymeleaf templating engine to display the data from the Directus API.
 
 ## Before You Start
 
-You will need: 
+You will need:
 
 - Knowledge of Java programming language and Thymeleaf templating.
 - [Java development kit(JDK)8](https://www.oracle.com/ke/java/technologies/javase/javase8-archive-downloads.html) or above.
@@ -23,7 +24,7 @@ In your Directus project, set up a collection named `articles` with the fields `
 
 To create a new Spring Boot project, go to [Spring initializr](https://start.spring.io/) and select **Maven** on **Project** section and **3.x.x** on the **Spring Boot** section. The version will depend on the time you are reading this article so replace the x with the current version of Spring Boot.
 
-On the **Project Metadata** section, enter the following: 
+On the **Project Metadata** section, enter the following:
 
 - **Group** - com.directus
 - **Artifact** - blog
@@ -83,7 +84,7 @@ If you make a request to retrieve a JSON response of your Directus project, you 
 }
 ```
 
-You can see that the data is wrapped in an Array. As a result, you have to ensure the type of data being received is the same as the one returned by JSON. 
+You can see that the data is wrapped in an Array. As a result, you have to ensure the type of data being received is the same as the one returned by JSON.
 
 Inside of the `model` package, create an `ArticleDTO.java` file:
 
@@ -205,7 +206,7 @@ The `ArticleController` class will be responsible for handling web requests and 
 
 In this case, the method named `getAllArticles()` handles incoming GET requests issued to `/` and returns a Thymeleaf view named index. You should add `@GetMapping` annotation to the method to indicate that it handles GET requests.
 
-To retrieve the `List` of articles from the service class, inject the `ArticleService` class to the controller using the `@Autowired` annotation. Next, use a model attribute named `articles` to add the data to Thymeleaf by calling the `getAllArticles()` method of `ArticleService`. 
+To retrieve the `List` of articles from the service class, inject the `ArticleService` class to the controller using the `@Autowired` annotation. Next, use a model attribute named `articles` to add the data to Thymeleaf by calling the `getAllArticles()` method of `ArticleService`.
 
 The `index` string returned is the name of a Thymeleaf page that will be used to display the articles. You will create the page in the next step.
 

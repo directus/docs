@@ -2,9 +2,10 @@
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: building-ai-venture-an-ai-powered-game-with-directus
 title: Building AIVenture - An AI-Powered Game with Directus
-authors: 
+authors:
   - name: Craig Harman
     title: Guest Author
+description: Learn the advanced techniques used with Directus Automate to build a game.
 ---
 ## You are standing in an open field…
 
@@ -29,7 +30,7 @@ In AIVenture, all of this logic is represented in Directus Flows. However, with 
 
 ## Registering Players
 
-So that AIVenture can store game progress across devices, individual users need to be identified. 
+So that AIVenture can store game progress across devices, individual users need to be identified.
 
 As Directus already has user management and authentication baked in, AIVenture is able to harness the API to create users. When users sign up, they are assigned a custom “player” role that gives them permissions to reach a single Directus Flow game endpoint.
 
@@ -50,7 +51,7 @@ The ChatGPT API returns a token count with each response, so we were able to acc
     "completion_tokens": 17,
     "prompt_tokens": 57,
     "total_tokens": 74
-} 
+}
 ```
 
 Each prompt/response combination is stored in a Directus collection and various query filters and aggregators are used to provide the game engine with the total number of tokens used by a player in a day and the total tokens used for the current game.
@@ -61,9 +62,9 @@ Once the total game token limit is reached, the prompt sent to ChatGPT is modifi
 
 ## Managing Complex Flows
 
-Creating a game engine in Directus Flows has the potential to become excessively large and unmaintainable very quickly without some strict architectural decisions. 
+Creating a game engine in Directus Flows has the potential to become excessively large and unmaintainable very quickly without some strict architectural decisions.
 
-We keep flows as small and functionally-isolated components. Think of these flows as you would Classes in your application. A 'main' flow triggers our sub-flows. This is a powerful and important architecture for our game engine design as it allows us to compartmentalize logic, keeping our main flow clean and readable and making testing easier. 
+We keep flows as small and functionally-isolated components. Think of these flows as you would Classes in your application. A 'main' flow triggers our sub-flows. This is a powerful and important architecture for our game engine design as it allows us to compartmentalize logic, keeping our main flow clean and readable and making testing easier.
 
 Let’s see what this looks like in Directus. First, we set up a flow called “SubCommand”. Our one important configuration for this flow is to select “Another flow” as the trigger set up - this will allow us to trigger this sub flow from within our parent and receive the resulting data. All our flow logic for our subcommand can now be added, being sure to return the required data.
 
@@ -113,7 +114,7 @@ In reality though we can’t have our second operation rejoin the first flow and
 
 As such, returning to our example above, we’d have to duplicate steps four and five for both code paths. Extrapolate this out to all conditional logic in the game engine and we’d end up with multiple repeated operations.
 
-There are two ways to overcome this that can be used in combination. The first is good flow planning to avoid situations where this branching needs to occur. The second is to make use of the “Run Script” operation and have your branching logic in there. 
+There are two ways to overcome this that can be used in combination. The first is good flow planning to avoid situations where this branching needs to occur. The second is to make use of the “Run Script” operation and have your branching logic in there.
 
 Here’s an example:
 

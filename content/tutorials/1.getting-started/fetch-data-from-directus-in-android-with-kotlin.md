@@ -5,6 +5,7 @@ title: Fetch Data from Directus in Android with Kotlin
 authors:
   - name: Ekekenta Clinton
     title: Guest Author
+description: Learn how to integrate Directus in your Android app with Kotlin.
 ---
 In this tutorial, you will learn how to set up an Android project with Kotlin and Directus. We'll cover initializing the project, creating a helper library for the Directus SDK, setting up global configurations, and creating dynamic pages, including a blog listing and a blog single view.
 
@@ -154,7 +155,7 @@ interface DirectusApiService {
         }
     }
 }
-```    
+```
 
 Right-click on your ui package, and create a new Kotlin file named `HomePageScreen`:
 
@@ -322,7 +323,7 @@ interface DirectusApiService {
         }
     }
 }
-```   
+```
 
 Update your `BlogHomeScreen` to display the pages data:
 
@@ -475,7 +476,7 @@ interface DirectusApiService {
         }
     }
 }
-```   
+```
 
 Update your `BlogHomeScreen` to render the blogs:
 
@@ -674,7 +675,7 @@ fun BlogDetailScreen(blogId: Int, navController: NavController) {
 ```
 
 
-The above code defines a composable function called `BlogDetailScreen` that displays the details of a blog post retrieved from an API. It uses the Scaffold component with a `TopAppBar` that has a back button to navigate up the screen hierarchy. The screen fetches blog data from an API service using a coroutine and stores it in the `blogResponse` state variable. If there is an error, the `errorMessage` state variable is set. If the blog data is successfully fetched, it renders the blog title, date created, and content using the custom `MarkdownView` composable function. 
+The above code defines a composable function called `BlogDetailScreen` that displays the details of a blog post retrieved from an API. It uses the Scaffold component with a `TopAppBar` that has a back button to navigate up the screen hierarchy. The screen fetches blog data from an API service using a coroutine and stores it in the `blogResponse` state variable. If there is an error, the `errorMessage` state variable is set. If the blog data is successfully fetched, it renders the blog title, date created, and content using the custom `MarkdownView` composable function.
 
 Then update your `DirectusHelper` file to add an endpoint to fetch blogs by their id:
 

@@ -2,11 +2,12 @@
 id: e93c8494-df0d-4aa1-80c1-beabb0081411
 slug: build-an-hotel-booking-platform-with-next-js-stripe-and-directus-automate
 title: Build an Hotel Booking Platform with Next.js, Stripe, and Directus Automate
-authors: 
+authors:
   - name: Trust Jamin
     title: Guest Author
+description: Learn to build a hotel booking site with dynamic availability and payments via Stripe.
 ---
-In this tutorial, you will build a fully functional hotel booking website, using Next.js for the frontend, Directus as the backend service and Stripe for receiving payments. 
+In this tutorial, you will build a fully functional hotel booking website, using Next.js for the frontend, Directus as the backend service and Stripe for receiving payments.
 
 You will create different room types, create and store rooms based on the room types, create new reservations dynamically when a room payment is successful and block the availability for that room based on the check-in and check-out date for the reservation.
 
@@ -615,7 +616,7 @@ export default function BookingForm({
       console.error("Error:", error);
     }
   };
-  
+
   return (
     <form onSubmit={handleFormSubmit}>
       <div>
