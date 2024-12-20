@@ -5,8 +5,6 @@ definePageMeta({
 	layout: 'docs',
 });
 
-const { toc } = useAppConfig();
-
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
 
@@ -26,6 +24,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			:description="page!.description"
 			:links="page!.links"
 			:headline="headline"
+
 		/>
 
 		<UPageBody prose>
