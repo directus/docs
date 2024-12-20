@@ -15,7 +15,7 @@ if (!page.value) {
 
 <template>
 	<UContainer>
-		<UPage>
+		<UPage class="pb-48">
 			<UPageHeader
 				:title="page!.title"
 				:description="page!.description"

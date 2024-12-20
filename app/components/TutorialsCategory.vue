@@ -22,7 +22,7 @@ defineProps<{
 		/>
 
 		<Callout
-			class="full mt-8 font-bold"
+			class="w-6/12 my-10 font-bold"
 			:to="path"
 			icon="material-symbols:arrow-outward"
 		>

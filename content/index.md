@@ -42,8 +42,9 @@ navigation: false
 ::shiny-grid
   :::shiny-card
   ---
-  icon: simple-icons:directus
   title: Platform Overview
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:directus
   to: /getting-started
   class: col-span-6
   ---
@@ -51,8 +52,9 @@ navigation: false
   
   :::shiny-card
   ---
-  icon: material-symbols:live-tv
   title: Directus Academy
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:play
   to: https://directus.io/tv/directus-academy
   class: col-span-6
   ---
@@ -64,9 +66,9 @@ navigation: false
 ::shiny-grid
   :::shiny-card
   ---
-  icon: directus-connect
   title: Data Engine
   description: APIs and developer tools for your data.
+  icon: directus-connect
   class: col-span-6
   ---
   :product-link{product="connect"} :product-link{product="realtime"} :product-link{product="auth"} :product-link{product="automate"}
@@ -74,9 +76,9 @@ navigation: false
   
   :::shiny-card
   ---
-  icon: directus-explore
   title: Data Studio
   description: A data web app your whole team will love.
+  icon: directus-explore
   class: col-span-6
   ---
   :product-link{product="explore"} :product-link{product="editor"} :product-link{product="insights"} :product-link{product="files"}
@@ -89,6 +91,8 @@ navigation: false
   :::shiny-card
   ---
   title: Quickstart
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:star
   to: '/getting-started/connect'
   class: col-span-4
   ---
@@ -97,6 +101,8 @@ navigation: false
   :::shiny-card
   ---
   title: API Reference
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:play
   to: '/api'
   class: col-span-4
   ---
@@ -105,6 +111,8 @@ navigation: false
   :::shiny-card
   ---
   title: SDK
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:code
   to: '/getting-started/connect/sdk'
   class: col-span-4
   ---
@@ -117,6 +125,8 @@ navigation: false
   :::shiny-card
   ---
   title: Directus with Next.js
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:nextdotjs
   to: '/tutorials?tags=nextjs'
   class: col-span-4
   ---
@@ -125,6 +135,8 @@ navigation: false
   :::shiny-card
   ---
   title: Build Projects with Directus
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:command-line
   to: '/tutorials?tags=nextjs'
   class: col-span-4
   ---
@@ -133,6 +145,8 @@ navigation: false
   :::shiny-card
   ---
   title: Using Directus Auth
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:lock-closed
   to: '/tutorials?tags=directus-auth'
   class: col-span-4
   ---
@@ -141,6 +155,8 @@ navigation: false
   :::shiny-card
   ---
   title: Automate & Integrate
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:adjustments
   to: '/tutorials?tags=directus-automate'
   class: col-span-4
   ---
@@ -149,6 +165,8 @@ navigation: false
   :::shiny-card
   ---
   title: Self-Hosting Guide
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:cloud
   to: '/tutorials/self-hosting'
   class: col-span-4
   ---
@@ -157,12 +175,14 @@ navigation: false
   :::shiny-card
   ---
   title: SEO Best Practices
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:search
   to: '/tutorials/tips-and-tricks/search-engine-optimization-best-practices'
   class: col-span-4
   ---
   :::
 
-  :::callout{icon="i-heroicons-light-bulb" to="/tutorials" class="col-span-8"}
+  :::callout{icon="heroicons-outline:light-bulb" to="/tutorials" class="col-span-6"}
   See All Tutorials
   :::
 ::
@@ -172,8 +192,9 @@ navigation: false
 ::shiny-grid
   :::shiny-card
   ---
-  icon: simple-icons:github
   title: GitHub Releases
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:github
   to: 'https://github.com/directus/directus/releases'
   class: col-span-4
   ---
@@ -181,8 +202,9 @@ navigation: false
 
   :::shiny-card
   ---
-  icon: material-symbols:error-med
   title: Breaking Changes
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:exclamation-circle
   to: '/releases/breaking-changes'
   class: col-span-4
   ---
@@ -190,8 +212,9 @@ navigation: false
 
   :::shiny-card
   ---
-  icon: material-symbols:list-alt-add-outline
   title: Changelog
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:document-text
   to: '/releases/changelog'
   class: col-span-4
   ---
@@ -200,13 +223,12 @@ navigation: false
 
 ## Community-Maintained Tooling
 
-These are built and maintained by our awesome community. If you are building tooling and want to include it here, please open a [pull request on GitHub](https://github.com/directus/docs).
-
 ::shiny-grid
   :::shiny-card
   ---
-  icon: simple-icons:python
   title: Python SDK
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:python
   to: 'https://pypi.org/project/directus-sdk-py/'
   class: col-span-4
   ---
@@ -214,8 +236,9 @@ These are built and maintained by our awesome community. If you are building too
 
   :::shiny-card
   ---
-  icon: simple-icons:go
   title: Go SDK
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:go
   to: 'https://pkg.go.dev/github.com/altipla-consulting/directus-go#section-readme'
   class: col-span-4
   ---
@@ -223,8 +246,9 @@ These are built and maintained by our awesome community. If you are building too
 
   :::shiny-card
   ---
-  icon: simple-icons:dart
   title: Dart SDK
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:dart
   to: 'https://github.com/apstanisic/directus-dart'
   class: col-span-4
   ---
@@ -232,8 +256,9 @@ These are built and maintained by our awesome community. If you are building too
 
   :::shiny-card
   ---
-  icon: simple-icons:nuxtdotjs
   title: Nuxt Module
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:nuxtdotjs
   to: 'https://nuxt.com/modules/directus'
   class: col-span-4
   ---
@@ -241,11 +266,16 @@ These are built and maintained by our awesome community. If you are building too
   
   :::shiny-card
   ---
-  icon: simple-icons:helm
   title: Helm Chart
+  description: TK Developer tooling that's super cool
+  icon: simple-icons:helm
   to: 'https://github.com/directus-labs/helm-chart'
   class: col-span-4
   ---
+  :::
+
+  :::callout{icon="material-symbols:lightbulb-2-outline" class="col-span-6"}
+  These are built and maintained by our awesome community. If you are building tooling and want to include it here, please open a [pull request on GitHub](https://github.com/directus/docs).
   :::
 ::
 
@@ -255,6 +285,8 @@ These are built and maintained by our awesome community. If you are building too
   :::shiny-card
   ---
   title: Environment Variables
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:cog
   to: '/configuration/general'
   class: col-span-4
   ---
@@ -263,6 +295,8 @@ These are built and maintained by our awesome community. If you are building too
   :::shiny-card
   ---
   title: Building Extensions
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:puzzle
   to: '/guides/extensions/overview'
   class: col-span-4
   ---
@@ -271,6 +305,8 @@ These are built and maintained by our awesome community. If you are building too
   :::shiny-card
   ---
   title: Self-Hosting
+  description: TK Developer tooling that's super cool
+  icon: heroicons-outline:cloud
   to: '/self-hosting/overview'
   class: col-span-4
   ---
