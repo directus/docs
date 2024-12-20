@@ -22,7 +22,7 @@ export default defineNuxtConfig({
 	},
 
 	site: {
-		url: 'https://docs.directus.io',
+		url: 'https://directus.io/docs',
 		name: 'Directus Docs',
 		description: 'Explore our resources and powerful data engine to build your projects confidently.',
 		defaultLocale: 'en',
@@ -85,6 +85,9 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
+		output: {
+			publicDir: '.output/public/docs',
+		},
 		prerender: {
 			routes: [
 				'/',
