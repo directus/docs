@@ -7,7 +7,7 @@ const props = defineProps<{
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	const query = queryContent(props.path)
 		.where({ _path: { $ne: props.path } })
-		.only(['title', 'description', '_path']);
+		.only(['title', 'description', 'icon', '_path']);
 
 	if (props.limit) {
 		query.limit(props.limit);
@@ -18,24 +18,27 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 </script>
 
 <template>
-	<ULandingGrid class="mt-8">
+	<ShinyGrid class="mt-8 gap-10">
 		<template
 			v-for="article in articles"
 			:key="article._path"
 		>
-			<ULandingCard
+			<ShinyCard
 				v-if="article.title"
 				:title="article.title"
+				:description="article.description"
 				:to="article._path"
+				:icon="article.icon"
 				class="col-span-4"
 				:ui="{
 					body: {
-						base: 'justify-center gap-0',
+						base: 'gap-0',
 					},
-					title: 'font-bold text-balance',
+					title: 'font-bold text-pretty',
+					description: 'line-clamp-2',
 				}"
 				:color="cardColor(article.title)"
 			/>
 		</template>
-	</ULandingGrid>
+	</ShinyGrid>
 </template>

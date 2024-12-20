@@ -20,43 +20,45 @@ const show = await $fetch<Show>(
 </script>
 
 <template>
-	<UCard class="w-full">
-		<ScriptVimeoPlayer
-			:id="show.data.vimeo_id"
-			:root-attrs="{ style: { width: '100%' } }"
-			above-the-fold
-		>
-			<template #awaitingLoad>
-				<div class="absolute inset-0 flex items-center justify-center">
-					<UButton
-						icon="material-symbols:play-circle-outline"
-						size="xl"
+	<ClientOnly>
+		<UCard class="w-full">
+			<ScriptVimeoPlayer
+				:id="show.data.vimeo_id"
+				:root-attrs="{ style: { width: '100%' } }"
+				above-the-fold
+			>
+				<template #awaitingLoad>
+					<div class="absolute inset-0 flex items-center justify-center">
+						<UButton
+							icon="material-symbols:play-circle-outline"
+							size="xl"
+						/>
+					</div>
+				</template>
+
+				<template #loading>
+					<div class="absolute inset-0 flex items-center justify-center">
+						<UButton
+							loading
+							size="xl"
+						/>
+					</div>
+				</template>
+
+				<template #error>
+					<UAlert
+						color="red"
+						title="Video player failed to load"
+						description="Please refresh the page to try again."
 					/>
-				</div>
-			</template>
+				</template>
+			</ScriptVimeoPlayer>
 
-			<template #loading>
-				<div class="absolute inset-0 flex items-center justify-center">
-					<UButton
-						loading
-						size="xl"
-					/>
-				</div>
+			<template #footer>
+				<NuxtLink :href="`https://directus.io/tv/${show.data.season.show.slug}`">
+					Watch {{ show.data.season.show.title }} on <LogoTv />
+				</NuxtLink>
 			</template>
-
-			<template #error>
-				<UAlert
-					color="red"
-					title="Video player failed to load"
-					description="Please refresh the page to try again."
-				/>
-			</template>
-		</ScriptVimeoPlayer>
-
-		<template #footer>
-			<NuxtLink :href="`https://directus.io/tv/${show.data.season.show.slug}`">
-				Watch {{ show.data.season.show.title }} on <LogoTv />
-			</NuxtLink>
-		</template>
-	</UCard>
+		</UCard>
+	</ClientOnly>
 </template>

@@ -9,6 +9,14 @@ const { data: page } = await useAsyncData(route.path, () => queryContent(route.p
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
+
+defineOgImage({
+	component: 'OgImageDefault',
+	props: {
+		title: page.value.title,
+		breadcrumb: pageBreadcrumb(page.value._path!),
+	},
+});
 </script>
 
 <template>
@@ -30,12 +38,7 @@ if (!page.value) {
 			</template>
 		</UPageHeader>
 
-		<UPageBody prose>
-			<ContentRenderer
-				v-if="page!.body"
-				:value="page"
-			/>
-
+		<UPageBody>
 			<TutorialsArticles :path="route.path" />
 		</UPageBody>
 	</UPage>

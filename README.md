@@ -1,75 +1,53 @@
-# Nuxt Minimal Starter
+<p align="center"><img alt="Directus Logo" src="https://user-images.githubusercontent.com/522079/158864859-0fbeae62-9d7a-4619-b35e-f8fa5f68e0c8.png"></p>
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+---
 
-## Setup
+> [!IMPORTANT]  
+> This documentation is in beta. We eagerly welcome your feedback!
 
-Make sure to install dependencies:
+## 🐰 Introduction
+
+Welcome! This is the repo for [Directus' documentation](https://docs.directus.io).
+
+**[Learn more about Directus](https://directus.io)**
+
+<br />
+
+## 🖥️ Running the Docs
+
+### Requirements
+
+* Node.js 20
+* pnpm
+
+### Install Dependencies
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+### Run Development Server
 
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## 🚀 Contributing
 
-Build the application for production:
+* [Code of Conduct](https://docs.directus.io/community/overview/conduct)
+* [Contributing and authoring guidelines](https://docs.directus.io/community/contribution/documentation)
 
-```bash
-# npm
-npm run build
+<br />
 
-# pnpm
-pnpm build
+## 🤔 Community Help
 
-# yarn
-yarn build
+- [Discord](https://directus.chat) (Questions, Live Discussions)
+- [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
+- [GitHub Discussions](https://github.com/directus/docs/discussions) (Feature Requests)
 
-# bun
-bun run build
-```
+<br />
 
-Locally preview production build:
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+© 2004-2024, Monospace, Inc.

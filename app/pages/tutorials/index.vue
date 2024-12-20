@@ -11,6 +11,14 @@ const { data: categories } = await useAsyncData(route.path + '-categories', () =
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
+
+defineOgImage({
+	component: 'OgImageDefault',
+	props: {
+		title: page.value.title,
+		breadcrumb: pageBreadcrumb(page.value._path!),
+	},
+});
 </script>
 
 <template>
@@ -19,10 +27,12 @@ if (!page.value) {
 			:title="page!.title"
 		>
 			<template #description>
-				<ContentRenderer
-					v-if="page!.body"
-					:value="page"
-				/>
+				<div class="max-w-prose">
+					<ContentRenderer
+						v-if="page!.body"
+						:value="page"
+					/>
+				</div>
 			</template>
 		</UPageHeader>
 

@@ -1,6 +1,6 @@
 ---
 title: Extensions
-description: TK All about extensions
+description: All about extensions
 ---
 
-TK Learn about extensions
+Learn about extensions

@@ -1,5 +1,3 @@
 ---
-title: TK Getting Started
+title: Getting Started
 ---
-
-TK Getting Started
