@@ -34,6 +34,19 @@ Start the development server on `http://localhost:3000`:
 pnpm dev
 ```
 
+## ☁️ Deploying the Docs
+
+Due to [a bug in Nitro](https://github.com/nitrojs/nitro/issues/1484), Netlify isn't able to
+auto-build this website on pushes to main. Instead, a member of the core team has to deploy it
+manually through the [Netlify CLI](https://docs.netlify.com/cli/get-started/).
+
+1. `netlify build` – Build the website locally. This'll pull in the required env variables from our
+   Netlify team, and use the build command as configured in `netlify.toml`
+2. `netlify deploy` – This will deploy a staging build to a branch to verify everything looks good.
+   Once that's good to go:
+3. `netlify deploy --prod` – This will then upload the same thing again but push it live to the prod
+   website
+
 ## 🚀 Contributing
 
 * [Code of Conduct](https://docs.directus.io/community/overview/conduct)
