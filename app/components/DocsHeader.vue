@@ -46,16 +46,22 @@ const navigationTree = computed(() => {
 
 		<template #right>
 			<ClientOnly>
-				<UButton
-					icon="material-symbols:search"
-					class="relative"
-					truncate
-					variant="ghost"
-					color="gray"
-					square
+				<UTooltip
+					text="Search"
+					:shortcuts="[metaSymbol, 'K']"
+					:popper="{ strategy: 'absolute' }"
 				>
-					<AlgoliaDocSearch />
-				</UButton>
+					<UButton
+						icon="heroicons:magnifying-glass-20-solid"
+						class="relative"
+						truncate
+						variant="ghost"
+						color="gray"
+						square
+					>
+						<AlgoliaDocSearch />
+					</UButton>
+				</UTooltip>
 			</ClientOnly>
 
 			<UColorModeButton class="hidden lg:inline-flex" />
