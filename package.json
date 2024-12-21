@@ -5,7 +5,7 @@
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "nuxt dev",
-		"generate": "nuxt generate",
+		"generate": "nuxt generate && cp .output/public/docs/200.html .output/public/200.html && cp .output/public/docs/404.html .output/public/404.html",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare"
 	},
