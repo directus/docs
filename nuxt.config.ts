@@ -19,7 +19,7 @@ export default defineNuxtConfig({
 
 	app: {
 		baseURL: '/docs/',
-		buildAssetsDir: '/_nuxt',
+		buildAssetsDir: '/docs/_nuxt',
 	},
 
 	site: {
@@ -86,12 +86,6 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
-		// Nitro will detect the environment and be "smart" about how to change the output settings to
-		// make deploying "seamless". That being said, it will fail dramatically on Netlify if you're
-		// using a non-root baseURL. See https://github.com/nitrojs/nitro/issues/1484 The workaround
-		// is to enforce the same 'preset' to be used everywhere. Nitro's default preset is
-		// `node_server`.
-		preset: 'node_server',
 		output: {
 			publicDir: '.output/public/docs',
 		},
