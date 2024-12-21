@@ -19,6 +19,7 @@ export default defineNuxtConfig({
 
 	app: {
 		baseURL: '/docs/',
+		buildAssetsDir: '/_nuxt',
 	},
 
 	site: {
@@ -90,9 +91,14 @@ export default defineNuxtConfig({
 		// using a non-root baseURL. See https://github.com/nitrojs/nitro/issues/1484 The workaround
 		// is to enforce the same 'preset' to be used everywhere. Nitro's default preset is
 		// `node_server`.
-		preset: 'static',
+		preset: 'node_server',
 		output: {
 			publicDir: '.output/public/docs',
+		},
+		runtimeConfig: {
+			app: {
+				buildAssetsDir: '_nuxt',
+			},
 		},
 		prerender: {
 			routes: [
