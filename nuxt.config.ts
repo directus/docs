@@ -19,7 +19,7 @@ export default defineNuxtConfig({
 
 	app: {
 		baseURL: '/docs/',
-		buildAssetsDir: '/_nuxt',
+		buildAssetsDir: '/_build-hack/_nuxt',
 	},
 
 	site: {
