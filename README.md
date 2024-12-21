@@ -17,8 +17,8 @@ Welcome! This is the repo for [Directus' documentation](https://docs.directus.io
 
 ### Requirements
 
-* Node.js 20
-* pnpm
+- Node.js 20
+- pnpm
 
 ### Install Dependencies
 
@@ -40,17 +40,17 @@ Due to [a bug in Nitro](https://github.com/nitrojs/nitro/issues/1484), Netlify i
 auto-build this website on pushes to main. Instead, a member of the core team has to deploy it
 manually through the [Netlify CLI](https://docs.netlify.com/cli/get-started/).
 
-1. `netlify build` – Build the website locally. This'll pull in the required env variables from our
-   Netlify team, and use the build command as configured in `netlify.toml`
-2. `netlify deploy` – This will deploy a staging build to a branch to verify everything looks good.
+1. `netlify env:list --plain` – Get a copy of the `.env` you'll need to build the website
+1. `pnpm run generate` – Build the website locally
+1. `netlify deploy` – This will deploy a staging build to a branch to verify everything looks good.
    Once that's good to go:
-3. `netlify deploy --prod` – This will then upload the same thing again but push it live to the prod
+1. `netlify deploy --prod` – This will then upload the same thing again but push it live to the prod
    website
 
 ## 🚀 Contributing
 
-* [Code of Conduct](https://docs.directus.io/community/overview/conduct)
-* [Contributing and authoring guidelines](https://docs.directus.io/community/contribution/documentation)
+- [Code of Conduct](https://docs.directus.io/community/overview/conduct)
+- [Contributing and authoring guidelines](https://docs.directus.io/community/contribution/documentation)
 
 <br />
 
@@ -61,6 +61,5 @@ manually through the [Netlify CLI](https://docs.netlify.com/cli/get-started/).
 - [GitHub Discussions](https://github.com/directus/docs/discussions) (Feature Requests)
 
 <br />
-
 
 © 2004-2024, Monospace, Inc.

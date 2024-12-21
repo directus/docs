@@ -131,5 +131,5 @@ body .DocSearch-Button:hover {
 
 body .DocSearch-Button > * {
 	display: none !important;
-};
+}
 </style>

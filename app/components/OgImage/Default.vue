@@ -28,18 +28,11 @@ defineProps<OgProps>();
 			width: 100%;
 			height: 100%;
 			overflow: hidden;
-			background-color: #ffffff;
+			background-color: #000000;
 			font-family: 'Poppins';
 			padding: 115px 75px 100px 75px;
 		"
 	>
-		<img
-			src="/og-image-background.png"
-			style="position: absolute; inset: 0px; object-fit: cover"
-			width="1200"
-			height="600"
-		>
-
 		<div
 			style="
 				display: flex;
