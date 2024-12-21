@@ -90,7 +90,7 @@ export default defineNuxtConfig({
 		// using a non-root baseURL. See https://github.com/nitrojs/nitro/issues/1484 The workaround
 		// is to enforce the same 'preset' to be used everywhere. Nitro's default preset is
 		// `node_server`.
-		preset: 'node_server',
+		preset: 'static',
 		output: {
 			publicDir: '.output/public/docs',
 		},
