@@ -19,7 +19,6 @@ export default defineNuxtConfig({
 
 	app: {
 		baseURL: '/docs/',
-		buildAssetsDir: '/docs/_nuxt',
 	},
 
 	site: {
@@ -89,16 +88,11 @@ export default defineNuxtConfig({
 		output: {
 			publicDir: '.output/public/docs',
 		},
-		runtimeConfig: {
-			app: {
-				buildAssetsDir: '_nuxt',
-			},
-		},
 		prerender: {
 			routes: [
 				'/',
 			],
-			crawlLinks: true,
+			crawlLinks: false,
 
 			// TODO
 			// This is a dirty hack to get around a build blocking error..
