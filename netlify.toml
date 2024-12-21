@@ -1,3 +1,3 @@
 [build]
 publish = '.output/public'
-command = 'pnpm generate'
+command = 'pnpm generate && cp .output/public/docs/200.html .output/public/200.html && cp .output/public/docs/404.html .output/public/404.html'
