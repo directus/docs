@@ -19,6 +19,7 @@ export default defineNuxtConfig({
 
 	app: {
 		baseURL: '/docs/',
+		buildAssetsDir: '/docs/_nuxt',
 	},
 
 	site: {
@@ -85,6 +86,14 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
+		output: {
+			publicDir: '.output/public/docs',
+		},
+		runtimeConfig: {
+			app: {
+				buildAssetsDir: '_nuxt',
+			},
+		},
 		prerender: {
 			routes: [
 				'/',
