@@ -45,13 +45,18 @@ const navigationTree = computed(() => {
 		</template>
 
 		<template #right>
-			<UTooltip
-				text="Search"
-				:shortcuts="[metaSymbol, 'K']"
-				:popper="{ strategy: 'absolute' }"
-			>
-				<UContentSearchButton :label="''" />
-			</UTooltip>
+			<ClientOnly>
+				<UButton
+					icon="material-symbols:search"
+					class="relative"
+					truncate
+					variant="ghost"
+					color="gray"
+					square
+				>
+					<AlgoliaDocSearch />
+				</UButton>
+			</ClientOnly>
 
 			<UColorModeButton class="hidden lg:inline-flex" />
 
@@ -92,3 +97,33 @@ const navigationTree = computed(() => {
 		</template>
 	</UHeader>
 </template>
+
+<style>
+#docsearch {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+body .DocSearch-Button {
+	all: unset;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+body .DocSearch-Button:hover {
+	all: unset;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+body .DocSearch-Button > * {
+	display: none !important;
+};
+</style>

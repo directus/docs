@@ -11,6 +11,8 @@
 	},
 	"dependencies": {
 		"@directus/openapi": "0.0.6",
+		"@docsearch/css": "3.8.2",
+		"@docsearch/js": "3.8.2",
 		"@iconify-json/heroicons-outline": "1.2.1",
 		"@iconify-json/material-symbols": "1.2.11",
 		"@iconify-json/simple-icons": "1.2.16",
@@ -31,6 +33,7 @@
 		"vue-router": "latest"
 	},
 	"devDependencies": {
+		"@nuxtjs/algolia": "1.10.2",
 		"@types/lodash-es": "4.17.12",
 		"openapi3-ts": "4.4.0"
 	}

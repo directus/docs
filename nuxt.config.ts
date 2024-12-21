@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
 		'nuxt-posthog',
+		'@nuxtjs/algolia',
 	],
 
 	devtools: {
@@ -99,6 +100,12 @@ export default defineNuxtConfig({
 			// I can't for the life of me figure out where this magic </span link comes from
 			// ~ Rijk 12/19/2024
 			ignore: ['/docs/api/</span'],
+		},
+	},
+
+	algolia: {
+		docSearch: {
+			indexName: 'directus',
 		},
 	},
 
