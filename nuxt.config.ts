@@ -93,7 +93,7 @@ export default defineNuxtConfig({
 			routes: [
 				'/',
 			],
-			crawlLinks: false,
+			crawlLinks: true,
 
 			// TODO
 			// This is a dirty hack to get around a build blocking error..
