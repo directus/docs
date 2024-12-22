@@ -26,11 +26,8 @@ To achieve this, you will:
 
 ## How-To Guide
 
-:: callout {icon="material-symbols:info-outline"}
-
-You’ll need to have either a Directus Cloud project configured and running or a self-hosted instance of Directus up and
-running.
-
+::callout{icon="material-symbols:info-outline"}
+You’ll need to have either a Directus Cloud project configured and running or a self-hosted instance of Directus up and running.
 ::
 
 ### Map Out Your Data Model
