@@ -135,4 +135,12 @@ export default defineNuxtConfig({
 	robots: {
 		robotsTxt: false,
 	},
+
+	css: [
+		'~/assets/css/algolia.css'
+	],
+
+	colorMode: {
+		dataValue: 'theme'
+	}
 });
