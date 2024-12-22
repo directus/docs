@@ -86,10 +86,10 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
-		preset: 'static',
-		output: {
-			publicDir: '.output/public/docs',
-		},
+		// preset: 'static',
+		// output: {
+		// 	publicDir: '.output/public/docs',
+		// },
 		prerender: {
 			routes: [
 				'/',
