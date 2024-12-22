@@ -83,6 +83,7 @@ onMounted(() => {
 		input[type=email] {
 			@apply w-full;
 			@apply rounded-md text-xs sm:text-sm;
+			@apply dark:bg-gray-900;
 			@apply placeholder-gray-400 dark:placeholder-gray-500;
 			@apply border border-gray-200 dark:border-gray-800 p-2;
 		}
@@ -92,9 +93,6 @@ onMounted(() => {
 		@apply bg-purple-500 text-white;
 		@apply border border-purple-200 dark:border-purple-800 py-2 px-4;
 		@apply flex-none;
-	}
-	.hs-error-msg {
-
 	}
 }
 </style>
