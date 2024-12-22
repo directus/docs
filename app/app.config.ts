@@ -1,6 +1,13 @@
 export default defineAppConfig({
 	ui: {
-		primary: 'purple', // Tailwind color name
+		primary: 'purple', // Tailwind color name,
+
+		content: {
+			callout: {
+				// Fix background color of pre > code blocks
+				wrapper: '[&_pre>code]:!bg-transparent'
+			}
+		}
 	},
 
 	header: {
