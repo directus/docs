@@ -3,29 +3,35 @@ title: Directus API Reference
 description: Learn how to use our API
 ---
 
+Each Directus project comes with an integrated RESTful API that adapts as you work on your project.
+
+Authentication is achieved via [access tokens, cookies or sessions](/guides/auth/tokens-cookies).
+
+You can also interact with the API using GraphQL or the [Directus SDK](/guides/connect/sdk).
+
 This API reference is generated from our OpenAPI specification. Found an error? Please open a PR on the [directus/openapi](https://github.com/directus/openapi) repo!
 
-## Reading and Modifying Items
+## Registering and Logging in Users
 
 ::shiny-grid{class="mt-6"}
   ::shiny-card
   ---
-  title: Read Items
+  title: Register
   class: col-span-6
-  to: '/api/items#list-all-items-in-a-collection-'
+  to: '/api/users#register-a-new-user'
   ---
   ::
   
   ::shiny-card
   ---
-  title: Create Items
+  title: Login
   class: col-span-6
-  to: '/api/items#create-multiple-items'
+  to: '/api/authentication#login'
   ---
   ::
 ::
 
-## Working with Files
+## Working with Files and Items
 
 ::shiny-grid{class="mt-6"}
   ::shiny-card
@@ -38,9 +44,9 @@ This API reference is generated from our OpenAPI specification. Found an error? 
 
   ::shiny-card
   ---
-  title: Generate Thumbnails
+  title: Retrieve an Item
   class: col-span-6
-  to: '/api/assets'
+  to: '/api/items#retrieve-an-item'
   ---
   ::
 ::
