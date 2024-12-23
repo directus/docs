@@ -39,14 +39,6 @@ const operations = computed<FlattenedOperationObject<DerefedOperationObject>[]>(
 if (!tag.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
-
-defineOgImage({
-	component: 'OgImageDefault',
-	props: {
-		title: tag.value.name,
-		breadcrumb: ['api'],
-	},
-});
 </script>
 
 <template>
