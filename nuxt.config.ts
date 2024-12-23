@@ -22,11 +22,19 @@ export default defineNuxtConfig({
 		baseURL: '/docs/',
 	},
 
+	css: [
+		'~/assets/css/algolia.css',
+	],
+
 	site: {
 		url: 'https://directus.io',
 		name: 'Directus Docs',
 		description: 'Explore our resources and powerful data engine to build your projects confidently.',
 		defaultLocale: 'en',
+	},
+
+	colorMode: {
+		dataValue: 'theme',
 	},
 
 	content: {
@@ -77,6 +85,10 @@ export default defineNuxtConfig({
 				depth: 1,
 			},
 		},
+	},
+
+	build: {
+		transpile: ['shiki'],
 	},
 
 	future: {
@@ -135,12 +147,4 @@ export default defineNuxtConfig({
 	robots: {
 		robotsTxt: false,
 	},
-
-	css: [
-		'~/assets/css/algolia.css'
-	],
-
-	colorMode: {
-		dataValue: 'theme'
-	}
 });
