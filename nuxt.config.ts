@@ -110,24 +110,24 @@ export default defineNuxtConfig({
 
 	compatibilityDate: '2024-11-01',
 
-	nitro: {
-		// preset: 'static',
-		// output: {
-		// 	publicDir: '.output/public/docs',
-		// },
-		prerender: {
-			routes: [
-				'/',
-			],
-			crawlLinks: true,
+	// nitro: {
+	// 	// preset: 'static',
+	// 	// output: {
+	// 	// 	publicDir: '.output/public/docs',
+	// 	// },
+	// 	prerender: {
+	// 		routes: [
+	// 			'/',
+	// 		],
+	// 		crawlLinks: true,
 
-			// TODO
-			// This is a dirty hack to get around a build blocking error..
-			// I can't for the life of me figure out where this magic </span link comes from
-			// ~ Rijk 12/19/2024
-			ignore: ['/docs/api/</span'],
-		},
-	},
+	// 		// TODO
+	// 		// This is a dirty hack to get around a build blocking error..
+	// 		// I can't for the life of me figure out where this magic </span link comes from
+	// 		// ~ Rijk 12/19/2024
+	// 		ignore: ['/docs/api/</span'],
+	// 	},
+	// },
 
 	algolia: {
 		docSearch: {
