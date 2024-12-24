@@ -1,5 +1,3 @@
-<div class="prose">
-
 ## Using Directus Internals
 
 To access internal systems like the API or the stores in app extensions, you can use the `useApi()` and `useStores()` composables exported by the `@directus/extensions-sdk` package.
@@ -21,5 +19,3 @@ To avoid Cross Site Request Forgery (CSRF), app extensions cannot make requests 
 ::callout{icon="material-symbols:school-outline" color="pink" to="/tutorials/extensions"}
 Learn more about building extensions through our tutorials.
 ::
-
-</div>

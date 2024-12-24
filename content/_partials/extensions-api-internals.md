@@ -1,5 +1,3 @@
-<div class="prose">
-
 ## Using Directus Internals
 
 To access systems like permission checks and your collections, you can use internal Directus services, available through an API extension's `context` parameter.
@@ -19,5 +17,3 @@ const ForbiddenError = createError('FORBIDDEN', "You don't have permissions to s
 
 throw new ForbiddenError();
 ```
-
-</div>
