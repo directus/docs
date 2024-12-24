@@ -87,6 +87,10 @@ export default defineNuxtConfig({
 		},
 	},
 
+	build: {
+		transpile: ['shiki'],
+	},
+
 	future: {
 		compatibilityVersion: 4,
 	},
@@ -94,10 +98,6 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
-		// preset: 'static',
-		// output: {
-		// 	publicDir: '.output/public/docs',
-		// },
 		prerender: {
 			routes: [
 				'/',
@@ -110,19 +110,6 @@ export default defineNuxtConfig({
 			// ~ Rijk 12/19/2024
 			ignore: ['/docs/api/</span'],
 		},
-	},
-
-	vite: {
-		build: {
-			rollupOptions: {
-				external: [
-					'shiki/onig.wasm',
-				],
-			},
-		},
-		assetsInclude: [
-			'**/*.wasm',
-		],
 	},
 
 	algolia: {

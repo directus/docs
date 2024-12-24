@@ -5,6 +5,10 @@ const { data: navigation } = useAsyncData('navigation', () => fetchContentNaviga
 
 provide('openapi', spec);
 provide('navigation', navigation);
+
+defineOgImage({
+	url: '/img/og-image.png',
+});
 </script>
 
 <template>

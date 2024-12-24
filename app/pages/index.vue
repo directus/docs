@@ -11,13 +11,6 @@ if (!page.value) {
 		fatal: true,
 	});
 }
-
-defineOgImage({
-	component: 'OgImageDefault',
-	props: {
-		title: page.value.title,
-	},
-});
 </script>
 
 <template>
