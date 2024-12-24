@@ -9,6 +9,8 @@ provide('navigation', navigation);
 defineOgImage({
 	url: '/img/og-image.png',
 });
+
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false });
 </script>
 
 <template>
@@ -22,5 +24,14 @@ defineOgImage({
 		</UMain>
 
 		<DocsFooter />
+
+		<ClientOnly>
+			<LazyUContentSearch
+				ref="searchRef"
+				:files="files"
+				:navigation="navigation"
+				:fuse="{ resultLimit: 42 }"
+			/>
+		</ClientOnly>
 	</div>
 </template>

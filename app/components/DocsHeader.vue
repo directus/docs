@@ -8,7 +8,7 @@ const oasSpec = inject<OpenAPIObject>('openapi', { openapi: '3.0', info: { title
 
 const { metaSymbol } = useShortcuts();
 
-const { header } = useAppConfig();
+const { header, search } = useAppConfig();
 const route = useRoute();
 
 const links = computed(() =>
@@ -45,7 +45,7 @@ const navigationTree = computed(() => {
 		</template>
 
 		<template #right>
-			<ClientOnly>
+			<ClientOnly v-if="search.backend === 'algolia'">
 				<UTooltip
 					text="Search"
 					:shortcuts="[metaSymbol, 'K']"
@@ -63,6 +63,15 @@ const navigationTree = computed(() => {
 					</UButton>
 				</UTooltip>
 			</ClientOnly>
+
+			<UTooltip
+				v-if="search.backend === 'nuxt'"
+				text="Search"
+				:shortcuts="[metaSymbol, 'K']"
+				:popper="{ strategy: 'absolute' }"
+			>
+				<UContentSearchButton :label="null" />
+			</UTooltip>
 
 			<UColorModeButton class="hidden lg:inline-flex" />
 

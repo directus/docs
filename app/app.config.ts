@@ -1,13 +1,17 @@
 export default defineAppConfig({
+	search: {
+		backend: 'nuxt', // 'nuxt' | 'algolia',
+	},
+
 	ui: {
 		primary: 'purple', // Tailwind color name,
 
 		content: {
 			callout: {
 				// Fix background color of pre > code blocks
-				wrapper: '[&_pre>code]:!bg-transparent'
-			}
-		}
+				wrapper: '[&_pre>code]:!bg-transparent',
+			},
+		},
 	},
 
 	header: {
