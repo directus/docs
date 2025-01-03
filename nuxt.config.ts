@@ -95,6 +95,9 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
+	// Fix for https://github.com/nuxt/nuxt/issues/30367
+	experimental: { appManifest: false },
+
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
