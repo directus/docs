@@ -20,22 +20,20 @@
 		"@nuxt/eslint": "0.7.4",
 		"@nuxt/scripts": "0.9.5",
 		"@nuxt/ui-pro": "1.6.0",
-		"@nuxtjs/color-mode": "^3.5.2",
+		"@nuxtjs/algolia": "1.10.2",
+		"@nuxtjs/color-mode": "3.5.2",
 		"@nuxtjs/seo": "2.0.2",
 		"@nuxtjs/tailwindcss": "6.12.2",
+		"@types/lodash-es": "4.17.12",
 		"@vueuse/core": "12.2.0",
 		"@vueuse/nuxt": "12.2.0",
 		"lodash-es": "4.17.21",
-		"nuxt": "^3.14.1592",
 		"nuxt-posthog": "1.6.1",
+		"nuxt": "3.14.1592",
+		"openapi3-ts": "4.4.0",
 		"typescript": "5.7.2",
 		"ufo": "1.5.4",
-		"vue": "latest",
-		"vue-router": "latest"
-	},
-	"devDependencies": {
-		"@nuxtjs/algolia": "1.10.2",
-		"@types/lodash-es": "4.17.12",
-		"openapi3-ts": "4.4.0"
+		"vue-router": "latest",
+		"vue": "latest"
 	}
 }

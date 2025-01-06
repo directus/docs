@@ -38,8 +38,11 @@ importers:
       '@nuxt/ui-pro':
         specifier: 1.6.0
         version: 1.6.0(axios@1.7.9)(change-case@5.4.4)(focus-trap@7.6.2)(magicast@0.3.5)(rollup@4.28.1)(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
+      '@nuxtjs/algolia':
+        specifier: 1.10.2
+        version: 1.10.2(@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.7.2)))(magicast@0.3.5)(rollup@4.28.1)(vue@3.5.13(typescript@5.7.2))
       '@nuxtjs/color-mode':
-        specifier: ^3.5.2
+        specifier: 3.5.2
         version: 3.5.2(magicast@0.3.5)(rollup@4.28.1)
       '@nuxtjs/seo':
         specifier: 2.0.2
@@ -47,6 +50,9 @@ importers:
       '@nuxtjs/tailwindcss':
         specifier: 6.12.2
         version: 6.12.2(magicast@0.3.5)(rollup@4.28.1)
+      '@types/lodash-es':
+        specifier: 4.17.12
+        version: 4.17.12
       '@vueuse/core':
         specifier: 12.2.0
         version: 12.2.0(typescript@5.7.2)
@@ -57,11 +63,14 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       nuxt:
-        specifier: ^3.14.1592
+        specifier: 3.14.1592
         version: 3.14.1592(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.17.0(jiti@2.4.1))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
       nuxt-posthog:
         specifier: 1.6.1
         version: 1.6.1(magicast@0.3.5)(rollup@4.28.1)
+      openapi3-ts:
+        specifier: 4.4.0
+        version: 4.4.0
       typescript:
         specifier: 5.7.2
         version: 5.7.2
@@ -74,16 +83,6 @@ importers:
       vue-router:
         specifier: latest
         version: 4.5.0(vue@3.5.13(typescript@5.7.2))
-    devDependencies:
-      '@nuxtjs/algolia':
-        specifier: 1.10.2
-        version: 1.10.2(@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.7.2)))(magicast@0.3.5)(rollup@4.28.1)(vue@3.5.13(typescript@5.7.2))
-      '@types/lodash-es':
-        specifier: 4.17.12
-        version: 4.17.12
-      openapi3-ts:
-        specifier: 4.4.0
-        version: 4.4.0
 
 packages:
 
@@ -11674,7 +11673,7 @@ snapshots:
       '@vue/shared': 3.5.13
       acorn: 8.14.0
       c12: 2.0.1(magicast@0.3.5)
-      chokidar: 4.0.1
+      chokidar: 4.0.3
       compatx: 0.1.8
       consola: 3.2.3
       cookie-es: 1.2.2
