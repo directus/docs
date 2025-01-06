@@ -86,11 +86,11 @@ Let’s break down the data model for each section.
 
 Now let's create a Collection for each inside Directus.
 
-::: tip
+::callout{icon="material-symbols:info-outline"}
 
 To keep things organized, we recommend that you namespace each collection with a prefix like `block`.
 
-:::
+::
 
 ### Create the Rich Text Block
 
@@ -172,12 +172,12 @@ To keep things organized, we recommend that you namespace each collection with a
    d. Save the field. Directus will create a new, hidden
    [junction collection](/guides/data-model/relationships) for you automatically.
 
-::: tip
+::callout{icon="material-symbols:info-outline"}
 
 If you want more control over the name of the junction table and its fields, use the Continue in Advanced Field Creation
 Mode option.
 
-:::
+::
 
 ### Create Your Page Content
 
