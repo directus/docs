@@ -15,7 +15,7 @@ export default function (openapi: OpenAPIObject, root: SchemaObject): unknown | 
 	}
 
 	const parseLevel = (schemaOrRef: SchemaObject | ReferenceObject): unknown => {
-		const schemaObj = '$ref' in schemaOrRef ? resolveRef<SchemaObject>(openapi, schemaOrRef.$ref) : schemaOrRef;
+		const schemaObj = '$ref' in schemaOrRef ? resolveOasRef<SchemaObject>(openapi, schemaOrRef.$ref) : schemaOrRef;
 
 		if (!schemaObj) return undefined;
 

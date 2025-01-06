@@ -13,7 +13,7 @@ export default function<O extends OperationObject>(spec: OpenAPIObject, operatio
 			...operation,
 			parameters: operation.parameters?.map((part) => {
 				if ('$ref' in part) {
-					return resolveRef<ParameterObject>(spec, part.$ref);
+					return resolveOasRef<ParameterObject>(spec, part.$ref);
 				}
 
 				return part;

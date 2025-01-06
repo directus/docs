@@ -11,7 +11,7 @@ const props = defineProps<{
 const requestBodyObject = computed(() => {
 	if (!props.operation.requestBody) return null;
 
-	return '$ref' in props.operation.requestBody ? resolveRef<RequestBodyObject>(openapi, props.operation.requestBody.$ref) : props.operation.requestBody ?? null;
+	return '$ref' in props.operation.requestBody ? resolveOasRef<RequestBodyObject>(openapi, props.operation.requestBody.$ref) : props.operation.requestBody ?? null;
 });
 
 const requestBodySchema = computed(() => {
@@ -28,7 +28,7 @@ const responseBodyObject = computed(() => {
 	if (!props.operation.responses?.['200']) return null;
 
 	return '$ref' in props.operation.responses['200']
-		? resolveRef<RequestBodyObject>(openapi, props.operation.responses['200'].$ref)
+		? resolveOasRef<RequestBodyObject>(openapi, props.operation.responses['200'].$ref)
 		: props.operation.responses['200'] ?? null;
 });
 

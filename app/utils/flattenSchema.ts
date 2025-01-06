@@ -3,7 +3,7 @@ import type { FlattenedParam } from '~/types';
 
 export default function (openapi: OpenAPIObject, schema: SchemaObject | ReferenceObject): FlattenedParam | null {
 	const parseLevel = (schemaOrRef: SchemaObject | ReferenceObject, name?: string): FlattenedParam | null => {
-		const schema = '$ref' in schemaOrRef ? resolveRef<SchemaObject>(openapi, schemaOrRef.$ref) : schemaOrRef;
+		const schema = '$ref' in schemaOrRef ? resolveOasRef<SchemaObject>(openapi, schemaOrRef.$ref) : schemaOrRef;
 		if (!schema) return null;
 
 		const type = Array.isArray(schema.type) ? schema.type.join(' | ') : schema.type;
