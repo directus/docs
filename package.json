@@ -10,7 +10,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
-		"@directus/openapi": "0.0.7",
+		"@directus/openapi": "0.1.0",
 		"@docsearch/css": "3.8.2",
 		"@docsearch/js": "3.8.2",
 		"@iconify-json/heroicons-outline": "1.2.1",
@@ -28,12 +28,12 @@
 		"@vueuse/core": "12.2.0",
 		"@vueuse/nuxt": "12.2.0",
 		"lodash-es": "4.17.21",
-		"nuxt-posthog": "1.6.1",
 		"nuxt": "3.14.1592",
+		"nuxt-posthog": "1.6.1",
 		"openapi3-ts": "4.4.0",
 		"typescript": "5.7.2",
 		"ufo": "1.5.4",
-		"vue-router": "latest",
-		"vue": "latest"
+		"vue": "latest",
+		"vue-router": "latest"
 	}
 }
