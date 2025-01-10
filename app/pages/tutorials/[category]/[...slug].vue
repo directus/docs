@@ -9,12 +9,16 @@ const { data: page } = await useAsyncData(route.path, () => queryContent(route.p
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
+
+const headline = computed(() => findPageHeadline(page.value!));
 </script>
 
 <template>
 	<UPage>
 		<UPageHeader
 			:title="page!.title"
+			:ui="{ title: 'title', headline: 'headline' }"
+			:headline="headline + ' Tutorials'"
 			:description="page!.description"
 		/>
 
