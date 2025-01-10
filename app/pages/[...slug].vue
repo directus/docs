@@ -24,7 +24,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			:description="page!.description"
 			:links="page!.links"
 			:headline="headline"
-			:ui="{ headline: 'headline' }"
+			:ui="{ headline: 'headline', title: 'title' }"
 		/>
 
 		<UPageBody prose>
