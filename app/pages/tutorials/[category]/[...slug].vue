@@ -22,7 +22,10 @@ const headline = computed(() => findPageHeadline(page.value!));
 			:description="page!.description"
 		/>
 
-		<UPageBody prose>
+		<UPageBody
+			class="content"
+			prose
+		>
 			<ContentRenderer
 				v-if="page!.body"
 				:value="page"

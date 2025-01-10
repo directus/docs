@@ -27,7 +27,10 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			:ui="{ headline: 'headline', title: 'title' }"
 		/>
 
-		<UPageBody prose>
+		<UPageBody
+			class="content"
+			prose
+		>
 			<ContentRenderer
 				v-if="page!.body"
 				:value="page"
