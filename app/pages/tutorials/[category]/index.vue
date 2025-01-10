@@ -16,11 +16,12 @@ if (!page.value) {
 		<UPageHeader
 			:title="page!.title"
 			:description="page!.description"
+			:ui="{ title: 'title' }"
 		>
 			<template #headline>
 				<NuxtLink
 					to="/tutorials"
-					class="flex items-center"
+					class="flex items-center headline"
 				>
 					<UIcon
 						name="material-symbols:arrow-back-rounded"

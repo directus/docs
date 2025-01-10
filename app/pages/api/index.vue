@@ -20,6 +20,7 @@ if (!page.value) {
 		<UPageHeader
 			:title="page!.title"
 			:description="page!.description"
+			:ui="{ title: 'title', headline: 'headline' }"
 		>
 			<template #headline>
 				For Directus v{{ openapi.info.version }}+

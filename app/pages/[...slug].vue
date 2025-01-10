@@ -12,7 +12,7 @@ if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-const headline = computed(() => findPageHeadline(page.value!));
+const headline = computed(() => page!.value!.headline || findPageHeadline(page.value!));
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent().where({ _extension: 'md', navigation: { $ne: false } }).only(['title', 'description', '_path']).findSurround(withoutTrailingSlash(route.path)));
 </script>
@@ -24,9 +24,13 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			:description="page!.description"
 			:links="page!.links"
 			:headline="headline"
+			:ui="{ headline: 'headline', title: 'title' }"
 		/>
 
-		<UPageBody prose>
+		<UPageBody
+			class="content"
+			prose
+		>
 			<ContentRenderer
 				v-if="page!.body"
 				:value="page"
