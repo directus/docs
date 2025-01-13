@@ -27,6 +27,8 @@ navigation: false
   ```
 
   This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/create-a-project) to learn how to create a project with persistence.
+
+  The initial admin user's credentials will be visible on the terminal.
   ::::
 
   ::::div{class="pr-6"}
