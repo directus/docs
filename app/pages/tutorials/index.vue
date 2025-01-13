@@ -17,6 +17,7 @@ if (!page.value) {
 	<UPage>
 		<UPageHeader
 			:title="page!.title"
+			:ui="{ title: 'title' }"
 		>
 			<template #description>
 				<div class="max-w-prose">
