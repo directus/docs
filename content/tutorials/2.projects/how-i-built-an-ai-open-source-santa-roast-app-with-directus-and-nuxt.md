@@ -30,9 +30,7 @@ John suggested scanning letters and having them transcribed. I’m way more of a
 
 So with that direction, I built the first version in an episode of our ["100 Apps, 100 Hours" show on Directus TV](https://directus.io/tv/100-apps-100-hours).  Let's just say it wasn't as pretty as what you see now. Here’s what it looked like.
 
-<video width="99%" height="540" autoplay loop muted controls>
-        <source src="https://marketing.directus.app/assets/e053e36c-a7ee-4773-99cb-af144041564d" type="video/mp4" >
-    </video>
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1047153908?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ai-letters-to-santa-preview"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 But after recording the episode, I still couldn’t get the idea out of my head and I thought there was a lot more fun we could have with it. I scoped the features out a bit further with some brainstorming help from the fine folks on my team – Matt, Christina, and Lindsey.
 
@@ -633,7 +631,7 @@ Once you sent your letter to Santa, we’d send the generated text to their API 
 But fear not - here’s a sample of what could have been.
 
 <audio controls>
-  <source src="https://marketing.directus.app/assets/57aa9699-7d15-42cb-92f2-75bbb57088ea" type="audio/mpeg">
+  <source src="https://product-team.directus.app/assets/c856d836-7ef6-4ff6-8961-152b3156c49f.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
