@@ -30,7 +30,7 @@ export default defineNuxtConfig({
 		url: 'https://directus.io',
 		name: 'Directus Docs',
 		description: 'Explore our resources and powerful data engine to build your projects confidently.',
-		defaultLocale: 'en',
+		defaultLocale: 'en-US',
 	},
 
 	colorMode: {
