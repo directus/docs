@@ -63,7 +63,10 @@ const responseBodyExample = computed(() => {
 		prose
 	>
 		<div class="grow shrink-0 basis-6/12">
-			<ProseH2 :id="slugify(operation.summary!)">
+			<ProseH2
+				:id="slugify(operation.summary!)"
+				class="endpoint-title"
+			>
 				{{ operation.summary }}
 			</ProseH2>
 
