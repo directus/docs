@@ -48,6 +48,7 @@ if (!tag.value) {
 				:title="tag!.name"
 				:description="tag!.description"
 				class="shrink basis-6/12 border-0"
+				:ui="{ title: 'title' }"
 			/>
 			<ApiNav :operations="operations" />
 		</div>
