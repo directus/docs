@@ -70,7 +70,7 @@ const responseBodyExample = computed(() => {
 				{{ operation.summary }}
 			</ProseH2>
 
-			<ProseP>
+			<ProseP class="endpoint-description">
 				{{ operation.description }}
 			</ProseP>
 
