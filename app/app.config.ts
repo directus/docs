@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	search: {
-		backend: 'nuxt', // 'nuxt' | 'algolia',
+		backend: 'algolia', // 'nuxt' | 'algolia',
 	},
 
 	ui: {
