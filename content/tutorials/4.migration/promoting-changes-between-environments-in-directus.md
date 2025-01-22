@@ -238,13 +238,13 @@ make sure you have a static access token for both projects.
     ---
     label: REST API
     ---
-    ### Retrieve Data Model Snapshot From Source Project
+    #### Retrieve Data Model Snapshot From Source Project
 
     Perform a `GET` request to `/schema/snapshot?access_token=<YOUR_ACCESS_TOKEN>`.
 
     Copy the JSON response with your data model snapshot.
 
-    ### Retrieve Data Model Diff
+    #### Retrieve Data Model Diff
 
     This section will create a "diff" that describes all differences between your source and target project's data models.
 
@@ -252,13 +252,13 @@ make sure you have a static access token for both projects.
 
     Copy the JSON response with your data model diff.
 
-    ### Apply Diff To Target Project
+    #### Apply Diff To Target Project
 
     Perform a `POST` request to `/schema/apply?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of JSON response from the snapshot.
 
     Note the response status of 204, which indicates a successful data model migration.
 
-    ## Final Tips
+    ### Final Tips
 
     The diff endpoint does not allow different Directus versions and database vendors by default. This is to avoid any
     unintentional diffs from being generated. You can opt in to bypass these checks by adding a second query parameter
