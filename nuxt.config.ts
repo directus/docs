@@ -108,7 +108,11 @@ export default defineNuxtConfig({
 			// This is a dirty hack to get around a build blocking error..
 			// I can't for the life of me figure out where this magic </span link comes from
 			// ~ Rijk 12/19/2024
-			ignore: ['/docs/api/'],
+			ignore: ['/docs/api/</span'],
+
+			concurrency: 3,
+			retry: 2,
+			retryDelay: 1000,
 		},
 	},
 
