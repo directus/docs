@@ -34,7 +34,7 @@ When you need to migrate content as part of schema updates, you have several opt
    - Using and modifying the [template CLI](https://github.com/directus-community/directus-template-cli) to extract and load of all schema, system collections and content.
 
 
-## Migrate Your Data
+## Migrate Your Schema
 
 Directus' schema migration endpoints allow users to retrieve a project's data model and apply changes to another
 project.
