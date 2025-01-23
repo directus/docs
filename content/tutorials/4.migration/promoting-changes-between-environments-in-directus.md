@@ -52,8 +52,7 @@ You must be an admin user to use these endpoints and follow this guide.
 
 ::
 
-You should have two Directus projects - this guide will refer to them as the "base" and the "target". Before starting,
-make sure you have a static access token for both projects.
+You should have two Directus projects - this guide will refer to them as the "base" and the "target".
 
 ::tabs
     ::div{class="pr-6"}
@@ -63,18 +62,21 @@ make sure you have a static access token for both projects.
     #### Set Up Project
 
     Open a new empty directory in your code editor. In your terminal, navigate to the directory and install dependencies
-    with `npm install cross-fetch`.
+    with `npm install @directus/sdk`.
 
     Create a new `index.js` file and set it up:
 
     ```js
-    const fetch = require('cross-fetch');
-
+    import { createDirectus, authentication, rest, schemaSnapshot, schemaDiff, schemaApply } from '@directus/sdk';
     const BASE_DIRECTUS_URL = 'https://your-base-project.directus.app';
-    const BASE_ACCESS_TOKEN = 'your-access-token';
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
-    const TARGET_ACCESS_TOKEN = 'your-access-token';
+
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+
+    await baseDirectus.login('base_email', 'base_password');
+    await targetDirectus.login('target_email', 'target_password');
 
     async function main() {}
 
@@ -87,9 +89,7 @@ make sure you have a static access token for both projects.
 
     ```js
     async function getSnapshot() {
-      const URL = `${BASE_DIRECTUS_URL}/schema/snapshot?access_token=${BASE_ACCESS_TOKEN}`;
-      const { data } = await fetch(URL).then((r) => r.json());
-      return data;
+      return await baseDirectus.request(schemaSnapshot());
     }
     ```
 
@@ -113,17 +113,7 @@ make sure you have a static access token for both projects.
 
     ```js
     async function getDiff(snapshot) {
-      const URL = `${TARGET_DIRECTUS_URL}/schema/diff?access_token=${TARGET_ACCESS_TOKEN}`;
-
-      const { data } = await fetch(URL, {
-        method: 'POST',
-        body: JSON.stringify(snapshot),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((r) => r.json());
-
-      return data;
+      return await targetDirectus.request(schemaDiff(snapshot));
     }
     ```
 
@@ -146,15 +136,7 @@ make sure you have a static access token for both projects.
 
     ```js
     async function applyDiff(diff) {
-      const URL = `${TARGET_DIRECTUS_URL}/schema/apply?access_token=${TARGET_ACCESS_TOKEN}`;
-
-      await fetch(URL, {
-        method: 'POST',
-        body: JSON.stringify(diff),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      return await targetDirectus.request(schemaApply(diff));
     }
     ```
 
@@ -185,13 +167,16 @@ make sure you have a static access token for both projects.
     The complete and final code is available below.
 
     ```js
-    const fetch = require('cross-fetch');
-
+    import { createDirectus, authentication, rest, schemaSnapshot, schemaDiff, schemaApply } from '@directus/sdk';
     const BASE_DIRECTUS_URL = 'https://your-base-project.directus.app';
-    const BASE_ACCESS_TOKEN = 'your-access-token';
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
-    const TARGET_ACCESS_TOKEN = 'your-access-token';
+
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+
+    await baseDirectus.login('base_email', 'base_password');
+    await targetDirectus.login('target_email', 'target_password');
 
     async function main() {
       const snapshot = await getSnapshot();
@@ -202,35 +187,15 @@ make sure you have a static access token for both projects.
     main();
 
     async function getSnapshot() {
-      const URL = `${BASE_DIRECTUS_URL}/schema/snapshot?access_token=${BASE_ACCESS_TOKEN}`;
-      const { data } = await fetch(URL).then((r) => r.json());
-      return data;
+      return await baseDirectus.request(schemaSnapshot());
     }
 
     async function getDiff(snapshot) {
-      const URL = `${TARGET_DIRECTUS_URL}/schema/diff?access_token=${TARGET_ACCESS_TOKEN}`;
-
-      const { data } = await fetch(URL, {
-        method: 'POST',
-        body: JSON.stringify(snapshot),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((r) => r.json());
-
-      return data;
+      return await targetDirectus.request(schemaDiff(snapshot));
     }
 
     async function applyDiff(diff) {
-      const URL = `${TARGET_DIRECTUS_URL}/schema/apply?access_token=${TARGET_ACCESS_TOKEN}`;
-
-      await fetch(URL, {
-        method: 'POST',
-        body: JSON.stringify(diff),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      return await targetDirectus.request(schemaApply(diff));
     }
     ```
     ::
