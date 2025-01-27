@@ -35,5 +35,6 @@
 		"ufo": "1.5.4",
 		"vue": "latest",
 		"vue-router": "latest"
-	}
+	},
+	"packageManager": "pnpm@9.15.4"
 }
