@@ -95,6 +95,11 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
+	experimental: {
+		buildCache: true,
+		sharedPrerenderData: true,
+	},
+
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
@@ -109,6 +114,10 @@ export default defineNuxtConfig({
 			// I can't for the life of me figure out where this magic </span link comes from
 			// ~ Rijk 12/19/2024
 			ignore: ['/docs/api/</span'],
+
+			concurrency: 3,
+			retry: 2,
+			retryDelay: 1000,
 		},
 	},
 
