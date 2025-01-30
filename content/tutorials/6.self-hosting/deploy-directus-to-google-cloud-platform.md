@@ -150,6 +150,8 @@ DB_DATABASE: postgres
 DB_USER: postgres
 DB_PASSWORD: YOUR_DB_PASSWORD
 DB_SSL__REJECT_UNAUTHORIZED: false
+DB_SSL: false
+PRESSURE_LIMITER_ENABLED: false
 ```
 
 `DB_HOST` is a combination of `/cloudsql/` and the connection name of your Cloud SQL database. This is a prefix indicating that the hostname is for a Cloud SQL instance.
@@ -173,6 +175,7 @@ STORAGE_LOCATIONS: gcs
 STORAGE_GCS_DRIVER: gcs
 STORAGE_GCS_BUCKET: YOUR_CLOUD_STORAGE_BUCKET_NAME
 STORAGE_GCS_CREDENTIALS: YOUR_SERVICE_ACCOUNT_KEY_JSON
+STORAGE_GCS_ROOT: cms/assets
 ```
 
 `YOUR_SERVICE_ACCOUNT_KEY_JSON` can be generated in the Google Cloud console -> IAM & Admin -> Services Accounts -> Click on your project's Compute Engine default service account email and click on the Keys tab to create a new key.
