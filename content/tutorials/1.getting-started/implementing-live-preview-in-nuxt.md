@@ -1,3 +1,12 @@
+---
+slug: implementing-live-preview-in-nuxt
+title: Implementing Live Preview in Nuxt
+authors:
+  - name: Craig Harman
+    title: Guest Author
+description: Learn how to setup Directus live preview with Nuxt.
+---
+
 Live Preview can be enabled in Directus Editor and allows content authors to see their changes directly in the Data Studio. It can be combined with content versioning to preview pre-published content. In this tutorial, you'll learn how to implement Live Preview in your Nuxt application.
 
 ## Before You Start
