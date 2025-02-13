@@ -113,7 +113,12 @@ export default defineNuxtConfig({
 			// This is a dirty hack to get around a build blocking error..
 			// I can't for the life of me figure out where this magic </span link comes from
 			// ~ Rijk 12/19/2024
-			ignore: ['/docs/api/</span'],
+			ignore: [
+				'/docs/api/</span',
+				'/docs/tutorials/getting-started/{`/${post.id}`}></span',
+				'/docs/tutorials/getting-started/{item.href}>{item.label}</a></span',
+				'/docs/tutorials/getting-started/{`/dashboard/posts/${post.id}`}>edit post</a></span',
+			],
 
 			concurrency: 3,
 			retry: 2,
