@@ -95,6 +95,11 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
+	experimental: {
+		buildCache: true,
+		sharedPrerenderData: true,
+	},
+
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
@@ -113,6 +118,10 @@ export default defineNuxtConfig({
 			// This should ignore all URLs that end </span
 			// ~ Kevin 02/12/2025
 			ignore: ['.*</span$'],
+
+			concurrency: 3,
+			retry: 2,
+			retryDelay: 1000,
 		},
 	},
 
@@ -135,7 +144,7 @@ export default defineNuxtConfig({
 		customCollections: [{
 			prefix: 'directus',
 			dir: './app/assets/icons/products',
-		}, ],
+		}],
 		clientBundle: {
 			scan: true,
 			includeCustomCollections: true,
