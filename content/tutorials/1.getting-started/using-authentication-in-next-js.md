@@ -101,7 +101,6 @@ Install the Directus SDK by running the following:
 
 Initialize the Directus SDK:
 
-```
 Create a new file at `./lib/directus.ts` with the following contents:
 
 ```typescript
