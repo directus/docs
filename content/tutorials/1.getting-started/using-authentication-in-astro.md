@@ -7,7 +7,7 @@ authors:
 description: Learn how to setup Directus authentication with Astro.
 ---
 
-Authentication is a critical part of any modern web application, ensuring that users can securely access their data and perform authorized actions. In this tutorial, you will learn how to implement authentication in your FRAMEWORK application using Directus' built-in authentication system.
+Authentication is a critical part of any modern web application, ensuring that users can securely access their data and perform authorized actions. In this tutorial, you will learn how to implement authentication in your Astro application using Directus' built-in authentication system.
 
 ## Before You Start
 
