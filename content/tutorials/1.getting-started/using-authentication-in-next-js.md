@@ -33,13 +33,13 @@ Create a new collection called 'posts' with the `user_created` optional field an
 
 ### Configure Roles, Policies, and Permissions
 
-Create a new role called 'Authenticated User'. In this role, you will create a number of policies. 
+Create a new role called 'Authenticated User'. In this role, you will create a number of policies.
 
 Create a 'Can Read and Create Posts' policy with the following permissions for the `posts` collection:
 
 - Read: Allow
 - Create: Custom
-   - In Field Permissions, uncheck `author` so the user cannot set any value. 
+   - In Field Permissions, uncheck `author` so the user cannot set any value.
    - In Field Presets, add the following value to set the value automatically:
 
 ```
@@ -61,9 +61,9 @@ Create a 'Can View and Edit Own Profile' policy with the following permissions f
 
 ### Enable Public Registration
 
-Public registration allows any user to create a user in your Directus project directly from the Data Studio or via API. 
+Public registration allows any user to create a user in your Directus project directly from the Data Studio or via API.
 
-Navigate to Project Settings → User Registration and enable the setting. Set the default role to 'Authenticated User'. New users will automatically be given this role, which gives them all of the permissions you set up in the previous step. 
+Navigate to Project Settings → User Registration and enable the setting. Set the default role to 'Authenticated User'. New users will automatically be given this role, which gives them all of the permissions you set up in the previous step.
 
 ![Directus' settings module showing that public registration is activated and the role set to "Authenticated User"](/img/auth_registration.png)
 
@@ -86,7 +86,7 @@ Check the following choices:
 ✔ Would you like to use ESLint? …  Yes
 ✔ Would you like to use Tailwind CSS? …  No
 ✔ Would you like your code inside a `src/` directory? … No
-✔ Would you like to use App Router? (recommended) … No
+✔ Would you like to use App Router? (recommended) … Yes
 ✔ Would you like to use Turbopack for `next dev`? … Yes
 ✔ Would you like to customize the import alias (`@/*` by default)? … No
 ```
@@ -94,19 +94,17 @@ Check the following choices:
 Install the Directus SDK by running the following:
 
 ```bash
- npm install @directus/sdk.
+ npm install @directus/sdk
 ```
 
 ### Configure the Directus SDK
-
-Initialize the Directus SDK:
 
 Create a new file at `./lib/directus.ts` with the following contents:
 
 ```typescript
 import { authentication, createDirectus, rest } from '@directus/sdk';
 
-const client = createDirectus("http://localhost:8055").with(rest()).with(authentication("cookie"));
+const client = createDirectus("http://localhost:8055").with(rest()).with(authentication("cookie", { credentials: "include" }));
 
 export default client;
 ```
@@ -176,6 +174,7 @@ Create an API route for user login in `./app/api/auth/login/route.ts`:
 ```typescript
 import client from '@/lib/directus';
 import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 export async function POST(request: NextRequest) {
     const formData = await request.formData();
@@ -190,6 +189,9 @@ export async function POST(request: NextRequest) {
     try {
         const response = await client.login(email, password);
         console.log(response);
+        if (response.access_token) {
+          (await cookies()).set('directus_session_token', response.access_token, { sameSite: 'strict', path: '/', secure: true })
+        }
         const url = request.nextUrl.clone();
         url.pathname = "/dashboard"
         return NextResponse.redirect(url);
@@ -231,7 +233,7 @@ To give it a try, start your application in development mode with the command `n
 
 You may have noticed in `./lib/directus.ts` that the Directus client is initialized with the parameter `cookie` as a string.
 
-This serves well for server-side rendering applications, such as what this tutorial covers. 
+This serves well for server-side rendering applications, such as what this tutorial covers.
 
 ### JSON Authentication Mode
 
@@ -245,6 +247,7 @@ Add a Data Access Layer (DAL) to your Next.js application at `./lib/dal.ts`:
 
 ```typescript
 import 'server-only';
+import { cookies } from 'next/headers';
 import client from '@/lib/directus';
 import { readMe } from '@directus/sdk';
 import { redirect } from 'next/navigation';
@@ -252,6 +255,13 @@ import { redirect } from 'next/navigation';
 export async function getUserData() {
     try {
         // Fetch the currently authenticated user's details
+        const token = (await cookies()).get("directus_session_token")?.value;
+
+        if (!token) {
+          redirect("/login"); // Redirect if unauthorized
+        }
+
+        client.setToken(token)
         const user = await client.request(readMe());
 
 
