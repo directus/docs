@@ -356,7 +356,7 @@ export async function POST(request: NextRequest) {
         url.pathname = "/login"
   const response =  NextResponse.redirect(url);
 
-  response.cookies.set("directus_access_token", "", {});
+  response.cookies.set("directus_session_token", "", {});
 
   return response;
 }
