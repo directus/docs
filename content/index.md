@@ -279,6 +279,16 @@ navigation: false
   ---
   :::
 
+  :::shiny-card
+  ---
+  title: PHP SDK
+  description: Interact with Directus using PHP.
+  icon: simple-icons:php
+  to: 'https://github.com/alantiller/directus-php-sdk'
+  class: col-span-4
+  ---
+  :::
+
   :::callout{icon="material-symbols:lightbulb-2-outline" class="col-span-8"}
   These are built and maintained by our awesome community. If you are building tooling and want to include it here, please open a [pull request on GitHub](https://github.com/directus/docs).
   :::
