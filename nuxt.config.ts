@@ -128,7 +128,7 @@ export default defineNuxtConfig({
 
 	algolia: {
 		docSearch: {
-			indexName: 'directus',
+			indexName: 'directus_unified',
 		},
 	},
 

@@ -59,7 +59,7 @@ const navigationTree = computed(() => {
 						color="gray"
 						square
 					>
-						<AlgoliaDocSearch />
+						<AlgoliaDocSearch :transform-items="transformAlgoliaSearchItems" />
 					</UButton>
 				</UTooltip>
 			</ClientOnly>
