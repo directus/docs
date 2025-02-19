@@ -15,7 +15,7 @@ You will need:
 
 1. To have Xcode installed on your macOS machine.
 2. Knowledge of the Swift programming language.
-3. A Directus project - follow our [quickstart guide](/getting-started) if you don't already have one.
+3. A Directus project - follow our [quickstart guide](/getting-started/overview) if you don't already have one.
 
 ## Create Post Structs and Helpers
 

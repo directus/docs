@@ -12,7 +12,7 @@ In this article, we will explore how to index data from Directus in Meilisearch 
 
 ## Setting Up Directus
 
-You will need to have a [local Directus project running](/getting-started) to develop extensions.
+You will need to have a [local Directus project running](/getting-started/overview) to develop extensions.
 
 In your new project, create a collection called `articles` with a `title`, `content`, and `author` field.
 

@@ -20,7 +20,7 @@ This guide covers setting up Docker, configuring Docker Compose, using Nginx as 
 
 ## Upload Your Local Directus Application Folder to the Server
 
-If you have successfully followed the [Self-Hosted Quickstart](/getting-started), you should have a directory with a `docker-compose.yml` file, `database/` directory with a `data.db` file, `uploads/` directory, and `extensions/` directory.
+If you have successfully followed the [Self-Hosted Quickstart](/getting-started/overview), you should have a directory with a `docker-compose.yml` file, `database/` directory with a `data.db` file, `uploads/` directory, and `extensions/` directory.
 
 Use `scp` (Secure Copy Protocol) to upload the local folder to your server.
 

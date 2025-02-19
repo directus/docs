@@ -15,7 +15,7 @@ You will need:
 
 - [Node.js v20.11.1](https://nodejs.org/) or later.
 - A code editor on your computer.
-- A Directus project - follow our [quickstart guide](/getting-started) if you don't already have one.
+- A Directus project - follow our [quickstart guide](/getting-started/overview) if you don't already have one.
 - Some knowledge of SvelteKit.
 
 You can find the code for this tutorial in the [GitHub repository](https://github.com/directus-labs/blog-example-video-streaming-app-sveltekit).

@@ -13,7 +13,7 @@ In this guide, you will learn how to use Directus Automate with Confirmation Pro
 
 ## Before You Start
 
-You will need a [Directus project](/getting-started) and a GitHub Personal Access Token with "Read and Write Issues" permissions.
+You will need a [Directus project](/getting-started/overview) and a GitHub Personal Access Token with "Read and Write Issues" permissions.
 
 You'll also need a GitHub repository on GitHub to create the issues.
 
