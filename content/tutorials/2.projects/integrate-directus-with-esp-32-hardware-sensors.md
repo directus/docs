@@ -13,7 +13,7 @@ Internet of Things (IoT) systems often need to log their collected data. In this
 
 You will need:
 
-- A Directus project - [follow our quickstart guide](/getting-started) if you don't already have one.
+- A Directus project - [follow our quickstart guide](/getting-started/overview) if you don't already have one.
 - Either the list of physical components below, or a [A Wowki Club account](https://wokwi.com/club) that will allow you to simulate the hardware.
 
 ### Components List

@@ -52,7 +52,7 @@ navigation: false
   title: Platform Overview
   description: Get starting with using Directus.
   icon: simple-icons:directus
-  to: /getting-started
+  to: /getting-started/overview
   class: col-span-6
   ---
   :::
