@@ -1,5 +1,4 @@
-import type { } from '@nuxtjs/algolia';
-import { withoutTrailingSlash } from 'ufo';
+import { withoutTrailingSlash } from "ufo";
 
 function getRelativePath(absoluteUrl: string) {
 	const { pathname, hash } = new URL(absoluteUrl);
@@ -17,7 +16,7 @@ export default function (items: (unknown & { url: string })[]) {
 
 		let url = relativePath;
 
-		if (relativePath.startsWith('/docs') === false) {
+		if (relativePath.startsWith('/docs') || relativePath.match(/https:\/\/directus.io\/tv/)) {
 			url = item.url;
 		}
 
