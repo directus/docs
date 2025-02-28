@@ -16,8 +16,13 @@ export default function (items: (unknown & { url: string })[]) {
 
 		let url = relativePath;
 
-		if (relativePath.startsWith('/docs') || relativePath.match(/https:\/\/directus.io\/tv/)) {
+		if (relativePath.startsWith('/docs')) {
 			url = item.url;
+		}
+
+		const match = relativePath.match(/https:\/\/directus.io\/tv/);
+		if (match?.index) {
+			url = relativePath.substring(match.index);
 		}
 
 		console.log(url);
