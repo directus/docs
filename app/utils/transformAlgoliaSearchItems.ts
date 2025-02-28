@@ -18,6 +18,7 @@ export default function (items: (unknown & { url: string })[]) {
 
 		const match = relativePath.match(/https:\/\/directus\.io\/tv/);
 		if (match?.index) {
+			console.log('match', match.index, relativePath);
 			url = relativePath.substring(match.index);
 		}
 		else if (relativePath.startsWith('/docs')) {
