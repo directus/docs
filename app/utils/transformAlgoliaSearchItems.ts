@@ -24,7 +24,7 @@ export default function (items: (unknown & { url: string })[]) {
 			url = item.url;
 		}
 
-		console.log(url);
+		console.log(relativePath, '->', url);
 
 		return {
 			...item,
