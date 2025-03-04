@@ -4,7 +4,7 @@ title: Rendering Dynamic Blocks Using SvelteKit
 authors:
   - name: Temitope Oyedelde
     title: Guest Author
-description: Learn how to render dynamic blocks using SvelteKit
+description: Learn how to render dynamic blocks using SvelteKit.
 ---
 
 [Having used Directus as a Headless CMS to create individual blocks that can be re-used on different pages](https://directus.io/docs/tutorials/getting-started/create-reusable-blocks-with-many-to-any-relationships), let's integrate them into our Svelte website.
