@@ -7,8 +7,6 @@ authors:
 description: Learn how to render dynamic blocks using Astro.
 ---
 
-# Rendering Dynamic Blocks Using Astro
-
 [Having used Directus as a Headless CMS to create individual blocks that can be re-used on different pages](https://directus.io/docs/tutorials/getting-started/create-reusable-blocks-with-many-to-any-relationships), let's integrate them into our Astro website.
 
 ## Before You Start
