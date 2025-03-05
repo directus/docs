@@ -24,6 +24,10 @@ export default function (items: (unknown & { url: string })[]) {
 			url = item.url;
 		}
 
+		console.log('item.url', item.url);
+		console.log('relativePath', relativePath);
+		console.log('url', url);
+
 		return {
 			...item,
 			url,
