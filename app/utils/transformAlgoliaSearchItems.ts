@@ -12,13 +12,12 @@ function getRelativePath(absoluteUrl: string) {
  */
 export default function (items: (unknown & { url: string })[]) {
 	return items.map((item) => {
-		return item;
 		const relativePath = getRelativePath(item.url);
 
 		let url = relativePath;
 
 		if (item.url.startsWith('https://directus.io/tv')) {
-			url = `..${relativePath}`;
+			url = relativePath;
 		}
 		else if (relativePath.startsWith('/docs')) {
 			url = item.url;
