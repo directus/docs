@@ -15,7 +15,7 @@ In this tutorial, you will learn how to implement pagination and infinite scroll
 
 You will need:
 
-- A Directus project - follow the [quickstart](/getting-started) guide to create a project if you don’t have one already.
+- A Directus project - follow the [quickstart](/getting-started/overview) guide to create a project if you don’t have one already.
 - Knowledge of Next.js.
 
 ## Adding Data to Directus

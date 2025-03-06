@@ -14,7 +14,7 @@ E-commerce websites are among the most popular for businesses as they enable cus
 You will need:
 
 - [Node.js](https://nodejs.org/en) installed and a code editor on your computer.
-- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started).
+- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started/overview).
 - A [Stripe](https://stripe.com/) account with a business already set up
 - [Stripe CLI](https://docs.stripe.com/stripe-cli) installed in your computer
 - Some knowledge of TypeScript and React.

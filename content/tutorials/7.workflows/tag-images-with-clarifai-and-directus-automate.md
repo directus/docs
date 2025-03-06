@@ -11,7 +11,7 @@ description: Learn how to integrate Clarifai's image recognition APIs with Direc
 
 ## Before You Start
 
-You will need a [Directus project](/getting-started) and a Clarifai API Key.
+You will need a [Directus project](/getting-started/overview) and a Clarifai API Key.
 
 ## Create a Flow
 

@@ -18,7 +18,7 @@ export default defineAppConfig({
 		nav: [
 			{
 				label: 'Start',
-				to: '/getting-started',
+				to: '/getting-started/overview',
 			},
 			{
 				label: 'Guides',

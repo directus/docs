@@ -15,7 +15,7 @@ description: Learn how to integrate Directus in your Flask web application.
 You will need:
 
 - To have Python installed on your machine
-- A Directus project - [follow our quickstart guide](/getting-started) if you don't already have one.
+- A Directus project - [follow our quickstart guide](/getting-started/overview) if you don't already have one.
 - Knowledge of Python and Flask
 
 ### Creating Page Templates

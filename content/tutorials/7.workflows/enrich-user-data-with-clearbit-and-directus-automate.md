@@ -17,7 +17,7 @@ In this quick project, you will set up a new Flow with [Directus Automate](https
 
 ## Before You Start
 
-You will need a Directus project - check out [our quickstart guide](/getting-started) if you don't already have one. You will also need a [Clearbit account](https://dashboard.clearbit.com/signup) and API Key.
+You will need a Directus project - check out [our quickstart guide](/getting-started/overview) if you don't already have one. You will also need a [Clearbit account](https://dashboard.clearbit.com/signup) and API Key.
 
 The `directus_users` collection has some profile fields by default - including `email`, `description`, and `location`. As a demonstration of being able to add additional data provided by Clearbit, go into your Data Model settings, and open the `directus_users` system collection. Add a string input field called `phone`.
 
