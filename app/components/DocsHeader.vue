@@ -90,6 +90,21 @@ const algoliaHitComponent: DocSearchProps['hitComponent'] = ({hit, children}) =>
 			}
 		}
 	} as any
+}
+
+const algoliaNavigator = {
+	navigate: ({ itemUrl }) => {
+		console.log(itemUrl);
+		const { pathname: hitPathname } = new URL(window.location.origin + itemUrl)
+		// Vue Router doesn't handle same-page navigation so we use
+		// the native browser location API for anchor navigation.
+		if (route.path === hitPathname) {
+			window.location.assign(window.location.origin + itemUrl)
+		} else {
+			router.push(withoutBaseUrl(itemUrl))
+		}
+	}
+},
 </script>
 
 <template>
@@ -116,7 +131,7 @@ const algoliaHitComponent: DocSearchProps['hitComponent'] = ({hit, children}) =>
 						color="gray"
 						square
 					>
-						<AlgoliaDocSearch :transform-items="transformAlgoliaSearchItems" :hit-component="algoliaHitComponent"/>
+						<AlgoliaDocSearch :transform-items="transformAlgoliaSearchItems" :hit-component="algoliaHitComponent" :navigator="algoliaNavigator"/>
 					</UButton>
 				</UTooltip>
 			</ClientOnly>
