@@ -3,7 +3,7 @@ import type {DocSearchProps} from "@docsearch/react";
 import type {NavItem} from '@nuxt/content';
 import type {HeaderLink} from '@nuxt/ui-pro/types';
 import type {OpenAPIObject} from 'openapi3-ts/oas30';
-import {withoutBaseUrl} from 'ufo';
+import {withoutTrailingSlash} from 'ufo';
 
 const navigation = inject<NavItem[]>('navigation', []);
 const oasSpec = inject<OpenAPIObject>('openapi', {openapi: '3.0', info: {title: 'OAS Spec', version: '0'}, paths: {}});
@@ -65,6 +65,8 @@ const algoliaHitComponent: DocSearchProps['hitComponent'] = ({hit, children}) =>
 					return
 				}
 
+				console.log('on click')
+
 				// We rely on the native link scrolling when user is
 				// already on the right anchor because Vue Router doesn't
 				// support duplicated history entries.
@@ -73,7 +75,7 @@ const algoliaHitComponent: DocSearchProps['hitComponent'] = ({hit, children}) =>
 				}
 
 				if (hit.url.startsWith('https://')) {
-					navigateTo(hit.url)
+					// don't prevent native navigation
 				} else {
 					const {pathname: hitPathname} = new URL(window.location.origin + hit.url)
 
