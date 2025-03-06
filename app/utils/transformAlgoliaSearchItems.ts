@@ -16,7 +16,6 @@ export default function (items: (unknown & { url: string })[]) {
 
 		let url = relativePath;
 
-		console.log('Starts with?', item.url.startsWith('https://directus.io/tv'));
 		if (item.url.startsWith('https://directus.io/tv')) {
 			url = item.url;
 		}
@@ -24,6 +23,7 @@ export default function (items: (unknown & { url: string })[]) {
 			url = item.url;
 		}
 
+		console.log('Starts with?', item.url.startsWith('https://directus.io/tv'));
 		console.log('item.url', item.url);
 		console.log('relativePath', relativePath);
 		console.log('url', url);
