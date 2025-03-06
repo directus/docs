@@ -12,6 +12,7 @@ function getRelativePath(absoluteUrl: string) {
  */
 export default function (items: (unknown & { url: string })[]) {
 	return items.map((item) => {
+		return item;
 		const relativePath = getRelativePath(item.url);
 
 		let url = relativePath;
