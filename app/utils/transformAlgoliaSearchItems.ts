@@ -17,14 +17,14 @@ export default function (items: (unknown & { url: string })[]) {
 		let url = relativePath;
 
 		if (item.url.startsWith('https://directus.io/tv')) {
-			url = `../${relativePath}`;
+			url = `..${relativePath}`;
 		}
 		else if (relativePath.startsWith('/docs')) {
 			url = item.url;
 		}
 
 		console.log('Starts with?', item.url.startsWith('https://directus.io/tv'));
-		console.log('new url', `../${relativePath}`);
+		console.log('new url', `..${relativePath}`);
 		console.log('url', url);
 
 		return {
