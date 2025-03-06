@@ -24,11 +24,8 @@ export default function (items: (unknown & { url: string })[]) {
 		}
 
 		console.log('Starts with?', item.url.startsWith('https://directus.io/tv'));
-		console.log('item.url', item.url);
-		console.log('relativePath', relativePath);
 		console.log('new url', `../${relativePath}`);
 		console.log('url', url);
-		console.log('item', item);
 
 		return {
 			...item,
