@@ -16,14 +16,9 @@ export default function (items: (unknown & { url: string })[]) {
 
 		let url = relativePath;
 
-		if (item.url.startsWith('https://directus.io/tv')) {
-			url = relativePath;
-		}
-		else if (relativePath.startsWith('/docs')) {
+		if (!relativePath.startsWith('/docs')) {
 			url = item.url;
 		}
-
-		console.log('new url', `..${relativePath}`);
 
 		return {
 			...item,
