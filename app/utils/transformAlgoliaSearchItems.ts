@@ -1,3 +1,4 @@
+import type { DocSearchHit } from "@docsearch/react";
 import { withoutTrailingSlash } from "ufo";
 
 function getRelativePath(absoluteUrl: string) {
@@ -10,9 +11,8 @@ function getRelativePath(absoluteUrl: string) {
 /**
  * Transform Algolia search items to ensure off-site links aren't rendered as relative links
  */
-export default function (items: (unknown & { url: string })[]) {
-	console.log(items);
-	const transformed =  items.map((item) => {
+export default function (items: DocSearchHit[]): DocSearchHit[] {
+	return items.map((item) => {
 		const relativePath = getRelativePath(item.url);
 
 		let url = relativePath;
@@ -26,6 +26,4 @@ export default function (items: (unknown & { url: string })[]) {
 			url,
 		};
 	});
-	console.log(transformed)
-	return transformed;
 }

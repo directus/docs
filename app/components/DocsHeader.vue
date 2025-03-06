@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type {DocSearchProps} from "@docsearch/react";
-import type {NavItem} from '@nuxt/content';
-import type {HeaderLink} from '@nuxt/ui-pro/types';
-import type {OpenAPIObject} from 'openapi3-ts/oas30';
-import {withoutTrailingSlash} from 'ufo';
+import type { DocSearchProps } from '@docsearch/react';
+import type { NavItem } from '@nuxt/content';
+import type { HeaderLink } from '@nuxt/ui-pro/types';
+import type { OpenAPIObject } from 'openapi3-ts/oas30';
+import { withoutTrailingSlash } from 'ufo';
 
 const navigation = inject<NavItem[]>('navigation', []);
-const oasSpec = inject<OpenAPIObject>('openapi', {openapi: '3.0', info: {title: 'OAS Spec', version: '0'}, paths: {}});
+const oasSpec = inject<OpenAPIObject>('openapi', { openapi: '3.0', info: { title: 'OAS Spec', version: '0' }, paths: {} });
 
-const {metaSymbol} = useShortcuts();
+const { metaSymbol } = useShortcuts();
 
-const {header, search} = useAppConfig();
+const { header, search } = useAppConfig();
 const route = useRoute();
 const router = useRouter();
 
@@ -41,18 +41,18 @@ const isSpecialClick = (event: MouseEvent) =>
 	event.button === 1 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
 
 const withoutBaseUrl = (url: string) => {
-	const { app } = useRuntimeConfig()
-	const routerBase = withoutTrailingSlash(app.baseURL)
-	const hasBaseURL = routerBase !== '/'
+	const { app } = useRuntimeConfig();
+	const routerBase = withoutTrailingSlash(app.baseURL);
+	const hasBaseURL = routerBase !== '/';
 
 	if (hasBaseURL && url.startsWith(routerBase)) {
-		return url.substring(routerBase.length) || '/'
+		return url.substring(routerBase.length) || '/';
 	}
-	return url
-}
+	return url;
+};
 
 // This is needed until https://github.com/nuxt-modules/algolia/issues/208 is resolved
-const algoliaHitComponent: DocSearchProps['hitComponent'] = ({hit, children}) => {
+const algoliaHitComponent: DocSearchProps['hitComponent'] = ({ hit, children }) => {
 	return {
 		type: 'a',
 		constructor: undefined,
@@ -62,49 +62,52 @@ const algoliaHitComponent: DocSearchProps['hitComponent'] = ({hit, children}) =>
 			children,
 			onClick: (event: MouseEvent) => {
 				if (isSpecialClick(event)) {
-					return
+					return;
 				}
-
-				console.log('on click')
 
 				// We rely on the native link scrolling when user is
 				// already on the right anchor because Vue Router doesn't
 				// support duplicated history entries.
 				if (route.fullPath === hit.url) {
-					return
+					return;
 				}
 
 				if (hit.url.startsWith('https://')) {
 					// don't prevent native navigation
-				} else {
-					const {pathname: hitPathname} = new URL(window.location.origin + hit.url)
+				}
+				else {
+					const { pathname: hitPathname } = new URL(window.location.origin + hit.url);
 
 					// If the hits goes to another page, we prevent the native link behavior
 					// to leverage the Vue Router loading feature.
 					if (route.path !== hitPathname) {
-						event.preventDefault()
+						event.preventDefault();
 					}
 
-					router.push(withoutBaseUrl(hit.url))
+					router.push(withoutBaseUrl(hit.url));
 				}
-			}
-		}
-	} as any
-}
+			},
+		},
+	} as any;
+};
 
 const algoliaNavigator = {
 	navigate: ({ itemUrl }) => {
-		console.log(itemUrl);
-		const { pathname: hitPathname } = new URL(window.location.origin + itemUrl)
+		const isAbsoluteUrl = itemUrl.startsWith('https://');
+		const { pathname: hitPathname } = new URL(isAbsoluteUrl ? itemUrl : window.location.origin + itemUrl);
 		// Vue Router doesn't handle same-page navigation so we use
 		// the native browser location API for anchor navigation.
 		if (route.path === hitPathname) {
-			window.location.assign(window.location.origin + itemUrl)
-		} else {
-			router.push(withoutBaseUrl(itemUrl))
+			window.location.assign(window.location.origin + itemUrl);
 		}
-	}
-},
+		else if (isAbsoluteUrl) {
+			navigateTo(itemUrl, { external: true });
+		}
+		else {
+			router.push(withoutBaseUrl(itemUrl));
+		}
+	},
+};
 </script>
 
 <template>
@@ -113,7 +116,7 @@ const algoliaNavigator = {
 		:ui="route.path.startsWith('/api') ? { container: 'max-w-screen' } : {}"
 	>
 		<template #logo>
-			<LogoDocs class="w-auto h-8 shrink-0"/>
+			<LogoDocs class="w-auto h-8 shrink-0" />
 		</template>
 
 		<template #right>
@@ -131,7 +134,11 @@ const algoliaNavigator = {
 						color="gray"
 						square
 					>
-						<AlgoliaDocSearch :transform-items="transformAlgoliaSearchItems" :hit-component="algoliaHitComponent" :navigator="algoliaNavigator"/>
+						<AlgoliaDocSearch
+							:transform-items="transformAlgoliaSearchItems"
+							:hit-component="algoliaHitComponent"
+							:navigator="algoliaNavigator"
+						/>
 					</UButton>
 				</UTooltip>
 			</ClientOnly>
@@ -142,10 +149,10 @@ const algoliaNavigator = {
 				:shortcuts="[metaSymbol, 'K']"
 				:popper="{ strategy: 'absolute' }"
 			>
-				<UContentSearchButton :label="null"/>
+				<UContentSearchButton :label="null" />
 			</UTooltip>
 
-			<UColorModeButton class="hidden lg:inline-flex"/>
+			<UColorModeButton class="hidden lg:inline-flex" />
 
 			<UDivider
 				orientation="vertical"
