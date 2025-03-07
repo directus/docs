@@ -50,3 +50,16 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   ::
 ::
+
+## Dynamic API
+
+The platform's API uses database mirroring to dynamically generate
+REST endpoints and a GraphQL schema based on the connected database's architecture. Since these endpoints return data
+based on your specific schema and configured permissions, the input/output of the API differs greatly for individual
+installations.
+
+## Relational Data
+
+By default, Directus only retrieves the reference value of a relational field in your items. To also retrieve nested data of a relational field, [the `fields` parameter](/guides/connect/query-parameters) in REST can be used, or regular nested
+queries in GraphQL. This allows you to retrieve the author of your article included in the articles data, or fetch
+related log entry points for your app's analytics data, for example.
