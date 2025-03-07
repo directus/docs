@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@directus/openapi':
-        specifier: 0.1.4
-        version: 0.1.4
+        specifier: 0.1.5
+        version: 0.1.5
       '@docsearch/css':
         specifier: 3.8.3
         version: 3.8.3
@@ -404,8 +404,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.0.0
 
-  '@directus/openapi@0.1.4':
-    resolution: {integrity: sha512-yKCUSsYhI0vqsC2JQbQ8CX1c73y6vGJed8h8kffXZTRTmisswxczbMSabKSJU6/nxfdQJHojytnOxpKQPGA6LA==}
+  '@directus/openapi@0.1.5':
+    resolution: {integrity: sha512-B5SHAVG5rfJHSq4iIxdk3em/P9TagzAVhHouElPfsM8T7c/+XqmIA5TQn+xkJr70iheo5xklXqnyMCjNj7eIKw==}
 
   '@docsearch/css@3.8.3':
     resolution: {integrity: sha512-1nELpMV40JDLJ6rpVVFX48R1jsBFIQ6RnEQDsLFGmzOjPWTOMlZqUcXcvRx8VmYV/TqnS1l784Ofz+ZEb+wEOQ==}
@@ -7022,7 +7022,7 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.0.0
 
-  '@directus/openapi@0.1.4': {}
+  '@directus/openapi@0.1.5': {}
 
   '@docsearch/css@3.8.3': {}
 
