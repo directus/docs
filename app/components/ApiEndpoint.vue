@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import type { OpenAPIObject, RequestBodyObject } from 'openapi3-ts/oas30';
-import type { DerefedOperationObject, FlattenedOperationObject } from '~/types';
+import type {
+	OpenAPIObject,
+	RequestBodyObject,
+} from "openapi3-ts/oas30";
+import type {
+	DerefedOperationObject,
+	FlattenedOperationObject,
+} from "~/types";
 
 const openapi = inject<OpenAPIObject>('openapi')!;
 
@@ -22,6 +28,28 @@ const requestBodySchema = computed(() => {
 	}
 
 	return null;
+});
+
+const responseBodyObjects = computed(() => {
+  console.log(props.operation.responses);
+	return Object.fromEntries(Object.entries(props.operation.responses).map(([code: string, response: RequestBodyObject | { $ref: string } | null]) => {
+		return [
+			code,
+			response && '$ref' in response ? resolveOasRef<RequestBodyObject>(openapi, response.$ref) : response ?? null,
+  ];
+	});
+}));
+
+const flattenedResponseBodySchemas = computed(() => {
+	return responseBodyObjects.value?.map(({ response }: { response: RequestBodyObject | null }) => {
+		const contentSchema = response?.content?.['application/json']?.schema;
+
+		if (contentSchema) {
+			return flattenSchema(openapi, contentSchema);
+		}
+
+		return null;
+	});
 });
 
 const responseBodyObject = computed(() => {
@@ -110,16 +138,17 @@ const responseBodyExample = computed(() => {
 			</div>
 
 			<div
-				v-if="responseBodyObject && flattenedResponseBodySchema"
+        v-for="responseBodyObject, index in responseBodyObjects"
+        :key="index"
 				class="mb-12 last:mb-0"
 			>
-				<ProseH4 :id="slugify(operation.summary!) + '-response'">
-					Response
+				<ProseH4 :id="slugify(operation.summary!) + '-' + responseBodyObject.code + '-response'">
+					{responseBodyObject.code} Response
 				</ProseH4>
 				<ProseP v-if="responseBodyObject.description">
 					{{ responseBodyObject.description }}
 				</ProseP>
-				<ApiParams :param="flattenedResponseBodySchema" />
+				<ApiParams :param="flattenedResponseBodySchemas[index]" />
 			</div>
 		</div>
 
