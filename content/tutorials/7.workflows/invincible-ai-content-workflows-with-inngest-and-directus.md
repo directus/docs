@@ -1,5 +1,4 @@
 ---
-id: 8ab7ca33-2534-42b0-9857-ce840a001a50
 slug: invincible-ai-content-workflows-with-inngest-and-directus
 title: Invincible AI content workflows with Inngest and Directus
 authors:
