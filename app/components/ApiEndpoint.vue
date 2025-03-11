@@ -31,17 +31,17 @@ const requestBodySchema = computed(() => {
 });
 
 const responseBodyObjects = computed(() => {
-  console.log(props.operation.responses);
-	return Object.fromEntries(Object.entries(props.operation.responses).map(([code: string, response: RequestBodyObject | { $ref: string } | null]) => {
-		return [
-			code,
-			response && '$ref' in response ? resolveOasRef<RequestBodyObject>(openapi, response.$ref) : response ?? null,
-  ];
-	});
-}));
+	return Object.fromEntries(
+		Object.entries(props.operation.responses).map(([code, response]) => {
+			return [
+				code,
+				response && '$ref' in response ? resolveOasRef<RequestBodyObject>(openapi, response.$ref) : response ?? null,
+			];
+		}));
+});
 
 const flattenedResponseBodySchemas = computed(() => {
-	return responseBodyObjects.value?.map(({ response }: { response: RequestBodyObject | null }) => {
+	return Object.entries(responseBodyObjects.value).map(([_, response]: [string, RequestBodyObject | null]) => {
 		const contentSchema = response?.content?.['application/json']?.schema;
 
 		if (contentSchema) {
@@ -52,26 +52,8 @@ const flattenedResponseBodySchemas = computed(() => {
 	});
 });
 
-const responseBodyObject = computed(() => {
-	if (!props.operation.responses?.['200']) return null;
-
-	return '$ref' in props.operation.responses['200']
-		? resolveOasRef<RequestBodyObject>(openapi, props.operation.responses['200'].$ref)
-		: props.operation.responses['200'] ?? null;
-});
-
-const flattenedResponseBodySchema = computed(() => {
-	const contentSchema = responseBodyObject.value?.content?.['application/json']?.schema;
-
-	if (contentSchema) {
-		return flattenSchema(openapi, contentSchema);
-	}
-
-	return null;
-});
-
 const responseBodyExample = computed(() => {
-	const responseSchema = responseBodyObject.value?.content?.['application/json']?.schema;
+	const responseSchema = responseBodyObjects?.value?.['200']?.content?.['application/json']?.schema;
 
 	if (responseSchema) {
 		return responseToExample(openapi, responseSchema);
@@ -138,17 +120,17 @@ const responseBodyExample = computed(() => {
 			</div>
 
 			<div
-        v-for="responseBodyObject, index in responseBodyObjects"
-        :key="index"
+        v-for="responseBodyObject, code, index in responseBodyObjects"
+        :key="code"
 				class="mb-12 last:mb-0"
 			>
 				<ProseH4 :id="slugify(operation.summary!) + '-' + responseBodyObject.code + '-response'">
-					{responseBodyObject.code} Response
+					{{code}} Response
 				</ProseH4>
 				<ProseP v-if="responseBodyObject.description">
 					{{ responseBodyObject.description }}
 				</ProseP>
-				<ApiParams :param="flattenedResponseBodySchemas[index]" />
+				<ApiParams v-if="flattenedResponseBodySchemas[index]" :param="flattenedResponseBodySchemas[index]" />
 			</div>
 		</div>
 
