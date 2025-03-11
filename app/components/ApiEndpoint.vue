@@ -120,8 +120,8 @@ const responseBodyExample = computed(() => {
 			</div>
 
 			<div
-        v-for="responseBodyObject, code, index in responseBodyObjects"
-        :key="code"
+				v-for="responseBodyObject, code, index in responseBodyObjects"
+				:key="code"
 				class="mb-12 last:mb-0"
 			>
 				<ProseH4 :id="slugify(operation.summary!) + '-' + responseBodyObject.code + '-response'">
