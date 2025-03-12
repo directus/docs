@@ -51,7 +51,7 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ::
 ::
 
-## Advanced Requests
+## Relational Data
 
 ::shiny-grid{class="mt-6"}
   ::shiny-card
