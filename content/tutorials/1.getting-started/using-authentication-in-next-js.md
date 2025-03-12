@@ -329,7 +329,7 @@ If a user tries to access a page they are not authorized to view, or if a record
 ### Refreshing Tokens
 
 Temporary tokens will expire after some time, which can be rectified using the `refresh` functionality offered by the Directus SDK:
-```
+```typescript
 import { createDirectus, authentication, rest, refresh } from '@directus/sdk';
 
 const client = createDirectus('directus_project_url').with(authentication()).with(rest());
