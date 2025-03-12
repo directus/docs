@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	search: {
-		backend: 'nuxt', // 'nuxt' | 'algolia',
+		backend: 'algolia', // 'nuxt' | 'algolia',
 	},
 
 	ui: {
@@ -18,7 +18,7 @@ export default defineAppConfig({
 		nav: [
 			{
 				label: 'Start',
-				to: '/getting-started',
+				to: '/getting-started/overview',
 			},
 			{
 				label: 'Guides',

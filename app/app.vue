@@ -10,6 +10,8 @@ defineOgImage({
 	url: '/img/og-image.png',
 });
 
+const { search } = useAppConfig();
+
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false });
 </script>
 
@@ -25,7 +27,7 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { defa
 
 		<DocsFooter />
 
-		<ClientOnly>
+		<ClientOnly v-if="search.backend === 'nuxt'">
 			<LazyUContentSearch
 				ref="searchRef"
 				:files="files"

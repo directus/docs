@@ -52,7 +52,7 @@ navigation: false
   title: Platform Overview
   description: Get starting with using Directus.
   icon: simple-icons:directus
-  to: /getting-started
+  to: /getting-started/overview
   class: col-span-6
   ---
   :::
@@ -275,6 +275,16 @@ navigation: false
   description: Community-maintained Helm Charts repository for Directus.
   icon: simple-icons:helm
   to: 'https://github.com/directus-labs/helm-chart'
+  class: col-span-4
+  ---
+  :::
+
+  :::shiny-card
+  ---
+  title: PHP SDK
+  description: Interact with Directus using PHP.
+  icon: simple-icons:php
+  to: 'https://github.com/alantiller/directus-php-sdk'
   class: col-span-4
   ---
   :::

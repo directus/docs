@@ -12,7 +12,7 @@ This article will guide you through building a Chrome extension using Vite and D
 
 When a user clicks the extension while browsing a webpage, it will automatically capture the URL of the current webpage and prompt the user to add a `note`. Users will be able to `view`, `edit`, and `delete` their notes directly from the extension. This tutorial will not cover styling the extension, but light styling has been applied to the screenshots shown.
 
-Before you start, you will need a Directus project. Follow the [Quickstart guide](/getting-started) to create one if needed.
+Before you start, you will need a Directus project. Follow the [Quickstart guide](/getting-started/overview) to create one if needed.
 
 ## Set Up Your Directus Project
 

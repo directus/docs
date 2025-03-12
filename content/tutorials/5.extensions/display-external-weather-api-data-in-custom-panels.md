@@ -15,7 +15,7 @@ Panels can only talk to internal Directus services, and can't reliably make exte
 
 ## Add an Extensions Volume
 
-Follow our Directus [Self-Hosted Quickstart](/getting-started), adding a volume for extensions:
+Follow our Directus [Self-Hosted Quickstart](/getting-started/overview), adding a volume for extensions:
 
 ```
 volumes:
