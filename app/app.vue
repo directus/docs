@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { spec } from '@directus/openapi';
+import { onMounted } from 'vue';
 
 const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
 
@@ -13,6 +14,14 @@ defineOgImage({
 const { search } = useAppConfig();
 
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false });
+onMounted(() => {
+	const links = document.querySelectorAll('a');
+	links.forEach(link => {
+		if (link.hostname !== window.location.hostname) {
+			link.setAttribute('target', '_blank');
+		}
+	});
+});
 </script>
 
 <template>
