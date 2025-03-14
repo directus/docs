@@ -130,4 +130,4 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `MAX_RELATIONAL_DEPTH`      | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
 | `QUERY_LIMIT_DEFAULT`       | The default query limit used when not defined in the API request.                           | `100`         |
 | `QUERY_LIMIT_MAX`           | The maximum query limit accepted on API requests.                                           | `-1`          |
-| `QUERY_MAX_DEPTH`           | The maximum object depth when paring URL query parameters using the querystring format      | `10`          |
+| `QUERY_MAX_DEPTH`           | The maximum object depth when parsing URL query parameters using the querystring format      | `10`          |
