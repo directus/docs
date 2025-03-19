@@ -2,9 +2,6 @@
 
 ---
 
-> [!IMPORTANT]  
-> This documentation is in beta. We eagerly welcome your feedback!
-
 ## 🐰 Introduction
 
 Welcome! This is the repo for [Directus' documentation](https://docs.directus.io).
