@@ -3,7 +3,6 @@ title: Security & Limits
 description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate limiting, and request limits.
 ---
 
-
 :partial{content="config-env-vars"}
 
 | Variable                            | Description                                                                                                                                                                             | Default Value             |
@@ -59,7 +58,6 @@ Argon2's hashing function is used by Directus to hash user passwords, generate h
 
 All `HASH_*` environment variable parameters are passed to the `argon2.hash` function. See the [node-argon2 library options page](https://github.com/ranisalt/node-argon2/wiki/Options) for reference.
 
-
 ::callout{icon="material-symbols:info-outline"}
 **Memory Usage**  
 Modifying `HASH_MEMORY_COST` and/or `HASH_PARALLELISM` will affect the amount of memory directus uses when computing hashes; each thread gets `HASH_MEMORY_COST` amount of memory, so the total additional memory will be these two values multiplied. This may cause out of memory errors, especially when running in containerized environments.
@@ -81,7 +79,7 @@ For more details about each configuration variable, please see the [CORS package
 
 ## Rate Limiting
 
-You can use the built-in rate-limiter to prevent users from hitting the API too much. 
+You can use the built-in rate-limiter to prevent users from hitting the API too much.
 
 Enabling the rate-limiter with no other options will set a default maximum of 50 requests per second, tracked in memory.
 
@@ -118,15 +116,16 @@ This rate-limiter prevents the API from accepting new requests while the server 
 
 Allows you to configure hard technical limits, to prevent abuse and optimize for your particular server environment.
 
-| Variable                    | Description                                                                                 | Default Value |
-| --------------------------- | ------------------------------------------------------------------------------------------- | ------------- |
-| `RELATIONAL_BATCH_SIZE`     | How many rows are read into memory at a time when constructing nested relational datasets.  | 25000         |
-| `EXPORT_BATCH_SIZE`         | How many rows are read into memory at a time when constructing exports.                     | 5000          |
-| `USERS_ADMIN_ACCESS_LIMIT`  | How many active users with admin privilege are allowed.                                     | `Infinity`    |
-| `USERS_APP_ACCESS_LIMIT`    | How many active users with access to the Data Studio are allowed.                           | `Infinity`    |
-| `USERS_API_ACCESS_LIMIT`    | How many active API access users are allowed.                                               | `Infinity`    |
-| `GRAPHQL_QUERY_TOKEN_LIMIT` | How many GraphQL query tokens will be parsed.                                               | 5000          |
-| `MAX_PAYLOAD_SIZE`          | Controls the maximum request body size. Accepts number of bytes, or human readable string.  | `1mb`         |
-| `MAX_RELATIONAL_DEPTH`      | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
-| `QUERY_LIMIT_DEFAULT`       | The default query limit used when not defined in the API request.                           | `100`         |
-| `QUERY_LIMIT_MAX`           | The maximum query limit accepted on API requests.                                           | `-1`          |
+| Variable                       | Description                                                                                 | Default Value |
+| ------------------------------ | ------------------------------------------------------------------------------------------- | ------------- |
+| `RELATIONAL_BATCH_SIZE`        | How many rows are read into memory at a time when constructing nested relational datasets.  | 25000         |
+| `EXPORT_BATCH_SIZE`            | How many rows are read into memory at a time when constructing exports.                     | 5000          |
+| `USERS_ADMIN_ACCESS_LIMIT`     | How many active users with admin privilege are allowed.                                     | `Infinity`    |
+| `USERS_APP_ACCESS_LIMIT`       | How many active users with access to the Data Studio are allowed.                           | `Infinity`    |
+| `USERS_API_ACCESS_LIMIT`       | How many active API access users are allowed.                                               | `Infinity`    |
+| `GRAPHQL_QUERY_TOKEN_LIMIT`    | How many GraphQL query tokens will be parsed.                                               | 5000          |
+| `MAX_PAYLOAD_SIZE`             | Controls the maximum request body size. Accepts number of bytes, or human readable string.  | `1mb`         |
+| `MAX_RELATIONAL_DEPTH`         | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
+| `QUERY_LIMIT_DEFAULT`          | The default query limit used when not defined in the API request.                           | `100`         |
+| `QUERY_LIMIT_MAX`              | The maximum query limit accepted on API requests.                                           | `-1`          |
+| `QUERYSTRING_MAX_PARSE_DEPTH ` | The maximum object depth when parsing URL query parameters using the querystring format     | `10`          |
