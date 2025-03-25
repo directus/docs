@@ -46,8 +46,8 @@ manually through the [Netlify CLI](https://docs.netlify.com/cli/get-started/).
 
 ## 🚀 Contributing
 
-- [Code of Conduct](https://docs.directus.io/community/overview/conduct)
-- [Contributing and authoring guidelines](https://docs.directus.io/community/contribution/documentation)
+- [Code of Conduct](https://directus.io/docs/community/overview/conduct)
+- [Contributing and authoring guidelines](https://directus.io/docs/community/contribution/documentation)
 
 <br />
 
