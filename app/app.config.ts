@@ -172,7 +172,7 @@ export default defineAppConfig({
 			{
 				icon: 'ic:outline-help-outline',
 				label: 'Need a license? Contact Sales.',
-				to: 'https://directus.io/license-request',
+				to: 'https://directus.io/demo',
 			},
 		],
 	},

@@ -11,6 +11,7 @@ if (!page.value) {
 }
 
 const headline = computed(() => findPageHeadline(page.value!));
+console.log('headline', headline.value);
 </script>
 
 <template>
@@ -18,9 +19,20 @@ const headline = computed(() => findPageHeadline(page.value!));
 		<UPageHeader
 			:title="page!.title"
 			:ui="{ title: 'title', headline: 'headline' }"
-			:headline="headline + ' Tutorials'"
 			:description="page!.description"
-		/>
+		>
+			<template #headline>
+				<NuxtLink to="/tutorials">
+					Tutorials
+				</NuxtLink>
+				/
+				<NuxtLink
+					:href="`/tutorials/${page!._dir}`"
+				>
+					{{ headline }}
+				</NuxtLink>
+			</template>
+		</UPageHeader>
 
 		<UPageBody
 			class="content"
