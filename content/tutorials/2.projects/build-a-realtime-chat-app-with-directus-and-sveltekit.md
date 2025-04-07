@@ -1,5 +1,5 @@
 ---
-slug: build-a-realtime-chat-app-with-directus-and-sveltekit.md
+slug: build-a-realtime-chat-app-with-directus-and-sveltekit
 title: Build a Realtime Chat App with Directus and SvelteKit
 authors:
   - name: Temitope Oyedelde
