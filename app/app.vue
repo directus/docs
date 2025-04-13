@@ -20,17 +20,29 @@ const updateLinks = () => {
 	nextTick(() => {
 		const links = document.querySelectorAll('a');
 		links.forEach(link => {
-			if (link.hostname !== window.location.hostname) {
+			const href = link.getAttribute('href');
+			if (
+				href?.startsWith('http') &&
+				link.hostname !== window.location.hostname
+			) {
 				link.setAttribute('target', '_blank');
+				link.setAttribute('rel', 'noopener noreferrer');
 			}
 		});
 	});
 };
 
-onMounted(updateLinks);
+onMounted(() => {
+	nextTick(() => {
+		setTimeout(updateLinks, 100);
+	});
+});
 
-// Watch for page changes
-watch(() => route.path, updateLinks);
+watch(() => route.fullPath, () => {
+	nextTick(() => {
+		setTimeout(updateLinks, 100);
+	});
+});
 </script>
 
 <template>
