@@ -29,7 +29,7 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 				:description="article.description"
 				:to="article._path"
 				:icon="article.icon"
-				class="col-span-4"
+				class="col-span-6"
 				:ui="{
 					body: {
 						base: 'gap-0',
