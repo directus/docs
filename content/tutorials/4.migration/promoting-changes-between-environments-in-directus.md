@@ -72,8 +72,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
 
-    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
-    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest()).with(authentication());
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest()).with(authentication());;
 
     await baseDirectus.login('base_email', 'base_password');
     await targetDirectus.login('target_email', 'target_password');
@@ -172,8 +172,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
 
-    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
-    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest()).with(authentication());;
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest()).with(authentication());;
 
     await baseDirectus.login('base_email', 'base_password');
     await targetDirectus.login('target_email', 'target_password');
