@@ -25,8 +25,6 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 		>
 			<ShinyCard
 				v-if="article.title"
-				:title="article.title"
-				:description="article.description"
 				:to="article._path"
 				:icon="article.icon"
 				class="col-span-6"
@@ -37,8 +35,16 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 					title: 'font-bold text-pretty',
 					description: 'line-clamp-2',
 				}"
-				:color="cardColor(article.title)"
-			/>
+				:color="cardColor(article.title)">
+        <div>
+          <ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
+            {{ article.title }}
+          </ProseP>
+          <ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+            {{ article.description }}
+          </ProseP>
+        </div>
+      </ShinyCard>
 		</template>
 	</ShinyGrid>
 </template>
