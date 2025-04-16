@@ -36,6 +36,8 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 					description: 'line-clamp-2',
 				}"
 				:color="cardColor(article.title)">
+        <div class="flex items-center justify-between">
+          <div class="w-16 h-16"/>
         <div>
           <ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
             {{ article.title }}
@@ -43,6 +45,7 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
           <ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
             {{ article.description }}
           </ProseP>
+        </div>
         </div>
       </ShinyCard>
 		</template>
