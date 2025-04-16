@@ -36,9 +36,9 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 					description: 'line-clamp-2',
 				}"
 				:color="cardColor(article.title)">
-        <div class="flex items-center justify-between">
-          <div class="w-16 h-16"/>
-        <div>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="w-16 h-16 bg-black"/>
+        <div class="col-span-2">
           <ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
             {{ article.title }}
           </ProseP>
