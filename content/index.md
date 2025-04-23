@@ -4,11 +4,6 @@ description: Learn how to get started and implement Directus through our develop
 navigation: false
 ---
 
-::callout{icon="material-symbols:favorite-rounded" class="max-w-2xl" color="red"}
-  **This documentation is brand new and we'd love your feedback while we finish the details.**<br> On each page you'll find a :icon{name="material-symbols:thumb-up-outline"} and :icon{name="material-symbols:thumb-down-outline"} button with the chance to share more feedback or open an issue directly on the [directus/docs](https://github.com/directus/docs) repo. Thanks in advance!
-::
-
-
 ## Try a Demo
 
 ::two-up
