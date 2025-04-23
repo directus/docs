@@ -10,7 +10,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
-		"@directus/openapi": "0.1.12",
+		"@directus/openapi": "0.1.13",
 		"@docsearch/css": "3.8.3",
 		"@docsearch/js": "3.8.3",
 		"@iconify-json/heroicons-outline": "1.2.1",
