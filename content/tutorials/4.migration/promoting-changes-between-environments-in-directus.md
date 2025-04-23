@@ -72,8 +72,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
 
-    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
-    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest()).with(authentication());
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest()).with(authentication());;
 
     await baseDirectus.login('base_email', 'base_password');
     await targetDirectus.login('target_email', 'target_password');
@@ -88,8 +88,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
     At the bottom of `index.js`, create a `getSnapshot()` function:
 
     ```js
-    async function getSnapshot() {
-      return await baseDirectus.request(schemaSnapshot());
+    function getSnapshot() {
+      return baseDirectus.request(schemaSnapshot());
     }
     ```
 
@@ -112,8 +112,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
     At the bottom of `index.js`, create a `getDiff()` function which accepts a `snapshot` parameter:
 
     ```js
-    async function getDiff(snapshot) {
-      return await targetDirectus.request(schemaDiff(snapshot));
+    function getDiff(snapshot) {
+      return targetDirectus.request(schemaDiff(snapshot));
     }
     ```
 
@@ -135,8 +135,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
     At the bottom of `index.js`, create a `applyDiff()` function which accepts a `diff` parameter:
 
     ```js
-    async function applyDiff(diff) {
-      return await targetDirectus.request(schemaApply(diff));
+    function applyDiff(diff) {
+      return targetDirectus.request(schemaApply(diff));
     }
     ```
 
@@ -172,8 +172,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
 
-    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
-    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest()).with(authentication());;
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest()).with(authentication());;
 
     await baseDirectus.login('base_email', 'base_password');
     await targetDirectus.login('target_email', 'target_password');
@@ -186,16 +186,16 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     main();
 
-    async function getSnapshot() {
-      return await baseDirectus.request(schemaSnapshot());
+    function getSnapshot() {
+      return baseDirectus.request(schemaSnapshot());
     }
 
-    async function getDiff(snapshot) {
-      return await targetDirectus.request(schemaDiff(snapshot));
+    function getDiff(snapshot) {
+      return targetDirectus.request(schemaDiff(snapshot));
     }
 
-    async function applyDiff(diff) {
-      return await targetDirectus.request(schemaApply(diff));
+    function applyDiff(diff) {
+      return targetDirectus.request(schemaApply(diff));
     }
     ```
     ::
