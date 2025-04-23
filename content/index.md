@@ -23,12 +23,10 @@ navigation: false
   Run Docker locally and use the following command to start the project.
 
   ```
-  docker run -p 8055:8055 directus/directus
+  npx directus-template-cli@latest init
   ```
 
-  This project has no persistence. All data will be lost when the container is stopped. Read our [Create a Project guide](/getting-started/create-a-project) to learn how to create a project with persistence.
-
-  The initial admin user's credentials will be visible on the terminal.
+  You can then select a project directory name, a backend template, frontend framework, and whether to install dependencies automatically.
   ::::
 
   ::::div{class="pr-6"}
