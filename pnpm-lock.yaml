@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@directus/openapi':
-        specifier: 0.1.8
-        version: 0.1.8
+        specifier: 0.1.13
+        version: 0.1.13
       '@docsearch/css':
         specifier: 3.8.3
         version: 3.8.3
@@ -404,8 +404,8 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^7.0.0
 
-  '@directus/openapi@0.1.8':
-    resolution: {integrity: sha512-had6ZEpyYADma71fN3UicQEu9rCIgvw0urRaRlzfAYkvmy7L/qKdocPFehh/lqWEOnH2zNVaEN2dN9mk/GE2rg==}
+  '@directus/openapi@0.1.13':
+    resolution: {integrity: sha512-GHzVnHI4kYB8bzZrg2pD/qkB4OZHhat3e8UA0aaA6dpeRMykLVRsyL2AWuealn2X9vUnNYIePeO+AoaLJfaIZQ==}
 
   '@docsearch/css@3.8.3':
     resolution: {integrity: sha512-1nELpMV40JDLJ6rpVVFX48R1jsBFIQ6RnEQDsLFGmzOjPWTOMlZqUcXcvRx8VmYV/TqnS1l784Ofz+ZEb+wEOQ==}
@@ -4542,6 +4542,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-emoji@2.2.0:
     resolution: {integrity: sha512-Z3lTE9pLaJF47NyMhd4ww1yFTAP8YhYI8SleJiHzM46Fgpm5cnNzSl9XfzFNqbaz+VlJrIj3fXQ4DeN1Rjm6cw==}
@@ -7022,7 +7023,7 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.0.0
 
-  '@directus/openapi@0.1.8': {}
+  '@directus/openapi@0.1.13': {}
 
   '@docsearch/css@3.8.3': {}
 
