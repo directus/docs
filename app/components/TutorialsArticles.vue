@@ -4,6 +4,7 @@ const props = defineProps<{
 	limit?: number;
 }>();
 
+const imageSrc = '/api/tutorialimg';
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	const query = queryContent(props.path)
 		.where({ _path: { $ne: props.path } })
@@ -37,7 +38,7 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 				}"
 				:color="cardColor(article.title)">
         <div class="grid grid-cols-3 gap-4">
-          <div class="w-16 h-16 bg-black"/>
+          <img :src="imageSrc" alt="Generated Image"/>
         <div class="col-span-2">
           <ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
             {{ article.title }}
