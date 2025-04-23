@@ -115,6 +115,12 @@ Large files can be uploaded in chunks to improve reliability and efficiency, esp
 | `TUS_UPLOAD_EXPIRATION` | The expiry duration for uncompleted files with no upload activity. | `10m`         |
 | `TUS_CLEANUP_SCHEDULE`  | Cron schedule to clean up the expired uncompleted uploads.         | `0 * * * *`   |
 
+::callout{icon="material-symbols:info-outline"}
+
+This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.io/docs/configuration/general).
+
+::
+
 ::callout{icon="material-symbols:warning-rounded" color="amber"}
 
 **Chunked Upload Restrictions**<br/>
