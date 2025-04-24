@@ -14,6 +14,7 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 		query.limit(props.limit);
 	}
 
+
 	return query.find();
 });
 </script>
@@ -37,8 +38,8 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 					description: 'line-clamp-2',
 				}"
 				:color="cardColor(article.title)">
-        <div class="grid grid-cols-3 gap-4">
-          <img :src="imageSrc" alt="Generated Image"/>
+        <div class="grid grid-cols-4 gap-4">
+				<img class="col-span-2" :src="imageSrc" alt="Generated Image"/>
         <div class="col-span-2">
           <ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
             {{ article.title }}
