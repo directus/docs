@@ -4,7 +4,7 @@ const props = defineProps<{
 	limit?: number;
 }>();
 
-const imageSrc = '/api/tutorialimg';
+const imageSrc = '/api/tutorialimg?logo=astro';
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	const query = queryContent(props.path)
 		.where({ _path: { $ne: props.path } })

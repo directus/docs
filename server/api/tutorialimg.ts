@@ -3,20 +3,25 @@ import { join } from "path";
 import sharp from "sharp";
 
 export default defineEventHandler(async (event) => {
+  const query = getQuery(event);
+	const logoFileName = query.logo || "directus"; // default to directus.png
 	const baseImagePath = join('public/img/tutorials', 'background.png');
 	const logoContainerPath = join('public/img/tutorials', 'logo-container.png');
-	const astroLogoPath = join('public/img/tutorials', 'astro.png');
+	// const astroLogoPath = join('public/img/tutorials', 'astro.png');
+  const logoPath = join('public/img/tutorials', `${logoFileName}.png`);
+	// const directusLogoPath = join('public/img/tutorials', 'directus.png');
 
 	// Load buffers
 	const base = sharp(baseImagePath);
 	const logoContainerBuffer = readFileSync(logoContainerPath);
-	const astroLogoBuffer = readFileSync(astroLogoPath);
+	// const astroLogoBuffer = readFileSync(astroLogoPath);
+	const logoBuffer = readFileSync(logoPath);
 
 	// Get metadata to center the logo container
-	const [baseMetadata, logoMetadata, astroMetadata] = await Promise.all([
+	const [baseMetadata, logoMetadata, directusMetadata] = await Promise.all([
 		base.metadata(),
 		sharp(logoContainerBuffer).metadata(),
-		sharp(astroLogoBuffer).metadata(),
+		sharp(logoBuffer).metadata(),
 	]);
 
 	const left = Math.floor((baseMetadata.width! - logoMetadata.width!) / 2);
@@ -29,9 +34,10 @@ export default defineEventHandler(async (event) => {
 	    left,
 	  },
 	  {
-	    input: astroLogoBuffer,
-	  	top: Math.floor(top + (logoMetadata.height! - astroMetadata.height!) / 2),
-	    left: Math.floor(left + (logoMetadata.width! - astroMetadata.width!) / 2),
+
+	    input: logoBuffer,
+	  	top: Math.floor(top + (logoMetadata.height! - directusMetadata.height!) / 2),
+	    left: Math.floor(left + (logoMetadata.width! - directusMetadata.width!) / 2),
 	  }
 	];
 
