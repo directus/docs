@@ -1,35 +1,43 @@
-// import { readFileSync } from "fs";
+import { readFileSync } from "fs";
 import { join } from "path";
 import sharp from "sharp";
 
 export default defineEventHandler(async (event) => {
 	const baseImagePath = join('public/img/tutorials', 'background.png');
-	// const icon1Path = join('public/images', 'icon1.png')
-	// const icon2Path = join('public/images', 'icon2.png')
+	const logoContainerPath = join('public/img/tutorials', 'logo-container.png');
+	const astroLogoPath = join('public/img/tutorials', 'astro.png');
 
-	// Load base image
+	// Load buffers
 	const base = sharp(baseImagePath);
+	const logoContainerBuffer = readFileSync(logoContainerPath);
+	const astroLogoBuffer = readFileSync(astroLogoPath);
 
-	// // Prepare icon overlays
-	// const icon1Buffer = readFileSync(icon1Path)
-	// const icon2Buffer = readFileSync(icon2Path)
+	// Get metadata to center the logo container
+	const [baseMetadata, logoMetadata, astroMetadata] = await Promise.all([
+		base.metadata(),
+		sharp(logoContainerBuffer).metadata(),
+		sharp(astroLogoBuffer).metadata(),
+	]);
 
-	// const compositeImages = [
-	//   {
-	//     input: icon1Buffer,
-	//     top: 50,
-	//     left: 100,
-	//   },
-	//   {
-	//     input: icon2Buffer,
-	//     top: 300,
-	//     left: 400,
-	//   },
-	// ]
+	const left = Math.floor((baseMetadata.width! - logoMetadata.width!) / 2);
+	const top = Math.floor((baseMetadata.height! - logoMetadata.height!) / 2);
+
+	const compositeImages = [
+	  {
+	    input: logoContainerBuffer,
+	    top,
+	    left,
+	  },
+	  {
+	    input: astroLogoBuffer,
+	  	top: Math.floor(top + (logoMetadata.height! - astroMetadata.height!) / 2),
+	    left: Math.floor(left + (logoMetadata.width! - astroMetadata.width!) / 2),
+	  }
+	];
 
 	// Compose the image
 	const finalImage = await base
-	// .composite(compositeImages)
+		.composite(compositeImages)
 		.jpeg()
 		.toBuffer();
 
