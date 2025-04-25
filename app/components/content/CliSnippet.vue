@@ -31,7 +31,7 @@ const copyToClipboard = async () => {
 
 <template>
 	<div
-		v-capture="{
+		v-posthog-capture="{
 			name: 'marketing.website.cli_snippet.copy.click',
 			properties: {
 				command: command,
