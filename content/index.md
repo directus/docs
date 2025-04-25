@@ -16,7 +16,7 @@ navigation: false
   ---
   Run Docker locally and use the following command to start the project.
 
-  <CliSnippet command="npx directus-template-cli@latest init"></CliSnippet>
+  :cli-snippet{command="npx directus-template-cli@latest init"}
 
   You can then select a project directory name, a backend template, frontend framework, and whether to install dependencies automatically.
 
