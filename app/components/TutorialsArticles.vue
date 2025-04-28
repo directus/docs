@@ -4,19 +4,23 @@ const props = defineProps<{
 	limit?: number;
 }>();
 
-const imageSrc = '/api/tutorialimg?logo=astro';
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	const query = queryContent(props.path)
 		.where({ _path: { $ne: props.path } })
-		.only(['title', 'description', 'icon', '_path']);
+		.only(['title', 'description', 'icon', '_path', 'technologies']);
 
 	if (props.limit) {
 		query.limit(props.limit);
 	}
 
-
 	return query.find();
 });
+
+const imageSrc = (article: { technologies: string[] }) => {
+	const technologies = article?.technologies || ['directus'];
+	const techString = technologies.join(', ');
+	return `/api/tutorialimg?logos=${techString}`;
+};
 </script>
 
 <template>
@@ -38,18 +42,18 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 					description: 'line-clamp-2',
 				}"
 				:color="cardColor(article.title)">
-        <div class="grid grid-cols-4 gap-4">
-				<img class="col-span-2" :src="imageSrc" alt="Generated Image"/>
-        <div class="col-span-2">
-          <ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
-            {{ article.title }}
-          </ProseP>
-          <ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
-            {{ article.description }}
-          </ProseP>
-        </div>
-        </div>
-      </ShinyCard>
+				<div class="grid grid-cols-4 gap-4">
+					<img class="col-span-2" :src="imageSrc(article)" alt="Generated Image"/>
+					<div class="col-span-2">
+						<ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
+							{{ article.title }}
+						</ProseP>
+						<ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+							{{ article.description }}
+						</ProseP>
+					</div>
+				</div>
+			</ShinyCard>
 		</template>
 	</ShinyGrid>
 </template>
