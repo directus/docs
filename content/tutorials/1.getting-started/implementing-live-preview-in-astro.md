@@ -1,6 +1,9 @@
 ---
 slug: implementing-live-preview-in-astro
 title: Implementing Live Preview in Astro
+technologies:
+  - astro
+  - directus
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

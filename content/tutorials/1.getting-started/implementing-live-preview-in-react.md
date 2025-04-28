@@ -1,6 +1,8 @@
 ---
 slug: implementing-live-preview-in-react
 title: Implementing Live Preview in React
+technologies:
+  - directus
 authors:
   - name: Kumar Harsh
     title: Guest Author
