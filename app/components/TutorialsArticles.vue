@@ -2,6 +2,7 @@
 const props = defineProps<{
 	path: string;
 	limit?: number;
+  categoryTitle: string;
 }>();
 
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
@@ -15,6 +16,8 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 
 	return query.find();
 });
+
+const moreImageSrc = '/img/tutorials/more.png';
 
 const imageSrc = (article: { technologies: string[] }) => {
 	const technologies = article?.technologies || ['directus'];
@@ -55,5 +58,25 @@ const imageSrc = (article: { technologies: string[] }) => {
 				</div>
 			</ShinyCard>
 		</template>
+		<ShinyCard
+			:to="path"
+			class="col-span-6"
+			:ui="{
+				body: {
+					base: 'gap-0',
+				},
+				title: 'font-bold text-pretty',
+				description: 'line-clamp-2',
+			}"
+			:color="cardColor(categoryTitle)">
+			<div class="grid grid-cols-4 gap-4">
+				<img class="col-span-2" :src="moreImageSrc" alt="More {{ categoryTitle }} tutorials"/>
+				<div class="col-span-2 flex flex-col justify-center">
+					<ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
+						See all {{ categoryTitle }} tutorials
+					</ProseP>
+				</div>
+			</div>
+		</ShinyCard>
 	</ShinyGrid>
 </template>

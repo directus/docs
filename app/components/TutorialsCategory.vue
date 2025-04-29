@@ -19,6 +19,7 @@ defineProps<{
 		<TutorialsArticles
 			:limit="limit"
 			:path="path"
+      :categoryTitle="title"
 		/>
 
 		<Callout
