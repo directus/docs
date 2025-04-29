@@ -19,15 +19,8 @@ defineProps<{
 		<TutorialsArticles
 			:limit="limit"
 			:path="path"
-      :categoryTitle="title"
+			:categoryTitle="title"
+			:showMore="true"
 		/>
-
-		<Callout
-			class="w-6/12 my-10 font-bold"
-			:to="path"
-			icon="material-symbols:arrow-outward"
-		>
-			See all {{ title }} tutorials
-		</Callout>
 	</div>
 </template>

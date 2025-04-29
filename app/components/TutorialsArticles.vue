@@ -2,7 +2,8 @@
 const props = defineProps<{
 	path: string;
 	limit?: number;
-  categoryTitle: string;
+	categoryTitle: string;
+	showMore?: boolean;
 }>();
 
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
@@ -59,6 +60,7 @@ const imageSrc = (article: { technologies: string[] }) => {
 			</ShinyCard>
 		</template>
 		<ShinyCard
+			v-if="showMore"
 			:to="path"
 			class="col-span-6"
 			:ui="{
