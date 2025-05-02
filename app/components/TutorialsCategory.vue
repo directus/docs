@@ -19,8 +19,8 @@ defineProps<{
 		<TutorialsArticles
 			:limit="limit"
 			:path="path"
-			:categoryTitle="title"
-			:showMore="true"
+			:category-title="title"
+			:show-more="true"
 		/>
 	</div>
 </template>
