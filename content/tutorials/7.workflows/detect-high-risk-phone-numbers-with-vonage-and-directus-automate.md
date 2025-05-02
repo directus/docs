@@ -131,4 +131,4 @@ In this post, you have learned how to use the Vonage Number Insight V2 API to ch
 
 Based on the `allow`, `flag`, or `block` recommendation, you can add any operations from those provided by Directus, or through [building your own](/guides/extensions/api-extensions/operations).
 
-If you have any questions, please feel free to [join our Discord server](https://directus.chat) and ask them.
+If you have any questions, please feel free to join our [community platform](https://community.directus.io) and ask them.
