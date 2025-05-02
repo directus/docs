@@ -213,7 +213,7 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     This section will create a "diff" that describes all differences between your source and target project's data models.
 
-    Perform a `POST` request to `/schema/snapshot?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of JSON response from the snapshot.
+    Perform a `POST` request to `/schema/diff?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of JSON response from the snapshot.
 
     Copy the JSON response with your data model diff.
 
