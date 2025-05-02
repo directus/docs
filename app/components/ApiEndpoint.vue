@@ -53,7 +53,8 @@ const flattenedResponseBodySchemas = computed(() => {
 });
 
 const responseBodyExample = computed(() => {
-	const responseSchema = responseBodyObjects?.value?.['200']?.content?.['application/json']?.schema;
+	const responseSchema = responseBodyObjects?.value?.['200']?.content?.['application/json']?.schema
+		|| responseBodyObjects?.value?.['200']?.content?.['application/text']?.schema;
 
 	if (responseSchema) {
 		return responseToExample(openapi, responseSchema);
