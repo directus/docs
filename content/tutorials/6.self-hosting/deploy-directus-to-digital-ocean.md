@@ -131,7 +131,7 @@ Any alterations to the environment variables or Dockerfile automatically trigger
 
 I have been doing web dev for well over 18 years now. While I have learned and used many methods, languages, and frameworks to achieve success for my clients. In pursuing the ideal backend, Directus continues to hit every checkbox required for my needs and has become a cornerstone of my tech stack. I hope this guide helps you get started and have many successful projects!
 
-Should any questions or hurdles arise, feel free to ask questions on the [official Directus Discord](https://directus.chat). We're always here to help!
+Should any questions or hurdles arise, feel free to ask questions on the [community platform](https://community.directus.io). We're always here to help!
 
 ## Handling PM2 Errors
 

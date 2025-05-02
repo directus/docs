@@ -516,4 +516,4 @@ And if you’ve got 100s of images without alt text and you’re dreading doing 
 
 In this post, we’ve covered some SEO best practices when using Directus as a Headless CMS. Hopefully you’ve learnt something new, and can build more robust data models that serve both your users and search engine crawlers.
 
-If these tips were helpful or if you have some of your own you’d like to share, let us know inside [our Discord community](https://directus.chat).
+If these tips were helpful or if you have some of your own you’d like to share, let us know inside [our community platform](https://community.directus.io/).

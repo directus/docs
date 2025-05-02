@@ -522,4 +522,4 @@ It could be very handy to know if feedback across different articles is coming f
 - storing the ID within the browser using [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) or [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
 - grabbing that ID and passing it in the API call to Directus
 
-I hope you find this post useful - if you have any questions feel free to join [our Discord server](https://directus.chat).
+I hope you find this post useful - if you have any questions feel free to join [our community platform](https://community.directus.io).

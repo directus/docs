@@ -181,4 +181,4 @@ Create a new Insights Dashboard and add a **Weather** panel. Add coordinates, an
 
 ![A panel showing a JSON payload of weather data](/img/83e31e33-7ceb-44d9-8da9-74b03fa66d86.webp)
 
-You can now create panels using external data. If you have any questions at all, feel free to join our [Discord community](https://directus.chat).
+You can now create panels using external data. If you have any questions at all, feel free to join our [community platform](https://community.directus.io).

@@ -322,4 +322,4 @@ After the setup is complete, visit your Directus application using `https://dire
 
 This tutorial guided you through hosting a Directus application on an Ubuntu server, covering essential steps such as Docker setup, firewall configuration, and SSL encryption. By following these instructions, you have ensured a secure, accessible, and continuously running environment for your Directus project.
 
-If you have any questions or encounter difficulties, don't hesitate to revisit this guide or seek support from the [Directus community Discord server](https://directus.chat). Happy hosting!
+If you have any questions or encounter difficulties, don't hesitate to revisit this guide or seek support from the [community platform](https://community.directus.io). Happy hosting!
