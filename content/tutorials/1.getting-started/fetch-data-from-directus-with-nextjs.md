@@ -5,6 +5,8 @@ title: Fetch Data from Directus with Next.js
 authors:
   - name: Esther Agbaje
     title: Developer Advocate
+technologies:
+  - nextjs
 description: Learn how to integrate Directus in your Next.js web application.
 ---
 [Next.js](https://nextjs.org/) is a popular JavaScript framework based on React.js. In this tutorial, you will learn how

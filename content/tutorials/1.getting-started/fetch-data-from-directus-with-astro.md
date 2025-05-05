@@ -2,6 +2,8 @@
 id: 970eaaf3-d033-43d6-800e-c168e28c6d8f
 slug: fetch-data-from-directus-with-astro
 title: Fetch Data from Directus with Astro
+technologies:
+  - astro
 authors:
   - name: Trust Jamin
     title: Guest Author
