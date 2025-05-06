@@ -3,7 +3,7 @@ id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-dynamic-pages-for-a-cms-using-directus-and-nextjs
 title: Create Dynamic Pages for a CMS using Directus and Next.js
 authors:
-  - name: Temitope Oyedelde
+  - name: Kumar Harsh
     title: Guest Author
 description: Learn how to create dynamic pages you can use in your CMS using Directus and Next.js.
 ---
