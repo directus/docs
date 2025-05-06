@@ -14,7 +14,6 @@ Directus provides a headless CMS, which when combined with SvelteKit will stream
 
 You will need:
 - A new Directus project with admin access.
-- Optional but recommended: Familiarity with data modeling in Directus.
 
 ## Set Up Your Directus Project
 

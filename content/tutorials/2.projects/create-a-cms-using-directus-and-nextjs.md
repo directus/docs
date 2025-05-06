@@ -15,7 +15,6 @@ Directus provides a headless CMS, which when combined with Next.js will streamli
 You will need:
 - A new Directus project with admin access.
 - Fundamental understanding of Next.js and React concepts.
-- Optional but recommended: Familiarity with data modeling in Directus.
 
 ## Set Up Your Directus Project
 

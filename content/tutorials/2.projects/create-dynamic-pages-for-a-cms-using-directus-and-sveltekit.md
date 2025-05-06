@@ -15,7 +15,6 @@ Directus provides a headless CMS, which, when combined with SvelteKit, will stre
 You will need:
 
 - A new Directus project with admin access.
-- Optional but recommended: Familiarity with data modeling in Directus.
 
 ## Set Up Your Directus Project
 You'll need to configure CORS for this project. Update your `docker-compose.yml` file as follows:

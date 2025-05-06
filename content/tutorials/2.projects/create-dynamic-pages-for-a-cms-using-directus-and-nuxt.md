@@ -3,7 +3,7 @@ id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-dynamic-pages-for-a-cms-using-directus-and-nuxt
 title: Create Dynamic Pages for a CMS using Directus and Nuxt
 authors:
-  - name: Kumar Harsh
+  - name: Craig Harman
     title: Guest Author
 description: Learn how to create dynamic pages you can use in your CMS using Directus and Nuxt.
 ---
@@ -15,7 +15,6 @@ Directus provides a headless CMS, which when combined with Nuxt will streamline 
 You will need:
 
 - A new Directus project with admin access.
-- Optional but recommended: Familiarity with data modeling in Directus.
 
 ## Set Up Your Directus Project
 
