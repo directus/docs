@@ -18,7 +18,7 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	return query.find();
 });
 
-const moreImageSrc = '/docs/img/more.png';
+const moreImageSrc = '/docs/img/tutorials/more.png';
 
 const imageSrc = (article: { technologies: string[] }) => {
 	const technologies = article?.technologies || ['directus'];
