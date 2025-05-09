@@ -3,7 +3,7 @@ import sharp from "sharp";
 
 async function getImageBuffer(baseURL: string, imagePath: string) {
 	console.log('Fetching image from:', baseURL, imagePath);
-	const imageUrl = `${baseURL}/img/tutorials/${imagePath}.png`;
+	const imageUrl = `${baseURL}/docs/img/tutorials/${imagePath}.png`;
 
 	const res = await fetch(imageUrl);
 	if (!res.ok) {
@@ -48,7 +48,7 @@ export default defineEventHandler(async (event) => {
 	];
 
 	// Compose the image
-	const finalImage = await base
+	const finalImage = await sharp(baseImageBuffer)
 		.composite(compositeImages)
 		.jpeg()
 		.toBuffer();
