@@ -46,8 +46,8 @@ const imageSrc = (article: { technologies: string[] }) => {
 					description: 'line-clamp-2',
 				}"
 				:color="cardColor(article.title)">
-				<div class="grid grid-cols-4 gap-4">
-					<img class="col-span-2" :src="imageSrc(article)" alt="Generated Image"/>
+				<div class="md:grid grid-cols-4 gap-4">
+					<img class="col-span-2 mb-4 md:mb-0" :src="imageSrc(article)" alt="Generated Image"/>
 					<div class="col-span-2">
 						<ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
 							{{ article.title }}
