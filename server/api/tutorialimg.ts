@@ -19,11 +19,8 @@ export default defineEventHandler(async (event) => {
 	const logoFileName = logoFileNames[0];
 	const baseImageBuffer = await getImageBuffer(getRequestURL(event).origin, 'background');
 	const logoContainerBuffer = await getImageBuffer(getRequestURL(event).origin, 'logo-container');
-	// const astroLogoPath = join('public/img/tutorials', 'astro.png');
 	const logoBuffer = await getImageBuffer(getRequestURL(event).origin, `${logoFileName}`);
-	// const directusLogoPath = join('public/img/tutorials', 'directus.png');
 
-	// Get metadata to center the logo container
 	const [baseMetadata, logoMetadata, directusMetadata] = await Promise.all([
 		sharp(baseImageBuffer).metadata(),
 		sharp(logoContainerBuffer).metadata(),
@@ -42,9 +39,9 @@ export default defineEventHandler(async (event) => {
 		{
 
 			input: logoBuffer,
-			top: Math.floor(top + (logoMetadata.height! - directusMetadata.height!) / 2),
+			top: Math.floor(top + (logoMetadata.height! - directusMetadata.height! - 72) / 2),
 			left: Math.floor(left + (logoMetadata.width! - directusMetadata.width!) / 2),
-		}
+		},
 	];
 
 	// Compose the image
