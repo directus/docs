@@ -2,6 +2,8 @@
 id: 4a0304fd-c3c3-43f9-8102-acfc6009e26d
 slug: migrate-from-notion-to-directus
 title: Migrate from Notion to Directus
+technologies:
+  - notion
 authors:
   - name: Esther Agbaje
     title: Developer Advocate

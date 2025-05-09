@@ -2,6 +2,8 @@
 id: 79c82730-7768-4722-8538-7f3fecac3d43
 slug: send-sms-messages-with-twilio-in-custom-operations
 title: Send SMS Messages with Twilio in Custom Operations
+technologies:
+  - twilio
 authors:
   - name: Tim Butterfield
     title: Guest Author

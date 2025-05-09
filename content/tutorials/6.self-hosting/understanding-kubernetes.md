@@ -2,6 +2,8 @@
 id: 92776b78-2741-4ee7-96a2-bd8137b8ebc9
 slug: understanding-kubernetes
 title: Understanding Kubernetes
+technologies:
+  - kubernetes
 authors:
   - name: Eike Thies
     title: Guest Author
