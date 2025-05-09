@@ -7,10 +7,10 @@ export default defineEventHandler(async (event) => {
 	const logoFileNames = query?.logos?.split(', ') || ['directus']; // default to directus.png
 	const logoFileName = logoFileNames[0];
   console.log('logoFileName', logoFileName);
-	const baseImagePath = join('images', 'background.png');
-	const logoContainerPath = join('images', 'logo-container.png');
+	const baseImagePath = join('/public/img/tutorials', 'background.png');
+	const logoContainerPath = join('/public/img/tutorials', 'logo-container.png');
 	// const astroLogoPath = join('public/img/tutorials', 'astro.png');
-	const logoPath = join('images', `${logoFileName}.png`);
+	const logoPath = join('/public/img/tutorials', `${logoFileName}.png`);
 	// const directusLogoPath = join('public/img/tutorials', 'directus.png');
 
 	// Load buffers
