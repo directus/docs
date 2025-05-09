@@ -18,12 +18,12 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	return query.find();
 });
 
-const moreImageSrc = '/img/tutorials/more.png';
+const moreImageSrc = '/docs/img/tutorials/more.png';
 
 const imageSrc = (article: { technologies: string[] }) => {
 	const technologies = article?.technologies || ['directus'];
 	const techString = technologies.join(', ');
-	return `/api/tutorialimg?logos=${techString}`;
+	return `/docs/api/tutorialimg?logos=${techString}`;
 };
 </script>
 
