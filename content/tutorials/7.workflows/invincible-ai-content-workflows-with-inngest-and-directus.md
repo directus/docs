@@ -1,6 +1,8 @@
 ---
 slug: invincible-ai-content-workflows-with-inngest-and-directus
 title: Invincible AI content workflows with Inngest and Directus
+technologies:
+  - inggest
 authors:
   - name: Bryant Gillespie
     title: Developer Advocate

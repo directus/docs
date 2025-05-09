@@ -2,6 +2,8 @@
 id: 89cd5e8e-cabd-4422-92c8-9736faedefe0
 slug: generate-transcripts-with-deepgram-and-directus-automate
 title: Generate Transcripts with Deepgram and Directus Automate
+technologies:
+  - deepgram
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

@@ -2,6 +2,8 @@
 id: 6388aa8a-99b5-4a3b-a9ff-275d26b8cb81
 slug: detect-high-risk-phone-numbers-with-vonage-and-directus-automate
 title: Detect High-Risk Phone Numbers with Vonage and Directus Automate
+technologies:
+  - vonage
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

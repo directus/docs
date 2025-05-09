@@ -2,6 +2,8 @@
 id: 571e0f54-f95d-4ccf-8712-8b92150b364f
 slug: enrich-user-data-with-clearbit-and-directus-automate
 title: Enrich User Data with Clearbit and Directus Automate
+technologies:
+  - clearbit
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
