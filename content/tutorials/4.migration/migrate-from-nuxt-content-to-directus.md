@@ -2,6 +2,8 @@
 id: 023412b4-f8c3-4016-921d-756c75aad1e6
 slug: migrate-from-nuxt-content-to-directus
 title: Migrate from Nuxt Content to Directus
+technologies:
+  - nuxt
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
