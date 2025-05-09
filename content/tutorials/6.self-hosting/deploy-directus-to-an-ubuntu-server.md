@@ -2,6 +2,8 @@
 id: 5a48edd1-f8d2-499d-8f1a-6a6b378c65d9
 slug: deploy-directus-to-an-ubuntu-server
 title: Deploy Directus to an Ubuntu Server
+technologies:
+  - ubuntu
 authors:
   - name: Yusuf Akorede
     title: Guest Author

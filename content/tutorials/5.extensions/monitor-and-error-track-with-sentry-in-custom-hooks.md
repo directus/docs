@@ -2,6 +2,8 @@
 id: 05df72da-c73d-4f68-a651-a95343227e85
 slug: monitor-and-error-track-with-sentry-in-custom-hooks
 title: Monitor and Error Track with Sentry in Custom Hooks
+technologies:
+  - sentry
 authors:
   - name: Salma Alam-Naylor
     title: Senior Developer Advocate, Sentry

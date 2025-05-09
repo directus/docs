@@ -2,6 +2,8 @@
 id: 75acf155-0662-4b74-8555-52e5cf02446c
 slug: set-up-live-preview-with-nuxt
 title: Set Up Live Preview with Nuxt
+technologies:
+  - nuxt
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

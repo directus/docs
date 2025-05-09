@@ -2,6 +2,8 @@
 id: 418e29e7-1a2f-44a3-82ad-99dc118cccd0
 slug: build-a-multi-user-chat-with-vue-js-and-directus-realtime
 title: Build a Multi-User Chat with Vue.js and Directus Realtime
+technologies:
+  - vue
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

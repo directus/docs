@@ -2,6 +2,8 @@
 id: 3da7bf05-c74c-4e24-bf83-1d2598b89004
 slug: fetch-data-from-directus-with-solidstart
 title: Fetch Data from Directus with SolidStart
+technologies:
+  - solidstart
 authors:
   - name: Atila Fassina
     title: Guest Author

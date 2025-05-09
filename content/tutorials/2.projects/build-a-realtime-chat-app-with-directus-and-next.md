@@ -1,6 +1,8 @@
 ---
 slug: build-a-realtime-chat-app-with-directus-and-next
 title: Build a Realtime Chat App with Directus and Next.js
+technologies:
+  - nextjs
 authors:
   - name: Kumar Harsh
     title: Guest Author

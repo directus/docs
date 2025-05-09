@@ -2,6 +2,8 @@
 id: 1fdbc354-3c98-458e-97f6-587eccab6c16
 slug: build-a-multi-user-chat-with-javascript-and-directus-realtime
 title: Build a Multi-User Chat with JavaScript and Directus Realtime
+technologies:
+  - react
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

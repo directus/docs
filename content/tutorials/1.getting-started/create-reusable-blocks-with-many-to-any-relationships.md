@@ -2,6 +2,8 @@
 id: 9176d1b6-c530-44f3-92b3-71f35ae80902
 slug: create-reusable-blocks-with-many-to-any-relationships
 title: Create Reusable Blocks with Many-to-Any Relationships
+technologies:
+  - db
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer

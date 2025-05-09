@@ -2,6 +2,8 @@
 id: 0398217e-fabe-4866-9827-d5e4172fe3a9
 slug: deploy-directus-to-digital-ocean
 title: Deploy Directus to Digital Ocean
+technologies:
+  - digitalocean
 authors:
   - name: Matthew Ruffino
     title: Guest Author

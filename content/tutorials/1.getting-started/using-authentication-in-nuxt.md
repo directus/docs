@@ -1,6 +1,8 @@
 ---
 slug: using-authentication-in-nuxt
 title: Using Authentication in Nuxt
+technologies:
+  - nuxt
 authors:
   - name: Craig Harman
     title: Guest Author

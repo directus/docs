@@ -2,6 +2,8 @@
 id: 9f57fe88-ece0-42db-ad76-9e811989d4a8
 slug: fetch-data-from-directus-with-sveltekit
 title: Fetch Data from Directus with SvelteKit
+technologies:
+  - sveltekit
 authors:
   - name: Eike Thies
     title: Guest Author

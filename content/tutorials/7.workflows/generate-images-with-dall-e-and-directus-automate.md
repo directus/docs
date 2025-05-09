@@ -2,6 +2,8 @@
 id: 9feb1c8f-0500-4bff-9b2f-d69e08d316e7
 slug: generate-images-with-dall-e-and-directus-automate
 title: Generate Images with DALL•E and Directus Automate
+technologies:
+  - openai
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

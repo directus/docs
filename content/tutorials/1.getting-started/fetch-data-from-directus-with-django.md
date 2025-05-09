@@ -2,6 +2,8 @@
 id: ab19694b-b7e5-44d1-994c-f7a5e5025829
 slug: fetch-data-from-directus-with-django
 title: Fetch Data from Directus with Django
+technologies:
+  - django
 authors:
   - name: Omu Inetimi
     title: Guest Author
