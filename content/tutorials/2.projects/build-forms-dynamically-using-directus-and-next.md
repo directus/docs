@@ -1,6 +1,8 @@
 ---
 slug: build-forms-dynamically-using-directus-and-next
 title: Build Forms Dynamically using Directus and Next.js
+technologies:
+  - nextjs
 authors:
   - name: Kumar Harsh
     title: Guest Author

@@ -1,6 +1,8 @@
 ---
 slug: using-authentication-in-react
 title: Using Authentication in React
+technologies:
+  - react
 authors:
   - name: Kumar Harsh
     title: Guest Author
