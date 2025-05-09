@@ -2,7 +2,6 @@ import { getRequestURL } from "h3";
 import sharp from "sharp";
 
 async function getImageBuffer(baseURL: string, imagePath: string) {
-	console.log('Fetching image from:', baseURL, imagePath);
 	const imageUrl = `${baseURL}/docs/img/tutorials/${imagePath}.png`;
 
 	const res = await fetch(imageUrl);
