@@ -17,10 +17,10 @@ export default defineEventHandler(async (event) => {
 	const query = getQuery(event);
 	const logoFileNames = query?.logos?.split(', ') || ['directus']; // default to directus.png
 	const logoFileName = logoFileNames[0];
-	const baseImageBuffer = await getImageBuffer(getRequestURL(event).origin, 'background.png');
-	const logoContainerBuffer = await getImageBuffer(getRequestURL(event).origin, 'logo-container.png');
+	const baseImageBuffer = await getImageBuffer(getRequestURL(event).origin, 'background');
+	const logoContainerBuffer = await getImageBuffer(getRequestURL(event).origin, 'logo-container');
 	// const astroLogoPath = join('public/img/tutorials', 'astro.png');
-	const logoBuffer = await getImageBuffer(getRequestURL(event).origin, `${logoFileName}.png`);
+	const logoBuffer = await getImageBuffer(getRequestURL(event).origin, `${logoFileName}`);
 	// const directusLogoPath = join('public/img/tutorials', 'directus.png');
 
 	// Get metadata to center the logo container
