@@ -3,7 +3,7 @@ import { join } from "path";
 import sharp from "sharp";
 
 async function getImageBuffer(baseURL: string, imagePath: string) {
-	const imageUrl = `${baseURL}/img/${imagePath}.png`;
+	const imageUrl = `${baseURL}/img/tutorials/${imagePath}.png`;
 
 	const res = await fetch(imageUrl);
 	if (!res.ok) {
