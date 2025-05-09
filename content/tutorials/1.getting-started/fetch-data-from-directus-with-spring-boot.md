@@ -2,6 +2,8 @@
 id: 501503e1-3830-494c-a87a-e3a0706b28de
 slug: fetch-data-from-directus-with-spring-boot
 title: Fetch Data from Directus with Spring Boot
+technologies:
+  - springboot
 authors:
   - name: David Mbochi
     title: Guest Author

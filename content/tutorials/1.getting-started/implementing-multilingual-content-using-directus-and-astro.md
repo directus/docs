@@ -1,6 +1,8 @@
 ---
 slug: implementing-multilingual-content-using-directus-and-astro
 title: Implementing Multilingual Content using Directus and Astro
+technologies:
+  - astro
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

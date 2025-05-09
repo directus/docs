@@ -1,6 +1,8 @@
 ---
 slug: using-authentication-in-astro
 title: Using Authentication in Astro
+technologies:
+  - astro
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

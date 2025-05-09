@@ -1,6 +1,8 @@
 ---
 slug: rendering-dynamic-blocks-using-sveltekit
 title: Rendering Dynamic Blocks Using SvelteKit
+technologies:
+  - sveltekit
 authors:
   - name: Temitope Oyedelde
     title: Guest Author

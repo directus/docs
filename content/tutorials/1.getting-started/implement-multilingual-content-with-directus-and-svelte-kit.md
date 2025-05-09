@@ -2,6 +2,8 @@
 id: 333eb942-b124-4476-ac04-bac9cb2dcca2
 slug: implement-multilingual-content-with-directus-and-svelte-kit
 title: Implement Multilingual Content with Directus and SvelteKit
+technologies:
+  - sveltekit
 authors:
   - name: Ekekenta Clinton
     title: Guest Author

@@ -1,6 +1,8 @@
 ---
 slug: rendering-dynamic-blocks-using-nuxt
 title: Rendering Dynamic Blocks Using Nuxt
+technologies:
+  - nuxt
 authors:
   - name: Craig Harman
     title: Guest Author
