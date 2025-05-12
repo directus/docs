@@ -1,6 +1,8 @@
 ---
 id: b847e493-5a35-49e1-80b1-3dc2657a0f7d
 slug: fetch-data-from-directus-with-eleventy-3
+technologies:
+  - 11ty
 title: Fetch Data from Directus with Eleventy 3
 authors:
   - name: Kevin Lewis

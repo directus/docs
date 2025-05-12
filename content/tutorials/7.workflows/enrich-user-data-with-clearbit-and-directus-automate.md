@@ -2,6 +2,8 @@
 id: 571e0f54-f95d-4ccf-8712-8b92150b364f
 slug: enrich-user-data-with-clearbit-and-directus-automate
 title: Enrich User Data with Clearbit and Directus Automate
+technologies:
+  - clearbit
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
@@ -74,4 +76,4 @@ There are some points to further improve on as you build your Flows for data enr
 
 Take a look at the [Clearbit API Reference](https://dashboard.clearbit.com/docs) for more ideas on how you can expand on this starting point.
 
-If you have any questions, feel free to drop into our [very active developer community Discord server](https://directus.chat).
+If you have any questions, feel free to drop into our [community platform](https://community.directus.io).

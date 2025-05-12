@@ -2,6 +2,8 @@
 id: 27fd058d-83da-4ea5-b7cc-458c4c696079
 slug: integrate-meilisearch-indexing-with-custom-hooks
 title: Integrate Meilisearch Indexing with Custom Hooks
+technologies:
+  - meilisearch
 authors:
   - name: Clara Ekekenta
     title: Guest Author

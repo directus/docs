@@ -2,6 +2,8 @@
 id: 5a282783-0fd8-4a2c-9c4c-47b00c5ad3d1
 slug: migrate-from-wordpress-to-directus
 title: Migrate from WordPress to Directus
+technologies:
+  - wordpress
 authors:
   - name: Muhammed Ali
     title: Guest Author

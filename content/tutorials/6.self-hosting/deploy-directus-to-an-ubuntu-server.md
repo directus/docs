@@ -2,6 +2,8 @@
 id: 5a48edd1-f8d2-499d-8f1a-6a6b378c65d9
 slug: deploy-directus-to-an-ubuntu-server
 title: Deploy Directus to an Ubuntu Server
+technologies:
+  - ubuntu
 authors:
   - name: Yusuf Akorede
     title: Guest Author
@@ -322,4 +324,4 @@ After the setup is complete, visit your Directus application using `https://dire
 
 This tutorial guided you through hosting a Directus application on an Ubuntu server, covering essential steps such as Docker setup, firewall configuration, and SSL encryption. By following these instructions, you have ensured a secure, accessible, and continuously running environment for your Directus project.
 
-If you have any questions or encounter difficulties, don't hesitate to revisit this guide or seek support from the [Directus community Discord server](https://directus.chat). Happy hosting!
+If you have any questions or encounter difficulties, don't hesitate to revisit this guide or seek support from the [community platform](https://community.directus.io). Happy hosting!

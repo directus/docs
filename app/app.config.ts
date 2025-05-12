@@ -160,9 +160,9 @@ export default defineAppConfig({
 				to: 'https://directus.io/support',
 			},
 			{
-				icon: 'ic:baseline-discord',
-				label: 'Join our Discord community.',
-				to: 'https://directus.chat',
+				icon: 'ic:baseline-people-alt',
+				label: 'Join our Community Platform.',
+				to: 'https://community.directus.io',
 			},
 			{
 				icon: 'ic:baseline-rocket-launch',

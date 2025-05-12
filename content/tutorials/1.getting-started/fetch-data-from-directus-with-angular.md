@@ -2,6 +2,8 @@
 id: 01d87344-02d8-45fc-a6e3-f13777cdab83
 slug: fetch-data-from-directus-with-angular
 title: Fetch Data from Directus with Angular
+technologies:
+  - angular
 authors:
   - name: David Mbochi
     title: Guest Author

@@ -2,6 +2,8 @@
 id: 3444d6c8-f336-4d0b-aa02-bc665f4ad3b5
 slug: fetch-data-from-directus-in-android-with-kotlin
 title: Fetch Data from Directus in Android with Kotlin
+technologies:
+  - kotlin
 authors:
   - name: Ekekenta Clinton
     title: Guest Author

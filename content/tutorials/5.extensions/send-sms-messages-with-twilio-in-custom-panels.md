@@ -2,6 +2,8 @@
 id: 9dbc2c00-796b-48ff-8ed6-f01ddf72d7ef
 slug: send-sms-messages-with-twilio-in-custom-panels
 title: Send SMS Messages with Twilio in Custom Panels
+technologies:
+  - twilio
 authors:
   - name: Tim Butterfield
     title: Guest Author

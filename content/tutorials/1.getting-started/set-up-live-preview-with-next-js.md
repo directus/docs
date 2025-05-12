@@ -2,6 +2,8 @@
 id: 58ab89b4-d426-476f-a0e7-73a62c486676
 slug: set-up-live-preview-with-next-js
 title: Set Up Live Preview with Next.js
+technologies:
+  - nextjs
 authors:
   - name: Esther Agbaje
     title: Developer Advocate

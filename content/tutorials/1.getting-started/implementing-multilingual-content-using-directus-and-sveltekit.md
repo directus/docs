@@ -1,6 +1,8 @@
 ---
 slug: implementing-multilingual-content-using-directus-and-sveltekit
 title: Implementing Multilingual Content using Directus and SvelteKit
+technologies:
+  - sveltekit
 authors:
   - name: Temitope Oyedelde
     title: Guest Author

@@ -10,7 +10,7 @@ export type ExampleObject = Record<string, unknown>;
  * @note this expects the top level responseSchema to be an object or array of things
  */
 export default function (openapi: OpenAPIObject, root: SchemaObject): unknown | null {
-	if (root.type !== 'object' && root.type !== 'array') {
+	if (root.type !== 'object' && !(root.type === 'array' || root.type === 'string')) {
 		return null;
 	}
 

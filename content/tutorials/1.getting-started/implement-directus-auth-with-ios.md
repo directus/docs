@@ -2,6 +2,8 @@
 id: b16741fd-aa1d-48ea-8856-df9a9ae9e0d6
 slug: implement-directus-auth-with-ios
 title: Implement Directus Auth with iOS
+technologies:
+    - swift
 authors:
   - name: Harshpal Bhirth
     title: Guest Author

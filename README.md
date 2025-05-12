@@ -53,7 +53,7 @@ manually through the [Netlify CLI](https://docs.netlify.com/cli/get-started/).
 
 ## 🤔 Community Help
 
-- [Discord](https://directus.chat) (Questions, Live Discussions)
+- [Community Platform](https://community.directus.io) (Questions, Live Discussions)
 - [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
 - [GitHub Discussions](https://github.com/directus/docs/discussions) (Feature Requests)
 

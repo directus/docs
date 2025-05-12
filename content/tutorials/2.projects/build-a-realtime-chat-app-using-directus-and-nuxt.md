@@ -1,6 +1,8 @@
 ---
 slug: build-a-realtime-chat-app-with-directus-and-nuxt
 title: Build a Realtime Chat App with Directus and Nuxt
+technologies:
+  - nuxt
 authors:
   - name: Craig Harman
     title: Guest Author

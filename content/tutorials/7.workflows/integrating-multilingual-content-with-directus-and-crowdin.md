@@ -2,6 +2,8 @@
 id: 84f37f00-629b-4b38-8d18-9d92cc4b2f0c
 slug: integrating-multilingual-content-with-directus-and-crowdin
 title: Integrating Multilingual Content with Directus and Crowdin
+technologies:
+  - crowdin
 authors:
   - name: Diana Voroniak
     title: Product Marketing Manager, Crowdin

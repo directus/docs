@@ -2,6 +2,8 @@
 id: 21c0643a-570f-45ae-9f7e-21ae9613a494
 slug: build-a-video-streaming-app-with-sveltekit-and-directus
 title: Build a Video Streaming App with SvelteKit and Directus
+technologies:
+  - sveltekit
 authors:
   - name: Clara Ekekenta
     title: Guest Author

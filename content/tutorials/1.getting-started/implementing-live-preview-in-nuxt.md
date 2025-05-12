@@ -1,6 +1,9 @@
 ---
 slug: implementing-live-preview-in-nuxt
 title: Implementing Live Preview in Nuxt
+technologies:
+  - nuxt
+  - directus
 authors:
   - name: Craig Harman
     title: Guest Author

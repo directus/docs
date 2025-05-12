@@ -1,6 +1,8 @@
 ---
 slug: invincible-ai-content-workflows-with-inngest-and-directus
 title: Invincible AI content workflows with Inngest and Directus
+technologies:
+  - inggest
 authors:
   - name: Bryant Gillespie
     title: Developer Advocate
@@ -604,4 +606,4 @@ The combination of Directus and Inngest creates a powerful foundation for implem
 
 Start by implementing simple workflows, then gradually expand with more advanced AI features as you grow comfortable with the setup. The modular nature of this architecture makes it easy to add new capabilities over time.
 
-This guide provides the foundation for implementing AI workflows in your Directus projects. If you build something interesting with this approach, please share it in the [Discord community](https://directus.chat).
+This guide provides the foundation for implementing AI workflows in your Directus projects. If you build something interesting with this approach, please share it in the [community platform](https://community.directus.io).

@@ -2,6 +2,8 @@
 id: 023412b4-f8c3-4016-921d-756c75aad1e6
 slug: migrate-from-nuxt-content-to-directus
 title: Migrate from Nuxt Content to Directus
+technologies:
+  - nuxt
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
@@ -219,4 +221,4 @@ This was a super fun project that marked a point of maturity in my personal proj
 
 I've got to remove a load of hacky code and feel more confident in this project going forward. In the future, I may allow speakers to access their own profiles (through the Directus Data Studio, or through a custom-built frontend), and build a better authoring workflow that supports non-published states (like 'draft' and 'archived').
 
-If you are considering moving from a file-based CMS to a headless API-based CMS, Directus is a great choice. We're always happy to answer questions over in our [Discord server](https://directus.chat).
+If you are considering moving from a file-based CMS to a headless API-based CMS, Directus is a great choice. We're always happy to answer questions over in our [community platform](https://community.directus.io).

@@ -2,6 +2,8 @@
 id: 9b45c97a-d980-42fd-b802-9b341f10b35a
 slug: deploy-directus-to-azure-web-apps
 title: Deploy Directus to Azure Web Apps
+technologies:
+  - azure
 authors:
   - name: Durojaye Olusegun
     title: Guest Author

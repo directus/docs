@@ -2,6 +2,8 @@
 id: cb0c443f-e261-4d33-a420-aef1a97f9b06
 slug: display-external-api-data-from-vonage-in-custom-panels
 title: Display External API Data From Vonage In Custom Panels
+technologies:
+  - vonage
 authors:
   - name: Tim Butterfield
     title: Guest Author

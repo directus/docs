@@ -1,6 +1,9 @@
 ---
 slug: implementing-live-preview-in-next-js
 title: Implementing Live Preview in Next.js
+technologies:
+  - nextjs
+  - directus
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

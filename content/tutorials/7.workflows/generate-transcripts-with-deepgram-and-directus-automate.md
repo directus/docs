@@ -2,6 +2,8 @@
 id: 89cd5e8e-cabd-4422-92c8-9736faedefe0
 slug: generate-transcripts-with-deepgram-and-directus-automate
 title: Generate Transcripts with Deepgram and Directus Automate
+technologies:
+  - deepgram
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
@@ -85,4 +87,4 @@ Now you have transcripts for audio files in Directus, you can begin to run queri
 
 Check out the [Deepgram documentation](https://developers.deepgram.com/docs) for an overview of all features you can use when making requests, including some that use machine learning to provide insights about topics and entities mentioned in the audio file.
 
-If you have any questions, feel free to drop into our [very active developer community Discord server](https://directus.chat).
+If you have any questions, feel free to drop into our [community platform](https://community.directus.io).

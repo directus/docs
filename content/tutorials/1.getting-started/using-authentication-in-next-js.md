@@ -1,6 +1,8 @@
 ---
 slug: using-authentication-in-next-js
 title: Using Authentication in Next.js
+technologies:
+  - nextjs
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

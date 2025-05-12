@@ -1,6 +1,8 @@
 ---
 slug: build-forms-dynamically-using-directus-and-sveltekit
 title: Build Forms Dynamically using Directus and SvelteKit
+technologies:
+  - sveltekit
 authors:
   - name: Temitope Oyedelde
     title: Guest Author

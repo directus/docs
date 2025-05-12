@@ -2,6 +2,8 @@
 id: 03141a12-e9be-4fd5-8072-78685d4ff12b
 slug: trigger-netlify-site-builds-with-directus-automate
 title: Trigger Netlify Site Builds with Directus Automate
+technologies:
+  - netlify
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer

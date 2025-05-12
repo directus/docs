@@ -2,6 +2,8 @@
 id: 03c6db5a-029b-4207-8786-c1478e173e6b
 slug: build-a-multi-user-chat-with-react-and-directus-realtime
 title: Build a Multi-User Chat with React and Directus Realtime
+technologies:
+  - react
 authors:
   - name: Esther Agbaje
     title: Developer Advocate

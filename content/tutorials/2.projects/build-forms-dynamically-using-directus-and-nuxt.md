@@ -1,6 +1,8 @@
 ---
 slug: build-forms-dynamically-using-directus-and-nuxt
 title: Build Forms Dynamically using Directus and Nuxt
+technologies:
+  - nuxt
 authors:
   - name: Craig Harman
     title: Guest Author

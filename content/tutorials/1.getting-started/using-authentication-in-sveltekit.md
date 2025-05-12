@@ -1,6 +1,8 @@
 ---
 slug: using-authentication-in-sveltekit
 title: Using Authentication in SvelteKit
+technologies:
+  - sveltekit
 authors:
   - name: Temitope Oyedelde
     title: Guest Author
