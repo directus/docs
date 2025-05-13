@@ -168,34 +168,6 @@ const responseBodyExample = computed(() => {
 					</template>
 				</UTabs>
 			</div>
-			<!-- <div
-				v-for="responseBodyObject, code, index in responseBodyObjects"
-				:key="code"
-				class="mb-12 last:mb-0"
-			>
-				<ProseH4 :id="slugify(operation.summary!) + '-' + responseBodyObject.code + '-response'">
-					<UBadge
-						variant="soft"
-						size="lg"
-						class="font-mono"
-						color="neutral"
-					>
-						<UChip
-							standalone
-							inset
-							:color="code.toString().startsWith('2') ? 'success' : 'error'"
-						/>
-						{{ code }}
-					</UBadge>
-				</ProseH4>
-				<ProseP v-if="responseBodyObject.description">
-					{{ responseBodyObject.description }}
-				</ProseP>
-				<ApiParams
-					v-if="flattenedResponseBodySchemas[index]"
-					:param="flattenedResponseBodySchemas[index]"
-				/>
-			</div> -->
 		</div>
 		<div class="grow sticky top-16 w-full">
 			<MDC
