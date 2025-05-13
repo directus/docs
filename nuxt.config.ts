@@ -1,16 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	extends: ['@nuxt/ui-pro'],
 
 	modules: [
 		'@nuxt/eslint',
+		'@nuxt/ui-pro',
 		'@nuxt/content',
-		'@nuxt/ui',
-		'@nuxtjs/tailwindcss',
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
-		'nuxt-posthog',
+		// 'nuxt-posthog',
 		'@nuxtjs/algolia',
 	],
 
@@ -19,10 +17,11 @@ export default defineNuxtConfig({
 	},
 
 	app: {
-		baseURL: '/docs/',
+		baseURL: '/docs',
 	},
 
 	css: [
+		'~/assets/css/main.css',
 		'~/assets/css/algolia.css',
 	],
 
@@ -38,51 +37,53 @@ export default defineNuxtConfig({
 	},
 
 	content: {
-		highlight: {
-			theme: {
-				default: 'github-light',
-				light: 'github-light',
-				dark: 'github-dark',
-			},
-			langs: [
-				'bash',
-				'cpp',
-				'css',
-				'dart',
-				'diff',
-				'dockerfile',
-				'graphql',
-				'groovy',
-				'html',
-				'http',
-				'ini',
-				'java',
-				'jinja',
-				'js',
-				'json',
-				'jsx',
-				'kotlin',
-				'liquid',
-				'liquid',
-				'md',
-				'mdc',
-				'nginx',
-				'php',
-				'python',
-				'scss',
-				'shell',
-				'svelte',
-				'swift',
-				'ts',
-				'tsx',
-				'vue',
-				'xml',
-				'yaml',
-			],
-		},
-		markdown: {
-			toc: {
-				depth: 1,
+		build: {
+			markdown: {
+				toc: {
+					depth: 1,
+				},
+				highlight: {
+					theme: {
+						default: 'github-light',
+						light: 'github-light',
+						dark: 'github-dark',
+					},
+					langs: [
+						'bash',
+						'cpp',
+						'css',
+						'dart',
+						'diff',
+						'dockerfile',
+						'graphql',
+						'groovy',
+						'html',
+						'http',
+						'ini',
+						'java',
+						'jinja',
+						'js',
+						'json',
+						'jsx',
+						'kotlin',
+						'liquid',
+						'liquid',
+						'md',
+						'mdc',
+						'nginx',
+						'php',
+						'python',
+						'scss',
+						'shell',
+						'svelte',
+						'swift',
+						'ts',
+						'tsx',
+						'vue',
+						'xml',
+						'yaml',
+					],
+				},
 			},
 		},
 	},
