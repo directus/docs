@@ -29,8 +29,8 @@ console.log('headline', headline.value);
 				<NuxtLink
 					:href="`/tutorials/${page!._dir}`"
 				>
-					{{ headline }}
-				</NuxtLink>
+					<template #links>
+				<CopyDocButton :page="page" />
 			</template>
 		</UPageHeader>
 

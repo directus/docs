@@ -25,7 +25,11 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			:links="page!.links"
 			:headline="headline"
 			:ui="{ headline: 'headline', title: 'title' }"
-		/>
+		>
+			<template #links>
+				<CopyDocButton :page="page" />
+			</template>
+		</UPageHeader>
 
 		<UPageBody
 			class="content"
