@@ -1,17 +1,21 @@
 <script setup lang="ts">
+import { findPageBreadcrumb, mapContentNavigation } from '#ui-pro/utils';
+
+const navigation = inject('navigation');
+
 definePageMeta({
 	layout: 'tutorial',
 });
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
+
+const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first());
 
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-const headline = computed(() => findPageHeadline(page.value!));
-console.log('headline', headline.value);
+const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation?.value, page.value)).map(({ icon, ...link }) => link));
 </script>
 
 <template>
@@ -22,14 +26,19 @@ console.log('headline', headline.value);
 			:description="page!.description"
 		>
 			<template #headline>
-				<NuxtLink to="/tutorials">
-					Tutorials
-				</NuxtLink>
-				/
-				<NuxtLink
-					:href="`/tutorials/${page!._dir}`"
+				<UBreadcrumb
+					:items="breadcrumb"
 				>
-					<template #links>
+					<template #separator>
+						<span class="mx-2 text-muted">/</span>
+					</template>
+				</UBreadcrumb>
+			</template>
+
+			<template
+				v-if="page"
+				#links
+			>
 				<CopyDocButton :page="page" />
 			</template>
 		</UPageHeader>
@@ -39,7 +48,7 @@ console.log('headline', headline.value);
 			prose
 		>
 			<ContentRenderer
-				v-if="page!.body"
+				v-if="page"
 				:value="page"
 			/>
 		</UPageBody>
@@ -51,7 +60,7 @@ console.log('headline', headline.value);
 			<DocsToc
 				:links="page!.body?.toc?.links"
 				:authors="page!.authors"
-				:file="page!._file!"
+				:file="page!.id!"
 			/>
 		</template>
 	</UPage>
