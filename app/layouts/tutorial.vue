@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
-import useSectionLinks from '~/composables/useSectionLinks';
 
 const nav = inject<Ref<ContentNavigationItem[]>>('navigation')!;
 const route = useRoute();

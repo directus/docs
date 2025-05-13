@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { OpenAPIObject } from 'openapi3-ts/oas30';
-import useSectionLinks from '~/composables/useSectionLinks';
 
 const { links } = useSectionLinks();
 
@@ -8,10 +7,10 @@ const openapi = inject<OpenAPIObject>('openapi')!;
 </script>
 
 <template>
-	<div class="mx-6">
+	<UContainer>
 		<UPage>
 			<template #left>
-				<UAside
+				<UPageAside
 					:ui="{
 
 					}"
@@ -21,15 +20,17 @@ const openapi = inject<OpenAPIObject>('openapi')!;
 						type="dashed"
 						class="my-5"
 					/>
-					<UNavigationTree
-						:links="mapOasNavigation(openapi)"
-						:multiple="false"
+					<UContentNavigation
+						:navigation="mapOasNavigation(openapi)"
+						highlight
 						default-open
+						variant="link"
+						type="single"
 					/>
-				</UAside>
+				</UPageAside>
 			</template>
 
 			<slot />
 		</UPage>
-	</div>
+	</UContainer>
 </template>
