@@ -86,7 +86,7 @@ const responseBodyExample = computed(() => {
 			</ProseP>
 
 			<div
-				v-if="operation.parameters"
+				v-if="operation.parameters && operation.parameters.length > 0"
 				class="mb-12 last:mb-0"
 			>
 				<ProseH4
