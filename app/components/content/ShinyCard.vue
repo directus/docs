@@ -1,5 +1,5 @@
 <template>
-	<ULandingCard
+	<UPageCard
 		v-bind="$attrs"
 		class="before:blur-sm before:opacity-50 not-prose"
 	>
@@ -8,5 +8,5 @@
 		</template>
 
 		<slot />
-	</ULandingCard>
+	</UPageCard>
 </template>
