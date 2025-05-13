@@ -8,7 +8,7 @@ export default defineNuxtConfig({
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
-		// 'nuxt-posthog',
+		'nuxt-posthog',
 		'@nuxtjs/algolia',
 	],
 
