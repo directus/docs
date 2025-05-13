@@ -40,7 +40,9 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 				:value="page"
 			/>
 
-			<hr v-if="surround?.length">
+			<USeparator v-if="surround?.length" />
+
+			<NewsletterForm />
 
 			<UContentSurround :surround="surround" />
 		</UPageBody>
