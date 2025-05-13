@@ -14,7 +14,7 @@ const communityLinks = computed(() => {
 		{
 			icon: 'material-symbols:edit-document-outline',
 			label: 'Edit this page',
-			to: `https://github.com/directus/docs/edit/main/content/${props.file}`,
+			to: `https://github.com/directus/docs/edit/main/${props.file}`,
 		},
 		...toc.links,
 	];
@@ -28,14 +28,14 @@ const communityLinks = computed(() => {
 	>
 		<template #bottom>
 			<div class="hidden lg:block">
-				<UDivider
+				<USeparator
 					type="dashed"
-					class="my-5"
+					class="mb-5"
 				/>
 
 				<template v-if="authors">
 					<DocsTocAuthors :authors="authors" />
-					<UDivider
+					<USeparator
 						type="dashed"
 						class="my-5"
 					/>
@@ -43,7 +43,7 @@ const communityLinks = computed(() => {
 
 				<template v-if="toc.feedback">
 					<DocsTocFeedback />
-					<UDivider
+					<USeparator
 						type="dashed"
 						class="my-5"
 					/>
