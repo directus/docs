@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import { withoutTrailingSlash } from 'ufo';
+import { findPageHeadline } from '#ui-pro/utils';
+
+const navigation = inject('navigation');
 
 definePageMeta({
 	layout: 'docs',
 });
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
+const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first());
 
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-const headline = computed(() => page!.value!.headline || findPageHeadline(page.value!));
+const headline = computed(() => findPageHeadline(navigation.value, page.value));
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryContent().where({ _extension: 'md', navigation: { $ne: false } }).only(['title', 'description', '_path']).findSurround(withoutTrailingSlash(route.path)));
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
+	route.path,
+	{
+		fields: ['title', 'description', 'navigation', 'path'],
+	},
+));
 </script>
 
 <template>
@@ -22,7 +29,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 		<UPageHeader
 			:title="page!.title"
 			:description="page!.description"
-			:links="page!.links"
+			:items="page!.links"
 			:headline="headline"
 			:ui="{ headline: 'headline', title: 'title' }"
 		>
@@ -36,7 +43,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			prose
 		>
 			<ContentRenderer
-				v-if="page!.body"
+				v-if="page"
 				:value="page"
 			/>
 
@@ -54,7 +61,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			<DocsToc
 				:links="page!.body?.toc?.links"
 				:authors="page!.authors"
-				:file="page!._file!"
+				:file="page!.id!"
 			/>
 		</template>
 	</UPage>
