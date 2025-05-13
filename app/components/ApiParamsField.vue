@@ -7,27 +7,38 @@ defineProps<{
 </script>
 
 <template>
-	<Field
+	<ProseField
 		:key="param.name"
 		:name="param.name || `[${param.type}]`"
 		:type="param.type"
+		:ui="{
+			root: 'mb-0',
+			description: 'mt-2',
+		}"
+		class="[&_p]:my-0"
 	>
 		<MDC
 			v-if="param.description"
 			:value="param.description"
 		/>
 
-		<Collapsible v-if="param.anyOf">
-			<ApiParamsAnyOf :params="param.anyOf" />
-		</Collapsible>
+		<ProseCollapsible
+			v-if="param.anyOf"
+		>
+			<ApiParamsAnyOf
+				:params="param.anyOf"
+				class="pl-4 border-l"
+			/>
+		</ProseCollapsible>
 
-		<Collapsible v-else-if="'children' in param">
+		<ProseCollapsible v-else-if="'children' in param">
 			<ApiParams
 				v-for="child of param.children"
 				:key="child.name"
 				:param="child"
 				:root="false"
+				class="pl-4 border-l"
 			/>
-		</Collapsible>
-	</Field>
+		</ProseCollapsible>
+	</ProseField>
 </template>
