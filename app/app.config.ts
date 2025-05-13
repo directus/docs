@@ -4,12 +4,31 @@ export default defineAppConfig({
 	},
 
 	ui: {
-		primary: 'purple', // Tailwind color name,
+		colors: {
+			primary: 'purple',
+			secondary: 'pink',
+			neutral: 'slate',
+		},
 
 		content: {
 			callout: {
 				// Fix background color of pre > code blocks
 				wrapper: '[&_pre>code]:!bg-transparent',
+			},
+		},
+	},
+
+	uiPro: {
+		page: {
+			slots: {
+				root: 'lg:gap-8',
+			},
+		},
+		prose: {
+			pre: {
+				slots: {
+					base: 'text-xs/4',
+				},
 			},
 		},
 	},
@@ -149,6 +168,13 @@ export default defineAppConfig({
 			link: 'https://directus.cloud',
 			description: 'Everything you need to start building. Provisioned in 90 seconds.',
 			cta: 'Get Started',
+		},
+		newsletter: {
+			description: 'Get once-a-month release notes & real‑world code tips...no fluff. 🐰',
+			form: {
+				hsPortal: 20534155,
+				hsForm: 'd57a69e4-6f43-4768-a600-5f7d30306260',
+			},
 		},
 	},
 
