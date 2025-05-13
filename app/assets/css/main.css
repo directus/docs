@@ -5,7 +5,8 @@
 
 
 @theme static {
-	--font-sans: 'Inter', sans-serif;
+	--font-sans: 'Inter Variable', sans-serif;
+
   --color-purple-50: #f3f2ff;
   --color-purple-100: #e9e8ff;
   --color-purple-200: #d6d4ff;
