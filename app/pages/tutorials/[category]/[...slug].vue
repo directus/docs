@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ParsedContent } from "@nuxt/content";
+
 definePageMeta({
 	layout: 'tutorial',
 });
@@ -9,6 +11,12 @@ const { data: page } = await useAsyncData(route.path, () => queryContent(route.p
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
+
+const imageSrc = (page: ParsedContent | undefined) => {
+	const technologies = page?.technologies || ['directus'];
+	const techString = technologies.join(', ');
+	return `/docs/api/tutorialimg?logos=${techString}`;
+};
 
 const headline = computed(() => findPageHeadline(page.value!));
 console.log('headline', headline.value);
@@ -32,6 +40,7 @@ console.log('headline', headline.value);
 					{{ headline }}
 				</NuxtLink>
 			</template>
+			<img :src="imageSrc(page)" alt="Generated Image">
 		</UPageHeader>
 
 		<UPageBody
