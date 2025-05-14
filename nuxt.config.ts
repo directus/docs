@@ -40,8 +40,9 @@ export default defineNuxtConfig({
 		build: {
 			markdown: {
 				toc: {
-					depth: 1,
+					searchDepth: 1,
 				},
+				// highlight: false,
 				highlight: {
 					theme: {
 						default: 'github-light',
@@ -88,17 +89,18 @@ export default defineNuxtConfig({
 		},
 	},
 
+	mdc: {
+		highlight: {
+			noApiRoute: false,
+		},
+	},
+
 	build: {
-		transpile: ['shiki'],
+		// transpile: ['shiki'],
 	},
 
 	future: {
 		compatibilityVersion: 4,
-	},
-
-	experimental: {
-		buildCache: true,
-		sharedPrerenderData: true,
 	},
 
 	compatibilityDate: '2024-11-01',
@@ -108,6 +110,7 @@ export default defineNuxtConfig({
 			routes: [
 				'/',
 			],
+
 			crawlLinks: true,
 
 			// TODO
@@ -115,7 +118,7 @@ export default defineNuxtConfig({
 			// I can't for the life of me figure out where this magic </span link comes from
 			// ~ Rijk 12/19/2024
 			ignore: [
-				'/docs/api/_mdc/highlight',
+				// 'http://localhost/docs/api/_mdc/highlight',
 				'/docs/api/</span',
 				'/docs/tutorials/getting-started/{`/${lang}/${post.slug}/`}>{t?.title}</a>\n</span',
 				'/docs/tutorials/getting-started/{href || &',
