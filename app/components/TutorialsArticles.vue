@@ -19,8 +19,6 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	return query.all();
 });
 
-console.log('articles', articles.value);
-
 const moreImageSrc = '/docs/img/tutorials/more.png';
 
 const imageSrc = (article: { technologies: string[] }) => {
