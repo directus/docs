@@ -11,7 +11,9 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
 		'nuxt-posthog',
-		'@nuxtjs/algolia',
+    ...(( process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY )
+      ? ['@nuxtjs/algolia']
+      : []),
 	],
 
 	devtools: {
