@@ -131,11 +131,11 @@ On the initial run, Docker will fetch the necessary image from the registry befo
 
 Your application should now be accessible at `http://your_server_ip:8055`.
 
-:::info `SQLITE_CANTOPEN` Error
+::callout{icon="material-symbols:info-outline" title="`SQLITE_CANTOPEN` Error"}
 
 If you encounter any error e.g `SQLITE_CANTOPEN: unable to open database file`, it is probably due to permission issues. You can learn more about [this issue here](https://github.com/directus/directus/discussions/17823#discussioncomment-5395649).
 
-:::
+::
 
 ## Running the Docker Container as a Background Service
 
@@ -143,11 +143,11 @@ Running your application using `sudo docker compose up` will stop it running whe
 
 To ensure your application runs in the background and restarts automatically, you can create a systemd service.
 
-:::info What is Systemd?
+::callout{icon="material-symbols:info-outline" title="What is Systemd?"}
 
 Systemd is a system and service manager for Linux operating systems. It provides a standard process for controlling the startup, management, and monitoring of services and applications. It is usually defined by a configuration file usually ending with the _.service_ extension.
 
-:::
+::
 
 ### Create a Systemd Service File
 
@@ -173,11 +173,11 @@ ExecStop=/usr/bin/docker compose down
 WantedBy=multi-user.target
 ```
 
-:::info
+::callout{icon="material-symbols:info-outline" title="Navigation"}
 
 You can get the full path to your directory by running the command `pwd` in the project directory on your server and copying the output.
 
-:::
+::
 
 Save the file and exit the editor.
 

@@ -137,9 +137,9 @@ To configure your Directus Studio App to preview different versions of your cont
 - Update the preview url with the version by selecting Version from the dropdown and entering it in this format: `http://<your-site>/api/draft?secret=MY_SECRET_TOKEN&id=ID&version=Version`
 - Save your changes.
 
-::callout{icon="material-symbols:info-outline" title="Replace Values
+::callout{icon="material-symbols:info-outline" title="Replace Values"}
 
-Remember to replace `<your-site>` with your actual website domain and  MY_SECRET_TOKEN with the secret you have in your Next.js project.
+Remember to replace `<your-site>` with your actual website domain and `MY_SECRET_TOKEN` with the secret you have in your Next.js project.
 
 ::
 

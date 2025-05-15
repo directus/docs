@@ -311,11 +311,11 @@ AUTH_GITHUB_ACCESS_URL="https://github.com/login/oauth/access_token"
 AUTH_GITHUB_PROFILE_URL="https://api.github.com/user"
 ```
 
-::: warning Notice
+::callout{icon="material-symbols:warning-rounded" color="amber"}
 
 If the authenticating user has not marked their email as "public" in GitHub, it will not be accessible by Directus.
 
-:::
+::
 
 #### Twitter
 

@@ -304,12 +304,12 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-:::info Required files
+::callout{icon="material-symbols:info-outline" title="Required files"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.
 
-:::
+::
 
 ## Use the Display
 

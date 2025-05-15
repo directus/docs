@@ -57,11 +57,11 @@ Replace `YOUR_DIRECTUS_URL` with the URL for your Directus project, and `TOKEN` 
 
 From the resolved path of the previous operation, create an **Update Data** operation. Set the Collection to `directus_files` with Full Access permissions.
 
-:::info Set a System Collection
+::callout{icon="material-symbols:info-outline" title="Set a System Collection"}
 
 The dropdown in the collection field will only show user-created collections. To add `directus_files`, which is a system collection, click the `{}` button to turn the input to raw mode and type the collection name manually.
 
-:::
+::
 
 Add one item to the IDs tags - `{{$trigger.key}}` - which represents the ID of the file that was uploaded and triggered the Flow to run.
 
