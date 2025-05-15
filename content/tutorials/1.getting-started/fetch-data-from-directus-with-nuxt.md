@@ -255,7 +255,7 @@ Some key notes about this code snippet.
 
 Click on any of the blog post links, and it will take you to a blog post page complete with a header image.
 
-![A blog post page shows an image, a title, and a number of paragraphs.](/img/5603-4992-9c5b-b08765a9186a.webp)
+![A blog post page shows an image, a title, and a number of paragraphs.](/img/88888855-5603-4992-9c5b-b08765a9186a.webp)
 
 ## Add Navigation
 
