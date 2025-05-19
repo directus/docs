@@ -39,7 +39,7 @@ specify the Preview URL for your Next.js project by selecting ID from the dropdo
 `http://<your-site>/api/draft?secret=MY_SECRET_TOKEN&id=ID`
 
 <video title="Configure live preview URL" autoplay playsinline muted loop controls>
-	<source src="/img/095369a6-a5fb-4013-b7b8-40cf7fa153ce.mp4" type="video/mp4" />
+	<source src="/docs/img/095369a6-a5fb-4013-b7b8-40cf7fa153ce.mp4" type="video/mp4" />
 </video>
 
 Make sure to replace `MY_SECRET_TOKEN` with the secret you want in your Next.js project and save your changes.
