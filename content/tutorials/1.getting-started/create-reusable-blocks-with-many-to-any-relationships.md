@@ -186,7 +186,7 @@ Mode option.
 6. [Create a new item](/guides/content/editor) in the `pages` collection
 
    <video title="Create Your Page Content" autoplay muted loop controls playsinline>
-   <source src="/img/c3124836-eabe-4c05-a4ac-05b4a430458f.mp4"> type="video/mp4" />
+   <source src="/docs/img/c3124836-eabe-4c05-a4ac-05b4a430458f.mp4"> type="video/mp4" />
    </video>
 
    a. Enter the page **Title** and **Slug**.
