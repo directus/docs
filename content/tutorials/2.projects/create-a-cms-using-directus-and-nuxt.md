@@ -775,3 +775,5 @@ Visit `your-website-url` in the browser and you should see the completed home pa
 ## Conclusion
 
 The Directus CMS provides an immediate starting point for a headless content management system. When combined with Nuxt it allows a user to create a modern, flexible website with a powerful CMS backend. This tutorial has shown how to set up Directus and Nuxt, create a home page, and add components to display content from Directus. The next step is to complete the implementation by building out the posts, about and contacts pages.
+
+[You can find a repository with the finished code on GitHub](https://github.com/directus-labs/directus-guest-authoring/tree/master/036-directus-cms-home).

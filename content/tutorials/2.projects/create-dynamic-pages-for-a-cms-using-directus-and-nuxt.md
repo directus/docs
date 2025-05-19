@@ -501,3 +501,5 @@ If you visit `your-website-url` you will see the breadcrumbs at the top of the p
 ## Conclusion
 
 The Directus CMS template provides a starting point for building a CMS with Directus. By combining it with Nuxt, you can create dynamic pages that are easy to manage and update. This tutorial has shown you how to set up a Directus project, create a Nuxt project, and integrate the two to create dynamic posts for a CMS. You can now extend this further by reviewing the other collections in the CMS template and adding them to create a fully dynamic frontend for Directus.
+
+[You can find a repository with the finished code on GitHub](https://github.com/directus-labs/directus-guest-authoring/tree/master/018-directus-forms).
