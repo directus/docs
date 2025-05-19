@@ -1,6 +1,8 @@
 ---
 slug: build-a-realtime-chat-app-with-directus-and-astro
 title: Build a Realtime Chat App with Directus and Astro
+technologies:
+  - astro
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

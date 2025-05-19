@@ -2,6 +2,8 @@
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-a-cms-using-directus-and-nuxt
 title: Create a CMS using Directus and Nuxt
+technologies:
+  - nuxt
 authors:
   - name: Craig Harman
     title: Guest Author
