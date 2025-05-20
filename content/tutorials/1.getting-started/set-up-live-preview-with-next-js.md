@@ -191,7 +191,7 @@ In an item page, toggle "Enable Preview" at the top of the page. Whenever you cr
 and “click” save, you should see a live preview of the item on the right-hand side of the screen.
 
 <video title="Enable Preview Mode in Directus" autoplay playsinline muted loop controls>
-	<source src="/img/48610def-fc41-468e-9f4c-5cf288e8e063.mp4" type="video/mp4" />
+	<source src="/docs/img/48610def-fc41-468e-9f4c-5cf288e8e063.mp4" type="video/mp4" />
 </video>
 
 Clicking on the "Dimensions Display" icon also lets you preview your content on desktop and mobile screens.
