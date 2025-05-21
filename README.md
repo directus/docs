@@ -23,6 +23,12 @@ Welcome! This is the repo for [Directus' documentation](https://docs.directus.io
 pnpm install
 ```
 
+### Setup Environment
+
+```bash
+cp .env.example .env
+```
+
 ### Run Development Server
 
 Start the development server on `http://localhost:3000`:
