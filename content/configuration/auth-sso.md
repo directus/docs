@@ -69,16 +69,16 @@ Whereas in the following example the OAuth user will be assigned the role `direc
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "admin": "directus_admin_role_id", "developer": "directus_developer_role_id" }"
 ```
-## OpenID
+## OpenID Connect
 
-OpenID is an authentication protocol built on OAuth 2.0, and should be preferred over standard OAuth 2.0 where possible.
+OpenID Connect (OIDC) is an authentication protocol built on OAuth 2.0, and should be preferred over standard OAuth 2.0 where possible.
 
 | Variable                                    | Description                                                                                               | Default Value          |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `AUTH_<PROVIDER>_CLIENT_ID`                 | Client identifier for the external service.                                                               |                        |
 | `AUTH_<PROVIDER>_CLIENT_SECRET`             | Client secret for the external service.                                                                   |                        |
 | `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                   | `openid profile email` |
-| `AUTH_<PROVIDER>_ISSUER_URL`                | OpenID `.well-known` discovery document URL of the external service.                                      |                        |
+| `AUTH_<PROVIDER>_ISSUER_URL`                | OIDC `.well-known` discovery document URL of the external service.                                      |                        |
 | `AUTH_<PROVIDER>_IDENTIFIER_KEY`            | User profile identifier key <sup>[1]</sup>.                                                               | `sub`<sup>[2]</sup>    |
 | `AUTH_<PROVIDER>_ALLOW_PUBLIC_REGISTRATION` | Automatically create accounts for authenticating users.                                                   | `false`                |
 | `AUTH_<PROVIDER>_REQUIRE_VERIFIED_EMAIL`    | Require created users to have a verified email address.                                                   | `false`                |
@@ -93,15 +93,15 @@ OpenID is an authentication protocol built on OAuth 2.0, and should be preferred
 
 <sup>[1]</sup> When authenticating, Directus will match the identifier value from the external user profile to a Directus users "External Identifier".
 
-<sup>[2]</sup> `sub` represents a unique user identifier defined by the OpenID provider. For users not relying on `PUBLIC_REGISTRATION` it is recommended to use a human-readable identifier, such as `email`.
+<sup>[2]</sup> `sub` represents a unique user identifier defined by the OIDC provider. For users not relying on `PUBLIC_REGISTRATION` it is recommended to use a human-readable identifier, such as `email`.
 
-<sup>[3]</sup> As Directus only allows one role per user, evaluating stops after the first match. An OpenID user that is member of both e.g. developer and admin groups may be assigned different roles depending on the order that you specify your role-mapping in: In the following example said OpenID user will be assigned the role `directus_developer_role_id`
+<sup>[3]</sup> As Directus only allows one role per user, evaluating stops after the first match. An OIDC user that is member of both e.g. developer and admin groups may be assigned different roles depending on the order that you specify your role-mapping in: In the following example said OIDC user will be assigned the role `directus_developer_role_id`
 
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "developer": "directus_developer_role_id", "admin": "directus_admin_role_id" }"
 ```
 
-Whereas in the following example the OpenID user will be assigned the role `directus_admin_role_id`:
+Whereas in the following example the OIDC user will be assigned the role `directus_admin_role_id`:
 
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "admin": "directus_admin_role_id", "developer": "directus_developer_role_id" }"
