@@ -1,16 +1,16 @@
 <script setup lang="ts">
 withDefaults(defineProps<{
-	title?: string
-	icon?: string
+	title?: string;
+	icon?: string;
 }>(), {
 	title: 'Example',
-	icon: 'material-symbols:info-outline'
+	icon: 'material-symbols:info-outline',
 });
 </script>
 
 <template>
-	<Callout :icon>
+	<ProseCallout :icon>
 		<strong>{{ title }}</strong>
-		<slot/>
-	</Callout>
+		<slot />
+	</ProseCallout>
 </template>

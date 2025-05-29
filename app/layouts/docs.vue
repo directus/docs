@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import type { NavItem } from '@nuxt/content';
+import type { ContentNavigationItem } from '@nuxt/content';
 
-const nav = inject<Ref<NavItem[]>>('navigation')!;
+const nav = inject<Ref<ContentNavigationItem[]>>('navigation')!;
 const route = useRoute();
+
+const { links } = useSectionLinks();
 
 // Only render the nav for the current section of the docs (eg docs, api, cloud)
 const navigation = computed(() => {
-	const routePrefix = '/' + route.path.split('/')[1]!;
+	const routePrefix = `/${route.path.split('/')[1]}`;
 
 	return nav.value.find((item) => {
-		return item._path.startsWith(routePrefix);
+		return item.path.startsWith(routePrefix);
 	})?.children ?? [];
 });
 </script>
@@ -18,13 +20,20 @@ const navigation = computed(() => {
 	<UContainer>
 		<UPage>
 			<template #left>
-				<UAside>
-					<UNavigationTree
-						:links="mapContentNavigation(navigation)"
-						:multiple="false"
-						default-open
+				<UPageAside>
+					<UPageAnchors :links="links" />
+					<USeparator
+						type="dashed"
+						class="my-5"
 					/>
-				</UAside>
+
+					<UContentNavigation
+						:navigation="navigation"
+						default-open
+						variant="link"
+						highlight
+					/>
+				</UPageAside>
 			</template>
 
 			<slot />

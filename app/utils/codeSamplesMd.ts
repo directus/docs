@@ -11,7 +11,7 @@ export interface CodeSample {
  * This allows them to be rendered with MDC
  */
 export default function codeSamplesMd(operation: FlattenedOperationObject) {
-	let md = '::code-group';
+	let md = '::code-group{sync="api-consumer"}';
 
 	const { method, path } = operation;
 

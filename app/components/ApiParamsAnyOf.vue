@@ -17,7 +17,7 @@ defineProps<{
 			:key="child.name"
 		>
 			<ApiParamsField :param="child" />
-			<UDivider
+			<USeparator
 				v-if="params.length > 1 && index !== params.length - 1"
 				label="or"
 				class="mt-4"

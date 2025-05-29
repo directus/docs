@@ -1,69 +1,26 @@
 <script setup lang="ts">
 import { spec } from '@directus/openapi';
-import { useRoute } from 'vue-router';
-import { nextTick, watch } from 'vue';
-const route = useRoute();
+import type { ContentNavigationItem } from '@nuxt/content';
 
-const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
+const { data: navigation } = useAsyncData('content-navigation', () => queryCollectionNavigation('content', ['title', 'description', 'icon', 'links']));
 
 provide('openapi', spec);
-provide('navigation', navigation);
+provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
 defineOgImage({
 	url: '/img/og-image.png',
 });
-
-const { search } = useAppConfig();
-
-const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { default: () => [], server: false });
-const updateLinks = () => {
-	nextTick(() => {
-		const links = document.querySelectorAll('a');
-		links.forEach(link => {
-			const href = link.getAttribute('href');
-			if (
-				href?.startsWith('http') &&
-				link.hostname !== window.location.hostname
-			) {
-				link.setAttribute('target', '_blank');
-				link.setAttribute('rel', 'noopener noreferrer');
-			}
-		});
-	});
-};
-
-onMounted(() => {
-	nextTick(() => {
-		setTimeout(updateLinks, 100);
-	});
-});
-
-watch(() => route.fullPath, () => {
-	nextTick(() => {
-		setTimeout(updateLinks, 100);
-	});
-});
 </script>
 
 <template>
-	<div>
+	<UApp>
+		<NuxtLoadingIndicator color="var(--color-primary)" />
 		<DocsHeader />
-
 		<UMain>
 			<NuxtLayout>
 				<NuxtPage />
 			</NuxtLayout>
 		</UMain>
-
 		<DocsFooter />
-
-		<ClientOnly v-if="search.backend === 'nuxt'">
-			<LazyUContentSearch
-				ref="searchRef"
-				:files="files"
-				:navigation="navigation"
-				:fuse="{ resultLimit: 42 }"
-			/>
-		</ClientOnly>
-	</div>
+	</UApp>
 </template>
