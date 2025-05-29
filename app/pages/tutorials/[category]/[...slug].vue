@@ -15,6 +15,19 @@ if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
+const imageSrc = (page: ParsedContent | undefined) => {
+	const technologies = page?.technologies || ['directus'];
+	const techString = technologies.join(', ');
+	return `/docs/api/tutorialimg?logos=${techString}`;
+};
+
+const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation?.value, page.value)).map(({ icon, ...link }) => link));
+const imageSrc = (page: ParsedContent | undefined) => {
+	const technologies = page?.technologies || ['directus'];
+	const techString = technologies.join(', ');
+	return `/docs/api/tutorialimg?logos=${techString}`;
+};
+
 const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation?.value, page.value)).map(({ icon, ...link }) => link));
 </script>
 
@@ -41,6 +54,10 @@ const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(naviga
 			>
 				<CopyDocButton :page="page" />
 			</template>
+			<img
+				:src="imageSrc(page)"
+				alt="Generated Image"
+			>
 		</UPageHeader>
 
 		<UPageBody

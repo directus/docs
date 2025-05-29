@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	search: {
-		backend: 'algolia', // 'nuxt' | 'algolia',
+		backend: (process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY) ? 'algolia' : 'nuxt', // 'nuxt' | 'algolia',
 	},
 
 	ui: {
@@ -86,6 +86,11 @@ export default defineAppConfig({
 						label: 'Extensions',
 						to: '/guides/extensions/overview',
 						icon: 'directus-marketplace',
+					},
+					{
+						label: 'AI',
+						to: '/guides/ai/mcp',
+						icon: 'directus-ai',
 					},
 				],
 			},

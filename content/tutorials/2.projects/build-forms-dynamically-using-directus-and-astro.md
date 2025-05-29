@@ -1,6 +1,8 @@
 ---
 slug: build-forms-dynamically-using-directus-and-astro
 title: Build Forms Dynamically using Directus and Astro
+technologies:
+  - astro
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

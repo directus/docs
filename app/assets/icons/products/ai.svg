@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 194 194">
+  <rect width="194" height="194" fill="#fff" rx="12"/>
+  <g clip-path="url(#a)" data-figma-skip-parse="true">
+    <foreignObject width="1250.5" height="1250.5" x="-625.248" y="-625.248" transform="matrix(.0853 -.18898 .19337 .08727 97 97)">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="background:conic-gradient(from 90deg,#f44 0deg,#feba54 52.2deg,#f4df1b 109.8deg,#5aed60 171deg,#0028ff 239.4deg,#d136df 302.4deg,#f44 360deg);height:100%;width:100%;opacity:.5"/>
+    </foreignObject>
+  </g>
+  <rect width="194" height="194" data-figma-gradient-fill="{&quot;type&quot;:&quot;GRADIENT_ANGULAR&quot;,&quot;stops&quot;:[{&quot;color&quot;:{&quot;r&quot;:1.0,&quot;g&quot;:0.26666668057441711,&quot;b&quot;:0.26666668057441711,&quot;a&quot;:1.0},&quot;position&quot;:0.0},{&quot;color&quot;:{&quot;r&quot;:0.99923527240753174,&quot;g&quot;:0.73220783472061157,&quot;b&quot;:0.33166667819023132,&quot;a&quot;:1.0},&quot;position&quot;:0.14499996602535248},{&quot;color&quot;:{&quot;r&quot;:0.96033960580825806,&quot;g&quot;:0.87502533197402954,&quot;b&quot;:0.10719709098339081,&quot;a&quot;:1.0},&quot;position&quot;:0.30500006675720215},{&quot;color&quot;:{&quot;r&quot;:0.35489886999130249,&quot;g&quot;:0.93241727352142334,&quot;b&quot;:0.37799951434135437,&quot;a&quot;:1.0},&quot;position&quot;:0.47500008344650269},{&quot;color&quot;:{&quot;r&quot;:0.0,&quot;g&quot;:0.15999998152256012,&quot;b&quot;:1.0,&quot;a&quot;:1.0},&quot;position&quot;:0.66500014066696167},{&quot;color&quot;:{&quot;r&quot;:0.82169246673583984,&quot;g&quot;:0.21262763440608978,&quot;b&quot;:0.87465465068817139,&quot;a&quot;:1.0},&quot;position&quot;:0.84000015258789062},{&quot;color&quot;:{&quot;r&quot;:1.0,&quot;g&quot;:0.26666668057441711,&quot;b&quot;:0.26666668057441711,&quot;a&quot;:1.0},&quot;position&quot;:1.0}],&quot;stopsVar&quot;:[],&quot;transform&quot;:{&quot;m00&quot;:170.58621215820312,&quot;m01&quot;:386.74542236328125,&quot;m02&quot;:-181.66581726074219,&quot;m10&quot;:-377.96551513671875,&quot;m11&quot;:174.5488281250,&quot;m12&quot;:198.70832824707031},&quot;opacity&quot;:0.50,&quot;blendMode&quot;:&quot;NORMAL&quot;,&quot;visible&quot;:true}" rx="12"/>
+  <rect width="193" height="193" x=".5" y=".5" stroke="#64F" stroke-opacity=".1" rx="11.5"/>
+  <defs>
+    <clipPath id="a">
+      <rect width="194" height="194" rx="12"/>
+    </clipPath>
+  </defs>
+</svg>

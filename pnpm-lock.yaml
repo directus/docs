@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@directus/openapi':
-        specifier: 0.1.13
-        version: 0.1.13
+        specifier: 0.1.15
+        version: 0.1.15
       '@docsearch/css':
         specifier: 3.9.0
         version: 3.9.0
@@ -474,8 +474,8 @@ packages:
     resolution: {integrity: sha512-KrkT6qO5NxqNfy68sBl6CTSoJ4SNDIS5iQArkibhlbGU4LaDukZ3q2HIkh8aUKDio6o4itU4xDR7t82Y2eP1Bg==}
     engines: {node: '>=14'}
 
-  '@directus/openapi@0.1.13':
-    resolution: {integrity: sha512-GHzVnHI4kYB8bzZrg2pD/qkB4OZHhat3e8UA0aaA6dpeRMykLVRsyL2AWuealn2X9vUnNYIePeO+AoaLJfaIZQ==}
+  '@directus/openapi@0.1.15':
+    resolution: {integrity: sha512-QGM3dWVRxpLhA2qi83MLNewxHIjY5PFftdCnssEpgD5IEAO1+s9z2F7zpEtMOKLcnRoH4H2+ttKN6bKlbV+bIw==}
 
   '@docsearch/css@3.9.0':
     resolution: {integrity: sha512-cQbnVbq0rrBwNAKegIac/t6a8nWoUAn8frnkLFW6YARaRmAQr5/Eoe6Ln2fqkUCZ40KpdrKbpSAmgrkviOxuWA==}
@@ -7566,7 +7566,7 @@ snapshots:
       gonzales-pe: 4.3.0
       node-source-walk: 6.0.2
 
-  '@directus/openapi@0.1.13': {}
+  '@directus/openapi@0.1.15': {}
 
   '@docsearch/css@3.9.0': {}
 

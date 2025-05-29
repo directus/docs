@@ -16,10 +16,17 @@ The branding section contains global settings that are applied as defaults throu
 - **Project Color** — Sets color on the project logo, favicon and login/public pages.
 - **Project Logo** — Adds a 40x40px logo at the top of the Module Bar and on the login/public pages. The image is inset within a 64x64px square filled with the project color.
 - **Public Foreground** — Adds image on the public page's right-pane _(max-width 400px)_.
-- **Public Background** — Adds image displayed behind the public foreground image, shown full-bleed within the public page's right-pane. When a public background image is not set, the project color is used instead.
+- **Public Background** — Adds image/video displayed behind the public foreground image, shown full-bleed within the public page's right-pane. When a public background is not set, the project color is used instead.
 - **Public Favicon** — Adds favicon for the Data Studio.
 - **Public Note** — A helpful note displayed at the bottom of the public page's right-pane, supports markdown for rich-text formatting.
 - **Default Appearance** — Light or Dark theme (or based on system preference).
+
+::callout{icon="material-symbols:info-outline"}
+**Public Background Video Limitations**  
+* Not all video formats/encodings can be streamed by browsers resulting in the video needing to be downloaded fully before playing.
+* Both supported and the optimal formats/settings can vary per browser.
+* Mobile browsers will start pre-loading (or even fully loading if streaming is not supported) the entire video despite it not being shown.
+::
 
 ## Theming Defaults
 

@@ -408,7 +408,7 @@ Script.complete()
 
 In the end, the widget would look like this. In case the wearable is charging, the current battery level is displayed.
 
-![Screenshot of an smartphone lockscreen that shows the latest health data provided by the Directus backend. Small icons are used to identify which value stands for which senor data. A timestamp is underneath.](/img/6f5d1ae4-96bc-4599-8d81-85f6a2e86ee3.webp)
+![Screenshot of an smartphone lockscreen that shows the latest health data provided by the Directus backend. Small icons are used to identify which value stands for which senor data. A timestamp is underneath.](/img/6f5d1ae4-96bc-4599-8d81-85f6a2e86ee3.jpg)
 
 ## Summary
 
