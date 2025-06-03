@@ -122,6 +122,7 @@ export default defineNuxtConfig({
 				'/docs/tutorials/getting-started/{`/${post.id}`}></span',
 				'/docs/tutorials/getting-started/{item.href}>{item.label}</a></span',
 				'/docs/tutorials/getting-started/{`/dashboard/posts/${post.id}`}>edit post</a></span',
+				'/docs/tutorials/projects/{card.button.url} class="card-cta"></span',
 			],
 
 			concurrency: 3,
