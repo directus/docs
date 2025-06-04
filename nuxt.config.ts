@@ -125,6 +125,7 @@ export default defineNuxtConfig({
 				'/docs/tutorials/projects/{card.button.url} class="card-cta"></span',
 				'/docs/tutorials/projects/{navItem.url}>{navItem.title}</a></span',
 				'/docs/tutorials/projects/{child.url}>{child.title}</a></span',
+				'/docs/tutorials/projects/{child.page.permalink}>{child.title}</a></span',
 				'/docs/tutorials/projects/{navItem.page.permalink}>{navItem.title}</a></span',
 			],
 
