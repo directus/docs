@@ -392,4 +392,4 @@ To test the Directus visual editor, click the visual editing icon in the Directu
 
 ## Conclusion 
 
-In this tutorial, we looked at how to integrate a visual editor to your Directus project. This setup makes it easier to manage and update content right from the CMS, helping you deliver dynamic content quickly without extra steps like rebuilding or redeploying.
+In this tutorial, you learned how to integrate a visual editor to your Directus project. This setup makes it easier to manage and update content right from the CMS, helping you deliver dynamic content quickly without extra steps like rebuilding or redeploying.

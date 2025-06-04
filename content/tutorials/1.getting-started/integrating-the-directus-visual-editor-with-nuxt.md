@@ -238,5 +238,5 @@ By coupling frontend elements with Directus fields the Visual Editor gives visua
 The editor is more powerful than demonstrated here and also allows for:
 
 - Handling of [sensitive data](https://directus.io/docs/guides/content/visual-editor/frontend-library)
-- [Customize the various editable elements](http://localhost:3000/docs/guides/content/visual-editor/customization) beyond their default styles via CSS
+- [Customize the various editable elements](https://directus.io/docs/guides/content/visual-editor/customization) beyond their default styles via CSS
 - [Manage multiple websites](https://directus.io/docs/guides/content/visual-editor/studio-module) from one Directus instance
