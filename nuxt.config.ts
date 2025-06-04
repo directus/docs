@@ -11,9 +11,9 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
 		'nuxt-posthog',
-    ...(( process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY )
-      ? ['@nuxtjs/algolia']
-      : []),
+		...(( process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY )
+			? ['@nuxtjs/algolia']
+			: []),
 	],
 
 	devtools: {
@@ -123,6 +123,9 @@ export default defineNuxtConfig({
 				'/docs/tutorials/getting-started/{item.href}>{item.label}</a></span',
 				'/docs/tutorials/getting-started/{`/dashboard/posts/${post.id}`}>edit post</a></span',
 				'/docs/tutorials/projects/{card.button.url} class="card-cta"></span',
+				'/docs/tutorials/projects/{navItem.url}>{navItem.title}</a></span',
+				'/docs/tutorials/projects/{child.url}>{child.title}</a></span',
+				'/docs/tutorials/projects/{navItem.page.permalink}>{navItem.title}</a></span',
 			],
 
 			concurrency: 3,
