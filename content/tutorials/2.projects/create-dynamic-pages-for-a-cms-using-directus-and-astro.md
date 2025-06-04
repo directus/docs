@@ -1,5 +1,4 @@
 ---
-id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-dynamic-pages-for-a-cms-using-directus-and-astro
 title: Create Dynamic Pages for a CMS using Directus and Astro
 technologies:
