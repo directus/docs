@@ -5,7 +5,7 @@
 		<UContainer>
 			<UMain>
 				<UPage>
-					<UPageError :error="error" />
+					<UError :error="error" />
 				</UPage>
 			</UMain>
 		</UContainer>

@@ -1,23 +1,20 @@
 <script setup lang="ts">
 import type { DocSearchProps } from '@docsearch/react';
-import type { NavItem } from '@nuxt/content';
-import type { HeaderLink } from '@nuxt/ui-pro/types';
-import type { OpenAPIObject } from 'openapi3-ts/oas30';
+// import type { ContentNavigationItem } from '@nuxt/content';
+// import type { OpenAPIObject } from 'openapi3-ts/oas30';
 import { withoutTrailingSlash } from 'ufo';
 
-const navigation = inject<NavItem[]>('navigation', []);
-const oasSpec = inject<OpenAPIObject>('openapi', { openapi: '3.0', info: { title: 'OAS Spec', version: '0' }, paths: {} });
-
-const { metaSymbol } = useShortcuts();
+// const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')!;
+// const oasSpec = inject<OpenAPIObject>('openapi', { openapi: '3.0', info: { title: 'OAS Spec', version: '0' }, paths: {} });
 
 const { header, search } = useAppConfig();
 const route = useRoute();
 const router = useRouter();
 
 const links = computed(() =>
-	header.nav.map((link: HeaderLink) => {
+	header.nav.map((link: typeof header.nav[0] & { active?: boolean }) => {
 		if (link.children) {
-			link.active = link.children.some((child: HeaderLink) => {
+			link.active = link.children.some((child: any) => {
 				const prefix = '/' + (child.to as string).split('/')[1];
 				return route.path.startsWith(prefix);
 			});
@@ -26,16 +23,6 @@ const links = computed(() =>
 		return link;
 	}),
 );
-
-const navigationTree = computed(() => {
-	if (route.path.startsWith('/api')) return mapOasNavigation(oasSpec);
-
-	const routePrefix = '/' + route.path.split('/')[1]!;
-
-	return mapContentNavigation(navigation.value.find((item) => {
-		return item._path.startsWith(routePrefix);
-	})?.children ?? []);
-});
 
 const isSpecialClick = (event: MouseEvent) =>
 	event.button === 1 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
@@ -92,7 +79,7 @@ const algoliaHitComponent: DocSearchProps['hitComponent'] = ({ hit, children }) 
 };
 
 const algoliaNavigator = {
-	navigate: ({ itemUrl }) => {
+	navigate: ({ itemUrl }: { itemUrl: string }) => {
 		const isAbsoluteUrl = itemUrl.startsWith('https://');
 		const { pathname: hitPathname } = new URL(isAbsoluteUrl ? itemUrl : window.location.origin + itemUrl);
 		// Vue Router doesn't handle same-page navigation so we use
@@ -112,80 +99,66 @@ const algoliaNavigator = {
 
 <template>
 	<UHeader
-		:links="links"
-		:ui="route.path.startsWith('/api') ? { container: 'max-w-screen' } : {}"
+		:items="links"
 	>
-		<template #logo>
+		<template #title>
 			<LogoDocs class="w-auto h-8 shrink-0" />
 		</template>
 
+		<UNavigationMenu
+			:items="links"
+			orientation="horizontal"
+			variant="link"
+		/>
+
 		<template #right>
 			<ClientOnly v-if="search.backend === 'algolia'">
-				<UTooltip
-					text="Search"
-					:shortcuts="[metaSymbol, 'K']"
-					:popper="{ strategy: 'absolute' }"
+				<UButton
+					icon="heroicons:magnifying-glass-20-solid"
+					class="relative"
+					variant="subtle"
+					color="primary"
 				>
-					<UButton
-						icon="heroicons:magnifying-glass-20-solid"
-						class="relative"
-						truncate
-						variant="ghost"
-						color="gray"
-						square
-					>
-						<AlgoliaDocSearch
-							:transform-items="transformAlgoliaSearchItems"
-							:hit-component="algoliaHitComponent"
-							:navigator="algoliaNavigator"
-						/>
-					</UButton>
-				</UTooltip>
+					<span class="hidden sm:inline">
+						Search ⌘K
+					</span>
+					<AlgoliaDocSearch
+						:transform-items="transformAlgoliaSearchItems"
+						:hit-component="algoliaHitComponent"
+						:navigator="algoliaNavigator"
+					/>
+				</UButton>
 			</ClientOnly>
-
-			<UTooltip
-				v-if="search.backend === 'nuxt'"
-				text="Search"
-				:shortcuts="[metaSymbol, 'K']"
-				:popper="{ strategy: 'absolute' }"
-			>
-				<UContentSearchButton :label="null" />
-			</UTooltip>
 
 			<UColorModeButton class="hidden lg:inline-flex" />
 
-			<UDivider
-				orientation="vertical"
-				:ui="{
-					border: {
-						vertical: 'h-8 mx-2',
-					},
-				}"
-			/>
-
-			<UButton
-				v-for="(link, index) of header.links"
-				:key="index"
-				class="hidden lg:flex"
-				v-bind="{ color: 'gray', variant: 'ghost', ...link }"
-			/>
+			<template v-if="header.links.length">
+				<USeparator
+					orientation="vertical"
+					class="h-8"
+				/>
+				<UButton
+					v-for="(link, index) of header.links"
+					:key="index"
+					class="hidden lg:flex"
+					v-bind="{ color: 'neutral', variant: 'ghost', ...link }"
+				/>
+			</template>
 		</template>
 
-		<template #panel>
-			<UNavigationTree
-				:links="header.nav"
-				:multiple="false"
-				default-open
+		<!-- For mobile, we use the content navigation -->
+		<template #body>
+			<UContentNavigation
+				:navigation="(links as any)"
+				highlight
 			/>
 			<template v-if="route.path !== '/'">
-				<UDivider
+				<USeparator
 					type="dashed"
 					class="my-4"
 				/>
-				<UNavigationTree
-					:links="navigationTree"
-					:multiple="false"
-					default-open
+				<UContentNavigation
+					:navigation="(links as any)"
 				/>
 			</template>
 		</template>
