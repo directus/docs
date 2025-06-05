@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	search: {
-		backend: (process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY) ? 'algolia' : 'nuxt', // 'nuxt' | 'algolia',
+		backend: 'algolia',
 	},
 
 	ui: {
