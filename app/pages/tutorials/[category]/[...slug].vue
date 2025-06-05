@@ -22,13 +22,6 @@ const imageSrc = (page: ParsedContent | undefined) => {
 };
 
 const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation?.value, page.value)).map(({ icon, ...link }) => link));
-const imageSrc = (page: ParsedContent | undefined) => {
-	const technologies = page?.technologies || ['directus'];
-	const techString = technologies.join(', ');
-	return `/docs/api/tutorialimg?logos=${techString}`;
-};
-
-const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation?.value, page.value)).map(({ icon, ...link }) => link));
 </script>
 
 <template>
