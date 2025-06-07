@@ -140,7 +140,7 @@ single file can be used for all of the top-level pages.
 ```jsx
 import directus from '@/lib/directus';
 import { notFound } from 'next/navigation';
-import { readItem } from '@directus/sdk';
+import { readItems } from '@directus/sdk';
 
 async function getPage(slug) {
 	try {
