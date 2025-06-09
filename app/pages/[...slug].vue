@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content';
+
 import { findPageHeadline } from '#ui-pro/utils';
 
-const navigation = inject('navigation');
+const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
 definePageMeta({
 	layout: 'docs',
@@ -27,9 +29,8 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 <template>
 	<UPage>
 		<UPageHeader
-			:title="page!.title"
-			:description="page!.description"
-			:items="page!.links"
+			:title="page!.title ?? ''"
+			:description="page!.description ?? ''"
 			:headline="headline"
 			:ui="{ headline: 'headline', title: 'title' }"
 		>
