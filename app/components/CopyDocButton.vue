@@ -27,6 +27,22 @@ const items = [
 			});
 		},
 	},
+	{
+		label: 'Open in ChatGPT',
+		icon: 'i-simple-icons:openai',
+		target: '_blank',
+		onSelect() {
+			window.open(`https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Read ${window.location.origin} so I can ask questions about it.`)}`, '_blank');
+		},
+	},
+	{
+		label: 'Open in Claude',
+		icon: 'i-simple-icons:anthropic',
+		target: '_blank',
+		onSelect() {
+			window.open(`https://claude.ai/new?q=${encodeURIComponent(`Read ${window.location.origin} so I can ask questions about it.`)}`, '_blank');
+		},
+	},
 ];
 
 async function copyPage() {
