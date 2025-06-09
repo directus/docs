@@ -29,8 +29,9 @@ export default function useSectionLinks() {
 			},
 			{
 				label: 'Licensing',
-				href: 'https://directus.io/demo',
+				href: 'https://directus.io/bsl?ref=directus-docs',
 				icon: 'i-ph-key',
+				target: '_blank',
 			},
 		];
 
