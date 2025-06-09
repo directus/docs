@@ -4,6 +4,7 @@ import type { OpenAPIObject } from 'openapi3-ts/oas30';
 const { links } = useSectionLinks();
 
 const openapi = inject<OpenAPIObject>('openapi')!;
+const oasNavigation = computed(() => mapOasNavigation(openapi));
 </script>
 
 <template>
@@ -21,7 +22,7 @@ const openapi = inject<OpenAPIObject>('openapi')!;
 						class="my-5"
 					/>
 					<UContentNavigation
-						:navigation="mapOasNavigation(openapi)"
+						:navigation="oasNavigation"
 						highlight
 						default-open
 						variant="link"

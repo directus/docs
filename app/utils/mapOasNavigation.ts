@@ -20,7 +20,7 @@ export default function (spec: OpenAPIObject): ContentNavigationItem[] {
 
 					byTag[tag].push({
 						title: operationObject.summary ?? path,
-						to: `/api/${tag.toLowerCase()}#${slugify(operationObject.summary!)}`,
+						path: `/api/${tag.toLowerCase()}#${slugify(operationObject.summary!)}`,
 						exact: true,
 						exactHash: true,
 					});
@@ -33,6 +33,7 @@ export default function (spec: OpenAPIObject): ContentNavigationItem[] {
 		return {
 			title: tag,
 			to: `/api/${tag.toLowerCase()}`,
+			path: `/api/${tag.toLowerCase()}`,
 			children: links,
 		};
 	});
