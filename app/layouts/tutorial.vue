@@ -10,9 +10,24 @@ const { links } = useSectionLinks();
 const navigation = computed(() => {
 	const routePrefix = `/${route.path.split('/')[1]}`;
 
-	return nav.value.find((item) => {
+	const sectionNav = nav.value.find((item) => {
 		return item.path.startsWith(routePrefix);
 	})?.children ?? [];
+
+	// Filter to only show category index pages, not individual tutorials
+	return sectionNav.filter((item: ContentNavigationItem) => {
+		// Only show items that are category index pages (not individual tutorial files)
+		// Category paths look like: /tutorials/getting-started, /tutorials/projects, etc.
+		// Individual tutorial paths look like: /tutorials/getting-started/some-tutorial-name
+		const pathSegments = item.path?.split('/').filter(Boolean) || [];
+		return pathSegments.length === 2 && pathSegments[0] === 'tutorials';
+	}).map((item: ContentNavigationItem) => {
+		// Remove the children array to prevent showing individual tutorials
+		return {
+			...item,
+			children: undefined,
+		};
+	});
 });
 </script>
 
@@ -26,7 +41,9 @@ const navigation = computed(() => {
 						type="dashed"
 						class="my-5"
 					/>
-
+					<p class="text-xs font-medium text-dimmed mb-2 uppercase">
+						Category
+					</p>
 					<UContentNavigation
 						:navigation="navigation"
 						default-open
