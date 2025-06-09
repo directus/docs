@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
 		'nuxt-posthog',
-		...(( process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY )
+		...((process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY)
 			? ['@nuxtjs/algolia']
 			: []),
 	],
@@ -166,6 +166,11 @@ export default defineNuxtConfig({
 			scan: true,
 			includeCustomCollections: true,
 		},
+	},
+
+	// Disable PostHog in development
+	posthog: {
+		disabled: process.env.NODE_ENV === 'development',
 	},
 
 	robots: {
