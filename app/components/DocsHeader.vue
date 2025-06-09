@@ -98,9 +98,7 @@ const algoliaNavigator = {
 </script>
 
 <template>
-	<UHeader
-		:items="links"
-	>
+	<UHeader>
 		<template #title>
 			<LogoDocs class="w-auto h-8 shrink-0" />
 		</template>
