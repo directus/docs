@@ -24,7 +24,6 @@
 		"@vueuse/core": "13.3.0",
 		"@vueuse/nuxt": "13.3.0",
 		"lodash-es": "4.17.21",
-		"minimark": "^0.2.0",
 		"nuxt": "3.17.5",
 		"nuxt-posthog": "1.6.3",
 		"openapi3-ts": "4.4.0",
