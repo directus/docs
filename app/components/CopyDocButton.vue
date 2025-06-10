@@ -32,7 +32,7 @@ const items = [
 		icon: 'i-simple-icons:openai',
 		target: '_blank',
 		onSelect() {
-			window.open(`https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Read ${window.location.origin} so I can ask questions about it.`)}`, '_blank');
+			window.open(`https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Read ${window.location.href} so I can ask questions about it.`)}`, '_blank');
 		},
 	},
 	{
@@ -40,7 +40,7 @@ const items = [
 		icon: 'i-simple-icons:anthropic',
 		target: '_blank',
 		onSelect() {
-			window.open(`https://claude.ai/new?q=${encodeURIComponent(`Read ${window.location.origin} so I can ask questions about it.`)}`, '_blank');
+			window.open(`https://claude.ai/new?q=${encodeURIComponent(`Read ${window.location.href} so I can ask questions about it.`)}`, '_blank');
 		},
 	},
 ];
