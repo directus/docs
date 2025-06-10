@@ -11,7 +11,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
 		'nuxt-posthog',
-		...(( process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY )
+		...((process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY)
 			? ['@nuxtjs/algolia']
 			: []),
 	],
@@ -85,6 +85,16 @@ export default defineNuxtConfig({
 		markdown: {
 			toc: {
 				depth: 1,
+			},
+		},
+	},
+
+	runtimeConfig: {
+		public: {
+			scripts: {
+				googleTagManager: {
+					id: process.env.GOOGLE_TAG_MANAGER_ID!,
+				},
 			},
 		},
 	},
@@ -165,5 +175,11 @@ export default defineNuxtConfig({
 
 	robots: {
 		robotsTxt: false,
+	},
+
+	scripts: {
+		registry: {
+			googleTagManager: true,
+		},
 	},
 });
