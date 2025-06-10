@@ -19,6 +19,7 @@ defineProps<{
 	>
 		<MDC
 			v-if="param.description"
+			:key="`description-${param.name}`"
 			:value="param.description"
 		/>
 

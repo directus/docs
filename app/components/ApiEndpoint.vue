@@ -172,10 +172,12 @@ const responseBodyExample = computed(() => {
 		<div class="grow sticky top-16 w-full">
 			<MDC
 				v-if="'x-codeSamples' in operation"
+				:key="`code-samples-${operation.method}-${operation.path}`"
 				:value="codeSamplesMd(operation)"
 			/>
 			<MDC
 				v-if="responseBodyExample"
+				:key="`response-example-${operation.method}-${operation.path}`"
 				:value="preMd('json', 'Response Example', responseBodyExample)"
 			/>
 		</div>
