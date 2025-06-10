@@ -98,7 +98,7 @@ export default defineNuxtConfig({
 	},
 
 	build: {
-		// transpile: ['shiki'],
+		transpile: ['shiki'],
 	},
 
 	future: {
