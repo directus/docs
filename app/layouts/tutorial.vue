@@ -42,7 +42,7 @@ const navigation = computed(() => {
 						class="my-5"
 					/>
 					<p class="text-xs font-medium text-dimmed mb-2 uppercase">
-						Category
+						Hop To
 					</p>
 					<UContentNavigation
 						:navigation="navigation"
