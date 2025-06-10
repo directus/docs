@@ -4,6 +4,7 @@ import type {
 } from 'openapi3-ts/oas30';
 import type { ContentNavigationItem } from '@nuxt/content';
 import { METHODS } from '@/constants';
+import slugify from '~/utils/slugify';
 
 export default function (spec: OpenAPIObject): ContentNavigationItem[] {
 	const byTag: Record<string, ContentNavigationItem[]> = {};
