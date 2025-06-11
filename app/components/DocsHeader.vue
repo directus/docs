@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { DocSearchProps } from '@docsearch/react';
-// import type { ContentNavigationItem } from '@nuxt/content';
-// import type { OpenAPIObject } from 'openapi3-ts/oas30';
+import type { ContentNavigationItem } from '@nuxt/content';
+import type { OpenAPIObject } from 'openapi3-ts/oas30';
 import { withoutTrailingSlash } from 'ufo';
 
-// const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')!;
-// const oasSpec = inject<OpenAPIObject>('openapi', { openapi: '3.0', info: { title: 'OAS Spec', version: '0' }, paths: {} });
+const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')!;
+const oasSpec = inject<OpenAPIObject>('openapi', { openapi: '3.0', info: { title: 'OAS Spec', version: '0' }, paths: {} });
 
 const { header, search } = useAppConfig();
 const route = useRoute();
@@ -24,6 +24,43 @@ const links = computed(() =>
 	}),
 );
 
+const mobileLinks = computed(() => {
+	return header.nav.map((link) => {
+		// Transform the header nav structure from app.config.ts to ContentNavigationItem format
+		const navItem: any = {
+			title: link.label,
+			path: link.to || '#',
+		};
+
+		// Add 'to' property if it exists
+		if (link.to) {
+			navItem.to = link.to;
+		}
+
+		// Transform children if they exist
+		if (link.children) {
+			navItem.children = link.children.map(child => ({
+				title: child.label,
+				path: child.to || '#',
+				to: child.to,
+				icon: child.icon,
+			}));
+		}
+
+		return navItem;
+	});
+});
+
+const mobileNavigationTree = computed(() => {
+	if (route.path.startsWith('/api')) return mapOasNavigation(oasSpec);
+
+	const routePrefix = `/${route.path.split('/')[1]}`;
+
+	return navigation.value.find((item) => {
+		return item.path.startsWith(routePrefix);
+	})?.children ?? [];
+});
+
 const isSpecialClick = (event: MouseEvent) =>
 	event.button === 1 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
 
@@ -39,7 +76,7 @@ const withoutBaseUrl = (url: string) => {
 };
 
 // This is needed until https://github.com/nuxt-modules/algolia/issues/208 is resolved
-const algoliaHitComponent: DocSearchProps['hitComponent'] = ({ hit, children }) => {
+const algoliaHitComponent: DocSearchProps['hitComponent'] = ({ hit, children }: { hit: any; children: any }) => {
 	return {
 		type: 'a',
 		constructor: undefined,
@@ -147,8 +184,9 @@ const algoliaNavigator = {
 		<!-- For mobile, we use the content navigation -->
 		<template #body>
 			<UContentNavigation
-				:navigation="(links as any)"
+				:navigation="mobileLinks"
 				highlight
+				default-open
 			/>
 			<template v-if="route.path !== '/'">
 				<USeparator
@@ -156,7 +194,9 @@ const algoliaNavigator = {
 					class="my-4"
 				/>
 				<UContentNavigation
-					:navigation="(links as any)"
+					:navigation="mobileNavigationTree"
+					highlight
+					default-open
 				/>
 			</template>
 		</template>
