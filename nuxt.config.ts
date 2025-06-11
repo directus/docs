@@ -97,6 +97,16 @@ export default defineNuxtConfig({
 		},
 	},
 
+	runtimeConfig: {
+		public: {
+			scripts: {
+				googleTagManager: {
+					id: process.env.GOOGLE_TAG_MANAGER_ID!,
+				},
+			},
+		},
+	},
+
 	build: {
 		transpile: ['shiki'],
 	},
@@ -175,5 +185,11 @@ export default defineNuxtConfig({
 
 	robots: {
 		robotsTxt: false,
+	},
+
+	scripts: {
+		registry: {
+			googleTagManager: true,
+		},
 	},
 });
