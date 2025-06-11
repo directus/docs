@@ -47,7 +47,7 @@ const show = await $fetch<Show>(
 
 				<template #error>
 					<UAlert
-						color="red"
+						color="error"
 						title="Video player failed to load"
 						description="Please refresh the page to try again."
 					/>
@@ -55,9 +55,12 @@ const show = await $fetch<Show>(
 			</ScriptVimeoPlayer>
 
 			<template #footer>
-				<NuxtLink :href="`https://directus.io/tv/${show.data.season.show.slug}`">
+				<ULink
+					:href="`https://directus.io/tv/${show.data.season.show.slug}`"
+					class="text-primary"
+				>
 					Watch {{ show.data.season.show.title }} on <LogoTv />
-				</NuxtLink>
+				</ULink>
 			</template>
 		</UCard>
 	</ClientOnly>

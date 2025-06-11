@@ -2,7 +2,7 @@
 
 To access systems like permission checks and your collections, you can use internal Directus services, available through an API extension's `context` parameter.
 
-::callout{icon="material-symbols:menu-book-outline" color="purple" to="/guides/extensions/api-extensions/services"}
+::callout{icon="material-symbols:menu-book-outline" color="primary" to="/guides/extensions/api-extensions/services"}
 Learn more about using internal Directus services.
 ::
 

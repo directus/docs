@@ -7,7 +7,7 @@ defineProps<{ items: AccordionItem[] }>();
 <template>
 	<UAccordion
 		:items="items"
-		color="gray"
+		color="neutral"
 		size="md"
 	>
 		<template #item="{ item }">

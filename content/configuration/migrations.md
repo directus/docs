@@ -30,8 +30,8 @@ export async function down(knex) {
 }
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
-**Backup Your Database**  
+::callout{icon="material-symbols:warning-rounded" color="warning"}
+**Backup Your Database**
 Proceed at your own risk and backup your database before adding custom migrations.
 ::
 

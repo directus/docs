@@ -2,11 +2,12 @@ import type {
 	OpenAPIObject,
 	OperationObject,
 } from 'openapi3-ts/oas30';
-import type { NavigationLink, NavigationTree } from '#ui-pro/types';
+import type { ContentNavigationItem } from '@nuxt/content';
 import { METHODS } from '@/constants';
+import slugify from '~/utils/slugify';
 
-export default function (spec: OpenAPIObject): NavigationTree[] {
-	const byTag: Record<string, NavigationLink[]> = {};
+export default function (spec: OpenAPIObject): ContentNavigationItem[] {
+	const byTag: Record<string, ContentNavigationItem[]> = {};
 
 	for (const [path, pathItemObject] of Object.entries(spec.paths)) {
 		for (const method of METHODS) {
@@ -19,8 +20,8 @@ export default function (spec: OpenAPIObject): NavigationTree[] {
 					}
 
 					byTag[tag].push({
-						label: operationObject.summary ?? path,
-						to: `/api/${tag.toLowerCase()}#${slugify(operationObject.summary!)}`,
+						title: operationObject.summary ?? path,
+						path: `/api/${tag.toLowerCase()}#${slugify(operationObject.summary!)}`,
 						exact: true,
 						exactHash: true,
 					});
@@ -31,8 +32,9 @@ export default function (spec: OpenAPIObject): NavigationTree[] {
 
 	return Object.entries(byTag).map(([tag, links]) => {
 		return {
-			label: tag,
+			title: tag,
 			to: `/api/${tag.toLowerCase()}`,
+			path: `/api/${tag.toLowerCase()}`,
 			children: links,
 		};
 	});
