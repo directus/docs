@@ -29,7 +29,7 @@ const iconName = computed(() => {
 	>
 		<UContainer class="h-full flex items-center gap-x-4">
 			<NuxtLink
-				class="flex-grow h-full flex items-center text-background no-underline text-xs leading-xs font-semibold"
+				class="flex-grow h-full flex items-center text-background no-underline text-xs leading-xs font-semibold group"
 				:href="banner.link ?? undefined"
 			>
 				<Icon
@@ -42,7 +42,7 @@ const iconName = computed(() => {
 					v-html="banner.content"
 				/>
 				<Icon
-					class="hidden md:block transform duration-150 ease-out ml-1 group-hover:translate-x-2 size-5"
+					class="hidden md:block transform duration-150 ease-out ml-1 group-hover:translate-x-1 size-5"
 					name="material-symbols:arrow-forward"
 				/>
 			</NuxtLink>
