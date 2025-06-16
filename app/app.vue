@@ -2,6 +2,7 @@
 import { spec } from '@directus/openapi';
 import { useRoute } from 'vue-router';
 import { nextTick, watch } from 'vue';
+
 const route = useRoute();
 
 const { data: navigation } = useAsyncData('navigation', () => fetchContentNavigation());
@@ -19,11 +20,11 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { defa
 const updateLinks = () => {
 	nextTick(() => {
 		const links = document.querySelectorAll('a');
-		links.forEach(link => {
+		links.forEach((link) => {
 			const href = link.getAttribute('href');
 			if (
-				href?.startsWith('http') &&
-				link.hostname !== window.location.hostname
+				href?.startsWith('http')
+				&& link.hostname !== window.location.hostname
 			) {
 				link.setAttribute('target', '_blank');
 				link.setAttribute('rel', 'noopener noreferrer');
