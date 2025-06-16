@@ -2,7 +2,15 @@
 const { onLoaded } = useScript('https://js.hsforms.net/forms/embed/v2.js');
 
 const { cta } = useAppConfig();
+const { $clientPosthog } = useNuxtApp();
 const { newsletter } = cta;
+
+function onFormSubmittedCallback(form: any, data: any) {
+	$clientPosthog?.capture('marketing.site.forms.hubspot.submit', {
+		form_id: newsletter.form.hsForm,
+		form_data: data,
+	});
+}
 
 onMounted(() => {
 	onLoaded(() => {
@@ -12,6 +20,7 @@ onMounted(() => {
 			portalId: newsletter.form.hsPortal,
 			formId: newsletter.form.hsForm,
 			target: '#sidebar-nl-form',
+			onFormSubmitted: onFormSubmittedCallback,
 		});
 	});
 });
