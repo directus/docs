@@ -97,6 +97,7 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		directusUrl: process.env.DIRECTUS_URL,
 	},
 
 	build: {

@@ -11,6 +11,7 @@
 	},
 	"dependencies": {
 		"@directus/openapi": "0.1.15",
+		"@directus/sdk": "^19.1.0",
 		"@docsearch/css": "3.8.3",
 		"@docsearch/js": "3.8.3",
 		"@iconify-json/heroicons-outline": "1.2.1",
