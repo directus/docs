@@ -56,7 +56,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 		</UPageBody>
 
 		<template
-			v-if="page!.toc !== false"
+			v-if="page!.body?.toc?.links?.length"
 			#right
 		>
 			<DocsToc
