@@ -13,6 +13,7 @@
 		"@directus/openapi": "0.1.15",
 		"@docsearch/css": "3.9.0",
 		"@docsearch/js": "3.9.0",
+		"@directus/sdk": "^19.1.0",
 		"@iconify-json/heroicons-outline": "1.2.1",
 		"@iconify-json/material-symbols": "1.2.25",
 		"@iconify-json/simple-icons": "1.2.38",

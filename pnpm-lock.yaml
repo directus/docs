@@ -15,6 +15,9 @@ importers:
       '@directus/openapi':
         specifier: 0.1.15
         version: 0.1.15
+      '@directus/sdk':
+        specifier: ^19.1.0
+        version: 19.1.0
       '@docsearch/css':
         specifier: 3.9.0
         version: 3.9.0
@@ -400,6 +403,10 @@ packages:
 
   '@directus/openapi@0.1.15':
     resolution: {integrity: sha512-QGM3dWVRxpLhA2qi83MLNewxHIjY5PFftdCnssEpgD5IEAO1+s9z2F7zpEtMOKLcnRoH4H2+ttKN6bKlbV+bIw==}
+
+  '@directus/sdk@19.1.0':
+    resolution: {integrity: sha512-Nqem9BsvvGyVtAa69mGPtoMoMVkZxdIREdsWvvTzNF4/1XqaFfEiFL7PhtUNfc46/Nufus2+QUKYQbNiAWe3ZA==}
+    engines: {node: '>=22'}
 
   '@docsearch/css@3.9.0':
     resolution: {integrity: sha512-cQbnVbq0rrBwNAKegIac/t6a8nWoUAn8frnkLFW6YARaRmAQr5/Eoe6Ln2fqkUCZ40KpdrKbpSAmgrkviOxuWA==}
@@ -6752,6 +6759,8 @@ snapshots:
       node-source-walk: 7.0.1
 
   '@directus/openapi@0.1.15': {}
+
+  '@directus/sdk@19.1.0': {}
 
   '@docsearch/css@3.9.0': {}
 
