@@ -2,6 +2,7 @@
 import type {
 	OpenAPIObject,
 	RequestBodyObject,
+	SchemaObject,
 } from 'openapi3-ts/oas30';
 import type {
 	DerefedOperationObject,
@@ -62,6 +63,24 @@ const responseBodyExample = computed(() => {
 
 	return null;
 });
+
+type StatusCodeDescriptions = {
+	[key: number]: string;
+};
+
+const statusCodeDescriptions: StatusCodeDescriptions = {
+	200: 'OK',
+	201: 'Created',
+	204: 'No Content',
+	400: 'Bad Request',
+	401: 'Unauthorized',
+	403: 'Forbidden',
+	404: 'Not Found',
+	422: 'Unprocessable Content',
+	429: 'Too Many Requests',
+	500: 'Internal Server Error',
+	503: 'Service Unavailable',
+};
 </script>
 
 <template>
@@ -99,7 +118,7 @@ const responseBodyExample = computed(() => {
 						v-for="param of operation.parameters"
 						:key="param.name"
 						:name="param.name"
-						:type="param.schema?.type"
+						:type="(param.schema as SchemaObject)?.type"
 						:ui="{
 							root: 'mb-0',
 							description: 'mt-2',
@@ -128,7 +147,10 @@ const responseBodyExample = computed(() => {
 			</div>
 
 			<div class="mb-12 last:mb-0">
-				<ProseH4 class="mt-12">
+				<ProseH4
+					id="responses"
+					class="mt-12"
+				>
 					Responses
 				</ProseH4>
 				<UTabs
@@ -143,7 +165,6 @@ const responseBodyExample = computed(() => {
 					<template #default="{ item }">
 						<UBadge
 							variant="soft"
-							size="lg"
 							class="font-mono"
 							color="neutral"
 						>
@@ -152,7 +173,7 @@ const responseBodyExample = computed(() => {
 								inset
 								:color="item.label.toString().startsWith('2') ? 'success' : 'error'"
 							/>
-							{{ item.label }}
+							{{ item.label }} {{ statusCodeDescriptions[Number(item.label)] || '' }}
 						</UBadge>
 					</template>
 					<template
