@@ -8,7 +8,6 @@ const props = defineProps<{
 
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	const query = queryCollection('content')
-		// .path(props.path)
 		.where('path', 'LIKE', `${props.path}/%`)
 		.select('title', 'description', 'icon', 'path', 'technologies');
 
@@ -19,9 +18,7 @@ const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	return query.all();
 });
 
-const moreImageSrc = '/docs/img/tutorials/more.png';
-
-const imageSrc = (article: { technologies: string[] }) => {
+const imageSrc = (article: { technologies?: string[] }) => {
 	const technologies = article?.technologies || ['directus'];
 	const techString = technologies.join(', ');
 	return `/docs/api/tutorialimg?logos=${techString}`;
