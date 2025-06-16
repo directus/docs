@@ -44,7 +44,6 @@ export default defineNuxtConfig({
 				toc: {
 					searchDepth: 1,
 				},
-				// highlight: false,
 				highlight: {
 					theme: {
 						default: 'github-light',

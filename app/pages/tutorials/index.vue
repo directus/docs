@@ -8,7 +8,6 @@ const { data: page } = await useAsyncData(route.path, () => queryCollection('con
 
 const { data: categories } = await useAsyncData(route.path + '-categories', () => queryCollection('content')
 	.where('stem', 'LIKE', 'tutorials/%/index')
-	// .select('title', 'description', 'path')
 	.all());
 
 if (!page.value) {
