@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { ContentCollectionItem, ContentNavigationItem } from '@nuxt/content';
 import { findPageBreadcrumb, mapContentNavigation } from '#ui-pro/utils';
 
-const navigation = inject('navigation');
+const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
 definePageMeta({
 	layout: 'tutorial',
@@ -15,13 +16,14 @@ if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-const imageSrc = (page: ParsedContent | undefined) => {
-	const technologies = page?.technologies || ['directus'];
+const imageSrc = (page: ContentCollectionItem | undefined) => {
+	if (!page) return '';
+	const technologies = page.technologies || ['directus'];
 	const techString = technologies.join(', ');
 	return `/docs/api/tutorialimg?logos=${techString}`;
 };
 
-const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation?.value, page.value)).map(({ icon, ...link }) => link));
+const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation.value, page.value)).map(({ icon, ...link }) => link));
 </script>
 
 <template>
@@ -48,6 +50,7 @@ const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(naviga
 				<CopyDocButton :page="page" />
 			</template>
 			<img
+				v-if="page"
 				:src="imageSrc(page)"
 				alt="Generated Image"
 			>
@@ -64,7 +67,7 @@ const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(naviga
 		</UPageBody>
 
 		<template
-			v-if="page!.toc !== false"
+			v-if="page!.body?.toc?.links?.length"
 			#right
 		>
 			<DocsToc
