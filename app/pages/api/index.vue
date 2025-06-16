@@ -29,7 +29,7 @@ if (!page.value) {
 		<UPageBody prose>
 			<ContentRenderer
 				v-if="page!.body"
-				:value="page"
+				:value="page!"
 			/>
 		</UPageBody>
 	</UPage>
