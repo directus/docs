@@ -163,7 +163,7 @@ const responseBodyExample = computed(() => {
 						</div>
 						<ApiParams
 							v-if="flattenedResponseBodySchemas[item.index]"
-							:param="flattenedResponseBodySchemas[item.index]"
+							:param="flattenedResponseBodySchemas[item.index]!"
 						/>
 					</template>
 				</UTabs>
