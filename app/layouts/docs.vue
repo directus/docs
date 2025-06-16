@@ -42,7 +42,7 @@ const currentSection = computed(() => {
 	}
 
 	return null;
-});
+}) as ComputedRef<{ label: string; to: string; icon?: string } | null>;
 
 // Only render the nav for the current section of the docs (eg docs, api, cloud)
 const navigation = computed(() => {
@@ -69,7 +69,7 @@ const navigation = computed(() => {
 						class="text-xs font-medium text-dimmed mb-2 uppercase flex items-center gap-1"
 					>
 						<Icon
-							v-if="currentSection.icon"
+							v-if="currentSection?.icon"
 							:name="currentSection.icon"
 						/>
 						{{ currentSection.label }}
