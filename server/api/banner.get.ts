@@ -12,13 +12,13 @@ export default defineCachedEventHandler(async () => {
 			limit: 1,
 		}));
 
-		if (!data) return null;
+		if (!data) return {};
 
 		return data;
 	}
 	catch (error) {
 		console.error(error);
-		return null;
+		return {};
 	}
 }, {
 	maxAge: 60 * 5, // 5 minutes

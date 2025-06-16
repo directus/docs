@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { data: banner } = useFetch('/api/banner', {
-
-});
+const { data: banner } = useFetch('/api/banner');
 
 const dismissedBanners = useCookie('directus-dismissed-banners', {
 	default: () => [] as string[],
