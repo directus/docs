@@ -136,10 +136,6 @@ const algoliaNavigator = {
 
 <template>
 	<UHeader>
-		<template #top>
-			<DocsBanner />
-		</template>
-
 		<template #title>
 			<LogoDocs class="w-auto h-8 shrink-0" />
 		</template>
@@ -147,6 +143,7 @@ const algoliaNavigator = {
 		<UNavigationMenu
 			:items="links"
 			orientation="horizontal"
+			variant="link"
 		/>
 
 		<template #right>
