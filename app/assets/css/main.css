@@ -52,6 +52,15 @@
   }
 }
 
+button,
+[role="button"] {
+	cursor: pointer;
+}
+
+:disabled {
+	cursor: default;
+}
+
 
 html {
 	scroll-behavior: smooth;
