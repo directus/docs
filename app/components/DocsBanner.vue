@@ -23,7 +23,7 @@ const iconName = computed(() => {
 <template>
 	<div
 		v-if="banner && bannerVisible"
-		class="bg-foreground cursor-pointer  h-8"
+		class="bg-inverted text-inverted cursor-pointer  h-8"
 	>
 		<UContainer class="h-full flex items-center gap-x-4">
 			<NuxtLink
@@ -47,7 +47,6 @@ const iconName = computed(() => {
 
 			<button
 				aria-label="Close"
-				class="text-background"
 				:padded="false"
 				icon="material-symbols:close"
 				@click="dismiss(banner.id)"

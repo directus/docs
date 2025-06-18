@@ -7,20 +7,18 @@ const props = defineProps<{
 }>();
 
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
-	const query = queryContent(props.path)
-		.where({ _path: { $ne: props.path } })
-		.only(['title', 'description', 'icon', '_path', 'technologies']);
+	const query = queryCollection('content')
+		.where('path', 'LIKE', `${props.path}/%`)
+		.select('title', 'description', 'icon', 'path', 'technologies');
 
 	if (props.limit) {
 		query.limit(props.limit);
 	}
 
-	return query.find();
+	return query.all();
 });
 
-const moreImageSrc = '/docs/img/tutorials/more.png';
-
-const imageSrc = (article: { technologies: string[] }) => {
+const imageSrc = (article: { technologies?: string[] }) => {
 	const technologies = article?.technologies || ['directus'];
 	const techString = technologies.join(', ');
 	return `/docs/api/tutorialimg?logos=${techString}`;
@@ -28,26 +26,31 @@ const imageSrc = (article: { technologies: string[] }) => {
 </script>
 
 <template>
-	<ShinyGrid class="mt-8 gap-10">
+	<div
+		class="mt-8 gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+	>
 		<template
 			v-for="article in articles"
-			:key="article._path"
+			:key="article.path"
 		>
-			<ShinyCard
+			<UPageCard
 				v-if="article.title"
-				:to="article._path"
+				:to="article.path"
 				:icon="article.icon"
-				class="col-span-6"
 				:ui="{
-					body: {
-						base: 'gap-0',
-					},
 					title: 'font-bold text-pretty',
 					description: 'line-clamp-2',
+					container: 'p-4 md:p-4 lg:p-4',
+
 				}"
-				:color="cardColor(article.title)">
-				<div class="md:grid grid-cols-4 gap-4">
-					<img class="col-span-2 mb-4 md:mb-0" :src="imageSrc(article)" alt="Generated Image"/>
+				class="hover:bg-primary/5 hover:ring-primary"
+			>
+				<div class="">
+					<img
+						class="mb-0 max-h-36 w-full object-cover dark:brightness-90 rounded"
+						:src="imageSrc(article)"
+						alt="Generated Image"
+					>
 					<div class="col-span-2">
 						<ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
 							{{ article.title }}
@@ -57,28 +60,7 @@ const imageSrc = (article: { technologies: string[] }) => {
 						</ProseP>
 					</div>
 				</div>
-			</ShinyCard>
+			</UPageCard>
 		</template>
-		<ShinyCard
-			v-if="showMore"
-			:to="path"
-			class="col-span-6"
-			:ui="{
-				body: {
-					base: 'gap-0',
-				},
-				title: 'font-bold text-pretty',
-				description: 'line-clamp-2',
-			}"
-			:color="cardColor(categoryTitle)">
-			<div class="grid grid-cols-4 gap-4">
-				<img class="col-span-2" :src="moreImageSrc" alt="More {{ categoryTitle }} tutorials"/>
-				<div class="col-span-2 flex flex-col justify-center">
-					<ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
-						See all {{ categoryTitle }} tutorials
-					</ProseP>
-				</div>
-			</div>
-		</ShinyCard>
-	</ShinyGrid>
+	</div>
 </template>

@@ -6,7 +6,7 @@ navigation:
 ---
 :partial{content="config-env-vars"}
 
-Directus offers a variety of authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML. 
+Directus offers a variety of authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML.
 
 | Variable               | Description                                                                              | Default Value |
 | ---------------------- | ---------------------------------------------------------------------------------------- | ------------- |
@@ -23,8 +23,8 @@ For each of the storage locations listed, you must provide the following configu
 
 Based on your configured drivers, you must also provide additional variables, where `<PROVIDER>` is the capitalized name of the item in the `AUTH_PROVIDERS` value.
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
-**PUBLIC_URL**  
+::callout{icon="material-symbols:warning-rounded" color="warning"}
+**PUBLIC_URL**
 `oauth2`, `openid`, `ldap`, and `saml` drivers rely on the `PUBLIC_URL` variable for redirecting. Ensure the variable is correctly configured.
 ::
 
@@ -189,7 +189,7 @@ AUTH_FACEBOOK_LABEL="Facebook"
 ```
 
 ::callout{icon="material-symbols:info-outline"}
-**Multiple Providers**  
+**Multiple Providers**
 Directus users can only authenticate using the auth provider they are created with. It is not possible to authenticate with multiple providers for the same user.
 ::
 
@@ -311,7 +311,7 @@ AUTH_GITHUB_ACCESS_URL="https://github.com/login/oauth/access_token"
 AUTH_GITHUB_PROFILE_URL="https://api.github.com/user"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 
 If the authenticating user has not marked their email as "public" in GitHub, it will not be accessible by Directus.
 
@@ -330,7 +330,7 @@ AUTH_TWITTER_IDENTIFIER_KEY="data.username"
 AUTH_TWITTER_SCOPE="tweet.read users.read"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 
 Twitter does not provide "email" so we define "username" as the identifier.
 
@@ -350,7 +350,7 @@ AUTH_AWS_IDENTIFIER_KEY="email"
 AUTH_AWS_EMAIL_KEY="email"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 **Metadata**
 
 - AWS IAM Docs are not that verbose. Users have found that the `SP_metadata` environment variable can be supplied empty.
@@ -388,7 +388,7 @@ AUTH_GOOGLE_IDENTIFIER_KEY="email"
 AUTH_GOOGLE_EMAIL_KEY="email"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 **SP Metadata**
 
 - The `entityID` should be the same as the one configured in Google in the `EntityDescriptor` tag
