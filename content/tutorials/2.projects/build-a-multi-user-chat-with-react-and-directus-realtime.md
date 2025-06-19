@@ -340,7 +340,7 @@ export default function App() {
     event.preventDefault();
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
-    client.login(email, password);
+    client.login({ email, password });
   };
 
   async function subscribe(event) {

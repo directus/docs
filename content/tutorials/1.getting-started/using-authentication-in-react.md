@@ -409,7 +409,7 @@ const Login = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
 
     const onLogin = async (data) => {
-        const result = await client.login(data.email, data.password)
+        const result = await client.login({ email: data.email, password: data.password })
         localStorage.setItem('directus_auth', JSON.stringify(result))
         navigate("/");
         setIsAuthenticated(true);
@@ -456,7 +456,7 @@ Now, you can use the `onLogin` function in the `Login` component to log in a use
 // src/routes/Login.jsx
 
 const onLogin = async (data) => {
-   const result = await client.login(data.email, data.password)
+   const result = await client.login({ email: data.email, password: data.password })
    localStorage.setItem('directus_auth', JSON.stringify(result))
    navigate("/");
    setIsAuthenticated(true);

@@ -308,10 +308,10 @@ paths:
             const client = createDirectus('directus_project_url').with(authentication('json')).with(rest());
 
             // login using the authentication composable
-            const result = await client.login(email, password);
+            const result = await client.login({ email, password });
 
             // login http request
-            const result = await client.request(login(email, password));
+            const result = await client.request(login({ email, password }));
         - label: GraphQL
           lang: GraphQL
           source: "POST /graphql/system\n\nmutation {\n\tauth_login(email: \"user_email\", password: \"user_password\") {\n\t\taccess_token\n\t\trefresh_token\n\t}\n}\n"

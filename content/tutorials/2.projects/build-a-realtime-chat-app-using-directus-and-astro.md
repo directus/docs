@@ -318,7 +318,10 @@ To use the `initializeWebSocket` function, update the `submit` function to call 
 ```tsx
 // TODO: Handle via websocket here
 try {
-  const response = await client.login(email as string, password as string);
+  const response = await client.login({ 
+    email: email as string,
+    password: password as string,
+  });
   console.log("Login successful", response);
   initializeWebSocket();
 } catch (error) {

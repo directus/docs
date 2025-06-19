@@ -219,7 +219,7 @@ In the following step, you will create a login component where the users will be
   async function handleLogin() {
     try {
       // Call the login method directly from the client
-      const result = await client.login(email, password);
+      const result = await client.login({ email, password });
       console.log("Login successful:", result);
 
       // Check if the user is authenticated

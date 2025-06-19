@@ -124,7 +124,7 @@ document.querySelector('#login').addEventListener('submit', function (event) {
   const email = event.target.elements.email.value;
   const password = event.target.elements.password.value;
 
-  client.login(email, password); // [!code ++]
+  client.login({ email, password }); // [!code ++]
 });
 ```
 
@@ -341,7 +341,7 @@ This guide covers authentication, item creation, and subscription using WebSocke
           event.preventDefault();
           const email = event.target.elements.email.value;
           const password = event.target.elements.password.value;
-          client.login(email, password);
+          client.login({ email, password });
         });
 
       document
