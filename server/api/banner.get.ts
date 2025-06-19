@@ -22,5 +22,5 @@ export default defineCachedEventHandler(async () => {
 	}
 }, {
 	maxAge: 60 * 5, // 5 minutes
-	swr: true,
+	swr: false,
 });
