@@ -595,8 +595,8 @@ To implement the log out functionality, you need to add another function to your
 import { logout } from '@directus/sdk';
 
 export const logoutUser = async () => {
-    const refreshToken = (JSON.parse(localStorage.getItem('directus_auth')) || {}).refresh_token;
-    await client.request(logout(refreshToken, "json"));
+    const refresh_token = (JSON.parse(localStorage.getItem('directus_auth')) || {}).refresh_token;
+    await client.request(logout({ refresh_token, mode: "json" }));
     localStorage.removeItem('directus_auth');
 }
 ```
@@ -645,10 +645,10 @@ export const refreshAuthToken = async () => {
     await client.refresh();
 
     // refresh http request using a cookie
-    await client.request(refresh('cookie'));
+    await client.request(refresh({ mode: 'cookie' }));
 
     // refresh http request using json
-    await client.request(refresh('json', refresh_token));
+    await client.request(refresh({ mode: 'json', refresh_token }));
 }
 ```
 

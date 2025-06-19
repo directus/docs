@@ -340,10 +340,10 @@ const client = createDirectus('directus_project_url').with(authentication()).wit
 const result = await client.refresh();
 
 // refresh http request using a cookie
-const result = await client.request(refresh('cookie'));
+const result = await client.request(refresh({ mode: 'cookie' }));
 
 // refresh http request using json
-const result = await client.request(refresh('json', refresh_token));
+const result = await client.request(refresh({ mode: 'json', refresh_token }));
 ```
 
 ### Logging Out
