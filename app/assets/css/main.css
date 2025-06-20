@@ -32,6 +32,9 @@
   --color-pink-800: #a70d5e;
   --color-pink-900: #8b1050;
   --color-pink-950: #55022d;
+
+	--diff-red: rgba(244, 63, 94, 0.2);
+	--diff-green: rgba(16, 185, 129, 0.2);
 }
 
 /*
@@ -64,4 +67,17 @@ button,
 
 html {
 	scroll-behavior: smooth;
+}
+
+pre {
+	>code {
+		& .line.diff.remove {
+			background-color: var(--diff-red);
+			opacity: 0.7;
+		}
+
+		& .line.diff.add {
+			background-color: var(--diff-green);
+		}
+	}
 }
