@@ -625,7 +625,7 @@ export default defineNuxtPlugin(() => {
 
 	const refreshToken = async () => {
 		return directus.request(
-			refresh('cookie')
+			refresh({ mode: 'cookie' })
 		);
 	};
 
