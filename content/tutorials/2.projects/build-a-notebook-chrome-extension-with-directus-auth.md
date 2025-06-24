@@ -257,7 +257,7 @@ Create new file `src/views/login.vue`
         methods: {
             async login() {
                 try {
-                    await this.directus.login({email: this.email, password: this.password});
+                    await this.directus.login({ email: this.email, password: this.password });
                     this.$router.push({ name: "home" });
                 } catch ({ errors }) {
                     console.log("🚀 ~ login ~ errors:", errors);
