@@ -583,3 +583,5 @@ This example is limited to the regex validation we added to the `slug` field. Yo
 The `readFieldsByCollection` method from the Directus SDK allows you to query the fields of a collection and dynamically generate fully validated forms in Nuxt.
 
 From here you could expand the example to include more complex validation rules, custom form elements, an edit form or dynamically display and handle relational data.
+
+[You can find a repository with the finished code on GitHub](https://github.com/directus-labs/directus-guest-authoring/tree/master/018-directus-forms).

@@ -224,7 +224,7 @@ When creating your data model for links to other items from the same or differen
     ```
 
     <video controls="true">
-      <source src="/img/cd5bd4f3-02f1-46be-b82e-570052483379.mp4" type="video/mp4">
+      <source src="/docs/img/cd5bd4f3-02f1-46be-b82e-570052483379.mp4" type="video/mp4">
     </video>
 
     Fields for page, post, and external url are only visible when the related type is selected so there is no confusion about which fields to enter data for. And it also allows you to use that relationship to fetch the proper slug or permalink for posts and pages.

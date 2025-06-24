@@ -6,7 +6,7 @@ navigation:
 ---
 :partial{content="config-env-vars"}
 
-Directus offers a variety of authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML. 
+Directus offers a variety of authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML.
 
 | Variable               | Description                                                                              | Default Value |
 | ---------------------- | ---------------------------------------------------------------------------------------- | ------------- |
@@ -23,8 +23,8 @@ For each of the storage locations listed, you must provide the following configu
 
 Based on your configured drivers, you must also provide additional variables, where `<PROVIDER>` is the capitalized name of the item in the `AUTH_PROVIDERS` value.
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
-**PUBLIC_URL**  
+::callout{icon="material-symbols:warning-rounded" color="warning"}
+**PUBLIC_URL**
 `oauth2`, `openid`, `ldap`, and `saml` drivers rely on the `PUBLIC_URL` variable for redirecting. Ensure the variable is correctly configured.
 ::
 
@@ -69,16 +69,16 @@ Whereas in the following example the OAuth user will be assigned the role `direc
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "admin": "directus_admin_role_id", "developer": "directus_developer_role_id" }"
 ```
-## OpenID
+## OpenID Connect
 
-OpenID is an authentication protocol built on OAuth 2.0, and should be preferred over standard OAuth 2.0 where possible.
+OpenID Connect (OIDC) is an authentication protocol built on OAuth 2.0, and should be preferred over standard OAuth 2.0 where possible.
 
 | Variable                                    | Description                                                                                               | Default Value          |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------- |
 | `AUTH_<PROVIDER>_CLIENT_ID`                 | Client identifier for the external service.                                                               |                        |
 | `AUTH_<PROVIDER>_CLIENT_SECRET`             | Client secret for the external service.                                                                   |                        |
 | `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                   | `openid profile email` |
-| `AUTH_<PROVIDER>_ISSUER_URL`                | OpenID `.well-known` discovery document URL of the external service.                                      |                        |
+| `AUTH_<PROVIDER>_ISSUER_URL`                | OIDC `.well-known` discovery document URL of the external service.                                      |                        |
 | `AUTH_<PROVIDER>_IDENTIFIER_KEY`            | User profile identifier key <sup>[1]</sup>.                                                               | `sub`<sup>[2]</sup>    |
 | `AUTH_<PROVIDER>_ALLOW_PUBLIC_REGISTRATION` | Automatically create accounts for authenticating users.                                                   | `false`                |
 | `AUTH_<PROVIDER>_REQUIRE_VERIFIED_EMAIL`    | Require created users to have a verified email address.                                                   | `false`                |
@@ -93,15 +93,15 @@ OpenID is an authentication protocol built on OAuth 2.0, and should be preferred
 
 <sup>[1]</sup> When authenticating, Directus will match the identifier value from the external user profile to a Directus users "External Identifier".
 
-<sup>[2]</sup> `sub` represents a unique user identifier defined by the OpenID provider. For users not relying on `PUBLIC_REGISTRATION` it is recommended to use a human-readable identifier, such as `email`.
+<sup>[2]</sup> `sub` represents a unique user identifier defined by the OIDC provider. For users not relying on `PUBLIC_REGISTRATION` it is recommended to use a human-readable identifier, such as `email`.
 
-<sup>[3]</sup> As Directus only allows one role per user, evaluating stops after the first match. An OpenID user that is member of both e.g. developer and admin groups may be assigned different roles depending on the order that you specify your role-mapping in: In the following example said OpenID user will be assigned the role `directus_developer_role_id`
+<sup>[3]</sup> As Directus only allows one role per user, evaluating stops after the first match. An OIDC user that is member of both e.g. developer and admin groups may be assigned different roles depending on the order that you specify your role-mapping in: In the following example said OIDC user will be assigned the role `directus_developer_role_id`
 
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "developer": "directus_developer_role_id", "admin": "directus_admin_role_id" }"
 ```
 
-Whereas in the following example the OpenID user will be assigned the role `directus_admin_role_id`:
+Whereas in the following example the OIDC user will be assigned the role `directus_admin_role_id`:
 
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "admin": "directus_admin_role_id", "developer": "directus_developer_role_id" }"
@@ -189,7 +189,7 @@ AUTH_FACEBOOK_LABEL="Facebook"
 ```
 
 ::callout{icon="material-symbols:info-outline"}
-**Multiple Providers**  
+**Multiple Providers**
 Directus users can only authenticate using the auth provider they are created with. It is not possible to authenticate with multiple providers for the same user.
 ::
 
@@ -311,11 +311,11 @@ AUTH_GITHUB_ACCESS_URL="https://github.com/login/oauth/access_token"
 AUTH_GITHUB_PROFILE_URL="https://api.github.com/user"
 ```
 
-::: warning Notice
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 
 If the authenticating user has not marked their email as "public" in GitHub, it will not be accessible by Directus.
 
-:::
+::
 
 #### Twitter
 
@@ -330,7 +330,7 @@ AUTH_TWITTER_IDENTIFIER_KEY="data.username"
 AUTH_TWITTER_SCOPE="tweet.read users.read"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 
 Twitter does not provide "email" so we define "username" as the identifier.
 
@@ -350,7 +350,7 @@ AUTH_AWS_IDENTIFIER_KEY="email"
 AUTH_AWS_EMAIL_KEY="email"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 **Metadata**
 
 - AWS IAM Docs are not that verbose. Users have found that the `SP_metadata` environment variable can be supplied empty.
@@ -388,7 +388,7 @@ AUTH_GOOGLE_IDENTIFIER_KEY="email"
 AUTH_GOOGLE_EMAIL_KEY="email"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 **SP Metadata**
 
 - The `entityID` should be the same as the one configured in Google in the `EntityDescriptor` tag

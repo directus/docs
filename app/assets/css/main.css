@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import "@nuxt/ui-pro";
+
+@source "../../../content/**/*";
+
+
+@theme static {
+	--font-sans: 'Inter', sans-serif;
+	--font-display: 'Poppins', sans-serif;
+
+  --color-purple-50: #f3f2ff;
+  --color-purple-100: #e9e8ff;
+  --color-purple-200: #d6d4ff;
+  --color-purple-300: #b8b1ff;
+  --color-purple-400: #9585ff;
+  --color-purple-500: #6644ff;
+  --color-purple-600: #6030f7;
+  --color-purple-700: #531ee3;
+  --color-purple-800: #4418bf;
+  --color-purple-900: #39169c;
+  --color-purple-950: #210b6a;
+
+
+  --color-pink-50: #fef1fa;
+  --color-pink-100: #fee5f6;
+  --color-pink-200: #feccee;
+  --color-pink-300: #ff99dd;
+  --color-pink-400: #fe68c9;
+  --color-pink-500: #f83cb0;
+  --color-pink-600: #e81a8f;
+  --color-pink-700: #ca0c72;
+  --color-pink-800: #a70d5e;
+  --color-pink-900: #8b1050;
+  --color-pink-950: #55022d;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+button,
+[role="button"] {
+	cursor: pointer;
+}
+
+:disabled {
+	cursor: default;
+}
+
+
+html {
+	scroll-behavior: smooth;
+}

@@ -234,4 +234,4 @@ You should have two Directus projects - this guide will refer to them as the "ba
     applying the diffs without this safeguard. In case the schema has been changed in the meantime, the diff must be
     regenerated.
     ::
-  ::
+::

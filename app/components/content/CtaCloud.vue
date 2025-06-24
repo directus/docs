@@ -12,9 +12,8 @@ const { cta } = useAppConfig();
 			<span class="text-white text-sm mt-2 block">{{ cta.cloud.description }}</span>
 		</span>
 		<UButton
-			class="block shrink-0"
+			class="block shrink-0 bg-default text-default hover:bg-default/80"
 			size="lg"
-			color="white"
 		>{{ cta.cloud.cta }}</UButton>
 	</NuxtLink>
 </template>
