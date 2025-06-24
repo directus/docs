@@ -10,7 +10,7 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-	<FieldGroup>
+	<ProseFieldGroup>
 		<ApiParamsAnyOf
 			v-if="param.anyOf"
 			:params="param.anyOf"
@@ -28,5 +28,5 @@ withDefaults(defineProps<{
 			v-else
 			:param="param"
 		/>
-	</FieldGroup>
+	</ProseFieldGroup>
 </template>

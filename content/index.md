@@ -25,7 +25,7 @@ navigation: false
   ---
   label: Hosted Demo
   ---
-  Try our [hosted demo project](https://directus.pizza/?utm_source=directus-docs&utm_campaign=docs-home). This is a public demo project that is occasionally reset but please don't input sensitive data.
+  Try our [hosted demo project](https://sandbox.directus.io). This is a public demo project that is occasionally reset but please don't input sensitive data.
   ::::
 :::
 
@@ -36,14 +36,13 @@ navigation: false
 
 ## Getting Started
 
-::shiny-grid
+::shiny-grid{class="lg:grid-cols-2"}
   :::shiny-card
   ---
   title: Platform Overview
   description: Get starting with using Directus.
   icon: simple-icons:directus
   to: /getting-started/overview
-  class: col-span-6
   ---
   :::
 
@@ -53,19 +52,17 @@ navigation: false
   description: Learn to use Directus in our video series.
   icon: heroicons-outline:play
   to: https://directus.io/tv/directus-academy
-  class: col-span-6
   ---
   :::
 ::
 
 ## Features
 
-::shiny-grid
+::shiny-grid{class="lg:grid-cols-2"}
   :::shiny-card
   ---
   title: Data Engine
   description: APIs and developer tools for your data.
-  class: col-span-6
   ---
   :product-link{product="connect"} :product-link{product="realtime"} :product-link{product="auth"} :product-link{product="automate"}
   :::
@@ -74,7 +71,6 @@ navigation: false
   ---
   title: Data Studio
   description: A data web app your whole team will love.
-  class: col-span-6
   ---
   :product-link{product="explore"} :product-link{product="editor"} :product-link{product="insights"} :product-link{product="files"}
   :::
@@ -89,7 +85,6 @@ navigation: false
   description: Learn to connect with Directus.
   icon: heroicons-outline:star
   to: '/getting-started/use-the-api'
-  class: col-span-4
   ---
   :::
 
@@ -99,7 +94,6 @@ navigation: false
   description: Learn how to use the Directus API.
   icon: heroicons-outline:play
   to: '/api'
-  class: col-span-4
   ---
   :::
 
@@ -109,7 +103,6 @@ navigation: false
   description: Official JavaScript and TypeScript library.
   icon: heroicons-outline:code
   to: '/guides/connect/sdk'
-  class: col-span-4
   ---
   :::
 ::
@@ -123,7 +116,6 @@ navigation: false
   description: Learn how to build a website using Directus as a Headless CMS using various frameworks.
   icon: material-symbols:web
   to: '/tutorials/getting-started'
-  class: col-span-4
   ---
   :::
 
@@ -133,7 +125,6 @@ navigation: false
   description: Learn from a variety of different usecases you can build using Directus.
   icon: heroicons-outline:wrench
   to: '/tutorials/projects'
-  class: col-span-4
   ---
   :::
 
@@ -143,7 +134,6 @@ navigation: false
   description: Small concepts and techniques to get the most from Directus.
   icon: heroicons-outline:light-bulb
   to: '/tutorials/tips-and-tricks'
-  class: col-span-4
   ---
   :::
 
@@ -153,7 +143,6 @@ navigation: false
   description: Techniques and considerations when migrating from other platforms to Directus.
   icon: carbon:migrate
   to: '/tutorials/migration'
-  class: col-span-4
   ---
   :::
 
@@ -163,7 +152,6 @@ navigation: false
   description: Learn to build extensions from examples that amplify Directus' functionality.
   icon: heroicons-outline:puzzle
   to: '/tutorials/extensions'
-  class: col-span-4
   ---
   :::
 
@@ -173,11 +161,10 @@ navigation: false
   description: Learn to set up common patterns to build complex workflows and integrations.
   icon: material-symbols:flowchart-outline
   to: '/tutorials/workflows'
-  class: col-span-4
   ---
   :::
 
-  :::callout{icon="heroicons-outline:light-bulb" to="/tutorials" class="col-span-8"}
+  :::callout{icon="heroicons-outline:light-bulb" to="/tutorials" class="md:col-span-2 lg:col-span-3"}
   See All Tutorials
   :::
 ::
@@ -191,7 +178,6 @@ navigation: false
   description: See the complete and latest updates and release notes for Directus.
   icon: simple-icons:github
   to: 'https://github.com/directus/directus/releases'
-  class: col-span-4
   ---
   :::
 
@@ -201,7 +187,6 @@ navigation: false
   description: Breaking changes may require action on your part before upgrading.
   icon: heroicons-outline:exclamation-circle
   to: '/releases/breaking-changes'
-  class: col-span-4
   ---
   :::
 
@@ -211,7 +196,6 @@ navigation: false
   description: A monthly summary of what's new from the Directus team.
   icon: heroicons-outline:document-text
   to: '/releases/changelog'
-  class: col-span-4
   ---
   :::
 ::
@@ -225,7 +209,6 @@ navigation: false
   description: Interact with Directus using Python.
   icon: simple-icons:python
   to: 'https://pypi.org/project/directus-sdk-py/'
-  class: col-span-4
   ---
   :::
 
@@ -235,7 +218,6 @@ navigation: false
   description: Interact with Directus using Go.
   icon: simple-icons:go
   to: 'https://pkg.go.dev/github.com/altipla-consulting/directus-go#section-readme'
-  class: col-span-4
   ---
   :::
 
@@ -245,7 +227,6 @@ navigation: false
   description: Interact with Directus using Dart.
   icon: simple-icons:dart
   to: 'https://github.com/apstanisic/directus-dart'
-  class: col-span-4
   ---
   :::
 
@@ -255,7 +236,6 @@ navigation: false
   description: Easily connect your Nuxt application to your Directus project.
   icon: simple-icons:nuxtdotjs
   to: 'https://nuxt.com/modules/directus'
-  class: col-span-4
   ---
   :::
 
@@ -265,7 +245,6 @@ navigation: false
   description: Community-maintained Helm Charts repository for Directus.
   icon: simple-icons:helm
   to: 'https://github.com/directus-labs/helm-chart'
-  class: col-span-4
   ---
   :::
 
@@ -275,11 +254,10 @@ navigation: false
   description: Interact with Directus using PHP.
   icon: simple-icons:php
   to: 'https://github.com/alantiller/directus-php-sdk'
-  class: col-span-4
   ---
   :::
 
-  :::callout{icon="material-symbols:lightbulb-2-outline" class="col-span-8"}
+  :::callout{icon="material-symbols:lightbulb-2-outline" class="lg:col-span-3"}
   These are built and maintained by our awesome community. If you are building tooling and want to include it here, please open a [pull request on GitHub](https://github.com/directus/docs).
   :::
 ::
@@ -293,7 +271,6 @@ navigation: false
   description: Configure Directus at an advanced level.
   icon: heroicons-outline:cog
   to: '/configuration/general'
-  class: col-span-4
   ---
   :::
 
@@ -303,7 +280,6 @@ navigation: false
   description: Learn to build Extensions for Directus.
   icon: heroicons-outline:puzzle
   to: '/guides/extensions/overview'
-  class: col-span-4
   ---
   :::
 
@@ -313,7 +289,6 @@ navigation: false
   description: Learn to self-host Directus in your infrastructure.
   icon: heroicons-outline:cloud
   to: '/self-hosting/overview'
-  class: col-span-4
   ---
   :::
 ::

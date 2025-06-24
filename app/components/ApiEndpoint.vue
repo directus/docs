@@ -2,11 +2,12 @@
 import type {
 	OpenAPIObject,
 	RequestBodyObject,
-} from "openapi3-ts/oas30";
+	SchemaObject,
+} from 'openapi3-ts/oas30';
 import type {
 	DerefedOperationObject,
 	FlattenedOperationObject,
-} from "~/types";
+} from '~/types';
 
 const openapi = inject<OpenAPIObject>('openapi')!;
 
@@ -62,21 +63,39 @@ const responseBodyExample = computed(() => {
 
 	return null;
 });
+
+type StatusCodeDescriptions = {
+	[key: number]: string;
+};
+
+const statusCodeDescriptions: StatusCodeDescriptions = {
+	200: 'OK',
+	201: 'Created',
+	204: 'No Content',
+	400: 'Bad Request',
+	401: 'Unauthorized',
+	403: 'Forbidden',
+	404: 'Not Found',
+	422: 'Unprocessable Content',
+	429: 'Too Many Requests',
+	500: 'Internal Server Error',
+	503: 'Service Unavailable',
+};
 </script>
 
 <template>
 	<UPageBody
 		:key="operation.method + operation.path"
-		class="lg:flex gap-10 items-start border-b last:border-0 border-gray-200 dark:border-gray-800"
+		class="lg:flex gap-10 items-start border-b border-default last:border-0 w-full"
 		:ui="{
-			prose: 'prose prose-primary dark:prose-invert max-w-7xl',
+			prose: 'prose prose-primary dark:prose-invert',
 		}"
 		prose
 	>
 		<div class="grow shrink-0 basis-6/12">
 			<ProseH2
 				:id="slugify(operation.summary!)"
-				class="endpoint-title"
+				class="endpoint-title sticky pt-2 pb-2 top-16 bg-default/75 backdrop-blur z-10 w-full  border-b border-default -mx-2 px-2"
 			>
 				{{ operation.summary }}
 			</ProseH2>
@@ -86,25 +105,32 @@ const responseBodyExample = computed(() => {
 			</ProseP>
 
 			<div
-				v-if="operation.parameters"
+				v-if="operation.parameters && operation.parameters.length > 0"
 				class="mb-12 last:mb-0"
 			>
-				<ProseH4 :id="slugify(operation.summary!) + '-params'">
+				<ProseH4
+					:id="slugify(operation.summary!) + '-params'"
+				>
 					Query Parameters
 				</ProseH4>
-				<FieldGroup>
-					<Field
+				<ProseFieldGroup>
+					<ProseField
 						v-for="param of operation.parameters"
 						:key="param.name"
 						:name="param.name"
-						:type="param.schema?.type"
+						:type="(param.schema as SchemaObject)?.type"
+						:ui="{
+							root: 'mb-0',
+							description: 'mt-2',
+						}"
+						class="[&_p]:my-0"
 					>
 						<MDC
 							v-if="param.description"
 							:value="param.description"
 						/>
-					</Field>
-				</FieldGroup>
+					</ProseField>
+				</ProseFieldGroup>
 			</div>
 
 			<div
@@ -120,28 +146,59 @@ const responseBodyExample = computed(() => {
 				<ApiParams :param="requestBodySchema" />
 			</div>
 
-			<div
-				v-for="responseBodyObject, code, index in responseBodyObjects"
-				:key="code"
-				class="mb-12 last:mb-0"
-			>
-				<ProseH4 :id="slugify(operation.summary!) + '-' + responseBodyObject.code + '-response'">
-					{{code}} Response
+			<div class="mb-12 last:mb-0">
+				<ProseH4
+					id="responses"
+					class="mt-12"
+				>
+					Responses
 				</ProseH4>
-				<ProseP v-if="responseBodyObject.description">
-					{{ responseBodyObject.description }}
-				</ProseP>
-				<ApiParams v-if="flattenedResponseBodySchemas[index]" :param="flattenedResponseBodySchemas[index]" />
+				<UTabs
+					variant="link"
+					:items="Object.keys(responseBodyObjects).map((code, index) => ({
+						label: code,
+						meta: responseBodyObjects[code],
+						index,
+					}))"
+					:unmount-on-hide="false"
+				>
+					<template #default="{ item }">
+						<UBadge
+							variant="soft"
+							class="font-mono"
+							color="neutral"
+						>
+							<UChip
+								standalone
+								inset
+								:color="item.label.toString().startsWith('2') ? 'success' : 'error'"
+							/>
+							{{ item.label }} {{ statusCodeDescriptions[Number(item.label)] || '' }}
+						</UBadge>
+					</template>
+					<template
+						#content="{ item }"
+					>
+						<div>
+							{{ item.meta.description }}
+						</div>
+						<ApiParams
+							v-if="flattenedResponseBodySchemas[item.index]"
+							:param="flattenedResponseBodySchemas[item.index]!"
+						/>
+					</template>
+				</UTabs>
 			</div>
 		</div>
-
 		<div class="grow sticky top-16 w-full">
 			<MDC
 				v-if="'x-codeSamples' in operation"
+				:key="`code-samples-${operation.method}-${operation.path}`"
 				:value="codeSamplesMd(operation)"
 			/>
 			<MDC
 				v-if="responseBodyExample"
+				:key="`response-example-${operation.method}-${operation.path}`"
 				:value="preMd('json', 'Response Example', responseBodyExample)"
 			/>
 		</div>
