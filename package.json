@@ -10,7 +10,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
-		"@directus/openapi": "0.1.15",
+		"@directus/openapi": "0.2.0",
 		"@docsearch/css": "3.9.0",
 		"@docsearch/js": "3.9.0",
 		"@directus/sdk": "^19.1.0",
