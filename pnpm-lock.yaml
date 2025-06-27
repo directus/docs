@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@directus/openapi':
-        specifier: 0.1.15
-        version: 0.1.15
+        specifier: 0.2.1
+        version: 0.2.1
       '@directus/sdk':
         specifier: ^19.1.0
         version: 19.1.0
@@ -401,8 +401,8 @@ packages:
     resolution: {integrity: sha512-Y6+WUMsTFWE5jb20IFP4YGa5IrGY/+a/FbOSjDF/wz9gepU2hwCYSXRHP/vPwBvwcY3SVMASt4yXxbXNXigmZQ==}
     engines: {node: '>=18'}
 
-  '@directus/openapi@0.1.15':
-    resolution: {integrity: sha512-QGM3dWVRxpLhA2qi83MLNewxHIjY5PFftdCnssEpgD5IEAO1+s9z2F7zpEtMOKLcnRoH4H2+ttKN6bKlbV+bIw==}
+  '@directus/openapi@0.2.1':
+    resolution: {integrity: sha512-GqOIjn2eUX8iWP3lI0M11FKLMi/HfgD2wo9td+VHLvtJJYRB3Xvv7uACIf+qvfrCH6jTV0nBA1fP0hkR6sUMNg==}
 
   '@directus/sdk@19.1.0':
     resolution: {integrity: sha512-Nqem9BsvvGyVtAa69mGPtoMoMVkZxdIREdsWvvTzNF4/1XqaFfEiFL7PhtUNfc46/Nufus2+QUKYQbNiAWe3ZA==}
@@ -6758,7 +6758,7 @@ snapshots:
       gonzales-pe: 4.3.0
       node-source-walk: 7.0.1
 
-  '@directus/openapi@0.1.15': {}
+  '@directus/openapi@0.2.1': {}
 
   '@directus/sdk@19.1.0': {}
 
