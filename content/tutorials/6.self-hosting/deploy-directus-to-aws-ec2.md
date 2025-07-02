@@ -2,6 +2,8 @@
 id: aa9c315b-633a-4e58-aef3-ecf1161d8f55
 slug: deploy-directus-to-aws-ec2
 title: Deploy Directus to AWS EC2
+technologies:
+  - aws
 authors:
   - name: Trust Jamin
     title: Guest Author

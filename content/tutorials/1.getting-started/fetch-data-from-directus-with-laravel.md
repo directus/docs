@@ -2,6 +2,8 @@
 id: 9a8f3c14-f969-4d2a-9b00-5b22f5dcdc33
 slug: fetch-data-from-directus-with-laravel
 title: Fetch Data from Directus with Laravel
+technologies:
+    - laravel
 authors:
   - name: Ekekenta Clinton
     title: Guest Author

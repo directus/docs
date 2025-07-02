@@ -1,6 +1,8 @@
 ---
 slug: implementing-multilingual-content-using-directus-and-nuxt
 title: Implementing Multilingual Content using Directus and Nuxt
+technologies:
+  - nuxt
 authors:
   - name: Craig Harman
     title: Guest Author

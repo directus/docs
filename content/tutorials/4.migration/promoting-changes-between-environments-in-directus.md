@@ -72,11 +72,11 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
 
-    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
-    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest()).with(authentication());
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest()).with(authentication());;
 
-    await baseDirectus.login('base_email', 'base_password');
-    await targetDirectus.login('target_email', 'target_password');
+    await baseDirectus.login({ email: 'base_email', password: 'base_password' });
+    await targetDirectus.login({ email: 'target_email', password: 'target_password' });
 
     async function main() {}
 
@@ -88,8 +88,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
     At the bottom of `index.js`, create a `getSnapshot()` function:
 
     ```js
-    async function getSnapshot() {
-      return await baseDirectus.request(schemaSnapshot());
+    function getSnapshot() {
+      return baseDirectus.request(schemaSnapshot());
     }
     ```
 
@@ -112,8 +112,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
     At the bottom of `index.js`, create a `getDiff()` function which accepts a `snapshot` parameter:
 
     ```js
-    async function getDiff(snapshot) {
-      return await targetDirectus.request(schemaDiff(snapshot));
+    function getDiff(snapshot) {
+      return targetDirectus.request(schemaDiff(snapshot));
     }
     ```
 
@@ -135,8 +135,8 @@ You should have two Directus projects - this guide will refer to them as the "ba
     At the bottom of `index.js`, create a `applyDiff()` function which accepts a `diff` parameter:
 
     ```js
-    async function applyDiff(diff) {
-      return await targetDirectus.request(schemaApply(diff));
+    function applyDiff(diff) {
+      return targetDirectus.request(schemaApply(diff));
     }
     ```
 
@@ -172,11 +172,11 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     const TARGET_DIRECTUS_URL = 'https://your-target-project.directus.app';
 
-    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest());
-    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest());
+    const baseDirectus = createDirectus(BASE_DIRECTUS_URL).with(rest()).with(authentication());;
+    const targetDirectus = createDirectus(TARGET_DIRECTUS_URL).with(rest()).with(authentication());;
 
-    await baseDirectus.login('base_email', 'base_password');
-    await targetDirectus.login('target_email', 'target_password');
+    await baseDirectus.login({ email: 'base_email', password: 'base_password' });
+    await targetDirectus.login({ email: 'target_email', password: 'target_password' });
 
     async function main() {
       const snapshot = await getSnapshot();
@@ -186,16 +186,16 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     main();
 
-    async function getSnapshot() {
-      return await baseDirectus.request(schemaSnapshot());
+    function getSnapshot() {
+      return baseDirectus.request(schemaSnapshot());
     }
 
-    async function getDiff(snapshot) {
-      return await targetDirectus.request(schemaDiff(snapshot));
+    function getDiff(snapshot) {
+      return targetDirectus.request(schemaDiff(snapshot));
     }
 
-    async function applyDiff(diff) {
-      return await targetDirectus.request(schemaApply(diff));
+    function applyDiff(diff) {
+      return targetDirectus.request(schemaApply(diff));
     }
     ```
     ::
@@ -213,7 +213,7 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     This section will create a "diff" that describes all differences between your source and target project's data models.
 
-    Perform a `POST` request to `/schema/snapshot?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of JSON response from the snapshot.
+    Perform a `POST` request to `/schema/diff?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of JSON response from the snapshot.
 
     Copy the JSON response with your data model diff.
 
@@ -234,4 +234,4 @@ You should have two Directus projects - this guide will refer to them as the "ba
     applying the diffs without this safeguard. In case the schema has been changed in the meantime, the diff must be
     regenerated.
     ::
-  ::
+::

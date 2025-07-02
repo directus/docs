@@ -2,6 +2,8 @@
 id: fbb96512-b46a-4a0c-bb39-b7d11ec0dc7f
 slug: fetch-data-from-directus-in-ios-with-swift
 title: Fetch Data from Directus in iOS with Swift
+technologies:
+  - swift
 authors:
   - name: Harshpal Bhirth
     title: Guest Author

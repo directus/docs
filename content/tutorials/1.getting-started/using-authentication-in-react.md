@@ -1,6 +1,8 @@
 ---
 slug: using-authentication-in-react
 title: Using Authentication in React
+technologies:
+  - react
 authors:
   - name: Kumar Harsh
     title: Guest Author
@@ -407,7 +409,7 @@ const Login = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
 
     const onLogin = async (data) => {
-        const result = await client.login(data.email, data.password)
+        const result = await client.login({ email: data.email, password: data.password })
         localStorage.setItem('directus_auth', JSON.stringify(result))
         navigate("/");
         setIsAuthenticated(true);
@@ -454,7 +456,7 @@ Now, you can use the `onLogin` function in the `Login` component to log in a use
 // src/routes/Login.jsx
 
 const onLogin = async (data) => {
-   const result = await client.login(data.email, data.password)
+   const result = await client.login({ email: data.email, password: data.password })
    localStorage.setItem('directus_auth', JSON.stringify(result))
    navigate("/");
    setIsAuthenticated(true);
@@ -593,8 +595,8 @@ To implement the log out functionality, you need to add another function to your
 import { logout } from '@directus/sdk';
 
 export const logoutUser = async () => {
-    const refreshToken = (JSON.parse(localStorage.getItem('directus_auth')) || {}).refresh_token;
-    await client.request(logout(refreshToken, "json"));
+    const refresh_token = (JSON.parse(localStorage.getItem('directus_auth')) || {}).refresh_token;
+    await client.request(logout({ refresh_token, mode: "json" }));
     localStorage.removeItem('directus_auth');
 }
 ```
@@ -643,10 +645,10 @@ export const refreshAuthToken = async () => {
     await client.refresh();
 
     // refresh http request using a cookie
-    await client.request(refresh('cookie'));
+    await client.request(refresh({ mode: 'cookie' }));
 
     // refresh http request using json
-    await client.request(refresh('json', refresh_token));
+    await client.request(refresh({ mode: 'json', refresh_token }));
 }
 ```
 

@@ -2,6 +2,8 @@
 id: 418e29e7-1a2f-44a3-82ad-99dc118cccd0
 slug: build-a-multi-user-chat-with-vue-js-and-directus-realtime
 title: Build a Multi-User Chat with Vue.js and Directus Realtime
+technologies:
+  - vue
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
@@ -344,7 +346,7 @@ This guide covers authentication, item creation, and subscription using WebSocke
       const loginSubmit = (event) => {
         const email = event.target.elements.email.value;
         const password = event.target.elements.password.value;
-        client.login(email, password);
+        client.login({ email, password });
       };
 
       async function subscribe(event) {

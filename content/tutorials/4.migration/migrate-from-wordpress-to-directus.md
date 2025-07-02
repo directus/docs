@@ -2,6 +2,8 @@
 id: 5a282783-0fd8-4a2c-9c4c-47b00c5ad3d1
 slug: migrate-from-wordpress-to-directus
 title: Migrate from WordPress to Directus
+technologies:
+  - wordpress
 authors:
   - name: Muhammed Ali
     title: Guest Author
@@ -231,11 +233,11 @@ api_key = "your-api-token"
 # Uncomment the line below to run the function with your actual Directus URL and API key
 import_posts_to_directus(json_file_path, directus_url, api_key)
 ```
-::: info Replace Data
+::callout{icon="material-symbols:info-outline" title="Replace Data"}
 
 Note: Replace `https://your.directus.app` and `your-api-token` with the appropriate details.
 
-:::
+::
 The code above:
 1. Opens and reading a JSON file specified by `json_file_path`. It expects the file to contain an array of posts, with each post represented as a dictionary. These dictionaries must at least include keys for `"Title"`, `"Content"`, and `"Date"`.
 2. Sets up HTTP headers for the request to the Directus API, including authorization via a Bearer token (specified by `api_key`) and setting `"Content-Type"` to `"application/json"` to indicate that the payload will be in JSON format.

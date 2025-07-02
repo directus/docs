@@ -2,6 +2,8 @@
 id: 810c2e77-402d-486f-a37a-159731b90767
 slug: configure-okta-as-a-single-sign-on-provider
 title: Configure Okta as a Single Sign-On Provider
+technologies:
+  - okta
 authors:
   - name: Maksym Yakubov
     title: Guest Author

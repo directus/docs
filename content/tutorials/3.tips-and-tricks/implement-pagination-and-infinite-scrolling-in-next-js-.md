@@ -2,6 +2,8 @@
 id: 2b0a0315-d7f2-4dc9-9d63-8f853eb81a09
 slug: implement-pagination-and-infinite-scrolling-in-next-js-
 title: Implement Pagination and Infinite Scrolling in Next.js
+technologies:
+  - nextjs
 authors:
   - name: Taminoturoko Briggs
     title: Guest Author

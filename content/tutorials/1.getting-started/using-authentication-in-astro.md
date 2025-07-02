@@ -1,6 +1,8 @@
 ---
 slug: using-authentication-in-astro
 title: Using Authentication in Astro
+technologies:
+  - astro
 authors:
   - name: Carmen Huidobro
     title: Developer Educator
@@ -214,7 +216,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     const response = await client.request(registerUser(email, password, { first_name: firstName, last_name: lastName }));
 
     // Auto-login the user if registration is successful
-    const loginResponse = await client.login(email, password);
+    const loginResponse = await client.login({ email, password });
     if (loginResponse.access_token) {
     cookies.set('directus_access_token', loginResponse.access_token);
   }
@@ -273,7 +275,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   }
   try {
 
-    const response = await client.login(email, password);
+    const response = await client.login({ email, password });
       if (response.access_token) {
         cookies.set('directus_session_token', response.access_token, { sameSite: 'strict', path: '/', secure: true });
       }

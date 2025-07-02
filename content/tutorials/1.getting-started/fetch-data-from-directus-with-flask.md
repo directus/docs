@@ -2,6 +2,8 @@
 id: c8562b3b-fbe0-4fd5-ade1-2d9a9e986f6d
 slug: fetch-data-from-directus-with-flask
 title: Fetch Data from Directus with Flask
+technologies:
+  - flask
 authors:
   - name: Guilherme Souza
     title: Guest Author

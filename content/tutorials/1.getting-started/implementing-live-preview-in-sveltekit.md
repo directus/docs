@@ -1,6 +1,9 @@
 ---
 slug: implementing-live-preview-in-sveltekit
 title: Implementing Live Preview in SvelteKit
+technologies:
+  - sveltekit
+  - directus
 authors:
   - name: Temitope Oyedelde
     title: Guest Author

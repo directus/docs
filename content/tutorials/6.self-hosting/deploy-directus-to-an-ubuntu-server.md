@@ -2,6 +2,8 @@
 id: 5a48edd1-f8d2-499d-8f1a-6a6b378c65d9
 slug: deploy-directus-to-an-ubuntu-server
 title: Deploy Directus to an Ubuntu Server
+technologies:
+  - ubuntu
 authors:
   - name: Yusuf Akorede
     title: Guest Author
@@ -129,11 +131,11 @@ On the initial run, Docker will fetch the necessary image from the registry befo
 
 Your application should now be accessible at `http://your_server_ip:8055`.
 
-:::info `SQLITE_CANTOPEN` Error
+::callout{icon="material-symbols:info-outline" title="`SQLITE_CANTOPEN` Error"}
 
 If you encounter any error e.g `SQLITE_CANTOPEN: unable to open database file`, it is probably due to permission issues. You can learn more about [this issue here](https://github.com/directus/directus/discussions/17823#discussioncomment-5395649).
 
-:::
+::
 
 ## Running the Docker Container as a Background Service
 
@@ -141,11 +143,11 @@ Running your application using `sudo docker compose up` will stop it running whe
 
 To ensure your application runs in the background and restarts automatically, you can create a systemd service.
 
-:::info What is Systemd?
+::callout{icon="material-symbols:info-outline" title="What is Systemd?"}
 
 Systemd is a system and service manager for Linux operating systems. It provides a standard process for controlling the startup, management, and monitoring of services and applications. It is usually defined by a configuration file usually ending with the _.service_ extension.
 
-:::
+::
 
 ### Create a Systemd Service File
 
@@ -171,11 +173,11 @@ ExecStop=/usr/bin/docker compose down
 WantedBy=multi-user.target
 ```
 
-:::info
+::callout{icon="material-symbols:info-outline" title="Navigation"}
 
 You can get the full path to your directory by running the command `pwd` in the project directory on your server and copying the output.
 
-:::
+::
 
 Save the file and exit the editor.
 
@@ -322,4 +324,4 @@ After the setup is complete, visit your Directus application using `https://dire
 
 This tutorial guided you through hosting a Directus application on an Ubuntu server, covering essential steps such as Docker setup, firewall configuration, and SSL encryption. By following these instructions, you have ensured a secure, accessible, and continuously running environment for your Directus project.
 
-If you have any questions or encounter difficulties, don't hesitate to revisit this guide or seek support from the [Directus community Discord server](https://directus.chat). Happy hosting!
+If you have any questions or encounter difficulties, don't hesitate to revisit this guide or seek support from the [community platform](https://community.directus.io). Happy hosting!

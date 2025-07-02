@@ -2,6 +2,8 @@
 id: 20e049fb-529f-4a71-8a34-1e4e61d34af1
 slug: validate-phone-numbers-with-twilio-in-a-custom-hook
 title: Validate Phone Numbers with Twilio in a Custom Hook
+technologies:
+  - twilio
 authors:
   - name: Tim Butterfield
     title: Guest Author

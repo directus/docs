@@ -2,6 +2,8 @@
 id: e974c49f-cd78-4cf0-8cfe-72f650346c80
 slug: build-a-notebook-chrome-extension-with-directus-auth
 title: Build a Notebook Chrome Extension with Directus Auth
+technologies:
+  - chrome
 authors:
   - name: Jay Bharadia
     title: Guest Author
@@ -255,7 +257,7 @@ Create new file `src/views/login.vue`
         methods: {
             async login() {
                 try {
-                    await this.directus.login(this.email, this.password);
+                    await this.directus.login({ email: this.email, password: this.password });
                     this.$router.push({ name: "home" });
                 } catch ({ errors }) {
                     console.log("🚀 ~ login ~ errors:", errors);

@@ -2,6 +2,8 @@
 id: 95197ebe-fc70-4f80-a053-a894f3b0b00a
 slug: build-a-testimonial-widget-with-sveltekit-and-directus
 title: Build a Testimonial Widget with SvelteKit and Directus
+technologies:
+  - sveltekit
 authors:
   - name: Quadri Sheriff
     title: Guest Author
@@ -556,4 +558,4 @@ Update your `./src/routes/+page.svelte` to the following to add the create testi
 
 In this guide, you have set up a testimonial widget in SvelteKit using Directus. It allows for adding new testimonials to Directus and displaying existing testimonials in a carousel.
 
-If you have any questions, feel free to drop by our [Discord](https://directus.chat/) server.
+If you have any questions, feel free to drop by our [community platform](https://community.directus.io/).

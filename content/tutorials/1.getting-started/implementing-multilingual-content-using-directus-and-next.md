@@ -1,6 +1,8 @@
 ---
 slug: implementing-multilingual-content-using-directus-and-next
 title: Implementing Multilingual Content using Directus and Next.js
+technologies:
+    - nextjs
 authors:
   - name: Kumar Harsh
     title: Guest Author
