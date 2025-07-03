@@ -11,7 +11,7 @@ description: Configuration for extensions and the Directus Marketplace.
 | `EXTENSIONS_MUST_LOAD`                 | Exit the server when any API extension fails to load.                           | `false`        |
 | `EXTENSIONS_AUTO_RELOAD`<sup>[2], [3]</sup> | Automatically reload extensions when they have changed.                         | `false`        |
 | `EXTENSIONS_CACHE_TTL`<sup>[4]</sup>   | How long custom app Extensions get cached by browsers.                          |                |
-| `EXTENSIONS_LOCATION`<sup>[5]</sup>    | What configured storage location to use for extensions.                         |                |
+| `EXTENSIONS_LOCATION`<sup>[5], [6]</sup>    | Key of the configured [storage locations](/configuration/files) to load extensions from a specific storage location.                         |                |
 | `EXTENSIONS_LIMIT`                     | Maximum number of extensions you allow to be installed through the Marketplace. |                |
 
 <sup>[1]</sup> If `EXTENSIONS_LOCATION` is configured, this is the path to the extensions directory within the selected
@@ -24,6 +24,8 @@ storage location.
 <sup>[4]</sup> The `EXTENSIONS_CACHE_TTL` environment variable controls for how long [app extensions](/guides/extensions/app-extensions) are cached by browsers. By default, extensions are not cached. 
 
 <sup>[5]</sup> By default extensions are loaded from the local file system. `EXTENSIONS_LOCATION` can be used to load extensions from a storage location instead.
+
+<sup>[6]</sup> The value of `EXTENSIONS_LOCATION` must correspond to a key defined in your `STORAGE_LOCATIONS` environment variable.
 
 ## Marketplace
 
