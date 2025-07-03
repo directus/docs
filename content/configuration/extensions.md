@@ -16,11 +16,11 @@ description: Configuration for extensions and the Directus Marketplace.
 
 <sup>[1]</sup> When EXTENSIONS_LOCATION is set, this defines the path inside the selected storage location where extensions reside.
 
-<sup>[2]</sup> `EXTENSIONS_AUTO_RELOAD` will not work when the `EXTENSION_LOCATION` environment variable is set.
+<sup>[2]</sup> `EXTENSIONS_AUTO_RELOAD` will not work when the `EXTENSIONS_LOCATION` environment variable is set.
 
 <sup>[3]</sup> `EXTENSIONS_AUTO_RELOAD` will likely not work on Windows machines without also setting the `CHOKIDAR_USEPOLLING` environment variable to `true`.
 
-<sup>[4]</sup> The `EXTENSIONS_CACHE_TTL` environment variable controls for how long [app extensions](/guides/extensions/app-extensions) are cached by browsers. By default, extensions are not cached.
+<sup>[4]</sup> The `EXTENSIONS_CACHE_TTL` environment variable controls how long [app extensions](/guides/extensions/app-extensions) are cached by browsers. By default, extensions are not cached.
 
 <sup>[5]</sup> By default extensions are loaded from the local file system. `EXTENSIONS_LOCATION` can be used to load extensions from a storage location instead.
 
