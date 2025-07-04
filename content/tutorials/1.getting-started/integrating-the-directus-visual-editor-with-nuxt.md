@@ -6,7 +6,7 @@ technologies:
 authors:
   - name: Craig Harman
     title: Guest Author
-description: Learn how to integrate the Directus Visual Editor with Next.js.
+description: Learn how to integrate the Directus Visual Editor with Nuxt.
 ---
 
 The Directus Visual Editor module allows you to edit your content live on your site. This article shows you how to integrate it with an existing CMS setup using Nuxt.

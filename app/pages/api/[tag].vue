@@ -43,7 +43,7 @@ if (!tag.value) {
 
 <template>
 	<UPage>
-		<div class="lg:flex gap-10 items-center border-b border-gray-200 dark:border-gray-800 max-w-7xl py-7">
+		<div class="lg:flex gap-10 items-center border-b border-gray-200 dark:border-gray-800 py-7">
 			<UPageHeader
 				:title="tag!.name"
 				:description="tag!.description"

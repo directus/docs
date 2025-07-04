@@ -1,17 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	extends: ['@nuxt/ui-pro'],
 
 	modules: [
 		'@nuxt/eslint',
+		'@nuxt/ui-pro',
 		'@nuxt/content',
-		'@nuxt/ui',
-		'@nuxtjs/tailwindcss',
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
 		'nuxt-posthog',
-		...(( process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY )
+		...((process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY)
 			? ['@nuxtjs/algolia']
 			: []),
 	],
@@ -21,10 +19,11 @@ export default defineNuxtConfig({
 	},
 
 	app: {
-		baseURL: '/docs/',
+		baseURL: '/docs',
 	},
 
 	css: [
+		'~/assets/css/main.css',
 		'~/assets/css/algolia.css',
 	],
 
@@ -40,53 +39,72 @@ export default defineNuxtConfig({
 	},
 
 	content: {
+		build: {
+			markdown: {
+				toc: {
+					searchDepth: 1,
+				},
+				highlight: {
+					theme: {
+						default: 'github-light',
+						light: 'github-light',
+						dark: 'github-dark',
+					},
+					langs: [
+						'bash',
+						'cpp',
+						'css',
+						'dart',
+						'diff',
+						'dockerfile',
+						'graphql',
+						'groovy',
+						'html',
+						'http',
+						'ini',
+						'java',
+						'jinja',
+						'js',
+						'json',
+						'jsx',
+						'kotlin',
+						'liquid',
+						'liquid',
+						'md',
+						'mdc',
+						'nginx',
+						'php',
+						'python',
+						'scss',
+						'shell',
+						'svelte',
+						'swift',
+						'ts',
+						'tsx',
+						'vue',
+						'xml',
+						'yaml',
+					],
+				},
+			},
+		},
+	},
+
+	mdc: {
 		highlight: {
-			theme: {
-				default: 'github-light',
-				light: 'github-light',
-				dark: 'github-dark',
-			},
-			langs: [
-				'bash',
-				'cpp',
-				'css',
-				'dart',
-				'diff',
-				'dockerfile',
-				'graphql',
-				'groovy',
-				'html',
-				'http',
-				'ini',
-				'java',
-				'jinja',
-				'js',
-				'json',
-				'jsx',
-				'kotlin',
-				'liquid',
-				'liquid',
-				'md',
-				'mdc',
-				'nginx',
-				'php',
-				'python',
-				'scss',
-				'shell',
-				'svelte',
-				'swift',
-				'ts',
-				'tsx',
-				'vue',
-				'xml',
-				'yaml',
-			],
+			noApiRoute: false,
 		},
-		markdown: {
-			toc: {
-				depth: 1,
+	},
+
+	runtimeConfig: {
+		public: {
+			scripts: {
+				googleTagManager: {
+					id: process.env.GOOGLE_TAG_MANAGER_ID!,
+				},
 			},
 		},
+		directusUrl: process.env.DIRECTUS_URL,
 	},
 
 	build: {
@@ -97,11 +115,6 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
-	experimental: {
-		buildCache: true,
-		sharedPrerenderData: true,
-	},
-
 	compatibilityDate: '2024-11-01',
 
 	nitro: {
@@ -109,6 +122,7 @@ export default defineNuxtConfig({
 			routes: [
 				'/',
 			],
+
 			crawlLinks: true,
 
 			// TODO
@@ -116,6 +130,7 @@ export default defineNuxtConfig({
 			// I can't for the life of me figure out where this magic </span link comes from
 			// ~ Rijk 12/19/2024
 			ignore: [
+				// 'http://localhost/docs/api/_mdc/highlight',
 				'/docs/api/</span',
 				'/docs/tutorials/getting-started/{`/${lang}/${post.slug}/`}>{t?.title}</a>\n</span',
 				'/docs/tutorials/getting-started/{href || &',
@@ -163,7 +178,18 @@ export default defineNuxtConfig({
 		},
 	},
 
+	// Disable PostHog in development
+	posthog: {
+		disabled: process.env.NODE_ENV === 'development',
+	},
+
 	robots: {
 		robotsTxt: false,
+	},
+
+	scripts: {
+		registry: {
+			googleTagManager: true,
+		},
 	},
 });

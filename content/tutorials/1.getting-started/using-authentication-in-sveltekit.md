@@ -219,7 +219,7 @@ In the following step, you will create a login component where the users will be
   async function handleLogin() {
     try {
       // Call the login method directly from the client
-      const result = await client.login(email, password);
+      const result = await client.login({ email, password });
       console.log("Login successful:", result);
 
       // Check if the user is authenticated
@@ -346,10 +346,10 @@ export const refreshToken = async (mode = "json", refreshToken = null) => {
 
     if (mode === "json" && refreshToken) {
      
-      result = await client.request(refresh("json", refreshToken));
+      result = await client.request({ mode: "json", refreshToken }));
     } else if (mode === "cookie") {
       // Use cookie-based refresh
-      result = await client.request(refresh("cookie"));
+      result = await client.request(refresh({ mode: "cookie" }));
     } else {
       result = await client.refresh();
     }

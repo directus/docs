@@ -20,14 +20,15 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 
 <template>
 	<div>
-		<p class="font-semibold text-sm/6 truncate">
+		<p class="font-semibold text-sm mb-2 truncate">
 			Was this helpful?
 		</p>
 		<div class="space-y-3">
 			<UButton
 				:icon="savedValue === 'good' ? 'material-symbols:check' : 'material-symbols:thumb-up-outline'"
 				square
-				color="gray"
+				variant="subtle"
+				color="neutral"
 				:loading="buttonLoading && savedValue === 'good'"
 				:disabled="savedValue !== null"
 				class="mr-2"
@@ -37,7 +38,8 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 			<UButton
 				:icon="savedValue === 'bad' ? 'material-symbols:check' : 'material-symbols:thumb-down-outline'"
 				square
-				color="gray"
+				variant="subtle"
+				color="neutral"
 				:loading="buttonLoading && savedValue === 'bad'"
 				:disabled="savedValue !== null"
 				:class="{ 'disabled:text-primary disabled:bg-primary-100 disabled:ring-primary': !buttonLoading && savedValue === 'bad' }"
