@@ -13,7 +13,7 @@ Directus offers a variety of authentication methods, including local email/passw
 | `AUTH_PROVIDERS`       | A comma-separated list of auth providers. You can use any names you like for these keys. |               |
 | `AUTH_DISABLE_DEFAULT` | Disable the default auth provider.                                                       | `false`       |
 
-For each of the storage locations listed, you must provide the following configuration (variable name must be uppercase in these options):
+For each of the auth providers listed, you must provide the following configuration (variable name must be uppercase in these options):
 
 | Variable                 | Description                                                                                                                                 | Default Value |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
