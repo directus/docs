@@ -37,7 +37,7 @@ Create a `chat_messages` collection in your Directus instance with:
 
 
 ### Edit Public Policy
-To enable access, go to  **Settings** -> **Access Policies** -> **Public**, and under Permissions, add `messages` with full access for `create` and `read`.
+To enable access, go to  **Settings** -> **Access Policies** -> **Public**, and under Permissions, add `chat_messages` with full access for `create` and `read`.
 
 ### Set Up Your Flutter Project
 
@@ -547,6 +547,8 @@ class _ChatScreenState extends State<ChatScreen> {
 ```
 
 ## The App in Action
+
+The full code from this tutorial can be found on [Github](https://github.com/MahmoudTark/ChatDemo).
 
 - Connected Chat Screen with Message Composition
   
