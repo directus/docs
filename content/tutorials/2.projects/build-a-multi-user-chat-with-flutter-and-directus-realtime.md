@@ -6,14 +6,26 @@ technologies:
   - flutter
 authors:
   - name: Mahmoud Tarek
-    title: Flutter Developer
+    title: Flutter Developer at DATA C
 description: Learn how to send and receive realtime connection messages in a Flutter application.
 ---
 
-In this guide, you will build a multi-user real-time chat Flutter application with Directus’ WebSockets.
+In this guide, you will build a multi-user real-time chat application with Directus’ WebSockets and Flutter.
 
 
 ## Before You Start
+
+### Enable Websockets in Directus
+
+If you are using [self-hosting Directus](https://directus.io/docs/self-hosting/), websockets are disabled by default, you will need to enable websockets in your `directus` config file.
+
+To enable websockets, update your `docker-compose.yml` config file to include the following:
+
+```yaml
+environment:
+  WEBSOCKETS_ENABLED: true
+  WEBSOCKETS_HEARTBEAT_ENABLED: true
+```
 
 ### Set Up Your Directus Project
 
@@ -23,7 +35,9 @@ Create a `chat_messages` collection in your Directus instance with:
 - `receiver` (M2O relationship to directus_users),
 - `timestamp` (DateTime)
 
-Configure permissions to allow authenticated users to read messages where they are either the sender or receiver, and allow creating new messages.
+
+### Edit Public Policy
+To enable access, go to  **Settings** -> **Access Policies** -> **Public**, and under Permissions, add `messages` with full access for `create` and `read`.
 
 ### Set Up Your Flutter Project
 
@@ -534,11 +548,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
 ## The App in Action
 
-- Initial Connected Chat Screen 
-
-  <img width="540" height="1064" alt="image" src="https://github.com/user-attachments/assets/2d6cc260-e7cf-4b06-872c-00d33d91e704" />
-  
-- Message Composition
+- Connected Chat Screen with Message Composition
   
   <img width="540" height="1069" alt="image" src="https://github.com/user-attachments/assets/45dfbb05-6cb5-48c7-82d9-303f60321b4c" />
   
