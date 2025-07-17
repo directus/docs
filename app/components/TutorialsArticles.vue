@@ -45,7 +45,7 @@ const imageSrc = (article: { technologies?: string[] }) => {
 				}"
 				class="hover:bg-primary/5 hover:ring-primary"
 			>
-				<div class="">
+				<div class="min-w-0">
 					<img
 						class="mb-0 max-h-36 w-full object-cover dark:brightness-90 rounded"
 						:src="imageSrc(article)"
