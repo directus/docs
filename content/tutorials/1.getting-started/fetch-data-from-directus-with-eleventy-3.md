@@ -206,7 +206,7 @@ title: Blog
 </ul>
 ```
 
-Visit http://localhost:3000 and you should now see a blog post listing, with latest items first.
+Visit [http://localhost:8080/blog](http://localhost:8080/blog/) and you should now see a blog post listing, with latest items first.
 
 ![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](/img/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
 
