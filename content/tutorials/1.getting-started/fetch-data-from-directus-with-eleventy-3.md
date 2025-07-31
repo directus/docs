@@ -196,7 +196,7 @@ title: Blog
 <h1>{{ title }}</h1>
 <ul>
     {% for post in posts %}
-        <a href="/posts/{{ post.slug }}">
+        <a href="/blog/{{ post.slug }}">
             <h2>{{ post.title }}</h2>
         </a>
         <span>
