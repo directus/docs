@@ -13,6 +13,7 @@ description: Configuration for extensions and the Directus Marketplace.
 | `EXTENSIONS_CACHE_TTL`<sup>[4]</sup>        | How long custom app Extensions get cached by browsers.                                                                             |                |
 | `EXTENSIONS_LOCATION`<sup>[5], [6]</sup>    | Key of the configured [storage locations](/configuration/files) to load extensions from a specific storage location.               |                |
 | `EXTENSIONS_LIMIT`                          | Maximum number of extensions you allow to be installed through the Marketplace.                                                    |                |
+| `EXTENSIONS_ROLLDOWN`                       | Enable use of [Rolldown](https://rolldown.rs/) to optimize extensions bundling.                                                    | `false`        |
 
 <sup>[1]</sup> When EXTENSIONS_LOCATION is set, this defines the path inside the selected storage location where extensions reside.
 
