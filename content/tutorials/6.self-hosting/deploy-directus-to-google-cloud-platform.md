@@ -2,6 +2,8 @@
 id: 2cdec3d5-9f3d-4c43-9541-6a9f5bc68007
 slug: deploy-directus-to-google-cloud-platform
 title: Deploy Directus to Google Cloud Platform
+technologies:
+  - gcp
 authors:
   - name: Trust Jamin
     title: Guest Author

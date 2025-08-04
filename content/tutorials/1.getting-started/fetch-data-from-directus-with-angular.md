@@ -2,6 +2,8 @@
 id: 01d87344-02d8-45fc-a6e3-f13777cdab83
 slug: fetch-data-from-directus-with-angular
 title: Fetch Data from Directus with Angular
+technologies:
+  - angular
 authors:
   - name: David Mbochi
     title: Guest Author
@@ -334,11 +336,11 @@ Go to `src/app/app.routes.ts` file and add the following route in the `Routes` a
 ```
 Once the application reloads, go to `http://localhost:4200/blog` and the list of posts will be displayed on the page.
 
-:::info Navigation
+::callout{icon="material-symbols:info-outline" title="Navigation"}
 
 In Angular, the order in which you put the routes in the `Routes` array will affect how components are loaded in your application. In this case, you don't want the path to `blog` to be consumed as a `slug`. As a result, ensure the blog route is put before slug in the Routes array.
 
-:::
+::
 
 ![blog post listing](https://marketing.directus.app/assets/fa4a4af1-13bc-4357-9dd2-4c06a9583ce6)
 

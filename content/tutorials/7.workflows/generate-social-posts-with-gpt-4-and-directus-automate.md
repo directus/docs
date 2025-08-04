@@ -2,6 +2,8 @@
 id: 3b8646a5-cdfa-4841-bc43-1aa337b6e4f7
 slug: generate-social-posts-with-gpt-4-and-directus-automate
 title: Generate Social Posts with GPT-4 and Directus Automate
+technologies:
+  - openai
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

@@ -2,6 +2,8 @@
 id: 34bda8b7-e162-4090-8ceb-ae3db85fb098
 slug: create-github-issues-with-directus-automate
 title: Create GitHub Issues with Directus Automate
+technologies:
+  - github
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

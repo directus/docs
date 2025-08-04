@@ -5,6 +5,8 @@ title: Fetch Data from Directus with Flutter
 authors:
   - name: Clara Ekekenta
     title: Guest Author
+technologies:
+  - flutter
 description: Learn how to integrate Directus in your Flutter app with Dart.
 ---
 ## Before You Start

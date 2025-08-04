@@ -2,6 +2,8 @@
 id: 422c9d3c-d5da-45ff-abec-fdbf71a54721
 slug: combine-live-preview-and-content-versioning-with-next-js
 title: Combine Live Preview and Content Versioning with Next.js
+technologies:
+  - nextjs
 authors:
   - name: Esther Agbaje
     title: Developer Advocate
@@ -135,9 +137,9 @@ To configure your Directus Studio App to preview different versions of your cont
 - Update the preview url with the version by selecting Version from the dropdown and entering it in this format: `http://<your-site>/api/draft?secret=MY_SECRET_TOKEN&id=ID&version=Version`
 - Save your changes.
 
-::callout{icon="material-symbols:info-outline" title="Replace Values
+::callout{icon="material-symbols:info-outline" title="Replace Values"}
 
-Remember to replace `<your-site>` with your actual website domain and  MY_SECRET_TOKEN with the secret you have in your Next.js project.
+Remember to replace `<your-site>` with your actual website domain and `MY_SECRET_TOKEN` with the secret you have in your Next.js project.
 
 ::
 
@@ -146,4 +148,4 @@ Whenever you select different versions of your content, you can now preview them
 ## Conclusion
 In this post, you’ve learnt how to enhance your Next.js application with content versioning and live preview when using Directus. By following the four steps outlined above, you can easily manage and preview multiple versions of your content before publishing.
 
-Have questions? Feel free to join our [Discord server](https://directus.chat/) and reach out!
+Have questions? Feel free to join our [community platform](https://community.directus.io) and reach out!

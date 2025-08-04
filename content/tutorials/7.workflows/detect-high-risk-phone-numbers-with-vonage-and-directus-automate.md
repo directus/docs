@@ -2,6 +2,8 @@
 id: 6388aa8a-99b5-4a3b-a9ff-275d26b8cb81
 slug: detect-high-risk-phone-numbers-with-vonage-and-directus-automate
 title: Detect High-Risk Phone Numbers with Vonage and Directus Automate
+technologies:
+  - vonage
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
@@ -131,4 +133,4 @@ In this post, you have learned how to use the Vonage Number Insight V2 API to ch
 
 Based on the `allow`, `flag`, or `block` recommendation, you can add any operations from those provided by Directus, or through [building your own](/guides/extensions/api-extensions/operations).
 
-If you have any questions, please feel free to [join our Discord server](https://directus.chat) and ask them.
+If you have any questions, please feel free to join our [community platform](https://community.directus.io) and ask them.

@@ -2,6 +2,8 @@
 id: bb540f00-8933-46f1-a2ef-e353e2df160d
 slug: integrate-algolia-indexing-with-custom-hooks
 title: Integrate Algolia Indexing with Custom Hooks
+technologies:
+  - algolia
 authors:
   - name: Marvel Ken-Anele
     title: Guest Author

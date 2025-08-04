@@ -1,6 +1,8 @@
 ---
 slug: rendering-dynamic-blocks-using-astro
 title: Rendering Dynamic Blocks Using Astro
+technologies:
+  - astro
 authors:
   - name: Carmen Huidobro
     title: Developer Educator

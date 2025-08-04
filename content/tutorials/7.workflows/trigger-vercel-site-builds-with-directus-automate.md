@@ -2,6 +2,8 @@
 id: 5ba45c20-d5f3-469a-a060-2d4fa960bd66
 slug: trigger-vercel-site-builds-with-directus-automate
 title: Trigger Vercel Site Builds with Directus Automate
+technologies:
+  - vercel
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer

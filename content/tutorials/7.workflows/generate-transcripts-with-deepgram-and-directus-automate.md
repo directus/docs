@@ -2,6 +2,8 @@
 id: 89cd5e8e-cabd-4422-92c8-9736faedefe0
 slug: generate-transcripts-with-deepgram-and-directus-automate
 title: Generate Transcripts with Deepgram and Directus Automate
+technologies:
+  - deepgram
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
@@ -55,11 +57,11 @@ Replace `YOUR_DIRECTUS_URL` with the URL for your Directus project, and `TOKEN` 
 
 From the resolved path of the previous operation, create an **Update Data** operation. Set the Collection to `directus_files` with Full Access permissions.
 
-:::info Set a System Collection
+::callout{icon="material-symbols:info-outline" title="Set a System Collection"}
 
 The dropdown in the collection field will only show user-created collections. To add `directus_files`, which is a system collection, click the `{}` button to turn the input to raw mode and type the collection name manually.
 
-:::
+::
 
 Add one item to the IDs tags - `{{$trigger.key}}` - which represents the ID of the file that was uploaded and triggered the Flow to run.
 
@@ -85,4 +87,4 @@ Now you have transcripts for audio files in Directus, you can begin to run queri
 
 Check out the [Deepgram documentation](https://developers.deepgram.com/docs) for an overview of all features you can use when making requests, including some that use machine learning to provide insights about topics and entities mentioned in the audio file.
 
-If you have any questions, feel free to drop into our [very active developer community Discord server](https://directus.chat).
+If you have any questions, feel free to drop into our [community platform](https://community.directus.io).

@@ -6,7 +6,7 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
+const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first());
 
 const openapi = inject<OpenAPIObject>('openapi')!;
 
@@ -29,7 +29,7 @@ if (!page.value) {
 		<UPageBody prose>
 			<ContentRenderer
 				v-if="page!.body"
-				:value="page"
+				:value="page!"
 			/>
 		</UPageBody>
 	</UPage>

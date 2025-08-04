@@ -2,6 +2,8 @@
 id: dfddca20-1cc7-4d66-bce0-0e88b36daa18
 slug: summarize-relational-items-in-a-custom-display-extension
 title: Summarize Relational Items in a Custom Display Extension
+technologies:
+  - db
 authors:
   - name: Tim Butterfield
     title: Guest Author
@@ -302,12 +304,12 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-:::info Required files
+::callout{icon="material-symbols:info-outline" title="Required files"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.
 
-:::
+::
 
 ## Use the Display
 

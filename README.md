@@ -2,22 +2,18 @@
 
 ---
 
-> [!IMPORTANT]  
-> This documentation is in beta. We eagerly welcome your feedback!
-
 ## 🐰 Introduction
 
 Welcome! This is the repo for [Directus' documentation](https://docs.directus.io).
 
 **[Learn more about Directus](https://directus.io)**
 
-<br />
 
 ## 🖥️ Running the Docs
 
 ### Requirements
 
-- Node.js 20
+- Node.js 22
 - pnpm
 
 ### Install Dependencies
@@ -25,6 +21,17 @@ Welcome! This is the repo for [Directus' documentation](https://docs.directus.io
 ```bash
 pnpm install
 ```
+
+### Setup Environment
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Update the environment variables in the `.env` file with proper secret keys for the different
+services.
 
 ### Run Development Server
 
@@ -34,29 +41,30 @@ Start the development server on `http://localhost:3000`:
 pnpm dev
 ```
 
+### Building Locally
+
+```bash
+pnpm build
+```
+
 ## ☁️ Deploying the Docs
 
-Due to [a bug in Nitro](https://github.com/nitrojs/nitro/issues/1484), Netlify isn't able to
-auto-build this website on pushes to main. Instead, a member of the core team has to deploy it
-manually through the [Netlify CLI](https://docs.netlify.com/cli/get-started/).
+The documentation automatically deploys to Vercel when changes are merged into the main branch. Simply:
 
-1. `netlify env:list --plain` – Get a copy of the `.env` you'll need to build the website
-1. `pnpm run generate` – Build the website locally
-1. `netlify deploy` – This will deploy a staging build to a branch to verify everything looks good.
-   Once that's good to go:
-1. `netlify deploy --prod` – This will then upload the same thing again but push it live to the prod
-   website
+1. Open a Pull Request with your changes
+2. This should trigger a deploy preview as well.
+3. Once PR is approved and merged to main, Vercel will automatically build and deploy the updated documentation
 
 ## 🚀 Contributing
 
-- [Code of Conduct](https://docs.directus.io/community/overview/conduct)
-- [Contributing and authoring guidelines](https://docs.directus.io/community/contribution/documentation)
+- [Code of Conduct](https://directus.io/docs/community/overview/conduct)
+- [Contributing and authoring guidelines](https://directus.io/docs/community/contribution/documentation)
 
 <br />
 
 ## 🤔 Community Help
 
-- [Discord](https://directus.chat) (Questions, Live Discussions)
+- [Community Platform](https://community.directus.io) (Questions, Live Discussions)
 - [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
 - [GitHub Discussions](https://github.com/directus/docs/discussions) (Feature Requests)
 

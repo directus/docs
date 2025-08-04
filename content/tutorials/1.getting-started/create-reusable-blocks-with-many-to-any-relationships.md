@@ -2,6 +2,8 @@
 id: 9176d1b6-c530-44f3-92b3-71f35ae80902
 slug: create-reusable-blocks-with-many-to-any-relationships
 title: Create Reusable Blocks with Many-to-Any Relationships
+technologies:
+  - db
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer
@@ -184,7 +186,7 @@ Mode option.
 6. [Create a new item](/guides/content/editor) in the `pages` collection
 
    <video title="Create Your Page Content" autoplay muted loop controls playsinline>
-   <source src="/img/c3124836-eabe-4c05-a4ac-05b4a430458f.mp3"> type="video/mp4" />
+   <source src="/docs/img/c3124836-eabe-4c05-a4ac-05b4a430458f.mp4"> type="video/mp4" />
    </video>
 
    a. Enter the page **Title** and **Slug**.

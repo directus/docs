@@ -2,6 +2,8 @@
 id: 73b10a4d-0da8-48c7-9753-4a3addd2c5ff
 slug: tag-images-with-clarifai-and-directus-automate
 title: Tag Images with Clarifai and Directus Automate
+technologies:
+  - clarifai
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience

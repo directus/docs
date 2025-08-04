@@ -1,16 +1,29 @@
 <script setup lang="ts">
+import type { ContentCollectionItem, ContentNavigationItem } from '@nuxt/content';
+import { findPageBreadcrumb, mapContentNavigation } from '#ui-pro/utils';
+
+const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
+
 definePageMeta({
 	layout: 'tutorial',
 });
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
+
+const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first());
 
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-const headline = computed(() => findPageHeadline(page.value!));
+const imageSrc = (page: ContentCollectionItem | undefined) => {
+	if (!page) return '';
+	const technologies = page.technologies || ['directus'];
+	const techString = technologies.join(', ');
+	return `/docs/api/tutorialimg?logos=${techString}`;
+};
+
+const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation.value, page.value)).map(({ icon, ...link }) => link));
 </script>
 
 <template>
@@ -18,28 +31,49 @@ const headline = computed(() => findPageHeadline(page.value!));
 		<UPageHeader
 			:title="page!.title"
 			:ui="{ title: 'title', headline: 'headline' }"
-			:headline="headline + ' Tutorials'"
 			:description="page!.description"
-		/>
+		>
+			<template #headline>
+				<UBreadcrumb
+					:items="breadcrumb"
+				>
+					<template #separator>
+						<span class="mx-2 text-muted">/</span>
+					</template>
+				</UBreadcrumb>
+			</template>
+
+			<template
+				v-if="page"
+				#links
+			>
+				<CopyDocButton :page="page" />
+			</template>
+			<img
+				v-if="page"
+				:src="imageSrc(page)"
+				alt="Generated Image"
+			>
+		</UPageHeader>
 
 		<UPageBody
 			class="content"
 			prose
 		>
 			<ContentRenderer
-				v-if="page!.body"
+				v-if="page"
 				:value="page"
 			/>
 		</UPageBody>
 
 		<template
-			v-if="page!.toc !== false"
+			v-if="page!.body?.toc?.links?.length"
 			#right
 		>
 			<DocsToc
 				:links="page!.body?.toc?.links"
 				:authors="page!.authors"
-				:file="page!._file!"
+				:file="page!.id!"
 			/>
 		</template>
 	</UPage>

@@ -1,6 +1,8 @@
 ---
 slug: rendering-dynamic-blocks-using-next
 title: Rendering Dynamic Blocks Using Next.js
+technologies:
+  - nextjs
 authors:
   - name: Kumar Harsh
     title: Guest Author

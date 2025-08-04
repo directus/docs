@@ -50,3 +50,23 @@ This API reference is generated from our OpenAPI specification. Found an error? 
   ---
   ::
 ::
+
+## Relational Data
+
+::shiny-grid{class="mt-6"}
+  ::shiny-card
+  ---
+  title: Working With Relational Data
+  class: col-span-6
+  to: '/guides/connect/relations'
+  ---
+  ::
+
+::
+
+## Dynamic API
+
+The platform's API uses database mirroring to dynamically generate
+REST endpoints and a GraphQL schema based on the connected database's architecture. Since these endpoints return data
+based on your specific schema and configured permissions, the input/output of the API differs greatly for individual
+installations.

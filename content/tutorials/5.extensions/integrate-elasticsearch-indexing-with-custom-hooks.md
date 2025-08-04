@@ -2,6 +2,8 @@
 id: 11878553-5f03-4992-b321-5a983826c983
 slug: integrate-elasticsearch-indexing-with-custom-hooks
 title: Integrate Elasticsearch Indexing with Custom Hooks
+technologies:
+  - elasticsearch
 authors:
   - name: Taminoturoko Briggs
     title: Guest Author

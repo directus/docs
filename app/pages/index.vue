@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () =>
-	queryContent(route.path).findOne(),
+	queryCollection('landing').path('/').first(),
 );
 
 if (!page.value) {
@@ -19,13 +19,11 @@ if (!page.value) {
 			<UPageHeader
 				:title="page!.title"
 				:description="page!.description"
-				:links="page!.links"
-				:ui="{}"
 			/>
 
-			<UPageBody prose>
+			<UPageBody>
 				<ContentRenderer
-					v-if="page!.body"
+					v-if="page!"
 					:value="page"
 				/>
 			</UPageBody>

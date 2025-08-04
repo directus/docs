@@ -2,6 +2,8 @@
 id: 571e0f54-f95d-4ccf-8712-8b92150b364f
 slug: enrich-user-data-with-clearbit-and-directus-automate
 title: Enrich User Data with Clearbit and Directus Automate
+technologies:
+  - clearbit
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
@@ -35,11 +37,11 @@ Add a `Authorization` header with the value `Bearer YOUR_KEY`, replacing `YOUR_K
 
 From the resolved path of the previous operation, create an **Update Data** operation. Set the Collection to `directus_users` with Full Access permissions.
 
-:::info Set a System Collection
+::callout{icon="material-symbols:info-outline" title="Set a System Collection"}
 
 The dropdown in the collection field will only show user-created collections. To add `directus_users`, which is a system collection, click the `{}` button to turn the input to raw mode and type the collection name manually.
 
-:::
+::
 
 Add one item to the IDs tags - `{{$trigger.key}}` - which represents the ID of the new user that was created and triggered the Flow to run.
 
@@ -74,4 +76,4 @@ There are some points to further improve on as you build your Flows for data enr
 
 Take a look at the [Clearbit API Reference](https://dashboard.clearbit.com/docs) for more ideas on how you can expand on this starting point.
 
-If you have any questions, feel free to drop into our [very active developer community Discord server](https://directus.chat).
+If you have any questions, feel free to drop into our [community platform](https://community.directus.io).
