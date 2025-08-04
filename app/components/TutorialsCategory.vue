@@ -22,5 +22,13 @@ defineProps<{
 			:category-title="title"
 			:show-more="true"
 		/>
+
+		<ProseCallout
+			class=" my-10 font-bold"
+			:to="path"
+			icon="material-symbols:arrow-outward"
+		>
+			See all {{ title }} tutorials
+		</ProseCallout>
 	</div>
 </template>

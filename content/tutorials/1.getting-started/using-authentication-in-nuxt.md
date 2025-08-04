@@ -141,7 +141,11 @@ Depending on your project configuration and if you are in development or product
 
   ```ts
   routeRules: {
-	"/directus/**": { proxy: import.meta.env.API_URL },
+    "/directus/**": {     
+      proxy: {
+        to: import.meta.env.API_URL + "/**"
+      } 
+    },
 },
   ```
 
@@ -297,7 +301,7 @@ const password = ref('')
 const result = ref(false)
 
 const login = async () => {
-	const response = await $directus.login(email.value, password.value)
+	const response = await $directus.login({ email: email.value, password: password.value })
 	localStorage.setItem('directus_auth', JSON.stringify(response))
 	result.value = true
 }
@@ -429,7 +433,7 @@ const errorMsg = ref(null)
 const login = async () => {
 	try {
 		errorMsg.value = null
-		await $directus.login(email.value, password.value)
+		await $directus.login({ email: email.value, password: password.value })
 		router.push('/posts') // Redirect to /posts
 	} catch (error) {
 		errorMsg.value = error.message || 'An unexpected error occurred'
@@ -625,7 +629,7 @@ export default defineNuxtPlugin(() => {
 
 	const refreshToken = async () => {
 		return directus.request(
-			refresh('cookie')
+			refresh({ mode: 'cookie' })
 		);
 	};
 

@@ -24,7 +24,8 @@ const linkMap = {
 
 <template>
 	<UButton
-		color="white"
+		variant="outline"
+		color="neutral"
 		size="xs"
 		:to="linkMap[product]"
 		:icon="`directus:${product}`"

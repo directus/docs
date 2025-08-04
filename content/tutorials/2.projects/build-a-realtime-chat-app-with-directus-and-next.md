@@ -195,7 +195,7 @@ To do that, add the following functions to the Home component:
 ```js
   // Handle login via WebSocket
   const login = async () => {
-    const authResponse = await directus.login(credentials.email, credentials.password, {
+    const authResponse = await directus.login({ email: credentials.email, password: credentials.password }, {
       mode: "json",
     });
     console.log("Login successful", authResponse);

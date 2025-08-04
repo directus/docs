@@ -121,7 +121,7 @@ This feature requires the `PUBLIC_URL` to be set correctly to [where your API is
 
 ::
 
-::callout{icon="material-symbols:warning-rounded" color="amber"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 
 **Chunked Upload Restrictions**<br/>
 

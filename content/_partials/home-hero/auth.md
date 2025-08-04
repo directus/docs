@@ -9,5 +9,5 @@ const newUser = await directus.request(
 	})
 );
 
-const user = await directus.login('user@example.com', 'd1r3ctu5');
+const user = await directus.login({ email: 'user@example.com', password: 'd1r3ctu5' });
 ```

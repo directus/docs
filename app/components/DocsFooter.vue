@@ -2,7 +2,6 @@
 const { onLoaded } = useScript('https://js.hsforms.net/forms/embed/v2.js');
 
 const { preFooter, footer, toc } = useAppConfig();
-const route = useRoute();
 
 onMounted(() => {
 	onLoaded(() => {
@@ -23,13 +22,13 @@ onMounted(() => {
 		class="border-t border-gray-200 dark:border-gray-800 py-8 mt-14"
 	>
 		<div
-			:class="route.path.startsWith('/api') ? 'max-screen' : 'max-w-7xl'"
-			class="mx-auto grid md:grid-cols-3 gap-4 px-4 sm:px-6 lg:px-8 py-8 lg:py-4"
+			class="mx-auto grid md:grid-cols-3 gap-4 px-4 sm:px-6 lg:px-8 py-8 lg:py-4 max-w-7xl"
 		>
 			<div>
-				<UPageLinks
+				<LogoDocs class="w-auto h-8 shrink-0" />
+				<UPageAnchors
 					:links="preFooter.links"
-					:ui="{ base: 'justify-start' }"
+					class="mt-4"
 				/>
 			</div>
 			<div />
@@ -50,9 +49,7 @@ onMounted(() => {
 		</div>
 	</div>
 	<UFooter
-		:links="footer.links"
-		class="border-t border-gray-200 dark:border-gray-800"
-		:ui="route.path.startsWith('/api') ? { bottom: { container: 'max-w-screen' } } : {}"
+		class="border-t border-default"
 	>
 		<template #left>
 			<p class="text-sm text-gray-400 dark:text-gray-500">
@@ -60,13 +57,18 @@ onMounted(() => {
 			</p>
 		</template>
 
+		<UNavigationMenu
+			:items="footer.links"
+			variant="link"
+		/>
+
 		<template #right>
 			<UButton
 				v-for="social in footer.socials"
 				:key="social.icon"
 				size="xs"
 				:icon="social.icon"
-				color="gray"
+				color="neutral"
 				variant="ghost"
 				:to="social.to"
 				target="_blank"
@@ -75,7 +77,9 @@ onMounted(() => {
 	</UFooter>
 </template>
 
-<style lang="postcss">
+<style>
+@reference "@/assets/css/main.css";
+
 #pre-footer form.hs-form {
 	@apply flex gap-2;
 	.hs_email {
@@ -90,8 +94,8 @@ onMounted(() => {
 	}
 	input[type=submit] {
 		@apply rounded-md text-xs sm:text-sm font-bold;
-		@apply bg-purple-500 text-white;
-		@apply border border-purple-200 dark:border-purple-800 py-2 px-4;
+		@apply bg-primary-500 text-white;
+		@apply border border-primary-200 dark:border-primary-800 py-2 px-4;
 		@apply flex-none;
 	}
 }

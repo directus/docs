@@ -129,7 +129,7 @@ Create a file called `+page.svelte` file in the `./src/route` directory. Add the
   async function login(event) {
     event.preventDefault();
     try {
-      const authResponse = await directus.login(email, password, {
+      const authResponse = await directus.login({ email, password }, {
         mode: "json",
       });
       console.log("Login successful");
