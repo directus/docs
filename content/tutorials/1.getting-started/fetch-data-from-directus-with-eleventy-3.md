@@ -245,13 +245,13 @@ Click on any of the blog post links, and it will take you to a blog post page co
 
 While not strictly Directus-related, there are now several pages that aren't linked to each other. In `_includes/layouts/base.njk`, above the `<main>` component, add a navigation. Don't forget to use your specific page slugs.
 
-```vue-html
+```html
 <nav>
-	<a to="/">Home</a>
-	<a to="/about">About</a>
-	<a to="/conduct">Code of Conduct</a>
-	<a to="/privacy">Privacy Policy</a>
-	<a to="/blog">Blog</a>
+	<a href="/">Home</a>
+	<a href="/about">About</a>
+	<a href="/conduct">Code of Conduct</a>
+	<a href="/privacy">Privacy Policy</a>
+	<a href="/blog">Blog</a>
 </nav>
 ```
 
