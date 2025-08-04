@@ -196,7 +196,7 @@ title: Blog
 <h1>{{ title }}</h1>
 <ul>
     {% for post in posts %}
-        <a href="/posts/{{ post.slug }}">
+        <a href="/blog/{{ post.slug }}">
             <h2>{{ post.title }}</h2>
         </a>
         <span>
@@ -206,7 +206,7 @@ title: Blog
 </ul>
 ```
 
-Visit http://localhost:3000 and you should now see a blog post listing, with latest items first.
+Visit [http://localhost:8080/blog](http://localhost:8080/blog/) and you should now see a blog post listing, with latest items first.
 
 ![A page with a title of "Blog". On it is a list of three items - each with a title, author, and date. The title is a link.](/img/5811ee82-f600-4855-9620-bafca0bb98d8.webp)
 
@@ -245,13 +245,13 @@ Click on any of the blog post links, and it will take you to a blog post page co
 
 While not strictly Directus-related, there are now several pages that aren't linked to each other. In `_includes/layouts/base.njk`, above the `<main>` component, add a navigation. Don't forget to use your specific page slugs.
 
-```vue-html
+```html
 <nav>
-	<a to="/">Home</a>
-	<a to="/about">About</a>
-	<a to="/conduct">Code of Conduct</a>
-	<a to="/privacy">Privacy Policy</a>
-	<a to="/blog">Blog</a>
+	<a href="/">Home</a>
+	<a href="/about">About</a>
+	<a href="/conduct">Code of Conduct</a>
+	<a href="/privacy">Privacy Policy</a>
+	<a href="/blog">Blog</a>
 </nav>
 ```
 

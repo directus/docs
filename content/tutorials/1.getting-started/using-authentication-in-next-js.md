@@ -189,7 +189,7 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-        const response = await client.login(email, password);
+        const response = await client.login({ email, password });
         console.log(response);
         if (response.access_token) {
           (await cookies()).set('directus_session_token', response.access_token, { sameSite: 'strict', path: '/', secure: true })
@@ -340,10 +340,10 @@ const client = createDirectus('directus_project_url').with(authentication()).wit
 const result = await client.refresh();
 
 // refresh http request using a cookie
-const result = await client.request(refresh('cookie'));
+const result = await client.request(refresh({ mode: 'cookie' }));
 
 // refresh http request using json
-const result = await client.request(refresh('json', refresh_token));
+const result = await client.request(refresh({ mode: 'json', refresh_token }));
 ```
 
 ### Logging Out

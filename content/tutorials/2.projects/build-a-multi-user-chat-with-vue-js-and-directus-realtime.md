@@ -346,7 +346,7 @@ This guide covers authentication, item creation, and subscription using WebSocke
       const loginSubmit = (event) => {
         const email = event.target.elements.email.value;
         const password = event.target.elements.password.value;
-        client.login(email, password);
+        client.login({ email, password });
       };
 
       async function subscribe(event) {

@@ -1,8 +1,8 @@
 <template>
-	<ULandingGrid
+	<UPageGrid
 		v-bind="$attrs"
 		class="gap-4"
 	>
 		<slot />
-	</ULandingGrid>
+	</UPageGrid>
 </template>
