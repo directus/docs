@@ -80,7 +80,7 @@ OpenID Connect (OIDC) is an authentication protocol built on OAuth 2.0, and shou
 | `AUTH_<PROVIDER>_CLIENT_ID`                 | Client identifier for the external service.                                                                                                                                                                               |                        |
 | `AUTH_<PROVIDER>_CLIENT_SECRET`             | Client secret for the external service.                                                                                                                                                                                   |                        |
 | `AUTH_<PROVIDER>_CLIENT_*`                  | Client options overrides passed to the [underlying client](https://github.com/panva/openid-client).                                                                                                                       |                        |
-| `AUTH_<PROVIDER>_PRIVATE_KEYS`              | An array of JSON Web Key Set (JWKS) private keys used to sign client assertions <sup>[1]</sup>.                                                                                                                           |                        |
+| `AUTH_<PROVIDER>_PRIVATE_KEYS`              | An array of JSON Web Key Set (JWKS) private keys used to sign client assertions when `AUTH_<PROVIDER>_CLIENT_TOKEN_ENDPOINT_AUTH_METHOD` is set to `private_key_jwt` <sup>[1]</sup>.                                      |                        |
 | `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                                                                                                                                   | `openid profile email` |
 | `AUTH_<PROVIDER>_ISSUER_URL`                | OIDC `.well-known` discovery document URL of the external service.                                                                                                                                                        |                        |
 | `AUTH_<PROVIDER>_IDENTIFIER_KEY`            | User profile identifier key <sup>[2]</sup>.                                                                                                                                                                               | `sub`<sup>[3]</sup>    |
@@ -95,7 +95,8 @@ OpenID Connect (OIDC) is an authentication protocol built on OAuth 2.0, and shou
 | `AUTH_<PROVIDER>_ROLE_MAPPING`              | A JSON object in the form of `{ "openid_group_name": "directus_role_id" }` that you can use to map OpenID groups to Directus roles <sup>[4]</sup>. If not specified, falls back to `AUTH_<PROVIDER>_DEFAULT_ROLE_ID` URL. |                        |
 | `AUTH_<PROVIDER>_GROUP_CLAIM_NAME`          | The name of the OIDC claim that contains your user's groups.                                                                                                                                                              | `groups`               |
 
-<sup>[1]</sup> To ensure correct parsing the env must be prefixed with `json:`, additionally the `AUTH_<PROVIDER>_CLIENT_TOKEN_ENDPOINT_AUTH_METHOD` env must be set to `private_key_jwt`.
+<sup>[1]</sup> To ensure correct parsing the env must be prefixed with `json:`.
+
 <sup>[2]</sup> When authenticating, Directus will match the identifier value from the external user profile to a Directus users "External Identifier".
 
 <sup>[3]</sup> `sub` represents a unique user identifier defined by the OIDC provider. For users not relying on `PUBLIC_REGISTRATION` it is recommended to use a human-readable identifier, such as `email`.
