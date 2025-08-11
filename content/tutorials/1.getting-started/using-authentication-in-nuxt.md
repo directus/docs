@@ -141,7 +141,11 @@ Depending on your project configuration and if you are in development or product
 
   ```ts
   routeRules: {
-	"/directus/**": { proxy: import.meta.env.API_URL },
+    "/directus/**": {     
+      proxy: {
+        to: import.meta.env.API_URL + "/**"
+      } 
+    },
 },
   ```
 
