@@ -9,7 +9,9 @@ Directus allows adding custom migration files that run whenever the migration co
 | ----------------- | ------------------------------------ | -------------- |
 | `MIGRATIONS_PATH` | Where custom migrations are located. | `./migrations` |
 
-The file name follows the following structure `[identifier]-[name].js`, for example `20201202A-my-custom-migration.js`.
+The file name follows the following structure `[identifier]-[name].js`, where `identifier` has `YYYYMMDD_` format, for example `20201202_1-my-custom-migration.js`.
+
+Be sure to not use `YYYYMMDD` for identifier as that can conflict with Directus migrations.
 
 Every file in the root of the `migrations` directory is treated as a migration. Files that don't include a `-` character are ignored. If you want to rely on shared helper functions between migrations, put them in a subdirectory so they aren't loaded in by the migrations helper.
 
