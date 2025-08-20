@@ -26,10 +26,11 @@
 		"@vueuse/nuxt": "13.3.0",
 		"lodash-es": "4.17.21",
 		"nuxt": "3.17.5",
-		"nuxt-posthog": "1.6.3",
 		"openapi3-ts": "4.4.0",
 		"sharp": "^0.34.2",
-		"ufo": "1.6.1"
+		"ufo": "1.6.1",
+		"posthog-js": "1.260.1",
+		"posthog-node": "5.7.0"
 	},
 	"devDependencies": {
 		"@nuxt/eslint": "1.4.1",
