@@ -199,7 +199,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.redirect(url);
     } catch (error) {
       console.log(error);
-        return NextResponse.json({ error: "Registration failed" }, { status: 500 });
+        return NextResponse.json({ error: "Login failed" }, { status: 500 });
     }
 }
 
