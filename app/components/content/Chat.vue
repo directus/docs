@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface ToolInvocation {
+interface ChatToolInvocation {
 	toolCallId: string;
 	toolName: string;
 	state: 'call' | 'result';
@@ -7,23 +7,25 @@ interface ToolInvocation {
 	result?: string;
 }
 
-interface Message {
+interface ChatMessage {
 	role: 'user' | 'assistant';
 	content: string;
-	toolInvocations?: ToolInvocation[];
+	toolInvocations?: ChatToolInvocation[];
+	id?: string;
 }
 
 interface ChatProps {
-	messages: Message[];
+	messages: ChatMessage[];
+	chatId?: string;
 }
 
 const props = defineProps<ChatProps>();
 
-// Add missing ids for TS
+// Generate stable message IDs based on chatId and content
 const messages = computed(() => {
 	return props.messages.map((message, index) => ({
 		...message,
-		id: `${message.role}-${index}`,
+		id: message.id || `${props.chatId || 'chat'}-${message.role}-${index}`,
 	}));
 });
 </script>
@@ -31,7 +33,7 @@ const messages = computed(() => {
 <template>
 	<div class="border border-accented rounded-lg p-4">
 		<UChatMessages
-			:messages="messages"
+			:messages="messages as any"
 			:user="{
 				side: 'right',
 				variant: 'subtle',
