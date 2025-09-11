@@ -33,6 +33,9 @@ const messages = computed(() => {
 <template>
 	<div class="border border-accented rounded-lg p-4">
 		<UChatMessages
+			:should-load-more="false"
+			:should-scroll-to-bottom="false"
+			:auto-scroll="false"
 			:messages="messages as any"
 			:user="{
 				side: 'right',
