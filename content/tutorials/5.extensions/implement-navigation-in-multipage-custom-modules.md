@@ -506,7 +506,7 @@ api.get(`/items/pages?fields=title,banner,content&filter[uri][_eq]=${page}`).the
 
 Since [Directus version 10.10.0](/releases/breaking-changes/version-10#version-10100) the query parameter authentication is
 no longer required and considered deprecated, you can rely on
-[session cookies](/reference/authentication#access-tokens) instead.
+[session cookies](/guides/auth/tokens-cookies) instead.
 
 ::
 
