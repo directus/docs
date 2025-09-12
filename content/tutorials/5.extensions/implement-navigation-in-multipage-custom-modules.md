@@ -504,9 +504,9 @@ api.get(`/items/pages?fields=title,banner,content&filter[uri][_eq]=${page}`).the
 
 ::callout{icon="material-symbols:warning-outline-rounded"}
 
-Since [Directus version 10.10.0](/releases/breaking-changes.html#version-10-10-0) the query parameter authentication is
+Since [Directus version 10.10.0](/releases/breaking-changes/version-10#version-10100) the query parameter authentication is
 no longer required and considered deprecated, you can rely on
-[session cookies](/reference/authentication.html#access-tokens) instead.
+[session cookies](/guides/auth/tokens-cookies) instead.
 
 ::
 
