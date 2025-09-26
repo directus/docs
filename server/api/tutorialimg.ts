@@ -54,8 +54,8 @@ export default defineEventHandler(async (event) => {
 	setHeader(
 		event,
 		'Cache-Control',
-		'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
-	); // Browser cache for 1 hour, CDN cache for 1 day, stale for 7 days
+		'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800',
+	); // CDN cache for 1 day, stale for 7 days
 
 	return finalImage;
 });
