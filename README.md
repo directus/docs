@@ -66,7 +66,7 @@ The documentation automatically deploys to Vercel when changes are merged into t
 
 - [Community Platform](https://community.directus.io) (Questions, Live Discussions)
 - [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
-- [GitHub Discussions](https://github.com/directus/docs/discussions) (Feature Requests)
+- [Roadmap](https://roadmap.directus.io) (Roadmap & Feature Requests)
 
 <br />
 
