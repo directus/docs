@@ -71,32 +71,17 @@ async function copyPage() {
 
 <template>
 	<UButtonGroup>
-		<UButton
-			color="neutral"
-			variant="outline"
-			leading-icon="material-symbols:content-copy-outline"
-			:label="isCopied ? 'Copied!' : 'Copy page'"
-			@click="copyPage"
-		/>
+		<UButton color="neutral" variant="outline" leading-icon="material-symbols:content-copy-outline"
+			:label="isCopied ? 'Copied!' : 'Copy page'" @click="copyPage" />
 
-		<UDropdownMenu
-			:items="items"
-			:content="{ side: 'bottom', align: 'end' }"
-		>
-			<UButton
-				color="neutral"
-				variant="outline"
-				icon="material-symbols:keyboard-arrow-down"
-			/>
+		<UDropdownMenu :items="items" :content="{ side: 'bottom', align: 'end' }">
+			<UButton color="neutral" variant="outline" icon="material-symbols:keyboard-arrow-down" />
 			<template #item="{ item }">
 				<div class="flex gap-2 text-left">
-					<UIcon
-						:name="item.icon"
-						class="text-lg"
-					/>
+					<UIcon :name="item.icon" class="text-lg" />
 					<div>
 						<p>{{ item.label }}</p>
-						<p class="text-xs text-muted">
+						<p class="text-xs text-muted">nullify
 							{{ item.description }}
 						</p>
 					</div>
@@ -106,6 +91,4 @@ async function copyPage() {
 	</UButtonGroup>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
