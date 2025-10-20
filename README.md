@@ -66,7 +66,11 @@ The documentation automatically deploys to Vercel when changes are merged into t
 
 - [Community Platform](https://community.directus.io) (Questions, Live Discussions)
 - [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
-- [GitHub Discussions](https://github.com/directus/docs/discussions) (Feature Requests)
+- [Roadmap](https://roadmap.directus.io) (Roadmap & Feature Requests)
+
+## Making changes to Algolia Search
+
+The docs make use of the Algolia Crawler to index the content. The crawler is found at the bottom left in the Algolia dashboard under `Data Sources > Crawler > directus`. To make changes on how the crawler works, go to the `Editor` tab and make your changes. By default the crawler runs once a day but you can also manually run it. In order to tweak the ranking of search results, go to the `Search > Configure > Index > Configuration > Ranking and Sorting` tab.
 
 <br />
 

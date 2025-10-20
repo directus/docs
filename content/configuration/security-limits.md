@@ -125,6 +125,7 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `USERS_API_ACCESS_LIMIT`       | How many active API access users are allowed.                                               | `Infinity`    |
 | `GRAPHQL_QUERY_TOKEN_LIMIT`    | How many GraphQL query tokens will be parsed.                                               | 5000          |
 | `MAX_PAYLOAD_SIZE`             | Controls the maximum request body size. Accepts number of bytes, or human readable string.  | `1mb`         |
+| `MAX_BATCH_MUTATION`           | The maximum number of items for batch mutations when creating, updating and deleting.       | `Infinity`    |
 | `MAX_RELATIONAL_DEPTH`         | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
 | `QUERY_LIMIT_DEFAULT`          | The default query limit used when not defined in the API request.                           | `100`         |
 | `QUERY_LIMIT_MAX`              | The maximum query limit accepted on API requests.                                           | `-1`          |

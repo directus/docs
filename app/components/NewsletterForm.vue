@@ -2,11 +2,11 @@
 const { onLoaded } = useScript('https://js.hsforms.net/forms/embed/v2.js');
 
 const { cta } = useAppConfig();
-const { $clientPosthog } = useNuxtApp();
+const { $posthog } = useNuxtApp();
 const { newsletter } = cta;
 
 function onFormSubmittedCallback(form: any, data: any) {
-	$clientPosthog?.capture('marketing.site.forms.hubspot.submit', {
+	$posthog?.capture('marketing.site.forms.hubspot.submit', {
 		form_id: newsletter.form.hsForm,
 		form_data: data,
 	});

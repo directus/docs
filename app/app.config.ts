@@ -109,7 +109,7 @@ export default defineAppConfig({
 					},
 					{
 						label: 'Configuration',
-						to: '/configuration/general',
+						to: '/configuration/intro',
 						icon: 'i-ph-gear',
 					},
 				],

@@ -177,6 +177,13 @@ export default defineNuxtConfig({
 		},
 	},
 
+	linkChecker: {
+		skipInspections: [
+			// Skip absolute site urls because of our routing setup between the docs and the main site
+			'absolute-site-urls',
+		],
+	},
+
 	// Disable PostHog in development
 	posthog: {
 		disabled: process.env.NODE_ENV === 'development',
