@@ -130,7 +130,7 @@ You can use the built-in email rate-limiter. works the same as the api rate limi
 
 | Variable                                    | Description                                                             | Default Value |
 | ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_EMAIL_FLOWS_ENABLED`          | Whether or not to enable rate limiting per IP on the API.               | `false`       |
+| `RATE_LIMITER_EMAIL_FLOWS_ENABLED`          | Whether or not to enable rate limiting for the `Send Email` operation.               | `false`       |
 | `RATE_LIMITER_EMAIL_FLOWS_POINTS`           | The amount of allowed hits per duration.                                | `1`           |
 | `RATE_LIMITER_EMAIL_FLOWS_DURATION`         | The time window in seconds in which the points are counted.             | `60`          |
 | `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE`    | A custom error message which is appended to the rate limit error.       | `''`          |
