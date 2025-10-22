@@ -75,4 +75,4 @@ When overriding the default email templates, make sure to include the provided `
 
 ## Email Rate Limiting
 
-See https://directus.io/docs/configuration/security-limits#email-rate-limiter
+Emails can be rate limited by opting in to our [email rate limiters](/configuration/security-limits)
