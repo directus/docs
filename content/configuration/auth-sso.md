@@ -13,6 +13,7 @@ Directus offers a variety of authentication methods, including local email/passw
 | ---------------------- | ---------------------------------------------------------------------------------------- | ------------- |
 | `AUTH_PROVIDERS`       | A comma-separated list of auth providers. You can use any names you like for these keys. |               |
 | `AUTH_DISABLE_DEFAULT` | Disable the default auth provider.                                                       | `false`       |
+| `AUTH_ALLOWED_DOMAINS` | A comma-separated list of allowed domains for authentication operations such as callback redirects. |               |
 
 For each of the auth providers listed, you must provide the following configuration (variable name must be uppercase in these options):
 
@@ -28,8 +29,8 @@ Cookie and session configuration settings such as `REFRESH_TOKEN_COOKIE_*`, `SES
 Based on your configured drivers, you must also provide additional variables, where `<PROVIDER>` is the capitalized name of the item in the `AUTH_PROVIDERS` value.
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
-**PUBLIC_URL**
-`oauth2`, `openid`, `ldap`, and `saml` drivers rely on the `PUBLIC_URL` variable for redirecting. Ensure the variable is correctly configured.
+**PUBLIC_URL and Multi-Domain Authentication**
+`oauth2`, `openid`, `ldap`, and `saml` drivers rely on the `PUBLIC_URL` variable for redirecting. When `AUTH_ALLOWED_DOMAINS` is configured, OAuth callbacks will use the originating request's domain (if it matches a value in `AUTH_ALLOWED_DOMAINS`) instead of always redirecting to `PUBLIC_URL`. Ensure both variables are correctly configured.
 ::
 
 ## Local (`local`)
@@ -418,3 +419,4 @@ AUTH_GOOGLE_EMAIL_KEY="email"
 ```
 
 ::
+
