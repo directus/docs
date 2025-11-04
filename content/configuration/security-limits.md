@@ -112,6 +112,29 @@ This rate-limiter prevents the API from accepting new requests while the server 
 | `PRESSURE_LIMITER_MAX_MEMORY_HEAP_USED`       | The maximum allowed heap usage in bytes.                                    | `false`       |
 | `PRESSURE_LIMITER_RETRY_AFTER`                | Sets the `Retry-After` header when the rate limiter is triggered.           | `false`       |
 
+### Email Rate Limiting
+
+You can use the built-in email rate-limiter. This rate limiter has a queue to prevent mails from being dropped if a short burst happens to hit the limit.
+
+| Variable                                    | Description                                                             | Default Value |
+| ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_EMAIL_ENABLED`                | Whether or not to enable rate limiting for emails.                      | `false`       |
+| `RATE_LIMITER_EMAIL_POINTS`                 | The amount of allowed emails per duration.                              | `60`          |
+| `RATE_LIMITER_EMAIL_DURATION`               | The time window in seconds in which the points are counted.             | `60`          |
+| `RATE_LIMITER_EMAIL_QUEUE_SIZE`             | The amount of items that will be queued before erroring.                | `1000000`     |
+| `RATE_LIMITER_EMAIL_ERROR_MESSAGE`          | A custom error message which is appended to the rate limit error.       | `''`          |
+
+### Email Flows Operation Rate Limiting
+
+You can use the built-in email rate-limiter. works the same as the api rate limiter, if you hit the limit then the flow operation starts erroring and dropping the mails.
+
+| Variable                                    | Description                                                             | Default Value |
+| ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_EMAIL_FLOWS_ENABLED`          | Whether or not to enable rate limiting for the `Send Email` operation.               | `false`       |
+| `RATE_LIMITER_EMAIL_FLOWS_POINTS`           | The amount of allowed hits per duration.                                | `1`           |
+| `RATE_LIMITER_EMAIL_FLOWS_DURATION`         | The time window in seconds in which the points are counted.             | `60`          |
+| `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE`    | A custom error message which is appended to the rate limit error.       | `''`          |
+
 ## Limits & Optimizations
 
 Allows you to configure hard technical limits, to prevent abuse and optimize for your particular server environment.
