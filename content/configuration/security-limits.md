@@ -153,3 +153,4 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `QUERY_LIMIT_DEFAULT`          | The default query limit used when not defined in the API request.                           | `100`         |
 | `QUERY_LIMIT_MAX`              | The maximum query limit accepted on API requests.                                           | `-1`          |
 | `QUERYSTRING_MAX_PARSE_DEPTH ` | The maximum object depth when parsing URL query parameters using the querystring format     | `10`          |
+| `MAX_IMPORT_ERRORS`                        | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`                       |
