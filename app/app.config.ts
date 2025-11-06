@@ -144,6 +144,10 @@ export default defineAppConfig({
 				icon: 'simple-icons:github',
 				to: 'https://github.com/directus/directus',
 			},
+			{
+				icon: 'simple-icons:directus',
+				to: 'https://directus.io',
+			},
 		],
 	},
 
