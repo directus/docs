@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ContentCollectionItem, ContentNavigationItem } from '@nuxt/content';
-import { findPageBreadcrumb, mapContentNavigation } from '#ui-pro/utils';
+import { findPageBreadcrumb } from '@nuxt/content/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
@@ -23,58 +23,35 @@ const imageSrc = (page: ContentCollectionItem | undefined) => {
 	return `/docs/api/tutorialimg?logos=${techString}`;
 };
 
-const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation.value, page.value)).map(({ icon, ...link }) => link));
+const breadcrumb = computed(() => findPageBreadcrumb(navigation.value, page.value?.path).map(i => ({ label: i.title, to: i.path })) || []);
+
+console.log(breadcrumb.value);
 </script>
 
 <template>
 	<UPage>
-		<UPageHeader
-			:title="page!.title"
-			:ui="{ title: 'title', headline: 'headline' }"
-			:description="page!.description"
-		>
+		<UPageHeader :title="page!.title" :ui="{ title: 'title', headline: 'headline' }"
+			:description="page!.description">
 			<template #headline>
-				<UBreadcrumb
-					:items="breadcrumb"
-				>
+				<UBreadcrumb :items="breadcrumb">
 					<template #separator>
 						<span class="mx-2 text-muted">/</span>
 					</template>
 				</UBreadcrumb>
 			</template>
 
-			<template
-				v-if="page"
-				#links
-			>
+			<template v-if="page" #links>
 				<CopyDocButton :page="page" />
 			</template>
-			<img
-				v-if="page"
-				:src="imageSrc(page)"
-				alt="Generated Image"
-			>
+			<img v-if="page" :src="imageSrc(page)" alt="Generated Image">
 		</UPageHeader>
 
-		<UPageBody
-			class="content"
-			prose
-		>
-			<ContentRenderer
-				v-if="page"
-				:value="page"
-			/>
+		<UPageBody class="content" prose>
+			<ContentRenderer v-if="page" :value="page" />
 		</UPageBody>
 
-		<template
-			v-if="page!.body?.toc?.links?.length"
-			#right
-		>
-			<DocsToc
-				:links="page!.body?.toc?.links"
-				:authors="page!.authors"
-				:file="page!.id!"
-			/>
+		<template v-if="page!.body?.toc?.links?.length" #right>
+			<DocsToc :links="page!.body?.toc?.links" :authors="page!.authors" :file="page!.id!" />
 		</template>
 	</UPage>
 </template>
