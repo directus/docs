@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ContentCollectionItem, ContentNavigationItem } from '@nuxt/content';
-import { findPageBreadcrumb, mapContentNavigation } from '#ui-pro/utils';
+import { findPageBreadcrumb, mapContentNavigation } from '#ui/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 

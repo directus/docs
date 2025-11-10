@@ -87,13 +87,13 @@ Configure Nuxt UI by:
 
 ```css
 @import "tailwindcss";
-@import "@nuxt/ui-pro";
+@import "@nuxt/ui";
 ```
 
 2. Adding the Nuxt UI module to your `nuxt.config.ts`:
 
 ```ts
-modules: ['@nuxt/ui-pro'],
+modules: ['@nuxt/ui'],
 css: ['~/assets/css/main.css'],
 ```
 
@@ -106,7 +106,7 @@ This will give you a design starting point for your CSS and UI components using 
 To assist in development install the following packages:
 
 ```bash
-npm install @directus/sdk @nuxt/ui-pro
+npm install @directus/sdk @nuxt/ui
 ```
 
 ### Define a Directus Schema

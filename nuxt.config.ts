@@ -3,7 +3,7 @@ export default defineNuxtConfig({
 
 	modules: [
 		'@nuxt/eslint',
-		'@nuxt/ui-pro',
+		'@nuxt/ui',
 		'@nuxt/content',
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
@@ -108,10 +108,6 @@ export default defineNuxtConfig({
 
 	build: {
 		transpile: ['shiki'],
-	},
-
-	future: {
-		compatibilityVersion: 4,
 	},
 
 	compatibilityDate: '2024-11-01',

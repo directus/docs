@@ -16,9 +16,6 @@ export default defineAppConfig({
 				wrapper: '[&_pre>code]:!bg-transparent',
 			},
 		},
-	},
-
-	uiPro: {
 		page: {
 			slots: {
 				root: 'lg:gap-8',

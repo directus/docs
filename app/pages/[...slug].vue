@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
 
-import { findPageHeadline } from '#ui-pro/utils';
+import { findPageHeadline } from '#ui/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
@@ -50,7 +50,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 
 			<USeparator v-if="surround?.length" />
 
-			<NewsletterForm />
+			<!-- <NewsletterForm /> -->
 
 			<UContentSurround :surround="surround" />
 		</UPageBody>
