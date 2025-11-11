@@ -29,10 +29,10 @@ This includes:
 - `DB_POOL__` prefixed options which are passed to [`tarn.js`](https://github.com/vincit/tarn.js#usage).
 - `DB_SSL__` prefixed options which are passed to the respective database driver. For example, `DB_SSL__CA` which can be used to specify a custom Certificate Authority (CA) certificate for SSL connections. This is required if the database server CA is not part of [Node.js' trust store](https://nodejs.org/api/tls.html).
 
-## DB Charset Numbers
-To define collation + charset, specify `DB_CHARSET_NUMBER` without `DB_CHARSET`. [Character set codes](https://github.com/sidorares/node-mysql2/blob/3d2327d683254ad3642b9c3644ebc486dab7797e/lib/constants/charsets.js)
-
 ::callout{icon="material-symbols:info-outline"}
 **Note**  
 `DB_SSL__CA_FILE` may be preferred to load the CA directly from a file.
 ::
+
+## DB Charset Numbers
+To define collation + charset, specify `DB_CHARSET_NUMBER` without `DB_CHARSET`. [Character set codes](https://github.com/sidorares/node-mysql2/blob/3d2327d683254ad3642b9c3644ebc486dab7797e/lib/constants/charsets.js)
