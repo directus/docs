@@ -17,7 +17,7 @@ In addition to data-caching, Directus also does some internal caching. Note `CAC
 This speed up the overall performance of Directus, as we don't want to introspect the whole database on every request.
 ::
 
-::callout{icon="material-symbols:warn-outline"}
+::callout{icon="material-symbols:warning-rounded" color="warning"}
 These settings are shared across all cache drivers. If `CACHE_ENABLED` is disabled, settings marked with **superscript 5** may be used by Directus's caching system. This behavior cannot be turned off.
 ::
 
