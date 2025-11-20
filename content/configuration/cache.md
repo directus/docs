@@ -18,7 +18,7 @@ This speed up the overall performance of Directus, as we don't want to introspec
 ::
 
 ::callout{icon="material-symbols:warn-outline"}
-These settings are shared across all cache drivers. If `CACHE_ENABLED` is disabled, settings marked with **superscript 4** may be used by Directus's caching system. This behavior cannot be turned off.
+These settings are shared across all cache drivers. If `CACHE_ENABLED` is disabled, settings marked with **superscript 5** may be used by Directus's caching system. This behavior cannot be turned off.
 ::
 
 ::callout{icon="material-symbols:info-outline"}
@@ -41,7 +41,7 @@ than you would cache database content. To learn more, see [Files](/configuration
 | `CACHE_SCHEMA_SYNC_TIMEOUT`                  | How long to wait for other containers to message before trying again                                                      | `10000`                              |
 | `CACHE_SCHEMA_FREEZE_ENABLED`                | Whether or not to freeze the schema to improve memory efficiency                                                          | false                                |
 | `CACHE_NAMESPACE`                            | How to scope the cache data.                                                                                              | `system-cache`                       |
-| `CACHE_STORE`<sup>[4]</sup> <sup>[5]</sup>   | Where to store the cache data. Either `memory`, `redis`.                                                                  | `memory`                             |
+| `CACHE_STORE`<sup>[5]</sup>                  | Where to store the cache data. Either `memory`, `redis`.                                                                  | `memory`                             |
 | `CACHE_STATUS_HEADER`                        | If set, returns the cache status in the configured header. One of `HIT`, `MISS`.                                          | --                                   |
 | `CACHE_VALUE_MAX_SIZE`                       | Maximum size of values that will be cached. Accepts number of bytes, or human readable string. Use `false` for no limit   | false                                |
 | `CACHE_SKIP_ALLOWED`                         | Whether requests can use the Cache-Control header with `no-store` to skip data caching.                                   | false                                |
