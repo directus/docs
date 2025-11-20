@@ -18,7 +18,7 @@ This speed up the overall performance of Directus, as we don't want to introspec
 ::
 
 ::callout{icon="material-symbols:warn-outline"}
-These settings are shared across all cache drivers. Even if `CACHE_ENABLED` is disabled, settings marked with **superscript 4** may be used by Directus's caching system. This behavior cannot be turned off.
+These settings are shared across all cache drivers. If `CACHE_ENABLED` is disabled, settings marked with **superscript 4** may be used by Directus's caching system. This behavior cannot be turned off.
 ::
 
 ::callout{icon="material-symbols:info-outline"}
