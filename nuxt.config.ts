@@ -110,7 +110,11 @@ export default defineNuxtConfig({
 		transpile: ['shiki'],
 	},
 
-	compatibilityDate: '2025-11-19',
+	future: {
+		compatibilityVersion: 4,
+	},
+
+	compatibilityDate: '2024-11-01',
 
 	nitro: {
 		prerender: {
