@@ -33,3 +33,6 @@ This includes:
 **Note**  
 `DB_SSL__CA_FILE` may be preferred to load the CA directly from a file.
 ::
+
+## DB Charset Numbers
+To define collation + charset, specify `DB_CHARSET_NUMBER` without `DB_CHARSET`. [Character set codes](https://github.com/sidorares/node-mysql2/blob/3d2327d683254ad3642b9c3644ebc486dab7797e/lib/constants/charsets.js)
