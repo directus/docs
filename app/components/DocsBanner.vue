@@ -6,8 +6,12 @@ const dismissedBanners = useCookie('directus-dismissed-banners', {
 });
 
 const bannerVisible = computed(() => {
-	if (!unref(banner)) return false;
-	return unref(dismissedBanners).includes(unref(banner)!.id) === false;
+	const bannerValue = unref(banner);
+	if (!bannerValue) return false;
+	if (Object.keys(bannerValue).length === 0) return false;
+
+	if (!('id' in bannerValue) || !('content' in bannerValue)) return false;
+	return unref(dismissedBanners).includes(bannerValue.id) === false;
 });
 
 const dismiss = (id: string) => {
@@ -15,20 +19,25 @@ const dismiss = (id: string) => {
 };
 
 const iconName = computed(() => {
-	if (!unref(banner)) return null;
-	return getIconName(unref(banner)!.icon);
+	const bannerValue = unref(banner);
+	if (
+		!bannerValue
+		|| (typeof bannerValue === 'object' && Object.keys(bannerValue).length === 0)
+	)
+		return null;
+	return getIconName(bannerValue.icon);
 });
 </script>
 
 <template>
 	<div
 		v-if="banner && bannerVisible"
-		class="bg-inverted text-inverted cursor-pointer  h-8"
+		class="bg-inverted text-inverted cursor-pointer h-8"
 	>
 		<UContainer class="h-full flex items-center gap-x-4">
 			<NuxtLink
 				class="flex-grow h-full flex items-center text-background no-underline text-xs leading-xs font-semibold group"
-				:href="banner.link ?? undefined"
+				:href="banner?.link ?? undefined"
 			>
 				<Icon
 					v-if="iconName"
@@ -37,7 +46,7 @@ const iconName = computed(() => {
 				/>
 				<span
 					class="whitespace-nowrap overflow-hidden text-ellipsis"
-					v-html="banner.content"
+					v-html="banner?.content"
 				/>
 				<Icon
 					class="hidden md:block transform duration-150 ease-out ml-1 group-hover:translate-x-1 size-5"
@@ -49,7 +58,7 @@ const iconName = computed(() => {
 				aria-label="Close"
 				:padded="false"
 				icon="material-symbols:close"
-				@click="dismiss(banner.id)"
+				@click="banner && dismiss(banner.id)"
 			>
 				<Icon
 					name="material-symbols:close"
