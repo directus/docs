@@ -7,7 +7,7 @@ const props = defineProps<{
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
 	const query = queryCollection('content')
 		.where('path', 'LIKE', `${props.path}/%`)
-		.select('title', 'description', 'icon', 'path', 'technologies');
+		.select('title', 'description', 'icon', 'path', 'technologies', 'navigation');
 
 	if (props.limit) {
 		query.limit(props.limit);
@@ -32,7 +32,7 @@ const imageSrc = (article: { technologies?: string[] }) => {
 			:key="article.path"
 		>
 			<UPageCard
-				v-if="article.title"
+				v-if="article.title && article.navigation !== false"
 				:to="article.path"
 				:icon="article.icon"
 				:ui="{

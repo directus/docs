@@ -2,6 +2,7 @@
 slug: validating-third-party-jwts-in-directus
 title: Validating Third-Party JWTs in Directus (with Okta)
 description: Learn how to translate third part JWT's to Directus accountability
+navigation: false
 authors:
   - name: Judd Abraham
     title: Senior Software Engineer
