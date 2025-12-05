@@ -2,8 +2,6 @@
 const props = defineProps<{
 	path: string;
 	limit?: number;
-	categoryTitle: string;
-	showMore?: boolean;
 }>();
 
 const { data: articles } = await useAsyncData(props.path + '-preview', () => {
