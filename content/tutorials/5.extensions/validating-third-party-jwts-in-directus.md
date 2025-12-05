@@ -1,8 +1,10 @@
 ---
-id: placeholder
 slug: validating-third-party-jwts-in-directus
 title: Validating Third-Party JWTs in Directus (with Okta)
 description: Learn how to translate third part JWT's to Directus accountability
+authors:
+  - name: Judd Abraham
+    title: Senior Software Engineer
 ---
 
 Integrating external identity providers (e.g. Okta) with Directus often results in the need to accept a third-party JWT, validate it and translate it into a Directus **Accountability** object. This allows clients to authenticate with their external provider while Directus still enforcing its access controls.
