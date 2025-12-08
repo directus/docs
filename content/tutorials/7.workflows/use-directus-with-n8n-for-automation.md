@@ -1,0 +1,84 @@
+---
+id: use-directus-with-n8n-for-automation
+title: Use Directus with n8n for Automation
+description: Connect Directus with n8n to automate workflows, sync data, and integrate your CMS with other services using the Directus community node.
+technologies:
+  - n8n
+---
+
+Connect your Directus instance with n8n to automate workflows, sync data between systems, and build powerful integrations.
+
+::callout{icon="heroicons-outline:rocket-launch"}
+**Quick Start**
+
+1. **Install the node**: In n8n, go to **Settings** → **Community Nodes** → Install `@directus/n8n-nodes-directus`
+2. **Configure credentials**: Add your Directus URL and API token
+3. **Start building**: Use the **Directus** node for actions or **Directus Trigger** node for automation
+::
+## Available Nodes
+
+The Directus community node provides two components:
+
+- **Directus Node**: Perform CRUD operations on items, users, and files
+- **Directus Trigger Node**: Automatically start workflows when events occur in Directus
+  
+## Installation
+
+### Install the Community Node
+
+1. In n8n, go to **Settings** → **Community Nodes**
+2. Click **Install a community node**
+3. Enter: `@directus/n8n-nodes-directus`
+4. Click **Install**
+
+### Configure Credentials
+
+Before you can use the Directus nodes, you need to connect to your Directus instance:
+
+1. In any Directus node, click on **Credential to connect with**
+2. Click **Create New Credential** (or select an existing one)
+3. Fill in your connection details:
+   - **Directus URL**: Your Directus instance URL 
+   - **Token**: Your Directus API token
+4. Click **Save** to store your credentials
+
+#### Getting Your API Token
+
+1. In Directus, go to **Users**
+2. Select or create a user for n8n integration
+3. Open the user's detail page
+4. Scroll to **Token** section
+5. Click **Generate Token**
+6. Copy the token and paste into n8n
+7. **Important**: Click the checkmark (✓) to save
+
+::callout{icon="material-symbols:info-outline"}
+**Permissions**
+<br>
+**Admin Token (Recommended for Getting Started)**
+<br>
+Many operations, including creating webhooks for triggers, require Administrator permissions. Assign the Administrator role to the user for the easiest setup and full access to all collections and features.
+
+<br>
+
+**Custom Role (For Production)**
+<br>
+For better security, create a custom role with specific permissions. This allows you to limit access to only the collections and operations your workflows need. The token inherits the user's role permissions, so you can lock down access while still allowing necessary operations.
+::
+
+
+
+## Documentation
+
+**[Working with Directus Actions →](/tutorials/workflows/directus-n8n-actions)**
+
+Perform operations on your Directus data: create, read, update, and delete items, users, and files.
+
+**[Using Directus Triggers →](/tutorials/workflows/directus-n8n-triggers)**
+
+Set up automated workflows that trigger when events happen in Directus.
+
+**[Advanced Features →](/tutorials/workflows/directus-n8n-advanced)**
+
+Use raw CRUD operations with Directus filter syntax, complex queries, and advanced query parameters.
+
