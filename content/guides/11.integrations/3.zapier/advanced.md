@@ -1,6 +1,6 @@
 ---
-id: directus-zapier-advanced
-title: Directus Zapier Advanced Features
+id: zapier-advanced
+title: Advanced
 description: Advanced guide for using Directus API features in Zapier, including raw request actions, advanced filtering, and custom API calls.
 technologies:
   - zapier
@@ -8,7 +8,7 @@ technologies:
 
 This guide covers advanced Directus features in Zapier, including raw request actions and advanced filtering in Search / List actions.
 
-**[← Back to Directus + Zapier Overview](/tutorials/workflows/use-directus-with-zapier-for-automation)**
+**[← Back to Zapier Integration](/guides/integrations/zapier)**
 
 ## Raw Request Actions
 
@@ -180,21 +180,11 @@ For bulk operations:
 
 ## Next Steps
 
-- **[← Back to Overview](/tutorials/workflows/use-directus-with-zapier-for-automation)** Return to the integration overview
-- **[Learn about Directus Actions →](/tutorials/workflows/directus-zapier-actions)** Basic operations guide
-- **[Learn about Directus Triggers →](/tutorials/workflows/directus-zapier-triggers)** Automation workflows
+- **[← Back to Integration](/guides/integrations/zapier)** Return to the integration overview
+- **[Learn about Actions →](/guides/integrations/zapier/actions)** Basic operations guide
+- **[Learn about Triggers →](/guides/integrations/zapier/triggers)** Automation workflows
 
 ## Additional Resources
 
 - [Directus Filter Rules](https://directus.io/docs/guides/connect/filter-rules) - Complete filter syntax and operators
 - [Directus Query Parameters](https://directus.io/docs/guides/connect/query-parameters) - All available query parameters
-
-
-
-
-
-
-
-
-
-
