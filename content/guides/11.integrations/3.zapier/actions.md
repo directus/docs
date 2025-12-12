@@ -1,6 +1,6 @@
 ---
-id: directus-zapier-actions
-title: Directus Zapier Actions
+id: zapier-actions
+title: Actions
 description: Complete guide for using Directus actions in Zapier workflows, including working with items, users, and files.
 technologies:
   - zapier
@@ -8,7 +8,7 @@ technologies:
 
 This guide covers how to use Directus actions in Zapier to perform operations on your Directus data when triggered by other apps.
 
-**[← Back to Directus + Zapier Overview](/tutorials/workflows/use-directus-with-zapier-for-automation)**
+**[← Back to Zapier Integration](/guides/integrations/zapier)**
 
 ## Using Directus Actions
 
@@ -172,8 +172,27 @@ All other operations (Update, Delete, Search / List) follow the standard pattern
 
 ## Tips and Best Practices
 
+### Relationship Fields
 
+All relationship fields accept simple text input with item IDs. Use the **Search Items** action to find the IDs you
+need.
 
+**Many-to-One (M2O) fields** (like selecting an author for a post) accept a single item ID. For example: `author-uuid`.
+
+**One-to-Many (O2M) and Many-to-Many (M2M) fields** accept comma-separated item IDs. For example, to add buttons to a
+button group, enter: `uuid-1, uuid-2, uuid-3`.
+
+**Many-to-Any (M2A) fields** (like page builder blocks) accept `collection:id` pairs separated by commas. For example:
+`block_hero:uuid-1, block_text:uuid-2, block_gallery:uuid-3`. This lets you specify both which collection and which item
+to link.
+
+**File fields** require file UUIDs. For single file fields, enter one UUID. For multi-file fields (like image
+galleries), enter comma-separated UUIDs: `file-uuid-1, file-uuid-2`. Upload files first using the **Files – Upload** or
+**Files – Import** actions.
+
+All inputs are automatically converted to the proper JSON format for Directus. For advanced relational operations (like
+creating nested items inline), use the **Raw Request** action. See the
+[Advanced Features](/tutorials/workflows/directus-zapier-advanced) guide for examples.
 
 ### File Fields in Items
 
@@ -213,15 +232,5 @@ If you encounter issues:
 
 ## Next Steps
 
-- **[← Back to Overview](/tutorials/workflows/use-directus-with-zapier-for-automation)** Return to the integration overview
-- **[Learn about Directus Triggers →](/tutorials/workflows/directus-zapier-triggers)** Set up automated workflows
-
-
-
-
-
-
-
-
-
-
+- **[← Back to Integration](/guides/integrations/zapier)** Return to the integration overview
+- **[Learn about Triggers →](/guides/integrations/zapier/triggers)** Set up automated workflows

@@ -12,6 +12,12 @@ const integrations = [
 		to: '/guides/integrations/clay',
 		logo: '/img/tutorials/clay.png',
 	},
+	{
+		title: 'Zapier',
+		description: 'Automate workflows between Directus and thousands of other apps using Zapier.',
+		to: '/guides/integrations/zapier',
+		logo: '/img/tutorials/zapier.png',
+	},
 ];
 </script>
 
@@ -55,4 +61,3 @@ const integrations = [
 		</template>
 	</div>
 </template>
-

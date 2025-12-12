@@ -1,6 +1,6 @@
 ---
-id: directus-zapier-triggers
-title: Directus Zapier Triggers
+id: zapier-triggers
+title: Triggers
 description: Complete guide for using Directus triggers in Zapier workflows to automatically start Zaps when events happen in Directus.
 technologies:
   - zapier
@@ -8,7 +8,7 @@ technologies:
 
 This guide covers how to use Directus triggers in Zapier to automatically start your Zaps when something happens in Directus.
 
-**[← Back to Directus + Zapier Overview](/tutorials/workflows/use-directus-with-zapier-for-automation)**
+**[← Back to Zapier Integration](/guides/integrations/zapier)**
 
 ## Using Directus Triggers
 
@@ -49,8 +49,6 @@ When you set up a Directus trigger in Zapier:
 2. Directus sends notifications to Zapier when the selected event happens
 3. Your Zap runs automatically with the data from Directus
 4. When you turn off your Zap, the Flow and webhook are automatically removed
-
-
 
 ---
 
@@ -114,15 +112,5 @@ If you encounter issues:
 
 ## Next Steps
 
-- **[← Back to Overview](/tutorials/workflows/use-directus-with-zapier-for-automation)** Return to the integration overview
-- **[Learn about Directus Actions →](/tutorials/workflows/directus-zapier-actions)** Perform operations on your Directus data
-
-
-
-
-
-
-
-
-
-
+- **[← Back to Integration](/guides/integrations/zapier)** Return to the integration overview
+- **[Learn about Actions →](/guides/integrations/zapier/actions)** Perform operations on your Directus data
