@@ -26,27 +26,29 @@ const integrations = [
 				class="hover:bg-primary/5 hover:ring-primary"
 				:ui="{
 					title: 'font-bold text-pretty',
-					description: 'line-clamp-2',
+					description: '',
 					container: 'p-0',
 				}"
 			>
 				<div class="min-w-0">
 					<div
-						class="relative p-6 rounded-t-lg bg-gradient-to-br from-primary/10 via-transparent to-primary/10"
+						class="relative p-5 rounded-t-lg bg-gradient-to-br from-primary/10 via-transparent to-primary/10"
 					>
 						<div class="pointer-events-none absolute inset-0 rounded-t-lg ring-1 ring-inset ring-gray-200/60 dark:ring-gray-700/60" />
-						<img
-							class="mx-auto h-28 sm:h-32 md:h-36 w-auto max-w-[90%] object-contain dark:brightness-90"
-							:src="integration.logo"
-							:alt="`${integration.title} logo`"
-						>
+						<div class="relative mx-auto flex h-22 w-22 sm:h-24 sm:w-24 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-gray-200/70">
+							<img
+								class="max-h-[70%] max-w-[70%] object-contain"
+								:src="integration.logo"
+								:alt="`${integration.title} logo`"
+							>
+						</div>
 					</div>
 
-					<div class="p-4">
+					<div class="p-3">
 						<ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
 							{{ integration.title }}
 						</ProseP>
-						<ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+						<ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 leading-snug">
 							{{ integration.description }}
 						</ProseP>
 					</div>
@@ -55,4 +57,3 @@ const integrations = [
 		</template>
 	</div>
 </template>
-
