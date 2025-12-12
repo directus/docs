@@ -92,6 +92,11 @@ export default defineAppConfig({
 						to: '/guides/ai/mcp',
 						icon: 'directus-ai',
 					},
+					{
+						label: 'Integrations',
+						to: '/guides/integrations',
+						icon: 'directus-integrations',
+					},
 				],
 			},
 			{
