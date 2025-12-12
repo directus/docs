@@ -192,7 +192,7 @@ galleries), enter comma-separated UUIDs: `file-uuid-1, file-uuid-2`. Upload file
 
 All inputs are automatically converted to the proper JSON format for Directus. For advanced relational operations (like
 creating nested items inline), use the **Raw Request** action. See the
-[Advanced Features](/tutorials/workflows/directus-zapier-advanced) guide for examples.
+[Advanced Features](/guides/integrations/zapier/advanced) guide for examples.
 
 ### File Fields in Items
 
