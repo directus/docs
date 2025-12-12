@@ -1,6 +1,6 @@
 ---
 id: directus-n8n-triggers
-title: Directus n8n Triggers
+title: Triggers
 description: Complete guide for using Directus triggers in n8n workflows to automate workflows when events happen in Directus.
 technologies:
   - n8n
@@ -8,7 +8,7 @@ technologies:
 
 This guide covers how to use the Directus Trigger Node to automatically start your n8n workflows when something happens in Directus.
 
-**[← Back to Directus + n8n Overview](/tutorials/workflows/use-directus-with-n8n-for-automation)**
+**[← Back to Directus + n8n Overview](/guides/integrations/n8n)**
 
 ## Using the Directus Trigger Node
 
@@ -122,8 +122,8 @@ If you encounter issues:
 
 ## Next Steps
 
-- **[← Back to Overview](/tutorials/workflows/use-directus-with-n8n-for-automation)** Return to the integration overview
-- **[Learn about Directus Actions →](/tutorials/workflows/directus-n8n-actions)** Perform operations on your Directus data
+- **[← Back to Overview](/guides/integrations/n8n)** Return to the integration overview
+- **[Learn about Directus Actions →](/guides/integrations/n8n/directus-n8n-actions)** Perform operations on your Directus data
 
 
 

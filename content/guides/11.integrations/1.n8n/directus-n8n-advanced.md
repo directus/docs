@@ -1,6 +1,6 @@
 ---
 id: directus-n8n-advanced
-title: Directus n8n Advanced Features
+title: Advanced
 description: Advanced guide for using Directus raw CRUD operations in n8n, including raw JSON operations, complex filters, relational queries, and query parameters.
 technologies:
   - n8n
@@ -8,7 +8,7 @@ technologies:
 
 This guide covers advanced Directus features in n8n using raw CRUD operations, which give you full access to Directus's native filter syntax, query parameters, and complex query capabilities.
 
-**[← Back to Directus + n8n Overview](/tutorials/workflows/use-directus-with-n8n-for-automation)**
+**[← Back to Directus + n8n Overview](/guides/integrations/n8n)**
 
 ## Raw CRUD Operations
 
@@ -247,9 +247,9 @@ You can use n8n expressions in your raw JSON data for dynamic queries:
 
 ## Next Steps
 
-- **[← Back to Overview](/tutorials/workflows/use-directus-with-n8n-for-automation)** Return to the integration overview
-- **[Learn about Directus Actions →](/tutorials/workflows/directus-n8n-actions)** Basic operations guide
-- **[Learn about Directus Triggers →](/tutorials/workflows/directus-n8n-triggers)** Automation workflows
+- **[← Back to Overview](/guides/integrations/n8n)** Return to the integration overview
+- **[Learn about Directus Actions →](/guides/integrations/n8n/directus-n8n-actions)** Basic operations guide
+- **[Learn about Directus Triggers →](/guides/integrations/n8n/directus-n8n-triggers)** Automation workflows
 
 
 

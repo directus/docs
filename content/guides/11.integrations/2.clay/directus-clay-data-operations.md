@@ -1,6 +1,6 @@
 ---
 id: directus-clay-data-operations-tutorial
-title: Directus Clay Data Operations
+title: Data Operations
 description: Advanced techniques for working with Directus data in Clay, including filters, pagination, common use cases, and best practices.
 technologies:
   - clay
@@ -8,7 +8,7 @@ technologies:
 
 This guide covers advanced techniques for working with Directus data in Clay, including filtering, field selection, pagination, and optimization strategies.
 
-**[← Back to Directus + Clay Overview](/tutorials/projects/use-directus-with-clay-for-data-enrichment)**
+**[← Back to Directus + Clay Overview](/guides/integrations/clay)**
 
 ## Working with Directus Data
 
@@ -112,11 +112,12 @@ If you encounter issues:
 
 ## Next Steps
 
-- **[Learn Clay Templates →](/tutorials/projects/use-clay-templates-with-directus)** - Use Clay's pre-built templates
-- **[Learn Directus Webhooks →](/tutorials/projects/use-directus-webhooks-with-clay)** - Set up real-time data sync
-- **[← Back to Overview](/tutorials/projects/use-directus-with-clay-for-data-enrichment)**
+- **[Learn Clay Templates →](/guides/integrations/clay/use-clay-templates-with-directus)** - Use Clay's pre-built templates
+- **[Learn Directus Webhooks →](/guides/integrations/clay/use-directus-webhooks-with-clay)** - Set up real-time data sync
+- **[← Back to Overview](/guides/integrations/clay)**
 
 ## Additional Resources
 
 - [Clay Documentation](https://clay.com/docs)
 - [Directus Community](https://community.directus.io/)
+

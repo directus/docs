@@ -1,6 +1,6 @@
 ---
 id: directus-n8n-actions
-title: Directus n8n Actions
+title: Actions
 description: Complete guide for using Directus actions in n8n workflows, including working with items, users, and files.
 technologies:
   - n8n
@@ -8,7 +8,7 @@ technologies:
 
 This guide covers how to use the Directus Node to perform actions on your Directus data in n8n workflows, including working with items, users, and files.
 
-**[← Back to Directus + n8n Overview](/tutorials/workflows/use-directus-with-n8n-for-automation)**
+**[← Back to Directus + n8n Overview](/guides/integrations/n8n)**
 
 ## Using the Directus Node (Actions)
 
@@ -157,8 +157,8 @@ If you encounter issues:
 
 ## Next Steps
 
-- **[← Back to Overview](/tutorials/workflows/use-directus-with-n8n-for-automation)** Return to the integration overview
-- **[Learn about Directus Triggers →](/tutorials/workflows/directus-n8n-triggers)** Set up automated workflows
+- **[← Back to Overview](/guides/integrations/n8n)** Return to the integration overview
+- **[Learn about Directus Triggers →](/guides/integrations/n8n/directus-n8n-triggers)** Set up automated workflows
 
 
 
