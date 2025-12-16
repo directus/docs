@@ -203,11 +203,13 @@ the **Files – Upload** or **Files – Import** actions.
 
 All inputs are automatically converted to the proper JSON format for Directus. For advanced relational operations (like
 creating nested items inline), use the **Raw Request** action. See the
-[Advanced Features](/guides/integrations/zapier/advanced) guide for examples.
+[Advanced Features](/tutorials/workflows/directus-zapier-advanced) guide for examples.
+
 
 ### File Fields in Items
 
 When creating or updating items with file/image fields, first upload or import the file using a **File** action, then use the returned **File ID** in your item creation/update. File fields require the UUID of an existing file, not file uploads directly.
+
 
 ### Testing Your Zaps
 
