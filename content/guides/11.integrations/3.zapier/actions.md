@@ -174,33 +174,40 @@ All other operations (Update, Delete, Search / List) follow the standard pattern
 
 ### Relationship Fields
 
-All relationship fields accept simple text input with item IDs. Use the **Search Items** action to find the IDs you
-need.
+**Fields with Dropdown Selection:**
 
-**Many-to-One (M2O) fields** (like selecting an author for a post) accept a single item ID. For example: `author-uuid`.
+**Many-to-One (M2O) fields** (like selecting an author for a post or a form for a block) support dropdown selection. You
+can select an item from the dropdown or enter a UUID directly. The dropdown works for all collections, including custom
+collections.
 
-**One-to-Many (O2M) and Many-to-Many (M2M) fields** accept comma-separated item IDs. For example, to add buttons to a
-button group, enter: `uuid-1, uuid-2, uuid-3`.
+**File fields (single)** support dropdown selection. Select a file from the dropdown or enter a file UUID. Upload files
+first using the **Files – Upload** or **Files – Import** actions if needed.
 
-**Many-to-Any (M2A) fields** (like page builder blocks) accept `collection:id` pairs separated by commas. For example:
+**User fields** support dropdown selection. Select a user from the dropdown or enter a user UUID.
+
+**Fields Requiring Text Input:**
+
+**One-to-Many (O2M) fields** (like buttons in a button group) require comma-separated item IDs. For example:
+`uuid-1, uuid-2, uuid-3`. Use the **Search Items** action to find the IDs you need.
+
+**Many-to-Many (M2M) fields** require comma-separated item IDs. For example: `uuid-1, uuid-2, uuid-3`. Use the **Search
+Items** action to find the IDs you need.
+
+**Many-to-Any (M2A) fields** (like page builder blocks) require `collection:id` pairs separated by commas. For example:
 `block_hero:uuid-1, block_text:uuid-2, block_gallery:uuid-3`. This lets you specify both which collection and which item
 to link.
 
-**File fields** require file UUIDs. For single file fields, enter one UUID. For multi-file fields (like image
-galleries), enter comma-separated UUIDs: `file-uuid-1, file-uuid-2`. Upload files first using the **Files – Upload** or
-**Files – Import** actions.
+**Multiple files (gallery) fields** support dropdown selection for single selection only (due to a Zapier platform
+limitation). For multiple files, enter comma-separated file UUIDs: `file-uuid-1, file-uuid-2`. Upload files first using
+the **Files – Upload** or **Files – Import** actions.
 
 All inputs are automatically converted to the proper JSON format for Directus. For advanced relational operations (like
 creating nested items inline), use the **Raw Request** action. See the
-[Advanced Features](/guides/integrations/zapier/advanced) guide for examples.
+[Advanced Features](/tutorials/workflows/directus-zapier-advanced) guide for examples.
 
 ### File Fields in Items
 
 When creating or updating items with file/image fields, first upload or import the file using a **File** action, then use the returned **File ID** in your item creation/update. File fields require the UUID of an existing file, not file uploads directly.
-
-### Role Names
-
-When creating or updating users, the **Role** field accepts both role names (e.g., "Editor") and UUIDs. Using role names is easier and more readable.
 
 ### Testing Your Zaps
 
