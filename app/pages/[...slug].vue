@@ -20,6 +20,8 @@ const headline = computed(() => findPageHeadline(navigation.value, page.value));
 
 const imageSrc = computed(() => {
 	if (!page.value?.technologies) return '';
+	// Only show image on the main "Integration" page, not on sub-pages
+	if (page.value.title !== 'Integration') return '';
 	const technologies = page.value.technologies || ['directus'];
 	const techString = technologies.join(', ');
 	return `/docs/api/tutorialimg?logos=${techString}`;
