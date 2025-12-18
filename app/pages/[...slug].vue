@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContentCollectionItem, ContentNavigationItem } from '@nuxt/content';
+import type { ContentNavigationItem } from '@nuxt/content';
 
 import { findPageHeadline } from '#ui-pro/utils';
 
@@ -17,15 +17,6 @@ if (!page.value) {
 }
 
 const headline = computed(() => findPageHeadline(navigation.value, page.value));
-
-const imageSrc = (page: ContentCollectionItem | undefined) => {
-	if (!page) return '';
-	// Only show image on pages with title "Integration"
-	if (page.title !== 'Integration') return '';
-	const technologies = page.technologies || ['directus'];
-	const techString = technologies.join(', ');
-	return `/docs/api/tutorialimg?logos=${techString}`;
-};
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
 	route.path,
@@ -46,11 +37,6 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			<template #links>
 				<CopyDocButton :page="page!" />
 			</template>
-			<img
-				v-if="imageSrc(page)"
-				:src="imageSrc(page)"
-				alt="Generated Image"
-			>
 		</UPageHeader>
 
 		<UPageBody
