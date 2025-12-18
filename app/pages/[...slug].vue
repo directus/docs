@@ -18,15 +18,6 @@ if (!page.value) {
 
 const headline = computed(() => findPageHeadline(navigation.value, page.value));
 
-const imageSrc = computed(() => {
-	if (!page.value?.technologies) return '';
-	// Only show image on the main "Integration" page, not on sub-pages
-	if (page.value.title !== 'Integration') return '';
-	const technologies = page.value.technologies || ['directus'];
-	const techString = technologies.join(', ');
-	return `/docs/api/tutorialimg?logos=${techString}`;
-});
-
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
 	route.path,
 	{
@@ -46,11 +37,6 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			<template #links>
 				<CopyDocButton :page="page!" />
 			</template>
-			<img
-				v-if="imageSrc"
-				:src="imageSrc"
-				alt="Generated Image"
-			>
 		</UPageHeader>
 
 		<UPageBody
