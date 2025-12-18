@@ -4,13 +4,13 @@ const integrations = [
 		title: 'n8n',
 		description: 'Automate workflows between Directus and other services using n8n\'s visual workflow builder.',
 		to: '/guides/integrations/n8n',
-		logo: '/img/tutorials/n8n.png',
+		logo: '/docs/img/n8n.png',
 	},
 	{
 		title: 'Clay',
 		description: 'Connect Directus with Clay for data enrichment and automated workflows.',
 		to: '/guides/integrations/clay',
-		logo: '/img/tutorials/clay.png',
+		logo: '/docs/img/clay.png',
 	},
 ];
 </script>
