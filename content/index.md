@@ -270,7 +270,7 @@ navigation: false
   title: Environment Variables
   description: Configure Directus at an advanced level.
   icon: heroicons-outline:cog
-  to: '/configuration/general'
+  to: '/configuration/intro'
   ---
   :::
 

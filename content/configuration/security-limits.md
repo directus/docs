@@ -29,9 +29,9 @@ description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate 
 | `USER_REGISTER_URL_ALLOW_LIST`      | List of URLs that can be used as `verification_url` in the `/users/register` endpoint.                                                                                                  |                           |
 | `IP_TRUST_PROXY`                    | Settings for the Express.js trust proxy setting.                                                                                                                                        | true                      |
 | `IP_CUSTOM_HEADER`                  | What custom request header to use for the IP address.                                                                                                                                   | false                     |
-| `ASSETS_CONTENT_SECURITY_POLICY`    | Custom overrides for the Content-Security-Policy header for the /assets endpoint. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `"default-src 'self'; img-src 'self' https://cdn.example.com data:; media-src 'none'; script-src 'none'"`        |                           |
+| `ASSETS_CONTENT_SECURITY_POLICY`    | Custom overrides for the Content-Security-Policy header for the /assets endpoint. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `ASSETS_CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://cdn.example.com data:"`        |                           |
 | `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny importing files from these IP addresses / IP ranges / CIDR blocks. Use `0.0.0.0` to match any local IP address.                                                                    | `0.0.0.0,169.254.169.254` |
-| `CONTENT_SECURITY_POLICY_*`         | Custom overrides for the Content-Security-Policy header. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `CONTENT_SECURITY_POLICY_IMG_SRC="'self' https://images.example.com data:"`                                 |                           |
+| `CONTENT_SECURITY_POLICY_*`         | Custom overrides for the Content-Security-Policy header. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://images.example.com data:"`                                 |                           |
 | `HSTS_ENABLED`                      | Enable the Strict-Transport-Security policy header. When enabled, Directus will send the `Strict-Transport-Security: max-age=15552000; includeSubDomains` header on all responses.                                                                                                                                     | `false`                   |
 | `HSTS_*`                            | Custom overrides for the Strict-Transport-Security header. See [helmet's documentation](https://helmetjs.github.io). Example: `HSTS_MAX_AGE=63072000`                                                                   |                           |
 
@@ -112,6 +112,29 @@ This rate-limiter prevents the API from accepting new requests while the server 
 | `PRESSURE_LIMITER_MAX_MEMORY_HEAP_USED`       | The maximum allowed heap usage in bytes.                                    | `false`       |
 | `PRESSURE_LIMITER_RETRY_AFTER`                | Sets the `Retry-After` header when the rate limiter is triggered.           | `false`       |
 
+### Email Rate Limiting
+
+You can use the built-in email rate-limiter. This rate limiter has a queue to prevent mails from being dropped if a short burst happens to hit the limit.
+
+| Variable                                    | Description                                                             | Default Value |
+| ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_EMAIL_ENABLED`                | Whether or not to enable rate limiting for emails.                      | `false`       |
+| `RATE_LIMITER_EMAIL_POINTS`                 | The amount of allowed emails per duration.                              | `60`          |
+| `RATE_LIMITER_EMAIL_DURATION`               | The time window in seconds in which the points are counted.             | `60`          |
+| `RATE_LIMITER_EMAIL_QUEUE_SIZE`             | The amount of items that will be queued before erroring.                | `1000000`     |
+| `RATE_LIMITER_EMAIL_ERROR_MESSAGE`          | A custom error message which is appended to the rate limit error.       | `''`          |
+
+### Email Flows Operation Rate Limiting
+
+You can use the built-in email rate-limiter. works the same as the api rate limiter, if you hit the limit then the flow operation starts erroring and dropping the mails.
+
+| Variable                                    | Description                                                             | Default Value |
+| ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_EMAIL_FLOWS_ENABLED`          | Whether or not to enable rate limiting for the `Send Email` operation.               | `false`       |
+| `RATE_LIMITER_EMAIL_FLOWS_POINTS`           | The amount of allowed hits per duration.                                | `1`           |
+| `RATE_LIMITER_EMAIL_FLOWS_DURATION`         | The time window in seconds in which the points are counted.             | `60`          |
+| `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE`    | A custom error message which is appended to the rate limit error.       | `''`          |
+
 ## Limits & Optimizations
 
 Allows you to configure hard technical limits, to prevent abuse and optimize for your particular server environment.
@@ -125,7 +148,9 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `USERS_API_ACCESS_LIMIT`       | How many active API access users are allowed.                                               | `Infinity`    |
 | `GRAPHQL_QUERY_TOKEN_LIMIT`    | How many GraphQL query tokens will be parsed.                                               | 5000          |
 | `MAX_PAYLOAD_SIZE`             | Controls the maximum request body size. Accepts number of bytes, or human readable string.  | `1mb`         |
+| `MAX_BATCH_MUTATION`           | The maximum number of items for batch mutations when creating, updating and deleting.       | `Infinity`    |
 | `MAX_RELATIONAL_DEPTH`         | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
 | `QUERY_LIMIT_DEFAULT`          | The default query limit used when not defined in the API request.                           | `100`         |
 | `QUERY_LIMIT_MAX`              | The maximum query limit accepted on API requests.                                           | `-1`          |
 | `QUERYSTRING_MAX_PARSE_DEPTH ` | The maximum object depth when parsing URL query parameters using the querystring format     | `10`          |
+| `MAX_IMPORT_ERRORS`                        | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`                       |

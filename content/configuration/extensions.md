@@ -15,7 +15,7 @@ description: Configuration for extensions and the Directus Marketplace.
 | `EXTENSIONS_LIMIT`                          | Maximum number of extensions you allow to be installed through the Marketplace.                                                    |                |
 | `EXTENSIONS_ROLLDOWN`                       | Enable use of [Rolldown](https://rolldown.rs/) to optimize extensions bundling.                                                    | `false`        |
 
-<sup>[1]</sup> When EXTENSIONS_LOCATION is set, this defines the path inside the selected storage location where extensions reside.
+<sup>[1]</sup> When `EXTENSIONS_LOCATION` is set, this defines the path inside the selected storage location where extensions reside.
 
 <sup>[2]</sup> `EXTENSIONS_AUTO_RELOAD` will not work when the `EXTENSIONS_LOCATION` environment variable is set.
 
