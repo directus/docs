@@ -99,10 +99,11 @@ When uploading an image, Directus persists the `description`, `title`, and `tags
 
 ## Upload Limits
 
-| Variable                     | Description                                                                       | Default Value |
-| ---------------------------- | --------------------------------------------------------------------------------- | ------------- |
-| `FILES_MAX_UPLOAD_SIZE`      | Maximum file upload size allowed. For example `10mb`, `1gb`, `10kb`.              |               |
-| `FILES_MIME_TYPE_ALLOW_LIST` | Allow list of mime types that are allowed to be uploaded. Supports `glob` syntax. | `*/*`         |
+| Variable                       | Description                                                                                         | Default Value |
+| ------------------------------ | --------------------------------------------------------------------------------------------------- | ------------- |
+| `FILES_MAX_UPLOAD_SIZE`        | Maximum file upload size allowed. For example `10mb`, `1gb`, `10kb`.                                |               |
+| `FILES_MAX_UPLOAD_CONCURRENCY` | Maximum files uploaded concurrently from the studio. Remaining files are sent in a sequential batch |               |
+| `FILES_MIME_TYPE_ALLOW_LIST`   | Allow list of mime types that are allowed to be uploaded. Supports `glob` syntax.                   | `*/*`         |
 
 ## Chunked Uploads
 
