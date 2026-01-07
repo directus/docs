@@ -41,6 +41,11 @@ For **multi-domain** deployments where your API is accessible from multiple doma
 PUBLIC_URL="https://<your_primary_domain>"
 AUTH_ALLOWED_PUBLIC_URLS="https://<your_primary_domain>,https://<your_secondary_domain>"
 ```
+
+**Session Cookie Limitation:**
+
+- **Subdomains on the same domain** (e.g., `api.example.com` and `admin.example.com`): Set `SESSION_COOKIE_DOMAIN=.example.com` to share sessions across subdomains.
+- **Different domains** (e.g., `example.com` and `example.org`): Leave `SESSION_COOKIE_DOMAIN` unset. Due to browser security restrictions, cookies cannot be shared across different domains. Each domain will maintain its own separate session.
 ::
 
 ## Local (`local`)
