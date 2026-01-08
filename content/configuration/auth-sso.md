@@ -31,7 +31,7 @@ Based on your configured drivers, you must also provide additional variables, wh
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
 **PUBLIC_URL and AUTH_ALLOWED_PUBLIC_URLS**
 
-Our `oauth2`, `openid` and `saml` SSO drivers rely on `PUBLIC_URL` for redirection, with `oauth2` and `openid` using it for the callback URL generation. If set incorrectly, the login process for these drivers may behave unexpectedly.
+Our `oauth2`, `openid` and `saml` SSO drivers rely on `PUBLIC_URL` for redirection, with `oauth2` and `openid` also using it for the callback URL generation. If set incorrectly, the login process for these drivers may behave unexpectedly.
 
 In environments where the API is accessible from multiple domains, `AUTH_ALLOWED_PUBLIC_URLS` should be configured for the domains you wish to support SSO sign-in. When a request's origin matches an entry, the corresponding PUBLIC_URL is used for the login flow. If no match is found, the default `PUBLIC_URL` is used instead.
 
