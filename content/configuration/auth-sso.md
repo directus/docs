@@ -29,11 +29,11 @@ Cookie and session configuration settings such as `REFRESH_TOKEN_COOKIE_*`, `SES
 Based on your configured drivers, you must also provide additional variables, where `<PROVIDER>` is the capitalized name of the item in the `AUTH_PROVIDERS` value.
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
-**PUBLIC_URL and Multi-Domain Deployments**
+**PUBLIC_URL and AUTH_ALLOWED_PUBLIC_URLS**
 
-`oauth2`, `openid`, `ldap`, and `saml` drivers rely on `PUBLIC_URL` for redirecting.
+Our `oauth2`, `openid` and `saml` SSO drivers rely on `PUBLIC_URL` for the provider callback URL (redirect_uri), with `oauth2` and `openid` relying on it for part of the authentication flow. If set incorrectly, the login process for these drivers may behave unexpectedly.
 
-For **multi-domain** deployments where your API is accessible from multiple domains, configure `AUTH_ALLOWED_PUBLIC_URLS`. When a request's origin matches an entry, that URL will be used for the SSO callback (`oauth2`, `openid`, `saml`) instead of `PUBLIC_URL`.
+In environments where the API is accessible from multiple domains, `AUTH_ALLOWED_PUBLIC_URLS` should be configured for the domains you wish to support SSO sign-in. When a request's origin matches an entry, the corresponding PUBLIC_URL is used for the login flow. If no match is found, the default `PUBLIC_URL` is used instead.
 
 **Example:**
 
