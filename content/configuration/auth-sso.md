@@ -39,7 +39,7 @@ For **multi-domain** deployments where your API is accessible from multiple doma
 
 ```
 PUBLIC_URL="https://<your_primary_domain>"
-AUTH_ALLOWED_PUBLIC_URLS="https://<your_primary_domain>,https://<your_secondary_domain>"
+AUTH_ALLOWED_PUBLIC_URLS="https://<your_secondary_domain>,https://<your_tertiary_domain>"
 ```
 
 **Session Cookie Limitation:**
