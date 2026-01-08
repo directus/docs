@@ -13,7 +13,7 @@ Directus offers a variety of authentication methods, including local email/passw
 | -------------------------- | ---------------------------------------------------------------------------------------- | ------------- |
 | `AUTH_PROVIDERS`           | A comma-separated list of auth providers. You can use any names you like for these keys. |               |
 | `AUTH_DISABLE_DEFAULT`     | Disable the default auth provider.                                                       | `false`       |
-| `AUTH_ALLOWED_PUBLIC_URLS` | A comma-separated list of allowed API public URLs for SSO callback generation in multi-domain deployments. |               |
+| `AUTH_ALLOWED_PUBLIC_URLS` | A comma-separated list of allowed API PUBLIC_URLs used to generate `OAuth 2.0` / `OpenID` SSO callback URLs. This is useful for multi-domain deployments. |               |
 
 For each of the auth providers listed, you must provide the following configuration (variable name must be uppercase in these options):
 
