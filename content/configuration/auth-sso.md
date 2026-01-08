@@ -42,10 +42,10 @@ PUBLIC_URL="https://<your_primary_domain>"
 AUTH_ALLOWED_PUBLIC_URLS="https://<your_secondary_domain>,https://<your_tertiary_domain>"
 ```
 
-**Session Cookie Limitation:**
+**Cookie Limitations**
 
-- **Subdomains on the same domain** (e.g., `api.example.com` and `admin.example.com`): Set `SESSION_COOKIE_DOMAIN=.example.com` to share sessions across subdomains.
-- **Different domains** (e.g., `example.com` and `example.org`): Leave `SESSION_COOKIE_DOMAIN` unset. Due to browser security restrictions, cookies cannot be shared across different domains. Each domain will maintain its own separate session.
+- Subdomains of the same parent domain: Since they share a common parent domain (e.g. `api.example.com` and `admin.example.com`), the cookie domain should be set to the parent domain prefixed by `.` (e.g `.example.com`) so the session will be shared across both subdomains. Loggins in on one subdomain will result in a session valid for all subdomains.
+- Different domains: Because they are separate domains (e.g. `example.com` and `example.org`), the cookie domain should be left unset. Due to browser security restrictions, cookies cannot be shared across different domains. Each domain will maintain its own independent session, logging in on one domain will not result in a valid session on the other.
 ::
 
 ## Local (`local`)
