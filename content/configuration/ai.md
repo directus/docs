@@ -9,7 +9,7 @@ description: Configuration for AI Chat and Model Context Protocol (MCP) features
 
 | Variable | Description | Default Value |
 | -------- | ----------- | ------------- |
-| `AI_ENABLED` | Whether AI Chat features are available. Set to `false` to completely disable AI Chat across the entire instance, hiding the sidebar and settings from all users. | `true` |
+| `AI_ENABLED` | Whether AI Chat features are available. Set to `false` to completely disable AI Chat across the entire instance, hiding the sidebar for all users and disabling the settings for administrators. | `true` |
 
 ::callout{icon="material-symbols:info" color="info"}
 When `AI_ENABLED` is set to `false`:
