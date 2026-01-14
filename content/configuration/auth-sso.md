@@ -203,7 +203,7 @@ AUTH_FACEBOOK_LABEL="Facebook"
 Directus users can only authenticate using the auth provider they are created with. It is not possible to authenticate with multiple providers for the same user.
 ::
 
-## Multiple Auth Providers
+## Example Auth Provider Configurations
 
 Below is a collection of example Directus configurations for integrating with various OpenID, OAuth 2.0 and SAML platforms. Due to the large number of available SSO platforms, this list will only cover the most common configurations. Contributions to expand and maintain the list are encouraged.
 
