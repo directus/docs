@@ -6,7 +6,7 @@ technologies:
   - zapier
 ---
 
-This guide covers advanced Directus features in Zapier, including raw request actions and advanced filtering in Search / List actions.
+This guide covers advanced Directus features in Zapier, including raw request actions and advanced filtering in Find actions.
 
 **[← Back to Zapier Integration](/guides/integrations/zapier)**
 
@@ -28,7 +28,7 @@ Quick reference of all available raw request actions:
 
 ::callout{icon="heroicons-outline:light-bulb"}
 **When to Use Raw Request Actions**
-Use raw request actions when you need full control over HTTP methods, complex query parameters (aggregation, search, etc.), or complete control over the JSON payload structure. For advanced filtering in Search / List actions, use the Filter (JSON) field instead.
+Use raw request actions when you need full control over HTTP methods, complex query parameters (aggregation, search, etc.), or complete control over the JSON payload structure. For advanced filtering in Find actions, use the Filter (JSON) field instead.
 ::
 
 ## Using Raw Request Actions
@@ -42,9 +42,9 @@ Raw Request actions allow you to make custom Directus API calls with full contro
 3. Choose the **HTTP Method** (POST, PATCH, or DELETE)
 4. For Items, select the **Collection**
 5. Configure the request:
-   - **ID**: Item/User/File ID (required for PATCH/DELETE)
+   - **Item/User/File**: Select from dropdown (required for PATCH only)
    - **Request Body (JSON)**: JSON data for POST/PATCH requests
-   - **Filter (JSON)**: Filter conditions for DELETE operations
+   - **Filter (JSON)**: Filter conditions (required for DELETE operations)
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
 **Token Permissions**
@@ -54,6 +54,7 @@ Ensure your Directus API token has the correct permissions for the resource and 
 ### Items - Raw Request
 
 **POST** - Create items with full JSON control:
+
 ```json
 {
   "title": "My New Post",
@@ -65,6 +66,7 @@ Ensure your Directus API token has the correct permissions for the resource and 
 ```
 
 **PATCH** - Update items with complex data structures:
+
 ```json
 {
   "title": "Updated Title",
@@ -81,6 +83,7 @@ Ensure your Directus API token has the correct permissions for the resource and 
 ### Users - Raw Request
 
 **POST** - Create users with full JSON control:
+
 ```json
 {
   "email": "user@example.com",
@@ -91,6 +94,7 @@ Ensure your Directus API token has the correct permissions for the resource and 
 ```
 
 **PATCH** - Update users with complex data structures:
+
 ```json
 {
   "status": "suspended",
@@ -105,6 +109,7 @@ Ensure your Directus API token has the correct permissions for the resource and 
 ### Files - Raw Request
 
 **PATCH** - Update file metadata with complex data structures:
+
 ```json
 {
   "title": "Updated Title",
@@ -120,6 +125,7 @@ Ensure your Directus API token has the correct permissions for the resource and 
 When using **Raw Request** actions or creating items with relations:
 
 **Many-to-One:**
+
 ```json
 {
   "title": "My Post",
@@ -128,6 +134,7 @@ When using **Raw Request** actions or creating items with relations:
 ```
 
 **Many-to-Many:**
+
 ```json
 {
   "title": "My Post",
@@ -136,12 +143,11 @@ When using **Raw Request** actions or creating items with relations:
 ```
 
 **One-to-Many:**
+
 ```json
 {
   "title": "My Post",
-  "comments": [
-    {"text": "Great post!", "user": "user-uuid-here"}
-  ]
+  "comments": [{ "text": "Great post!", "user": "user-uuid-here" }]
 }
 ```
 
@@ -154,7 +160,8 @@ You can use data from previous steps in your filters by using Zapier's field map
 ### Batch Processing
 
 For bulk operations:
-1. Use **Search / List** to get all items
+
+1. Use **Find** to get all items
 2. Enable **"Return all results as line items"**
 3. Add a **Filter** step if needed
 4. Add **Update Item** to process each item
@@ -166,11 +173,12 @@ For bulk operations:
 - **Filter in Directus**: Always use Directus filters rather than Filter steps when possible
 
 **Example:**
+
 ```json
 {
   "filter": {
-    "status": {"_eq": "published"},
-    "date_created": {"_gte": "$NOW(-30 days)"}
+    "status": { "_eq": "published" },
+    "date_created": { "_gte": "$NOW(-30 days)" }
   },
   "limit": 100
 }
