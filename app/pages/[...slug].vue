@@ -18,6 +18,19 @@ if (!page.value) {
 
 const headline = computed(() => findPageHeadline(navigation.value, page.value));
 
+// TODO: Remove Beta badge when Zapier integration is out of beta
+const showComingSoonBadge = computed(() => {
+	const path = route.path;
+	const pageId = page.value?.id;
+
+	// Show badge on Zapier pages
+	if (path.includes('/integrations/zapier') || pageId === 'zapier-integration') {
+		return true;
+	}
+
+	return false;
+});
+
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
 	route.path,
 	{
@@ -29,11 +42,27 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 <template>
 	<UPage>
 		<UPageHeader
-			:title="page!.title ?? ''"
+			:title="!showComingSoonBadge ? (page!.title ?? '') : undefined"
 			:description="page!.description ?? ''"
 			:headline="headline"
 			:ui="{ headline: 'headline', title: 'title' }"
 		>
+			<!-- TODO: Remove Beta badge when Zapier integration is out of beta -->
+			<template
+				v-if="showComingSoonBadge"
+				#title
+			>
+				<div class="flex items-center gap-2">
+					<span>{{ page!.title ?? '' }}</span>
+					<UBadge
+						variant="soft"
+						color="info"
+						size="sm"
+					>
+						Beta
+					</UBadge>
+				</div>
+			</template>
 			<template #links>
 				<CopyDocButton :page="page!" />
 			</template>
