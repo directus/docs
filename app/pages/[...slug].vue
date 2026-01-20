@@ -31,12 +31,15 @@ const showComingSoonBadge = computed(() => {
 	return false;
 });
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
+const { data: surroundRaw } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
 	route.path,
 	{
-		fields: ['title', 'description', 'navigation', 'path'],
+		fields: ['title', 'description', 'path'],
 	},
 ));
+
+// Filter out .navigation.yml files from surround results -- not sure why Nuxt Content is including them
+const surround = computed(() => surroundRaw.value?.filter(item => !item?.path?.endsWith('.navigation')) ?? []);
 </script>
 
 <template>
