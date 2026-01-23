@@ -13,7 +13,7 @@ description: Configuration for AI Assistant and Model Context Protocol (MCP) fea
 
 ::callout{icon="material-symbols:info" color="info"}
 When `AI_ENABLED` is set to `false`:
-- The `/ai/assistant` API route is not mounted
+- The API routes for the assistant are not mounted
 - AI Assistant sidebar is hidden from all users
 - AI settings form displays a disabled notice
 
