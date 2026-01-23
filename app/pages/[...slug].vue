@@ -34,9 +34,9 @@ const showComingSoonBadge = computed(() => {
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
 	route.path,
 	{
-		fields: ['title', 'description', 'navigation', 'path'],
+		fields: ['title', 'description', 'path'],
 	},
-));
+).where('path', 'NOT LIKE', '%.navigation'));
 </script>
 
 <template>

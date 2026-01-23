@@ -89,7 +89,7 @@ export default defineAppConfig({
 					},
 					{
 						label: 'AI',
-						to: '/guides/ai/mcp',
+						to: '/guides/ai/',
 						icon: 'directus-ai',
 					},
 					{
