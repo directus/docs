@@ -24,7 +24,7 @@
 		"@nuxtjs/seo": "3.0.3",
 		"@vueuse/core": "13.3.0",
 		"@vueuse/nuxt": "13.3.0",
-		"lodash-es": "4.17.21",
+		"lodash-es": "4.17.23",
 		"nuxt": "3.17.5",
 		"openapi3-ts": "4.4.0",
 		"sharp": "^0.34.2",
