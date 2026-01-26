@@ -18,6 +18,12 @@ const integrations = [
 		to: '/guides/integrations/zapier',
 		logo: '/docs/img/zapier.png',
 	},
+	{
+		title: 'Vercel',
+		description: 'Connect Directus with Vercel to trigger deployments and monitor build status.',
+		to: '/guides/integrations/vercel',
+		logo: '/docs/img/vercel.webp',
+	},
 ];
 </script>
 
