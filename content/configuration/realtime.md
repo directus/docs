@@ -57,7 +57,7 @@ Multi-instance collaboration requires a shared Redis instance for coordination.
 | `WEBSOCKETS_COLLAB_INSTANCE_TIMEOUT`           | Duration in milliseconds before a silent node is considered dead.                      | `10000`       |
 | `WEBSOCKETS_COLLAB_CLUSTER_CLEANUP_CRON`       | Cron expression for how often to garbage-collect empty rooms.                          | `*/1 * * * *` |
 | `WEBSOCKETS_COLLAB_LOCAL_CLEANUP_INTERVAL`     | Duration in milliseconds between local cleanup sweeps.                                 | `60000`       |
-| `WEBSOCKETS_COLLAB_PERMISSIONS_CACHE_CAPACITY` | LRU cache size for permission checks.                                                  | `2000`       |
+| `WEBSOCKETS_COLLAB_PERMISSIONS_CACHE_CAPACITY` | LRU cache size for permission checks.                                                  | `2000`        |
 | `WEBSOCKETS_COLLAB_STORE_NAMESPACE`            | The namespace used for Redis storage.                                                  | `collab`      |
 
 ## Logging
