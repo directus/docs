@@ -4,28 +4,48 @@ description: Configuration for authentication methods, including local email/pas
 navigation:
   title: Auth & SSO
 ---
+
 :partial{content="config-env-vars"}
 
 Directus offers a variety of authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML.
 
-| Variable               | Description                                                                              | Default Value |
-| ---------------------- | ---------------------------------------------------------------------------------------- | ------------- |
-| `AUTH_PROVIDERS`       | A comma-separated list of auth providers. You can use any names you like for these keys. |               |
-| `AUTH_DISABLE_DEFAULT` | Disable the default auth provider.                                                       | `false`       |
+| Variable                   | Description                                                                                                                                               | Default Value |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `AUTH_PROVIDERS`           | A comma-separated list of auth providers. You can use any names you like for these keys.                                                                  |               |
+| `AUTH_DISABLE_DEFAULT`     | Disable the default auth provider.                                                                                                                        | `false`       |
+| `AUTH_ALLOWED_PUBLIC_URLS` | A comma-separated list of allowed API PUBLIC_URLs used to generate `OAuth 2.0` / `OpenID` SSO callback URLs. This is useful for multi-domain deployments. |               |
 
-For each of the storage locations listed, you must provide the following configuration (variable name must be uppercase in these options):
+For each of the auth providers listed, you must provide the following configuration (variable name must be uppercase in these options):
 
 | Variable                 | Description                                                                                                                                 | Default Value |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `AUTH_<PROVIDER>_DRIVER` | Which driver to use, either `local`, `oauth2`, `openid`, `ldap`, `saml`.                                                                    |               |
 | `AUTH_<PROVIDER>_MODE`   | Whether to use `'cookie'` or `'session'` authentication mode when redirecting. Applies to the following drivers `oauth2`, `openid`, `saml`. | `session`     |
 
+::callout{icon="material-symbols:info-outline"}
+Cookie and session configuration settings such as `REFRESH_TOKEN_COOKIE_*`, `SESSION_COOKIE_*`, and related security parameters can be found in [Security & Limits](/configuration/security-limits).
+::
 
 Based on your configured drivers, you must also provide additional variables, where `<PROVIDER>` is the capitalized name of the item in the `AUTH_PROVIDERS` value.
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
-**PUBLIC_URL**
-`oauth2`, `openid`, `ldap`, and `saml` drivers rely on the `PUBLIC_URL` variable for redirecting. Ensure the variable is correctly configured.
+**PUBLIC_URL and AUTH_ALLOWED_PUBLIC_URLS**
+
+- Our `oauth2`, `openid` and `saml` SSO drivers rely on `PUBLIC_URL` for redirection, with `oauth2` and `openid` also using it for the callback URL generation. If set incorrectly, the login process for these drivers may behave unexpectedly.
+- In environments where the API is accessible from multiple domains, `AUTH_ALLOWED_PUBLIC_URLS` should be configured for the domains you wish to support SSO sign-in. When a request's origin matches an entry, the corresponding PUBLIC_URL is used for the login flow. If no match is found, the default `PUBLIC_URL` is used instead.
+
+**Example:**
+
+```
+PUBLIC_URL="https://<your_primary_domain>"
+AUTH_ALLOWED_PUBLIC_URLS="https://<your_secondary_domain>,https://<your_tertiary_domain>"
+```
+
+**Cookie Limitations**
+
+- Subdomains of the same parent domain: Since they share a common parent domain (e.g. `api.example.com` and `admin.example.com`), the cookie domain should be set to the parent domain prefixed by `.` (e.g `.example.com`) so the session will be shared across both subdomains. Loggins in on one subdomain will result in a session valid for all subdomains.
+- Different domains: Because they are separate domains (e.g. `example.com` and `example.org`), the cookie domain should be left unset. Due to browser security restrictions, cookies cannot be shared across different domains. Each domain will maintain its own independent session, logging in on one domain will not result in a valid session on the other.
+
 ::
 
 ## Local (`local`)
@@ -38,6 +58,7 @@ The default Directus email/password authentication flow. No additional configura
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
 | `AUTH_<PROVIDER>_CLIENT_ID`                 | Client identifier for the OAuth provider.                                                                                                                                                                                      |                  |
 | `AUTH_<PROVIDER>_CLIENT_SECRET`             | Client secret for the OAuth provider.                                                                                                                                                                                          |                  |
+| `AUTH_<PROVIDER>_CLIENT_*`                  | Client options overrides passed to the [underlying client](https://github.com/panva/openid-client).                                                                                                                            |                  |
 | `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                                                                                                                                        | `email`          |
 | `AUTH_<PROVIDER>_AUTHORIZE_URL`             | Authorization page URL of the OAuth provider.                                                                                                                                                                                  |                  |
 | `AUTH_<PROVIDER>_ACCESS_URL`                | Access token URL of the OAuth provider.                                                                                                                                                                                        |                  |
@@ -69,33 +90,38 @@ Whereas in the following example the OAuth user will be assigned the role `direc
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "admin": "directus_admin_role_id", "developer": "directus_developer_role_id" }"
 ```
+
 ## OpenID Connect
 
 OpenID Connect (OIDC) is an authentication protocol built on OAuth 2.0, and should be preferred over standard OAuth 2.0 where possible.
 
-| Variable                                    | Description                                                                                               | Default Value          |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `AUTH_<PROVIDER>_CLIENT_ID`                 | Client identifier for the external service.                                                               |                        |
-| `AUTH_<PROVIDER>_CLIENT_SECRET`             | Client secret for the external service.                                                                   |                        |
-| `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                   | `openid profile email` |
-| `AUTH_<PROVIDER>_ISSUER_URL`                | OIDC `.well-known` discovery document URL of the external service.                                      |                        |
-| `AUTH_<PROVIDER>_IDENTIFIER_KEY`            | User profile identifier key <sup>[1]</sup>.                                                               | `sub`<sup>[2]</sup>    |
-| `AUTH_<PROVIDER>_ALLOW_PUBLIC_REGISTRATION` | Automatically create accounts for authenticating users.                                                   | `false`                |
-| `AUTH_<PROVIDER>_REQUIRE_VERIFIED_EMAIL`    | Require created users to have a verified email address.                                                   | `false`                |
-| `AUTH_<PROVIDER>_DEFAULT_ROLE_ID`           | A Directus role ID to assign created users.                                                               |                        |
-| `AUTH_<PROVIDER>_SYNC_USER_INFO`            | Set user's first name, last name and email from provider's user info on each login.                       | `false`                |
-| `AUTH_<PROVIDER>_ICON`                      | SVG icon to display with the login link. Can be a Material Icon or Font Awesome Social Icon.              | `account_circle`       |
-| `AUTH_<PROVIDER>_LABEL`                     | Text to be presented on SSO button within the Data Studio.                                                | `<PROVIDER>`           |
-| `AUTH_<PROVIDER>_PARAMS`                    | Custom query parameters applied to the authorization URL.                                                 |                        |
-| `AUTH_<PROVIDER>_REDIRECT_ALLOW_LIST`       | A comma-separated list of external URLs (including paths) allowed for redirecting after successful login. |                        |
-| `AUTH_<PROVIDER>_ROLE_MAPPING`                    | A JSON object in the form of `{ "openid_group_name": "directus_role_id" }` that you can use to map OpenID groups to Directus roles <sup>[3]</sup>. If not specified, falls back to `AUTH_<PROVIDER>_DEFAULT_ROLE_ID` URL.                                                 |                        |
-| `AUTH_<PROVIDER>_GROUP_CLAIM_NAME`       | The name of the OIDC claim that contains your user's groups. |  `groups`                      |
+| Variable                                    | Description                                                                                                                                                                                                               | Default Value          |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `AUTH_<PROVIDER>_CLIENT_ID`                 | Client identifier for the external service.                                                                                                                                                                               |                        |
+| `AUTH_<PROVIDER>_CLIENT_SECRET`             | Client secret for the external service.                                                                                                                                                                                   |                        |
+| `AUTH_<PROVIDER>_CLIENT_*`                  | Client options overrides passed to the [underlying client](https://github.com/panva/openid-client).                                                                                                                       |                        |
+| `AUTH_<PROVIDER>_PRIVATE_KEYS`              | An array of JSON Web Key Set (JWKS) private keys used to sign client assertions <sup>[1]</sup> when `AUTH_<PROVIDER>_CLIENT_TOKEN_ENDPOINT_AUTH_METHOD` is set to `private_key_jwt`.                                      |                        |
+| `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                                                                                                                                   | `openid profile email` |
+| `AUTH_<PROVIDER>_ISSUER_URL`                | OIDC `.well-known` discovery document URL of the external service.                                                                                                                                                        |                        |
+| `AUTH_<PROVIDER>_IDENTIFIER_KEY`            | User profile identifier key <sup>[2]</sup>.                                                                                                                                                                               | `sub`<sup>[3]</sup>    |
+| `AUTH_<PROVIDER>_ALLOW_PUBLIC_REGISTRATION` | Automatically create accounts for authenticating users.                                                                                                                                                                   | `false`                |
+| `AUTH_<PROVIDER>_REQUIRE_VERIFIED_EMAIL`    | Require created users to have a verified email address.                                                                                                                                                                   | `false`                |
+| `AUTH_<PROVIDER>_DEFAULT_ROLE_ID`           | A Directus role ID to assign created users.                                                                                                                                                                               |                        |
+| `AUTH_<PROVIDER>_SYNC_USER_INFO`            | Set user's first name, last name and email from provider's user info on each login.                                                                                                                                       | `false`                |
+| `AUTH_<PROVIDER>_ICON`                      | SVG icon to display with the login link. Can be a Material Icon or Font Awesome Social Icon.                                                                                                                              | `account_circle`       |
+| `AUTH_<PROVIDER>_LABEL`                     | Text to be presented on SSO button within the Data Studio.                                                                                                                                                                | `<PROVIDER>`           |
+| `AUTH_<PROVIDER>_PARAMS`                    | Custom query parameters applied to the authorization URL.                                                                                                                                                                 |                        |
+| `AUTH_<PROVIDER>_REDIRECT_ALLOW_LIST`       | A comma-separated list of external URLs (including paths) allowed for redirecting after successful login.                                                                                                                 |                        |
+| `AUTH_<PROVIDER>_ROLE_MAPPING`              | A JSON object in the form of `{ "openid_group_name": "directus_role_id" }` that you can use to map OpenID groups to Directus roles <sup>[4]</sup>. If not specified, falls back to `AUTH_<PROVIDER>_DEFAULT_ROLE_ID` URL. |                        |
+| `AUTH_<PROVIDER>_GROUP_CLAIM_NAME`          | The name of the OIDC claim that contains your user's groups.                                                                                                                                                              | `groups`               |
 
-<sup>[1]</sup> When authenticating, Directus will match the identifier value from the external user profile to a Directus users "External Identifier".
+<sup>[1]</sup> To ensure correct parsing the env must be prefixed with `json:`.
 
-<sup>[2]</sup> `sub` represents a unique user identifier defined by the OIDC provider. For users not relying on `PUBLIC_REGISTRATION` it is recommended to use a human-readable identifier, such as `email`.
+<sup>[2]</sup> When authenticating, Directus will match the identifier value from the external user profile to a Directus users "External Identifier".
 
-<sup>[3]</sup> As Directus only allows one role per user, evaluating stops after the first match. An OIDC user that is member of both e.g. developer and admin groups may be assigned different roles depending on the order that you specify your role-mapping in: In the following example said OIDC user will be assigned the role `directus_developer_role_id`
+<sup>[3]</sup> `sub` represents a unique user identifier defined by the OIDC provider. For users not relying on `PUBLIC_REGISTRATION` it is recommended to use a human-readable identifier, such as `email`.
+
+<sup>[4]</sup> As Directus only allows one role per user, evaluating stops after the first match. An OIDC user that is member of both e.g. developer and admin groups may be assigned different roles depending on the order that you specify your role-mapping in: In the following example said OIDC user will be assigned the role `directus_developer_role_id`
 
 ```
 AUTH_<PROVIDER>_ROLE_MAPPING: json:{ "developer": "directus_developer_role_id", "admin": "directus_admin_role_id" }"
@@ -193,7 +219,7 @@ AUTH_FACEBOOK_LABEL="Facebook"
 Directus users can only authenticate using the auth provider they are created with. It is not possible to authenticate with multiple providers for the same user.
 ::
 
-## Multiple Auth Providers
+## Example Auth Provider Configurations
 
 Below is a collection of example Directus configurations for integrating with various OpenID, OAuth 2.0 and SAML platforms. Due to the large number of available SSO platforms, this list will only cover the most common configurations. Contributions to expand and maintain the list are encouraged.
 
@@ -397,6 +423,7 @@ AUTH_GOOGLE_EMAIL_KEY="email"
 - Directus expects `<?xml version="1.0" encoding="UTF-8"?>` to be removed from the start of the XML.
 
 **Example**
+
 ```xml
 <EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="SHOULD_MATCH_GOOGLE_CONFIG">
   <SPSSODescriptor WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">

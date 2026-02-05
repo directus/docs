@@ -153,7 +153,7 @@ But this can be surprisingly brittle. As soon as the slug for the Contact page c
 
 Luckily Directus makes a more dynamic approach possible with relationships.
 
-When creating your data model for links to other items from the same or different collections, try using the conditional fields and [many to one relationships](/guides/data-model/relationships.html) to build a powerful, resilient way to link items.
+When creating your data model for links to other items from the same or different collections, try using the conditional fields and [many to one relationships](/guides/data-model/relationships) to build a powerful, resilient way to link items.
 
 1. Within your content collection, add the following fields for linking. (Note: This example is extremely simplified so you can learn the logic involved. - name these depending on what makes the most sense to you and your use case.)
 

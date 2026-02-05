@@ -73,3 +73,6 @@ There are a number of templates provided by Directus that can be overridden with
 
 When overriding the default email templates, make sure to include the provided `url` somewhere to ensure the email is functional.
 
+## Email Rate Limiting
+
+Emails can be rate limited by opting in to our [email rate limiters](/configuration/security-limits#email-rate-limiting)

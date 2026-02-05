@@ -8,7 +8,6 @@ export default defineNuxtConfig({
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
-		'nuxt-posthog',
 		...((process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY)
 			? ['@nuxtjs/algolia']
 			: []),
@@ -178,9 +177,19 @@ export default defineNuxtConfig({
 		},
 	},
 
+	linkChecker: {
+		skipInspections: [
+			// Skip absolute site urls because of our routing setup between the docs and the main site
+			'absolute-site-urls',
+		],
+	},
+
 	// Disable PostHog in development
 	posthog: {
 		disabled: process.env.NODE_ENV === 'development',
+		clientOptions: {
+			person_profiles: 'always',
+		},
 	},
 
 	robots: {
