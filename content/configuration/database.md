@@ -17,7 +17,7 @@ description: Configuration for database connections.
 | `DB_FILENAME`                      | Where to read/write the SQLite database. Required when using `sqlite3`.                                                                            |                               |
 | `DB_CONNECTION_STRING`             | When using `pg`, you can submit a connection string instead of individual properties. Using this will ignore any of the other connection settings. |                               |
 | `DB_EXCLUDE_TABLES`                | CSV of tables you want Directus to ignore completely                                                                                               | `spatial_ref_sys,sysdiagrams` |
-| `DB_CHARSET` / `DB_CHARSET_NUMBER` | Charset/collation to use in the connection to MySQL/MariaDB                                                                                        | `UTF8_GENERAL_CI`             |
+| `DB_CHARSET` / `DB_CHARSET_NUMBER` | Charset/collation to use in the connection to MySQL<sup>[1](https://dev.mysql.com/doc/refman/8.0/en/charset-mysql.html)</sup>/MariaDB<sup>[2](https://mariadb.com/docs/server/reference/data-types/string-data-types/character-sets/supported-character-sets-and-collations)</sup>                                                                                        | `UTF8_GENERAL_CI`             |
 | `DB_VERSION`                       | Database version, in case you use the PostgreSQL adapter to connect a non-standard database. Not usually required.                                |                               |
 | `DB_HEALTHCHECK_THRESHOLD`         | Healthcheck timeout threshold in milliseconds.                                                                                                     | `150`                         |
 
@@ -33,6 +33,3 @@ This includes:
 **Note**  
 `DB_SSL__CA_FILE` may be preferred to load the CA directly from a file.
 ::
-
-## DB Charset Numbers
-To define collation + charset, specify `DB_CHARSET_NUMBER` without `DB_CHARSET`. [Character set codes](https://github.com/sidorares/node-mysql2/blob/3d2327d683254ad3642b9c3644ebc486dab7797e/lib/constants/charsets.js)
