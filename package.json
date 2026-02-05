@@ -4,10 +4,13 @@
 	"type": "module",
 	"scripts": {
 		"build": "nuxt build",
-		"dev": "nuxt dev",
+		"prebuild": "node server/utils/run-generate-llms-full.mjs",
+		"dev": "node server/utils/run-generate-llms-full.mjs && nuxt dev",
 		"generate": "nuxt generate",
+		"pregenerate": "node server/utils/run-generate-llms-full.mjs",
 		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare"
+		"postinstall": "nuxt prepare",
+		"llms:generate": "node server/utils/run-generate-llms-full.mjs"
 	},
 	"dependencies": {
 		"@directus/openapi": "0.2.2",
@@ -30,7 +33,8 @@
 		"sharp": "^0.34.2",
 		"ufo": "1.6.1",
 		"posthog-js": "1.260.1",
-		"posthog-node": "5.7.0"
+		"posthog-node": "5.7.0",
+		"chokidar": "3.6.0"
 	},
 	"devDependencies": {
 		"@nuxt/eslint": "1.4.1",
