@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { $clientPosthog } = useNuxtApp();
+const { $posthog } = useNuxtApp();
 
 const savedValue = ref<'good' | 'bad' | null>(null);
 const buttonLoading = ref<boolean>(false);
@@ -10,7 +10,7 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 	savedValue.value = feedback;
 	buttonLoading.value = true;
 
-	$clientPosthog?.capture(`feedback_${feedback}`);
+	$posthog?.capture(`feedback_${feedback}`);
 
 	setTimeout(() => {
 		buttonLoading.value = false;

@@ -133,7 +133,7 @@ Your application should now be accessible at `http://your_server_ip:8055`.
 
 ::callout{icon="material-symbols:info-outline" title="`SQLITE_CANTOPEN` Error"}
 
-If you encounter any error e.g `SQLITE_CANTOPEN: unable to open database file`, it is probably due to permission issues. You can learn more about [this issue here](https://github.com/directus/directus/discussions/17823#discussioncomment-5395649).
+If you encounter any error e.g `SQLITE_CANTOPEN: unable to open database file`, it is probably due to permission issues. Make sure the user that runs Directus is also the owner of the database file.
 
 ::
 

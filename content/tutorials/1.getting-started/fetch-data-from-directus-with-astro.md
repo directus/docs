@@ -51,7 +51,7 @@ Open the `astro-directus` directory in a text editor of your choice and run `npm
 To create an instance of the Directus SDK that multiple pages in the project will use, create a new directory called `lib` and a new file called `directus.ts` inside of it with the following content:
 
 ```ts
-import { createDirectus, rest, } from '@directus/sdk';
+import { createDirectus, rest } from '@directus/sdk';
 
 type Global = {
   title: string;

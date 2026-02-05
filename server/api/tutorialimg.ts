@@ -51,5 +51,11 @@ export default defineEventHandler(async (event) => {
 
 	// Serve it
 	setHeader(event, 'Content-Type', 'image/jpeg');
+	setHeader(
+		event,
+		'Cache-Control',
+		'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800',
+	); // CDN cache for 1 day, stale for 7 days
+
 	return finalImage;
 });
