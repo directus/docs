@@ -1,6 +1,6 @@
 ---
 id: clay-templates-directus-tutorial
-title: Use Clay Templates with Directus
+title: Templates
 description: Learn how to use Clay's pre-built HTTP API templates to connect with Directus for data enrichment and synchronization.
 technologies:
   - clay
@@ -8,7 +8,7 @@ technologies:
 
 Clay provides pre-built templates for common operations with Directus. These templates appear as enrichment column options and handle all the API configuration for you.
 
-**[← Back to Directus + Clay Overview](/tutorials/projects/use-directus-with-clay-for-data-enrichment)**
+**[← Back to Directus + Clay Overview](/guides/integrations/clay)**
 
 Follow these steps to use the pre-built Directus templates in Clay.
 
@@ -69,7 +69,7 @@ Comma-separated field names (e.g., `id,title,status`)
 Filter criteria (e.g., `filter[status][_eq]` with value `published`)
 ::
 
-For more advanced filtering options and field selection techniques, see the [Working with Directus Data Operations](/tutorials/projects/directus-clay-data-operations) guide.
+For more advanced filtering options and field selection techniques, see the [Working with Directus Data Operations](/guides/integrations/clay/directus-clay-data-operations) guide.
 
 **For POST/PATCH operations, configure the body:**
 
@@ -111,11 +111,22 @@ Configure how Clay data maps to Directus fields:
 
 ## Next Steps
 
-- **[Learn about Directus Webhooks →](/tutorials/projects/use-directus-webhooks-with-clay)** - Set up real-time data sync
-- **[Explore Advanced Data Operations →](/tutorials/projects/directus-clay-data-operations)** - Filters, pagination, and best practices
-- **[← Back to Overview](/tutorials/projects/use-directus-with-clay-for-data-enrichment)**
+- **[Learn about Directus Webhooks →](/guides/integrations/clay/use-directus-webhooks-with-clay)** - Set up real-time data sync
+- **[Explore Advanced Data Operations →](/guides/integrations/clay/directus-clay-data-operations)** - Filters, pagination, and best practices
+- **[← Back to Overview](/guides/integrations/clay)**
 
 ## Additional Resources
 
 - [Clay Documentation](https://clay.com/docs)
 - [Directus Community](https://community.directus.io/)
+
+
+
+
+
+
+
+
+
+
+
