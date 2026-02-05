@@ -12,13 +12,13 @@ export default defineCachedEventHandler(async () => {
 			limit: 1,
 		}));
 
-		if (!data) return {};
+		if (!data) return null;
 
 		return data;
 	}
 	catch (error) {
-		console.error(error);
-		return {};
+		console.error('Banner API error:', error);
+		return null;
 	}
 }, {
 	maxAge: 60 * 5, // 5 minutes

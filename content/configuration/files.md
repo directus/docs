@@ -3,7 +3,6 @@ title: Files
 description: Configuration for storage locations, metadata, upload limits, and transformations.
 ---
 
-
 :partial{content="config-env-vars"}
 
 By default, Directus stores all uploaded files locally on the file system or can also configure Directus to use external storage services. You can also configure _multiple_ storage adapters at the same time which allows you to choose where files are being uploaded on a file-by-file basis.
@@ -34,20 +33,21 @@ Based on your configured drivers, you must also provide additional variables, wh
 
 ### S3 (`s3`)
 
-| Variable                                    | Description                | Default Value      |
-| ------------------------------------------- | -------------------------- | ------------------ |
-| `STORAGE_<LOCATION>_KEY`                    | User key.                  |                    |
-| `STORAGE_<LOCATION>_SECRET`                 | User secret.               |                    |
-| `STORAGE_<LOCATION>_BUCKET`                 | S3 bucket.                 |                    |
-| `STORAGE_<LOCATION>_REGION`                 | S3 region.                 |                    |
-| `STORAGE_<LOCATION>_ENDPOINT`<sup>[1]</sup> | S3 endpoint.               | `s3.amazonaws.com` |
-| `STORAGE_<LOCATION>_ACL`                    | S3 ACL.                    |                    |
-| `STORAGE_<LOCATION>_SERVER_SIDE_ENCRYPTION` | S3 server side encryption. |                    |
-| `STORAGE_<LOCATION>_FORCE_PATH_STYLE`       | S3 force path style.       | false              |
-| `STORAGE_<LOCATION>_CONNECTION_TIMEOUT`     | S3 connection timeout (ms).| 5000               |
-| `STORAGE_<LOCATION>_SOCKET_TIMEOUT`         | S3 socket timeout (ms).    | 120000             |
-| `STORAGE_<LOCATION>_MAX_SOCKETS`            | S3 max sockets.            | 500                |
-| `STORAGE_<LOCATION>_KEEP_ALIVE`             | S3 keep alive.             | true               |
+| Variable                                               | Description                       | Default Value      |
+| ------------------------------------------------------ | --------------------------------- | ------------------ |
+| `STORAGE_<LOCATION>_KEY`                               | User key.                         |                    |
+| `STORAGE_<LOCATION>_SECRET`                            | User secret.                      |                    |
+| `STORAGE_<LOCATION>_BUCKET`                            | S3 bucket.                        |                    |
+| `STORAGE_<LOCATION>_REGION`                            | S3 region.                        |                    |
+| `STORAGE_<LOCATION>_ENDPOINT`<sup>[1]</sup>            | S3 endpoint.                      | `s3.amazonaws.com` |
+| `STORAGE_<LOCATION>_ACL`                               | S3 ACL.                           |                    |
+| `STORAGE_<LOCATION>_SERVER_SIDE_ENCRYPTION`            | S3 server side encryption.        |                    |
+| `STORAGE_<LOCATION>_SERVER_SIDE_ENCRYPTION_KMS_KEY_ID` | S3 server side encryption kms id. |                    |
+| `STORAGE_<LOCATION>_FORCE_PATH_STYLE`                  | S3 force path style.              | false              |
+| `STORAGE_<LOCATION>_CONNECTION_TIMEOUT`                | S3 connection timeout (ms).       | 5000               |
+| `STORAGE_<LOCATION>_SOCKET_TIMEOUT`                    | S3 socket timeout (ms).           | 120000             |
+| `STORAGE_<LOCATION>_MAX_SOCKETS`                       | S3 max sockets.                   | 500                |
+| `STORAGE_<LOCATION>_KEEP_ALIVE`                        | S3 keep alive.                    | true               |
 
 <sup>[1]</sup> When overriding this variable for S3, make sure to add your bucket's region in the endpoint: `s3.{region}.amazonaws.com`.
 
@@ -99,10 +99,11 @@ When uploading an image, Directus persists the `description`, `title`, and `tags
 
 ## Upload Limits
 
-| Variable                     | Description                                                                       | Default Value |
-| ---------------------------- | --------------------------------------------------------------------------------- | ------------- |
-| `FILES_MAX_UPLOAD_SIZE`      | Maximum file upload size allowed. For example `10mb`, `1gb`, `10kb`.              |               |
-| `FILES_MIME_TYPE_ALLOW_LIST` | Allow list of mime types that are allowed to be uploaded. Supports `glob` syntax. | `*/*`         |
+| Variable                       | Description                                                                                         | Default Value |
+| ------------------------------ | --------------------------------------------------------------------------------------------------- | ------------- |
+| `FILES_MAX_UPLOAD_SIZE`        | Maximum file upload size allowed. For example `10mb`, `1gb`, `10kb`.                                |               |
+| `FILES_MAX_UPLOAD_CONCURRENCY` | Maximum files uploaded concurrently from the studio. Remaining files are sent in a sequential batch |               |
+| `FILES_MIME_TYPE_ALLOW_LIST`   | Allow list of mime types that are allowed to be uploaded. Supports `glob` syntax.                   | `*/*`         |
 
 ## Chunked Uploads
 

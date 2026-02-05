@@ -92,6 +92,11 @@ export default defineAppConfig({
 						to: '/guides/ai/mcp',
 						icon: 'directus-ai',
 					},
+					{
+						label: 'Integrations',
+						to: '/guides/integrations',
+						icon: 'directus-integrations',
+					},
 				],
 			},
 			{
@@ -140,6 +145,10 @@ export default defineAppConfig({
 			},
 		],
 		links: [
+			{
+				icon: 'simple-icons:directus',
+				to: 'https://directus.io',
+			},
 			{
 				icon: 'simple-icons:github',
 				to: 'https://github.com/directus/directus',
