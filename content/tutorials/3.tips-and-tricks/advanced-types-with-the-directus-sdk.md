@@ -105,12 +105,11 @@ In the output types these string literals will get resolved to their appropriate
 - `'datetime'` resolves to `string`
 - `'json'` resolves to [`JsonValue`](https://github.com/directus/directus/blob/main/sdk/src/types/output.ts#L105)
 
-:::tip Types to Avoid
-
+::callout{icon="material-symbols:warning-rounded" color="warning"}
+**Types to Avoid**
 Some types should be avoided in the Schema as they may not play well with the type logic: `any` or `any[]`, empty type
 `{}`, `never` or `void`.
-
-:::
+::
 
 ### Adding Relational Fields
 
