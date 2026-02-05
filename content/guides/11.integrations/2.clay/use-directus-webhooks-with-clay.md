@@ -1,6 +1,6 @@
 ---
 id: directus-webhooks-clay-tutorial
-title: Use Directus Webhooks with Clay
+title: Webhooks
 description: Learn how to set up Directus Flows to automatically send data to Clay webhooks for real-time data synchronization.
 technologies:
   - clay
@@ -8,7 +8,7 @@ technologies:
 
 Send data automatically from Directus to Clay when content changes, items are created, or statuses update.
 
-**[← Back to Directus + Clay Overview](/tutorials/projects/use-directus-with-clay-for-data-enrichment)**
+**[← Back to Directus + Clay Overview](/guides/integrations/clay)**
 
 ## How Webhooks Work
 
@@ -109,11 +109,22 @@ This gives you control over exactly which fields to send.
 
 ## Next Steps
 
-- **[Learn about Clay Templates →](/tutorials/projects/use-clay-templates-with-directus)** - Use Clay's pre-built templates
-- **[Explore Advanced Data Operations →](/tutorials/projects/directus-clay-data-operations)** - Filters, pagination, and best practices
-- **[← Back to Overview](/tutorials/projects/use-directus-with-clay-for-data-enrichment)**
+- **[Learn about Clay Templates →](/guides/integrations/clay/use-clay-templates-with-directus)** - Use Clay's pre-built templates
+- **[Explore Advanced Data Operations →](/guides/integrations/clay/directus-clay-data-operations)** - Filters, pagination, and best practices
+- **[← Back to Overview](/guides/integrations/clay)**
 
 ## Additional Resources
 
 - [Clay Documentation](https://clay.com/docs)
 - [Directus Community](https://community.directus.io/)
+
+
+
+
+
+
+
+
+
+
+
