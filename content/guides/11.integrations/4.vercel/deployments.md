@@ -36,8 +36,6 @@ Track the status of your deployments in the deployment list screen. The list sho
 
 - **Deployment ID**: Vercel identifier for each build
 - **Status**: Current deployment state
-  - `QUEUED`: The deployment is waiting to be built
-  - `INITIALIZING`: The deployment is in the initialization phase
   - `BUILDING`: The deployment is currently being built
   - `READY`: The project is successfully built, deployed, and live
   - `CANCELED`: The deployment was canceled before completion
