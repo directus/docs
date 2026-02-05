@@ -25,7 +25,7 @@ The root schema type is the type provided to the SDK client. It should contain *
 junction collections for many-to-many and many-to-any relations. This type is used by the SDK as a lookup table to
 determine what relations exist.
 
-If a collection if defined as an array, it is considered a regular collection with multiple items. If not defined as an
+If a collection is defined as an array, it is considered a regular collection with multiple items. If not defined as an
 array, but instead as a single type, the collection is considered to be a singleton.
 
 ```ts
@@ -105,12 +105,11 @@ In the output types these string literals will get resolved to their appropriate
 - `'datetime'` resolves to `string`
 - `'json'` resolves to [`JsonValue`](https://github.com/directus/directus/blob/main/sdk/src/types/output.ts#L105)
 
-::: tip Types to Avoid
-
+::callout{icon="material-symbols:warning-rounded" color="warning"}
+**Types to Avoid**
 Some types should be avoided in the Schema as they may not play well with the type logic: `any` or `any[]`, empty type
 `{}`, `never` or `void`.
-
-:::
+::
 
 ### Adding Relational Fields
 
