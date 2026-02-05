@@ -13,7 +13,7 @@ To create errors in API extensions, you can utilize the [`@directus/errors`](htt
 ```js
 import { createError, ForbiddenError } from '@directus/errors';
 
-const CustomError = createError('CUSTOM', "This is a custom error.", 418);
+const CustomError = createError('CUSTOM', 'This is a custom error.', 418);
 
 throw new ForbiddenError();
 throw new CustomError();
