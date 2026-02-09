@@ -11,9 +11,9 @@
 	},
 	"dependencies": {
 		"@directus/openapi": "0.2.2",
+		"@directus/sdk": "^19.1.0",
 		"@docsearch/css": "3.9.0",
 		"@docsearch/js": "3.9.0",
-		"@directus/sdk": "^19.1.0",
 		"@iconify-json/heroicons-outline": "1.2.1",
 		"@iconify-json/material-symbols": "1.2.25",
 		"@iconify-json/simple-icons": "1.2.38",
@@ -26,11 +26,12 @@
 		"@vueuse/nuxt": "13.3.0",
 		"lodash-es": "4.17.23",
 		"nuxt": "3.17.5",
+		"nuxt-llms": "0.2.0",
 		"openapi3-ts": "4.4.0",
-		"sharp": "^0.34.2",
-		"ufo": "1.6.1",
 		"posthog-js": "1.260.1",
-		"posthog-node": "5.7.0"
+		"posthog-node": "5.7.0",
+		"sharp": "^0.34.2",
+		"ufo": "1.6.1"
 	},
 	"devDependencies": {
 		"@nuxt/eslint": "1.4.1",
