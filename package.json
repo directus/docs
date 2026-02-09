@@ -28,7 +28,7 @@
 		"nuxt": "4.3.1",
 		"nuxt-llms": "0.2.0",
 		"openapi3-ts": "4.5.0",
-		"posthog-js": "1.344.0",
+		"posthog-js": "1.345.0",
 		"posthog-node": "5.24.14",
 		"sharp": "^0.34.5",
 		"ufo": "1.6.3"
@@ -46,5 +46,5 @@
 			"debug": "4.4.1"
 		}
 	},
-	"packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
+	"packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8"
 }
