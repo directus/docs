@@ -70,3 +70,7 @@ Nuxt modules: `@nuxt/ui-pro`, `@nuxt/content`, `@nuxtjs/seo`, `@nuxtjs/algolia` 
 - Semicolons required
 - ESLint stylistic rules enforced via `@nuxt/eslint` config in `nuxt.config.ts`
 - TypeScript throughout
+
+## Hosting
+
+The docs website is hosted as a nested path on the main Directus marketing website https://directus.io/docs. The rest of the Directus website is a separate repo.
