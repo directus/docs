@@ -71,6 +71,46 @@ Nuxt modules: `@nuxt/ui-pro`, `@nuxt/content`, `@nuxtjs/seo`, `@nuxtjs/algolia` 
 - ESLint stylistic rules enforced via `@nuxt/eslint` config in `nuxt.config.ts`
 - TypeScript throughout
 
+## Tone of Voice for Documentation Content
+
+Matching the existing tone is mission-critical. All new or edited content in `/content` must follow these rules:
+
+### Voice & Person
+- Always address the reader as "you" (second person)
+- Use active voice — "Create a collection" not "A collection should be created"
+- Use imperative mood for instructions — "Run the following command" not "You might want to run"
+- Be direct and confident. No hedging ("you might want to", "you could consider") — just tell the reader what to do
+
+### Formality
+- Semi-formal: professional and authoritative, but not stiff or corporate
+- Assume the reader is a competent developer — don't over-explain basic concepts
+- Contractions are acceptable in explanatory prose ("you'll", "don't", "can't") but keep step-by-step instructions slightly more formal ("you will need" over "you'll need")
+
+### Sentence Structure
+- Keep sentences short to medium length — concise and scannable
+- Prefer bullet points and numbered lists to break down processes
+- Lead with context ("why") before diving into instructions ("how")
+- One idea per sentence. Break complex thoughts into smaller pieces
+
+### Technical Writing Conventions
+- Inline code for: `collection_names`, `field_names`, env vars, API endpoints, file paths
+- **Bold** for UI elements ("Click **Create Field**") and key terms on first introduction
+- Introduce concepts with a plain-language definition before going deeper — "Collections are database tables with additional metadata and configuration used by Directus."
+- Use callout boxes for warnings and important notes, not inline ALL-CAPS or exclamation marks
+
+### Structure
+- Start guides with a "Before You Start" section listing prerequisites
+- Use "Next Steps" sections to point to related content
+- Use transitions like "Now that..." to connect sections
+- Every explanation should tie to a concrete action or use case — minimize abstract theory
+
+### Things to Avoid
+- Filler phrases ("In order to", "It should be noted that", "As a matter of fact")
+- Marketing language or hype ("powerful", "revolutionary", "seamless")
+- Passive voice in instructions
+- Walls of text — if a paragraph exceeds 3-4 sentences, break it up or use a list
+- AI-isms ("I'd be happy to help", "Great question!", "Certainly!")
+
 ## Hosting
 
 The docs website is hosted as a nested path on the main Directus marketing website https://directus.io/docs. The rest of the Directus website is a separate repo.
