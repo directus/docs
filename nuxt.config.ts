@@ -252,25 +252,6 @@ export default defineNuxtConfig({
 
 			crawlLinks: true,
 
-			// TODO
-			// This is a dirty hack to get around a build blocking error..
-			// I can't for the life of me figure out where this magic </span link comes from
-			// ~ Rijk 12/19/2024
-			ignore: [
-				// 'http://localhost/docs/api/_mdc/highlight',
-				'/docs/api/</span',
-				'/docs/tutorials/getting-started/{`/${lang}/${post.slug}/`}>{t?.title}</a>\n</span',
-				'/docs/tutorials/getting-started/{href || &',
-				'/docs/tutorials/getting-started/{`/${post.id}`}></span',
-				'/docs/tutorials/getting-started/{item.href}>{item.label}</a></span',
-				'/docs/tutorials/getting-started/{`/dashboard/posts/${post.id}`}>edit post</a></span',
-				'/docs/tutorials/projects/{card.button.url} class="card-cta"></span',
-				'/docs/tutorials/projects/{navItem.url}>{navItem.title}</a></span',
-				'/docs/tutorials/projects/{child.url}>{child.title}</a></span',
-				'/docs/tutorials/projects/{child.page.permalink}>{child.title}</a></span',
-				'/docs/tutorials/projects/{navItem.page.permalink}>{navItem.title}</a></span',
-			],
-
 			concurrency: 3,
 			retry: 2,
 			retryDelay: 1000,
