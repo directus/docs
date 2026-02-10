@@ -9,10 +9,11 @@ navigation:
 
 Directus offers a variety of authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML.
 
-| Variable               | Description                                                                              | Default Value |
-| ---------------------- | ---------------------------------------------------------------------------------------- | ------------- |
-| `AUTH_PROVIDERS`       | A comma-separated list of auth providers. You can use any names you like for these keys. |               |
-| `AUTH_DISABLE_DEFAULT` | Disable the default auth provider.                                                       | `false`       |
+| Variable                   | Description                                                                                                                                               | Default Value |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `AUTH_PROVIDERS`           | A comma-separated list of auth providers. You can use any names you like for these keys.                                                                  |               |
+| `AUTH_DISABLE_DEFAULT`     | Disable the default auth provider.                                                                                                                        | `false`       |
+| `AUTH_ALLOWED_PUBLIC_URLS` | A comma-separated list of allowed API PUBLIC_URLs used to generate `OAuth 2.0` / `OpenID` SSO callback URLs. This is useful for multi-domain deployments. |               |
 
 For each of the auth providers listed, you must provide the following configuration (variable name must be uppercase in these options):
 
@@ -21,11 +22,30 @@ For each of the auth providers listed, you must provide the following configurat
 | `AUTH_<PROVIDER>_DRIVER` | Which driver to use, either `local`, `oauth2`, `openid`, `ldap`, `saml`.                                                                    |               |
 | `AUTH_<PROVIDER>_MODE`   | Whether to use `'cookie'` or `'session'` authentication mode when redirecting. Applies to the following drivers `oauth2`, `openid`, `saml`. | `session`     |
 
+::callout{icon="material-symbols:info-outline"}
+Cookie and session configuration settings such as `REFRESH_TOKEN_COOKIE_*`, `SESSION_COOKIE_*`, and related security parameters can be found in [Security & Limits](/configuration/security-limits).
+::
+
 Based on your configured drivers, you must also provide additional variables, where `<PROVIDER>` is the capitalized name of the item in the `AUTH_PROVIDERS` value.
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
-**PUBLIC_URL**
-`oauth2`, `openid`, `ldap`, and `saml` drivers rely on the `PUBLIC_URL` variable for redirecting. Ensure the variable is correctly configured.
+**PUBLIC_URL and AUTH_ALLOWED_PUBLIC_URLS**
+
+- Our `oauth2`, `openid` and `saml` SSO drivers rely on `PUBLIC_URL` for redirection, with `oauth2` and `openid` also using it for the callback URL generation. If set incorrectly, the login process for these drivers may behave unexpectedly.
+- In environments where the API is accessible from multiple domains, `AUTH_ALLOWED_PUBLIC_URLS` should be configured for the domains you wish to support SSO sign-in. When a request's origin matches an entry, the corresponding PUBLIC_URL is used for the login flow. If no match is found, the default `PUBLIC_URL` is used instead.
+
+**Example:**
+
+```
+PUBLIC_URL="https://<your_primary_domain>"
+AUTH_ALLOWED_PUBLIC_URLS="https://<your_secondary_domain>,https://<your_tertiary_domain>"
+```
+
+**Cookie Limitations**
+
+- Subdomains of the same parent domain: Since they share a common parent domain (e.g. `api.example.com` and `admin.example.com`), the cookie domain should be set to the parent domain prefixed by `.` (e.g `.example.com`) so the session will be shared across both subdomains. Loggins in on one subdomain will result in a session valid for all subdomains.
+- Different domains: Because they are separate domains (e.g. `example.com` and `example.org`), the cookie domain should be left unset. Due to browser security restrictions, cookies cannot be shared across different domains. Each domain will maintain its own independent session, logging in on one domain will not result in a valid session on the other.
+
 ::
 
 ## Local (`local`)
@@ -199,7 +219,7 @@ AUTH_FACEBOOK_LABEL="Facebook"
 Directus users can only authenticate using the auth provider they are created with. It is not possible to authenticate with multiple providers for the same user.
 ::
 
-## Multiple Auth Providers
+## Example Auth Provider Configurations
 
 Below is a collection of example Directus configurations for integrating with various OpenID, OAuth 2.0 and SAML platforms. Due to the large number of available SSO platforms, this list will only cover the most common configurations. Contributions to expand and maintain the list are encouraged.
 

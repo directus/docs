@@ -8,7 +8,7 @@ provide('openapi', spec);
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
 defineOgImage({
-	url: '/img/og-image.png',
+	url: '/og-image.png',
 });
 </script>
 
