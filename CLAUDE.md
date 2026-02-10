@@ -110,6 +110,7 @@ Matching the existing tone is mission-critical. All new or edited content in `/c
 - Passive voice in instructions
 - Walls of text — if a paragraph exceeds 3-4 sentences, break it up or use a list
 - AI-isms ("I'd be happy to help", "Great question!", "Certainly!")
+- Telltale AI writing patterns: em dashes (—) used as general-purpose punctuation, "delve", "leverage", "utilize", "straightforward", "it's worth noting", "key" as an adjective. Use normal dashes (-) or rewrite the sentence instead
 
 ## Hosting
 
