@@ -24,6 +24,12 @@ const integrations = [
 		to: '/guides/integrations/vercel',
 		logo: '/docs/img/vercel.webp',
 	},
+	{
+		title: 'Netlify',
+		description: 'Integrate Directus with Netlify to deploy sites and track build progress.',
+		to: '/guides/integrations/netlify',
+		logo: '/docs/img/tutorials/netlify.png',
+	},
 ];
 </script>
 
