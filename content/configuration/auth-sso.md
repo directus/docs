@@ -20,7 +20,8 @@ For each of the auth providers listed, you must provide the following configurat
 | Variable                 | Description                                                                                                                                 | Default Value |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `AUTH_<PROVIDER>_DRIVER` | Which driver to use, either `local`, `oauth2`, `openid`, `ldap`, `saml`.                                                                    |               |
-| `AUTH_<PROVIDER>_MODE`   | Whether to use `'cookie'` or `'session'` authentication mode when redirecting. Applies to the following drivers `oauth2`, `openid`, `saml`. | `session`     |
+| `AUTH_<PROVIDER>_MODE`          | Whether to use `'cookie'` or `'session'` authentication mode when redirecting. Applies to the following drivers `oauth2`, `openid`, `saml`. | `session`     |
+| `AUTH_<PROVIDER>_COOKIE_SECURE` | Set the `secure` attribute on the OAuth 2.0 / OpenID state cookie. Enable when serving over HTTPS. Applies to `oauth2` and `openid` drivers. | `false`       |
 
 ::callout{icon="material-symbols:info-outline"}
 Cookie and session configuration settings such as `REFRESH_TOKEN_COOKIE_*`, `SESSION_COOKIE_*`, and related security parameters can be found in [Security & Limits](/configuration/security-limits).
