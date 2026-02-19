@@ -32,6 +32,12 @@ if (!page.value) {
 		</UPageHeader>
 
 		<UPageBody>
+			<div
+				v-if="page!.body"
+				class="content prose mb-8"
+			>
+				<ContentRenderer :value="page!" />
+			</div>
 			<TutorialsArticles :path="route.path" />
 		</UPageBody>
 	</UPage>
