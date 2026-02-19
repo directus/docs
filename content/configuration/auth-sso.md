@@ -2,7 +2,7 @@
 title: Authentication & SSO
 description: Configuration for authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML.
 navigation:
-  title: Auth & SSO
+title: Auth & SSO
 ---
 
 :partial{content="config-env-vars"}
@@ -188,6 +188,14 @@ SAML is an open-standard, XML-based authentication framework for authentication 
 <sup>[1]</sup> When authenticating, Directus will match the identifier value from the external user profile to a Directus users "External Identifier".
 
 The `SP_metadata` and `IDP_metadata` variables should be set to the XML metadata provided by the service provider and identity provider respectively.
+
+:::callout{icon="material-symbols:warning-rounded" color="warning"}
+**SAML Attribute Keys**\
+\
+Most identity providers send simple attribute names like `email` rather than the full XML schema URIs shown as defaults above. Set `IDENTIFIER_KEY` and `EMAIL_KEY` to match your identity provider's attribute names. Make sure to check the attribute statements in your IdP's SAML configuration.\
+\
+Unlike OAuth 2.0, there is no fallback from `IDENTIFIER_KEY` to `EMAIL_KEY`. If the configured identifier key is not found in the SAML response, authentication will fail.
+:::
 
 ## Multiple Auth Providers
 

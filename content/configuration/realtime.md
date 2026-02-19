@@ -45,6 +45,21 @@ Read more about different authentication methods with Directus Realtime.
 Read more about different authentication methods with Directus Realtime.
 ::
 
+## Collaborative Editing
+
+::callout{icon="material-symbols:info-outline"}
+Multi-instance collaboration requires a shared Redis instance for coordination.
+::
+
+| Variable                                       | Description                                                                            | Default Value |
+| :--------------------------------------------- | :------------------------------------------------------------------------------------- | :------------ |
+| `WEBSOCKETS_COLLAB_ENABLED`                    | Toggle collaborative editing functionality specifically (when WebSockets are enabled). | `true`        |
+| `WEBSOCKETS_COLLAB_INSTANCE_TIMEOUT`           | Duration in milliseconds before a silent node is considered dead.                      | `10000`       |
+| `WEBSOCKETS_COLLAB_CLUSTER_CLEANUP_CRON`       | Cron expression for how often to garbage-collect empty rooms.                          | `*/1 * * * *` |
+| `WEBSOCKETS_COLLAB_LOCAL_CLEANUP_INTERVAL`     | Duration in milliseconds between local cleanup sweeps.                                 | `60000`       |
+| `WEBSOCKETS_COLLAB_PERMISSIONS_CACHE_CAPACITY` | LRU cache size for permission checks.                                                  | `2000`        |
+| `WEBSOCKETS_COLLAB_STORE_NAMESPACE`            | The namespace used for Redis storage.                                                  | `collab`      |
+
 ## Logging
 
 Read more about logging with Directus Realtime in the [logging configuration](/configuration/logging).
