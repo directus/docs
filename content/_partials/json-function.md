@@ -21,12 +21,10 @@ Paths use dot notation for object keys and bracket notation for array indices.
 
 | Pattern | Example | Meaning |
 |---|---|---|
-| `.key` | `color` | Top-level key |
-| `.a.b.c` | `settings.theme.color` | Nested keys |
+| `key` | `color` | Top-level key |
+| `a.b.c` | `settings.theme.color` | Nested keys |
 | `[n]` | `tags[0]` | Array element at index `n` |
-| `.a[n].b` | `items[0].name` | Mixed object/array access |
-
-The leading dot is optional — `color` and `.color` are both accepted and treated identically.
+| `a[n].b` | `items[0].name` | Mixed object/array access |
 
 **Examples:**
 
