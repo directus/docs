@@ -179,14 +179,14 @@ Exceeding this limit returns an error.
 
 The following path syntaxes are **not supported** and will return a `400` error:
 
-| Expression | Example | Reason |
+| Expression | Example |
 |---|---|---|
-| Empty brackets (wildcard) | `items[]` | Not supported |
-| `[*]` wildcard | `items[*].name` | Not supported |
-| `*` glob | `items.*` | Not supported |
-| JSONPath predicates | `items[?(@.price > 10)]` | Not supported |
-| `@` current node | `@.name` | Not supported |
-| `$` root | `$.name` | Not supported |
+| Empty brackets (wildcard) | `items[]` |
+| `[*]` wildcard | `items[*].name` |
+| `*` glob | `items.*` |
+| JSONPath predicates | `items[?(@.price > 10)]` |
+| `@` current node | `@.name` |
+| `$` root | `$.name` |
 
 ### Object Keys with Special Characters
 
