@@ -210,4 +210,4 @@ Similarly, because MySQL and MariaDB path conversion uses dot-notation (`$.key.s
 
 **Oracle**
 
-- Similar to MSSQL, `JSON_VALUE` in Oracle returns scalar values as **strings**, regardless of the original JSON type (number, boolean, etc.). A JSON number `3.14` will be returned as `"3.14"`.
+- Similar to MSSQL will also return scalar values as **strings**, regardless of the original JSON type (number, boolean, etc.). A JSON number `3.14` will be returned as `"3.14"`.
