@@ -206,7 +206,7 @@ Similarly, because MySQL and MariaDB path conversion uses dot-notation (`$.key.s
 
 **MSSQL**
 
-- `JSON_VALUE` in MSSQL always returns scalar values as **strings (`NVARCHAR`)**, even when the original JSON value is a number or boolean. For example, a JSON integer `42` will be returned as the string `"42"`. Your application should perform type coercion as needed.
+- Will always returns scalar values as **strings (`NVARCHAR`)**, even when the original JSON value is a number or boolean. For example, a JSON integer `42` will be returned as the string `"42"`. Your application should perform type coercion as needed.
 
 **Oracle**
 
