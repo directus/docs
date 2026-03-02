@@ -1,8 +1,12 @@
-## The `json()` Function
+## The `json(field, path)` Function
 
-The `json()` function extracts a specific value from a JSON field and returns it as a separate field in the query response. It is used in the `fields` query parameter alongside regular field names and other field functions.
+The `json(field, path)` function extracts a specific value from a JSON field and returns it as a separate field in the query response. It is used in the `fields` query parameter alongside regular field names and other field functions.
 
-> **Note:** the `json()` function is currently only supported for use in the `fields` query parameter.
+
+::callout{icon="material-symbols:warning-rounded" color="warning"}
+
+**Supported Paramaters**
+the `json(field, path)` function is currently only supported for use in the `fields` query parameter.
 
 ### Syntax
 
@@ -71,7 +75,7 @@ GET /items/articles?fields=id,title,json(metadata, color)&sort=title
 
 ### Relational Queries
 
-`json()` can traverse relational fields to extract JSON values from related items. The relational path goes inside the first argument, before the JSON field name.
+`json(field, path)` can traverse relational fields to extract JSON values from related items. The relational path goes inside the first argument, before the JSON field name.
 
 #### Many-to-One (M2O)
 
@@ -100,7 +104,7 @@ GET /items/articles?fields=id,title,category_id.name,json(category_id.metadata, 
 }
 ```
 
-Multiple `json()` extractions from the same relation are grouped under the same relational key:
+Multiple `json(field, path)` extractions from the same relation are grouped under the same relational key:
 
 ```http
 GET /items/articles?fields=id,json(category_id.metadata, color),json(category_id.metadata, icon)
@@ -140,9 +144,9 @@ GET /items/articles/1?fields=id,json(comments.data, type)
 }
 ```
 
-#### Any-to-One (A2O / Many-to-Any)
+#### Many-to-Any (M2A)
 
-For A2O relations, use the standard Directus collection scope syntax inside the first argument:
+For M2A relations, use the standard Directus collection scope syntax inside the first argument:
 
 ```
 json(relation.item:collection_name.json_field, path)
@@ -190,7 +194,7 @@ The following path syntaxes are **not supported** and will return a `400` error:
 
 ### Object Keys with Special Characters
 
-The `json()` path syntax uses `.` as a separator between key segments. There is no escape mechanism for object keys that themselves contain dots, spaces, or other special characters. For example, if your JSON has a key `"first.name"`, there is no way to express that in the path — `json(data, first.name)` would be interpreted as nested access to key `first`, then key `name`.
+The `json(field, path)` path syntax uses `.` as a separator between key segments. There is no escape mechanism for object keys that themselves contain dots, spaces, or other special characters. For example, if your JSON has a key `"first.name"`, there is no way to express that in the path — `json(data, first.name)` would be interpreted as nested access to key `first`, then key `name`.
 
 Similarly, because MySQL and MariaDB path conversion uses dot-notation (`$.key.subkey`), keys containing characters that are special in that context (e.g., spaces) may not be reachable. PostgreSQL's parameterized `->?` approach is more permissive for unusual key names, but the input path format still does not provide an escaping mechanism.
 
