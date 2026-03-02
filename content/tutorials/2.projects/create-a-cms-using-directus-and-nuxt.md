@@ -55,7 +55,7 @@ Configure Nuxt so that it is able to communicate with the (external) Directus AP
 Create a `.env` file with the Directus URL:  
 
 ```
-API_URL="http://0.0.0.0:8055"
+NUXT_PUBLIC_API_URL="http://0.0.0.0:8055"
 ```
 
 Add a type definition for our new environment variable by creating an `env.d.ts` file with the following content:
@@ -63,7 +63,7 @@ Add a type definition for our new environment variable by creating an `env.d.ts`
   ```ts
   /// <reference types="vite/client" />
   interface ImportMetaEnv {
-  	readonly API_URL: string;
+  	readonly NUXT_PUBLIC_API_URL: string;
   }
     
   interface ImportMeta {
@@ -75,31 +75,33 @@ Depending on your project configuration and if you are in development or product
 
   ```ts
   routeRules: {
-      "/directus/**": { proxy: `${import.meta.env.API_URL}/**` },
+      "/directus/**": { proxy: `${import.meta.env.NUXT_PUBLIC_API_URL}/**` },
     },
   ```
 
 This will allow your Nuxt project to access Directus via your Nuxt URL, eg. [http://localhost:3000/directus](http://localhost:3000/directus)
 
-Configure Nuxt UI by:
+Configure [Nuxt UI](https://ui.nuxt.com/docs/getting-started/installation/nuxt):
 
-1. Creating a CSS file in `assets/css/main.css` and adding the following content:
+1. Install Nuxt UI:
+
+```bash
+npm i @nuxt/ui
+```
+
+3. Create a CSS file in `app/assets/css/main.css` and add the following content:
 
 ```css
 @import "tailwindcss";
-@import "@nuxt/ui-pro";
+@import "@nuxt/ui";
 ```
 
-2. Adding the Nuxt UI module to your `nuxt.config.ts`:
+3. Add the Nuxt UI module to your `nuxt.config.ts`:
 
 ```ts
-modules: ['@nuxt/ui-pro'],
-css: ['~/assets/css/main.css'],
+modules: ['@nuxt/ui'],
+css: ['./app/assets/css/main.css'],
 ```
-
-This will give you a design starting point for your CSS and UI components using [NuxtUI](https://ui.nuxt.com/).
-
-> Note: This tutorial is using Nuxt UI Pro, which is a paid version of Nuxt UI (although it is free in development). It contains default layouts for some of the components in the CMS template. You can always remove this and use custom CSS or another UI library.
 
 ### Additional packages
 
