@@ -194,61 +194,16 @@ The `json()` path syntax uses `.` as a separator between key segments. There is 
 
 Similarly, because MySQL and MariaDB path conversion uses dot-notation (`$.key.subkey`), keys containing characters that are special in that context (e.g., spaces) may not be reachable. PostgreSQL's parameterized `->?` approach is more permissive for unusual key names, but the input path format still does not provide an escaping mechanism.
 
-### Database-Specific Behavior
+### Database-Specific Exceptions
 
-#### PostgreSQL / CockroachDB
+**SQLite**
 
-Uses the native `->` operator chain with parameterized bindings to prevent SQL injection. The PostgreSQL `pg` driver automatically deserializes JSON/JSONB values, so objects and arrays are returned as native JavaScript values.
+- SQLite can return `0`/`1` isntead of `boolean` values.
 
-```sql
--- json(metadata, items[0].name)
-"table"."metadata"::json->?->?->?  -- bindings: ['items', 0, 'name']
-```
+**MSSQL**
 
-#### MySQL / MariaDB
+- `JSON_VALUE` in MSSQL always returns scalar values as **strings (`NVARCHAR`)**, even when the original JSON value is a number or boolean. For example, a JSON integer `42` will be returned as the string `"42"`. Your application should perform type coercion as needed.
 
-Uses `JSON_UNQUOTE(JSON_EXTRACT())` with `$` path notation.
+**Oracle**
 
-```sql
--- json(metadata, color)
-JSON_UNQUOTE(JSON_EXTRACT(`table`.`metadata`, '$.color'))
-```
-
-Objects and arrays extracted by MySQL's `JSON_EXTRACT` are returned as **strings containing JSON text**. Directus automatically parses these back to JavaScript objects/arrays. Scalar values (strings, numbers, booleans) are returned as their native types after `JSON_UNQUOTE`.
-
-#### SQLite
-
-Uses `json_extract()` with `$` path notation.
-
-```sql
--- json(data, items[0].name)
-json_extract(`table`.`data`, '$.items[0].name')
-```
-
-Objects and arrays are returned as JSON strings by the SQLite driver and are automatically parsed by Directus.
-
-> **Note:** SQLite can return `0`/`1` isntead of `boolean` values.
-
-#### MSSQL
-
-Uses `COALESCE(JSON_QUERY(), JSON_VALUE())` to handle both object/array paths and scalar paths in a single query:
-
-```sql
--- json(metadata, color)
-COALESCE(JSON_QUERY([table].[metadata], '$.color'), JSON_VALUE([table].[metadata], '$.color'))
-```
-
-`JSON_QUERY` returns objects/arrays (or `NULL` for scalars), and `JSON_VALUE` returns scalars (or `NULL` for objects/arrays). `COALESCE` picks whichever is non-`NULL`.
-
-> **Note:** `JSON_VALUE` in MSSQL always returns scalar values as **strings (`NVARCHAR`)**, even when the original JSON value is a number or boolean. For example, a JSON integer `42` will be returned as the string `"42"`. Your application should perform type coercion as needed.
-
-#### Oracle
-
-Uses the same `COALESCE(JSON_QUERY(), JSON_VALUE())` pattern as MSSQL:
-
-```sql
--- json(metadata, color)
-COALESCE(JSON_QUERY("table"."metadata", '$.color'), JSON_VALUE("table"."metadata", '$.color'))
-```
-
-> **Note:** As with MSSQL, `JSON_VALUE` in Oracle returns scalar values as **strings**, regardless of the original JSON type (number, boolean, etc.). A JSON number `3.14` will be returned as `"3.14"`.
+- Similar to MSSQL, `JSON_VALUE` in Oracle returns scalar values as **strings**, regardless of the original JSON type (number, boolean, etc.). A JSON number `3.14` will be returned as `"3.14"`.
