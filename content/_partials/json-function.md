@@ -173,20 +173,7 @@ MAX_JSON_QUERY_DEPTH=10  # default
 
 Depth is counted by the number of `.` and `[` characters in the normalized path. A path like `a.b.c.d.e.f.g.h.i.j` has depth 10 and is allowed by default; adding one more segment exceeds the limit.
 
-Exceeding this limit returns: `Invalid query. JSON path depth (N) exceeds allowed maximum of M.`
-
-### Error Handling
-
-| Condition | Behavior |
-|---|---|
-| Malformed `json()` syntax | `400 Invalid json() syntax` |
-| Missing field or path argument | `400 Invalid json() syntax: missing field name / path` |
-| Field is not a JSON type | `400` error with message `{collection}.{field} is not a JSON field` |
-| Nonexistent relational field | Silently ignored (Directus standard behavior for unknown relational fields) |
-| Path does not exist in the JSON document | Returns `null` for that field |
-| Relational depth exceeded | `400 Invalid query. Max relational depth exceeded.` |
-| JSON path depth exceeded | `400 Invalid query. JSON path depth (N) exceeds allowed maximum of M.` |
-| Nested functions in `fields` | `400 Nested functions are not supported in "fields"` |
+Exceeding this limit returns an error.
 
 ### Unsupported Path Expressions
 
