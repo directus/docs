@@ -167,7 +167,7 @@ json(category_id.metadata, a.b.c.d.e)
 ```
 This has a relational depth of **2** (`category_id` + `metadata`), regardless of how many segments are in the JSON path `a.b.c.d.e`.
 
-Exceeding the relational depth returns a `400 Invalid query. Max relational depth exceeded.` error.
+Exceeding the relational depth  will return an error.
 
 ### JSON Path Depth Limit
 
