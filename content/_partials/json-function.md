@@ -1,6 +1,6 @@
 ## The `json(field, path)` Function
 
-The `json(field, path)` function extracts a specific value from a JSON field and returns it as a separate field in the query response. It is used in the `fields` query parameter alongside regular field names and other field functions.
+The `json(field, path)` function extracts the value from the specified path in a JSON field and returns it as a separate field in the query response. It is used in the `fields` query parameter alongside regular field names and other field functions.
 
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
