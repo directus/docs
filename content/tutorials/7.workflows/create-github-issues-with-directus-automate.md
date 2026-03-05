@@ -54,9 +54,9 @@ In the payload, you will set the issue title and description:
 }
 ```
 
-:::tip Body Supports Markdown
+::callout{icon="material-symbols:info-outline"}
 The body supports any Markdown, so the `>` at the start turns the text after it into a blockquote.
-:::
+::
 
 This will set an issue title and description, but you can set other properties like [assignees, labels, and milestones](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue).
 
