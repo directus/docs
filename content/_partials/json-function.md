@@ -186,7 +186,7 @@ Exceeding this limit returns an error.
 The following path syntaxes are **not supported** and will return a `400` error:
 
 | Expression | Example |
-|---|---|---|
+|---|---|
 | Empty brackets (wildcard) | `items[]` |
 | `[*]` wildcard | `items[*].name` |
 | `*` glob | `items.*` |
