@@ -88,6 +88,11 @@ export default defineAppConfig({
 						icon: 'directus-marketplace',
 					},
 					{
+						label: 'Deployments',
+						to: '/guides/deployments',
+						icon: 'directus-deployments',
+					},
+					{
 						label: 'AI',
 						to: '/guides/ai/',
 						icon: 'directus-ai',

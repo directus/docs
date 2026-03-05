@@ -6,7 +6,7 @@ technologies:
   - vercel
 ---
 
-Once you've connected your Vercel account and configured your projects, you can manage all deployment activities directly from Directus. 
+Once you've connected your Vercel account and configured your projects, you can manage all deployment activities directly from Directus.
 
 You should trigger deployments after publishing content changes that affect your frontend.
 
@@ -27,10 +27,6 @@ Each deployment is tracked in Directus with the associated deployment metadata.
 ![Vercel integration overview](/img/vercel-integration-1.png)
 
 ## Monitoring Deployment Status
-
-::callout{icon="material-symbols:info-outline"}
-**Only deployments triggered from Directus appear in this interface**. Deployments made directly in Vercel will not be shown.
-::
 
 Track the status of your deployments in the deployment list screen. The list shows:
 
@@ -71,7 +67,6 @@ Download deployment logs for documentation or troubleshooting:
 3. Logs are exported as a text file with associated timestamps
 
 ![Vercel integration export logs](/img/vercel-integration-3.png)
-
 
 ## Visiting Deployed Sites
 

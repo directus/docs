@@ -28,10 +28,6 @@ Each deployment is logged in Directus with its deployment metadata.
 
 ## Monitoring Deployment Status
 
-::callout{icon="material-symbols:info-outline"}
-**Only deployments triggered from Directus appear here**. Deployments initiated directly in Netlify will not be displayed.
-::
-
 Track your deployments in the deployment list view. The list displays:
 
 - **Deploy ID**: Netlify identifier for each build
@@ -84,15 +80,18 @@ Access your live deployments quickly:
 ## Best Practices
 
 **Deployment Workflow**
+
 - Deploy after publishing content changes that affect your frontend
 - Monitor initial deployments after setup to confirm builds succeed
 - Retain build logs for failed deployments to aid troubleshooting
 
 **Performance Tips**
+
 - Build durations in the deployment list help track performance trends
 - Netlify's build cache can accelerate subsequent builds
 
 **Troubleshooting**
+
 - For failed deployments, review build logs for error details
 - Confirm your Netlify site configuration and build settings
 - Verify your Personal Access Token has required permissions
