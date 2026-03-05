@@ -160,7 +160,7 @@ GET /items/shapes/1?fields=id,json(children.item:circles.metadata, color)
 
 ### Relational Depth Limit
 
-Directus enforces a maximum relational depth (`MAX_RELATIONAL_DEPTH`, default `10`). For `json()`, only the **first argument** (the field path) counts toward this limit — the JSON path in the second argument is excluded.
+`json(field, path)` will enforce a maximum relational depth (`MAX_RELATIONAL_DEPTH`, default `10`) limit for the `field` argument. This depth is calculated irrespective of the Path depth limit mentioned below
 
 ```
 json(category_id.metadata, a.b.c.d.e)
@@ -171,19 +171,19 @@ Exceeding the relational depth will return an error.
 
 ### JSON Path Depth Limit
 
-The JSON path (second argument) also has its own configurable limit:
+In addition to a relation depth, `json(field, path)` will also enforce a path depth limit (`MAX_JSON_QUERY_DEPTH`, default `10`). This depth is calculated irrespective of the relational depth.
 
 ```
-MAX_JSON_QUERY_DEPTH=10  # default
+json(category_id.metadata, a[0].c.d.e.f.g.h.i.j)
 ```
 
-Depth is counted by the number of `.` and `[` characters in the normalized path. A path like `a.b.c.d.e.f.g.h.i.j` has depth 10 and is allowed by default; adding one more segment exceeds the limit.
+The above example has a path depth of 10 and is allowed by default; adding one more segment exceeds the limit.
 
-Exceeding this limit returns an error.
+Exceeding the path depth limit returns an error.
 
 ### Unsupported Path Expressions
 
-The following path syntaxes are **not supported** and will return a `400` error:
+The following path syntaxes are **not supported** and will return an error:
 
 | Expression | Example |
 |---|---|
