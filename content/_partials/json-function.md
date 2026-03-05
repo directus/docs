@@ -8,6 +8,8 @@ The `json(field, path)` function extracts a specific value from a JSON field and
 **Supported Paramaters**
 the `json(field, path)` function is currently only supported for use in the `fields` query parameter.
 
+::
+
 ### Syntax
 
 ```
