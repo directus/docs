@@ -126,7 +126,7 @@ This rate-limiter prevents the API from accepting new requests while the server 
 | `PRESSURE_LIMITER_SAMPLE_INTERVAL`            | The time window for measuring pressure in milliseconds.                     | `250`         |
 | `PRESSURE_LIMITER_MAX_EVENT_LOOP_UTILIZATION` | The maximum allowed utilization where `1` is 100% loop utilization.         | `0.99`        |
 | `PRESSURE_LIMITER_MAX_EVENT_LOOP_DELAY`       | The maximum amount of time the current loop can be delayed in milliseconds. | `500`         |
-| `PRESSURE_LIMITER_MAX_MEMORY_RSS`             | The maximum allowed memor y Resident Set Size (RSS) in bytes.                | `false`       |
+| `PRESSURE_LIMITER_MAX_MEMORY_RSS`             | The maximum allowed memory Resident Set Size (RSS) in bytes.                | `false`       |
 | `PRESSURE_LIMITER_MAX_MEMORY_HEAP_USED`       | The maximum allowed heap usage in bytes.                                    | `false`       |
 | `PRESSURE_LIMITER_RETRY_AFTER`                | Sets the `Retry-After` header when the rate limiter is triggered.           | `false`       |
 
