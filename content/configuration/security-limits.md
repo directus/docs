@@ -168,8 +168,9 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `MAX_PAYLOAD_SIZE`             | Controls the maximum request body size. Accepts number of bytes, or human readable string.  | `1mb`         |
 | `MAX_BATCH_MUTATION`           | The maximum number of items for batch mutations when creating, updating and deleting.       | `Infinity`    |
 | `MAX_RELATIONAL_DEPTH`         | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
+| `MAX_JSON_QUERY_DEPTH`         | The maximum json path depth when querying JSON fields.                              | `10`          |
 | `QUERY_LIMIT_DEFAULT`          | The default query limit used when not defined in the API request.                           | `100`         |
 | `QUERY_LIMIT_MAX`              | The maximum query limit accepted on API requests.                                           | `-1`          |
 | `QUERYSTRING_MAX_PARSE_DEPTH`  | The maximum object depth when parsing URL query parameters using the querystring format     | `10`          |
-| `QUERYSTRING_ARRAY_LIMIT`      | The array limit when parsing URL query parameters using the querystring format              | `100`         |
+| `QUERYSTRING_ARRAY_LIMIT`      | The array limit when parsing URL query parameters using the querystring format              | `500`         |
 | `MAX_IMPORT_ERRORS`                        | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`                       |
