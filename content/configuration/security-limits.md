@@ -29,9 +29,7 @@ description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate 
 | `USER_REGISTER_URL_ALLOW_LIST`      | List of URLs that can be used as `verification_url` in the `/users/register` endpoint.                                                                                                  |                           |
 | `IP_TRUST_PROXY`                    | Settings for the Express.js trust proxy setting.                                                                                                                                        | true                      |
 | `IP_CUSTOM_HEADER`                  | What custom request header to use for the IP address.                                                                                                                                   | false                     |
-| `ASSETS_CONTENT_SECURITY_POLICY`    | Custom overrides for the Content-Security-Policy header for the /assets endpoint. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `ASSETS_CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://cdn.example.com data:"`        |                           |
 | `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny importing files from these IP addresses / IP ranges / CIDR blocks. Use `0.0.0.0` to match any local IP address.                                                                    | `0.0.0.0,169.254.169.254` |
-| `CONTENT_SECURITY_POLICY_*`         | Custom overrides for the Content-Security-Policy header. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://images.example.com data:"`                                 |                           |
 | `HSTS_ENABLED`                      | Enable the Strict-Transport-Security policy header. When enabled, Directus will send the `Strict-Transport-Security: max-age=15552000; includeSubDomains` header on all responses.                                                                                                                                     | `false`                   |
 | `HSTS_*`                            | Custom overrides for the Strict-Transport-Security header. See [helmet's documentation](https://helmetjs.github.io). Example: `HSTS_MAX_AGE=63072000`                                                                   |                           |
 
@@ -77,6 +75,26 @@ Modifying `HASH_MEMORY_COST` and/or `HASH_PARALLELISM` will affect the amount of
 
 For more details about each configuration variable, please see the [CORS package documentation](https://www.npmjs.com/package/cors#configuration-options).
 
+## CSP
+
+| Variable                           | Description                                    | Default Value |
+| ---------------------------------- | ---------------------------------------------- | ------------- |
+| `CONTENT_SECURITY_POLICY_*`        | Configure global csp settings                  |               |
+| `ASSETS_CONTENT_SECURITY_POLICY_*` | Configure csp settings for the assets endpoint |               |
+
+Directus uses [helmet.js](https://helmetjs.github.io) for configuring Conent-Security-Policy headers in combination with [Environment Object Syntax](/configuration/intro#environment-object-syntax). See helmet's documentation on `helmet.contentSecurityPolicy()` to get a complete overview over the available options.
+
+### Examples
+
+**Allowing own and directus.io domain**\
+`CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC="'self' https://directus.io"`
+
+**Deny loading any fonts**\
+`CONTENT_SECURITY_POLICY_DIRECTIVES__FONT_SRC="'none'"`
+
+**Allowing only images from yourself and pixabay.com on the assets endpoint**\
+`ASSETS_CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://pixabay.com"`
+
 ## Rate Limiting
 
 You can use the built-in rate-limiter to prevent users from hitting the API too much.
@@ -108,7 +126,7 @@ This rate-limiter prevents the API from accepting new requests while the server 
 | `PRESSURE_LIMITER_SAMPLE_INTERVAL`            | The time window for measuring pressure in milliseconds.                     | `250`         |
 | `PRESSURE_LIMITER_MAX_EVENT_LOOP_UTILIZATION` | The maximum allowed utilization where `1` is 100% loop utilization.         | `0.99`        |
 | `PRESSURE_LIMITER_MAX_EVENT_LOOP_DELAY`       | The maximum amount of time the current loop can be delayed in milliseconds. | `500`         |
-| `PRESSURE_LIMITER_MAX_MEMORY_RSS`             | The maximum allowed memory Resident Set Size (RSS) in bytes.                | `false`       |
+| `PRESSURE_LIMITER_MAX_MEMORY_RSS`             | The maximum allowed memor y Resident Set Size (RSS) in bytes.                | `false`       |
 | `PRESSURE_LIMITER_MAX_MEMORY_HEAP_USED`       | The maximum allowed heap usage in bytes.                                    | `false`       |
 | `PRESSURE_LIMITER_RETRY_AFTER`                | Sets the `Retry-After` header when the rate limiter is triggered.           | `false`       |
 
