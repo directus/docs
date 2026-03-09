@@ -97,10 +97,10 @@ Create a new directory called `pages` and a new file called `index.vue` inside o
 </template>
 
 <script setup>
-const { $directus, $readItem } = useNuxtApp()
+const { $directus } = useNuxtApp()
 
 const { data: global } = await useAsyncData('global', () => {
-  return $directus.request($readItem('global'))
+  $directus.request(readItems('global'))
 })
 </script>
 ```
@@ -126,17 +126,28 @@ of the top-level pages.
 </template>
 
 <script setup>
-const { $directus, $readItems } = useNuxtApp()
-const route = useRoute()
+const { $directus } = useNuxtApp()
+const { params } = useRoute()
 
-const { data: page } = await useAsyncData('page', () => {
-  return $directus.request($readItems('pages', [{slug}]))[0]
+const { data: page } = await useAsyncData('page', async () => {
+  // 1. We search the ‘pages’ collection by filtering on the URL slug.
+  const items = await $directus.request(
+    readItems('pages', {
+      filter: { slug: { _eq: params.slug } }
+    })
+  )
+  
+  // 2. We return the first element of the resulting array.
+  return items[0]
 })
 
-if (!page.value) throw createError({
-  statusCode: 404,
-  statusMessage: 'Page Not Found'
-})
+// If you cannot find the page, we will display a 404 error.
+if (!page.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found'
+  })
+}
 </script>
 ```
 
