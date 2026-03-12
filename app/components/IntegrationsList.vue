@@ -30,6 +30,12 @@ const integrations = [
 		to: '/guides/integrations/netlify',
 		logo: '/docs/img/tutorials/netlify.png',
 	},
+	{
+		title: 'Framer',
+		description: 'Sync content between Directus collections and Framer\'s CMS in both directions.',
+		to: '/guides/integrations/framer',
+		logo: '/docs/img/framer.png',
+	},
 ];
 </script>
 
