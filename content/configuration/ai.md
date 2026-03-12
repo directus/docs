@@ -36,7 +36,7 @@ Send AI Assistant traces to an external observability platform for monitoring us
 
 | Variable | Description | Default Value |
 | -------- | ----------- | ------------- |
-| `AI_TELEMETRY_ENABLED` | Enable OpenTelemetry-based tracing for AI Assistant requests. | `false` |
+| `AI_TELEMETRY_ENABLED` | Enable OpenTelemetry-based tracing for AI Assistant requests. User IDs and Role ID will be included in traces. | `false` |
 | `AI_TELEMETRY_PROVIDER` | Telemetry provider to use. Supported values: `langfuse`, `braintrust`. | `langfuse` |
 | `AI_TELEMETRY_RECORD_IO` | Include full prompt inputs and response outputs in traces. | `false` |
 
