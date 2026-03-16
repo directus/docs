@@ -74,6 +74,18 @@ npx directus cache clear
 
 This command reads the same cache configuration as the running Directus instance (`CACHE_STORE`, `CACHE_NAMESPACE`, and any Redis connection variables). Run it with the same environment variables your Directus instance uses.
 
+### Selective Clearing
+
+By default, `cache clear` flushes both caches. Use flags to target a specific cache:
+
+- `--system` - Clears only the system cache (schema, permissions, etc.)
+- `--data` - Clears only the data cache
+
+```sh
+npx directus cache clear --system
+npx directus cache clear --data
+```
+
 ::callout{icon="material-symbols:info-outline"}
 If you use `memory` as `CACHE_STORE`, this command has no effect - in-memory caches are local to each running process and can only be cleared by restarting the instance.
 ::
