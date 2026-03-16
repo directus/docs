@@ -63,3 +63,31 @@ benefits on quick subsequent reads.
 
 <sup>[5]</sup> `CACHE_STORE` For larger projects, you most likely don't want to rely on local memory for caching.
 Instead, you can use the above `CACHE_STORE` environment variable to use `redis` as the cache store.
+
+## Clearing the Cache
+
+Use the `cache clear` CLI command to flush both the data cache and the system cache (schema, permissions, etc.).
+
+```sh
+npx directus cache clear
+```
+
+This command reads the same cache configuration as the running Directus instance (`CACHE_STORE`, `CACHE_NAMESPACE`, and any Redis connection variables). Run it with the same environment variables your Directus instance uses.
+
+::callout{icon="material-symbols:info-outline"}
+If you use `memory` as `CACHE_STORE`, this command has no effect - in-memory caches are local to each running process and can only be cleared by restarting the instance.
+::
+
+### Usage in CI/CD Pipelines
+
+Directus does not automatically clear the cache on startup. If your deploy pipeline applies migrations or schema changes, running instances will continue to serve stale cached data until the TTL expires. Run `cache clear` as the last step to avoid this:
+
+```sh
+npx directus database migrate:latest
+npx directus schema apply ./path/to/snapshot.yaml
+npx directus cache clear
+```
+
+::callout{icon="material-symbols:warning-rounded" color="warning"}
+In a horizontal scaling setup with a shared cache store like Redis, this command flushes the cache for all instances at once. All instances will rebuild their cache on the next request, which may cause a temporary increase in database load.
+::
