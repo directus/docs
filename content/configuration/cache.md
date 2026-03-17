@@ -66,16 +66,4 @@ Instead, you can use the above `CACHE_STORE` environment variable to use `redis`
 
 ## Clearing the Cache
 
-Use the `cache clear` CLI command to manually clear the cache. By default, it flushes both the data cache and the system cache (schema, permissions, etc.). Use `--system` or `--data` to target a specific cache.
-
-```sh
-npx directus cache clear
-npx directus cache clear --system
-npx directus cache clear --data
-```
-
-This command reads the same cache configuration as the running Directus instance (`CACHE_STORE`, `CACHE_NAMESPACE`, and any Redis connection variables). Run it with the same environment variables your Directus instance uses.
-
-::callout{icon="material-symbols:info-outline"}
-If you use `memory` as `CACHE_STORE`, this command has no effect - in-memory caches are local to each running process and can only be cleared by restarting the instance.
-::
+Use the [`cache clear`](/configuration/cli#clear) CLI command to manually flush the data cache, system cache, or both. This is useful in CI/CD pipelines after applying migrations or schema changes.
