@@ -4,7 +4,7 @@ description: Built-in Directus CLI commands.
 ---
 
 Directus includes several CLI commands for managing your instance. All commands are run via
-`npx directus <command>`.
+`npx directus <command>`. You can append `--help` to any command to see its available options.
 
 ## Start
 
