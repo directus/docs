@@ -2,7 +2,6 @@
 import type { ContentNavigationItem } from '@nuxt/content';
 
 import { findPageHeadline } from '#ui-pro/utils';
-import useNormalizedPath from '~/composables/useNormalizedPath';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
