@@ -10,7 +10,9 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first());
+
+const { path } = useNormalizedPath();
+const { data: page } = await useAsyncData(path, () => queryCollection('content').path(path.value).first());
 
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
