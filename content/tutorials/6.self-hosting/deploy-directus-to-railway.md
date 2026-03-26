@@ -12,13 +12,13 @@ Railway is a platform that runs your app and its dependencies (databases, cache,
 We maintain two one-click templates on Railway:
 
 - **[Directus (blank)](https://railway.com/deploy/directus-official)** A fresh Directus instance with PostgreSQL, Redis, and S3-compatible bucket storage provisioned by the template. Use this when you want full control over your data model from scratch.
-- **[Directus CMS](https://railway.com/deploy/directus-cms)** The same stack with our [CMS template](https://github.com/directus-labs/Directus-Railway-CMS-Template) applied: pre-configured collections for pages, articles, categories, authors, and related fields. Ideal for content-focused projects or when you're pairing Directus with a frontend starter (Next.js, Nuxt, Astro, SvelteKit).
+- **[Directus CMS](https://railway.com/deploy/directus-cms)** The same stack with our [CMS template](https://github.com/directus-labs/Directus-Railway-CMS-Template) applied: pre-configured collections for pages, articles, categories, authors, and related fields. Use this when you're building a content-focused project or pairing Directus with a frontend starter (Next.js, Nuxt, Astro, SvelteKit).
 
 Choose the template that fits, then follow the steps below. The flow is the same for both; only the starting template differs.
 
-## Prerequisites
+## Before You Start
 
-- A [Railway](https://railway.app) account (sign up with GitHub or email). Railway templates generally require a paid account (Hobby or Pro plan) for deployment.  You can also use them during your free trial of a paid plan.
+- A [Railway](https://railway.com) account (sign up with GitHub or email). Railway templates generally require a paid account (Hobby or Pro plan) for deployment. You can also use them during your free trial of a paid plan.
 
 ## Step 1: Deploy from a template
 
@@ -42,13 +42,13 @@ If you prefer a custom domain later, you can add it in the same **Networking** s
 The templates preconfigure most of what Directus needs: database, Redis, and (when present) S3-compatible storage are wired up via Railway's internal references. You may still need to fill in or adjust some variables.
 
 1. In the left sidebar, select the **Directus** service.
-2. Open the **Variables** tab. Check that values like `PUBLIC_URL` (your app's public URL, e.g. `https://your-directus.up.railway.app`) are set correctly. For the **Directus CMS** template only, admin email and password are usually requested during the initial deploy (Step 1); you can also set or change `ADMIN_EMAIL` and `ADMIN_PASSWORD` here. The blank template does not use admin env vars; you create the first admin user in the UI when you first visit (Step 4).
+2. Open the **Variables** tab. Check that values like `PUBLIC_URL` (your app's public URL, e.g. `https://your-directus.up.railway.app`) are set correctly. For the **Directus CMS** template, admin email and password are usually requested during the initial deploy (Step 1); you can also set or change `ADMIN_EMAIL` and `ADMIN_PASSWORD` here. For the blank template, you can set `ADMIN_EMAIL` and `ADMIN_PASSWORD` to create the first admin automatically on bootstrap, or skip those and complete the onboarding in the UI when you first visit (Step 4).
 3. If you plan to use the [frontend starters](https://github.com/directus-labs/starters) (Next.js, Nuxt, Astro, SvelteKit) with the **Directus CMS** template, there are additional variables to configure for that integration; see the template or starter docs for details.
 
 After you save variables, Railway will redeploy the Directus service so the new values take effect. The first time you open your Directus URL, you'll either see the onboarding screen (blank template) or the login screen (CMS template, using the credentials you set).
 
 ::callout{icon="material-symbols:info-outline" title="Preconfigured variables"}
-The official templates set database, Redis, and (with the Bucket service) S3 storage automatically. Only override those if you're using an external database or storage; otherwise focus on `PUBLIC_URL`. For the CMS template, you can also set `ADMIN_EMAIL` and `ADMIN_PASSWORD` if you didn't during deploy. The blank template creates the first admin via the UI, not env vars.
+The official templates set database, Redis, and (with the Bucket service) S3 storage automatically. Only override those if you're using an external database or storage; otherwise focus on `PUBLIC_URL`. For the CMS template, you can also set `ADMIN_EMAIL` and `ADMIN_PASSWORD` if you didn't during deploy. The blank template creates the first admin via the onboarding UI by default; set `ADMIN_EMAIL` and `ADMIN_PASSWORD` to create it automatically instead.
 ::
 
 ## Step 4: Log in and verify

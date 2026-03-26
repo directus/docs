@@ -324,13 +324,13 @@ After the setup is complete, visit your Directus application using `https://dire
 
 ## Validation Checklist
 
-You can verify the setup by:
+Verify the setup:
 
-- Opening your public URL and completing onboarding or logging in as admin.
-- Confirming that HTTP requests are redirected to HTTPS.
-- Creating and reading an item in a test collection to verify database access.
-- Uploading a test file and confirming it persists after container restart.
-- Running `sudo systemctl status directus.service` and confirming the service is healthy.
+- Open your public URL and complete onboarding or log in as admin.
+- Confirm that HTTP requests are redirected to HTTPS.
+- Create and read an item in a test collection to verify database access.
+- Upload a test file and confirm it persists after container restart.
+- Run `sudo systemctl status directus.service` and confirm the service is healthy.
 
 ## Summary
 

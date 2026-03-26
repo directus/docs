@@ -178,13 +178,13 @@ Alternatively, you can run the command `docker-compose up -d` to run the Directu
 
 ## Validation Checklist
 
-You can verify the setup by:
+Verify the setup:
 
-- Opening your EC2 public URL and completing onboarding.
-- Creating and reading an item in a test collection to confirm database connectivity.
-- Uploading a test file and confirming it is accessible from the Directus file library.
-- If S3 is configured, confirming that uploaded files are written to the S3 bucket.
-- Restarting the container (`docker-compose restart`) and confirming the instance comes back online.
+- Open your EC2 public URL and complete onboarding.
+- Create and read an item in a test collection to confirm database connectivity.
+- Upload a test file and confirm it is accessible from the Directus file library.
+- If S3 is configured, confirm that uploaded files are written to the S3 bucket.
+- Restart the container (`docker-compose restart`) and confirm the instance comes back online.
 
 ## Next Steps
 

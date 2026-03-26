@@ -33,7 +33,7 @@ if (!page.value) {
 
 		<UPageBody>
 			<div
-				v-if="page!.body"
+				v-if="page?.body"
 				class="content prose mb-8"
 			>
 				<ContentRenderer :value="page!" />

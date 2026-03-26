@@ -83,10 +83,10 @@ Once the web app has been created, we will return to it to enter the required en
 | `DB_USER` | <YOUR_DB_USER> |
 | `DB_PASSWORD` | <YOUR_DB_PASSWORD> |
 
-Let’s go through some of the key parameters in this configuration above:
+Let’s go through the important parameters in this configuration:
 
-- Set the `DB_HOST` value to the your Azure Database for PostgreSQL's server name. You can find it in the resource's overview section.
-- Also set `DB_USER and DB_PASSWORD` to the credentials you set up during the creation of your Azure Database for PostgreSQL.
+- Set the `DB_HOST` value to your Azure Database for PostgreSQL's server name. You can find it in the resource's overview section.
+- Also set `DB_USER` and `DB_PASSWORD` to the credentials you set up during the creation of your Azure Database for PostgreSQL.
 
 
 ::callout{icon="material-symbols:info-outline"}
@@ -128,13 +128,13 @@ Following the creation of the Web App Resource, Directus is now successfully dep
 
 ## Validation Checklist
 
-You can verify the setup by:
+Verify the setup:
 
-- Opening the Azure Web App URL and completing onboarding or logging in as admin.
-- Creating and reading an item in a test collection to confirm PostgreSQL connectivity.
-- Uploading a test file and confirming persistence in the configured mounted share.
-- Restarting the Web App and confirming Directus comes back online with data intact.
-- Reviewing App Service logs for startup errors after any environment variable changes.
+- Open the Azure Web App URL and complete onboarding or log in as admin.
+- Create and read an item in a test collection to confirm PostgreSQL connectivity.
+- Upload a test file and confirm persistence in the configured mounted share.
+- Restart the Web App and confirm Directus comes back online with data intact.
+- Review App Service logs for startup errors after any environment variable changes.
 
 ## Troubleshooting Tips
 

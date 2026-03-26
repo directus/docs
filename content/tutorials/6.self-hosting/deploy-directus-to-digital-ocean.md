@@ -20,9 +20,9 @@ Of course, it becomes your responsibility to maintain your setup. If you are loo
 
 As well as the DigitalOcean app that runs Directus, there are several additional requirements to run a production Directus project within the DO App platform:
 
-- **Managed Database** — You will need a database for Directus. This can be hosted either within the DO ecosystem or externally.
-- **Redis Droplet** — If you plan to have a clustered app, you must set up a Redis droplet to synchronize across multiple instances.
-- **DigitalOcean Spaces** — Directus supports any S3-compatible file storage, and DO Spaces is exactly this.
+- **Managed Database** - You will need a database for Directus. This can be hosted either within the DO ecosystem or externally.
+- **Redis Droplet** - If you plan to have a clustered app, you must set up a Redis droplet to synchronize across multiple instances.
+- **DigitalOcean Spaces** - Directus supports any S3-compatible file storage, and DO Spaces is exactly this.
 
 You may not need a Redis droplet in development, but a clustered environment is something you may need to consider as your application scales.
 
@@ -60,7 +60,7 @@ DigitalOcean offers hosted [databases](https://cloud.digitalocean.com/databases)
 
 If you are setting up a production environment, you should now set up a Redis droplet for synchronization across containers. Follow this [DigitalOcean tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04). If you already have an existing Redis server, you can use that.
 
-Directus currently does not support clustered Redis. If this changes, this process will become easier as this setup can utilize DO's Managed Redis service.
+Directus currently does not support clustered Redis. If this changes, this process will become easier as this setup can use DO's Managed Redis service.
 
 ## Setup DigitalOcean Spaces Object Storage:
 
@@ -116,7 +116,7 @@ openssl rand -base64 32
 
 ::
 
-For database connection settings, you can either utilize DigitalOcean's predefined variables or use the connection settings found on the managed database page. If you wish to delve deeper into Digital Ocean's environment variables, consult their [documentation](https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/). Additionally, don't forget to incorporate the CA certificate, available within the database connection settings.
+For database connection settings, you can use DigitalOcean's predefined variables or the connection settings from the managed database page. For more details on DigitalOcean's environment variables, see their [documentation](https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/). Also include the CA certificate, available within the database connection settings.
 
 Once you've reviewed your configurations and confirmed everything's in order, click **Create App**. This will start the build and deployment.
 
@@ -130,13 +130,13 @@ Upon entering the application dashboard, you'll see your application's health. I
 
 ## Validation Checklist
 
-You can verify the setup by:
+Verify the setup:
 
-- Opening the generated app URL and completing onboarding as admin.
-- Creating and reading an item in a test collection to confirm database connectivity.
-- Uploading a test file and confirming it appears in file storage.
-- Restarting or redeploying the app in DigitalOcean and verifying Directus comes back online.
-- If Spaces storage is configured, confirming that uploaded assets are stored in Spaces.
+- Open the generated app URL and complete onboarding as admin.
+- Create and read an item in a test collection to confirm database connectivity.
+- Upload a test file and confirm it appears in file storage.
+- Restart or redeploy the app in DigitalOcean and verify Directus comes back online.
+- If Spaces storage is configured, confirm that uploaded assets are stored in Spaces.
 
 ## Summary
 
