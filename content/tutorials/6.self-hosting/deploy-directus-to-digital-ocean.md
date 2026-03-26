@@ -32,7 +32,7 @@ DigitalOcean can deploy an application from a Dockerfile hosted in a GitHub or G
 
 ```
 # syntax=docker/dockerfile:1.4
-FROM directus/directus:10.6.2
+FROM directus/directus:11.17.0
 USER root
 RUN corepack enable \
 && corepack prepare pnpm@8.7.6 --activate \
@@ -78,8 +78,9 @@ Persistent file uploads require an external storage volume. On the DigitalOcean 
 6. Input the necessary [environment variables](/configuration/general) for Directus. A set of basic variables will help you start, but ensure you complete all necessary fields. The bulk editor simplifies this task, and you can always return to edit or add more variables later.
 
 ```
-KEY="randomly-generated-key"
 SECRET="randomly-generated-secret"
+ADMIN_EMAIL="admin@example.com"
+ADMIN_PASSWORD="hunter2"
 DB_CLIENT="pg"
 DB_HOST="dbhost"
 DB_PORT="25060"
@@ -103,13 +104,15 @@ CACHE_AUTO_PURGE="true"
 MESSENGER_STORE="redis"
 SYNCHRONIZATION_STORE="redis"
 PUBLIC_URL=${APP_URL}
-ADMIN_EMAIL="admin@example.com"
-ADMIN_PASSWORD="hunter2"
 ```
 
 ::callout{icon="material-symbols:info-outline"}
 
-For generating your `KEY` and `SECRET`, you can use [this tool](https://generate-secret.vercel.app/32).
+Generate `SECRET` with:
+
+```bash
+openssl rand -base64 32
+```
 
 ::
 
@@ -124,6 +127,16 @@ During this step, all that's left for you is to patiently wait as your tailored 
 After the build, the deployment process takes the stage. This phase initializes Directus, oversees its bootstrap operations, and verifies the backend's functionality. If everything transpires without a hitch, you'll witness a successful deployment notification.
 
 Upon entering the application dashboard, you'll see your application's health. It provides insights into recent deployments, facilitates forced deployments, and more. Prominently displayed is your generated application URL. If you want to use a custom URL for your backend, navigate to the settings tab and add one. As an added convenience, SSL certificates are already managed for you.
+
+## Validation Checklist
+
+You can verify the setup by:
+
+- Opening the generated app URL and completing onboarding as admin.
+- Creating and reading an item in a test collection to confirm database connectivity.
+- Uploading a test file and confirming it appears in file storage.
+- Restarting or redeploying the app in DigitalOcean and verifying Directus comes back online.
+- If Spaces storage is configured, confirming that uploaded assets are stored in Spaces.
 
 ## Summary
 
@@ -144,7 +157,7 @@ This issue can usually be circumvented by setting `PIDUSAGE_USE_PS` variable to 
 Ideally, this would be addressed by the authors of `pidusage` or `pm2`, but this can work by building a customized image with a `ps` implementation `pidusage` works with and use that on Digital Ocean:
 
 ```dockerfile
-FROM directus/directus:10.8.1
+FROM directus/directus:11.17.0
 
 USER root
 RUN apk --no-cache add procps

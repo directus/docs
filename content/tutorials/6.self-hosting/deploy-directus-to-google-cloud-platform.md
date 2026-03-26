@@ -43,20 +43,20 @@ Copy the connection name for later usage.
 
 ::callout{icon="material-symbols:info-outline"}
 
-In this section, we will specify the version of Directus as `10.10.4` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
+In this section, we will specify the version of Directus as `11.17.0` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
 
 ::
 
 To deploy a Docker container to Cloud Run, you must first prepare the container. On your local computer, create a `Dockerfile` with the following content, which creates a new Docker image using the Directus image as the base image:
 
 ```yml
-FROM directus/directus:10.10.4
+FROM directus/directus:11.17.0
 ```
 
-Next, Build the docker image and tag it to be `directus:10.10.4`:
+Next, Build the docker image and tag it to be `directus:11.17.0`:
 
 ```bash
-docker build -t directus:10.10.4 --platform linux/amd64 .
+docker build -t directus:11.17.0 --platform linux/amd64 .
 ```
 
 ::callout{icon="material-symbols:info-outline"}
@@ -64,7 +64,7 @@ docker build -t directus:10.10.4 --platform linux/amd64 .
 ### Using an Apple Silicon Machine?
 
 ```bash
-docker buildx build -t directus:10.10.4 --platform linux/amd64 .
+docker buildx build -t directus:11.17.0 --platform linux/amd64 .
 ```
 
 ::
@@ -112,7 +112,7 @@ gcloud auth configure-docker us-central1-docker.pkg.dev
 Tag the local docker image you built with the repository:
 
 ```bash
-docker tag directus:10.10.4 us-central1-docker.pkg.dev/directus-project/directus-repo/directus:10.10.4
+docker tag directus:11.17.0 us-central1-docker.pkg.dev/directus-project/directus-repo/directus:11.17.0
 ```
 
 Replace `directus-project` is the project ID you are working on, `directus-repo` with the repository you created, and the region if required.
@@ -120,7 +120,7 @@ Replace `directus-project` is the project ID you are working on, `directus-repo`
 Finally, push the Docker image to the Artifact Registry:
 
 ```bash
-docker push  us-central1-docker.pkg.dev/directus-project/directus-repo/directus:10.10.4
+docker push  us-central1-docker.pkg.dev/directus-project/directus-repo/directus:11.17.0
 ```
 
 ## Set up Cloud Run
@@ -141,10 +141,11 @@ Toggle the Container(s), Volumes, Networking, Security dropdown to show more det
 On the variables & secret tab, add the required environment variables needed to start a Directus instance:
 
 ```yml
-KEY: YOUR_RANDOM_KEY
 SECRET: YOUR_RANDOM_SECRET
 ADMIN_EMAIL: admin@example.com
 ADMIN_PASSWORD: d1r3ctu5
+PORT: 8080
+PUBLIC_URL: https://YOUR_CLOUD_RUN_URL
 DB_CLIENT: pg
 DB_HOST: /cloudsql/directus-project:us-central1:directus-db
 DB_PORT: 5432
@@ -181,6 +182,16 @@ STORAGE_GCS_ROOT: cms/assets
 ```
 
 `YOUR_SERVICE_ACCOUNT_KEY_JSON` can be generated in the Google Cloud console -> IAM & Admin -> Services Accounts -> Click on your project's Compute Engine default service account email and click on the Keys tab to create a new key.
+
+## Validation Checklist
+
+You can verify the setup by:
+
+- Opening the Cloud Run service URL and completing onboarding as admin.
+- Creating and reading an item in a test collection to confirm database connectivity.
+- Uploading a test file and verifying storage behavior.
+- Confirming that Cloud Run logs show successful startup and no repeated crash loops.
+- If Cloud Storage is configured, verifying that uploaded files are stored in the configured bucket path.
 
 ## Next Steps
 
