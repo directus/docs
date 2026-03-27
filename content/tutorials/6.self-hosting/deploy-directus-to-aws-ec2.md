@@ -109,7 +109,7 @@ Update the `docker-compose.yml` file with the content:
 version: "3"
 services:
   directus:
-    image: directus/directus:10.8.3
+    image: directus/directus:11.17.0
     ports:
       - 80:80
     volumes:
@@ -117,7 +117,6 @@ services:
       - ./extensions:/directus/extensions
     environment:
       PORT: 80
-      KEY: "replace-with-random-value"
       SECRET: "replace-with-random-value"
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "d1r3ctu5"
@@ -176,6 +175,16 @@ To retrieve your AWS access key details, follow this [guide](https://docs.aws.am
 Re-run the Directus server with `docker-compose up` to implement the new changes added to the `docker-compose.yml` file.
 
 Alternatively, you can run the command `docker-compose up -d` to run the Directus application in the background.
+
+## Validation Checklist
+
+Verify the setup:
+
+- Open your EC2 public URL and complete onboarding.
+- Create and read an item in a test collection to confirm database connectivity.
+- Upload a test file and confirm it is accessible from the Directus file library.
+- If S3 is configured, confirm that uploaded files are written to the S3 bucket.
+- Restart the container (`docker-compose restart`) and confirm the instance comes back online.
 
 ## Next Steps
 

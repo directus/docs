@@ -20,9 +20,9 @@ Of course, it becomes your responsibility to maintain your setup. If you are loo
 
 As well as the DigitalOcean app that runs Directus, there are several additional requirements to run a production Directus project within the DO App platform:
 
-- **Managed Database** — You will need a database for Directus. This can be hosted either within the DO ecosystem or externally.
-- **Redis Droplet** — If you plan to have a clustered app, you must set up a Redis droplet to synchronize across multiple instances.
-- **DigitalOcean Spaces** — Directus supports any S3-compatible file storage, and DO Spaces is exactly this.
+- **Managed Database** - You will need a database for Directus. This can be hosted either within the DO ecosystem or externally.
+- **Redis Droplet** - If you plan to have a clustered app, you must set up a Redis droplet to synchronize across multiple instances.
+- **DigitalOcean Spaces** - Directus supports any S3-compatible file storage, and DO Spaces is exactly this.
 
 You may not need a Redis droplet in development, but a clustered environment is something you may need to consider as your application scales.
 
@@ -32,7 +32,7 @@ DigitalOcean can deploy an application from a Dockerfile hosted in a GitHub or G
 
 ```
 # syntax=docker/dockerfile:1.4
-FROM directus/directus:10.6.2
+FROM directus/directus:11.17.0
 USER root
 RUN corepack enable \
 && corepack prepare pnpm@8.7.6 --activate \
@@ -60,7 +60,7 @@ DigitalOcean offers hosted [databases](https://cloud.digitalocean.com/databases)
 
 If you are setting up a production environment, you should now set up a Redis droplet for synchronization across containers. Follow this [DigitalOcean tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04). If you already have an existing Redis server, you can use that.
 
-Directus currently does not support clustered Redis. If this changes, this process will become easier as this setup can utilize DO's Managed Redis service.
+Directus currently does not support clustered Redis. If this changes, this process will become easier as this setup can use DO's Managed Redis service.
 
 ## Setup DigitalOcean Spaces Object Storage:
 
@@ -78,8 +78,9 @@ Persistent file uploads require an external storage volume. On the DigitalOcean 
 6. Input the necessary [environment variables](/configuration/general) for Directus. A set of basic variables will help you start, but ensure you complete all necessary fields. The bulk editor simplifies this task, and you can always return to edit or add more variables later.
 
 ```
-KEY="randomly-generated-key"
 SECRET="randomly-generated-secret"
+ADMIN_EMAIL="admin@example.com"
+ADMIN_PASSWORD="hunter2"
 DB_CLIENT="pg"
 DB_HOST="dbhost"
 DB_PORT="25060"
@@ -103,17 +104,19 @@ CACHE_AUTO_PURGE="true"
 MESSENGER_STORE="redis"
 SYNCHRONIZATION_STORE="redis"
 PUBLIC_URL=${APP_URL}
-ADMIN_EMAIL="admin@example.com"
-ADMIN_PASSWORD="hunter2"
 ```
 
 ::callout{icon="material-symbols:info-outline"}
 
-For generating your `KEY` and `SECRET`, you can use [this tool](https://generate-secret.vercel.app/32).
+Generate `SECRET` with:
+
+```bash
+openssl rand -base64 32
+```
 
 ::
 
-For database connection settings, you can either utilize DigitalOcean's predefined variables or use the connection settings found on the managed database page. If you wish to delve deeper into Digital Ocean's environment variables, consult their [documentation](https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/). Additionally, don't forget to incorporate the CA certificate, available within the database connection settings.
+For database connection settings, you can use DigitalOcean's predefined variables or the connection settings from the managed database page. For more details on DigitalOcean's environment variables, see their [documentation](https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/). Also include the CA certificate, available within the database connection settings.
 
 Once you've reviewed your configurations and confirmed everything's in order, click **Create App**. This will start the build and deployment.
 
@@ -124,6 +127,16 @@ During this step, all that's left for you is to patiently wait as your tailored 
 After the build, the deployment process takes the stage. This phase initializes Directus, oversees its bootstrap operations, and verifies the backend's functionality. If everything transpires without a hitch, you'll witness a successful deployment notification.
 
 Upon entering the application dashboard, you'll see your application's health. It provides insights into recent deployments, facilitates forced deployments, and more. Prominently displayed is your generated application URL. If you want to use a custom URL for your backend, navigate to the settings tab and add one. As an added convenience, SSL certificates are already managed for you.
+
+## Validation Checklist
+
+Verify the setup:
+
+- Open the generated app URL and complete onboarding as admin.
+- Create and read an item in a test collection to confirm database connectivity.
+- Upload a test file and confirm it appears in file storage.
+- Restart or redeploy the app in DigitalOcean and verify Directus comes back online.
+- If Spaces storage is configured, confirm that uploaded assets are stored in Spaces.
 
 ## Summary
 
@@ -144,7 +157,7 @@ This issue can usually be circumvented by setting `PIDUSAGE_USE_PS` variable to 
 Ideally, this would be addressed by the authors of `pidusage` or `pm2`, but this can work by building a customized image with a `ps` implementation `pidusage` works with and use that on Digital Ocean:
 
 ```dockerfile
-FROM directus/directus:10.8.1
+FROM directus/directus:11.17.0
 
 USER root
 RUN apk --no-cache add procps
