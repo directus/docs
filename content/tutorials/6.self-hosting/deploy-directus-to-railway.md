@@ -29,6 +29,8 @@ Choose the template that fits, then follow the steps below. The flow is the same
 
 You don't need to clone a repo or run Docker yourself; the template defines the stack and Railway runs it.
 
+![Railway project canvas showing the Directus template stack: Directus, PostGIS, Redis, and Bucket services connected after deploy.](/img/railway-template-image1.png)
+
 ## Step 2: Find your Directus service and URL
 
 1. In the left sidebar of the project, click the **Directus** service (the one that runs the app, not PostGIS or Redis).
@@ -36,6 +38,8 @@ You don't need to clone a repo or run Docker yourself; the template defines the 
 3. Copy that URL. You'll use it as `PUBLIC_URL` so Directus knows its public address (needed for login redirects, emails, and assets).
 
 If you prefer a custom domain later, you can add it in the same **Networking** section; Railway will provision SSL for it.
+
+![Directus service in Railway with Settings open to Networking, showing Public Networking and the generated Railway app URL.](/img/railway-template-image2.png)
 
 ## Step 3: Set environment variables
 
