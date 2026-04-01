@@ -9,11 +9,11 @@ authors:
     title: Guest Author
 description: Learn how to deploy Directus on the Digital Ocean App Platform.
 ---
-In this post, I will guide you through deploying Directus on the DigitalOcean (DO) App Platform. With DO Apps, you can effortlessly establish a Directus environment using just a Dockerfile. This post will guide you through a more advanced setup with a separate persistent database, file storage, and cluster synchronization.
+This guide shows you how to deploy Directus on the DigitalOcean App Platform with a separate database, object storage, and optional Redis-based synchronization.
 
-DigitalOcean is a well-loved cloud hosting provider with automatic scaling. It's perfect for both rapid development and full-scale production, and if you find yourself already ingrained into the DO product line, this is an excellent choice for you.
+DigitalOcean App Platform is a good fit if you already use DigitalOcean and want a managed app runtime while still controlling your database, storage, and deployment configuration.
 
-Of course, it becomes your responsibility to maintain your setup. If you are looking for something that is more "hands off" and requires zero setup or knowledge of infrastructure, then check out [Directus Cloud](https://directus.io/pricing/cloud). This is hosting provided by the team who build Directus and is the easiest way to deploy, upgrade, and back up your Directus project.
+If you want a fully managed Directus deployment with infrastructure and upgrades handled for you, use [Directus Cloud](https://directus.io/pricing/cloud).
 
 
 ## Before You Start
@@ -28,7 +28,7 @@ You may not need a Redis droplet in development, but a clustered environment is 
 
 ## Create a Dockerfile Repository
 
-DigitalOcean can deploy an application from a Dockerfile hosted in a GitHub or GitLab repository. Create a new repository, and create a single file called `Dockerfile`:
+DigitalOcean can deploy an application from a Dockerfile hosted in a GitHub or GitLab repository. Create a new repository and add a single file called `Dockerfile`:
 
 ```
 # syntax=docker/dockerfile:1.4
@@ -116,37 +116,33 @@ openssl rand -base64 32
 
 ::
 
-For database connection settings, you can use DigitalOcean's predefined variables or the connection settings from the managed database page. For more details on DigitalOcean's environment variables, see their [documentation](https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/). Also include the CA certificate, available within the database connection settings.
+For database connection settings, you can use DigitalOcean's predefined variables or the connection settings from the managed database page. Also include the CA certificate, available within the database connection settings. For more details on App Platform environment variables, see the [DigitalOcean documentation](https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/).
+
+Set `PUBLIC_URL` to the generated DigitalOcean app URL, or to your custom domain once you add one.
 
 Once you've reviewed your configurations and confirmed everything's in order, click **Create App**. This will start the build and deployment.
 
 ## Deploy Your Project
 
-During this step, all that's left for you is to patiently wait as your tailored Directus application undergoes construction and deployment. Digital Ocean will cache the image you've just built, ensuring it's available for spawning new containers during any auto-scaling events.
+Wait for the build and deployment to finish. DigitalOcean will build the image from your repository, start the Directus container, and keep that image available for later redeploys or autoscaling events.
 
-After the build, the deployment process takes the stage. This phase initializes Directus, oversees its bootstrap operations, and verifies the backend's functionality. If everything transpires without a hitch, you'll witness a successful deployment notification.
-
-Upon entering the application dashboard, you'll see your application's health. It provides insights into recent deployments, facilitates forced deployments, and more. Prominently displayed is your generated application URL. If you want to use a custom URL for your backend, navigate to the settings tab and add one. As an added convenience, SSL certificates are already managed for you.
+When the deployment succeeds, open the app dashboard and copy the generated application URL. If you want to use a custom domain for your backend, add it in the app settings and then update `PUBLIC_URL` to match.
 
 ## Validation Checklist
 
 Verify the setup:
 
-- Open the generated app URL and complete onboarding as admin.
-- Create and read an item in a test collection to confirm database connectivity.
+- Open the generated app URL. Because `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set, Directus should show the login screen instead of onboarding.
+- Sign in with the admin credentials you configured and create and read an item in a test collection to confirm database connectivity.
 - Upload a test file and confirm it appears in file storage.
 - Restart or redeploy the app in DigitalOcean and verify Directus comes back online.
 - If Spaces storage is configured, confirm that uploaded assets are stored in Spaces.
 
 ## Summary
 
-This guide offers a path to deploying Directus on the DigitalOcean App Platform. For those familiar or already ingrained with DO, the App Platform is a great choice to host your project.
+You now have Directus running on DigitalOcean App Platform with a managed database, optional Redis, and optional Spaces storage. Changes to the Dockerfile or environment variables trigger new deployments, while your database and object storage remain separate from the app container.
 
-Any alterations to the environment variables or Dockerfile automatically trigger rebuilds and deployments. All deployments are executed with zero downtime, and any unsuccessful builds will default back to the latest successful deployment. Your data's integrity is preserved with Spaces object storage and your managed database, ensuring your data's safety if you decide to suspend the app for subsequent migrations to another service provider.
-
-I have been doing web dev for well over 18 years now. While I have learned and used many methods, languages, and frameworks to achieve success for my clients. In pursuing the ideal backend, Directus continues to hit every checkbox required for my needs and has become a cornerstone of my tech stack. I hope this guide helps you get started and have many successful projects!
-
-Should any questions or hurdles arise, feel free to ask questions on the [community platform](https://community.directus.io). We're always here to help!
+If you need help, ask on the [community platform](https://community.directus.io).
 
 ## Handling PM2 Errors
 

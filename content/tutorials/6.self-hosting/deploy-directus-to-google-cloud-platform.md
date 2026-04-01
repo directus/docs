@@ -64,7 +64,7 @@ docker build -t directus:11.17.0 --platform linux/amd64 .
 ### Using an Apple Silicon Machine?
 
 ```bash
-docker buildx build -t directus:11.17.0 --platform linux/amd64 .
+docker buildx build --load -t directus:11.17.0 --platform linux/amd64 .
 ```
 
 ::
@@ -157,7 +157,9 @@ DB_SSL: false
 PRESSURE_LIMITER_ENABLED: false
 ```
 
-`DB_HOST` is a combination of `/cloudsql/` and the connection name of your Cloud SQL database. This is a prefix indicating that the hostname is for a Cloud SQL instance.
+Set `PUBLIC_URL` to the exact HTTPS URL of your Cloud Run service. You can update it after the first deploy if your service URL changes.
+
+`DB_HOST` is a combination of `/cloudsql/` and the connection name of your Cloud SQL database. This prefix tells Directus to connect through Cloud SQL.
 
 To connect Cloud SQL to Cloud Run, click on the Cloud SQL instance select box to select your previously created Cloud SQL database instance.
 
@@ -187,8 +189,8 @@ STORAGE_GCS_ROOT: cms/assets
 
 Verify the setup:
 
-- Open the Cloud Run service URL and complete onboarding as admin.
-- Create and read an item in a test collection to confirm database connectivity.
+- Open the Cloud Run service URL. Because `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set, Directus should show the login screen instead of onboarding.
+- Sign in with the admin credentials you configured and create and read an item in a test collection to confirm database connectivity.
 - Upload a test file and verify storage behavior.
 - Confirm that Cloud Run logs show successful startup and no repeated crash loops.
 - If Cloud Storage is configured, confirm that uploaded files are stored in the configured bucket path.

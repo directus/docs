@@ -24,7 +24,7 @@ This guide covers setting up Docker, configuring Docker Compose, using Nginx as 
 
 If you have successfully followed the [Create a Project guide](/getting-started/create-a-project), you should have a directory with a `docker-compose.yml` file, `database/` directory with a `data.db` file, `uploads/` directory, and `extensions/` directory.
 
-Make sure your `docker-compose.yml` uses `directus/directus:11.17.0` and a `SECRET` value before deploying to production.
+Make sure your `docker-compose.yml` uses `directus/directus:11.17.0`, a `SECRET` value, and a `PUBLIC_URL` that matches the final URL you plan to use.
 
 Use `scp` (Secure Copy Protocol) to upload the local folder to your server.
 
@@ -326,8 +326,9 @@ After the setup is complete, visit your Directus application using `https://dire
 
 Verify the setup:
 
-- Open your public URL and complete onboarding or log in as admin.
+- Open your public URL and confirm Directus loads correctly.
 - Confirm that HTTP requests are redirected to HTTPS.
+- Sign in or complete onboarding, depending on whether you preconfigured admin credentials in your `docker-compose.yml`.
 - Create and read an item in a test collection to verify database access.
 - Upload a test file and confirm it persists after container restart.
 - Run `sudo systemctl status directus.service` and confirm the service is healthy.

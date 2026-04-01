@@ -74,6 +74,7 @@ Once the web app has been created, we will return to it to enter the required en
 | Name | Value | 
 |------|-------| 
 | `SECRET` | <REPLACE_WITH_RANDOM_VALUE> |
+| `PUBLIC_URL` | https://<YOUR_AZURE_WEB_APP_URL> |
 | `ADMIN_EMAIL` | admin@example.com |
 | `ADMIN_PASSWORD` | d1r3ctu5 |
 | `DB_CLIENT` | pg |
@@ -85,6 +86,7 @@ Once the web app has been created, we will return to it to enter the required en
 
 Let’s go through the important parameters in this configuration:
 
+- Set `PUBLIC_URL` to the exact HTTPS URL of your Azure Web App.
 - Set the `DB_HOST` value to your Azure Database for PostgreSQL's server name. You can find it in the resource's overview section.
 - Also set `DB_USER` and `DB_PASSWORD` to the credentials you set up during the creation of your Azure Database for PostgreSQL.
 
@@ -130,8 +132,8 @@ Following the creation of the Web App Resource, Directus is now successfully dep
 
 Verify the setup:
 
-- Open the Azure Web App URL and complete onboarding or log in as admin.
-- Create and read an item in a test collection to confirm PostgreSQL connectivity.
+- Open the Azure Web App URL. Because `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set, Directus should show the login screen instead of onboarding.
+- Sign in with the admin credentials you configured and create and read an item in a test collection to confirm PostgreSQL connectivity.
 - Upload a test file and confirm persistence in the configured mounted share.
 - Restart the Web App and confirm Directus comes back online with data intact.
 - Review App Service logs for startup errors after any environment variable changes.

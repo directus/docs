@@ -5,6 +5,14 @@ description: Deploy Directus with Directus Cloud, self-host with Docker, or foll
 
 There are several ways to deploy Directus. This page outlines the main options: Directus Cloud (fully managed), self-hosting with Docker on your own infrastructure, and vendor-specific tutorials for popular cloud platforms.
 
+## Choose a Deployment Path
+
+Choose the option that matches how much infrastructure you want to manage:
+
+- Use **Directus Cloud** if you want a fully managed deployment with hosted infrastructure, updates, and scaling handled for you.
+- Use **Docker** if you want to run Directus yourself on a VPS, local server, or your own cloud infrastructure.
+- Use a **platform-specific guide** if your infrastructure is already standardized on a provider like Railway, AWS, Azure, Google Cloud, DigitalOcean, or Ubuntu-based servers.
+
 ## Directus Cloud
 
 Directus Cloud provides infrastructure from the team who builds Directus. It is a fully managed service that handles data storage, hosting, updates, and scalability so you can focus on building your digital apps and experiences. Projects can be created in over 15 global deployment regions and feature autoscaling for improved availability. You can get a project running in about 90 seconds.
