@@ -42,8 +42,12 @@ If you prefer a custom domain later, you can add it in the same **Networking** s
 The templates preconfigure most of what Directus needs: database, Redis, and (when present) S3-compatible storage are wired up via Railway's internal references. You may still need to fill in or adjust some variables.
 
 1. In the left sidebar, select the **Directus** service.
-2. Open the **Variables** tab. Check that values like `PUBLIC_URL` (your app's public URL, e.g. `https://your-directus.up.railway.app`) are set correctly. For the **Directus CMS** template, admin email and password are usually requested during the initial deploy (Step 1); you can also set or change `ADMIN_EMAIL` and `ADMIN_PASSWORD` here. For the blank template, you can set `ADMIN_EMAIL` and `ADMIN_PASSWORD` to create the first admin automatically on bootstrap, or skip those and complete the onboarding in the UI when you first visit (Step 4).
-3. If you plan to use the [frontend starters](https://github.com/directus-labs/starters) (Next.js, Nuxt, Astro, SvelteKit) with the **Directus CMS** template, there are additional variables to configure for that integration; see the template or starter docs for details.
+2. Open the **Variables** tab.
+3. Set `PUBLIC_URL` to your app's public URL (e.g. `https://your-directus.up.railway.app`).
+4. Set admin credentials:
+   - **Directus CMS template:** `ADMIN_EMAIL` and `ADMIN_PASSWORD` are usually set during deploy (Step 1). You can update them here.
+   - **Blank template:** Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` to create an admin automatically on bootstrap, or leave them unset and complete onboarding in the UI (Step 4).
+5. If you plan to use [frontend starters](https://github.com/directus-labs/starters) with the **Directus CMS** template, see the template or starter docs for additional required variables.
 
 After you save variables, Railway will redeploy the Directus service so the new values take effect. The first time you open your Directus URL, you'll either see the onboarding screen (blank template) or the login screen (CMS template, using the credentials you set).
 

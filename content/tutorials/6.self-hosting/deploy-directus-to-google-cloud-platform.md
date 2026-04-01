@@ -185,13 +185,13 @@ STORAGE_GCS_ROOT: cms/assets
 
 ## Validation Checklist
 
-You can verify the setup by:
+Verify the setup:
 
-- Opening the Cloud Run service URL and completing onboarding as admin.
-- Creating and reading an item in a test collection to confirm database connectivity.
-- Uploading a test file and verifying storage behavior.
-- Confirming that Cloud Run logs show successful startup and no repeated crash loops.
-- If Cloud Storage is configured, verifying that uploaded files are stored in the configured bucket path.
+- Open the Cloud Run service URL and complete onboarding as admin.
+- Create and read an item in a test collection to confirm database connectivity.
+- Upload a test file and verify storage behavior.
+- Confirm that Cloud Run logs show successful startup and no repeated crash loops.
+- If Cloud Storage is configured, confirm that uploaded files are stored in the configured bucket path.
 
 ## Next Steps
 
