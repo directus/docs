@@ -29,9 +29,7 @@ description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate 
 | `USER_REGISTER_URL_ALLOW_LIST`      | List of URLs that can be used as `verification_url` in the `/users/register` endpoint.                                                                                                  |                           |
 | `IP_TRUST_PROXY`                    | Settings for the Express.js trust proxy setting.                                                                                                                                        | true                      |
 | `IP_CUSTOM_HEADER`                  | What custom request header to use for the IP address.                                                                                                                                   | false                     |
-| `ASSETS_CONTENT_SECURITY_POLICY`    | Custom overrides for the Content-Security-Policy header for the /assets endpoint. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `ASSETS_CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://cdn.example.com data:"`        |                           |
 | `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny importing files from these IP addresses / IP ranges / CIDR blocks. Use `0.0.0.0` to match any local IP address.                                                                    | `0.0.0.0,169.254.169.254` |
-| `CONTENT_SECURITY_POLICY_*`         | Custom overrides for the Content-Security-Policy header. See [helmet's documentation on `helmet.contentSecurityPolicy()`](https://helmetjs.github.io). Example: `CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://images.example.com data:"`                                 |                           |
 | `HSTS_ENABLED`                      | Enable the Strict-Transport-Security policy header. When enabled, Directus will send the `Strict-Transport-Security: max-age=15552000; includeSubDomains` header on all responses.                                                                                                                                     | `false`                   |
 | `HSTS_*`                            | Custom overrides for the Strict-Transport-Security header. See [helmet's documentation](https://helmetjs.github.io). Example: `HSTS_MAX_AGE=63072000`                                                                   |                           |
 
@@ -76,6 +74,26 @@ Modifying `HASH_MEMORY_COST` and/or `HASH_PARALLELISM` will affect the amount of
 | `CORS_MAX_AGE`         | Value for the `Access-Control-Max-Age` header.                                                                                                          | `18000`                      |
 
 For more details about each configuration variable, please see the [CORS package documentation](https://www.npmjs.com/package/cors#configuration-options).
+
+## CSP
+
+| Variable                           | Description                                    | Default Value |
+| ---------------------------------- | ---------------------------------------------- | ------------- |
+| `CONTENT_SECURITY_POLICY_*`        | Configure global csp settings                  |               |
+| `ASSETS_CONTENT_SECURITY_POLICY_*` | Configure csp settings for the assets endpoint |               |
+
+Directus uses [helmet.js](https://helmetjs.github.io) for configuring Conent-Security-Policy headers in combination with [Environment Object Syntax](/configuration/intro#environment-object-syntax). See helmet's documentation on `helmet.contentSecurityPolicy()` to get a complete overview over the available options.
+
+### Examples
+
+**Allowing own and directus.io domain**\
+`CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC="'self' https://directus.io"`
+
+**Deny loading any fonts**\
+`CONTENT_SECURITY_POLICY_DIRECTIVES__FONT_SRC="'none'"`
+
+**Allowing only images from yourself and pixabay.com on the assets endpoint**\
+`ASSETS_CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC="'self' https://pixabay.com"`
 
 ## Rate Limiting
 
@@ -150,8 +168,9 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `MAX_PAYLOAD_SIZE`             | Controls the maximum request body size. Accepts number of bytes, or human readable string.  | `1mb`         |
 | `MAX_BATCH_MUTATION`           | The maximum number of items for batch mutations when creating, updating and deleting.       | `Infinity`    |
 | `MAX_RELATIONAL_DEPTH`         | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
+| `MAX_JSON_QUERY_DEPTH`         | The maximum json path depth when querying JSON fields.                              | `10`          |
 | `QUERY_LIMIT_DEFAULT`          | The default query limit used when not defined in the API request.                           | `100`         |
 | `QUERY_LIMIT_MAX`              | The maximum query limit accepted on API requests.                                           | `-1`          |
 | `QUERYSTRING_MAX_PARSE_DEPTH`  | The maximum object depth when parsing URL query parameters using the querystring format     | `10`          |
-| `QUERYSTRING_ARRAY_LIMIT`      | The array limit when parsing URL query parameters using the querystring format              | `100`         |
+| `QUERYSTRING_ARRAY_LIMIT`      | The array limit when parsing URL query parameters using the querystring format              | `500`         |
 | `MAX_IMPORT_ERRORS`                        | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`                       |
