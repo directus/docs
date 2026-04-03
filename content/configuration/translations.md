@@ -27,9 +27,9 @@ Throughout the Data Studio, click the :icon{name="material-symbols:translate"} i
 
 ![Translations interface showing text in American English and German.](/img/3e9a8108-169f-4df8-988b-e966b3809d1b.webp)
 
-Content translations are used to translate the content of the database, which can be served via API to your external applications. The built-in translations interface handles much of the complexity in managing your data model for multilingual content. 
+Content translations are used to translate the content of the database, which can be served via API to your external applications. The built-in translations interface handles much of the complexity in managing your data model for multilingual content.
 
-The `languages` collection will be automatically created when you add your first translations field. It contains each language you support, with a `code` and `direction` field (some languages are written right-to-left).
+The recommended way to set up content translations is with the **Generate Translations** wizard in collection settings. It automatically creates the languages collection, translations junction collection, relationships, and alias field in one step. See the [Content Translations guide](/guides/content/translations#quick-setup-with-generate-translations) for a walkthrough.
 
-The field will also create a new collection-specific collection for translated content, for example `articles_translations`. Add fields you wish to translate to this collection, and they will be displayed in the translations interface.
+You can also set up translations manually. The `languages` collection will be automatically created when you add your first translations field. It contains each language you support, with a `code` and `direction` field (some languages are written right-to-left). The field will also create a new collection-specific collection for translated content, for example `articles_translations`. Add fields you wish to translate to this collection, and they will be displayed in the translations interface.
 
