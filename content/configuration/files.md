@@ -149,3 +149,11 @@ the storage driver(s) being used.
 | `ASSETS_INVALID_IMAGE_SENSITIVITY_LEVEL` | Level of sensitivity to invalid images. See the [`sharp.failOn`](https://sharp.pixelplumbing.com/api-constructor#parameters) option. | `warning`     |
 
 Image transformations can be heavy on memory usage. If you're using a system with 1GB or less available memory, we recommend lowering the allowed concurrent transformations to prevent you from overflowing your server.
+
+## Imports
+
+| Variable                  | Description                                           | Default Value   |
+| ------------------------- | ----------------------------------------------------- | --------------- |
+| `IMPORT_EXPORT_NAMESPACE` | Redis namespace for storing import/export information | `import-export` |
+| `IMPORT_TIMEOUT`          | Allowed duration for importing files                  | `1m`            |
+| `IMPORT_CONCURRENT_MAX`   | Maximum simultainous imports                          | `10`            |
