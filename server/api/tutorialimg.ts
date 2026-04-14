@@ -1,5 +1,5 @@
-import { getRequestURL } from "h3";
-import sharp from "sharp";
+import { getRequestURL } from 'h3';
+import sharp from 'sharp';
 
 async function getImageBuffer(baseURL: string, imagePath: string) {
 	const imageUrl = `${baseURL}/docs/img/tutorials/${imagePath}.png`;
@@ -12,13 +12,29 @@ async function getImageBuffer(baseURL: string, imagePath: string) {
 	return Buffer.from(await res.arrayBuffer());
 }
 
+async function getImageBufferOrFallback(baseURL: string, imagePath: string, fallback: string) {
+	const imageUrl = `${baseURL}/docs/img/tutorials/${imagePath}.png`;
+	const res = await fetch(imageUrl);
+	if (res.ok) {
+		return Buffer.from(await res.arrayBuffer());
+	}
+	const fallbackUrl = `${baseURL}/docs/img/tutorials/${fallback}.png`;
+	const fallbackRes = await fetch(fallbackUrl);
+	if (!fallbackRes.ok) {
+		throw createError({ statusCode: 404, statusMessage: 'Image not found' });
+	}
+	return Buffer.from(await fallbackRes.arrayBuffer());
+}
+
 export default defineEventHandler(async (event) => {
 	const query = getQuery(event);
-	const logoFileNames = query?.logos?.split(', ') || ['directus']; // default to directus.png
-	const logoFileName = logoFileNames[0];
-	const baseImageBuffer = await getImageBuffer(getRequestURL(event).origin, 'background');
-	const logoContainerBuffer = await getImageBuffer(getRequestURL(event).origin, 'logo-container');
-	const logoBuffer = await getImageBuffer(getRequestURL(event).origin, `${logoFileName}`);
+	const logosParam = typeof query?.logos === 'string' ? query.logos : '';
+	const logoFileNames = logosParam ? logosParam.split(', ') : ['directus'];
+	const logoFileName = logoFileNames[0] ?? 'directus';
+	const baseURL = getRequestURL(event).origin;
+	const baseImageBuffer = await getImageBuffer(baseURL, 'background');
+	const logoContainerBuffer = await getImageBuffer(baseURL, 'logo-container');
+	const logoBuffer = await getImageBufferOrFallback(baseURL, logoFileName, 'directus');
 
 	const [baseMetadata, logoMetadata, directusMetadata] = await Promise.all([
 		sharp(baseImageBuffer).metadata(),

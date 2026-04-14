@@ -11,7 +11,13 @@ description: Learn how to deploy a Directus to AWS EC2, with a RDS database and 
 ---
 In this tutorial, you will learn how to deploy a self-hosted instance of Directus to Amazon Web Services (AWS) EC2, connect it to an AWS RDS PostgreSQL database and S3 storage bucket.
 
-Before you start, you will need an Amazon Web Service account ([AWS](https://aws.amazon.com)) with access to its `SecretKey` and `AccessKey`.
+## Before You Start
+
+You will need:
+
+- An Amazon Web Services account ([AWS](https://aws.amazon.com)).
+- Access to create EC2, RDS, and S3 resources.
+- An AWS access key and secret access key if you plan to configure S3 storage.
 
 ## Set up an AWS RDS Database
 
@@ -109,7 +115,7 @@ Update the `docker-compose.yml` file with the content:
 version: "3"
 services:
   directus:
-    image: directus/directus:10.8.3
+    image: directus/directus:11.17.0
     ports:
       - 80:80
     volumes:
@@ -117,7 +123,7 @@ services:
       - ./extensions:/directus/extensions
     environment:
       PORT: 80
-      KEY: "replace-with-random-value"
+      PUBLIC_URL: "http://YOUR_EC2_PUBLIC_DNS"
       SECRET: "replace-with-random-value"
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "d1r3ctu5"
@@ -132,6 +138,8 @@ services:
 ```
 
 Save the file and exit `nano`.
+
+Set `PUBLIC_URL` to the exact public URL you will use to access Directus. Update it later if you place Directus behind a domain name or reverse proxy.
 
 To ensure that Directus can write and save data in the `extensions` and `uploads` directories, enter the following command to grant the current user ownership of the directory:
 
@@ -176,6 +184,16 @@ To retrieve your AWS access key details, follow this [guide](https://docs.aws.am
 Re-run the Directus server with `docker-compose up` to implement the new changes added to the `docker-compose.yml` file.
 
 Alternatively, you can run the command `docker-compose up -d` to run the Directus application in the background.
+
+## Validation Checklist
+
+Verify the setup:
+
+- Open your EC2 public URL. Because `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set, Directus should show the login screen instead of onboarding.
+- Sign in with the admin credentials you configured and create and read an item in a test collection to confirm database connectivity.
+- Upload a test file and confirm it is accessible from the Directus file library.
+- If S3 is configured, confirm that uploaded files are written to the S3 bucket.
+- Restart the container (`docker-compose restart`) and confirm the instance comes back online.
 
 ## Next Steps
 

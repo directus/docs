@@ -179,24 +179,17 @@ related to the current page, then update this content within your `setup` whenev
 section outputs some custom text.
 
 ```vue
-<template #sidebar>
-    <sidebar-detail icon="info" title="Information" close>
-        <div v-md="page_description" class="page-description" />
-    </sidebar-detail>
-    <sidebar-detail icon="layers" title="SIDEBAR ITEM">
-        SIDEBAR ITEM CONTENT
-    </sidebar-detail>
-</template>
+		<template #sidebar>
+			<sidebar-detail id="information" icon="info" title="Information">
+				PAGE DESCRIPTION
+			</sidebar-detail>
+			<sidebar-detail id="sidebar-item" icon="layers" title="SIDEBAR ITEM">
+				SIDEBAR ITEM CONTENT
+			</sidebar-detail>
+		</template>
 ```
 
 ![Sidebar shows a title called Information with a close button, and a collapsible section called Sidebar Item with text inside of it.](/img/7c814289-e3ed-4c29-a29e-eca48ffb432a.webp)
-
-::callout{icon="material-symbols:info-outline"}
-
-The close attribute on the first sidebar-detail component changes the chevron icon to a close button and when clicked,
-the sidebar collapses. This is highly recommended for usability.
-
-::
 
 ## `splitView`
 
