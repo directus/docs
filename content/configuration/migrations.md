@@ -39,17 +39,6 @@ Proceed at your own risk and backup your database before adding custom migration
 
 Migrations can be used to manage the contents of Directus collections (e.g. initial hydration). In order to do it, you must ensure that the schema is up to date before running your migrations.
 
-`directus database migrate:latest` runs the required Directus internal migrations and the migrations from the `migrations` directory. In general, you need the following flow:
-
-```sh
-# Option 1
-npx directus bootstrap
-npx directus schema apply ./path/to/snapshot.yaml
-
-# Option 2 - without bootstrap, you must ensure that you run all required `bootstrap` tasks
-npx directus database install
-npx directus database migrate:latest
-npx directus schema apply ./path/to/snapshot.yaml
-```
+`directus database migrate:latest` runs the required Directus internal migrations and the migrations from the `migrations` directory. See the [CLI documentation](/configuration/cli#database) for the full setup flow using `bootstrap`, `database install`, `database migrate:latest`, and `schema apply`.
 
 To correctly follow this process, the `migrations` directory must not contain tasks that modify the contents of Directus system collections, because schema may not yet be created when you run `migrate:latest`.

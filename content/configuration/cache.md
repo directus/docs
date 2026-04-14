@@ -63,3 +63,7 @@ benefits on quick subsequent reads.
 
 <sup>[5]</sup> `CACHE_STORE` For larger projects, you most likely don't want to rely on local memory for caching.
 Instead, you can use the above `CACHE_STORE` environment variable to use `redis` as the cache store.
+
+## Clearing the Cache
+
+Use the [`cache clear`](/configuration/cli#clear) CLI command to manually flush the data cache, system cache, or both. This is useful in CI/CD pipelines after applying migrations or schema changes.
