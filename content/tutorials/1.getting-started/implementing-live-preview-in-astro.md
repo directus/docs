@@ -282,7 +282,7 @@ Next, update the Directus live preview URL pattern to include the version. The U
 ## Testing Live Preview
 
 To test the live preview, navigate to the `http://localhost:4321/` page and click on any of the posts. You will be redirected to the post page, and the post content will be displayed.
-At the end of the URL, add `?preview=true&token=YOUR_GENERATED_TOKEN&version=main` to view the post in preview mode.
+At the end of the URL, add `?preview=true&token=YOUR_GENERATED_TOKEN&version=published` to view the post in preview mode.
 
 This should provide you with a preview of the post content that looks like the image below:
 
