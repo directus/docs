@@ -5,8 +5,9 @@ The `json(field, path)` function extracts the value from the specified path in a
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}
 
-**Supported Paramaters**
-the `json(field, path)` function is currently only supported for use in the `fields` query parameter.
+**Supported Parameters**
+
+The `json(field, path)` function is not supported in the `filter`. For filtering JSON fields, use the [`_json` filter operator](/guides/connect/filter-rules) instead.
 
 ::
 
@@ -213,3 +214,207 @@ Similarly, because MySQL and MariaDB path conversion uses dot-notation (`$.key.s
 **Oracle**
 
 - Similar to MSSQL will also return scalar values as **strings**, regardless of the original JSON type (number, boolean, etc.). A JSON number `3.14` will be returned as `"3.14"`.
+
+### GraphQL
+
+Each `json`-typed field exposes a `json(path: String!)` sub-field inside `{fieldName}_func`. The `path` argument is required. The return type is `JSON` (any scalar, object, or array).
+
+`{fieldName}_func` already exists for the `count` sub-field. `json` sits alongside it in the same selection.
+
+#### Simple Scalar Extraction
+
+```graphql
+{
+  articles {
+    id
+    title
+    metadata_func {
+      json(path: "color")
+    }
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "articles": [
+      { "id": 1, "title": "An Article", "metadata_func": { "json": "blue" } }
+    ]
+  }
+}
+```
+
+#### Multiple Paths From the Same Field
+
+Request multiple paths inside a single `{fieldName}_func` selection by using **field aliases** on the `json` sub-field:
+
+```graphql
+{
+  articles {
+    id
+    metadata_func {
+      color: json(path: "color")
+      theme: json(path: "settings.theme")
+      firstTag: json(path: "tags[0]")
+    }
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "articles": [
+      {
+        "id": 1,
+        "metadata_func": {
+          "color": "blue",
+          "theme": "dark",
+          "firstTag": "electronics"
+        }
+      }
+    ]
+  }
+}
+```
+
+#### Extracting an Object or Array
+
+When the path points to an object or array rather than a scalar, the full value is returned as parsed JSON:
+
+```graphql
+{
+  articles {
+    id
+    metadata_func {
+      dimensions: json(path: "dimensions")
+      tags: json(path: "tags")
+    }
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "articles": [
+      {
+        "id": 1,
+        "metadata_func": {
+          "dimensions": { "width": 10, "height": 20, "depth": 5 },
+          "tags": ["electronics", "premium", "new"]
+        }
+      }
+    ]
+  }
+}
+```
+
+#### Relational JSON Extraction
+
+For a Many-to-One relation, request the `json` function on the related collection's field:
+
+```graphql
+{
+  articles {
+    id
+    category_id {
+      name
+      metadata_func {
+        color: json(path: "color")
+      }
+    }
+  }
+}
+```
+
+### TypeScript SDK
+
+The SDK accepts `json(fieldName, path)` strings in the `fields` array. The first argument is constrained by TypeScript to fields typed as `json` in your schema. An invalid field name produces a compile-time error. The path (second argument) is a plain `string` and is not validated at compile time.
+
+The SDK also computes the response alias type automatically from the literal string, so extracted values are fully typed with no manual type extensions needed. The alias rule is `{field}_{path}_json` with `.`, `[`, and `]` replaced by `_`.
+
+```typescript
+import { createDirectus, readItems, rest } from '@directus/sdk';
+
+interface Article {
+  id: number;
+  title: string;
+  metadata: 'json' | null; // type literal 'json' tells the SDK this is a json field
+}
+
+interface Schema {
+  articles: Article[];
+}
+
+const client = createDirectus<Schema>('https://directus.example.com').with(rest());
+
+const items = await client.request(
+  readItems('articles', {
+    fields: ['id', 'title', 'json(metadata, color)'],
+  }),
+);
+
+// metadata_color_json is automatically typed as JsonValue | null — no cast needed
+const color = items[0].metadata_color_json;
+```
+
+#### Multiple Paths
+
+```typescript
+const items = await client.request(
+  readItems('articles', {
+    fields: ['id', 'title', 'json(metadata, color)', 'json(metadata, settings.theme)', 'json(metadata, tags[0])'],
+  }),
+);
+
+// All aliases are typed directly on items:
+//   items[0].metadata_color_json          // JsonValue | null
+//   items[0].metadata_settings_theme_json // JsonValue | null
+//   items[0].metadata_tags_0_json         // JsonValue | null
+```
+
+#### Via a Relational Field
+
+Pass `json(field, path)` inside a relational field object. The extracted alias appears typed on the related item.
+
+```typescript
+const items = await client.request(
+  readItems('articles', {
+    fields: ['id', 'title', { category_id: ['name', 'json(metadata, color)'] }],
+  }),
+);
+
+const color = items[0].category_id.metadata_color_json;
+```
+
+#### Compile-Time Safety
+
+The SDK enforces that the first argument must be a `json`-typed field, and that the output alias is typed. Non-json fields produce a TypeScript error:
+
+```typescript
+// valid: metadata is a json field; metadata_color_json is typed as JsonValue | null
+readItems('articles', { fields: ['json(metadata, color)'] });
+
+// compile error: title is a string field, not json
+readItems('articles', { fields: ['json(title, color)'] });
+```
+
+::callout{icon="material-symbols:info-outline"}
+**Alias Typing Requires Literal Field Arrays**
+
+Alias typing only works when the `fields` array is an inline literal or typed `as const`. If the array is built dynamically at runtime, TypeScript widens it to `string[]` and the aliases are not present in the inferred return type.
+::
+
+#### IDE Autocomplete
+
+When typing inside the `fields` array, the SDK provides partial autocomplete for the `json()` function. For each `json`-typed field in your schema, the IDE offers `json(fieldName, ` as a completion, positioning the cursor ready for the path argument:
+
+```typescript
+// Typing 'json(' in the fields array surfaces:
+//   json(metadata,    ← cursor positioned here, type your path then close with )
+readItems('articles', { fields: ['json(metadata, color)'] });
+```
+
+This works via TypeScript's template-literal completion (TypeScript >= 4.7). Only `json`-typed fields appear as suggestions. The path argument is a free string and has no completion hints.
