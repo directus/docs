@@ -5,6 +5,10 @@ description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate 
 
 :partial{content="config-env-vars"}
 
+::callout{icon="material-symbols:info-outline"}
+This page documents environment variables. For in-app security configuration (permissions, system collections, public access), see [Security Best Practices](/guides/security/best-practices).
+::
+
 | Variable                            | Description                                                                                                                                                                             | Default Value             |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | `SECRET`<sup>[1]</sup>              | Secret string for the project. Used for secret signing.                                                                                                                                 | Random value              |
