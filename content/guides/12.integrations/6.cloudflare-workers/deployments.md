@@ -32,7 +32,12 @@ In the runs list, you will typically see:
 - **Started**: when the build started.
 - **Author**: who triggered the deployment when known.
 
-Status updates automatically. Use **Refresh** on the list or run detail if a status is not updating.
+**How status updates**
+
+- Whenever you open a run or list, Directus asks Cloudflare for the latest status and logs.
+- If you configured an **Event Subscription Queue ID** on the Cloudflare Workers provider, Directus also **polls Cloudflare's queue on a schedule** (about once a minute by default) and updates runs when Workers Builds events arrive. That helps when builds start outside Directus (for example CI). See **[Build events (queue)](/guides/integrations/cloudflare-workers/build-events)**.
+
+If a run still looks stale after a build finishes, reopen the run details to request the latest data from Cloudflare.
 
 ## Viewing Build Logs
 
@@ -70,5 +75,6 @@ If the run is still active and Cloudflare allows canceling it, the detail view m
 ## Next Steps
 
 - **[← Back to Cloudflare Workers Integration](/guides/integrations/cloudflare-workers)**
+- **[Build events (queue)](/guides/integrations/cloudflare-workers/build-events)**: optional queue + subscriptions for automatic run updates
 - **[Deployment Security](/guides/deployments/security)**: roles and access control
 - **[Vercel Integration](/guides/integrations/vercel)** and **[Netlify Integration](/guides/integrations/netlify)**: other supported deployment providers
