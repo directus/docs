@@ -55,13 +55,13 @@ Within the Azure Marketplace, select the Web App resource. When creating a Web A
 - **Image source:** Other container registries
 - **Access Type:** Public
 - **Registry server URL:** https://index.docker.io
-- **Image and tag:** directus/directus:11.13.2
+- **Image and tag:** directus/directus:11.17.0
 - **Port:** 8055
 
 
 ::callout{icon="material-symbols:info-outline"}
 
-In this section, we will specify the version of Directus as `11.13.2` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
+In this section, we will specify the version of Directus as `11.17.0` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
 
 ::
 
@@ -74,6 +74,7 @@ Once the web app has been created, we will return to it to enter the required en
 | Name | Value | 
 |------|-------| 
 | `SECRET` | <REPLACE_WITH_RANDOM_VALUE> |
+| `PUBLIC_URL` | https://<YOUR_AZURE_WEB_APP_URL> |
 | `ADMIN_EMAIL` | admin@example.com |
 | `ADMIN_PASSWORD` | d1r3ctu5 |
 | `DB_CLIENT` | pg |
@@ -83,10 +84,11 @@ Once the web app has been created, we will return to it to enter the required en
 | `DB_USER` | <YOUR_DB_USER> |
 | `DB_PASSWORD` | <YOUR_DB_PASSWORD> |
 
-Let’s go through some of the key parameters in this configuration above:
+Let’s go through the important parameters in this configuration:
 
-- Set the `DB_HOST` value to the your Azure Database for PostgreSQL's server name. You can find it in the resource's overview section.
-- Also set `DB_USER and DB_PASSWORD` to the credentials you set up during the creation of your Azure Database for PostgreSQL.
+- Set `PUBLIC_URL` to the exact HTTPS URL of your Azure Web App.
+- Set the `DB_HOST` value to your Azure Database for PostgreSQL's server name. You can find it in the resource's overview section.
+- Also set `DB_USER` and `DB_PASSWORD` to the credentials you set up during the creation of your Azure Database for PostgreSQL.
 
 
 ::callout{icon="material-symbols:info-outline"}
@@ -119,12 +121,22 @@ Then return to the Web App and head to Settings -> Configuration -> Path mapping
 ::callout{icon="material-symbols:info-outline"}
 
 Although Azure Web Apps provide an option to configure volume mounts in the container's configuration screen, this does not work with Directus.
-To use the built-in App Service storage, the environment variable `WEBSITES_ENABLE_APP_SERVICE_STORAGE` must be set to true.
-When this setting is enabled, Azure automatically mounts an Azure Files share over the container’s `/home` directory. Unfortunately, this mount hides critical files and directories that Directus expects to be present in `/home`, causing the application to fail during startup.
+Keep `WEBSITES_ENABLE_APP_SERVICE_STORAGE` set to its default value of "off".
+If you enable it, Azure automatically mounts an Azure Files share over the container’s `/home` directory, which can hide critical files and directories that Directus expects and may cause startup to fail.
 
 ::
 
 Following the creation of the Web App Resource, Directus is now successfully deployed and can be visited via the default domain in the Azure Web App page.
+
+## Validation Checklist
+
+Verify the setup:
+
+- Open the Azure Web App URL. Because `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set, Directus should show the login screen instead of onboarding.
+- Sign in with the admin credentials you configured and create and read an item in a test collection to confirm PostgreSQL connectivity.
+- Upload a test file and confirm persistence in the configured mounted share.
+- Restart the Web App and confirm Directus comes back online with data intact.
+- Review App Service logs for startup errors after any environment variable changes.
 
 ## Troubleshooting Tips
 
