@@ -24,3 +24,14 @@ Redis is a critical component for Directus in multi-container deployments. It en
 | `REDIS_PORT`     | Port of the Redis instance.                                                                                 |               |
 | `REDIS_USERNAME` | Username for the Redis instance.                                                                            |               |
 | `REDIS_PASSWORD` | Password for the Redis instance.                                                                            |               |
+
+### Redis Namespaces
+
+When running multiple Directus instances against a single Redis server, configure unique namespace values per instance to avoid key collisions.
+
+| Variable                      | Description                            | Default Value       |
+| ----------------------------- | -------------------------------------- | ------------------- |
+| `REDIS_BUS_NAMESPACE`         | Namespace for the pub/sub message bus. | `directus:bus`      |
+| `REDIS_LOCK_NAMESPACE`        | Namespace for distributed locks.       | `directus:lock`     |
+| `REDIS_COUNTERS_NAMESPACE`    | Namespace for telemetry counters.      | `directus:counters` |
+| `REDIS_PERMISSIONS_NAMESPACE` | Namespace for the permissions cache.   | `permissions`       |

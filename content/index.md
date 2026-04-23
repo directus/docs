@@ -36,11 +36,11 @@ navigation: false
 
 ## Getting Started
 
-::shiny-grid{class="lg:grid-cols-2"}
+::shiny-grid{class="lg:grid-cols-3"}
   :::shiny-card
   ---
   title: Platform Overview
-  description: Get starting with using Directus.
+  description: Choose how to run Directus and get started.
   icon: simple-icons:directus
   to: /getting-started/overview
   ---
@@ -52,6 +52,15 @@ navigation: false
   description: Learn to use Directus in our video series.
   icon: heroicons-outline:play
   to: https://directus.io/tv/directus-academy
+  ---
+  :::
+
+  :::shiny-card
+  ---
+  title: How to Deploy Directus
+  description: Explore Cloud, Docker, and platform-specific deployment guides.
+  icon: heroicons-outline:cloud
+  to: /tutorials/self-hosting
   ---
   :::
 ::
@@ -286,7 +295,7 @@ navigation: false
   :::shiny-card
   ---
   title: Self-Hosting
-  description: Learn to self-host Directus in your infrastructure.
+  description: Learn self-hosting concepts and deployment paths.
   icon: heroicons-outline:cloud
   to: '/self-hosting/overview'
   ---
