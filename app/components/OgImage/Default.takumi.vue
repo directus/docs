@@ -1,23 +1,25 @@
 <script setup lang="ts">
 export interface OgProps {
-	title: string;
+	title?: string;
+	description?: string;
 	breadcrumb?: string[];
 }
 
-// inherited attrs can mess up the satori parser
 defineOptions({
 	inheritAttrs: false,
 });
 
-function truncate(str: string, n: number) {
-	// Leave whole words intact
+function truncate(str: string | undefined, n: number) {
+	if (!str) return '';
 	const isTooLong = str.length > n;
 	const s = isTooLong ? str.substr(0, n - 1) : str;
 	const i = s.lastIndexOf(' ');
 	return isTooLong ? `${s.substr(0, i)}...` : s;
 }
 
-defineProps<OgProps>();
+withDefaults(defineProps<OgProps>(), {
+	title: 'Directus Docs',
+});
 </script>
 
 <template>
@@ -29,6 +31,9 @@ defineProps<OgProps>();
 			height: 100%;
 			overflow: hidden;
 			background-color: #000000;
+			background-image: url('/docs/og-image.png');
+			background-size: 1200px 600px;
+			background-repeat: no-repeat;
 			font-family: 'Poppins';
 			padding: 115px 75px 100px 75px;
 		"
@@ -42,7 +47,7 @@ defineProps<OgProps>();
 			"
 		>
 			<div
-				v-if="breadcrumb"
+				v-if="breadcrumb && breadcrumb.length"
 				style="display: flex; gap: 10px; margin-bottom: 20px"
 			>
 				<div
@@ -50,7 +55,6 @@ defineProps<OgProps>();
 						color: rgba(255, 255, 255, 0.75);
 						font-family: 'Fira Mono';
 						font-size: 28px;
-						font-style: normal;
 						font-weight: 500;
 						line-height: 100%;
 					"
@@ -60,15 +64,29 @@ defineProps<OgProps>();
 			</div>
 			<h1
 				style="
-					font-family: Poppins;
+					font-family: 'Poppins';
 					color: #fff;
-					font-size: 84;
+					font-size: 84px;
 					line-height: 84px;
 					font-weight: 600;
+					margin: 0;
 				"
 			>
 				{{ truncate(title, 70) }}
 			</h1>
+			<p
+				v-if="description"
+				style="
+					font-family: 'Poppins';
+					color: rgba(255, 255, 255, 0.75);
+					font-size: 32px;
+					line-height: 44px;
+					font-weight: 400;
+					margin-top: 24px;
+				"
+			>
+				{{ truncate(description, 140) }}
+			</p>
 		</div>
 	</div>
 </template>

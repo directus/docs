@@ -20,11 +20,14 @@ const items = [
 		description: 'View this page as plain text',
 		icon: 'material-symbols:markdown-outline',
 		onSelect: () => {
-			navigateTo(`https://github.com/directus/docs/raw/refs/heads/main/content/${props.page?.stem}.md`, {
-				open: {
-					target: '_blank',
+			navigateTo(
+				`https://github.com/directus/docs/raw/refs/heads/main/content/${props.page?.stem}.md`,
+				{
+					open: {
+						target: '_blank',
+					},
 				},
-			});
+			);
 		},
 	},
 	{
@@ -32,11 +35,14 @@ const items = [
 		icon: 'i-simple-icons:openai',
 		target: '_blank',
 		onSelect() {
-			navigateTo(`https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Read ${window.location.href} so I can ask questions about it.`)}`, {
-				open: {
-					target: '_blank',
+			navigateTo(
+				`https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Read ${window.location.href} so I can ask questions about it.`)}`,
+				{
+					open: {
+						target: '_blank',
+					},
 				},
-			});
+			);
 		},
 	},
 	{
@@ -44,11 +50,14 @@ const items = [
 		icon: 'i-simple-icons:anthropic',
 		target: '_blank',
 		onSelect() {
-			navigateTo(`https://claude.ai/new?q=${encodeURIComponent(`Read ${window.location.href} so I can ask questions about it.`)}`, {
-				open: {
-					target: '_blank',
+			navigateTo(
+				`https://claude.ai/new?q=${encodeURIComponent(`Read ${window.location.href} so I can ask questions about it.`)}`,
+				{
+					open: {
+						target: '_blank',
+					},
 				},
-			});
+			);
 		},
 	},
 ];
@@ -70,7 +79,7 @@ async function copyPage() {
 </script>
 
 <template>
-	<UButtonGroup>
+	<UFieldGroup>
 		<UButton
 			color="neutral"
 			variant="outline"
@@ -103,9 +112,7 @@ async function copyPage() {
 				</div>
 			</template>
 		</UDropdownMenu>
-	</UButtonGroup>
+	</UFieldGroup>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
