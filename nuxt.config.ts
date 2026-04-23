@@ -24,7 +24,6 @@ export default defineNuxtConfig({
 	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
 
 	site: {
-		url: 'https://directus.io',
 		name: 'Directus Docs',
 		description:
 			'Explore our resources and powerful data engine to build your projects confidently.',
@@ -168,6 +167,7 @@ export default defineNuxtConfig({
 		skipInspections: [
 			// Skip absolute site urls because of our routing setup between the docs and the main site
 			'absolute-site-urls',
+			'link-text',
 		],
 	},
 
@@ -373,5 +373,9 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+	},
+
+	sitemap: {
+		zeroRuntime: true,
 	},
 });
