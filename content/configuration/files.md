@@ -5,6 +5,10 @@ description: Configuration for storage locations, metadata, upload limits, and t
 
 :partial{content="config-env-vars"}
 
+::callout{icon="material-symbols:info-outline"}
+For guidance on file-upload permissions, asset access tokens, and blocking internal IPs for file imports, see [Security Best Practices](/guides/security/best-practices#files--assets).
+::
+
 By default, Directus stores all uploaded files locally on the file system or can also configure Directus to use external storage services. You can also configure _multiple_ storage adapters at the same time which allows you to choose where files are being uploaded on a file-by-file basis.
 
 In the Data Studio, files will automatically be uploaded to the first configured storage location (in this case `local`). The used storage location is saved under `storage` in the `directus_files` collection.

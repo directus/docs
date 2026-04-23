@@ -6,6 +6,10 @@ description: Configure environment variables, memory, and timeout for Flows.
 
 :partial{content="config-env-vars"}
 
+::callout{icon="material-symbols:info-outline"}
+For guidance on who should be able to create and edit flows, and how to secure webhook triggers, see [Security Best Practices](/guides/security/best-practices#flows).
+::
+
 | Variable                      | Description                                                                                                      | Default Value |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------- |
 | `FLOWS_ENV_ALLOW_LIST`        | A comma-separated list of environment variables.                                                                 | `false`       |

@@ -93,6 +93,11 @@ export default defineAppConfig({
 						icon: 'directus-deployments',
 					},
 					{
+						label: 'Security',
+						to: '/guides/security/best-practices',
+						icon: 'i-ph-shield-check',
+					},
+					{
 						label: 'AI',
 						to: '/guides/ai/',
 						icon: 'directus-ai',
