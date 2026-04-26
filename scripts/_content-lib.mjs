@@ -37,6 +37,8 @@ export function listInScopeContentFiles(dir = 'content') {
 	return listRoutableContentFiles(dir, { includeLanding: false });
 }
 
+// Intentionally minimal frontmatter parser for simple scalar and scalar-array fields.
+// Do not use this for nested YAML structures or multiline YAML values.
 export function parseFrontmatter(source) {
 	const block = getFrontmatterBlock(source);
 	if (!block) return {};

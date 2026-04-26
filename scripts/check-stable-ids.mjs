@@ -4,6 +4,17 @@ import fs from 'node:fs';
 
 import { getFrontmatterBlock, isValidUuid, listInScopeContentFiles, parseFrontmatter } from './_content-lib.mjs';
 
+const args = process.argv.slice(2);
+
+if (args.includes('--help') || args.includes('-h')) {
+	console.log(`check-stable-ids
+
+Usage:
+  node scripts/check-stable-ids.mjs
+`);
+	process.exit(0);
+}
+
 function main() {
 	const files = listInScopeContentFiles();
 	const failures = [];

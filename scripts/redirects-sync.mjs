@@ -59,13 +59,22 @@ Options:
 `);
 }
 
-function runGit(args) {
+function runGit(args, options = {}) {
 	try {
-		return execFileSync('git', args, { encoding: 'utf8' });
+		return execFileSync('git', args, { encoding: 'utf8', ...options });
 	}
 	catch (error) {
 		const details = error.stderr?.toString?.() || error.message;
 		throw new Error(`git ${args.join(' ')} failed:\n${details}`);
+	}
+}
+
+function assertBaseRefExists(baseRef) {
+	try {
+		runGit(['rev-parse', '--verify', baseRef], { stdio: 'ignore' });
+	}
+	catch {
+		throw new Error(`Base ref ${baseRef} does not exist locally. Run \`git fetch origin main\` or pass a different --base ref.`);
 	}
 }
 
@@ -223,10 +232,17 @@ function loadHints(file) {
 	};
 }
 
+function csvValue(value) {
+	const stringValue = String(value ?? '');
+	return /[",\n]/.test(stringValue)
+		? `"${stringValue.replaceAll('"', '""')}"`
+		: stringValue;
+}
+
 function appendRedirectRows(file, rows) {
 	if (!rows.length) return;
 	ensureManifest(file);
-	const text = rows.map(row => `${row.from},${row.to},${row.status}`).join('\n') + '\n';
+	const text = rows.map(row => [row.from, row.to, row.status].map(csvValue).join(',')).join('\n') + '\n';
 	fs.appendFileSync(file, text);
 }
 
@@ -352,6 +368,7 @@ function buildDecisionMarkdown(payload) {
 
 function main() {
 	const options = parseArgs(process.argv.slice(2));
+	assertBaseRefExists(options.base);
 	const hints = loadHints(options.hints);
 	const manifest = loadRedirectManifest(options.manifest);
 	const basePages = loadBaseSnapshot(options.base);
