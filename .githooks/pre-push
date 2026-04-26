@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+if git diff --quiet origin/main...HEAD -- content redirects.csv content.config.ts; then
+	exit 0
+fi
+
+echo "Checking redirects for docs changes..."
+pnpm redirects:check
