@@ -1,3 +1,19 @@
+import { readFileSync } from 'node:fs';
+
+const BASE_URL = '/docs';
+
+function loadRedirectRouteRules() {
+	const raw = readFileSync('redirects.json', 'utf8').trim();
+	if (!raw) return {};
+	const entries = JSON.parse(raw);
+	const rules = {};
+	for (const [from, rule] of Object.entries(entries)) {
+		const key = `${BASE_URL}${from}`;
+		rules[key] = { redirect: { to: `${BASE_URL}${rule.to}`, statusCode: rule.statusCode } };
+	}
+	return rules;
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: [
@@ -18,8 +34,10 @@ export default defineNuxtConfig({
 	},
 
 	app: {
-		baseURL: '/docs',
+		baseURL: BASE_URL,
 	},
+
+	routeRules: loadRedirectRouteRules(),
 
 	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
 

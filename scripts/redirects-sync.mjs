@@ -174,55 +174,24 @@ function indexByStableId(items) {
 
 function loadRedirectManifest(file) {
 	if (!fs.existsSync(file)) {
-		return { rows: [], fromSet: new Set() };
+		return { entries: {}, fromSet: new Set() };
 	}
 
 	const text = fs.readFileSync(file, 'utf8').trim();
-	if (!text) return { rows: [], fromSet: new Set() };
+	if (!text) return { entries: {}, fromSet: new Set() };
 
-	const lines = text.split('\n').map(line => line.trim()).filter(Boolean);
-	const rows = [];
-	const seen = new Set();
-
-	for (let index = 1; index < lines.length; index++) {
-		const [from, to, status] = splitCsvLine(lines[index]);
-		if (!from || !to || !status) continue;
-		if (seen.has(from)) {
-			throw new Error(`Duplicate redirect source in ${file}: ${from}`);
-		}
-		seen.add(from);
-		rows.push({ from, to, status });
+	const parsed = JSON.parse(text);
+	if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+		throw new Error(`Redirect manifest ${file} must be a JSON object keyed by source path`);
 	}
 
-	return { rows, fromSet: seen };
-}
-
-function splitCsvLine(line) {
-	const parts = [];
-	let current = '';
-	let inQuotes = false;
-
-	for (let i = 0; i < line.length; i++) {
-		const char = line[i];
-		if (char === '"') {
-			inQuotes = !inQuotes;
-			continue;
+	for (const [from, value] of Object.entries(parsed)) {
+		if (!value || typeof value !== 'object' || typeof value.to !== 'string' || typeof value.statusCode !== 'number') {
+			throw new Error(`Invalid redirect entry for ${from} in ${file}: expected { to: string, statusCode: number }`);
 		}
-		if (char === ',' && !inQuotes) {
-			parts.push(current);
-			current = '';
-			continue;
-		}
-		current += char;
 	}
-	parts.push(current);
-	return parts.map(part => part.trim());
-}
 
-function ensureManifest(file) {
-	if (!fs.existsSync(file)) {
-		fs.writeFileSync(file, 'from,to,status\n');
-	}
+	return { entries: parsed, fromSet: new Set(Object.keys(parsed)) };
 }
 
 function loadHints(file) {
@@ -236,18 +205,11 @@ function loadHints(file) {
 	};
 }
 
-function csvValue(value) {
-	const stringValue = String(value ?? '');
-	return /[",\n]/.test(stringValue)
-		? `"${stringValue.replaceAll('"', '""')}"`
-		: stringValue;
-}
-
-function appendRedirectRows(file, rows) {
-	if (!rows.length) return;
-	ensureManifest(file);
-	const text = rows.map(row => [row.from, row.to, row.status].map(csvValue).join(',')).join('\n') + '\n';
-	fs.appendFileSync(file, text);
+function writeRedirectManifest(file, entries) {
+	const sorted = Object.fromEntries(
+		Object.entries(entries).sort(([a], [b]) => a.localeCompare(b)),
+	);
+	fs.writeFileSync(file, JSON.stringify(sorted, null, 2) + '\n');
 }
 
 /**
@@ -403,8 +365,8 @@ function main() {
 		else unresolved.push(resolution);
 	}
 
-	const rowsToWrite = options.writeDeterministic
-		? accepted.filter(row => !manifest.fromSet.has(row.from)).map(row => ({ from: row.from, to: row.to, status: 301 }))
+	const newEntries = options.writeDeterministic
+		? accepted.filter(row => !manifest.fromSet.has(row.from))
 		: [];
 
 	const summary = {
@@ -418,7 +380,13 @@ function main() {
 	};
 
 	if (!options.noWrite) {
-		appendRedirectRows(options.manifest, rowsToWrite);
+		if (newEntries.length) {
+			const merged = { ...manifest.entries };
+			for (const entry of newEntries) {
+				merged[entry.from] = { to: entry.to, statusCode: 301 };
+			}
+			writeRedirectManifest(options.manifest, merged);
+		}
 		writeDecisionArtifacts(options.report, unresolved, summary);
 	}
 
@@ -430,8 +398,8 @@ function main() {
 	console.log(`Deterministic redirects: ${summary.deterministicRedirects}`);
 	console.log(`Redirect decisions needed: ${summary.redirectDecisionsNeeded}`);
 
-	if (rowsToWrite.length) {
-		console.log(`Appended ${rowsToWrite.length} redirect(s) to ${options.manifest}`);
+	if (newEntries.length) {
+		console.log(`Wrote ${newEntries.length} redirect(s) to ${options.manifest}`);
 	}
 	if (unresolved.length && !options.noWrite) {
 		console.log(`Review redirect decisions in ${options.report.replace(/\.json$/i, '.md')}`);
