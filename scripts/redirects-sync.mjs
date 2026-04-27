@@ -10,8 +10,8 @@ const DEFAULTS = {
 	base: 'origin/main',
 	manifest: 'redirects.csv',
 	hints: '.docs/redirect-hints.json',
-	suggest: '.docs/redirect-decisions-needed.json',
-	acceptHighConfidence: false,
+	report: '.docs/redirect-decisions-needed.json',
+	writeDeterministic: false,
 	failOnUnresolved: false,
 	noWrite: false,
 };
@@ -24,8 +24,8 @@ function parseArgs(argv) {
 		if (arg === '--base') options.base = argv[++i];
 		else if (arg === '--manifest') options.manifest = argv[++i];
 		else if (arg === '--hints') options.hints = argv[++i];
-		else if (arg === '--suggest') options.suggest = argv[++i];
-		else if (arg === '--accept-high-confidence') options.acceptHighConfidence = true;
+		else if (arg === '--report' || arg === '--suggest') options.report = argv[++i];
+		else if (arg === '--write-deterministic' || arg === '--accept-high-confidence') options.writeDeterministic = true;
 		else if (arg === '--fail-on-unresolved') options.failOnUnresolved = true;
 		else if (arg === '--no-write') options.noWrite = true;
 		else if (arg === '--help' || arg === '-h') {
@@ -52,9 +52,9 @@ Options:
   --base <git-ref>          Base git ref to diff against (default: origin/main)
   --manifest <file>         Redirect manifest CSV (default: redirects.csv)
   --hints <file>            Manual redirect hints JSON (default: .docs/redirect-hints.json)
-  --suggest <file>          Decisions-needed report (default: .docs/redirect-decisions-needed.json)
-  --accept-high-confidence  Auto-append deterministic redirects to the manifest
-  --fail-on-unresolved      Exit non-zero if unresolved routes remain
+  --report <file>           Redirect decisions report (default: .docs/redirect-decisions-needed.json)
+  --write-deterministic     Auto-write deterministic redirects to the manifest
+  --fail-on-unresolved      Exit non-zero if redirect decisions remain
   --no-write                Do not write manifest or report files
 `);
 }
@@ -100,6 +100,10 @@ function stripNumericPrefix(segment) {
 	return segment.replace(/^\d+\./, '');
 }
 
+/**
+ * Redirect continuity must follow Nuxt's public route semantics, not raw filesystem
+ * paths. In particular, numeric ordering prefixes affect nav order but not URL shape.
+ */
 function buildPublicPath(file, frontmatter = {}) {
 	if (typeof frontmatter.path === 'string' && frontmatter.path.trim()) {
 		return normalizePublicPath(frontmatter.path.trim());
@@ -246,6 +250,10 @@ function appendRedirectRows(file, rows) {
 	fs.appendFileSync(file, text);
 }
 
+/**
+ * Redirect generation is intentionally strict: deterministic same-stableId matches can
+ * be auto-written, while splits, merges, and deletions stay manual decisions.
+ */
 function resolveRemovedRoute(oldPage, currentByStableId, manualRedirects) {
 	const manualTarget = manualRedirects[oldPage.path];
 	if (manualTarget) {
@@ -253,13 +261,14 @@ function resolveRemovedRoute(oldPage, currentByStableId, manualRedirects) {
 			status: 'accepted',
 			from: oldPage.path,
 			to: manualTarget,
-			reason: 'manual redirect hint',
+			reason: 'manual redirect override',
 			old: oldPage,
 			matches: [],
 		};
 	}
 
 	if (!oldPage.stableId) {
+		// During the rollout, old routes from a base ref without stable IDs must stay manual.
 		return {
 			status: 'unresolved',
 			reason: 'old route has no stableId in base ref',
@@ -276,7 +285,7 @@ function resolveRemovedRoute(oldPage, currentByStableId, manualRedirects) {
 			status: 'accepted',
 			from: oldPage.path,
 			to: matches[0].path,
-			reason: 'same stableId',
+			reason: 'matching stable ID',
 			old: oldPage,
 			matches,
 		};
@@ -299,6 +308,10 @@ function resolveRemovedRoute(oldPage, currentByStableId, manualRedirects) {
 	};
 }
 
+/**
+ * The report is optimized for human review, not programmatic scoring. Once stable IDs
+ * exist everywhere, the remaining cases are true editorial decisions.
+ */
 function writeDecisionArtifacts(file, unresolved, summary) {
 	const payload = {
 		generatedAt: new Date().toISOString(),
@@ -341,7 +354,7 @@ function buildDecisionMarkdown(payload) {
 		'',
 		`Generated: ${payload.generatedAt}`,
 		'',
-		`- Unresolved routes: ${payload.summary.unresolvedRoutes}`,
+		`- Redirect decisions needed: ${payload.summary.redirectDecisionsNeeded}`,
 		'',
 	];
 
@@ -390,7 +403,7 @@ function main() {
 		else unresolved.push(resolution);
 	}
 
-	const rowsToWrite = options.acceptHighConfidence
+	const rowsToWrite = options.writeDeterministic
 		? accepted.filter(row => !manifest.fromSet.has(row.from)).map(row => ({ from: row.from, to: row.to, status: 301 }))
 		: [];
 
@@ -400,13 +413,13 @@ function main() {
 		currentPages: currentPages.length,
 		removedRoutes: removed.length,
 		uncoveredRemovedRoutes: uncoveredRemoved.length,
-		autoRedirects: accepted.length,
-		unresolvedRoutes: unresolved.length,
+		deterministicRedirects: accepted.length,
+		redirectDecisionsNeeded: unresolved.length,
 	};
 
 	if (!options.noWrite) {
 		appendRedirectRows(options.manifest, rowsToWrite);
-		writeDecisionArtifacts(options.suggest, unresolved, summary);
+		writeDecisionArtifacts(options.report, unresolved, summary);
 	}
 
 	console.log(`Base ref: ${summary.baseRef}`);
@@ -414,18 +427,18 @@ function main() {
 	console.log(`Current pages: ${summary.currentPages}`);
 	console.log(`Removed routes: ${summary.removedRoutes}`);
 	console.log(`Uncovered removed routes: ${summary.uncoveredRemovedRoutes}`);
-	console.log(`Auto redirects: ${summary.autoRedirects}`);
-	console.log(`Unresolved routes: ${summary.unresolvedRoutes}`);
+	console.log(`Deterministic redirects: ${summary.deterministicRedirects}`);
+	console.log(`Redirect decisions needed: ${summary.redirectDecisionsNeeded}`);
 
 	if (rowsToWrite.length) {
 		console.log(`Appended ${rowsToWrite.length} redirect(s) to ${options.manifest}`);
 	}
 	if (unresolved.length && !options.noWrite) {
-		console.log(`Review manual redirect decisions in ${options.suggest.replace(/\.json$/i, '.md')}`);
+		console.log(`Review redirect decisions in ${options.report.replace(/\.json$/i, '.md')}`);
 	}
 
 	if (unresolved.length) {
-		console.error('\nUnresolved routes:');
+		console.error('\nRedirect decisions needed:');
 		for (const item of unresolved.slice(0, 20)) {
 			console.error(`- ${item.old.path}: ${item.reason}`);
 		}

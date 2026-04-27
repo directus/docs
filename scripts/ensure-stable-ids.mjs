@@ -44,10 +44,18 @@ function stageFile(file) {
 	runGit(['add', '--', file]);
 }
 
+/**
+ * In hook mode we read the staged blob from the index, not the working tree, so ID
+ * insertion reflects what is actually being committed.
+ */
 function readIndexedFile(file) {
 	return runGit(['show', `:${file}`]);
 }
 
+/**
+ * If a file has unstaged edits, re-staging it would collapse a partial `git add -p`
+ * selection into a full-file stage. We abort instead of trying to outsmart git here.
+ */
 function hasUnstagedChanges(file) {
 	try {
 		runGit(['diff', '--quiet', '--', file], { stdio: 'ignore' });
@@ -85,6 +93,7 @@ function main() {
 		}
 
 		if (stagedOnly && hasUnstagedChanges(file)) {
+			// Failing is safer than silently widening the staged diff.
 			partialStageConflicts.push(file);
 			continue;
 		}
@@ -99,9 +108,9 @@ function main() {
 	}
 
 	console.log(`Processed files: ${files.length}`);
-	console.log(`Inserted stableId: ${inserted}`);
-	console.log(`Already had stableId: ${alreadyPresent}`);
-	console.log(`Missing frontmatter: ${missingFrontmatter}`);
+	console.log(`Inserted stable IDs: ${inserted}`);
+	console.log(`Already had stable IDs: ${alreadyPresent}`);
+	console.log(`Skipped (missing frontmatter): ${missingFrontmatter}`);
 	if (stagedOnly) {
 		console.log(`Re-staged files: ${staged}`);
 	}
@@ -111,7 +120,7 @@ function main() {
 		for (const entry of invalidStableIds) {
 			console.error(`- ${entry.file}: ${entry.stableId}`);
 		}
-		console.error('\nFix those values manually or run `pnpm stable-ids:check` for a full repo validation pass.');
+		console.error('\nFix those values manually, then re-run the command or use `pnpm stable-ids:check` for a full repo validation pass.');
 		process.exit(1);
 	}
 

@@ -10,8 +10,8 @@
 		"postinstall": "node scripts/setup-hooks.mjs && nuxt prepare",
 		"stable-ids:ensure": "node scripts/ensure-stable-ids.mjs",
 		"stable-ids:check": "node scripts/check-stable-ids.mjs",
-		"redirects:sync": "node scripts/redirects-sync.mjs --base origin/main --manifest redirects.csv --hints .docs/redirect-hints.json --suggest .docs/redirect-decisions-needed.json --accept-high-confidence --fail-on-unresolved",
-		"redirects:check": "node scripts/redirects-sync.mjs --base origin/main --manifest redirects.csv --hints .docs/redirect-hints.json --suggest .docs/redirect-decisions-needed.json --fail-on-unresolved --no-write"
+		"redirects:sync": "node scripts/redirects-sync.mjs --base origin/main --manifest redirects.csv --hints .docs/redirect-hints.json --report .docs/redirect-decisions-needed.json --write-deterministic --fail-on-unresolved",
+		"redirects:check": "node scripts/redirects-sync.mjs --base origin/main --manifest redirects.csv --hints .docs/redirect-hints.json --report .docs/redirect-decisions-needed.json --fail-on-unresolved --no-write"
 	},
 	"dependencies": {
 		"@directus/openapi": "0.3.0",

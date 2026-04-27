@@ -4,6 +4,12 @@ import path from 'node:path';
 const ARRAY_KEYS = new Set(['stack', 'features', 'use_cases', 'technologies']);
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
+/**
+ * Stable IDs only matter for public, relocatable docs pages.
+ * Partials are excluded because they do not own routes, and the landing page is
+ * excluded because it is intentionally fixed at / and is not part of redirect continuity.
+ */
+
 export function isRoutableContentFile(file, { includeLanding = true } = {}) {
 	const normalized = file.replace(/\\/g, '/');
 	if (!normalized.startsWith('content/') || !normalized.endsWith('.md')) return false;
@@ -37,8 +43,12 @@ export function listInScopeContentFiles(dir = 'content') {
 	return listRoutableContentFiles(dir, { includeLanding: false });
 }
 
-// Intentionally minimal frontmatter parser for simple scalar and scalar-array fields.
-// Do not use this for nested YAML structures or multiline YAML values.
+/**
+ * Intentionally minimal frontmatter parser for simple scalar and scalar-array fields.
+ * We keep this dependency-free because the stable ID and redirect workflows only need
+ * a few top-level fields and run inside hooks/scripts where fast startup matters.
+ * Do not use this for nested YAML structures or multiline YAML values.
+ */
 export function parseFrontmatter(source) {
 	const block = getFrontmatterBlock(source);
 	if (!block) return {};
@@ -97,6 +107,10 @@ export function cleanScalar(value) {
 	return result.trim();
 }
 
+/**
+ * Preserve the file's existing newline style so hook-driven edits stay mechanical and
+ * do not create noisy cross-platform diffs.
+ */
 export function getFrontmatterBlock(source) {
 	const match = source.match(/^---(\r?\n)([\s\S]*?)\r?\n---(\r?\n|$)/);
 	if (!match) return null;
@@ -116,6 +130,10 @@ export function hasStableId(source) {
 	return /(?:^|\r?\n)stableId:\s*.+(?:\r?\n|$)/.test(getFrontmatterBlock(source)?.body || '');
 }
 
+/**
+ * Insert stableId as the first frontmatter field so the backfill stays easy to scan
+ * and future merges are less likely to bury identity changes inside unrelated metadata.
+ */
 export function ensureStableIdInSource(source, stableId) {
 	const block = getFrontmatterBlock(source);
 	if (!block) {
