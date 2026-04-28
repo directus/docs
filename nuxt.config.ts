@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import type { NitroConfig } from 'nitropack';
 
 const BASE_URL = '/docs';
@@ -11,6 +11,7 @@ interface RedirectRule {
 }
 
 function loadRedirectRouteRules(): NitroConfig['routeRules'] {
+	if (!existsSync('redirects.json')) return {};
 	const raw = readFileSync('redirects.json', 'utf8').trim();
 	if (!raw) return {};
 	const entries = JSON.parse(raw) as Record<string, RedirectRule>;

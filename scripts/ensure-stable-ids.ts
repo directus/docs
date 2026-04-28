@@ -136,7 +136,7 @@ function main(): void {
 		for (const file of partialStageConflicts) {
 			console.error(`- ${file}`);
 		}
-		console.error('\nRun `pnpm stable-ids:ensure` first, or fully stage those files before committing.');
+		console.error('\nFully stage these files, or unstage and split your commit.');
 		process.exit(1);
 	}
 }

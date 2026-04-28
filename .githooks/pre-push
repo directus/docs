@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+if ! git fetch origin main --quiet; then
+	echo "warning: failed to fetch origin/main; using local ref for redirect check" >&2
+fi
+
 if git diff --quiet origin/main...HEAD -- content redirects.json content.config.ts; then
 	exit 0
 fi

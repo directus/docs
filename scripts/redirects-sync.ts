@@ -165,11 +165,7 @@ function stripNumericPrefix(segment: string): string {
  * Redirect continuity must follow Nuxt's public route semantics, not raw filesystem
  * paths. In particular, numeric ordering prefixes affect nav order but not URL shape.
  */
-function buildPublicPath(file: string, frontmatter: Record<string, unknown> = {}): string {
-	if (typeof frontmatter.path === 'string' && frontmatter.path.trim()) {
-		return normalizePublicPath(frontmatter.path.trim());
-	}
-
+function buildPublicPath(file: string): string {
 	const relative = file.replace(/^content\//, '');
 	const parts = relative.split('/');
 	const fileName = parts.pop()!;
@@ -192,7 +188,7 @@ function normalizePublicPath(routePath: string): string {
 function toSnapshotItem(file: string, source: string): SnapshotItem {
 	const frontmatter = parseFrontmatter(source);
 	return {
-		path: buildPublicPath(file, frontmatter),
+		path: buildPublicPath(file),
 		sourceFile: file,
 		title: typeof frontmatter.title === 'string' ? frontmatter.title : undefined,
 		stableId: typeof frontmatter.stableId === 'string' ? frontmatter.stableId : undefined,

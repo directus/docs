@@ -17,6 +17,19 @@ if (!fs.existsSync('.githooks')) {
 	process.exit(0);
 }
 
+let currentHooksPath = '';
+try {
+	currentHooksPath = execFileSync('git', ['config', '--get', 'core.hooksPath'], { encoding: 'utf8' }).trim();
+}
+catch {
+	// No local hooks path is configured.
+}
+
+if (currentHooksPath && currentHooksPath !== '.githooks') {
+	console.error(`warning: core.hooksPath is already set to ${currentHooksPath}; hooks were not configured`);
+	process.exit(0);
+}
+
 try {
 	execFileSync('git', ['config', 'core.hooksPath', '.githooks'], { stdio: 'ignore' });
 }
