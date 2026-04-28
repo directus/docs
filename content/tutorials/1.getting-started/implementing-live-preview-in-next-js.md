@@ -1,4 +1,5 @@
 ---
+stableId: 2e9c2cc0-82dd-4af9-bccc-1118ae4086f6
 slug: implementing-live-preview-in-next-js
 title: Implementing Live Preview in Next.js
 technologies:

@@ -1,4 +1,5 @@
 ---
+stableId: 67b6c096-9b87-4b50-9550-6213469c52b1
 id: 6388aa8a-99b5-4a3b-a9ff-275d26b8cb81
 slug: detect-high-risk-phone-numbers-with-vonage-and-directus-automate
 title: Detect High-Risk Phone Numbers with Vonage and Directus Automate

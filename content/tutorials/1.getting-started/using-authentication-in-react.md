@@ -1,4 +1,5 @@
 ---
+stableId: ad274d15-23f8-46c6-ac51-b278a57b5cef
 slug: using-authentication-in-react
 title: Using Authentication in React
 technologies:

@@ -1,4 +1,5 @@
 ---
+stableId: 80e9aa99-c19a-4db6-bd49-66e5ce987d6e
 id: 3da7bf05-c74c-4e24-bf83-1d2598b89004
 slug: fetch-data-from-directus-with-solidstart
 title: Fetch Data from Directus with SolidStart

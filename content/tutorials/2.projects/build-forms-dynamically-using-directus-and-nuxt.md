@@ -1,4 +1,5 @@
 ---
+stableId: 7a7bf6f7-1550-4565-9817-3b862a476ecb
 slug: build-forms-dynamically-using-directus-and-nuxt
 title: Build Forms Dynamically using Directus and Nuxt
 technologies:

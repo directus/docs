@@ -1,4 +1,5 @@
 ---
+stableId: d395c571-bc7d-4c61-9863-d60d5b72a562
 title: Migrations
 description: Creation of custom migration files to automate database changes.
 ---

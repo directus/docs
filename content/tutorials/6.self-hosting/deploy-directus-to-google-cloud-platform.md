@@ -1,4 +1,5 @@
 ---
+stableId: db34a47d-af53-4570-85f3-594754d070bb
 id: 2cdec3d5-9f3d-4c43-9541-6a9f5bc68007
 slug: deploy-directus-to-google-cloud-platform
 title: Deploy Directus to Google Cloud Platform

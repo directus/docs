@@ -1,4 +1,5 @@
 ---
+stableId: d2f091ed-8952-4c98-9d59-eadf4c1e2453
 id: 571e0f54-f95d-4ccf-8712-8b92150b364f
 slug: enrich-user-data-with-clearbit-and-directus-automate
 title: Enrich User Data with Clearbit and Directus Automate

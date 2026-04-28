@@ -1,4 +1,5 @@
 ---
+stableId: 085ef055-f42c-4c09-84d4-f6e7dd934de4
 id: 2aa59541-f1aa-4b2e-bdc4-64fa74d4af83
 slug: use-directus-as-a-baby-health-tracker-with-owlet-and-ops-genie
 title: Use Directus as a Baby Health Tracker with Owlet and OpsGenie

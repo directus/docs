@@ -1,4 +1,5 @@
 ---
+stableId: 55dd3cee-a726-4901-8697-d26f0e1027b4
 slug: rendering-dynamic-blocks-using-next
 title: Rendering Dynamic Blocks Using Next.js
 technologies:

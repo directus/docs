@@ -1,4 +1,5 @@
 ---
+stableId: f46d4a90-cff7-4431-b552-8b1296ef5720
 id: 89cd5e8e-cabd-4422-92c8-9736faedefe0
 slug: generate-transcripts-with-deepgram-and-directus-automate
 title: Generate Transcripts with Deepgram and Directus Automate

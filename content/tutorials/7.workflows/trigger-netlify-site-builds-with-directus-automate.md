@@ -1,4 +1,5 @@
 ---
+stableId: 51836497-a247-44f2-bd1f-f6275b8deb62
 id: 03141a12-e9be-4fd5-8072-78685d4ff12b
 slug: trigger-netlify-site-builds-with-directus-automate
 title: Trigger Netlify Site Builds with Directus Automate

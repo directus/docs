@@ -1,4 +1,5 @@
 ---
+stableId: 3b58ec70-1bee-4e25-9a8c-8db924f204cd
 slug: validating-third-party-jwts-in-directus
 title: Validating Third-Party JWTs in Directus (with Okta)
 description: Learn how to translate third part JWT's to Directus accountability

@@ -1,4 +1,5 @@
 ---
+stableId: 0bd2e190-d382-440b-aa41-8c1dd7637652
 slug: integrating-the-directus-visual-editor-with-nuxt
 title: Integrating the Directus Visual Editor with Nuxt
 technologies:

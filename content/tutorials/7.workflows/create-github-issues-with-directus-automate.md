@@ -1,4 +1,5 @@
 ---
+stableId: f1b91cbc-3e94-4214-b49a-350ae0f4ed55
 id: 34bda8b7-e162-4090-8ceb-ae3db85fb098
 slug: create-github-issues-with-directus-automate
 title: Create GitHub Issues with Directus Automate

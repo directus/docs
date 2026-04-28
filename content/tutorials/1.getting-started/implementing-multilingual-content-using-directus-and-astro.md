@@ -1,4 +1,5 @@
 ---
+stableId: 686e8090-8367-448d-bf57-4680cad619a9
 slug: implementing-multilingual-content-using-directus-and-astro
 title: Implementing Multilingual Content using Directus and Astro
 technologies:

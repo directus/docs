@@ -1,4 +1,5 @@
 ---
+stableId: 98d549ef-58ea-43aa-ad7a-0ba0a3a5dba6
 id: directus-webhooks-clay-tutorial
 title: Webhooks
 description: Learn how to set up Directus Flows to automatically send data to Clay webhooks for real-time data synchronization.

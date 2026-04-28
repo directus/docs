@@ -1,4 +1,5 @@
 ---
+stableId: 3f1dbfa7-989b-46b3-b714-b72b3e7b3cf9
 id: 28299d88-04e5-4cb8-83b1-3916696088e3
 slug: fetch-data-from-directus-with-flutter
 title: Fetch Data from Directus with Flutter

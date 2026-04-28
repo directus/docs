@@ -1,4 +1,5 @@
 ---
+stableId: 1953c647-6cd3-420c-a9dd-f3afd5693be7
 id: 422c9d3c-d5da-45ff-abec-fdbf71a54721
 slug: combine-live-preview-and-content-versioning-with-next-js
 title: Combine Live Preview and Content Versioning with Next.js

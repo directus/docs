@@ -1,4 +1,5 @@
 ---
+stableId: d39e90fa-abde-460a-b0ec-b054ff4c7aae
 id: directus-n8n-actions
 title: Actions
 description: Complete guide for using Directus actions in n8n workflows, including working with items, users, and files.

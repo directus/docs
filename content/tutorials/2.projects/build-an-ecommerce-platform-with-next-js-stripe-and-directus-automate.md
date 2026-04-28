@@ -1,4 +1,5 @@
 ---
+stableId: e03366c8-427e-42c0-a0cc-058bec00abb8
 id: e9fd65f3-e853-4ecb-8706-74c8fa342b43
 slug: build-an-ecommerce-platform-with-next-js-stripe-and-directus-automate
 title: Build an Ecommerce Platform with Next.js, Stripe, and Directus Automate

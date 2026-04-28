@@ -1,4 +1,5 @@
 ---
+stableId: 8f85cf62-5bf2-43e3-ac78-0d21b2c12a20
 id: 01d87344-02d8-45fc-a6e3-f13777cdab83
 slug: fetch-data-from-directus-with-angular
 title: Fetch Data from Directus with Angular

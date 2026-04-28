@@ -1,4 +1,5 @@
 ---
+stableId: 5073c758-c304-4786-81f8-4911ad90558c
 id: 501503e1-3830-494c-a87a-e3a0706b28de
 slug: fetch-data-from-directus-with-spring-boot
 title: Fetch Data from Directus with Spring Boot

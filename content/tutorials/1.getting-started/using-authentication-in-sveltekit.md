@@ -1,4 +1,5 @@
 ---
+stableId: aec92b93-93da-48ed-aa4a-2fcbcf5f5d72
 slug: using-authentication-in-sveltekit
 title: Using Authentication in SvelteKit
 technologies:

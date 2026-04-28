@@ -1,4 +1,5 @@
 ---
+stableId: e98986da-9283-470c-8b2d-61dbdf8838eb
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-dynamic-pages-for-a-cms-using-directus-and-sveltekit
 title: Create Dynamic Pages for a CMS using Directus and SvelteKit

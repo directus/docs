@@ -1,4 +1,5 @@
 ---
+stableId: 197ccca2-68af-47fa-b893-7c6bcb8e6209
 id: 9176d1b6-c530-44f3-92b3-71f35ae80902
 slug: create-reusable-blocks-with-many-to-any-relationships
 title: Create Reusable Blocks with Many-to-Any Relationships

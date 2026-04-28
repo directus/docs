@@ -1,4 +1,5 @@
 ---
+stableId: 79aa288a-097a-4a7b-bc32-80ee032718aa
 id: 9f57fe88-ece0-42db-ad76-9e811989d4a8
 slug: fetch-data-from-directus-with-sveltekit
 title: Fetch Data from Directus with SvelteKit

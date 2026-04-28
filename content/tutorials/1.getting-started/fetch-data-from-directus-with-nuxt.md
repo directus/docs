@@ -1,4 +1,5 @@
 ---
+stableId: e41d7ea1-f5b9-4a64-a4d6-213902e22dad
 id: bf074448-1967-4c83-8926-9f2005029974
 slug: fetch-data-from-directus-with-nuxt
 title: Fetch Data from Directus with Nuxt

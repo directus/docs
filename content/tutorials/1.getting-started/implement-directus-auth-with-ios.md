@@ -1,4 +1,5 @@
 ---
+stableId: e8a2fade-e70e-4f5d-9b6c-c4a51dee08fa
 id: b16741fd-aa1d-48ea-8856-df9a9ae9e0d6
 slug: implement-directus-auth-with-ios
 title: Implement Directus Auth with iOS

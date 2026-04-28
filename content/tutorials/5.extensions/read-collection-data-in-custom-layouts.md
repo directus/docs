@@ -1,4 +1,5 @@
 ---
+stableId: 8853fcca-7cb3-4de8-a1c2-2d438d812b62
 id: a5598c32-0b99-4c24-9e3c-2e9b73b600e8
 slug: read-collection-data-in-custom-layouts
 title: Read Collection Data in Custom Layouts

@@ -1,4 +1,5 @@
 ---
+stableId: cb74a8b6-abd5-4526-9028-42f58f1452ab
 slug: implementing-multilingual-content-using-directus-and-sveltekit
 title: Implementing Multilingual Content using Directus and SvelteKit
 technologies:

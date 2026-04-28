@@ -1,4 +1,5 @@
 ---
+stableId: 598819cc-3a8b-4a3d-888e-7a661b832b2d
 id: 333eb942-b124-4476-ac04-bac9cb2dcca2
 slug: implement-multilingual-content-with-directus-and-svelte-kit
 title: Implement Multilingual Content with Directus and SvelteKit

@@ -1,4 +1,5 @@
 ---
+stableId: e983aa81-3f48-4e0b-9936-db0aa36fd26b
 slug: submit-forms-using-directus-and-nuxt
 title: Submit Forms Using Directus and Nuxt
 technologies:

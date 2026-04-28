@@ -1,4 +1,5 @@
 ---
+stableId: 4b3da552-afc6-4281-b206-2228e99f049d
 id: 58ab89b4-d426-476f-a0e7-73a62c486676
 slug: set-up-live-preview-with-next-js
 title: Set Up Live Preview with Next.js

@@ -1,4 +1,5 @@
 ---
+stableId: 00bd225d-3cdf-4f0e-af46-87461c60a1b7
 slug: rendering-dynamic-blocks-using-astro
 title: Rendering Dynamic Blocks Using Astro
 technologies:

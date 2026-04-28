@@ -1,4 +1,5 @@
 ---
+stableId: b9e011ba-6d63-4d8c-a592-f3e0d8ac8d25
 slug: create-a-cms-using-directus-and-astro
 title: Create a CMS using Directus and Astro
 technologies:

@@ -1,4 +1,5 @@
 ---
+stableId: d325a09c-8e8a-45ec-b820-374130375d45
 slug: integrating-the-directus-visual-editor-with-sveltekit
 title: Integrating the Directus Visual Editor with SvelteKit
 technologies:

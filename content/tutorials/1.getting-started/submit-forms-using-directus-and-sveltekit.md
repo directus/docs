@@ -1,4 +1,5 @@
 ---
+stableId: 0a7bab8d-6066-47c8-abb4-ca27149fd1f9
 slug: submit-forms-using-directus-and-sveltekit
 title: Submit Forms Using Directus and SvelteKit
 technologies:

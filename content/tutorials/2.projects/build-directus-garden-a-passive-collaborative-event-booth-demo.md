@@ -1,4 +1,5 @@
 ---
+stableId: 6a84ed31-311c-4ef4-ace0-2e8cacbaa960
 id: 0a7a8969-138e-4047-884e-1048a811a939
 slug: build-directus-garden-a-passive-collaborative-event-booth-demo
 title: Build Directus Garden - A Passive Collaborative Event Booth Demo

@@ -1,4 +1,5 @@
 ---
+stableId: 71d9cf45-9974-4aea-8a91-f1c5a8f31d0d
 slug: implementing-live-preview-in-react
 title: Implementing Live Preview in React
 technologies:
