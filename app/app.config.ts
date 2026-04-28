@@ -55,7 +55,7 @@ export default defineAppConfig({
 						icon: 'directus-auth',
 					},
 					{
-						label: 'Connect',
+						label: 'APIs',
 						to: '/guides/connect/authentication',
 						icon: 'directus-connect',
 					},
@@ -65,7 +65,7 @@ export default defineAppConfig({
 						icon: 'directus-files',
 					},
 					{
-						label: 'Automate',
+						label: 'Flows',
 						to: '/guides/automate/flows',
 						icon: 'directus-automate',
 					},
@@ -107,7 +107,7 @@ export default defineAppConfig({
 				],
 			},
 			{
-				label: 'Manage',
+				label: 'Hosting',
 				children: [
 					{
 						label: 'Cloud',
