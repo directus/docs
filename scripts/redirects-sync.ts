@@ -5,7 +5,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import type { ExecFileSyncOptionsWithStringEncoding } from 'node:child_process';
 
-import { listRoutableContentFiles, parseFrontmatter } from './_content-lib.ts';
+import { isRoutableContentFile, listRoutableContentFiles, parseFrontmatter } from './_content-lib.ts';
 
 interface CliOptions {
 	base: string;
@@ -18,7 +18,6 @@ interface CliOptions {
 }
 
 interface SnapshotItem {
-	collection: 'content' | 'landing';
 	path: string;
 	sourceFile: string;
 	title?: string;
@@ -47,9 +46,6 @@ interface AcceptedResolution {
 	status: 'accepted';
 	from: string;
 	to: string;
-	reason: string;
-	old: SnapshotItem;
-	matches: SnapshotItem[];
 }
 
 interface UnresolvedResolution {
@@ -150,8 +146,7 @@ function listBaseContentFiles(baseRef: string): string[] {
 		.split('\n')
 		.map(line => line.trim())
 		.filter(Boolean)
-		.filter(file => file.endsWith('.md'))
-		.filter(file => !file.startsWith('content/_partials/'));
+		.filter(file => isRoutableContentFile(file));
 }
 
 function readBaseFile(baseRef: string, file: string): string {
@@ -194,33 +189,18 @@ function normalizePublicPath(routePath: string): string {
 	return normalized === '/index' ? '/' : normalized;
 }
 
-function toSnapshotItem(file: string, source: string, collection: 'content' | 'landing' = 'content'): SnapshotItem {
+function toSnapshotItem(file: string, source: string): SnapshotItem {
 	const frontmatter = parseFrontmatter(source);
-	const publicPath = buildPublicPath(file, frontmatter);
-
 	return {
-		collection,
-		path: publicPath,
+		path: buildPublicPath(file, frontmatter),
 		sourceFile: file,
 		title: typeof frontmatter.title === 'string' ? frontmatter.title : undefined,
 		stableId: typeof frontmatter.stableId === 'string' ? frontmatter.stableId : undefined,
 	};
 }
 
-function loadCurrentSnapshot(): SnapshotItem[] {
-	const files = listRoutableContentFiles();
-	return files.map((file) => {
-		const collection: 'content' | 'landing' = file === 'content/index.md' ? 'landing' : 'content';
-		return toSnapshotItem(file, readCurrentFile(file), collection);
-	});
-}
-
-function loadBaseSnapshot(baseRef: string): SnapshotItem[] {
-	const files = listBaseContentFiles(baseRef);
-	return files.map((file) => {
-		const collection: 'content' | 'landing' = file === 'content/index.md' ? 'landing' : 'content';
-		return toSnapshotItem(file, readBaseFile(baseRef, file), collection);
-	});
+function loadSnapshot(files: string[], readFile: (file: string) => string): SnapshotItem[] {
+	return files.map(file => toSnapshotItem(file, readFile(file)));
 }
 
 function indexByPath(items: SnapshotItem[]): Map<string, SnapshotItem> {
@@ -302,9 +282,6 @@ function resolveRemovedRoute(
 			status: 'accepted',
 			from: oldPage.path,
 			to: manualTarget,
-			reason: 'manual redirect override',
-			old: oldPage,
-			matches: [],
 		};
 	}
 
@@ -326,9 +303,6 @@ function resolveRemovedRoute(
 			status: 'accepted',
 			from: oldPage.path,
 			to: matches[0].path,
-			reason: 'matching stable ID',
-			old: oldPage,
-			matches,
 		};
 	}
 
@@ -435,8 +409,8 @@ function main(): void {
 	assertBaseRefExists(options.base);
 	const hints = loadHints(options.hints);
 	const manifest = loadRedirectManifest(options.manifest);
-	const basePages = loadBaseSnapshot(options.base);
-	const currentPages = loadCurrentSnapshot();
+	const basePages = loadSnapshot(listBaseContentFiles(options.base), file => readBaseFile(options.base, file));
+	const currentPages = loadSnapshot(listRoutableContentFiles(), readCurrentFile);
 
 	const baseByPath = indexByPath(basePages);
 	const currentByPath = indexByPath(currentPages);

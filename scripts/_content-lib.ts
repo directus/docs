@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ARRAY_KEYS = new Set(['stack', 'features', 'use_cases', 'technologies']);
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 export interface ScopeOptions {
@@ -9,15 +8,13 @@ export interface ScopeOptions {
 }
 
 export interface Frontmatter {
-	[key: string]: string | string[] | undefined;
+	[key: string]: string | undefined;
 }
 
 export interface FrontmatterBlock {
-	fullMatch: string;
 	newline: string;
 	body: string;
 	closingWhitespace: string;
-	start: number;
 	end: number;
 }
 
@@ -69,55 +66,21 @@ export function listInScopeContentFiles(dir = 'content'): string[] {
 }
 
 /**
- * Intentionally minimal frontmatter parser for simple scalar and scalar-array fields.
+ * Intentionally minimal frontmatter parser for top-level scalar fields only.
  * We keep this dependency-free because the stable ID and redirect workflows only need
  * a few top-level fields and run inside hooks/scripts where fast startup matters.
- * Do not use this for nested YAML structures or multiline YAML values.
+ * Do not use this for arrays, nested YAML structures, or multiline YAML values.
  */
 export function parseFrontmatter(source: string): Frontmatter {
 	const block = getFrontmatterBlock(source);
 	if (!block) return {};
 
-	const lines = block.body.split(/\r?\n/);
 	const data: Frontmatter = {};
-	let currentArrayKey: string | null = null;
-
-	for (const line of lines) {
-		const keyMatch = line.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
+	for (const line of block.body.split(/\r?\n/)) {
+		const keyMatch = line.match(/^([A-Za-z_][\w-]*):\s*(.+)$/);
 		if (keyMatch) {
 			const [, key, rawValue] = keyMatch;
-			currentArrayKey = null;
-			if (ARRAY_KEYS.has(key)) {
-				if (!rawValue) {
-					data[key] = [];
-					currentArrayKey = key;
-				}
-				else if (rawValue.startsWith('[') && rawValue.endsWith(']')) {
-					data[key] = rawValue
-						.slice(1, -1)
-						.split(',')
-						.map(value => cleanScalar(value))
-						.filter(Boolean);
-				}
-				else {
-					data[key] = [cleanScalar(rawValue)].filter(Boolean);
-				}
-			}
-			else if (rawValue) {
-				data[key] = cleanScalar(rawValue);
-			}
-			continue;
-		}
-
-		if (currentArrayKey) {
-			const itemMatch = line.match(/^\s*-\s*(.+)$/);
-			if (itemMatch) {
-				(data[currentArrayKey] as string[]).push(cleanScalar(itemMatch[1]));
-				continue;
-			}
-			if (/^[^\s]/.test(line)) {
-				currentArrayKey = null;
-			}
+			data[key] = cleanScalar(rawValue);
 		}
 	}
 
@@ -142,11 +105,9 @@ export function getFrontmatterBlock(source: string): FrontmatterBlock | null {
 
 	const [fullMatch, newline, body, closingWhitespace] = match;
 	return {
-		fullMatch,
 		newline,
 		body,
 		closingWhitespace,
-		start: 0,
 		end: fullMatch.length,
 	};
 }

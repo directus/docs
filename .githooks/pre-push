@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-if git diff --quiet origin/main...HEAD -- content redirects.csv content.config.ts; then
+if git diff --quiet origin/main...HEAD -- content redirects.json content.config.ts; then
 	exit 0
 fi
 
