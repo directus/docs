@@ -6,7 +6,7 @@ title: Building AIVenture - An AI-Powered Game with Directus
 authors:
   - name: Craig Harman
     title: Guest Author
-description: Learn the advanced techniques used with Directus Automate to build a game.
+description: Learn the advanced techniques used with Directus Flows to build a game.
 ---
 ## You are standing in an open field…
 

@@ -2,15 +2,15 @@
 stableId: 5b0030d0-d6c0-4e7f-9d0e-b2914ceb3f45
 id: 9feb1c8f-0500-4bff-9b2f-d69e08d316e7
 slug: generate-images-with-dall-e-and-directus-automate
-title: Generate Images with DALL•E and Directus Automate
+title: Generate Images with DALL•E and Directus Flows
 technologies:
   - openai
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to integrate OpenAI's Dall•E models with Directus Automate.
+description: Learn how to integrate OpenAI's Dall•E models with Directus Flows.
 ---
-Directus Automate provide a really powerful interface to integrating with AI services via their APIs. In this tutorial, we will use [OpenAI’s Image Generation API](https://platform.openai.com/docs/api-reference/images/create) to leverage DALL-E 3 and create images for our content directly within the Directus Editor.
+Directus Flows provide a really powerful interface to integrating with AI services via their APIs. In this tutorial, we will use [OpenAI’s Image Generation API](https://platform.openai.com/docs/api-reference/images/create) to leverage DALL-E 3 and create images for our content directly within the Directus Editor.
 
 ## Before We Start
 

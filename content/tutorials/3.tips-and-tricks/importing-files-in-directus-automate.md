@@ -2,13 +2,13 @@
 stableId: 05984f63-aae9-4ac5-bf21-5d0a7a0856c4
 id: c95350f1-1ace-488b-b293-77546b6ebe17
 slug: importing-files-in-directus-automate
-title: Importing Files in Directus Automate
+title: Importing Files in Directus Flows
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to use the Request URL operation to import files in Directus Automate.
+description: Learn how to use the Request URL operation to import files in Directus Flows.
 ---
-In this quick tip, you will learn how to import files inside of Flows as part of Directus Automate.
+In this quick tip, you will learn how to import files inside of Flows as part of Directus Flows.
 
 Directus doesn’t ship with an operation to import files via URL the same way you can across the Data Studio. Thankfully, you can utilize the Directus API inside of Flows to achieve the same result.
 
