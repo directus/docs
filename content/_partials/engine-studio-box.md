@@ -14,6 +14,6 @@
   description: A web app for your whole team to manage content, files, users, and dashboards.
   color: pink
   ---
-  :product-link{product="explore"} :product-link{product="editor"} :product-link{product="insights"} :product-link{product="files"}
+  :product-link{product="insights"} :product-link{product="files"}
   :::
 ::
