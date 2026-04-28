@@ -37,7 +37,7 @@ export default defineAppConfig({
 				to: '/getting-started/overview',
 			},
 			{
-				label: 'Guides',
+				label: 'Guide',
 				children: [
 					{
 						label: 'Data Model',
@@ -107,7 +107,7 @@ export default defineAppConfig({
 				],
 			},
 			{
-				label: 'Hosting',
+				label: 'Deploy',
 				children: [
 					{
 						label: 'Cloud',
