@@ -4,13 +4,38 @@ import path from 'node:path';
 const ARRAY_KEYS = new Set(['stack', 'features', 'use_cases', 'technologies']);
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
+export interface ScopeOptions {
+	includeLanding?: boolean;
+}
+
+export interface Frontmatter {
+	[key: string]: string | string[] | undefined;
+}
+
+export interface FrontmatterBlock {
+	fullMatch: string;
+	newline: string;
+	body: string;
+	closingWhitespace: string;
+	start: number;
+	end: number;
+}
+
+export type EnsureReason = 'inserted' | 'already-present' | 'missing-frontmatter';
+
+export interface EnsureResult {
+	changed: boolean;
+	source: string;
+	reason: EnsureReason;
+}
+
 /**
  * Stable IDs only matter for public, relocatable docs pages.
  * Partials are excluded because they do not own routes, and the landing page is
  * excluded because it is intentionally fixed at / and is not part of redirect continuity.
  */
 
-export function isRoutableContentFile(file, { includeLanding = true } = {}) {
+export function isRoutableContentFile(file: string, { includeLanding = true }: ScopeOptions = {}): boolean {
 	const normalized = file.replace(/\\/g, '/');
 	if (!normalized.startsWith('content/') || !normalized.endsWith('.md')) return false;
 	if (normalized.startsWith('content/_partials/')) return false;
@@ -18,12 +43,12 @@ export function isRoutableContentFile(file, { includeLanding = true } = {}) {
 	return true;
 }
 
-export function isInScopeContentFile(file) {
+export function isInScopeContentFile(file: string): boolean {
 	return isRoutableContentFile(file, { includeLanding: false });
 }
 
-export function listRoutableContentFiles(dir = 'content', { includeLanding = true } = {}) {
-	const files = [];
+export function listRoutableContentFiles(dir = 'content', { includeLanding = true }: ScopeOptions = {}): string[] {
+	const files: string[] = [];
 	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
 		const fullPath = path.join(dir, entry.name);
 		const normalized = fullPath.replace(/\\/g, '/');
@@ -39,7 +64,7 @@ export function listRoutableContentFiles(dir = 'content', { includeLanding = tru
 	return files;
 }
 
-export function listInScopeContentFiles(dir = 'content') {
+export function listInScopeContentFiles(dir = 'content'): string[] {
 	return listRoutableContentFiles(dir, { includeLanding: false });
 }
 
@@ -49,13 +74,13 @@ export function listInScopeContentFiles(dir = 'content') {
  * a few top-level fields and run inside hooks/scripts where fast startup matters.
  * Do not use this for nested YAML structures or multiline YAML values.
  */
-export function parseFrontmatter(source) {
+export function parseFrontmatter(source: string): Frontmatter {
 	const block = getFrontmatterBlock(source);
 	if (!block) return {};
 
 	const lines = block.body.split(/\r?\n/);
-	const data = {};
-	let currentArrayKey = null;
+	const data: Frontmatter = {};
+	let currentArrayKey: string | null = null;
 
 	for (const line of lines) {
 		const keyMatch = line.match(/^([A-Za-z_][\w-]*):\s*(.*)$/);
@@ -87,7 +112,7 @@ export function parseFrontmatter(source) {
 		if (currentArrayKey) {
 			const itemMatch = line.match(/^\s*-\s*(.+)$/);
 			if (itemMatch) {
-				data[currentArrayKey].push(cleanScalar(itemMatch[1]));
+				(data[currentArrayKey] as string[]).push(cleanScalar(itemMatch[1]));
 				continue;
 			}
 			if (/^[^\s]/.test(line)) {
@@ -99,7 +124,7 @@ export function parseFrontmatter(source) {
 	return data;
 }
 
-export function cleanScalar(value) {
+export function cleanScalar(value: string): string {
 	let result = value.trim();
 	if ((result.startsWith('"') && result.endsWith('"')) || (result.startsWith("'") && result.endsWith("'"))) {
 		result = result.slice(1, -1);
@@ -111,7 +136,7 @@ export function cleanScalar(value) {
  * Preserve the file's existing newline style so hook-driven edits stay mechanical and
  * do not create noisy cross-platform diffs.
  */
-export function getFrontmatterBlock(source) {
+export function getFrontmatterBlock(source: string): FrontmatterBlock | null {
 	const match = source.match(/^---(\r?\n)([\s\S]*?)\r?\n---(\r?\n|$)/);
 	if (!match) return null;
 
@@ -126,7 +151,7 @@ export function getFrontmatterBlock(source) {
 	};
 }
 
-export function hasStableId(source) {
+export function hasStableId(source: string): boolean {
 	return /(?:^|\r?\n)stableId:\s*.+(?:\r?\n|$)/.test(getFrontmatterBlock(source)?.body || '');
 }
 
@@ -134,7 +159,7 @@ export function hasStableId(source) {
  * Insert stableId as the first frontmatter field so the backfill stays easy to scan
  * and future merges are less likely to bury identity changes inside unrelated metadata.
  */
-export function ensureStableIdInSource(source, stableId) {
+export function ensureStableIdInSource(source: string, stableId: string): EnsureResult {
 	const block = getFrontmatterBlock(source);
 	if (!block) {
 		return { changed: false, source, reason: 'missing-frontmatter' };
@@ -149,6 +174,6 @@ export function ensureStableIdInSource(source, stableId) {
 	return { changed: true, source: updated, reason: 'inserted' };
 }
 
-export function isValidUuid(value) {
+export function isValidUuid(value: unknown): value is string {
 	return typeof value === 'string' && UUID_RE.test(value.trim());
 }

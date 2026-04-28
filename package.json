@@ -7,11 +7,11 @@
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
-		"postinstall": "node scripts/setup-hooks.mjs && nuxt prepare",
-		"stable-ids:ensure": "node scripts/ensure-stable-ids.mjs",
-		"stable-ids:check": "node scripts/check-stable-ids.mjs",
-		"redirects:sync": "node scripts/redirects-sync.mjs --base origin/main --manifest redirects.json --hints .docs/redirect-hints.json --report .docs/redirect-decisions-needed.json --write-deterministic --fail-on-unresolved",
-		"redirects:check": "node scripts/redirects-sync.mjs --base origin/main --manifest redirects.json --hints .docs/redirect-hints.json --report .docs/redirect-decisions-needed.json --fail-on-unresolved --no-write"
+		"postinstall": "node scripts/setup-hooks.ts && nuxt prepare",
+		"stable-ids:ensure": "node scripts/ensure-stable-ids.ts",
+		"stable-ids:check": "node scripts/check-stable-ids.ts",
+		"redirects:sync": "node scripts/redirects-sync.ts --base origin/main --manifest redirects.json --hints .docs/redirect-hints.json --report .docs/redirect-decisions-needed.json --write-deterministic --fail-on-unresolved",
+		"redirects:check": "node scripts/redirects-sync.ts --base origin/main --manifest redirects.json --hints .docs/redirect-hints.json --report .docs/redirect-decisions-needed.json --fail-on-unresolved --no-write"
 	},
 	"dependencies": {
 		"@directus/openapi": "0.3.0",
@@ -53,5 +53,8 @@
 			"vite": "npm:rolldown-vite@latest"
 		}
 	},
-	"packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8"
+	"packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8",
+	"engines": {
+		"node": ">=22.6"
+	}
 }

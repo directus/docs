@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import type { ExecFileSyncOptionsWithStringEncoding } from 'node:child_process';
 import fs from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import crypto from 'node:crypto';
@@ -10,7 +11,7 @@ import {
 	isValidUuid,
 	listInScopeContentFiles,
 	parseFrontmatter,
-} from './_content-lib.mjs';
+} from './_content-lib.ts';
 
 const args = process.argv.slice(2);
 const stagedOnly = args.includes('--staged');
@@ -19,7 +20,7 @@ if (args.includes('--help') || args.includes('-h')) {
 	console.log(`ensure-stable-ids
 
 Usage:
-  node scripts/ensure-stable-ids.mjs [--staged]
+  node scripts/ensure-stable-ids.ts [--staged]
 
 Options:
   --staged   Only process staged added/modified docs
@@ -27,11 +28,16 @@ Options:
 	process.exit(0);
 }
 
-function runGit(args, options = {}) {
+interface InvalidEntry {
+	file: string;
+	stableId: string;
+}
+
+function runGit(args: string[], options: Partial<ExecFileSyncOptionsWithStringEncoding> = {}): string {
 	return execFileSync('git', args, { encoding: 'utf8', ...options });
 }
 
-function listStagedFiles() {
+function listStagedFiles(): string[] {
 	const output = runGit(['diff', '--cached', '--name-only', '--diff-filter=AM']);
 	return output
 		.split('\n')
@@ -40,7 +46,7 @@ function listStagedFiles() {
 		.filter(isInScopeContentFile);
 }
 
-function stageFile(file) {
+function stageFile(file: string): void {
 	runGit(['add', '--', file]);
 }
 
@@ -48,7 +54,7 @@ function stageFile(file) {
  * In hook mode we read the staged blob from the index, not the working tree, so ID
  * insertion reflects what is actually being committed.
  */
-function readIndexedFile(file) {
+function readIndexedFile(file: string): string {
 	return runGit(['show', `:${file}`]);
 }
 
@@ -56,25 +62,25 @@ function readIndexedFile(file) {
  * If a file has unstaged edits, re-staging it would collapse a partial `git add -p`
  * selection into a full-file stage. We abort instead of trying to outsmart git here.
  */
-function hasUnstagedChanges(file) {
+function hasUnstagedChanges(file: string): boolean {
 	try {
 		runGit(['diff', '--quiet', '--', file], { stdio: 'ignore' });
 		return false;
 	}
 	catch (error) {
-		if (error.status === 1) return true;
+		if ((error as { status?: number }).status === 1) return true;
 		throw error;
 	}
 }
 
-function main() {
+function main(): void {
 	const files = stagedOnly ? listStagedFiles() : listInScopeContentFiles();
 	let inserted = 0;
 	let alreadyPresent = 0;
 	let missingFrontmatter = 0;
 	let staged = 0;
-	const invalidStableIds = [];
-	const partialStageConflicts = [];
+	const invalidStableIds: InvalidEntry[] = [];
+	const partialStageConflicts: string[] = [];
 
 	for (const file of files) {
 		const source = stagedOnly ? readIndexedFile(file) : fs.readFileSync(file, 'utf8');
@@ -84,8 +90,9 @@ function main() {
 			if (result.reason === 'already-present') {
 				alreadyPresent++;
 				const frontmatter = parseFrontmatter(source);
-				if (frontmatter.stableId && !isValidUuid(frontmatter.stableId)) {
-					invalidStableIds.push({ file, stableId: frontmatter.stableId });
+				const stableId = frontmatter.stableId;
+				if (typeof stableId === 'string' && !isValidUuid(stableId)) {
+					invalidStableIds.push({ file, stableId });
 				}
 			}
 			else if (result.reason === 'missing-frontmatter') missingFrontmatter++;

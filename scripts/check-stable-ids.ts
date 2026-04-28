@@ -2,7 +2,7 @@
 
 import fs from 'node:fs';
 
-import { getFrontmatterBlock, isValidUuid, listInScopeContentFiles, parseFrontmatter } from './_content-lib.mjs';
+import { getFrontmatterBlock, isValidUuid, listInScopeContentFiles, parseFrontmatter } from './_content-lib.ts';
 
 const args = process.argv.slice(2);
 
@@ -10,15 +10,22 @@ if (args.includes('--help') || args.includes('-h')) {
 	console.log(`check-stable-ids
 
 Usage:
-  node scripts/check-stable-ids.mjs
+  node scripts/check-stable-ids.ts
 `);
 	process.exit(0);
 }
 
-function main() {
+interface CheckFailure {
+	file: string;
+	reason: string;
+}
+
+type FailureCategory = 'missing frontmatter' | 'missing stableId' | 'invalid stableId';
+
+function main(): void {
 	const files = listInScopeContentFiles();
-	const failures = [];
-	const counts = { 'missing frontmatter': 0, 'missing stableId': 0, 'invalid stableId': 0 };
+	const failures: CheckFailure[] = [];
+	const counts: Record<FailureCategory, number> = { 'missing frontmatter': 0, 'missing stableId': 0, 'invalid stableId': 0 };
 
 	for (const file of files) {
 		const source = fs.readFileSync(file, 'utf8');

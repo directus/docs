@@ -3,12 +3,77 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import type { ExecFileSyncOptionsWithStringEncoding } from 'node:child_process';
 
-import { listRoutableContentFiles, parseFrontmatter } from './_content-lib.mjs';
+import { listRoutableContentFiles, parseFrontmatter } from './_content-lib.ts';
 
-const DEFAULTS = {
+interface CliOptions {
+	base: string;
+	manifest: string;
+	hints: string;
+	report: string;
+	writeDeterministic: boolean;
+	failOnUnresolved: boolean;
+	noWrite: boolean;
+}
+
+interface SnapshotItem {
+	collection: 'content' | 'landing';
+	path: string;
+	sourceFile: string;
+	title?: string;
+	stableId?: string;
+}
+
+type RedirectStatusCode = 301 | 302 | 307 | 308;
+
+const VALID_STATUS_CODES: ReadonlySet<RedirectStatusCode> = new Set([301, 302, 307, 308]);
+
+interface RedirectEntry {
+	to: string;
+	statusCode: RedirectStatusCode;
+}
+
+interface ManifestData {
+	entries: Record<string, RedirectEntry>;
+	fromSet: Set<string>;
+}
+
+interface Hints {
+	manualRedirects: Record<string, string>;
+}
+
+interface AcceptedResolution {
+	status: 'accepted';
+	from: string;
+	to: string;
+	reason: string;
+	old: SnapshotItem;
+	matches: SnapshotItem[];
+}
+
+interface UnresolvedResolution {
+	status: 'unresolved';
+	reason: string;
+	old: SnapshotItem;
+	matches: SnapshotItem[];
+}
+
+type Resolution = AcceptedResolution | UnresolvedResolution;
+
+interface Summary {
+	baseRef: string;
+	basePages: number;
+	currentPages: number;
+	removedRoutes: number;
+	uncoveredRemovedRoutes: number;
+	deterministicRedirects: number;
+	redirectDecisionsNeeded: number;
+}
+
+const DEFAULTS: CliOptions = {
 	base: 'origin/main',
-	manifest: 'redirects.csv',
+	manifest: 'redirects.json',
 	hints: '.docs/redirect-hints.json',
 	report: '.docs/redirect-decisions-needed.json',
 	writeDeterministic: false,
@@ -16,8 +81,8 @@ const DEFAULTS = {
 	noWrite: false,
 };
 
-function parseArgs(argv) {
-	const options = { ...DEFAULTS };
+function parseArgs(argv: string[]): CliOptions {
+	const options: CliOptions = { ...DEFAULTS };
 
 	for (let i = 0; i < argv.length; i++) {
 		const arg = argv[i];
@@ -42,15 +107,15 @@ function parseArgs(argv) {
 	return options;
 }
 
-function printHelp() {
+function printHelp(): void {
 	console.log(`redirects-sync
 
 Usage:
-  node scripts/redirects-sync.mjs [options]
+  node scripts/redirects-sync.ts [options]
 
 Options:
   --base <git-ref>          Base git ref to diff against (default: origin/main)
-  --manifest <file>         Redirect manifest CSV (default: redirects.csv)
+  --manifest <file>         Redirect manifest JSON (default: redirects.json)
   --hints <file>            Manual redirect hints JSON (default: .docs/redirect-hints.json)
   --report <file>           Redirect decisions report (default: .docs/redirect-decisions-needed.json)
   --write-deterministic     Auto-write deterministic redirects to the manifest
@@ -59,17 +124,18 @@ Options:
 `);
 }
 
-function runGit(args, options = {}) {
+function runGit(args: string[], options: Partial<ExecFileSyncOptionsWithStringEncoding> = {}): string {
 	try {
 		return execFileSync('git', args, { encoding: 'utf8', ...options });
 	}
 	catch (error) {
-		const details = error.stderr?.toString?.() || error.message;
+		const err = error as { stderr?: { toString?: () => string }; message?: string };
+		const details = err.stderr?.toString?.() || err.message || String(error);
 		throw new Error(`git ${args.join(' ')} failed:\n${details}`);
 	}
 }
 
-function assertBaseRefExists(baseRef) {
+function assertBaseRefExists(baseRef: string): void {
 	try {
 		runGit(['rev-parse', '--verify', baseRef], { stdio: 'ignore' });
 	}
@@ -78,7 +144,7 @@ function assertBaseRefExists(baseRef) {
 	}
 }
 
-function listBaseContentFiles(baseRef) {
+function listBaseContentFiles(baseRef: string): string[] {
 	const output = runGit(['ls-tree', '-r', '--name-only', baseRef, '--', 'content']);
 	return output
 		.split('\n')
@@ -88,15 +154,15 @@ function listBaseContentFiles(baseRef) {
 		.filter(file => !file.startsWith('content/_partials/'));
 }
 
-function readBaseFile(baseRef, file) {
+function readBaseFile(baseRef: string, file: string): string {
 	return runGit(['show', `${baseRef}:${file}`]);
 }
 
-function readCurrentFile(file) {
+function readCurrentFile(file: string): string {
 	return fs.readFileSync(file, 'utf8');
 }
 
-function stripNumericPrefix(segment) {
+function stripNumericPrefix(segment: string): string {
 	return segment.replace(/^\d+\./, '');
 }
 
@@ -104,14 +170,14 @@ function stripNumericPrefix(segment) {
  * Redirect continuity must follow Nuxt's public route semantics, not raw filesystem
  * paths. In particular, numeric ordering prefixes affect nav order but not URL shape.
  */
-function buildPublicPath(file, frontmatter = {}) {
+function buildPublicPath(file: string, frontmatter: Record<string, unknown> = {}): string {
 	if (typeof frontmatter.path === 'string' && frontmatter.path.trim()) {
 		return normalizePublicPath(frontmatter.path.trim());
 	}
 
 	const relative = file.replace(/^content\//, '');
 	const parts = relative.split('/');
-	const fileName = parts.pop();
+	const fileName = parts.pop()!;
 	const fileStem = stripNumericPrefix(fileName.replace(/\.[^.]+$/, ''));
 	const pathParts = parts.map(stripNumericPrefix).filter(Boolean);
 
@@ -122,13 +188,13 @@ function buildPublicPath(file, frontmatter = {}) {
 	return normalizePublicPath(`/${pathParts.join('/')}`);
 }
 
-function normalizePublicPath(routePath) {
+function normalizePublicPath(routePath: string): string {
 	if (!routePath || routePath === '/') return '/';
 	const normalized = `/${routePath.replace(/^\/+/, '').replace(/\/+$/, '')}`;
 	return normalized === '/index' ? '/' : normalized;
 }
 
-function toSnapshotItem(file, source, collection = 'content') {
+function toSnapshotItem(file: string, source: string, collection: 'content' | 'landing' = 'content'): SnapshotItem {
 	const frontmatter = parseFrontmatter(source);
 	const publicPath = buildPublicPath(file, frontmatter);
 
@@ -136,33 +202,33 @@ function toSnapshotItem(file, source, collection = 'content') {
 		collection,
 		path: publicPath,
 		sourceFile: file,
-		title: frontmatter.title,
-		stableId: frontmatter.stableId,
+		title: typeof frontmatter.title === 'string' ? frontmatter.title : undefined,
+		stableId: typeof frontmatter.stableId === 'string' ? frontmatter.stableId : undefined,
 	};
 }
 
-function loadCurrentSnapshot() {
+function loadCurrentSnapshot(): SnapshotItem[] {
 	const files = listRoutableContentFiles();
-	return files.map(file => {
-		const collection = file === 'content/index.md' ? 'landing' : 'content';
+	return files.map((file) => {
+		const collection: 'content' | 'landing' = file === 'content/index.md' ? 'landing' : 'content';
 		return toSnapshotItem(file, readCurrentFile(file), collection);
 	});
 }
 
-function loadBaseSnapshot(baseRef) {
+function loadBaseSnapshot(baseRef: string): SnapshotItem[] {
 	const files = listBaseContentFiles(baseRef);
-	return files.map(file => {
-		const collection = file === 'content/index.md' ? 'landing' : 'content';
+	return files.map((file) => {
+		const collection: 'content' | 'landing' = file === 'content/index.md' ? 'landing' : 'content';
 		return toSnapshotItem(file, readBaseFile(baseRef, file), collection);
 	});
 }
 
-function indexByPath(items) {
+function indexByPath(items: SnapshotItem[]): Map<string, SnapshotItem> {
 	return new Map(items.map(item => [item.path, item]));
 }
 
-function indexByStableId(items) {
-	const byStableId = new Map();
+function indexByStableId(items: SnapshotItem[]): Map<string, SnapshotItem[]> {
+	const byStableId = new Map<string, SnapshotItem[]>();
 	for (const item of items) {
 		if (!item.stableId) continue;
 		const matches = byStableId.get(item.stableId) || [];
@@ -172,7 +238,7 @@ function indexByStableId(items) {
 	return byStableId;
 }
 
-function loadRedirectManifest(file) {
+function loadRedirectManifest(file: string): ManifestData {
 	if (!fs.existsSync(file)) {
 		return { entries: {}, fromSet: new Set() };
 	}
@@ -180,32 +246,41 @@ function loadRedirectManifest(file) {
 	const text = fs.readFileSync(file, 'utf8').trim();
 	if (!text) return { entries: {}, fromSet: new Set() };
 
-	const parsed = JSON.parse(text);
+	const parsed = JSON.parse(text) as unknown;
 	if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
 		throw new Error(`Redirect manifest ${file} must be a JSON object keyed by source path`);
 	}
 
-	for (const [from, value] of Object.entries(parsed)) {
-		if (!value || typeof value !== 'object' || typeof value.to !== 'string' || typeof value.statusCode !== 'number') {
+	const entries: Record<string, RedirectEntry> = {};
+	for (const [from, value] of Object.entries(parsed as Record<string, unknown>)) {
+		if (!value || typeof value !== 'object') {
 			throw new Error(`Invalid redirect entry for ${from} in ${file}: expected { to: string, statusCode: number }`);
 		}
+		const candidate = value as { to?: unknown; statusCode?: unknown };
+		if (typeof candidate.to !== 'string' || typeof candidate.statusCode !== 'number') {
+			throw new Error(`Invalid redirect entry for ${from} in ${file}: expected { to: string, statusCode: number }`);
+		}
+		if (!VALID_STATUS_CODES.has(candidate.statusCode as RedirectStatusCode)) {
+			throw new Error(`Invalid redirect entry for ${from} in ${file}: statusCode ${candidate.statusCode} must be one of 301, 302, 307, 308`);
+		}
+		entries[from] = { to: candidate.to, statusCode: candidate.statusCode as RedirectStatusCode };
 	}
 
-	return { entries: parsed, fromSet: new Set(Object.keys(parsed)) };
+	return { entries, fromSet: new Set(Object.keys(entries)) };
 }
 
-function loadHints(file) {
+function loadHints(file: string): Hints {
 	if (!fs.existsSync(file)) {
 		return { manualRedirects: {} };
 	}
 
-	const parsed = JSON.parse(fs.readFileSync(file, 'utf8'));
+	const parsed = JSON.parse(fs.readFileSync(file, 'utf8')) as { manualRedirects?: Record<string, string> };
 	return {
 		manualRedirects: parsed.manualRedirects || {},
 	};
 }
 
-function writeRedirectManifest(file, entries) {
+function writeRedirectManifest(file: string, entries: Record<string, RedirectEntry>): void {
 	const sorted = Object.fromEntries(
 		Object.entries(entries).sort(([a], [b]) => a.localeCompare(b)),
 	);
@@ -216,7 +291,11 @@ function writeRedirectManifest(file, entries) {
  * Redirect generation is intentionally strict: deterministic same-stableId matches can
  * be auto-written, while splits, merges, and deletions stay manual decisions.
  */
-function resolveRemovedRoute(oldPage, currentByStableId, manualRedirects) {
+function resolveRemovedRoute(
+	oldPage: SnapshotItem,
+	currentByStableId: Map<string, SnapshotItem[]>,
+	manualRedirects: Record<string, string>,
+): Resolution {
 	const manualTarget = manualRedirects[oldPage.path];
 	if (manualTarget) {
 		return {
@@ -274,7 +353,17 @@ function resolveRemovedRoute(oldPage, currentByStableId, manualRedirects) {
  * The report is optimized for human review, not programmatic scoring. Once stable IDs
  * exist everywhere, the remaining cases are true editorial decisions.
  */
-function writeDecisionArtifacts(file, unresolved, summary) {
+interface DecisionPayload {
+	generatedAt: string;
+	summary: Summary;
+	unresolved: Array<{
+		reason: string;
+		old: { path: string; title: string; sourceFile: string; stableId: string };
+		matches: Array<{ path: string; title: string; sourceFile: string; stableId: string }>;
+	}>;
+}
+
+function writeDecisionArtifacts(file: string, unresolved: UnresolvedResolution[], summary: Summary): void {
 	const payload = {
 		generatedAt: new Date().toISOString(),
 		summary,
@@ -310,7 +399,7 @@ function writeDecisionArtifacts(file, unresolved, summary) {
 	}
 }
 
-function buildDecisionMarkdown(payload) {
+function buildDecisionMarkdown(payload: DecisionPayload): string {
 	const lines = [
 		'# Redirect Decisions Needed',
 		'',
@@ -341,7 +430,7 @@ function buildDecisionMarkdown(payload) {
 	return lines.join('\n') + '\n';
 }
 
-function main() {
+function main(): void {
 	const options = parseArgs(process.argv.slice(2));
 	assertBaseRefExists(options.base);
 	const hints = loadHints(options.hints);
@@ -356,8 +445,8 @@ function main() {
 	const removed = [...baseByPath.values()].filter(page => !currentByPath.has(page.path));
 	const uncoveredRemoved = removed.filter(page => !manifest.fromSet.has(page.path));
 
-	const accepted = [];
-	const unresolved = [];
+	const accepted: AcceptedResolution[] = [];
+	const unresolved: UnresolvedResolution[] = [];
 
 	for (const oldPage of uncoveredRemoved) {
 		const resolution = resolveRemovedRoute(oldPage, currentByStableId, hints.manualRedirects);
@@ -369,7 +458,7 @@ function main() {
 		? accepted.filter(row => !manifest.fromSet.has(row.from))
 		: [];
 
-	const summary = {
+	const summary: Summary = {
 		baseRef: options.base,
 		basePages: basePages.length,
 		currentPages: currentPages.length,

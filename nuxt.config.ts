@@ -1,12 +1,20 @@
 import { readFileSync } from 'node:fs';
+import type { NitroConfig } from 'nitropack';
 
 const BASE_URL = '/docs';
 
-function loadRedirectRouteRules() {
+type RedirectStatusCode = 301 | 302 | 307 | 308;
+
+interface RedirectRule {
+	to: string;
+	statusCode: RedirectStatusCode;
+}
+
+function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 	const raw = readFileSync('redirects.json', 'utf8').trim();
 	if (!raw) return {};
-	const entries = JSON.parse(raw);
-	const rules = {};
+	const entries = JSON.parse(raw) as Record<string, RedirectRule>;
+	const rules: NitroConfig['routeRules'] = {};
 	for (const [from, rule] of Object.entries(entries)) {
 		const key = `${BASE_URL}${from}`;
 		rules[key] = { redirect: { to: `${BASE_URL}${rule.to}`, statusCode: rule.statusCode } };
@@ -36,8 +44,6 @@ export default defineNuxtConfig({
 	app: {
 		baseURL: BASE_URL,
 	},
-
-	routeRules: loadRedirectRouteRules(),
 
 	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
 
@@ -124,6 +130,8 @@ export default defineNuxtConfig({
 	build: {
 		transpile: ['shiki'],
 	},
+
+	routeRules: loadRedirectRouteRules(),
 
 	future: {
 		compatibilityVersion: 4,
