@@ -148,6 +148,18 @@ const sectionHeader = computed<{ label: string; icon?: string } | null>(() => {
 							variant="link"
 							highlight
 						/>
+
+						<NuxtLink
+							v-if="selectedFrameworkPath"
+							to="/frameworks"
+							class="mt-4 flex items-center gap-2 border-t border-dashed border-default pt-4 text-sm font-medium text-muted transition hover:text-primary"
+						>
+							<Icon
+								name="i-ph-arrow-left"
+								class="size-4"
+							/>
+							All Frameworks
+						</NuxtLink>
 					</template>
 
 					<UContentNavigation
