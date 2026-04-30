@@ -27,3 +27,5 @@ logs
 .vercel
 
 .vscode
+
+.claude/scheduled_tasks.lock
