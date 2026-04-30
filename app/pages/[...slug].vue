@@ -57,16 +57,6 @@ const frameworkRootMatch = computed(() => /^\/frameworks\/([^/]+)\/?$/.exec(path
 const frameworkGuideMatch = computed(() => /^\/frameworks\/([^/]+)\/.+/.exec(path.value));
 const frameworkSlug = computed(() => frameworkRootMatch.value?.[1] ?? frameworkGuideMatch.value?.[1]);
 
-const findNavNode = (items: ContentNavigationItem[] | undefined, target: string): ContentNavigationItem | undefined => {
-	if (!items) return undefined;
-	for (const item of items) {
-		if (item.path === target) return item;
-		const child = findNavNode(item.children, target);
-		if (child) return child;
-	}
-	return undefined;
-};
-
 const frameworkNode = computed(() => {
 	const slug = frameworkSlug.value;
 	return slug ? findNavNode(navigation.value, `/frameworks/${slug}`) : undefined;

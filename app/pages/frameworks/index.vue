@@ -26,18 +26,8 @@ type FrameworkCard = {
 	count: number;
 };
 
-const findNode = (items: ContentNavigationItem[] | undefined, path: string): ContentNavigationItem | undefined => {
-	if (!items) return undefined;
-	for (const item of items) {
-		if (item.path === path) return item;
-		const child = findNode(item.children, path);
-		if (child) return child;
-	}
-	return undefined;
-};
-
 const frameworkCards = computed<FrameworkCard[]>(() => {
-	const root = findNode(nav.value as ContentNavigationItem[] | undefined, '/frameworks');
+	const root = findNavNode(nav.value as ContentNavigationItem[] | undefined, '/frameworks');
 	const items = root?.children ?? [];
 
 	return items

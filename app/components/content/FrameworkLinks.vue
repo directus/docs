@@ -3,18 +3,8 @@ import type { ContentNavigationItem } from '@nuxt/content';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]> | undefined;
 
-const findNode = (items: ContentNavigationItem[] | undefined, target: string): ContentNavigationItem | undefined => {
-	if (!items) return undefined;
-	for (const item of items) {
-		if (item.path === target) return item;
-		const child = findNode(item.children, target);
-		if (child) return child;
-	}
-	return undefined;
-};
-
 const frameworks = computed(() => {
-	const root = findNode(navigation?.value, '/frameworks');
+	const root = findNavNode(navigation?.value, '/frameworks');
 	return (root?.children ?? [])
 		.filter(item => item.path && item.path !== '/frameworks')
 		.map(item => ({

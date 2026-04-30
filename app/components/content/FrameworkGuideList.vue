@@ -7,16 +7,6 @@ const props = defineProps<{
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]> | undefined;
 
-const findNavNode = (items: ContentNavigationItem[] | undefined, target: string): ContentNavigationItem | undefined => {
-	if (!items) return undefined;
-	for (const item of items) {
-		if (item.path === target) return item;
-		const child = findNavNode(item.children, target);
-		if (child) return child;
-	}
-	return undefined;
-};
-
 const frameworkLabel = computed(() => {
 	const node = findNavNode(navigation?.value, `/frameworks/${props.slug}`);
 	return node?.title ?? props.slug;
