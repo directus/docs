@@ -63,9 +63,7 @@ const frameworkNode = computed(() => {
 });
 
 const frameworkIcon = computed(() =>
-	frameworkRootMatch.value
-		? (frameworkNode.value as { icon?: string } | undefined)?.icon
-		: undefined,
+	frameworkRootMatch.value ? frameworkNode.value?.icon : undefined,
 );
 
 const frameworkBreadcrumb = computed(() => {

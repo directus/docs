@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import type { ContentNavigationItem } from '@nuxt/content';
-
 definePageMeta({
 	layout: 'docs',
 });
 
 const { data: nav } = await useAsyncData('frameworks-nav', () =>
-	queryCollectionNavigation('content', ['icon', 'description']),
+	queryCollectionNavigation('content', ['icon']),
 );
 
 const { data: guides } = await useAsyncData('frameworks-guide-counts', () =>
@@ -21,13 +19,12 @@ const { data: guides } = await useAsyncData('frameworks-guide-counts', () =>
 type FrameworkCard = {
 	slug: string;
 	label: string;
-	description: string;
 	icon: string;
 	count: number;
 };
 
 const frameworkCards = computed<FrameworkCard[]>(() => {
-	const root = findNavNode(nav.value as ContentNavigationItem[] | undefined, '/frameworks');
+	const root = findNavNode(nav.value, '/frameworks');
 	const items = root?.children ?? [];
 
 	return items
@@ -38,9 +35,8 @@ const frameworkCards = computed<FrameworkCard[]>(() => {
 
 			return {
 				slug,
-				label: (item as { title?: string }).title ?? slug,
-				description: (item as { description?: string }).description ?? '',
-				icon: (item as { icon?: string }).icon ?? 'i-ph-brackets-curly',
+				label: item.title ?? slug,
+				icon: item.icon ?? 'i-ph-brackets-curly',
 				count,
 			};
 		});
@@ -68,10 +64,8 @@ useSeoMeta({
 					:to="`/frameworks/${framework.slug}`"
 					:icon="framework.icon"
 					:title="framework.label"
-					:description="framework.description"
 					:ui="{
 						title: 'font-bold text-pretty',
-						description: 'line-clamp-2',
 						container: 'p-4 md:p-4 lg:p-4',
 					}"
 					class="hover:bg-primary/5 hover:ring-primary"

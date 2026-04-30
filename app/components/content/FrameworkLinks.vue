@@ -10,7 +10,7 @@ const frameworks = computed(() => {
 		.map(item => ({
 			label: item.title,
 			path: item.path,
-			icon: (item as { icon?: string }).icon,
+			icon: item.icon,
 		}));
 });
 </script>

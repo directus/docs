@@ -30,7 +30,7 @@ const breadcrumb = computed(() =>
 );
 
 const frameworkChips = computed(() => {
-	const tech = (page.value as { technologies?: string[] } | null)?.technologies ?? [];
+	const tech = page.value?.technologies ?? [];
 	const root = findNavNode(navigation.value, '/frameworks');
 	const frameworks = root?.children ?? [];
 	return tech
@@ -39,11 +39,11 @@ const frameworkChips = computed(() => {
 			if (!node) return null;
 			return {
 				label: node.title,
-				icon: (node as { icon?: string }).icon,
+				icon: node.icon,
 				to: node.path,
 			};
 		})
-		.filter((c): c is { label: string; icon?: string; to: string } => Boolean(c));
+		.filter(c => c !== null);
 });
 
 defineOgImage('Default', {

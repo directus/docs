@@ -17,7 +17,7 @@ const { data: guides } = await useAsyncData(`framework-${props.slug}-guides`, ()
 		.where('path', 'LIKE', `/frameworks/${props.slug}/%`)
 		.where('path', 'NOT LIKE', '%/.navigation')
 		.where('stem', 'NOT LIKE', '%/index')
-		.select('title', 'description', 'path', 'navigation', 'stem')
+		.select('title', 'description', 'path', 'navigation', 'section', 'stem')
 		.order('stem', 'ASC')
 		.all(),
 );
@@ -29,36 +29,37 @@ const { data: tutorials } = await useAsyncData(`framework-${props.slug}-tutorial
 		.all(),
 );
 
-type Item = {
-	title?: string;
+type LinkItem = {
+	title: string;
 	description?: string;
-	path?: string;
-	navigation?: boolean | { title?: string };
-	stem?: string;
-	technologies?: string[];
+	path: string;
 };
 
-const guideTitle = (g: Item) =>
-	(typeof g.navigation === 'object' && g.navigation?.title) ? g.navigation.title : g.title;
-
-const stemPosition = (stem?: string) => {
-	const last = stem?.split('/').pop() ?? '';
-	const match = /^(\d+)\./.exec(last);
-	return match ? Number(match[1]) : 999;
+const guideTitle = (g: { title: string; navigation?: unknown }) => {
+	if (g.navigation && typeof g.navigation === 'object' && 'title' in g.navigation) {
+		const navTitle = (g.navigation as { title?: string }).title;
+		if (navTitle) return navTitle;
+	}
+	return g.title;
 };
 
 const visibleGuides = computed(() => (guides.value ?? [])
-	.filter((g): g is Item => Boolean(g.path) && g.navigation !== false));
+	.filter(g => g.navigation !== false));
 
-const startHere = computed(() =>
-	visibleGuides.value.filter(g => stemPosition(g.stem) < 10));
+const startHere = computed<LinkItem[]>(() =>
+	visibleGuides.value
+		.filter(g => g.section === 'start-here')
+		.map(g => ({ title: guideTitle(g), description: g.description, path: g.path })));
 
-const moreGuides = computed(() =>
-	visibleGuides.value.filter(g => stemPosition(g.stem) >= 10));
+const moreGuides = computed<LinkItem[]>(() =>
+	visibleGuides.value
+		.filter(g => g.section !== 'start-here')
+		.map(g => ({ title: guideTitle(g), description: g.description, path: g.path })));
 
-const matchingTutorials = computed(() => (tutorials.value ?? [])
+const matchingTutorials = computed<LinkItem[]>(() => (tutorials.value ?? [])
 	.filter(t => Array.isArray(t.technologies) && t.technologies.includes(props.slug))
-	.sort((a, b) => (a.title ?? '').localeCompare(b.title ?? '')));
+	.sort((a, b) => a.title.localeCompare(b.title))
+	.map(t => ({ title: t.title, description: t.description, path: t.path })));
 </script>
 
 <template>
@@ -67,81 +68,21 @@ const matchingTutorials = computed(() => (tutorials.value ?? [])
 			<ProseH2 id="start-here">
 				Start Here
 			</ProseH2>
-			<ul class="divide-y divide-default rounded-lg border border-default">
-				<li
-					v-for="guide in startHere"
-					:key="guide.path"
-					class="p-4 transition hover:bg-muted/50"
-				>
-					<NuxtLink
-						:to="guide.path"
-						class="group flex items-start justify-between gap-4"
-					>
-						<span>
-							<span class="font-semibold text-highlighted group-hover:text-primary">
-								{{ guideTitle(guide) }}
-							</span>
-							<span class="mt-1 block text-sm text-muted">
-								{{ guide.description }}
-							</span>
-						</span>
-						<Icon
-							name="i-ph-arrow-right"
-							class="mt-1 size-4 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-primary"
-						/>
-					</NuxtLink>
-				</li>
-			</ul>
+			<FrameworkLinkList :items="startHere" />
 		</section>
 
 		<section v-if="moreGuides.length">
 			<ProseH2 id="guides">
 				Guides
 			</ProseH2>
-			<ul class="divide-y divide-default rounded-lg border border-default">
-				<li
-					v-for="guide in moreGuides"
-					:key="guide.path"
-					class="p-4 transition hover:bg-muted/50"
-				>
-					<NuxtLink
-						:to="guide.path"
-						class="group flex items-start justify-between gap-4"
-					>
-						<span>
-							<span class="font-semibold text-highlighted group-hover:text-primary">
-								{{ guideTitle(guide) }}
-							</span>
-							<span class="mt-1 block text-sm text-muted">
-								{{ guide.description }}
-							</span>
-						</span>
-						<Icon
-							name="i-ph-arrow-right"
-							class="mt-1 size-4 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-primary"
-						/>
-					</NuxtLink>
-				</li>
-			</ul>
+			<FrameworkLinkList :items="moreGuides" />
 		</section>
 
 		<section v-if="matchingTutorials.length">
 			<ProseH2 id="framework-tutorials">
 				{{ frameworkLabel }} Tutorials
 			</ProseH2>
-			<ul class="mt-4 space-y-2">
-				<li
-					v-for="tutorial in matchingTutorials"
-					:key="tutorial.path"
-				>
-					<NuxtLink
-						:to="tutorial.path"
-						class="text-primary hover:underline"
-					>
-						{{ tutorial.title }}
-					</NuxtLink>
-				</li>
-			</ul>
+			<FrameworkLinkList :items="matchingTutorials" />
 		</section>
 	</div>
 </template>

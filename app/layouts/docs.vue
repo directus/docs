@@ -63,7 +63,7 @@ const frameworkOptions = computed<FrameworkOption[]>(() => {
 		.map(item => ({
 			label: item.title ?? item.path?.split('/').pop() ?? '',
 			value: item.path,
-			icon: (item as { icon?: string }).icon,
+			icon: item.icon,
 		}));
 });
 
@@ -88,6 +88,15 @@ const frameworkNavigation = computed(() => {
 	const node = frameworksRoot.value?.children?.find(item => item.path === path);
 	return node?.children ?? [];
 });
+
+const sectionHeader = computed<{ label: string; icon?: string } | null>(() => {
+	if (isFrameworksSection.value) {
+		return { label: 'Frameworks', icon: 'i-ph-brackets-curly' };
+	}
+	return currentSection.value
+		? { label: currentSection.value.label, icon: currentSection.value.icon }
+		: null;
+});
 </script>
 
 <template>
@@ -101,12 +110,18 @@ const frameworkNavigation = computed(() => {
 						class="my-5"
 					/>
 
-					<template v-if="isFrameworksSection">
-						<p class="text-xs font-medium text-dimmed mb-2 uppercase flex items-center gap-1">
-							<Icon name="i-ph-brackets-curly" />
-							Frameworks
-						</p>
+					<p
+						v-if="sectionHeader"
+						class="text-xs font-medium text-dimmed mb-2 uppercase flex items-center gap-1"
+					>
+						<Icon
+							v-if="sectionHeader.icon"
+							:name="sectionHeader.icon"
+						/>
+						{{ sectionHeader.label }}
+					</p>
 
+					<template v-if="isFrameworksSection">
 						<USelectMenu
 							:model-value="selectedFrameworkPath"
 							:items="frameworkOptions"
@@ -135,25 +150,13 @@ const frameworkNavigation = computed(() => {
 						/>
 					</template>
 
-					<template v-else>
-						<p
-							v-if="currentSection"
-							class="text-xs font-medium text-dimmed mb-2 uppercase flex items-center gap-1"
-						>
-							<Icon
-								v-if="currentSection?.icon"
-								:name="currentSection.icon"
-							/>
-							{{ currentSection.label }}
-						</p>
-
-						<UContentNavigation
-							:navigation="navigation"
-							default-open
-							variant="link"
-							highlight
-						/>
-					</template>
+					<UContentNavigation
+						v-else
+						:navigation="navigation"
+						default-open
+						variant="link"
+						highlight
+					/>
 				</UPageAside>
 			</template>
 
