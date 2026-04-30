@@ -11,8 +11,6 @@ authors:
   - name: Paul Boudewijn
     title: Guest Author
 description: Learn how to deploy Directus on a Docker container on Azure.
-stack:
-  - azure
 ---
 This guide outlines the steps to deploy Directus on Azure using Docker, with a focus on utilizing PostgreSQL as a database.
 

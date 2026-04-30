@@ -8,8 +8,6 @@ authors:
   - name: Craig Harman
     title: Guest Author
 description: Learn how to setup Directus realtime with Nuxt.
-stack:
-  - nuxt
 ---
 Directus offers realtime capabilities, powered by websockets. You can use these with the Directus SDK to create your own realtime applications. In this tutorial, you will build a chat application using Nuxt and a Directus project.
 a

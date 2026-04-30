@@ -9,8 +9,6 @@ authors:
   - name: Yusuf Akorede
     title: Guest Author
 description: Learn how to deploy Directus on a Docker container on an Ubuntu server.
-stack:
-  - ubuntu
 ---
 In this tutorial, you will learn how to deploy a Directus application within a Docker container on an Ubuntu server and connect it to a custom domain. [Ubuntu](https://ubuntu.com/download/server) is a popular open source Linux distribution which is commonly available from hosting providers.
 

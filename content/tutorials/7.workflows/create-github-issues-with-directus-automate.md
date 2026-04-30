@@ -9,8 +9,6 @@ authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
 description: Learn how to integrate GitHub with Directus Flows to create new issues.
-stack:
-  - github
 ---
 At the bottom of every page in our docs (including this one) is a feedback widget, which we use to gather feedback on what's good and what needs improving across our pages. All of this data is stored in a Directus project which we look through weekly and create associated GitHub Issues if action is required.
 

@@ -9,8 +9,6 @@ authors:
   - name: Trust Jamin
     title: Guest Author
 description: Learn to build a hotel booking site with dynamic availability and payments via Stripe.
-stack:
-  - nextjs
 ---
 In this tutorial, you will build a fully functional hotel booking website, using Next.js for the frontend, Directus as the backend service and Stripe for receiving payments.
 

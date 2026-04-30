@@ -9,8 +9,6 @@ authors:
   - name: Tim Butterfield
     title: Guest Author
 description: Learn how to build a custom operation that uses the Twilio SDK.
-stack:
-  - twilio
 ---
 Operations allow you to trigger your own code in a Flow. This guide will show you how to use the Twilio Node.js helper
 library to send SMS messages in Flows.

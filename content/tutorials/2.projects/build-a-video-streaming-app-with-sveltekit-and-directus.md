@@ -9,8 +9,6 @@ authors:
   - name: Clara Ekekenta
     title: Guest Author
 description: Learn how to store and retrieve video metadata, and then build a streaming application.
-stack:
-  - sveltekit
 ---
 In this tutorial, you will learn how to build an application using Directus as a backend. You will store and retrieve video metadata in a Directus project as a content management system, and use them to build a video streaming application that tracks views.
 

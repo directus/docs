@@ -9,8 +9,6 @@ authors:
   - name: Tim Butterfield
     title: Guest Author
 description: Learn how to use the Stripe SDK to create data when actions occur in Directus.
-stack:
-  - stripe
 ---
 Hooks allow you to trigger your own code under certain conditions. This tutorial will show you how to create a Stripe
 account when an item is created in Directus and write the customer ID back to the record.

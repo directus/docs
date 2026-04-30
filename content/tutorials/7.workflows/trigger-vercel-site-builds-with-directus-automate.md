@@ -9,8 +9,6 @@ authors:
   - name: Bryant Gillespie
     title: Growth Engineer
 description: Learn how to trigger new Vercel website builds through Directus Flows.
-stack:
-  - vercel
 ---
 ## Explanation
 

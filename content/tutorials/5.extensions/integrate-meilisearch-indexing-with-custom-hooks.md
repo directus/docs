@@ -9,8 +9,6 @@ authors:
   - name: Clara Ekekenta
     title: Guest Author
 description: Learn how to maintain an Meilisearch index when data is created, updated, and deleted.
-stack:
-  - meilisearch
 ---
 In this article, we will explore how to index data from Directus in Meilisearch by building a custom hook extension, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications.
 

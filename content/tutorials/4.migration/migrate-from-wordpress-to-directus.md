@@ -9,8 +9,6 @@ authors:
   - name: Muhammed Ali
     title: Guest Author
 description: Learn how to migrate posts and images to Directus, with tips on plugins.
-stack:
-  - wordpress
 ---
 
 If you are considering transitioning your content management system from WordPress to Directus, this tutorial is for you. By the end, you will understand the process in migrating content, data, and other functionality from WordPress to Directus.

@@ -9,8 +9,6 @@ authors:
   - name: Bryant Gillespie
     title: Growth Engineer
 description: Learn how to data model for multiple, repeating sections of content.
-stack:
-  - db
 ---
 
 Many websites are made of common, repeating sections or groups of content.

@@ -8,8 +8,6 @@ authors:
   - name: Temitope Oyedelde
     title: Guest Author
 description: Learn how to setup Directus realtime with SvelteKit.
-stack:
-  - sveltekit
 ---
 Directus offers real-time capabilities powered by WebSockets. You can use these with the Directus SDK to create your own real-time applications. In this tutorial, you will build a chat application using SvelteKit and a Directus project.
 

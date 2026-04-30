@@ -9,8 +9,6 @@ authors:
   - name: Matthew Ruffino
     title: Guest Author
 description: Learn how to deploy Directus on the Digital Ocean App Platform.
-stack:
-  - digitalocean
 ---
 This guide shows you how to deploy Directus on the DigitalOcean App Platform with a separate database, object storage, and optional Redis-based synchronization.
 

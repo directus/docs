@@ -25,7 +25,7 @@ const { data: guides } = await useAsyncData(`framework-${props.slug}-guides`, ()
 const { data: tutorials } = await useAsyncData(`framework-${props.slug}-tutorials`, () =>
 	queryCollection('content')
 		.where('path', 'LIKE', '/tutorials/%')
-		.select('title', 'description', 'path', 'stack')
+		.select('title', 'description', 'path', 'technologies')
 		.all(),
 );
 
@@ -35,7 +35,7 @@ type Item = {
 	path?: string;
 	navigation?: boolean | { title?: string };
 	stem?: string;
-	stack?: string[];
+	technologies?: string[];
 };
 
 const guideTitle = (g: Item) =>
@@ -57,7 +57,7 @@ const moreGuides = computed(() =>
 	visibleGuides.value.filter(g => stemPosition(g.stem) >= 10));
 
 const matchingTutorials = computed(() => (tutorials.value ?? [])
-	.filter(t => Array.isArray(t.stack) && t.stack.includes(props.slug))
+	.filter(t => Array.isArray(t.technologies) && t.technologies.includes(props.slug))
 	.sort((a, b) => (a.title ?? '').localeCompare(b.title ?? '')));
 </script>
 

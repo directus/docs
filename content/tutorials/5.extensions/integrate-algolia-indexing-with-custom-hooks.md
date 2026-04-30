@@ -9,8 +9,6 @@ authors:
   - name: Marvel Ken-Anele
     title: Guest Author
 description: Learn how to maintain an Algolia index when data is created, updated, and deleted.
-stack:
-  - algolia
 ---
 
 In this article, we will explore how to index data from Directus in Algolia, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications. Given that Algolia only support their official JavaScript client and not the REST API directly, we will build a hook extension which utilizes the client.

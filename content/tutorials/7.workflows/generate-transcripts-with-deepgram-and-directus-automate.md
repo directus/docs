@@ -9,8 +9,6 @@ authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
 description: Learn how to integrate Deepgram's Speech-to-Text API with Directus Flows.
-stack:
-  - deepgram
 ---
 Voice is one of the most common ways we communicate and yet one of the hardest for developers to use and understand. In this post, you'll use Deepgram's speech recognition API and Directus Flows to create and store transcripts whenever a new file is uploaded.
 

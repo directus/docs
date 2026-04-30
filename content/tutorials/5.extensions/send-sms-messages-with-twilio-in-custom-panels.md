@@ -9,8 +9,6 @@ authors:
   - name: Tim Butterfield
     title: Guest Author
 description: Learn how to build a form inside a panel extension and use external APIs.
-stack:
-  - twilio
 ---
 Panels are used in dashboards as part of the Insights module. As well as read-only data panels, they can be interactive
 with form inputs.
