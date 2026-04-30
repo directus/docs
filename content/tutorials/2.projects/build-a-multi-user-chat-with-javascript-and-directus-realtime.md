@@ -10,7 +10,7 @@ authors:
     title: Director, Developer Experience
 description: Learn how to send and receive data over a realtime connection with JavaScript.
 stack:
-  - vanilla
+  - vanillajs
 ---
 In this guide, you will build a multi-user chat application with Directus’ WebSockets interface that authenticate users
 with an existing account, show historical messages stored in Directus, allow users to send new messages, and immediately
