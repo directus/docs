@@ -139,9 +139,6 @@ const matchingTutorials = computed(() => (tutorials.value ?? [])
 			<ProseH2 id="framework-tutorials">
 				{{ frameworkLabel }} Tutorials
 			</ProseH2>
-			<p class="text-sm text-muted">
-				Longer-form builds and community walkthroughs.
-			</p>
 			<ul class="mt-4 space-y-2">
 				<li
 					v-for="tutorial in matchingTutorials"

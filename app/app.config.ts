@@ -107,7 +107,7 @@ export default defineAppConfig({
 				],
 			},
 			{
-				label: 'Deploy',
+				label: 'Hosting',
 				children: [
 					{
 						label: 'Cloud',
