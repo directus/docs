@@ -8,6 +8,8 @@ authors:
   - name: Carmen Huidobro
     title: Developer Educator
 description: Learn how to setup Directus realtime with Astro.
+stack:
+  - astro
 ---
 Directus offers realtime capabilities powered by WebSockets. You can use these with the Directus SDK to create your own realtime applications. In this tutorial, you will build a chat application using Astro and a Directus project.
 

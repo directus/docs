@@ -9,6 +9,8 @@ authors:
   - name: Jay Bharadia
     title: Guest Author
 description: Learn to build and integrate a Chrome Extension with Directus Auth.
+stack:
+  - chrome
 ---
 
 This article will guide you through building a Chrome extension using Vite and Directus. The extension will leverage Directus as the backend to store and manage data.

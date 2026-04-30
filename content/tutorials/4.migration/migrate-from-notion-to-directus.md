@@ -9,6 +9,8 @@ authors:
   - name: Esther Agbaje
     title: Developer Advocate
 description: Learn how to migrate data from Notion databases to Directus.
+stack:
+  - notion
 ---
 As a developer advocate and freelance coach, I share valuable content with my audience via my [blog](https://thefreelancehq.com/blog). When creating the blog, I needed a [Headless CMS](https://directus.io/solutions/headless-cms) that would integrate nicely with a Next.js Pages directory and make it easy to manage content. Notion was a great choice then, so I opted for it.
 

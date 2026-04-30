@@ -9,6 +9,8 @@ authors:
   - name: Bryant Gillespie
     title: Growth Engineer
 description: Learn how to trigger new Netlify website builds through Directus Flows.
+stack:
+  - netlify
 ---
 ## Explanation
 

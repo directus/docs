@@ -12,6 +12,15 @@ definePageMeta({
 const route = useRoute();
 
 const { path } = useNormalizedPath();
+
+if (path.value.endsWith('/.navigation')) {
+	throw createError({
+		statusCode: 404,
+		statusMessage: 'Page not found',
+		fatal: true,
+	});
+}
+
 const { data: page } = await useAsyncData(path, () =>
 	queryCollection('content').path(path.value).first(),
 );
@@ -43,6 +52,44 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
 		fields: ['title', 'description', 'path'],
 	}).where('path', 'NOT LIKE', '%.navigation'),
 );
+
+const frameworkRootMatch = computed(() => /^\/frameworks\/([^/]+)\/?$/.exec(path.value));
+const frameworkGuideMatch = computed(() => /^\/frameworks\/([^/]+)\/.+/.exec(path.value));
+const frameworkSlug = computed(() => frameworkRootMatch.value?.[1] ?? frameworkGuideMatch.value?.[1]);
+
+const findNavNode = (items: ContentNavigationItem[] | undefined, target: string): ContentNavigationItem | undefined => {
+	if (!items) return undefined;
+	for (const item of items) {
+		if (item.path === target) return item;
+		const child = findNavNode(item.children, target);
+		if (child) return child;
+	}
+	return undefined;
+};
+
+const frameworkNode = computed(() => {
+	const slug = frameworkSlug.value;
+	return slug ? findNavNode(navigation.value, `/frameworks/${slug}`) : undefined;
+});
+
+const frameworkIcon = computed(() =>
+	frameworkRootMatch.value
+		? (frameworkNode.value as { icon?: string } | undefined)?.icon
+		: undefined,
+);
+
+const frameworkBreadcrumb = computed(() => {
+	if (frameworkGuideMatch.value && frameworkNode.value) {
+		return [
+			{ label: 'Frameworks', to: '/frameworks' },
+			{ label: frameworkNode.value.title, to: frameworkNode.value.path },
+		];
+	}
+	if (frameworkRootMatch.value) {
+		return [{ label: 'Frameworks', to: '/frameworks' }];
+	}
+	return [];
+});
 </script>
 
 <template>
@@ -53,7 +100,36 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
 			:headline="headline"
 			:ui="{ headline: 'headline', title: 'title' }"
 		>
-			<template #links>
+			<template
+				v-if="frameworkBreadcrumb.length"
+				#headline
+			>
+				<UBreadcrumb :items="frameworkBreadcrumb">
+					<template #separator>
+						<span class="mx-2 text-muted">/</span>
+					</template>
+				</UBreadcrumb>
+			</template>
+
+			<template
+				v-if="frameworkIcon"
+				#title
+			>
+				<span class="flex items-center gap-4">
+					<span class="flex size-14 items-center justify-center rounded-xl bg-muted text-muted ring ring-default">
+						<Icon
+							:name="frameworkIcon"
+							class="size-8"
+						/>
+					</span>
+					<span>{{ page.title }}</span>
+				</span>
+			</template>
+
+			<template
+				v-if="!frameworkRootMatch"
+				#links
+			>
 				<CopyDocButton :page="page" />
 			</template>
 		</UPageHeader>

@@ -6,6 +6,8 @@ title: Deploy Directus to Railway
 technologies:
   - railway
 description: Deploy Directus on Railway using the official one-click templates (blank instance or CMS template) with PostgreSQL, Redis, and S3-compatible storage.
+stack:
+  - railway
 ---
 
 Railway is a platform that runs your app and its dependencies (databases, cache, storage) in one place. You don't manage servers or containers yourself; you deploy from a template or connect a repo, set variables, and Railway handles the rest. 

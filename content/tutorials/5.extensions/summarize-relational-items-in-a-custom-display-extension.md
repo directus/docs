@@ -9,6 +9,8 @@ authors:
   - name: Tim Butterfield
     title: Guest Author
 description: Learn how to work with relational data in display extensions.
+stack:
+  - db
 ---
 Displays provide a meaningful way for users to consume data. This guide will show you how to create a display that
 queries another table and returns the `SUM` or `COUNT` of a column.

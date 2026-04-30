@@ -9,6 +9,8 @@ authors:
   - name: Diana Voroniak
     title: Product Marketing Manager, Crowdin
 description: Learn how to localize content in Directus using Crowdin's connector with Directus.
+stack:
+  - crowdin
 ---
 Picture this: your app welcomes users with a friendly "hello" in English, a warm "hola" in Spanish, or a cheerful "bonjour" in French. That's the magic of content localization, and it's your ticket to connecting with users worldwide. If you're new to the multilingual game, fear not! Let's dive into a world where Directus and Crowdin play the hero's role, guiding you to create multilingual apps and automate most of the work.
 

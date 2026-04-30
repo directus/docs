@@ -1,21 +1,60 @@
 <script setup lang="ts">
-import { frameworks, hasFrameworkTechnology } from '~/utils/frameworks';
+import type { ContentNavigationItem } from '@nuxt/content';
 
 definePageMeta({
 	layout: 'docs',
 });
 
-const { data: guides } = await useAsyncData('framework-guides-index', () =>
+const { data: nav } = await useAsyncData('frameworks-nav', () =>
+	queryCollectionNavigation('content', ['icon', 'description']),
+);
+
+const { data: guides } = await useAsyncData('frameworks-guide-counts', () =>
 	queryCollection('content')
 		.where('path', 'LIKE', '/frameworks/%')
-		.select('technologies')
+		.where('path', 'NOT LIKE', '%/.navigation')
+		.where('stem', 'NOT LIKE', '%/index')
+		.select('path')
 		.all(),
 );
 
-const frameworkCards = computed(() => frameworks.map(framework => ({
-	...framework,
-	count: (guides.value ?? []).filter(guide => hasFrameworkTechnology(guide, framework)).length,
-})));
+type FrameworkCard = {
+	slug: string;
+	label: string;
+	description: string;
+	icon: string;
+	count: number;
+};
+
+const findNode = (items: ContentNavigationItem[] | undefined, path: string): ContentNavigationItem | undefined => {
+	if (!items) return undefined;
+	for (const item of items) {
+		if (item.path === path) return item;
+		const child = findNode(item.children, path);
+		if (child) return child;
+	}
+	return undefined;
+};
+
+const frameworkCards = computed<FrameworkCard[]>(() => {
+	const root = findNode(nav.value as ContentNavigationItem[] | undefined, '/frameworks');
+	const items = root?.children ?? [];
+
+	return items
+		.filter(item => item.path && item.path !== '/frameworks')
+		.map((item) => {
+			const slug = item.path.split('/').filter(Boolean).pop() ?? '';
+			const count = (guides.value ?? []).filter(g => g.path?.startsWith(`/frameworks/${slug}/`)).length;
+
+			return {
+				slug,
+				label: (item as { title?: string }).title ?? slug,
+				description: (item as { description?: string }).description ?? '',
+				icon: (item as { icon?: string }).icon ?? 'i-ph-brackets-curly',
+				count,
+			};
+		});
+});
 
 useSeoMeta({
 	title: 'Frameworks',
@@ -33,7 +72,7 @@ useSeoMeta({
 
 		<UPageBody>
 			<ProseH2 id="all-frameworks">
-				All frameworks
+				All Frameworks
 			</ProseH2>
 
 			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -59,6 +98,5 @@ useSeoMeta({
 				</UPageCard>
 			</div>
 		</UPageBody>
-
 	</UPage>
 </template>

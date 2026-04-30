@@ -9,6 +9,8 @@ authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
 description: Learn how to integrate Clearbit data enrichment with Directus Flows.
+stack:
+  - clearbit
 ---
 The Directus toolkit can be used for so many different projects and use cases, with a common one being Customer Relationship Management (CRM). CRMs are often used to support sales and marketing teams in understanding who is interested in and already using a product, and have more streamlined conversations with them.
 

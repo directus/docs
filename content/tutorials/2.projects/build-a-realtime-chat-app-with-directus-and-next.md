@@ -8,6 +8,8 @@ authors:
   - name: Kumar Harsh
     title: Guest Author
 description: Learn how to setup Directus realtime with Next.js.
+stack:
+  - nextjs
 ---
 
 Directus offers realtime capabilities, powered by websockets. You can use these with the Directus SDK to create your own realtime applications. In this tutorial, you will build a chat application using Next.js and a Directus project.

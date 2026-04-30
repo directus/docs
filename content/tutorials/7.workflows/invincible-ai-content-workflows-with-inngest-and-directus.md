@@ -8,6 +8,8 @@ authors:
   - name: Bryant Gillespie
     title: Developer Advocate
 description: Learn how to configure integration Directus and Inngest to build durable workflows for any scale.
+stack:
+  - inngest
 ---
 
 This article demonstrates how to enhance your Directus projects with Inngest to build powerful AI-driven content workflows at scale.

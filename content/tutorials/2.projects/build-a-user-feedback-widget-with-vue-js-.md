@@ -9,6 +9,8 @@ authors:
   - name: Bryant Gillespie
     title: Growth Engineer
 description: Learn how we built our docs feedback widget with Directus.
+stack:
+  - vue
 ---
 One of our DevRel initiatives at Directus is constantly improving our documentation. As a small team with finite time and resources, we rely a lot on user feedback to help guide our writing efforts. But we were missing the most important bit there – your feedback.
 

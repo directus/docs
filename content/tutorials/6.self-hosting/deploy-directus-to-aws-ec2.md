@@ -9,6 +9,8 @@ authors:
   - name: Trust Jamin
     title: Guest Author
 description: Learn how to deploy a Directus to AWS EC2, with a RDS database and a S3 storage bucket.
+stack:
+  - aws
 ---
 In this tutorial, you will learn how to deploy a self-hosted instance of Directus to Amazon Web Services (AWS) EC2, connect it to an AWS RDS PostgreSQL database and S3 storage bucket.
 

@@ -9,6 +9,8 @@ authors:
   - name: Salma Alam-Naylor
     title: Senior Developer Advocate, Sentry
 description: Learn how to integrate Sentry error tracking in both your API and Data Studio.
+stack:
+  - sentry
 ---
 If you self-host Directus, it becomes your responsibility to ensure your project is running smoothly. Part of this is knowing when things are going wrong so you can triage issues, fix errors, and get on with your day.
 

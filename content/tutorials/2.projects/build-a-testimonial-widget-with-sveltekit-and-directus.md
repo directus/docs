@@ -9,6 +9,8 @@ authors:
   - name: Quadri Sheriff
     title: Guest Author
 description: Learn how to set up a testimonial widget using SvelteKit and Directus.
+stack:
+  - sveltekit
 ---
 In this tutorial, we will setup a testimonial widget using SvelteKit and Directus as a backend.
 

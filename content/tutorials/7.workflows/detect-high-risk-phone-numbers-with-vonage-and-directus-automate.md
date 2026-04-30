@@ -9,6 +9,8 @@ authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
 description: Learn how to integrate Vonage's Number Insights API with Directus Flows to validate numbers.
+stack:
+  - vonage
 ---
 When creating new users for your service, it's important to take steps to prevent fraudulent or malicious activity. In this post, you'll use [Vonage's Number Insight V2 API](https://developer.vonage.com/en/number-insight/number-insight-v2/overview) and [Directus Flows](https://directus.io/toolkit/automate) to determine the likelihood of a number being risky at the time of user registration, and let you act on it.
 

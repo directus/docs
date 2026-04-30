@@ -9,6 +9,8 @@ authors:
   - name: Eike Thies
     title: Guest Author
 description: Learn about key Kubernetes concepts and how they interact with each other.
+stack:
+  - kubernetes
 ---
 While running applications in Docker containers may not seem to complex, the reality of multi-container setups — like needing a database, secrets, hosts, backups, updates, and more — can get quite messy. This is where an orchestrator comes in.
 

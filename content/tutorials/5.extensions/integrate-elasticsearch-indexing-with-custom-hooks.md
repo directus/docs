@@ -9,6 +9,8 @@ authors:
   - name: Taminoturoko Briggs
     title: Guest Author
 description: Learn how to maintain an Elasticsearch index when data is created, updated, and deleted.
+stack:
+  - elasticsearch
 ---
 In this article, we will explore how to index data from Directus in Elasticsearch through a custom hook extension, enabling you to track created, updated, and deleted data to maintain an up-to-date index which you can then use in your external applications.
 

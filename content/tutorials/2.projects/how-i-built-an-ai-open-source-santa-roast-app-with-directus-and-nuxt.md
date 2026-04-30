@@ -9,6 +9,8 @@ authors:
   - name: Bryant Gillespie
     title: Growth Engineer
 description: Bryant breaks down how he built an AI-powered app that roasts developers based on their GitHub contributions.
+stack:
+  - nuxt
 ---
 
 Hey folks! Bryant here from Directus. In this post, I’ll walk you through our [Salty Open Source Santa](https://salty-santa.vercel.app) project - how we built it, why we built it, and all the fun little features we packed into this thing. Let's dive in!

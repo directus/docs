@@ -9,6 +9,8 @@ authors:
   - name: Tim Butterfield
     title: Guest Author
 description: Learn how to display records from external systems in Directus Insights.
+stack:
+  - vonage
 ---
 Panels are used in dashboards as part of the Insights module, and typically allow users to better-understand data held
 in their Directus collections. In this guide, you will instead fetch data from an external API and display it in a table

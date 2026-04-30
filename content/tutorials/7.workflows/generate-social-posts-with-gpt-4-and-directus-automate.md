@@ -9,6 +9,8 @@ authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
 description: Learn how to integrate OpenAI's GPT-4 model with Directus Flows.
+stack:
+  - openai
 ---
 Directus Flows provide a really powerful interface to integrating with AI services via their APIs. In this tutorial, we will use [OpenAI’s Text Generation API](https://platform.openai.com/docs/api-reference/chat/create) to leverage GPT-4 and create social posts for our content directly within the Directus Editor.
 

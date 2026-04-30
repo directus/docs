@@ -9,6 +9,8 @@ authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
 description: Learn how to integrate Clarifai's image recognition APIs with Directus Flows.
+stack:
+  - clarifai
 ---
 [Clarifai](https://clarifai.com) allow you to train and use machine learning models via APIs. In this tutorial, you will use Clarfai's image recognition model with Directus Flows to automatically tag new image files in your project.
 

@@ -9,6 +9,8 @@ authors:
   - name: Trust Jamin
     title: Guest Author
 description: Learn to integrate Stripe with Directus Flows to build an e-commerce website.
+stack:
+  - nextjs
 ---
 E-commerce websites are among the most popular for businesses as they enable customers to purchase items from your store from the comfort of their homes. In this article, you'll build an e-commerce store with Next.js as its front end, Directus as its backend services, and Stripe for payment processing.
 

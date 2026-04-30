@@ -9,6 +9,8 @@ authors:
   - name: Trust Jamin
     title: Guest Author
 description: Learn how to deploy Directus on GCP with a Cloud SQL database and Cloud Storage Bucket.
+stack:
+  - gcp
 ---
 In this tutorial, you will learn how to deploy a self-hosted instance of Directus to Google Cloud Platform (GCP) Cloud Run and connect it with a Cloud SQL database (PostgreSQL) and Cloud Storage for storing assets.
 

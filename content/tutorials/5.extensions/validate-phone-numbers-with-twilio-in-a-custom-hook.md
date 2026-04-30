@@ -9,6 +9,8 @@ authors:
   - name: Tim Butterfield
     title: Guest Author
 description: Learn how to prevent an item from saving if it has an invalid phone number.
+stack:
+  - twilio
 ---
 Hooks allow you to trigger your own code when events are emitted from Directus. This guide will show you how to prevent
 an item from saving if a phone number is not valid using the Twilio Lookup API.
