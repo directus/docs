@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import type {
-	ContentCollectionItem,
-	ContentNavigationItem,
-} from '@nuxt/content';
+import type { ContentNavigationItem } from '@nuxt/content';
 import { findPageBreadcrumb } from '@nuxt/content/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
@@ -24,13 +21,6 @@ if (!page.value) {
 		fatal: true,
 	});
 }
-
-const imageSrc = (page: ContentCollectionItem | undefined) => {
-	if (!page) return '';
-	const technologies = page.technologies || ['directus'];
-	const techString = technologies.join(', ');
-	return `/docs/api/tutorialimg?logos=${techString}`;
-};
 
 const breadcrumb = computed(() =>
 	(findPageBreadcrumb(navigation.value, path.value) ?? []).map(item => ({
@@ -69,11 +59,6 @@ defineOgImage('Default', {
 			>
 				<CopyDocButton :page="page" />
 			</template>
-			<img
-				v-if="page"
-				:src="imageSrc(page)"
-				alt="Generated Image"
-			>
 		</UPageHeader>
 
 		<UPageBody

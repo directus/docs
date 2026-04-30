@@ -65,6 +65,8 @@ navigation: false
   :::
 ::
 
+:framework-links
+
 ## Features
 
 ::shiny-grid{class="lg:grid-cols-2"}
