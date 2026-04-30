@@ -17,8 +17,7 @@ function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 	const entries = JSON.parse(raw) as Record<string, RedirectRule>;
 	const rules: NitroConfig['routeRules'] = {};
 	for (const [from, rule] of Object.entries(entries)) {
-		const key = `${BASE_URL}${from}`;
-		rules[key] = { redirect: { to: `${BASE_URL}${rule.to}`, statusCode: rule.statusCode } };
+		rules[from] = { redirect: { to: `${BASE_URL}${rule.to}`, statusCode: rule.statusCode } };
 	}
 	return rules;
 }

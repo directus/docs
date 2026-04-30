@@ -23,6 +23,10 @@ export default defineContentConfig({
 				})).optional(),
 				icon: z.string().optional(),
 				technologies: z.array(z.string()).optional(),
+				stack: z.array(z.string()).optional(),
+				features: z.array(z.string()).optional(),
+				use_cases: z.array(z.string()).optional(),
+				content_type: z.string().optional(),
 				links: z.array(z.object({
 					label: z.string(),
 					icon: z.string(),
