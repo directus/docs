@@ -21,11 +21,12 @@ In the Data Studio, files will automatically be uploaded to the first configured
 
 For each of the storage locations listed, you must provide the following configuration (variable name must be uppercase in these options):
 
-| Variable                                   | Description                                                                          | Default Value |
-| ------------------------------------------ | ------------------------------------------------------------------------------------ | ------------- |
-| `STORAGE_<LOCATION>_DRIVER`                | Which driver to use, either `local`, `s3`, `gcs`, `azure`, `cloudinary`, `supabase`. |               |
-| `STORAGE_<LOCATION>_ROOT`                  | Where to store the files on disk.                                                    | `''`          |
-| `STORAGE_<LOCATION>_HEALTHCHECK_THRESHOLD` | Healthcheck timeout threshold in ms.                                                 | `750`         |
+| Variable                                        | Description                                                                                                                                                                                                                                      | Default Value |
+|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------- |
+| `STORAGE_<LOCATION>_DRIVER`                     | Which driver to use, either `local`, `s3`, `gcs`, `azure`, `cloudinary`, `supabase`.                                                                                                                                                             |               |
+| `STORAGE_<LOCATION>_ROOT`                       | Where to store the files on disk.                                                                                                                                                                                                                | `''`          |
+| `STORAGE_<LOCATION>_HEALTHCHECK_THRESHOLD`      | Healthcheck timeout threshold in ms.                                                                                                                                                                                                             | `750`         |
+| `STORAGE_<LOCATION>_HEALTHCHECK_WRITE_INTERVAL` | Interval in ms between full write (`PUT`) checks. Within the interval, only a lightweight `GET` is performed on the existing health-check file. If the `GET` fails, a new `PUT` is triggered immediately. Set to `0` to disable (always writes). | `0`           |
 
 Based on your configured drivers, you must also provide additional variables, where `<LOCATION>` is the capitalized name of the item in the `STORAGE_LOCATIONS` value.
 
