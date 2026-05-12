@@ -14,6 +14,11 @@ You often pair a Supabase-backed application with Directus for an admin surface 
 
 ## Before You Start
 
+This guide sets up two separate things that work together:
+
+- **Supabase** hosts your PostgreSQL database in the cloud. It does not run Directus — it only provides the database that Directus connects to.
+- **Directus** runs on a separate host using Docker Compose. This can be your local machine for development, or a server or cloud platform (such as Railway, Render, or a VPS) for production. See [Self-hosting: Deploying](/self-hosting/deploying) for options.
+
 You will need:
 
 - A [Supabase](https://supabase.com) project with PostgreSQL available
@@ -24,73 +29,28 @@ You will need:
 
 Supabase exposes more than one connection mode. Use the **direct** database connection on port **5432** for Directus. Use transaction pooler mode on port **6543** only after you confirm your driver and workload behave correctly with pooling.
 
-1. Open the [Supabase Dashboard](https://supabase.com/dashboard) and select your project
-2. Go to **Project Settings** and open the **Database** section
-3. Find the **Connection string** or connection parameters for **Direct connection** / **URI**
-4. Copy the values you map into Directus:
+1. Open the [Supabase Dashboard](https://supabase.com/dashboard) and select your project.
+2. Click the green **Connect** button in the top navigation bar.
+3. In the "Connect to your project" modal, click the **Direct** tab.
 
-   - **Host** (for example `db.<project-ref>.supabase.co`)
-   - **Port** (default `5432` for direct)
-   - **Database name** (often `postgres`)
-   - **User** (often `postgres` or the database user Supabase shows)
-   - **Password** (the database user password)
-
-Keep the password secret. Use [Docker secrets](https://docs.docker.com/engine/swarm/secrets/) or your host secret manager in production.
+![The Supabase Connect modal showing the Direct tab selected, with connection string details visible.](/img/supabase-dashboard-connection.png)
 
 ## Configure Directus with Docker Compose
 
-Create a `docker-compose.yml` that runs the official Directus image and passes database settings through the environment.
+Enter your connection details from the **Direct** tab into the fields below to generate a ready-to-use `docker-compose.yml`.
 
-Map Supabase values to these variables:
-
-| Variable | Purpose |
-| --- | --- |
-| `DB_CLIENT` | Set to `pg` for PostgreSQL |
-| `DB_HOST` | Supabase database host |
-| `DB_PORT` | `5432` for direct connection |
-| `DB_DATABASE` | Database name from Supabase |
-| `DB_USER` | Database user |
-| `DB_PASSWORD` | Database password |
-
-Example:
-
-```yaml
-services:
-  directus:
-    image: directus/directus:11.17.0
-    ports:
-      - 8055:8055
-    environment:
-      SECRET: "replace-with-a-random-string"
-      PUBLIC_URL: "http://localhost:8055"
-      DB_CLIENT: "pg"
-      DB_HOST: "db.your-project-ref.supabase.co"
-      DB_PORT: "5432"
-      DB_DATABASE: "postgres"
-      DB_USER: "postgres"
-      DB_PASSWORD: "your-database-password"
-```
+:supabase-configurator
 
 Set `PUBLIC_URL` to the URL clients use to reach Directus. Add other required variables for your environment (see [General](/configuration/general) and [Self-hosting: Deploying](/self-hosting/deploying)).
 
-## Configure SSL
+## SSL settings
 
-Supabase recommends SSL for Postgres connections; production projects often enforce it. Turn on SSL for the Directus database connection and adjust verification if your environment requires it.
+The generated file includes `DB_SSL: "true"` and `DB_SSL__REJECT_UNAUTHORIZED: "true"`. Supabase recommends SSL for all Postgres connections and production projects often enforce it.
 
-- Set **`DB_SSL`** to `true` so the client connects over TLS.
-- Use **`DB_SSL__REJECT_UNAUTHORIZED`** to control certificate verification:
-  - Leave verification **on** when the server certificate chains to a public CA that Node.js trusts.
-  - Set `DB_SSL__REJECT_UNAUTHORIZED` to `false` only when you accept the weaker trust model (for example corporate TLS inspection). Prefer **`DB_SSL__CA`** or **`DB_SSL__CA_FILE`** when you can supply the right CA instead. See [Database](/configuration/database) and [Environment variables](/configuration/intro#type-casting-and-nesting).
+- **`DB_SSL`** — set to `true` so the client connects over TLS.
+- **`DB_SSL__REJECT_UNAUTHORIZED`** — controls certificate verification. Leave this `true` when the server certificate chains to a public CA that Node.js trusts (which is the case for Supabase). Set it to `false` only if you need to accept a weaker trust model (for example, corporate TLS inspection) — prefer **`DB_SSL__CA`** or **`DB_SSL__CA_FILE`** to supply the correct CA instead. See [Database](/configuration/database) and [Environment variables](/configuration/intro#type-casting-and-nesting).
 
-Example additions to `environment`:
-
-```yaml
-      DB_SSL: "true"
-      # Optional; include only if you need to override verification behavior
-      DB_SSL__REJECT_UNAUTHORIZED: "true"
-```
-
-If the connection fails with TLS or certificate errors, confirm your host can reach Supabase on the direct port, then read Supabase's SSL documentation for your project.
+If the connection fails with TLS or certificate errors, confirm your host can reach Supabase on the direct port, then check Supabase's SSL documentation for your project.
 
 ::callout{icon="material-symbols:info-outline"}
 If your runtime is IPv4-only, Supabase direct connections can fail because direct mode is IPv6 by default. Use Supabase session pooler mode (also port `5432`) as the fallback and keep SSL enabled.
