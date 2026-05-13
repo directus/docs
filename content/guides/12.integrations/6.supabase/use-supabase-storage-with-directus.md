@@ -76,6 +76,8 @@ Optional S3 tuning (timeouts, encryption, ACLs) is available in [Files](/configu
 
 ## Directus Labs starters
 
+[Directus Labs starters](https://github.com/directus-labs/starters) are pre-built project templates that pair Directus with popular frontend frameworks. Each starter ships a Docker Compose stack with Directus, Redis, and a local Postgres container. If you are using a starter and want to store uploaded files in Supabase instead of locally, follow these steps.
+
 The compose file and `.env` live in the starter's `directus` folder (for example `cms/directus/`), not the frontend app root.
 
 Starters list environment variables explicitly in `docker-compose.yaml`. To add Supabase Storage you need to do two things: add the values to `.env`, and wire them into the compose file so Docker Compose passes them into the container.
