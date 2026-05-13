@@ -7,8 +7,12 @@ const user = ref('postgres');
 const uriInput = ref('');
 const showUriInput = ref(false);
 const uriError = ref('');
-const isCopied = ref(false);
-const isDownloaded = ref(false);
+const activeOutput = ref('compose');
+
+const isCopiedCompose = ref(false);
+const isDownloadedCompose = ref(false);
+const isCopiedEnv = ref(false);
+const isDownloadedEnv = ref(false);
 
 function parseUri() {
 	const uri = uriInput.value.trim();
@@ -34,7 +38,7 @@ function parseUri() {
 
 const dockerCompose = computed(() => `services:
   directus:
-    image: directus/directus:11.17.0
+    image: directus/directus:11.17.4
     ports:
       - 8055:8055
     environment:
@@ -46,32 +50,59 @@ const dockerCompose = computed(() => `services:
       DB_DATABASE: "${database.value}"
       DB_USER: "${user.value}"
       DB_PASSWORD: "YOUR-DATABASE-PASSWORD"
-      DB_SSL: "true"
-      DB_SSL__REJECT_UNAUTHORIZED: "true"`);
+      DB_SSL__REJECT_UNAUTHORIZED: "false"`);
 
-async function copyToClipboard() {
+const envFile = computed(() => `# Supabase Postgres (direct connection)
+DB_HOST=${host.value}
+DB_PORT=${port.value}
+DB_DATABASE=${database.value}
+DB_USER=${user.value}
+DB_PASSWORD=YOUR-DATABASE-PASSWORD
+DB_SSL__REJECT_UNAUTHORIZED=false
+
+# Directus URL — must match the address you open in the browser
+PUBLIC_URL=http://localhost:8055`);
+
+async function copyCompose() {
 	try {
 		await navigator.clipboard.writeText(dockerCompose.value);
-		isCopied.value = true;
-		setTimeout(() => { isCopied.value = false; }, 2000);
+		isCopiedCompose.value = true;
+		setTimeout(() => { isCopiedCompose.value = false; }, 2000);
 	}
-	catch {
-		// Silently fail
-	}
+	catch { /* Silently fail */ }
 }
 
-function downloadFile() {
-	const blob = new Blob([dockerCompose.value], { type: 'text/yaml' });
+function downloadCompose() {
+	triggerDownload(dockerCompose.value, 'docker-compose.yml', 'text/yaml');
+	isDownloadedCompose.value = true;
+	setTimeout(() => { isDownloadedCompose.value = false; }, 2000);
+}
+
+async function copyEnv() {
+	try {
+		await navigator.clipboard.writeText(envFile.value);
+		isCopiedEnv.value = true;
+		setTimeout(() => { isCopiedEnv.value = false; }, 2000);
+	}
+	catch { /* Silently fail */ }
+}
+
+function downloadEnv() {
+	triggerDownload(envFile.value, '.env', 'text/plain');
+	isDownloadedEnv.value = true;
+	setTimeout(() => { isDownloadedEnv.value = false; }, 2000);
+}
+
+function triggerDownload(content: string, filename: string, mime: string) {
+	const blob = new Blob([content], { type: mime });
 	const url = URL.createObjectURL(blob);
 	const a = document.createElement('a');
 	a.href = url;
-	a.download = 'docker-compose.yml';
+	a.download = filename;
 	document.body.appendChild(a);
 	a.click();
 	document.body.removeChild(a);
 	URL.revokeObjectURL(url);
-	isDownloaded.value = true;
-	setTimeout(() => { isDownloaded.value = false; }, 2000);
 }
 </script>
 
@@ -168,37 +199,84 @@ function downloadFile() {
 				icon="material-symbols:warning-outline"
 				color="warning"
 				title="Replace the password before use"
-				description="The generated file uses YOUR-DATABASE-PASSWORD as a placeholder. Edit the file and replace it with your actual Supabase database password before running docker compose up."
+				description="Both files use YOUR-DATABASE-PASSWORD as a placeholder. Replace it with your actual Supabase database password before running the stack."
 			/>
 
-			<!-- Generated docker-compose.yml -->
-			<UCard>
-				<template #header>
-					<div class="flex items-center justify-between">
-						<code class="text-sm">docker-compose.yml</code>
-						<div class="flex gap-2">
+			<!-- Generated output with file tabs -->
+			<div class="rounded-lg border border-default overflow-hidden">
+				<!-- Tab bar -->
+				<div class="flex items-center justify-between bg-muted/50 border-b border-default pl-2 pr-3 pt-1.5">
+					<div class="flex gap-1">
+						<button
+							class="px-3 py-1.5 text-xs font-mono rounded-t-md border border-b-0 -mb-px transition-colors"
+							:class="activeOutput === 'compose'
+								? 'bg-default border-default text-default'
+								: 'border-transparent text-muted hover:text-default'"
+							@click="activeOutput = 'compose'"
+						>
+							docker-compose.yml
+						</button>
+						<button
+							class="px-3 py-1.5 text-xs font-mono rounded-t-md border border-b-0 -mb-px transition-colors"
+							:class="activeOutput === 'env'
+								? 'bg-default border-default text-default'
+								: 'border-transparent text-muted hover:text-default'"
+							@click="activeOutput = 'env'"
+						>
+							.env
+						</button>
+					</div>
+
+					<div class="flex gap-2 pb-1.5">
+						<template v-if="activeOutput === 'compose'">
 							<UButton
 								size="xs"
 								variant="outline"
 								color="neutral"
-								:leading-icon="isCopied ? 'material-symbols:check' : 'material-symbols:content-copy-outline'"
-								:label="isCopied ? 'Copied!' : 'Copy'"
-								@click="copyToClipboard"
+								:leading-icon="isCopiedCompose ? 'material-symbols:check' : 'material-symbols:content-copy-outline'"
+								:label="isCopiedCompose ? 'Copied!' : 'Copy'"
+								@click="copyCompose"
 							/>
 							<UButton
 								size="xs"
 								variant="outline"
 								color="neutral"
 								leading-icon="material-symbols:download"
-								:label="isDownloaded ? 'Downloaded!' : 'Download'"
-								@click="downloadFile"
+								:label="isDownloadedCompose ? 'Downloaded!' : 'Download'"
+								@click="downloadCompose"
 							/>
-						</div>
+						</template>
+						<template v-else>
+							<UButton
+								size="xs"
+								variant="outline"
+								color="neutral"
+								:leading-icon="isCopiedEnv ? 'material-symbols:check' : 'material-symbols:content-copy-outline'"
+								:label="isCopiedEnv ? 'Copied!' : 'Copy'"
+								@click="copyEnv"
+							/>
+							<UButton
+								size="xs"
+								variant="outline"
+								color="neutral"
+								leading-icon="material-symbols:download"
+								:label="isDownloadedEnv ? 'Downloaded!' : 'Download'"
+								@click="downloadEnv"
+							/>
+						</template>
 					</div>
-				</template>
+				</div>
 
-				<pre class="overflow-x-auto text-xs leading-relaxed"><code>{{ dockerCompose }}</code></pre>
-			</UCard>
+				<!-- Code content -->
+				<pre
+					v-if="activeOutput === 'compose'"
+					class="p-4 overflow-x-auto text-xs leading-relaxed"
+				><code>{{ dockerCompose }}</code></pre>
+				<pre
+					v-else
+					class="p-4 overflow-x-auto text-xs leading-relaxed"
+				><code>{{ envFile }}</code></pre>
+			</div>
 		</div>
 	</ClientOnly>
 </template>
