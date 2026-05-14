@@ -9,9 +9,9 @@
 		"preview": "nuxt preview",
 		"postinstall": "node scripts/setup-hooks.ts && nuxt prepare",
 		"stable-ids:ensure": "node scripts/ensure-stable-ids.ts",
-		"stable-ids:check": "node scripts/check-stable-ids.ts",
-		"redirects:sync": "node scripts/redirects-sync.ts --write-deterministic --fail-on-unresolved",
-		"redirects:check": "node scripts/redirects-sync.ts --fail-on-unresolved --no-write",
+		"stable-ids:check": "node scripts/ensure-stable-ids.ts --check",
+		"redirects:sync": "node scripts/redirects-sync.ts --fail-on-unresolved",
+		"redirects:check": "node scripts/redirects-sync.ts --dry-run --fail-on-unresolved",
 		"typecheck:scripts": "tsc -p scripts/tsconfig.json"
 	},
 	"dependencies": {

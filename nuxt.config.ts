@@ -1,27 +1,6 @@
-import { existsSync, readFileSync } from 'node:fs';
-import type { NitroConfig } from 'nitropack';
+import { loadRedirects, toRouteRules } from './scripts/_redirects-lib.ts';
 
 const BASE_URL = '/docs';
-
-type RedirectStatusCode = 301 | 302 | 307 | 308;
-
-interface RedirectRule {
-	to: string;
-	statusCode: RedirectStatusCode;
-}
-
-function loadRedirectRouteRules(): NitroConfig['routeRules'] {
-	if (!existsSync('redirects.json')) return {};
-	const raw = readFileSync('redirects.json', 'utf8').trim();
-	if (!raw) return {};
-	const entries = JSON.parse(raw) as Record<string, RedirectRule>;
-	const rules: NitroConfig['routeRules'] = {};
-	for (const [from, rule] of Object.entries(entries)) {
-		const key = `${BASE_URL}${from}`;
-		rules[key] = { redirect: { to: `${BASE_URL}${rule.to}`, statusCode: rule.statusCode } };
-	}
-	return rules;
-}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -132,7 +111,7 @@ export default defineNuxtConfig({
 		transpile: ['shiki'],
 	},
 
-	routeRules: loadRedirectRouteRules(),
+	routeRules: toRouteRules(loadRedirects('redirects.json'), BASE_URL),
 
 	future: {
 		compatibilityVersion: 4,
