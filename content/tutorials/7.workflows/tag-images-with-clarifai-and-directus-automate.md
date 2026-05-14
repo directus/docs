@@ -18,7 +18,7 @@ You will need a [Directus project](/getting-started/overview) and a Clarifai API
 
 ## Create a Flow
 
-Flows are Directus' no-code automation builder provided as part of Directus Flows. Create a new flow with a non-blocking event hook and the `files.upload` scope. This means that it will run asynchronously and not block the file upload.
+Flows are Directus' no-code automation builder. Create a new flow with a non-blocking event hook and the `files.upload` scope. This means that it will run asynchronously and not block the file upload.
 
 Whenever a few file is uploaded, the flow will be triggered. The payload will include a file type and ID - both will be used in future steps.
 

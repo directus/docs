@@ -24,7 +24,7 @@ You will also need a Directus collection called `feedback` with a field for `con
 
 ## Create a Flow
 
-Flows are Directus' no-code automation builder provided as part of Directus Flows. Create a new flow called "Create GitHub Issue". Add a **Manual Trigger** on the `Feedback` collection, and set the **Location** to "Item Page Only".
+Flows are Directus' no-code automation builder. Create a new flow called "Create GitHub Issue". Add a **Manual Trigger** on the `Feedback` collection, and set the **Location** to "Item Page Only".
 
 Check the **Require Confirmation** box and add one field with a key and name of `title`. This will contain the issue title - which should describe the remedial action based on feedback provided. For example, "I can't find the docs related to connecting an existing database" might be feedback, where "Signpost existing database connection docs" would be the issue title.
 

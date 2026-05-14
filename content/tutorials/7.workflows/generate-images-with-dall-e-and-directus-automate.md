@@ -10,7 +10,7 @@ authors:
     title: Director, Developer Experience
 description: Learn how to integrate OpenAI's Dall•E models with Directus Flows.
 ---
-Directus Flows provide a really powerful interface to integrating with AI services via their APIs. In this tutorial, we will use [OpenAI’s Image Generation API](https://platform.openai.com/docs/api-reference/images/create) to leverage DALL-E 3 and create images for our content directly within the Directus Editor.
+Directus Flows provide a really powerful interface to integrating with AI services via their APIs. In this tutorial, we will use [OpenAI’s Image Generation API](https://platform.openai.com/docs/api-reference/images/create) to leverage DALL-E 3 and create images for our content directly within the Directus item page.
 
 ## Before We Start
 
