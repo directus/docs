@@ -36,6 +36,12 @@ const integrations = [
 		to: '/guides/integrations/framer',
 		logo: '/docs/img/framer.png',
 	},
+	{
+		title: 'Airbyte',
+		description: 'Sync data from Directus collections into a warehouse or database using the Directus Airbyte source connector.',
+		to: '/guides/integrations/airbyte',
+		logo: '/docs/img/airbyte.svg',
+	},
 ];
 </script>
 
