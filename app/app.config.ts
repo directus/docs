@@ -1,6 +1,6 @@
 export default defineAppConfig({
 	search: {
-		backend: 'algolia',
+		backend: 'typesense',
 	},
 
 	ui: {

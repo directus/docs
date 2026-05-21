@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import type { NitroConfig } from 'nitropack';
+import { resolveBranchTypesenseAlias } from './lib/typesenseAlias';
 
 const directusLight = JSON.parse(readFileSync('./app/assets/shiki/directus-light.json', 'utf8'));
 const directusDark = JSON.parse(readFileSync('./app/assets/shiki/directus-dark.json', 'utf8'));
@@ -25,6 +26,8 @@ function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 	return rules;
 }
 
+const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: [
@@ -35,9 +38,6 @@ export default defineNuxtConfig({
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
-		...(process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY
-			? ['@nuxtjs/algolia']
-			: []),
 	],
 
 	devtools: {
@@ -48,7 +48,7 @@ export default defineNuxtConfig({
 		baseURL: BASE_URL,
 	},
 
-	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
+	css: ['~/assets/css/main.css'],
 
 	site: {
 		name: 'Directus Docs',
@@ -126,6 +126,9 @@ export default defineNuxtConfig({
 					id: process.env.GOOGLE_TAG_MANAGER_ID!,
 				},
 			},
+			typesenseUrl: process.env.TYPESENSE_URL,
+			typesensePublicApiKey: process.env.TYPESENSE_PUBLIC_API_KEY,
+			typesenseCollection,
 		},
 		directusUrl: process.env.DIRECTUS_URL,
 	},
@@ -161,11 +164,6 @@ export default defineNuxtConfig({
 			concurrency: 2,
 			retry: 2,
 			retryDelay: 1000,
-		},
-	},
-
-	algolia: {
-		docSearch: { indexName: 'directus_unified',
 		},
 	},
 
