@@ -119,6 +119,12 @@ Enabling the rate-limiter with no other options will set a default maximum of 50
 | `RATE_LIMITER_REGISTRATION_ENABLED`         | Whether or not to enable rate limiting per IP on the user registration. | `true`        |
 | `RATE_LIMITER_REGISTRATION_POINTS`          | The amount of allowed hits per duration.                                | `5`           |
 | `RATE_LIMITER_REGISTRATION_DURATION`        | The time window in seconds in which the points are counted.             | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_AUTHORIZE_ENABLED`  | Whether or not to enable rate limiting per IP on MCP OAuth authorization requests. | `true`        |
+| `RATE_LIMITER_MCP_OAUTH_AUTHORIZE_POINTS`   | The amount of allowed authorization requests per duration.              | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_AUTHORIZE_DURATION` | The time window in seconds in which authorization points are counted.   | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_ENABLED` | Whether or not to enable rate limiting per IP on MCP OAuth Dynamic Client Registration. | `true`        |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_POINTS` | The amount of allowed Dynamic Client Registration requests per duration. | `30`          |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_DURATION` | The time window in seconds in which Dynamic Client Registration points are counted. | `60`          |
 
 ### Pressure-Based Rate Limiter
 

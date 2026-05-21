@@ -30,6 +30,34 @@ This is useful for compliance requirements where AI features must be completely 
 When `MCP_ENABLED` is set to `false`, the MCP server cannot be enabled through **Settings → AI → Model Context Protocol** in the admin interface, providing system administrators with complete control over AI integration features. See the [MCP Server](/guides/ai/mcp/installation) guide for more information.
 ::
 
+## Model Context Protocol OAuth
+
+MCP OAuth adds browser-based authorization for compatible MCP clients. Set `MCP_OAUTH_ENABLED` to `true` to mount the OAuth discovery, authorization, token, registration, and revocation routes.
+
+After enabling the environment variable, enable **OAuth Enabled** in **Settings** > **AI** > **Model Context Protocol** for each project that should allow MCP OAuth.
+
+The MCP OAuth authorization endpoint and Dynamic Client Registration endpoint use dedicated rate limiter pools. See [Security & Limits](/configuration/security-limits#rate-limiting) for the `RATE_LIMITER_MCP_OAUTH_AUTHORIZE_*` and `RATE_LIMITER_MCP_OAUTH_REGISTRATION_*` variables.
+
+| Variable | Description | Default Value |
+| -------- | ----------- | ------------- |
+| `MCP_OAUTH_ENABLED` | Whether MCP OAuth routes are mounted. Set to `true` before enabling MCP OAuth in project settings. | `false` |
+| `MCP_OAUTH_AUTH_CODE_TTL` | How long an OAuth authorization code remains valid before the client exchanges it for tokens. | `60s` |
+| `MCP_OAUTH_MAX_CLIENTS` | Maximum number of registered OAuth clients. Set to `0` to disable the limit. | `10000` |
+| `MCP_OAUTH_CLIENT_UNUSED_TTL` | How long an unused registered client can remain before cleanup removes it. | `24h` |
+| `MCP_OAUTH_CLIENT_IDLE_TTL` | How long an inactive registered client can remain after its last OAuth activity. Set to `0` to disable idle cleanup. | `0` |
+| `MCP_OAUTH_REQUIRE_RESOURCE` | Whether authorization and refresh requests must explicitly include the MCP resource parameter. | `false` |
+| `MCP_OAUTH_CLEANUP_SCHEDULE` | Cron schedule for removing expired authorization codes, expired OAuth grants, and stale clients. | `*/15 * * * *` |
+| `MCP_OAUTH_ALLOWED_REDIRECT_DOMAINS` | Comma-separated list of allowed redirect URI domains. Leave empty to allow any valid HTTPS redirect URI and loopback development URI. | `''` |
+| `MCP_OAUTH_DCR_ENABLED` | Whether Dynamic Client Registration can be enabled in project settings. | `true` |
+| `MCP_OAUTH_CIMD_ENABLED` | Whether Client ID Metadata Document registration can be enabled in project settings. | `true` |
+| `MCP_OAUTH_CIMD_ALLOW_HTTP` | Allow `http://` Client ID Metadata Document URLs. Keep disabled outside local development. | `false` |
+| `MCP_OAUTH_CIMD_ALLOWED_DOMAINS` | Comma-separated list of domains allowed to use Client ID Metadata Document registration. Leave empty to allow any valid metadata document domain. | `''` |
+| `MCP_OAUTH_CIMD_BLOCKED_TLDS` | Comma-separated list of top-level domains blocked for Client ID Metadata Document registration. | `test,localhost,invalid,example,local,onion` |
+
+::callout{icon="material-symbols:menu-book-outline" color="primary" to="/guides/ai/mcp/oauth"}
+Read the MCP OAuth guide for setup steps, client registration behavior, and revocation.
+::
+
 ## Telemetry
 
 Send AI Assistant traces to an external observability platform for monitoring usage, performance, and cost.
