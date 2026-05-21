@@ -21,6 +21,34 @@ const router = useRouter();
 const { app } = useRuntimeConfig();
 const search = useDocsSearch();
 const { recents, favorites } = usePageHistory();
+const assistant = useAssistant();
+const assistantEnabled = computed(() => assistant.isEnabled.value);
+
+function promoteToAssistant(query: string) {
+	const trimmed = query.trim();
+	if (!trimmed || !assistantEnabled.value) return;
+	open.value = false;
+	assistant.open(trimmed, true);
+}
+
+const aiGroup = computed(() => {
+	if (!assistantEnabled.value) return null;
+	if (search?.pending.value) return null;
+	const query = searchTerm.value.trim();
+	if (!query || (search && query.length < search.minQueryLength)) return null;
+	return {
+		id: 'ai',
+		slot: 'ai' as const,
+		ignoreFilter: true,
+		items: [{
+			id: 'ai:ask',
+			query,
+			label: `Ask AI about "${query}"`,
+			icon: 'i-ph-sparkle',
+			onSelect: () => promoteToAssistant(query),
+		}],
+	};
+});
 
 const paletteGroups = computed(() => {
 	if (searchTerm.value && search && search.items.value.length > 0) {
@@ -34,10 +62,12 @@ const paletteGroups = computed(() => {
 				},
 			})),
 		}];
+		if (aiGroup.value) groups.push(aiGroup.value);
 		return groups;
 	}
 
-	if (searchTerm.value) return [];
+	// Search term entered but no results yet → only the AI row (if eligible); #empty handles the rest
+	if (searchTerm.value) return aiGroup.value ? [aiGroup.value] : [];
 
 	// Idle state: render as palette groups with per-group slots so arrow keys + enter work natively.
 	// Each group's first item is a disabled "header" item rendered via a per-item slot. Reka skips
@@ -358,6 +388,14 @@ function cycleSection(direction: 1 | -1) {
 function handlePaletteKeydown(event: KeyboardEvent) {
 	if (!open.value || !searchTerm.value) return;
 
+	if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+		if (!assistantEnabled.value) return;
+		event.preventDefault();
+		event.stopPropagation();
+		promoteToAssistant(searchTerm.value);
+		return;
+	}
+
 	if (event.key !== '[' && event.key !== ']') return;
 
 	event.preventDefault();
@@ -533,6 +571,23 @@ onUnmounted(() => {
 						/>
 					</template>
 
+					<template #ai-leading>
+						<UIcon
+							name="i-ph-sparkle"
+							class="size-4 text-primary"
+						/>
+					</template>
+					<template #ai-label="{ item }">
+						<span class="font-medium text-highlighted truncate">
+							Ask AI about <span class="text-primary">"{{ item.query }}"</span>
+						</span>
+					</template>
+					<template #ai-trailing>
+						<div class="flex items-center gap-1">
+							<UKbd value="meta" />
+							<UKbd value="enter" />
+						</div>
+					</template>
 
 					<template #group-header="{ item }">
 						<header class="flex items-center px-2.5 pt-3 pb-1 font-mono text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-muted">
@@ -656,6 +711,14 @@ onUnmounted(() => {
 									<UKbd>[</UKbd>
 									<UKbd>]</UKbd>
 									Sections
+								</span>
+								<span
+									v-if="searchTerm && assistantEnabled"
+									class="inline-flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-wider"
+								>
+									<UKbd value="meta" />
+									<UKbd value="enter" />
+									Ask AI
 								</span>
 							</div>
 							<div
