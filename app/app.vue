@@ -3,7 +3,7 @@ import type { ContentNavigationItem } from '@nuxt/content';
 import { SplitPanel } from '@directus/vue-split-panel';
 import { useLocalStorage, useWindowSize } from '@vueuse/core';
 
-const { data: navigation } = useAsyncData('content-navigation', () => queryCollectionNavigation('content', ['title', 'description', 'icon', 'links', 'page']));
+const { data: navigation } = useAsyncData('content-navigation', () => queryCollectionNavigation('content', ['title', 'description', 'icon', 'links']));
 
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
