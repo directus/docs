@@ -49,12 +49,25 @@ useSeoMeta({
 </script>
 
 <template>
-	<UPage>
+	<DocsPage>
 		<UPageHeader
 			title="Frameworks"
 			description="Find Directus guides for the stack you are building with."
-			:ui="{ title: 'title' }"
-		/>
+			:ui="{ headline: 'font-mono font-normal! uppercase tracking-wider' }"
+		>
+			<template #headline>
+				<UBreadcrumb
+					:items="[
+						{ 'icon': 'i-ph-house', 'to': '/', 'aria-label': 'Home' },
+						{ label: 'Frameworks' },
+					]"
+				>
+					<template #separator>
+						<span class="mx-2 text-muted">/</span>
+					</template>
+				</UBreadcrumb>
+			</template>
+		</UPageHeader>
 
 		<UPageBody>
 			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -78,5 +91,5 @@ useSeoMeta({
 				</UPageCard>
 			</div>
 		</UPageBody>
-	</UPage>
+	</DocsPage>
 </template>

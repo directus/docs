@@ -39,7 +39,8 @@
 		"posthog-node": "5.29.7",
 		"sharp": "^0.34.5",
 		"tailwindcss": "^4.2.4",
-		"ufo": "1.6.3"
+		"ufo": "1.6.3",
+		"unhead": "^3.1.0"
 	},
 	"devDependencies": {
 		"@iconify-json/ph": "^1.2.2",

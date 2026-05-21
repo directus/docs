@@ -62,7 +62,7 @@ The platform also offers a developer-friendly experience with excellent local de
 
 ## The Directus + Inngest Integration: Beyond Flows
 
-While Directus already includes its own [workflow automation system (Flows)](/guides/automate/flows), Inngest complements it by handling scenarios that Flows wasn't designed for. Directus Flows excels at short-lived automations like sending notifications or processing simple data operations, but AI workflows typically require more resilience and computational power.
+While Directus already includes its own [workflow automation system (Flows)](/guides/flows), Inngest complements it by handling scenarios that Flows wasn't designed for. Directus Flows excels at short-lived automations like sending notifications or processing simple data operations, but AI workflows typically require more resilience and computational power.
 
 Inngest is the perfect companion when you need:
 

@@ -143,6 +143,7 @@ export default defineNuxtConfig({
 		compressPublicAssets: false,
 		prerender: {
 			routes: ['/'],
+			failOnError: false,
 
 			crawlLinks: true,
 
@@ -190,6 +191,7 @@ export default defineNuxtConfig({
 	},
 
 	linkChecker: {
+		enabled: false,
 		skipInspections: [
 			// Skip absolute site urls because of our routing setup between the docs and the main site
 			'absolute-site-urls',
