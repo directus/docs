@@ -1,15 +1,22 @@
-/* Ensure all the API reference docs are prerendered */
-import { spec } from '@directus/openapi';
+/* Ensure all the API reference docs are prerendered when the API reference is enabled. */
 import { defineNuxtModule, extendRouteRules, useLogger } from '@nuxt/kit';
-import { withoutTrailingSlash } from 'ufo';
-import mapOasNavigation from '~/utils/mapOasNavigation';
 
 export default defineNuxtModule({
-	async setup(_moduleOptions, _nuxt) {
+	async setup() {
 		const logger = useLogger();
 
+		if (process.env.NUXT_PRERENDER_API_REFERENCE !== 'true') {
+			logger.info('Skipping API reference prerender');
+			return;
+		}
+
+		const [{ spec }, { default: mapOasNavigation }, { withoutTrailingSlash }] = await Promise.all([
+			import('@directus/openapi'),
+			import('~/utils/mapOasNavigation'),
+			import('ufo'),
+		]);
+
 		logger.info('Prerendering API reference docs...');
-		// Use existing helper to map the OAS to a navigation object and just return the paths
 		const permalinks = mapOasNavigation(spec).map(item => item.path).flat();
 
 		for (const link of permalinks) {

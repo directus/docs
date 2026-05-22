@@ -47,7 +47,7 @@ const breadcrumb = computed(() => {
 	const trail = (findPageBreadcrumb(navigation.value, path.value) ?? [])
 		.map(item => ({
 			label: item.title,
-			to: item.path === path.value ? undefined : item.path,
+			to: item.path === path.value || item.page === false ? undefined : item.path,
 		}));
 
 	return [

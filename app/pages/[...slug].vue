@@ -94,7 +94,7 @@ const breadcrumb = computed(() => {
 	const trail: { label: string; to?: string }[] = (findPageBreadcrumb(navigation.value, path.value) ?? [])
 		.map(item => ({
 			label: item.title,
-			to: item.path === path.value ? undefined : item.path,
+			to: item.path === path.value || item.page === false ? undefined : item.path,
 		}));
 
 	if (trail.length === 0 && page.value?.title) {

@@ -131,7 +131,10 @@ export default defineNuxtConfig({
 		transpile: ['shiki'],
 	},
 
-	routeRules: loadRedirectRouteRules(),
+	routeRules: {
+		...loadRedirectRouteRules(),
+		'/api/**': { prerender: false },
+	},
 
 	future: {
 		compatibilityVersion: 4,
