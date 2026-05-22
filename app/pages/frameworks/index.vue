@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content';
+
 definePageMeta({
 	layout: 'docs',
 });
 
-const { data: nav } = await useAsyncData('frameworks-nav', () =>
-	queryCollectionNavigation('content', ['icon']),
-);
+const navigation = inject('navigation') as Ref<ContentNavigationItem[]> | undefined;
 
 const { data: guides } = await useAsyncData('frameworks-guide-counts', () =>
 	queryCollection('content')
@@ -24,7 +24,7 @@ type FrameworkCard = {
 };
 
 const frameworkCards = computed<FrameworkCard[]>(() => {
-	const root = findNavNode(nav.value, '/frameworks');
+	const root = findNavNode(navigation?.value, '/frameworks');
 	const items = root?.children ?? [];
 
 	return items
