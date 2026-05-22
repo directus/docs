@@ -1,3 +1,7 @@
+import { loadRedirects, toRouteRules } from './scripts/_redirects-lib.ts';
+
+const BASE_URL = '/docs';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: [
@@ -18,7 +22,7 @@ export default defineNuxtConfig({
 	},
 
 	app: {
-		baseURL: '/docs',
+		baseURL: BASE_URL,
 	},
 
 	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
@@ -106,6 +110,8 @@ export default defineNuxtConfig({
 	build: {
 		transpile: ['shiki'],
 	},
+
+	routeRules: toRouteRules(loadRedirects('redirects.json'), BASE_URL),
 
 	future: {
 		compatibilityVersion: 4,

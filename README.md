@@ -13,7 +13,7 @@ Welcome! This is the repo for [Directus' documentation](https://docs.directus.io
 
 ### Requirements
 
-- Node.js 22
+- Node.js 22.18 or later
 - pnpm
 
 ### Install Dependencies
@@ -46,6 +46,20 @@ pnpm dev
 ```bash
 pnpm build
 ```
+
+### Repository Tooling
+
+The repository includes scripts that keep docs routes stable when files move.
+
+```bash
+pnpm stable-ids:ensure  # Add missing stableId frontmatter
+pnpm stable-ids:check   # Validate stableId frontmatter
+pnpm redirects:sync     # Update redirects.json for moved pages
+pnpm redirects:check    # Check redirect coverage without writing files
+pnpm typecheck:scripts  # Type check repository scripts
+```
+
+`pnpm install` configures `.githooks` for the repository when no custom `core.hooksPath` is set. The pre-commit hook can add missing `stableId` values to staged docs files. The pre-push hook checks redirects when docs content, redirect configuration, or content configuration changes.
 
 ## ☁️ Deploying the Docs
 

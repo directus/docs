@@ -7,7 +7,12 @@
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare"
+		"postinstall": "node scripts/setup-hooks.ts && nuxt prepare",
+		"stable-ids:ensure": "node scripts/ensure-stable-ids.ts",
+		"stable-ids:check": "node scripts/ensure-stable-ids.ts --check",
+		"redirects:sync": "node scripts/redirects-sync.ts --fail-on-unresolved",
+		"redirects:check": "node scripts/redirects-sync.ts --dry-run --fail-on-unresolved",
+		"typecheck:scripts": "tsc -p scripts/tsconfig.json"
 	},
 	"dependencies": {
 		"@directus/openapi": "0.3.0",
@@ -41,6 +46,7 @@
 		"@nuxt/eslint": "1.15.2",
 		"@nuxt/scripts": "1.0.2",
 		"@types/lodash-es": "4.17.12",
+		"@types/node": "^22",
 		"typescript": "6.0.3",
 		"vue-tsc": "^3.2.7"
 	},
@@ -49,5 +55,8 @@
 			"vite": "npm:rolldown-vite@latest"
 		}
 	},
-	"packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8"
+	"packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8",
+	"engines": {
+		"node": ">=22.18"
+	}
 }

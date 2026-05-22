@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+if ! git fetch origin main --quiet; then
+	echo "warning: failed to fetch origin/main; using local ref for redirect check" >&2
+fi
+
+if git rev-parse --verify origin/main >/dev/null 2>&1; then
+	base_ref="origin/main"
+elif git rev-parse --verify main >/dev/null 2>&1; then
+	base_ref="main"
+else
+	echo "warning: no origin/main or main ref found; skipping redirect check" >&2
+	exit 0
+fi
+
+if git diff --quiet "$base_ref"...HEAD -- content redirects.json content.config.ts; then
+	exit 0
+fi
+
+echo "Checking redirects for docs changes..."
+pnpm redirects:check -- --base "$base_ref"

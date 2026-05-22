@@ -16,6 +16,7 @@ export default defineContentConfig({
 				title: z.string(),
 				description: z.string().optional(),
 				headline: z.string().optional(),
+				stableId: z.string().uuid().optional(),
 				authors: z.array(z.object({
 					name: z.string(),
 					title: z.string(),
