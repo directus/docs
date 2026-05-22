@@ -16,9 +16,6 @@ export default defineAppConfig({
 				wrapper: '[&_pre>code]:!bg-transparent',
 			},
 		},
-	},
-
-	uiPro: {
 		page: {
 			slots: {
 				root: 'lg:gap-8',
@@ -190,11 +187,13 @@ export default defineAppConfig({
 	cta: {
 		cloud: {
 			link: 'https://directus.cloud',
-			description: 'Everything you need to start building. Provisioned in 90 seconds.',
+			description:
+				'Everything you need to start building. Provisioned in 90 seconds.',
 			cta: 'Get Started',
 		},
 		newsletter: {
-			description: 'Get once-a-month release notes & real‑world code tips...no fluff. 🐰',
+			description:
+				'Get once-a-month release notes & real‑world code tips...no fluff. 🐰',
 			form: {
 				hsPortal: 20534155,
 				hsForm: 'd57a69e4-6f43-4768-a600-5f7d30306260',

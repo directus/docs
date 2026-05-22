@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
 
-import { findPageHeadline } from '#ui-pro/utils';
+import { findPageBreadcrumb, findPageHeadline } from '@nuxt/content/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
@@ -12,32 +12,49 @@ definePageMeta({
 const route = useRoute();
 
 const { path } = useNormalizedPath();
-const { data: page } = await useAsyncData(path, () => queryCollection('content').path(path.value).first());
+const { data: page } = await useAsyncData(path, () =>
+	queryCollection('content').path(path.value).first(),
+);
 
 if (!page.value) {
-	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
+	throw createError({
+		statusCode: 404,
+		statusMessage: 'Page not found',
+		fatal: true,
+	});
 }
 
-const headline = computed(() => findPageHeadline(navigation.value, page.value));
+const headline = computed(() => findPageHeadline(navigation.value, path.value));
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
-	route.path,
-	{
+const ogBreadcrumb = computed(() =>
+	(findPageBreadcrumb(navigation.value, path.value) ?? [])
+		.map(item => item.title)
+		.filter((title): title is string => Boolean(title)),
+);
+
+defineOgImage('Default', {
+	title: page.value?.title ?? 'Directus Docs',
+	description: page.value?.description ?? '',
+	breadcrumb: ogBreadcrumb.value,
+});
+
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
+	queryCollectionItemSurroundings('content', route.path, {
 		fields: ['title', 'description', 'path'],
-	},
-).where('path', 'NOT LIKE', '%.navigation'));
+	}).where('path', 'NOT LIKE', '%.navigation'),
+);
 </script>
 
 <template>
-	<UPage>
+	<UPage v-if="page">
 		<UPageHeader
-			:title="page!.title ?? ''"
-			:description="page!.description ?? ''"
+			:title="page.title ?? ''"
+			:description="page.description ?? ''"
 			:headline="headline"
 			:ui="{ headline: 'headline', title: 'title' }"
 		>
 			<template #links>
-				<CopyDocButton :page="page!" />
+				<CopyDocButton :page="page" />
 			</template>
 		</UPageHeader>
 
@@ -45,10 +62,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			class="content"
 			prose
 		>
-			<ContentRenderer
-				v-if="page"
-				:value="page"
-			/>
+			<ContentRenderer :value="page" />
 
 			<USeparator v-if="surround?.length" />
 
@@ -58,13 +72,13 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 		</UPageBody>
 
 		<template
-			v-if="page!.body?.toc?.links?.length"
+			v-if="page.body?.toc?.links?.length"
 			#right
 		>
 			<DocsToc
-				:links="page!.body?.toc?.links"
-				:authors="page!.authors"
-				:file="page!.id!"
+				:links="page.body?.toc?.links"
+				:authors="page.authors"
+				:file="page.id!"
 			/>
 		</template>
 	</UPage>

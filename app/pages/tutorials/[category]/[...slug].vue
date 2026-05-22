@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import type { ContentCollectionItem, ContentNavigationItem } from '@nuxt/content';
-import { findPageBreadcrumb, mapContentNavigation } from '#ui-pro/utils';
+import type {
+	ContentCollectionItem,
+	ContentNavigationItem,
+} from '@nuxt/content';
+import { findPageBreadcrumb } from '@nuxt/content/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
@@ -10,10 +13,16 @@ definePageMeta({
 
 const { path } = useNormalizedPath();
 
-const { data: page } = await useAsyncData(path, () => queryCollection('content').path(path.value).first());
+const { data: page } = await useAsyncData(path, () =>
+	queryCollection('content').path(path.value).first(),
+);
 
 if (!page.value) {
-	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
+	throw createError({
+		statusCode: 404,
+		statusMessage: 'Page not found',
+		fatal: true,
+	});
 }
 
 const imageSrc = (page: ContentCollectionItem | undefined) => {
@@ -23,7 +32,20 @@ const imageSrc = (page: ContentCollectionItem | undefined) => {
 	return `/docs/api/tutorialimg?logos=${techString}`;
 };
 
-const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation.value, page.value)).map(({ icon, ...link }) => link));
+const breadcrumb = computed(() =>
+	(findPageBreadcrumb(navigation.value, path.value) ?? []).map(item => ({
+		label: item.title,
+		to: item.path,
+	})),
+);
+
+defineOgImage('Default', {
+	title: page.value?.title ?? 'Directus Docs',
+	description: page.value?.description ?? '',
+	breadcrumb: breadcrumb.value
+		.map(item => item.label)
+		.filter((label): label is string => Boolean(label)),
+});
 </script>
 
 <template>
@@ -34,9 +56,7 @@ const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(naviga
 			:description="page!.description"
 		>
 			<template #headline>
-				<UBreadcrumb
-					:items="breadcrumb"
-				>
+				<UBreadcrumb :items="breadcrumb">
 					<template #separator>
 						<span class="mx-2 text-muted">/</span>
 					</template>
