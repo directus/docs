@@ -2,15 +2,15 @@
 stableId: c15b7d0c-a285-479e-92c5-88f7f6a5c1fc
 id: 73b10a4d-0da8-48c7-9753-4a3addd2c5ff
 slug: tag-images-with-clarifai-and-directus-automate
-title: Tag Images with Clarifai and Directus Automate
+title: Tag Images with Clarifai and Directus Flows
 technologies:
   - clarifai
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to integrate Clarifai's image recognition APIs with Directus Automate.
+description: Learn how to integrate Clarifai's image recognition APIs with Directus Flows.
 ---
-[Clarifai](https://clarifai.com) allow you to train and use machine learning models via APIs. In this tutorial, you will use Clarfai's image recognition model with Directus Automate to automatically tag new image files in your project.
+[Clarifai](https://clarifai.com) allow you to train and use machine learning models via APIs. In this tutorial, you will use Clarfai's image recognition model with Directus Flows to automatically tag new image files in your project.
 
 ## Before You Start
 
@@ -18,7 +18,7 @@ You will need a [Directus project](/getting-started/overview) and a Clarifai API
 
 ## Create a Flow
 
-Flows are Directus' no-code automation builder provided as part of Directus Automate. Create a new flow with a non-blocking event hook and the `files.upload` scope. This means that it will run asynchronously and not block the file upload.
+Flows are Directus' no-code automation builder. Create a new flow with a non-blocking event hook and the `files.upload` scope. This means that it will run asynchronously and not block the file upload.
 
 Whenever a few file is uploaded, the flow will be triggered. The payload will include a file type and ID - both will be used in future steps.
 

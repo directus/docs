@@ -2,15 +2,15 @@
 stableId: 6f67abf4-3bcb-4d99-93d0-33f511c81e04
 id: 3b8646a5-cdfa-4841-bc43-1aa337b6e4f7
 slug: generate-social-posts-with-gpt-4-and-directus-automate
-title: Generate Social Posts with GPT-4 and Directus Automate
+title: Generate Social Posts with GPT-4 and Directus Flows
 technologies:
   - openai
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to integrate OpenAI's GPT-4 model with Directus Automate.
+description: Learn how to integrate OpenAI's GPT-4 model with Directus Flows.
 ---
-Directus Automate provide a really powerful interface to integrating with AI services via their APIs. In this tutorial, we will use [OpenAI’s Text Generation API](https://platform.openai.com/docs/api-reference/chat/create) to leverage GPT-4 and create social posts for our content directly within the Directus Editor.
+Directus Flows provide a really powerful interface to integrating with AI services via their APIs. In this tutorial, we will use [OpenAI’s Text Generation API](https://platform.openai.com/docs/api-reference/chat/create) to leverage GPT-4 and create social posts for our content directly within the Directus item page.
 
 ## Before We Start
 

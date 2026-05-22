@@ -6,7 +6,7 @@ title: Use npm Packages in Custom Operations
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to expose an npm package as an operation in Directus Automate.
+description: Learn how to expose an npm package as an operation in Directus Flows.
 ---
 This guide will show you how to expose an NPM package as a custom operation in Flows. We will use `lodash` here, but the
 process should be the same for any package.

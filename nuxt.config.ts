@@ -226,7 +226,7 @@ export default defineNuxtConfig({
 			{
 				title: 'Guides - Connect',
 				description:
-					'Using the Directus REST and GraphQL APIs — authentication mechanics, filter operators, query parameters, pagination, relational queries, error handling, and the JavaScript/TypeScript SDK.',
+					'Using the Directus REST and GraphQL APIs - authentication mechanics, filter operators, query parameters, pagination, relational queries, error handling, and the JavaScript/TypeScript SDK.',
 				contentCollection: 'content',
 				contentFilters: [
 					{ field: 'path', operator: 'LIKE', value: '/guides/connect%' },
@@ -242,7 +242,7 @@ export default defineNuxtConfig({
 				],
 			},
 			{
-				title: 'Guides - Automate',
+				title: 'Guides - Flows',
 				description:
 					'Building event-driven automations with Flows, triggers, data chains, and operations.',
 				contentCollection: 'content',

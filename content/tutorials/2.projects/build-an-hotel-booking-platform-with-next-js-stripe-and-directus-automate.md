@@ -2,7 +2,7 @@
 stableId: 78258d4b-8355-4477-b45a-2505d018eab6
 id: e93c8494-df0d-4aa1-80c1-beabb0081411
 slug: build-an-hotel-booking-platform-with-next-js-stripe-and-directus-automate
-title: Build an Hotel Booking Platform with Next.js, Stripe, and Directus Automate
+title: Build an Hotel Booking Platform with Next.js, Stripe, and Directus Flows
 technologies:
   - nextjs
 authors:

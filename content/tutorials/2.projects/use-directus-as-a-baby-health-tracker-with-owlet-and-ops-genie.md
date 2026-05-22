@@ -10,7 +10,7 @@ description: Learn how to integrate Directus with hardware sensors and incident 
 ---
 I have a baby and like many parents rely on monitors and sensors to make sure they're ok. In this article, we will explore Directus as a backend for a smart wearable device, and how to extend the functionality of the the apps shipped with the device. I personally use the [Owlet Smart Sock](https://owletcare.com/products/owlet-smart-sock), but the approaches covered in this article can be adapted for many other sensors.
 
-We will cover data model configuration, how to grab data from the wearable using Directus Automate, and how to integrate Directus into 3rd party tools for reporting, such as OpsGenie and screen widgets on an iPhone.
+We will cover data model configuration, how to grab data from the wearable using Directus Flows, and how to integrate Directus into 3rd party tools for reporting, such as OpsGenie and screen widgets on an iPhone.
 
 ## Creating Collections
 

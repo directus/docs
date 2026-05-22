@@ -2,15 +2,15 @@
 stableId: 67b6c096-9b87-4b50-9550-6213469c52b1
 id: 6388aa8a-99b5-4a3b-a9ff-275d26b8cb81
 slug: detect-high-risk-phone-numbers-with-vonage-and-directus-automate
-title: Detect High-Risk Phone Numbers with Vonage and Directus Automate
+title: Detect High-Risk Phone Numbers with Vonage and Directus Flows
 technologies:
   - vonage
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to integrate Vonage's Number Insights API with Directus Automate to validate numbers.
+description: Learn how to integrate Vonage's Number Insights API with Directus Flows to validate numbers.
 ---
-When creating new users for your service, it's important to take steps to prevent fraudulent or malicious activity. In this post, you'll use [Vonage's Number Insight V2 API](https://developer.vonage.com/en/number-insight/number-insight-v2/overview) and [Directus Automate](https://directus.io/toolkit/automate) to determine the likelihood of a number being risky at the time of user registration, and let you act on it.
+When creating new users for your service, it's important to take steps to prevent fraudulent or malicious activity. In this post, you'll use [Vonage's Number Insight V2 API](https://developer.vonage.com/en/number-insight/number-insight-v2/overview) and [Flows](/guides/automate/flows) to determine the likelihood of a number being risky at the time of user registration, and let you act on it.
 
 The Vonage Number Insight V2 API assigns a fraud score to numbers, along with a risk recommendation - allow, flag, or block. You can use this recommendation to allow user creation, allow it with a note to your team to validate or block creation.
 
