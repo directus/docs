@@ -465,7 +465,7 @@ Open up the Public role with the [Access Control settings](/guides/auth/access-c
 
 **Create and Update Operations**
 
-Click the :icon{name="material-symbols:block"} button inside each column and choose :icon{name="material-symbols:check"} All Access.
+Click the :icon{name="material-symbols:block-outline"} button inside each column and choose :icon{name="material-symbols:check"} All Access.
 
 **Read Operation**
 

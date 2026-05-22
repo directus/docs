@@ -51,7 +51,7 @@ const breadcrumb = computed(() => {
 		}));
 
 	return [
-		{ 'icon': 'i-ph-house', 'to': '/', 'aria-label': 'Home' },
+		{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
 		...trail,
 	];
 });
@@ -93,7 +93,7 @@ defineOgImage('Default', {
 				:handle="false"
 				:ui="{ content: 'w-full max-w-2/3' }"
 			>
-				<UButton label="Menu" icon="heroicons-outline:menu-alt-2" color="neutral" variant="link" size="xs" aria-label="Open navigation" />
+				<UButton label="Menu" icon="material-symbols:menu" color="neutral" variant="link" size="xs" aria-label="Open navigation" />
 				<template #body>
 					<MobileNavSectionSwitcher :items="allSectionItems" :current-section="currentSection" />
 					<p class="text-xs font-medium text-dimmed uppercase font-mono tracking-widest mb-2 flex items-center gap-1">
@@ -112,7 +112,7 @@ defineOgImage('Default', {
 				:handle="false"
 				:ui="{ content: 'w-full max-w-2/3' }"
 			>
-				<UButton label="On this page" trailing-icon="heroicons-outline:chevron-right" color="neutral" variant="link" size="xs" aria-label="Open on this page" />
+				<UButton label="On this page" trailing-icon="material-symbols:chevron-right" color="neutral" variant="link" size="xs" aria-label="Open on this page" />
 				<template #body>
 					<DocsToc :links="page!.body?.toc?.links" :authors="page!.authors" :file="page!.id!" mobile />
 				</template>
@@ -166,7 +166,7 @@ defineOgImage('Default', {
 				#links
 			>
 				<UButton
-					:icon="favorited ? 'i-ph-star-fill' : 'i-ph-star'"
+					:icon="favorited ? 'material-symbols:star' : 'material-symbols:star-outline'"
 					:label="favorited ? 'Favorited' : 'Favorite'"
 					color="neutral"
 					variant="ghost"

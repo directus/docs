@@ -115,7 +115,7 @@ const breadcrumb = computed(() => {
 	}
 
 	return [
-		{ 'icon': 'i-ph-house', 'to': '/', 'aria-label': 'Home' },
+		{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
 		...trail,
 	];
 });
@@ -136,7 +136,7 @@ const breadcrumb = computed(() => {
 			>
 				<UButton
 					label="Menu"
-					icon="heroicons-outline:menu-alt-2"
+					icon="material-symbols:menu"
 					color="neutral"
 					variant="link"
 					size="xs"
@@ -167,7 +167,7 @@ const breadcrumb = computed(() => {
 			>
 				<UButton
 					label="On this page"
-					trailing-icon="heroicons-outline:chevron-right"
+					trailing-icon="material-symbols:chevron-right"
 					color="neutral"
 					variant="link"
 					size="xs"
@@ -221,7 +221,7 @@ const breadcrumb = computed(() => {
 				#links
 			>
 				<UButton
-					:icon="favorited ? 'i-ph-star-fill' : 'i-ph-star'"
+					:icon="favorited ? 'material-symbols:star' : 'material-symbols:star-outline'"
 					:label="favorited ? 'Favorited' : 'Favorite'"
 					color="neutral"
 					variant="ghost"

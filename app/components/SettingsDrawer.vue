@@ -73,7 +73,7 @@ const selectedUseCase = computed({
 					</p>
 				</div>
 				<UButton
-					icon="i-ph-x"
+					icon="material-symbols:close"
 					variant="ghost"
 					color="neutral"
 					size="sm"
@@ -112,7 +112,7 @@ const selectedUseCase = computed({
 							/>
 							<UIcon
 								v-else
-								name="i-ph-code"
+								name="material-symbols:code"
 								class="size-4 text-dimmed"
 							/>
 						</template>
@@ -151,7 +151,7 @@ const selectedUseCase = computed({
 							/>
 							<UIcon
 								v-else
-								name="i-ph-target"
+								name="material-symbols:ads-click"
 								class="size-4 text-dimmed"
 							/>
 						</template>
@@ -322,7 +322,7 @@ const selectedUseCase = computed({
 							v-model="instanceUrlInput"
 							type="url"
 							placeholder="https://your-instance.directus.app"
-							icon="i-ph-link"
+							icon="material-symbols:link"
 							class="flex-1"
 						/>
 						<UButton
@@ -348,7 +348,7 @@ const selectedUseCase = computed({
 					variant="ghost"
 					color="neutral"
 					size="sm"
-					icon="i-ph-arrow-counter-clockwise"
+					icon="material-symbols:undo"
 					@click="resetAll()"
 				/>
 				<span class="text-xs text-muted">Saved automatically</span>

@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<{
 	prompt?: string;
 	icon?: string;
 }>(), {
-	icon: 'i-lucide-sparkles',
+	icon: 'material-symbols:auto-awesome-outline',
 });
 
 const slots = useSlots();
@@ -78,13 +78,13 @@ function toggleOpen() {
 				class="ms-auto"
 			>
 				<UButton
-					:icon="copied ? 'i-lucide-check' : 'i-lucide-copy'"
+					:icon="copied ? 'material-symbols:check' : 'material-symbols:content-copy-outline'"
 					:label="copied ? 'Copied' : 'Copy prompt'"
 					color="primary"
 					@click="copyPrompt"
 				/>
 				<UButton
-					:icon="open ? 'i-lucide-eye-off' : 'i-lucide-eye'"
+					:icon="open ? 'material-symbols:visibility-off-outline' : 'material-symbols:visibility-outline'"
 					color="primary"
 					square
 					@click="toggleOpen"

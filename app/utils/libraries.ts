@@ -7,7 +7,7 @@ export interface LibraryOption {
 
 export const libraries: LibraryOption[] = [
 	{ value: '0', label: 'SDK', icon: 'simple-icons:directus', matchLabels: ['Directus SDK', 'SDK'] },
-	{ value: '1', label: 'REST', icon: 'i-ph-globe', matchLabels: ['REST'] },
+	{ value: '1', label: 'REST', icon: 'material-symbols:language', matchLabels: ['REST'] },
 	{ value: '2', label: 'GraphQL', icon: 'simple-icons:graphql', matchLabels: ['GraphQL'] },
 ];
 

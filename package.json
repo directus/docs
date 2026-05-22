@@ -19,7 +19,6 @@
 		"@directus/sdk": "^21.2.2",
 		"@docsearch/css": "4.6.2",
 		"@docsearch/js": "4.6.2",
-		"@iconify-json/heroicons-outline": "1.2.1",
 		"@iconify-json/material-symbols": "1.2.68",
 		"@iconify-json/simple-icons": "1.2.79",
 		"@nuxt/content": "3.13.0",
@@ -43,7 +42,6 @@
 		"unhead": "^3.1.0"
 	},
 	"devDependencies": {
-		"@iconify-json/ph": "^1.2.2",
 		"@nuxt/eslint": "1.15.2",
 		"@nuxt/scripts": "1.0.2",
 		"@types/lodash-es": "4.17.12",

@@ -36,7 +36,7 @@ const frameworkCards = computed<FrameworkCard[]>(() => {
 			return {
 				slug,
 				label: item.title ?? slug,
-				icon: item.icon ?? 'i-ph-brackets-curly',
+				icon: item.icon ?? 'material-symbols:data-object',
 				count,
 			};
 		});
@@ -58,7 +58,7 @@ useSeoMeta({
 			<template #headline>
 				<UBreadcrumb
 					:items="[
-						{ 'icon': 'i-ph-house', 'to': '/', 'aria-label': 'Home' },
+						{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
 						{ label: 'Frameworks' },
 					]"
 				>

@@ -12,7 +12,9 @@ import {
 	type UserPreferences,
 } from '~/utils/userPreferences';
 
-const validators: { [K in keyof UserPreferences]: (v: string) => UserPreferences[K] | null } = {
+type PreferenceKey = Exclude<keyof UserPreferences, 'onboarding'>;
+
+const validators: { [K in PreferenceKey]: (v: string) => UserPreferences[K] | null } = {
 	framework: v => getFramework(v)?.slug ?? null,
 	useCase: v => getUseCase(v)?.slug ?? null,
 	deployment: v => getDeployment(v)?.slug ?? null,
@@ -36,7 +38,7 @@ export default function useUserPreferences() {
 
 	const prefs = computed<UserPreferences>(() => ({ ...defaultPrefs, ...cookie.value }));
 
-	function set<K extends keyof UserPreferences>(key: K, value: UserPreferences[K] | null) {
+	function set<K extends PreferenceKey>(key: K, value: UserPreferences[K] | null) {
 		const validated = value === null ? null : validators[key](value as string);
 		cookie.value = { ...prefs.value, [key]: validated };
 	}

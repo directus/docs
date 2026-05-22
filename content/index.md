@@ -23,7 +23,7 @@ Once you're ready to commit, pick how you want to run Directus:
   ---
   title: Directus Cloud
   description: Spin up a managed instance in seconds. No infrastructure to run.
-  icon: heroicons-outline:cloud
+  icon: material-symbols:cloud-outline
   to: https://directus.cloud
   ---
   :::
@@ -41,7 +41,7 @@ Once you're ready to commit, pick how you want to run Directus:
   ---
   title: Local Demo
   description: Try Directus locally in one command.
-  icon: heroicons-outline:command-line
+  icon: material-symbols:terminal
   to: /getting-started/overview
   ---
   :::
@@ -62,7 +62,7 @@ Directus is a flexible backend, but here's how teams typically use it.
   ---
   title: Developers
   description: APIs, SDKs, extensions, and self-hosting on your own terms.
-  icon: heroicons-outline:code
+  icon: material-symbols:code
   ---
   :::
 
@@ -70,7 +70,7 @@ Directus is a flexible backend, but here's how teams typically use it.
   ---
   title: Product teams
   description: Ship features without waiting for a backend rebuild.
-  icon: heroicons-outline:rocket-launch
+  icon: material-symbols:rocket-launch-outline
   ---
   :::
 
@@ -78,7 +78,7 @@ Directus is a flexible backend, but here's how teams typically use it.
   ---
   title: Agencies
   description: One backend, every project, every framework.
-  icon: heroicons-outline:briefcase
+  icon: material-symbols:business-center-outline
   ---
   :::
 
@@ -86,7 +86,7 @@ Directus is a flexible backend, but here's how teams typically use it.
   ---
   title: Publishers
   description: Headless CMS for content-driven sites at any scale.
-  icon: heroicons-outline:newspaper
+  icon: material-symbols:newspaper
   ---
   :::
 ::
@@ -100,7 +100,7 @@ Three concepts power everything in Directus. Start here to build your mental mod
   ---
   title: Data model
   description: Collections and fields map directly to your database schema.
-  icon: heroicons-outline:circle-stack
+  icon: material-symbols:database-outline
   to: /guides/data-model/collections
   ---
   :::
@@ -109,7 +109,7 @@ Three concepts power everything in Directus. Start here to build your mental mod
   ---
   title: Permissions
   description: Define who can do what, down to the field level.
-  icon: heroicons-outline:shield-check
+  icon: material-symbols:verified-user-outline
   to: /guides/auth/access-control
   ---
   :::
@@ -118,7 +118,7 @@ Three concepts power everything in Directus. Start here to build your mental mod
   ---
   title: Flows
   description: Trigger logic on events, schedules, or webhooks.
-  icon: heroicons-outline:bolt
+  icon: material-symbols:bolt-outline
   to: /guides/flows/operations
   ---
   :::

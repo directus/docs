@@ -2,7 +2,6 @@ export type DocsSectionId
 	= | 'getting-started'
 		| 'guides'
 		| 'deploy'
-		| 'studio'
 		| 'tutorials'
 		| 'frameworks'
 		| 'reference'
@@ -33,63 +32,56 @@ export const docsSections: DocsSection[] = [
 		label: 'Get Started',
 		to: '/getting-started/overview',
 		prefixes: ['/getting-started'],
-		icon: 'i-ph-rocket-launch',
+		icon: 'material-symbols:rocket-launch-outline',
 	},
 	{
 		id: 'guides',
 		label: 'Guides',
 		to: '/guides/data-model/collections',
 		prefixes: ['/guides'],
-		icon: 'i-ph-book-open',
+		icon: 'material-symbols:menu-book-outline',
 	},
 	{
 		id: 'deploy',
 		label: 'Hosting',
 		to: '/cloud/getting-started/introduction',
 		prefixes: ['/cloud', '/self-hosting', '/configuration'],
-		icon: 'i-ph-cloud',
-	},
-	{
-		id: 'studio',
-		label: 'Studio',
-		to: '/guides/content/editor',
-		prefixes: ['/studio'],
-		icon: 'i-ph-monitor-play',
+		icon: 'material-symbols:cloud-outline',
 	},
 	{
 		id: 'frameworks',
 		label: 'Frameworks',
 		to: '/frameworks',
 		prefixes: ['/frameworks'],
-		icon: 'i-ph-stack',
+		icon: 'material-symbols:stacks-outline',
 	},
 	{
 		id: 'api',
 		label: 'API Reference',
 		to: '/api',
 		prefixes: ['/api'],
-		icon: 'i-ph-code',
+		icon: 'material-symbols:code',
 	},
 	{
 		id: 'reference',
 		label: 'Reference',
 		to: '/reference/interfaces',
 		prefixes: ['/reference'],
-		icon: 'i-ph-book-bookmark',
+		icon: 'material-symbols:bookmarks-outline',
 	},
 	{
 		id: 'tutorials',
 		label: 'Tutorials',
 		to: '/tutorials',
 		prefixes: ['/tutorials'],
-		icon: 'i-ph-article',
+		icon: 'material-symbols:article-outline',
 	},
 	{
 		id: 'community',
 		label: 'Community',
 		to: '/community/overview/welcome',
 		prefixes: ['/community', '/releases'],
-		icon: 'i-ph-users-three',
+		icon: 'material-symbols:groups-outline',
 	},
 ];
 
@@ -98,28 +90,28 @@ export const docsGroups: DocsGroup[] = [
 		id: 'docs',
 		label: 'Docs',
 		to: '/getting-started/overview',
-		icon: 'i-ph-book-open',
-		sectionIds: ['getting-started', 'guides', 'deploy', 'studio', 'frameworks', 'community'],
+		icon: 'material-symbols:menu-book-outline',
+		sectionIds: ['getting-started', 'guides', 'deploy', 'frameworks', 'community'],
 	},
 	{
 		id: 'reference',
 		label: 'API ',
 		to: '/api',
-		icon: 'i-ph-code',
+		icon: 'material-symbols:code',
 		sectionIds: ['api'],
 	},
 	// {
 	// 	id: 'legacy-reference',
 	// 	label: 'Reference',
 	// 	to: '/reference/interfaces',
-	// 	icon: 'i-ph-book-bookmark',
+	// 	icon: 'material-symbols:bookmarks-outline',
 	// 	sectionIds: ['reference'],
 	// },
 	{
 		id: 'examples',
 		label: 'Tutorials',
 		to: '/tutorials',
-		icon: 'i-ph-article',
+		icon: 'material-symbols:article-outline',
 		sectionIds: ['tutorials'],
 	},
 ];

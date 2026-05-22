@@ -36,7 +36,7 @@ const dropdownItems = computed(() =>
 				variant="outline"
 				class="w-full rounded-md"
 				:ui="{ trailingIcon: 'ms-auto' }"
-				trailing-icon="i-lucide-chevrons-up-down"
+				trailing-icon="material-symbols:unfold-more"
 			/>
 		</UDropdownMenu>
 		<USeparator type="dashed" class="mt-4" />

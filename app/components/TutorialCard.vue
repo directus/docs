@@ -38,7 +38,7 @@ const imageSrc = computed(() => {
 				<ProseP class="text-gray-900 dark:text-white text-base truncate font-bold text-pretty">
 					{{ article.title }}
 				</ProseP>
-				<ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+				<ProseP class="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
 					{{ article.description }}
 				</ProseP>
 			</div>

@@ -1,7 +1,10 @@
 import { createSharedComposable } from '@vueuse/core';
-import { LazyDocsSearchPalette } from '#components';
 
 export const useSearchOverlay = createSharedComposable(() => {
-	const overlay = useOverlay();
-	return overlay.create(LazyDocsSearchPalette);
+	function open() {
+		if (!import.meta.client) return;
+		document.querySelector<HTMLButtonElement>('#docsearch .DocSearch-Button')?.click();
+	}
+
+	return { open };
 });

@@ -134,7 +134,7 @@ export default defineAppConfig({
 					{
 						label: 'Security',
 						to: '/guides/security/best-practices',
-						icon: 'i-ph-shield-check',
+						icon: 'material-symbols:verified-user-outline',
 					},
 					{
 						label: 'AI',
@@ -154,17 +154,17 @@ export default defineAppConfig({
 					{
 						label: 'Cloud',
 						to: '/cloud/getting-started/introduction',
-						icon: 'i-ph-cloud',
+						icon: 'material-symbols:cloud-outline',
 					},
 					{
 						label: 'Self-Hosting',
 						to: '/self-hosting/overview',
-						icon: 'i-ph-hard-drives',
+						icon: 'material-symbols:dns-outline',
 					},
 					{
 						label: 'Configuration',
 						to: '/configuration/intro',
-						icon: 'i-ph-gear',
+						icon: 'material-symbols:settings-outline',
 					},
 				],
 			},
@@ -174,22 +174,22 @@ export default defineAppConfig({
 					{
 						label: 'Frameworks',
 						to: '/frameworks',
-						icon: 'i-ph-brackets-curly',
+						icon: 'material-symbols:data-object',
 					},
 					{
 						label: 'Tutorials',
 						to: '/tutorials',
-						icon: 'i-ph-article',
+						icon: 'material-symbols:article-outline',
 					},
 					{
 						label: 'Community',
 						to: '/community/overview/welcome',
-						icon: 'i-ph-hand-heart',
+						icon: 'material-symbols:volunteer-activism-outline',
 					},
 					{
 						label: 'Releases',
 						to: '/releases',
-						icon: 'i-ph-notebook',
+						icon: 'material-symbols:menu-book-outline',
 					},
 				],
 			},

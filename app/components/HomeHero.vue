@@ -6,14 +6,17 @@ function openSearch() {
 </script>
 
 <template>
-	<section class="home-hero not-prose relative mt-6 mb-8 overflow-hidden rounded-2xl bg-slate-950 text-white">
+	<section
+		class="not-prose relative mt-6 mb-8 overflow-hidden rounded-2xl bg-slate-950 text-white shadow-[0_10px_24px_-16px_rgba(0,0,0,0.4)] ring-1 ring-white/[0.06]"
+		:style="{ '--hero-shader-base': '#0a0f21', '--hero-shader-tint': '#6644ff' }"
+	>
 		<HomeHeroShader />
 
-		<div class="home-hero-content relative z-10 p-8 pointer-events-none md:p-12 [&>*]:pointer-events-auto">
+		<div class="relative z-10 p-8 pointer-events-none @min-[48rem]/docs-pane:p-12 [&>*]:pointer-events-auto">
 			<p class="mb-4 font-mono text-xs font-medium tracking-widest text-white/60 uppercase">
 				Documentation
 			</p>
-			<h1 class="home-hero-title m-0 font-display text-4xl leading-tight font-medium tracking-tight text-white md:text-5xl lg:text-6xl">
+			<h1 class="m-0 font-display text-4xl leading-tight font-medium tracking-tight text-white @min-[48rem]/docs-pane:text-5xl @min-[64rem]/docs-pane:text-6xl">
 				The AI-ready <em class="font-normal">backend</em><br>for your whole team.
 			</h1>
 			<p class="mt-4 max-w-md text-base leading-7 text-white/70">
@@ -22,12 +25,12 @@ function openSearch() {
 
 			<button
 				type="button"
-				class="home-hero-search mt-7 flex w-full max-w-md cursor-pointer items-center gap-3 rounded-lg px-4 py-3 text-left text-sm text-white/60"
+				class="mt-7 flex w-full max-w-md cursor-pointer items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-left text-sm text-white/60 transition duration-150 hover:border-primary/45 hover:bg-white/[0.06] hover:ring-4 hover:ring-primary/10"
 				aria-label="Search documentation"
 				@click="openSearch"
 			>
 				<UIcon
-					name="heroicons:magnifying-glass-20-solid"
+					name="material-symbols:search"
 					class="size-4 shrink-0 text-white/60"
 				/>
 				<span class="flex-1">Search the docs...</span>
@@ -37,14 +40,14 @@ function openSearch() {
 			<div class="mt-6 flex flex-wrap gap-2.5">
 				<UButton
 					label="Get Started"
-					trailing-icon="i-ph-arrow-right"
+					trailing-icon="material-symbols:arrow-forward"
 					color="primary"
 					size="lg"
 					to="/getting-started/overview"
 				/>
 				<UButton
 					label="What is Directus?"
-					trailing-icon="i-ph-play"
+					trailing-icon="material-symbols:play-arrow-outline"
 					color="neutral"
 					variant="subtle"
 					size="lg"
@@ -54,45 +57,3 @@ function openSearch() {
 		</div>
 	</section>
 </template>
-
-<style scoped>
-.home-hero {
-	--hero-shader-base: #0a0f21;
-	--hero-shader-tint: #6644ff;
-	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 10px 24px -16px rgba(0, 0, 0, 0.4);
-}
-
-.home-hero-search {
-	background: rgba(255, 255, 255, 0.04);
-	border: 1px solid rgba(255, 255, 255, 0.08);
-	transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
-	border-radius: 999px;
-}
-.home-hero-search:hover {
-	background: rgba(255, 255, 255, 0.06);
-	border-color: color-mix(in oklab, var(--color-primary) 45%, transparent);
-	box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-primary) 12%, transparent);
-}
-
-@container docs-pane (max-width: 47.999rem) {
-	.home-hero-content {
-		padding: 2rem;
-	}
-	.home-hero-title {
-		font-size: 2.25rem;
-	}
-}
-@container docs-pane (min-width: 48rem) {
-	.home-hero-content {
-		padding: 3rem;
-	}
-	.home-hero-title {
-		font-size: 3rem;
-	}
-}
-@container docs-pane (min-width: 64rem) {
-	.home-hero-title {
-		font-size: 3.75rem;
-	}
-}
-</style>
