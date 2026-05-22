@@ -65,6 +65,8 @@ navigation: false
   :::
 ::
 
+:framework-links
+
 ## Features
 
 ::shiny-grid{class="lg:grid-cols-2"}
@@ -124,7 +126,7 @@ navigation: false
   title: Integrate Your Frontend
   description: Learn how to build a website using Directus as a Headless CMS using various frameworks.
   icon: material-symbols:web
-  to: '/tutorials/getting-started'
+  to: '/frameworks'
   ---
   :::
 

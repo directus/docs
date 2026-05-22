@@ -1,6 +1,6 @@
 ---
 stableId: 70f8292e-a9a7-44a7-8409-8861b0991ab8
-slug: build-a-realtime-chat-app-with-directus-and-astro
+slug: build-a-realtime-chat-app-using-directus-and-astro
 title: Build a Realtime Chat App with Directus and Astro
 technologies:
   - astro

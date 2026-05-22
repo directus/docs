@@ -107,7 +107,7 @@ export default defineAppConfig({
 				],
 			},
 			{
-				label: 'Deploy',
+				label: 'Hosting',
 				children: [
 					{
 						label: 'Cloud',
@@ -130,6 +130,16 @@ export default defineAppConfig({
 				label: 'Resources',
 				children: [
 					{
+						label: 'Frameworks',
+						to: '/frameworks',
+						icon: 'i-ph-brackets-curly',
+					},
+					{
+						label: 'Tutorials',
+						to: '/tutorials',
+						icon: 'i-ph-article',
+					},
+					{
 						label: 'Community',
 						to: '/community/overview/welcome',
 						icon: 'i-ph-hand-heart',
@@ -138,11 +148,6 @@ export default defineAppConfig({
 						label: 'Releases',
 						to: '/releases',
 						icon: 'i-ph-notebook',
-					},
-					{
-						label: 'Tutorials',
-						to: '/tutorials',
-						icon: 'i-ph-article',
 					},
 				],
 			},

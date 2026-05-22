@@ -61,6 +61,33 @@ pnpm typecheck:scripts  # Type check repository scripts
 
 `pnpm install` configures `.githooks` for the repository when no custom `core.hooksPath` is set. The pre-commit hook can add missing `stableId` values to staged docs files. The pre-push hook checks redirects when docs content, redirect configuration, or content configuration changes.
 
+## ✍️ Authoring Content
+
+Pages live as Markdown files under `content/`. Frontmatter fields are validated by the schema in `content.config.ts`.
+
+### Framework Guides
+
+Framework guides live under `content/frameworks/<framework>/`. The numeric prefix on filenames (`01.`, `02.`, …) controls sidebar sort order only — it has no semantic meaning, renumber freely.
+
+The `section` frontmatter field controls grouping on the `/frameworks/<framework>` hub page:
+
+- `section: start-here` — appears in the "Start Here" block at the top.
+- `section: guides` (or unset) — appears in the "Guides" block below.
+
+Minimal frontmatter for a new framework guide:
+
+```yaml
+---
+title: Fetch Data from Directus with Foo
+description: Learn how to integrate Directus in your Foo app.
+section: start-here
+technologies:
+  - foo
+navigation:
+  title: Data Fetching
+---
+```
+
 ## ☁️ Deploying the Docs
 
 The documentation automatically deploys to Vercel when changes are merged into the main branch. Simply:
