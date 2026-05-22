@@ -34,7 +34,7 @@ withDefaults(defineProps<OgProps>(), {
 			background-image: url('/docs/og-image.png');
 			background-size: 1200px 600px;
 			background-repeat: no-repeat;
-			font-family: 'Poppins';
+			font-family: 'Source Serif 4';
 			padding: 115px 75px 100px 75px;
 		"
 	>
@@ -53,7 +53,7 @@ withDefaults(defineProps<OgProps>(), {
 				<div
 					style="
 						color: rgba(255, 255, 255, 0.75);
-						font-family: 'Fira Mono';
+						font-family: 'IBM Plex Mono';
 						font-size: 28px;
 						font-weight: 500;
 						line-height: 100%;
@@ -64,7 +64,7 @@ withDefaults(defineProps<OgProps>(), {
 			</div>
 			<h1
 				style="
-					font-family: 'Poppins';
+					font-family: 'Source Serif 4';
 					color: #fff;
 					font-size: 84px;
 					line-height: 84px;
@@ -77,7 +77,7 @@ withDefaults(defineProps<OgProps>(), {
 			<p
 				v-if="description"
 				style="
-					font-family: 'Poppins';
+					font-family: 'Source Serif 4';
 					color: rgba(255, 255, 255, 0.75);
 					font-size: 32px;
 					line-height: 44px;

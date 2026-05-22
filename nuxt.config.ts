@@ -1,6 +1,9 @@
 import { existsSync, readFileSync } from 'node:fs';
 import type { NitroConfig } from 'nitropack';
 
+const directusLight = JSON.parse(readFileSync('./app/assets/shiki/directus-light.json', 'utf8'));
+const directusDark = JSON.parse(readFileSync('./app/assets/shiki/directus-dark.json', 'utf8'));
+
 const BASE_URL = '/docs';
 
 type RedirectStatusCode = 301 | 302 | 307 | 308;
@@ -66,9 +69,9 @@ export default defineNuxtConfig({
 				},
 				highlight: {
 					theme: {
-						default: 'github-light',
-						light: 'github-light',
-						dark: 'github-dark',
+						default: directusLight as never,
+						light: directusLight as never,
+						dark: directusDark as never,
 					},
 					langs: [
 						'bash',
@@ -174,8 +177,8 @@ export default defineNuxtConfig({
 	fonts: {
 		families: [
 			{ name: 'Inter', weights: [400, 500, 600, 700], global: true },
-			{ name: 'Poppins', weights: [400, 500, 600], global: true },
-			{ name: 'Fira Mono', weights: [400, 500, 600], global: true },
+			{ name: 'Source Serif 4', weights: [400, 500, 600], global: true },
+			{ name: 'IBM Plex Mono', weights: [400, 500, 600], global: true },
 		],
 	},
 
