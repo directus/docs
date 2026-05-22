@@ -224,7 +224,7 @@ export default defineNuxtConfig({
 				],
 			},
 			{
-				title: 'Guides - APIs',
+				title: 'Guides - Connect',
 				description:
 					'Using the Directus REST and GraphQL APIs - authentication mechanics, filter operators, query parameters, pagination, relational queries, error handling, and the JavaScript/TypeScript SDK.',
 				contentCollection: 'content',
