@@ -32,7 +32,7 @@
 		"@vueuse/core": "14.2.1",
 		"@vueuse/nuxt": "14.2.1",
 		"lodash-es": "4.18.1",
-		"nuxt": "4.4.2",
+		"nuxt": "4.4.6",
 		"nuxt-llms": "0.2.0",
 		"openapi3-ts": "4.5.0",
 		"posthog-js": "1.371.2",
