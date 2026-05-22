@@ -1,4 +1,5 @@
 ---
+stableId: 34b779a1-0e84-49fe-a675-96da571d5ea8
 slug: using-authentication-in-nuxt
 title: Using Authentication in Nuxt
 technologies:

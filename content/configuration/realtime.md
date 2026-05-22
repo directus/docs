@@ -1,4 +1,5 @@
 ---
+stableId: 69c2ca8b-3e06-4792-8808-bc537270c853
 title: Realtime
 description: Configuration for WebSockets and GraphQL Subscriptions.
 ---

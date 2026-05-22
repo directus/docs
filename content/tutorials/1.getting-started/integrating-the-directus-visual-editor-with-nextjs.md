@@ -1,4 +1,5 @@
 ---
+stableId: 5d0ac183-f40f-43ec-9d36-3d9efa73c204
 slug: integrating-the-directus-visual-editor-with-nextjs
 title: Integrating the Directus Visual Editor with Next.js
 technologies:

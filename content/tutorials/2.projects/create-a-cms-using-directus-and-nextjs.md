@@ -1,4 +1,5 @@
 ---
+stableId: 313ce076-572c-42fe-879d-a7ad38bed4a8
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-a-cms-using-directus-and-nextjs
 title: Create a CMS using Directus and Next.js

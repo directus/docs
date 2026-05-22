@@ -1,4 +1,5 @@
 ---
+stableId: 02fe06e8-c207-426f-8d3b-4832a6531c6d
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-dynamic-pages-for-a-cms-using-directus-and-nextjs
 title: Create Dynamic Pages for a CMS using Directus and Next.js

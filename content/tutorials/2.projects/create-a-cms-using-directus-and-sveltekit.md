@@ -1,4 +1,5 @@
 ---
+stableId: 26739e2b-e903-4196-950c-6452d04a3420
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-a-cms-using-directus-and-sveltekit
 title: Create a CMS using Directus and SvelteKit

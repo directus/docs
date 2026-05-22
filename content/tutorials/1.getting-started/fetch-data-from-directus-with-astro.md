@@ -1,4 +1,5 @@
 ---
+stableId: 98cb9a2e-88d4-4c63-9f06-414ccb561335
 id: 970eaaf3-d033-43d6-800e-c168e28c6d8f
 slug: fetch-data-from-directus-with-astro
 title: Fetch Data from Directus with Astro

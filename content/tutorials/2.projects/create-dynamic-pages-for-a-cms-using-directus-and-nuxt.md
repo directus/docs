@@ -1,4 +1,5 @@
 ---
+stableId: af8dafc8-146c-40a1-a338-8d09b6f76b82
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-dynamic-pages-for-a-cms-using-directus-and-nuxt
 title: Create Dynamic Pages for a CMS using Directus and Nuxt

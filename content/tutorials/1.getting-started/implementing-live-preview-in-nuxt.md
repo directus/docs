@@ -1,4 +1,5 @@
 ---
+stableId: eee0304f-ba89-4e8e-a935-4030a95d2b7b
 slug: implementing-live-preview-in-nuxt
 title: Implementing Live Preview in Nuxt
 technologies:

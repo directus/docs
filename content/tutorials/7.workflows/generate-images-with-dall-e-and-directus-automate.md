@@ -1,4 +1,5 @@
 ---
+stableId: 5b0030d0-d6c0-4e7f-9d0e-b2914ceb3f45
 id: 9feb1c8f-0500-4bff-9b2f-d69e08d316e7
 slug: generate-images-with-dall-e-and-directus-automate
 title: Generate Images with DALL•E and Directus Automate

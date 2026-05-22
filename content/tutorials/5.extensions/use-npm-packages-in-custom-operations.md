@@ -1,4 +1,5 @@
 ---
+stableId: 108362e9-deea-4072-aca6-920a7d6e7265
 id: 9e2efc14-27b4-4fa0-9632-71d922947fa2
 slug: use-npm-packages-in-custom-operations
 title: Use npm Packages in Custom Operations

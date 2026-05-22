@@ -1,4 +1,5 @@
 ---
+stableId: 384b2479-40d7-48c2-814b-e75ef0026b43
 slug: using-authentication-in-astro
 title: Using Authentication in Astro
 technologies:

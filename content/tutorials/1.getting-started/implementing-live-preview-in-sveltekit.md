@@ -1,4 +1,5 @@
 ---
+stableId: 52e8ca43-3013-47a9-a7fd-adc13acbef55
 slug: implementing-live-preview-in-sveltekit
 title: Implementing Live Preview in SvelteKit
 technologies:

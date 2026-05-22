@@ -1,4 +1,5 @@
 ---
+stableId: 0dde8554-cbf3-4010-a48e-84b511aa1223
 id: b847e493-5a35-49e1-80b1-3dc2657a0f7d
 slug: fetch-data-from-directus-with-eleventy-3
 technologies:

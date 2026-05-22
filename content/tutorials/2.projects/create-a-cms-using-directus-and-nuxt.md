@@ -1,4 +1,5 @@
 ---
+stableId: ec808493-1b38-4dd5-b39a-5fe224fe7fbb
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: create-a-cms-using-directus-and-nuxt
 title: Create a CMS using Directus and Nuxt

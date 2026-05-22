@@ -1,4 +1,5 @@
 ---
+stableId: 61b8cf57-ed7c-4f41-852c-5dbc28cd37a0
 slug: build-a-realtime-chat-app-with-directus-and-sveltekit
 title: Build a Realtime Chat App with Directus and SvelteKit
 technologies:

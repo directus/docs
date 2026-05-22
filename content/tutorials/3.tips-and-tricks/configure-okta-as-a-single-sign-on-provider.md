@@ -1,4 +1,5 @@
 ---
+stableId: 400c4a8d-41cc-4aa3-850c-29eb89da21fe
 id: 810c2e77-402d-486f-a37a-159731b90767
 slug: configure-okta-as-a-single-sign-on-provider
 title: Configure Okta as a Single Sign-On Provider

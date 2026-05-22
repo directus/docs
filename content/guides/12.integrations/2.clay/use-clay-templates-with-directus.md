@@ -1,4 +1,5 @@
 ---
+stableId: b4940c7f-b2ea-4653-92cf-ca33661ee0d9
 id: clay-templates-directus-tutorial
 title: Templates
 description: Learn how to use Clay's pre-built HTTP API templates to connect with Directus for data enrichment and synchronization.

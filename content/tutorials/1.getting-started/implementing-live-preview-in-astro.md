@@ -1,4 +1,5 @@
 ---
+stableId: 84390c7d-4800-4707-9694-4c1d02b56996
 slug: implementing-live-preview-in-astro
 title: Implementing Live Preview in Astro
 technologies:

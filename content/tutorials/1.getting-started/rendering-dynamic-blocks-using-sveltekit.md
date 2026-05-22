@@ -1,4 +1,5 @@
 ---
+stableId: 2c9200ec-ee4a-4bdd-a534-8cf4bb104f86
 slug: rendering-dynamic-blocks-using-sveltekit
 title: Rendering Dynamic Blocks Using SvelteKit
 technologies:

@@ -1,4 +1,5 @@
 ---
+stableId: 0d9cfbc7-9dae-493b-9c17-866606ec9f0e
 id: 75acf155-0662-4b74-8555-52e5cf02446c
 slug: set-up-live-preview-with-nuxt
 title: Set Up Live Preview with Nuxt

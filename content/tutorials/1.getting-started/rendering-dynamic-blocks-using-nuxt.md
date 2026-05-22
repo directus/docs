@@ -1,4 +1,5 @@
 ---
+stableId: 355a2ed6-eb0a-435d-8d69-cf2b69270ff3
 slug: rendering-dynamic-blocks-using-nuxt
 title: Rendering Dynamic Blocks Using Nuxt
 technologies:

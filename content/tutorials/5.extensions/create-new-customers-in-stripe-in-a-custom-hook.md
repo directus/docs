@@ -1,4 +1,5 @@
 ---
+stableId: 6f673434-bdbf-4a89-9440-18e2e13623da
 id: ba5c9666-330f-4349-9f1e-da113fb84d27
 slug: create-new-customers-in-stripe-in-a-custom-hook
 title: Create New Customers in Stripe in a Custom Hook

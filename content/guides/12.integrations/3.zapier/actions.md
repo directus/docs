@@ -1,4 +1,5 @@
 ---
+stableId: 5c521402-6427-4d52-90cb-e3a713344b73
 id: zapier-actions
 title: Actions
 description: Complete guide for using Directus actions in Zapier workflows, including working with items, users, and files.

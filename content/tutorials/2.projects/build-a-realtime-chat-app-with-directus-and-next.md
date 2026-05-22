@@ -1,4 +1,5 @@
 ---
+stableId: 996bd3b2-250d-4f37-bf90-0b114f96b7d1
 slug: build-a-realtime-chat-app-with-directus-and-next
 title: Build a Realtime Chat App with Directus and Next.js
 technologies:

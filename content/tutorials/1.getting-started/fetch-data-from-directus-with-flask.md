@@ -1,4 +1,5 @@
 ---
+stableId: 048a52f0-fd73-4ee3-b089-e6ec289d64b1
 id: c8562b3b-fbe0-4fd5-ade1-2d9a9e986f6d
 slug: fetch-data-from-directus-with-flask
 title: Fetch Data from Directus with Flask

@@ -1,4 +1,5 @@
 ---
+stableId: 05984f63-aae9-4ac5-bf21-5d0a7a0856c4
 id: c95350f1-1ace-488b-b293-77546b6ebe17
 slug: importing-files-in-directus-automate
 title: Importing Files in Directus Automate

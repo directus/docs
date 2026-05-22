@@ -1,4 +1,5 @@
 ---
+stableId: 63f8f8da-c036-4b22-906e-1fbe19d39298
 slug: build-forms-dynamically-using-directus-and-next
 title: Build Forms Dynamically using Directus and Next.js
 technologies:

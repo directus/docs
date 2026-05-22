@@ -1,4 +1,5 @@
 ---
+stableId: ed2c086a-f490-44ee-8532-fcb4f88b654d
 slug: implementing-multilingual-content-using-directus-and-next
 title: Implementing Multilingual Content using Directus and Next.js
 technologies:

@@ -1,4 +1,5 @@
 ---
+stableId: c15b7d0c-a285-479e-92c5-88f7f6a5c1fc
 id: 73b10a4d-0da8-48c7-9753-4a3addd2c5ff
 slug: tag-images-with-clarifai-and-directus-automate
 title: Tag Images with Clarifai and Directus Automate

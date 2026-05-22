@@ -1,4 +1,5 @@
 ---
+stableId: cfba1320-ff3f-4a70-b358-af6f9da57af5
 slug: implementing-multilingual-content-using-directus-and-nuxt
 title: Implementing Multilingual Content using Directus and Nuxt
 technologies:

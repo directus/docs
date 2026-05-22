@@ -1,4 +1,5 @@
 ---
+stableId: 9a06c807-d8a9-4adc-8755-064516ce4e7d
 title: PM2
 description: Configuration for PM2, the process manager for Directus.
 ---

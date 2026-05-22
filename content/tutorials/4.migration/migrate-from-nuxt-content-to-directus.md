@@ -1,4 +1,5 @@
 ---
+stableId: 2713080a-7015-4252-a7fe-a46213917423
 id: 023412b4-f8c3-4016-921d-756c75aad1e6
 slug: migrate-from-nuxt-content-to-directus
 title: Migrate from Nuxt Content to Directus

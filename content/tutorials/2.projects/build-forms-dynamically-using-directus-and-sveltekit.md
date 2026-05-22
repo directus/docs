@@ -1,4 +1,5 @@
 ---
+stableId: 20421ddd-2c84-4920-8f22-34b1e36b0dda
 slug: build-forms-dynamically-using-directus-and-sveltekit
 title: Build Forms Dynamically using Directus and SvelteKit
 technologies:

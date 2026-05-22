@@ -1,4 +1,5 @@
 ---
+stableId: 8d3c6deb-ce99-4030-b49a-af5d3ab49a21
 id: ab19694b-b7e5-44d1-994c-f7a5e5025829
 slug: fetch-data-from-directus-with-django
 title: Fetch Data from Directus with Django

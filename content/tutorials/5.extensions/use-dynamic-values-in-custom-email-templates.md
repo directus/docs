@@ -1,4 +1,5 @@
 ---
+stableId: 4a7052e3-b7c0-4cde-8853-d67e0391f38d
 id: ca326a34-f92f-4967-96d8-4c9be74a23fd
 slug: use-dynamic-values-in-custom-email-templates
 title: Use Dynamic Values in Custom Email Templates

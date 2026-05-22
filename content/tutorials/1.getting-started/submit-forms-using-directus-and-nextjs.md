@@ -1,4 +1,5 @@
 ---
+stableId: 7f7c2b05-a27a-429d-a55c-038824bef895
 slug: submit-forms-using-directus-and-nextjs
 title: Submit Forms Using Directus and Next.js
 technologies:

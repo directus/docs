@@ -1,4 +1,5 @@
 ---
+stableId: 89d1cf86-2d5b-47e5-ac63-a3bcaff42421
 slug: using-authentication-in-next-js
 title: Using Authentication in Next.js
 technologies:

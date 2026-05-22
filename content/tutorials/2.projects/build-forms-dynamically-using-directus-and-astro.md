@@ -1,4 +1,5 @@
 ---
+stableId: ffa9c8fe-df0d-4286-8c3b-656680417cc4
 slug: build-forms-dynamically-using-directus-and-astro
 title: Build Forms Dynamically using Directus and Astro
 technologies:

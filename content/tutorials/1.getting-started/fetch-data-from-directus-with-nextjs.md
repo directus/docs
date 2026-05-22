@@ -1,4 +1,5 @@
 ---
+stableId: 1c37964b-48a5-432a-bb71-3beaaee72422
 id: 66f569cd-d9cd-42ee-b064-b46cdf380c62
 slug: fetch-data-from-directus-with-nextjs
 title: Fetch Data from Directus with Next.js
