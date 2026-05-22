@@ -1,4 +1,5 @@
 ---
+stableId: ebafacb0-0e76-48f5-b9d4-5eed3e354419
 title: Security & Limits
 description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate limiting, and request limits.
 ---

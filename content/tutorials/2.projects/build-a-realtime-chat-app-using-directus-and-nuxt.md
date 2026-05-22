@@ -1,5 +1,6 @@
 ---
-slug: build-a-realtime-chat-app-with-directus-and-nuxt
+stableId: e810de4e-c2cb-484d-8600-4b9fcc715a64
+slug: build-a-realtime-chat-app-using-directus-and-nuxt
 title: Build a Realtime Chat App with Directus and Nuxt
 technologies:
   - nuxt

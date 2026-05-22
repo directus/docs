@@ -3,91 +3,136 @@ import path from 'node:path';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-export type Frontmatter = Record<string, string | undefined>;
-
-export interface EnsureResult {
-	changed: boolean;
-	source: string;
-	reason: 'inserted' | 'already-present' | 'missing-frontmatter';
+export interface ScopeOptions {
+	includeLanding?: boolean;
 }
 
-interface FrontmatterBlock {
+export interface Frontmatter {
+	[key: string]: string | undefined;
+}
+
+export interface FrontmatterBlock {
 	newline: string;
 	body: string;
 	closingWhitespace: string;
 	end: number;
 }
 
-export function isRoutableContentFile(file: string): boolean {
-	const f = file.replace(/\\/g, '/');
-	return f.startsWith('content/') && f.endsWith('.md') && !f.startsWith('content/_partials/');
+export type EnsureReason = 'inserted' | 'already-present' | 'missing-frontmatter';
+
+export interface EnsureResult {
+	changed: boolean;
+	source: string;
+	reason: EnsureReason;
 }
 
-// content/index.md is owned by the marketing site and skipped for stable-id backfill,
-// but still counts as a routable page for redirect continuity.
-export function isStableIdContentFile(file: string): boolean {
-	return isRoutableContentFile(file) && file.replace(/\\/g, '/') !== 'content/index.md';
+/**
+ * Stable IDs only matter for public, relocatable docs pages.
+ * Partials are excluded because they do not own routes, and the landing page is
+ * excluded because it is intentionally fixed at / and is not part of redirect continuity.
+ */
+
+export function isRoutableContentFile(file: string, { includeLanding = true }: ScopeOptions = {}): boolean {
+	const normalized = file.replace(/\\/g, '/');
+	if (!normalized.startsWith('content/') || !normalized.endsWith('.md')) return false;
+	if (normalized.startsWith('content/_partials/')) return false;
+	if (!includeLanding && normalized === 'content/index.md') return false;
+	return true;
 }
 
-export function listRoutableContentFiles(dir = 'content'): string[] {
-	return walkContent(dir, isRoutableContentFile);
+export function isInScopeContentFile(file: string): boolean {
+	return isRoutableContentFile(file, { includeLanding: false });
 }
 
-export function listStableIdContentFiles(dir = 'content'): string[] {
-	return walkContent(dir, isStableIdContentFile);
-}
-
-function walkContent(dir: string, predicate: (file: string) => boolean): string[] {
-	const out: string[] = [];
+export function listRoutableContentFiles(dir = 'content', { includeLanding = true }: ScopeOptions = {}): string[] {
+	const files: string[] = [];
 	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-		const full = path.join(dir, entry.name).replace(/\\/g, '/');
+		const fullPath = path.join(dir, entry.name);
+		const normalized = fullPath.replace(/\\/g, '/');
 		if (entry.isDirectory()) {
 			if (entry.name === '_partials') continue;
-			out.push(...walkContent(full, predicate));
+			files.push(...listRoutableContentFiles(fullPath, { includeLanding }));
+			continue;
 		}
-		else if (entry.isFile() && predicate(full)) {
-			out.push(full);
+		if (entry.isFile() && isRoutableContentFile(normalized, { includeLanding })) {
+			files.push(normalized);
 		}
 	}
-	return out;
+	return files;
 }
 
-// Minimal frontmatter parser: top-level scalar fields only. Used by hooks/scripts where
-// fast startup matters more than full YAML support.
+export function listInScopeContentFiles(dir = 'content'): string[] {
+	return listRoutableContentFiles(dir, { includeLanding: false });
+}
+
+/**
+ * Intentionally minimal frontmatter parser for top-level scalar fields only.
+ * We keep this dependency-free because the stable ID and redirect workflows only need
+ * a few top-level fields and run inside hooks/scripts where fast startup matters.
+ * Do not use this for arrays, nested YAML structures, or multiline YAML values.
+ */
 export function parseFrontmatter(source: string): Frontmatter {
 	const block = getFrontmatterBlock(source);
 	if (!block) return {};
 
 	const data: Frontmatter = {};
 	for (const line of block.body.split(/\r?\n/)) {
-		const m = line.match(/^([A-Za-z_][\w-]*):\s*(.+)$/);
-		if (m) data[m[1]] = unquote(m[2]);
+		const keyMatch = line.match(/^([A-Za-z_][\w-]*):\s*(.+)$/);
+		if (keyMatch) {
+			const [, key, rawValue] = keyMatch;
+			data[key] = cleanScalar(rawValue);
+		}
 	}
+
 	return data;
 }
 
-function getFrontmatterBlock(source: string): FrontmatterBlock | null {
-	const m = source.match(/^---(\r?\n)([\s\S]*?)\r?\n---(\r?\n|$)/);
-	if (!m) return null;
-	return { newline: m[1], body: m[2], closingWhitespace: m[3], end: m[0].length };
-}
-
-function unquote(value: string): string {
-	const v = value.trim();
-	if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
-		return v.slice(1, -1).trim();
+export function cleanScalar(value: string): string {
+	let result = value.trim();
+	if ((result.startsWith('"') && result.endsWith('"')) || (result.startsWith("'") && result.endsWith("'"))) {
+		result = result.slice(1, -1);
 	}
-	return v;
+	return result.trim();
 }
 
+/**
+ * Preserve the file's existing newline style so hook-driven edits stay mechanical and
+ * do not create noisy cross-platform diffs.
+ */
+export function getFrontmatterBlock(source: string): FrontmatterBlock | null {
+	const match = source.match(/^---(\r?\n)([\s\S]*?)\r?\n---(\r?\n|$)/);
+	if (!match) return null;
+
+	const [fullMatch, newline, body, closingWhitespace] = match;
+	return {
+		newline,
+		body,
+		closingWhitespace,
+		end: fullMatch.length,
+	};
+}
+
+export function hasStableId(source: string): boolean {
+	return /(?:^|\r?\n)stableId:\s*.+(?:\r?\n|$)/.test(getFrontmatterBlock(source)?.body || '');
+}
+
+/**
+ * Insert stableId as the first frontmatter field so the backfill stays easy to scan
+ * and future merges are less likely to bury identity changes inside unrelated metadata.
+ */
 export function ensureStableIdInSource(source: string, stableId: string): EnsureResult {
 	const block = getFrontmatterBlock(source);
-	if (!block) return { changed: false, source, reason: 'missing-frontmatter' };
-	if (/(?:^|\r?\n)stableId:\s*\S/.test(block.body)) {
+	if (!block) {
+		return { changed: false, source, reason: 'missing-frontmatter' };
+	}
+
+	if (hasStableId(source)) {
 		return { changed: false, source, reason: 'already-present' };
 	}
-	const head = `---${block.newline}stableId: ${stableId}${block.newline}${block.body}${block.newline}---${block.closingWhitespace}`;
-	return { changed: true, source: head + source.slice(block.end), reason: 'inserted' };
+
+	const inserted = `---${block.newline}stableId: ${stableId}${block.newline}${block.body}${block.newline}---${block.closingWhitespace}`;
+	const updated = inserted + source.slice(block.end);
+	return { changed: true, source: updated, reason: 'inserted' };
 }
 
 export function isValidUuid(value: unknown): value is string {

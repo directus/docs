@@ -1,6 +1,7 @@
 ---
+stableId: 4d9c1b0e-a39e-4e21-9cb1-52ece475ce5d
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
-slug: ai-santa-roast-app-with-directus-nuxt
+slug: how-i-built-an-ai-open-source-santa-roast-app-with-directus-and-nuxt
 title: How I Built an AI Open Source Santa Roast App with Directus and Nuxt
 technologies:
   - nuxt

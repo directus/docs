@@ -37,7 +37,7 @@ export default defineAppConfig({
 				to: '/getting-started/overview',
 			},
 			{
-				label: 'Guides',
+				label: 'Guide',
 				children: [
 					{
 						label: 'Data Model',
@@ -55,7 +55,7 @@ export default defineAppConfig({
 						icon: 'directus-auth',
 					},
 					{
-						label: 'Connect',
+						label: 'APIs',
 						to: '/guides/connect/authentication',
 						icon: 'directus-connect',
 					},
@@ -65,7 +65,7 @@ export default defineAppConfig({
 						icon: 'directus-files',
 					},
 					{
-						label: 'Automate',
+						label: 'Flows',
 						to: '/guides/automate/flows',
 						icon: 'directus-automate',
 					},
@@ -107,7 +107,7 @@ export default defineAppConfig({
 				],
 			},
 			{
-				label: 'Manage',
+				label: 'Hosting',
 				children: [
 					{
 						label: 'Cloud',
@@ -130,6 +130,16 @@ export default defineAppConfig({
 				label: 'Resources',
 				children: [
 					{
+						label: 'Frameworks',
+						to: '/frameworks',
+						icon: 'i-ph-brackets-curly',
+					},
+					{
+						label: 'Tutorials',
+						to: '/tutorials',
+						icon: 'i-ph-article',
+					},
+					{
 						label: 'Community',
 						to: '/community/overview/welcome',
 						icon: 'i-ph-hand-heart',
@@ -138,11 +148,6 @@ export default defineAppConfig({
 						label: 'Releases',
 						to: '/releases',
 						icon: 'i-ph-notebook',
-					},
-					{
-						label: 'Tutorials',
-						to: '/tutorials',
-						icon: 'i-ph-article',
 					},
 				],
 			},

@@ -1,4 +1,5 @@
 ---
+stableId: 27b39214-699f-4f38-ab6b-6a5cf060ace6
 id: 4cf07b05-bd1a-41cf-acf7-14891f44dae6
 slug: display-external-weather-api-data-in-custom-panels
 title: Display External Weather API Data In Custom Panels

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import type {
-	ContentCollectionItem,
-	ContentNavigationItem,
-} from '@nuxt/content';
+import type { ContentNavigationItem } from '@nuxt/content';
 import { findPageBreadcrumb } from '@nuxt/content/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
@@ -25,19 +22,29 @@ if (!page.value) {
 	});
 }
 
-const imageSrc = (page: ContentCollectionItem | undefined) => {
-	if (!page) return '';
-	const technologies = page.technologies || ['directus'];
-	const techString = technologies.join(', ');
-	return `/docs/api/tutorialimg?logos=${techString}`;
-};
-
 const breadcrumb = computed(() =>
 	(findPageBreadcrumb(navigation.value, path.value) ?? []).map(item => ({
 		label: item.title,
 		to: item.path,
 	})),
 );
+
+const frameworkChips = computed(() => {
+	const tech = page.value?.technologies ?? [];
+	const root = findNavNode(navigation.value, '/frameworks');
+	const frameworks = root?.children ?? [];
+	return tech
+		.map((slug) => {
+			const node = frameworks.find(f => f.path === `/frameworks/${slug}`);
+			if (!node) return null;
+			return {
+				label: node.title,
+				icon: node.icon,
+				to: node.path,
+			};
+		})
+		.filter(c => c !== null);
+});
 
 defineOgImage('Default', {
 	title: page.value?.title ?? 'Directus Docs',
@@ -64,16 +71,40 @@ defineOgImage('Default', {
 			</template>
 
 			<template
+				v-if="frameworkChips.length"
+				#description
+			>
+				<p
+					v-if="page!.description"
+					class="mb-4"
+				>
+					{{ page!.description }}
+				</p>
+				<div class="flex flex-wrap gap-2">
+					<NuxtLink
+						v-for="chip in frameworkChips"
+						:key="chip.to"
+						:to="chip.to"
+					>
+						<UBadge
+							:icon="chip.icon"
+							color="neutral"
+							variant="subtle"
+							size="md"
+							class="hover:bg-primary/10 hover:text-primary transition cursor-pointer"
+						>
+							{{ chip.label }}
+						</UBadge>
+					</NuxtLink>
+				</div>
+			</template>
+
+			<template
 				v-if="page"
 				#links
 			>
 				<CopyDocButton :page="page" />
 			</template>
-			<img
-				v-if="page"
-				:src="imageSrc(page)"
-				alt="Generated Image"
-			>
 		</UPageHeader>
 
 		<UPageBody

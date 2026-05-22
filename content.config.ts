@@ -23,6 +23,7 @@ export default defineContentConfig({
 				})).optional(),
 				icon: z.string().optional(),
 				technologies: z.array(z.string()).optional(),
+				section: z.enum(['start-here', 'guides']).optional(),
 				links: z.array(z.object({
 					label: z.string(),
 					icon: z.string(),
