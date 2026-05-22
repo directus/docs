@@ -147,6 +147,9 @@ export default defineNuxtConfig({
 
 	nitro: {
 		compressPublicAssets: false,
+		externals: {
+			inline: ['unhead'],
+		},
 		prerender: {
 			routes: ['/'],
 
