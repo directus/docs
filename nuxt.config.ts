@@ -50,8 +50,6 @@ export default defineNuxtConfig({
 
 	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
 
-	sourcemap: false,
-
 	site: {
 		name: 'Directus Docs',
 		description:
@@ -144,6 +142,8 @@ export default defineNuxtConfig({
 		'/docs/llms-full.txt': { prerender: false },
 	},
 
+	sourcemap: false,
+
 	future: {
 		compatibilityVersion: 4,
 	},
@@ -157,18 +157,15 @@ export default defineNuxtConfig({
 		},
 		prerender: {
 			routes: ['/'],
-
 			crawlLinks: true,
-
-			concurrency: 1,
+			concurrency: 2,
 			retry: 2,
 			retryDelay: 1000,
 		},
 	},
 
 	algolia: {
-		docSearch: {
-			indexName: 'directus_unified',
+		docSearch: { indexName: 'directus_unified',
 		},
 	},
 
