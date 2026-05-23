@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
-import { spec } from '@directus/openapi';
 
 const { data: navigation } = await useAsyncData('content-navigation', () => queryCollectionNavigation('content', ['title', 'description', 'icon', 'links']));
 
-provide('openapi', spec);
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
 defineOgImage('Default', {

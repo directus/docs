@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { OpenAPIObject } from 'openapi3-ts/oas30';
+const { spec: openapi } = await import('@directus/openapi');
 
-const openapi = inject<OpenAPIObject>('openapi')!;
+provide('openapi', openapi);
+
 const oasNavigation = computed(() => mapOasNavigation(openapi));
 </script>
 

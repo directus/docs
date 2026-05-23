@@ -50,6 +50,8 @@ export default defineNuxtConfig({
 
 	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
 
+	sourcemap: false,
+
 	site: {
 		name: 'Directus Docs',
 		description:
@@ -138,6 +140,8 @@ export default defineNuxtConfig({
 		...loadRedirectRouteRules(),
 		'/api/**': { prerender: false },
 		'/docs/api/**': { prerender: false },
+		'/llms-full.txt': { prerender: false },
+		'/docs/llms-full.txt': { prerender: false },
 	},
 
 	future: {
@@ -156,7 +160,7 @@ export default defineNuxtConfig({
 
 			crawlLinks: true,
 
-			concurrency: 3,
+			concurrency: 1,
 			retry: 2,
 			retryDelay: 1000,
 		},
@@ -187,6 +191,10 @@ export default defineNuxtConfig({
 	},
 
 	icon: {
+		serverBundle: {
+			collections: ['material-symbols', 'simple-icons'],
+			externalizeIconsJson: true,
+		},
 		customCollections: [
 			{
 				prefix: 'directus',
