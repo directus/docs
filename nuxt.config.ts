@@ -137,6 +137,7 @@ export default defineNuxtConfig({
 	routeRules: {
 		...loadRedirectRouteRules(),
 		'/api/**': { prerender: false },
+		'/docs/api/**': { prerender: false },
 	},
 
 	future: {
