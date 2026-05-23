@@ -16,7 +16,7 @@ When a new user is created in Directus, directly through the Data Studio or thro
 
 [Clearbit has a series of Enrichment APIs](https://clearbit.com/platform/enrichment) that will take in the data you have, look at a load of data points from around the web, and provide a more complete payload about that person in response.
 
-In this quick project, you will set up a new Flow with [Directus Flows](https://directus.io/toolkit/automate) that will automatically enrich any new users in your Directus project.
+In this quick project, you will set up a new [Flow](/guides/automate/flows) that will automatically enrich any new users in your Directus project.
 
 ## Before You Start
 

@@ -8,7 +8,7 @@ authors:
     title: Director, Developer Experience
 description: Learn how to use the Request URL operation to import files in Directus Flows.
 ---
-In this quick tip, you will learn how to import files inside of Flows as part of Directus Flows.
+In this quick tip, you will learn how to import files using Flows.
 
 Directus doesn’t ship with an operation to import files via URL the same way you can across the Data Studio. Thankfully, you can utilize the Directus API inside of Flows to achieve the same result.
 
