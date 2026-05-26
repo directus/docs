@@ -1,24 +1,26 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
 	src?: string;
-	pixelSize?: number;
+	strokeSize?: number;
 	hoverRadius?: number;
-	driftSpeed?: number;
 	strength?: number;
 	baseColor?: string;
-	tintColor?: string;
-	tintAmount?: number;
+	washAmount?: number;
+	breathe?: number;
+	phase?: number;
+	tempSway?: number;
 	anchorX?: number;
 	anchorY?: number;
 }>(), {
-	src: '/img/mountains.avif',
-	pixelSize: 2,
+	src: '/img/painting.avif',
+	strokeSize: 3,
 	hoverRadius: 0.3,
-	driftSpeed: 0.12,
-	strength: 1,
+	strength: 0.6,
 	baseColor: '#0a0f21',
-	tintColor: '#6644ff',
-	tintAmount: 0.45,
+	washAmount: 0,
+	breathe: 1,
+	phase: 1,
+	tempSway: 1,
 	anchorX: 0.5,
 	anchorY: 1,
 });
@@ -26,13 +28,14 @@ const props = withDefaults(defineProps<{
 const isDev = import.meta.dev;
 
 const settings = reactive({
-	pixelSize: props.pixelSize,
+	strokeSize: props.strokeSize,
 	hoverRadius: props.hoverRadius,
-	driftSpeed: props.driftSpeed,
 	strength: props.strength,
 	baseColor: props.baseColor,
-	tintColor: props.tintColor,
-	tintAmount: props.tintAmount,
+	washAmount: props.washAmount,
+	breathe: props.breathe,
+	phase: props.phase,
+	tempSway: props.tempSway,
 	anchorX: props.anchorX,
 	anchorY: props.anchorY,
 });
@@ -40,7 +43,6 @@ const shaderFailed = ref(false);
 const imageLoaded = ref(false);
 const imageSize = ref<[number, number]>([0, 0]);
 const baseRgb = ref<[number, number, number]>([0.04, 0.06, 0.13]);
-const tintRgb = ref<[number, number, number]>([0.4, 0.267, 1.0]);
 
 function parseColor(input: string): [number, number, number] | null {
 	if (!input) return null;
@@ -63,9 +65,7 @@ function readColors() {
 	if (!container.value) return;
 	const cs = getComputedStyle(container.value);
 	const base = parseColor(settings.baseColor) ?? parseColor(cs.getPropertyValue('--hero-shader-base'));
-	const tint = parseColor(settings.tintColor) ?? parseColor(cs.getPropertyValue('--hero-shader-tint'));
 	if (base) baseRgb.value = base;
-	if (tint) tintRgb.value = tint;
 }
 
 const canvas = ref<HTMLCanvasElement | null>(null);
@@ -104,39 +104,18 @@ uniform vec2 u_resolution;
 uniform vec2 u_imgSize;
 uniform vec2 u_mouse;
 uniform float u_hover;
-uniform float u_pixelSize;
+uniform float u_strokeSize;
 uniform float u_hoverRadius;
 uniform float u_time;
-uniform float u_driftSpeed;
 uniform float u_aspect;
 uniform float u_strength;
 uniform float u_reducedMotion;
 uniform vec3 u_base;
-uniform vec3 u_tint;
-uniform float u_tintAmount;
+uniform float u_washAmount;
 uniform vec2 u_anchor;
-
-float bayer4(vec2 p) {
-	int x = int(mod(p.x, 4.0));
-	int y = int(mod(p.y, 4.0));
-	int idx = x + y * 4;
-	if (idx == 0) return 0.0/16.0;
-	if (idx == 1) return 8.0/16.0;
-	if (idx == 2) return 2.0/16.0;
-	if (idx == 3) return 10.0/16.0;
-	if (idx == 4) return 12.0/16.0;
-	if (idx == 5) return 4.0/16.0;
-	if (idx == 6) return 14.0/16.0;
-	if (idx == 7) return 6.0/16.0;
-	if (idx == 8) return 3.0/16.0;
-	if (idx == 9) return 11.0/16.0;
-	if (idx == 10) return 1.0/16.0;
-	if (idx == 11) return 9.0/16.0;
-	if (idx == 12) return 15.0/16.0;
-	if (idx == 13) return 7.0/16.0;
-	if (idx == 14) return 5.0/16.0;
-	return 13.0/16.0;
-}
+uniform float u_breathe;
+uniform float u_phase;
+uniform float u_tempSway;
 
 vec2 coverUv(vec2 uv, vec2 res, vec2 img, vec2 anchor) {
 	float ra = res.x / res.y;
@@ -151,49 +130,84 @@ float hash(vec2 p) {
 	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 }
 
-void main() {
-	vec2 frag = v_uv * u_resolution;
-	float px = u_pixelSize;
+float vnoise(vec2 p) {
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+	float a = hash(i);
+	float b = hash(i + vec2(1.0, 0.0));
+	float c = hash(i + vec2(0.0, 1.0));
+	float d = hash(i + vec2(1.0, 1.0));
+	vec2 u = f * f * (3.0 - 2.0 * f);
+	return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
 
+vec3 sampleImg(vec2 uv) {
+	vec2 s = coverUv(uv, u_resolution, u_imgSize, u_anchor);
+	return texture2D(u_tex, s).rgb;
+}
+
+vec3 kuwahara(vec2 uv, float radius) {
+	vec2 px = vec2(1.0) / u_resolution;
+	vec3 mean[4];
+	float var_[4];
+	for (int q = 0; q < 4; q++) {
+		vec2 dir = vec2(q == 0 || q == 3 ? 1.0 : -1.0, q < 2 ? 1.0 : -1.0);
+		vec3 sum = vec3(0.0);
+		vec3 sum2 = vec3(0.0);
+		float n = 0.0;
+		for (int j = 0; j <= 3; j++) {
+			for (int i = 0; i <= 3; i++) {
+				vec2 off = vec2(float(i), float(j)) * dir * radius * px;
+				vec3 c = sampleImg(uv + off);
+				sum += c;
+				sum2 += c * c;
+				n += 1.0;
+			}
+		}
+		mean[q] = sum / n;
+		vec3 v = sum2 / n - mean[q] * mean[q];
+		var_[q] = v.r + v.g + v.b;
+	}
+	float minV = var_[0];
+	vec3 outC = mean[0];
+	if (var_[1] < minV) { minV = var_[1]; outC = mean[1]; }
+	if (var_[2] < minV) { minV = var_[2]; outC = mean[2]; }
+	if (var_[3] < minV) { outC = mean[3]; }
+	return outC;
+}
+
+void main() {
 	float motion = 1.0 - u_reducedMotion;
+	float t = u_time * motion;
 
 	vec2 fromMouseUv = (v_uv - u_mouse) * vec2(u_aspect, 1.0);
 	float dCursor = length(fromMouseUv) / u_hoverRadius;
 	float cursorMask = exp(-dCursor * dCursor * 1.8) * u_hover * motion;
 
-	vec2 cell = floor(frag / px);
-	float seed = hash(cell);
-	float wobble = (sin(u_time * u_driftSpeed + seed * 6.2831) * 0.5 + 0.5) * motion + 0.5 * (1.0 - motion);
+	vec2 uv = v_uv;
 
-	vec2 drift = vec2(
-		sin(u_time * u_driftSpeed * 0.7) * px * 0.5,
-		cos(u_time * u_driftSpeed * 0.5) * px * 0.5
-	) * motion;
+	float regionPhase = vnoise(v_uv * 2.0) * 6.2831 * u_phase;
+	float breath = sin(t * 0.6 + regionPhase) * 0.5 + 0.5;
+	float breatheMult = mix(1.0, mix(0.82, 1.18, breath), u_breathe);
 
-	vec2 pixelated = cell * px + px * 0.5 + drift;
-	vec2 uvSampled = pixelated / u_resolution;
-	vec2 sampleUv = coverUv(uvSampled, u_resolution, u_imgSize, u_anchor);
-	vec3 col = texture2D(u_tex, sampleUv).rgb;
+	float r = mix(u_strokeSize * breatheMult, u_strokeSize * 0.4, cursorMask);
+	vec3 col = kuwahara(uv, r);
 
-	float lumIn = dot(col, vec3(0.299, 0.587, 0.114));
-	float lumBoost = lumIn + (wobble - 0.5) * 0.04;
+	float tempCycle = sin(t * 0.15);
+	vec3 tempShift = vec3(tempCycle, 0.0, -tempCycle) * 0.03 * u_tempSway;
+	col += tempShift;
 
-	float threshold = bayer4(pixelated / px) - 0.5;
+	float lum = dot(col, vec3(0.299, 0.587, 0.114));
+	vec3 washed = mix(u_base, col, 0.4 + lum * 0.6);
+	col = mix(col, washed, u_washAmount);
 
-	float ambientLevels = mix(8.0, 5.0, u_strength);
-	float cursorLevels = mix(ambientLevels, 3.0, cursorMask);
-	float levels = cursorLevels;
-
-	float qLum = clamp(floor(lumBoost * levels + threshold) / (levels - 1.0), 0.0, 1.0);
-
-	vec3 ditheredImg = col * qLum;
-	vec3 paletteCol = mix(u_base, u_tint, qLum);
-	vec3 finalCol = mix(ditheredImg, paletteCol, u_tintAmount);
+	col = mix(vec3(lum), col, 1.0 + u_strength * 0.2);
+	col = (col - 0.5) * (1.0 + u_strength * 0.15) + 0.5;
 
 	float vig = smoothstep(1.1, 0.4, length(v_uv - 0.5));
-	finalCol *= mix(0.55, 1.0, vig);
+	col *= mix(0.7, 1.0, vig);
 
-	gl_FragColor = vec4(finalCol, 1.0);
+	gl_FragColor = vec4(col, 1.0);
 }`;
 
 function compile(gl: WebGLRenderingContext, type: number, src: string): WebGLShader | null {
@@ -282,21 +296,22 @@ function init() {
 	loadImage();
 }
 
-watch(() => [props.pixelSize, props.hoverRadius, props.driftSpeed, props.strength, props.baseColor, props.tintColor, props.tintAmount, props.anchorX, props.anchorY], () => {
-	settings.pixelSize = props.pixelSize;
+watch(() => [props.strokeSize, props.hoverRadius, props.strength, props.baseColor, props.washAmount, props.breathe, props.phase, props.tempSway, props.anchorX, props.anchorY], () => {
+	settings.strokeSize = props.strokeSize;
 	settings.hoverRadius = props.hoverRadius;
-	settings.driftSpeed = props.driftSpeed;
 	settings.strength = props.strength;
 	settings.baseColor = props.baseColor;
-	settings.tintColor = props.tintColor;
-	settings.tintAmount = props.tintAmount;
+	settings.washAmount = props.washAmount;
+	settings.breathe = props.breathe;
+	settings.phase = props.phase;
+	settings.tempSway = props.tempSway;
 	settings.anchorX = props.anchorX;
 	settings.anchorY = props.anchorY;
 });
 
 watch(() => props.src, () => loadImage());
 
-watch(() => [settings.pixelSize, settings.hoverRadius, settings.driftSpeed, settings.strength, settings.baseColor, settings.tintColor, settings.tintAmount, settings.anchorX, settings.anchorY], () => {
+watch(() => [settings.strokeSize, settings.hoverRadius, settings.strength, settings.baseColor, settings.washAmount, settings.breathe, settings.phase, settings.tempSway, settings.anchorX, settings.anchorY], () => {
 	readColors();
 	if (gl) requestRender();
 });
@@ -343,16 +358,17 @@ function render() {
 	gl.uniform2f(gl.getUniformLocation(program, 'u_imgSize'), imgW, imgH);
 	gl.uniform2f(gl.getUniformLocation(program, 'u_mouse'), mouse.x, mouse.y);
 	gl.uniform1f(gl.getUniformLocation(program, 'u_hover'), mouse.hover);
-	gl.uniform1f(gl.getUniformLocation(program, 'u_pixelSize'), Math.max(1, Number(settings.pixelSize) || 1) * (window.devicePixelRatio || 1));
+	gl.uniform1f(gl.getUniformLocation(program, 'u_strokeSize'), Math.max(1, Number(settings.strokeSize) || 1) * (window.devicePixelRatio || 1));
 	gl.uniform1f(gl.getUniformLocation(program, 'u_hoverRadius'), settings.hoverRadius);
 	gl.uniform1f(gl.getUniformLocation(program, 'u_time'), t);
-	gl.uniform1f(gl.getUniformLocation(program, 'u_driftSpeed'), settings.driftSpeed);
 	gl.uniform1f(gl.getUniformLocation(program, 'u_aspect'), w / h);
 	gl.uniform1f(gl.getUniformLocation(program, 'u_strength'), settings.strength);
 	gl.uniform1f(gl.getUniformLocation(program, 'u_reducedMotion'), reducedMotion ? 1 : 0);
 	gl.uniform3f(gl.getUniformLocation(program, 'u_base'), baseRgb.value[0], baseRgb.value[1], baseRgb.value[2]);
-	gl.uniform3f(gl.getUniformLocation(program, 'u_tint'), tintRgb.value[0], tintRgb.value[1], tintRgb.value[2]);
-	gl.uniform1f(gl.getUniformLocation(program, 'u_tintAmount'), settings.tintAmount);
+	gl.uniform1f(gl.getUniformLocation(program, 'u_washAmount'), settings.washAmount);
+	gl.uniform1f(gl.getUniformLocation(program, 'u_breathe'), settings.breathe);
+	gl.uniform1f(gl.getUniformLocation(program, 'u_phase'), settings.phase);
+	gl.uniform1f(gl.getUniformLocation(program, 'u_tempSway'), settings.tempSway);
 	gl.uniform2f(gl.getUniformLocation(program, 'u_anchor'), settings.anchorX, settings.anchorY);
 	gl.uniform1i(gl.getUniformLocation(program, 'u_tex'), 0);
 	gl.activeTexture(gl.TEXTURE0);
@@ -391,7 +407,9 @@ onMounted(() => {
 		mql.addEventListener('change', onReducedMotionChange);
 	}
 	init();
-	hoverTarget = container.value?.parentElement ?? container.value;
+	hoverTarget = container.value?.closest('section') as HTMLElement | null
+		?? container.value?.parentElement
+		?? container.value;
 	if (hoverTarget) {
 		hoverTarget.addEventListener('pointermove', onMove);
 		hoverTarget.addEventListener('pointerleave', onLeave);
@@ -429,16 +447,22 @@ onBeforeUnmount(() => {
 			ref="canvas"
 			class="hero-shader-canvas"
 		/>
-		<HomeHeroShaderDebug
+		<Teleport
 			v-if="isDev"
-			v-model:strength="settings.strength"
-			v-model:pixel-size="settings.pixelSize"
-			v-model:hover-radius="settings.hoverRadius"
-			v-model:drift-speed="settings.driftSpeed"
-			v-model:tint-color="settings.tintColor"
-			v-model:base-color="settings.baseColor"
-			v-model:tint-amount="settings.tintAmount"
-		/>
+			to="#hero-shader-debug-slot"
+			defer
+		>
+			<HomeHeroShaderDebug
+				v-model:strength="settings.strength"
+				v-model:stroke-size="settings.strokeSize"
+				v-model:hover-radius="settings.hoverRadius"
+				v-model:base-color="settings.baseColor"
+				v-model:wash-amount="settings.washAmount"
+				v-model:breathe="settings.breathe"
+				v-model:phase="settings.phase"
+				v-model:temp-sway="settings.tempSway"
+			/>
+		</Teleport>
 	</div>
 </template>
 

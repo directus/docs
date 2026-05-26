@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const strength = defineModel<number>('strength', { required: true });
-const pixelSize = defineModel<number>('pixelSize', { required: true });
+const strokeSize = defineModel<number>('strokeSize', { required: true });
 const hoverRadius = defineModel<number>('hoverRadius', { required: true });
-const driftSpeed = defineModel<number>('driftSpeed', { required: true });
-const tintColor = defineModel<string>('tintColor', { required: true });
 const baseColor = defineModel<string>('baseColor', { required: true });
-const tintAmount = defineModel<number>('tintAmount', { required: true });
+const washAmount = defineModel<number>('washAmount', { required: true });
+const breathe = defineModel<number>('breathe', { required: true });
+const phase = defineModel<number>('phase', { required: true });
+const tempSway = defineModel<number>('tempSway', { required: true });
 
 const panelOpen = ref(false);
 </script>
@@ -27,23 +28,23 @@ const panelOpen = ref(false);
 			class="shader-debug-body"
 		>
 			<label>
-				<span>strength (ambient ↔ chunky) {{ strength.toFixed(2) }}</span>
+				<span>strokeSize {{ strokeSize }}</span>
+				<input
+					v-model.number="strokeSize"
+					type="range"
+					min="1"
+					max="12"
+					step="1"
+				>
+			</label>
+			<label>
+				<span>strength (contrast) {{ strength.toFixed(2) }}</span>
 				<input
 					v-model.number="strength"
 					type="range"
 					min="0"
 					max="1"
 					step="0.01"
-				>
-			</label>
-			<label>
-				<span>pixelSize {{ pixelSize }}</span>
-				<input
-					v-model.number="pixelSize"
-					type="range"
-					min="1"
-					max="12"
-					step="1"
 				>
 			</label>
 			<label>
@@ -57,9 +58,9 @@ const panelOpen = ref(false);
 				>
 			</label>
 			<label>
-				<span>driftSpeed {{ driftSpeed.toFixed(2) }}</span>
+				<span>washAmount (base ↔ image) {{ washAmount.toFixed(2) }}</span>
 				<input
-					v-model.number="driftSpeed"
+					v-model.number="washAmount"
 					type="range"
 					min="0"
 					max="1"
@@ -67,28 +68,34 @@ const panelOpen = ref(false);
 				>
 			</label>
 			<label>
-				<span>tintAmount (image ↔ palette) {{ tintAmount.toFixed(2) }}</span>
+				<span>breathe (stroke swell) {{ breathe.toFixed(2) }}</span>
 				<input
-					v-model.number="tintAmount"
+					v-model.number="breathe"
 					type="range"
 					min="0"
 					max="1"
 					step="0.01"
 				>
 			</label>
-			<label class="shader-debug-color">
-				<span>tint {{ tintColor }}</span>
-				<span class="shader-debug-color-row">
-					<input
-						v-model="tintColor"
-						type="color"
-					>
-					<input
-						v-model="tintColor"
-						type="text"
-						spellcheck="false"
-					>
-				</span>
+			<label>
+				<span>phase (per-region offset) {{ phase.toFixed(2) }}</span>
+				<input
+					v-model.number="phase"
+					type="range"
+					min="0"
+					max="1"
+					step="0.01"
+				>
+			</label>
+			<label>
+				<span>tempSway (warm/cool cycle) {{ tempSway.toFixed(2) }}</span>
+				<input
+					v-model.number="tempSway"
+					type="range"
+					min="0"
+					max="1"
+					step="0.01"
+				>
 			</label>
 			<label class="shader-debug-color">
 				<span>base {{ baseColor }}</span>
@@ -125,6 +132,7 @@ const panelOpen = ref(false);
 	pointer-events: auto;
 }
 .shader-debug-collapsed { min-width: 0; }
+.shader-debug-toggle { white-space: nowrap; }
 .shader-debug-toggle {
 	display: block;
 	width: 100%;
@@ -152,7 +160,8 @@ const panelOpen = ref(false);
 .shader-debug-body span {
 	color: rgba(255, 255, 255, 0.6);
 }
-.shader-debug-body input[type="range"] {
+.shader-debug-body input[type="range"],
+.shader-debug-body select {
 	width: 100%;
 	background: rgba(255, 255, 255, 0.06);
 	border: 1px solid rgba(255, 255, 255, 0.1);
