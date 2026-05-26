@@ -1,4 +1,5 @@
 ---
+stableId: d5cd5918-9aec-4a4f-9f43-ea43e4e27702
 title: Theming
 description: Configuration of the Data Studio's theming engine and appearance settings.
 ---

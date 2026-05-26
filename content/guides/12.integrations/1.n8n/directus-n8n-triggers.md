@@ -1,4 +1,5 @@
 ---
+stableId: 9c587bcf-6429-4425-ae5e-498b099ef013
 id: directus-n8n-triggers
 title: Triggers
 description: Complete guide for using Directus triggers in n8n workflows to automate workflows when events happen in Directus.

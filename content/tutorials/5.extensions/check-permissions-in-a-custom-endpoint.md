@@ -1,4 +1,5 @@
 ---
+stableId: a0945c19-ed9d-4a16-9c0e-da4fb85996da
 id: a2177488-2e50-4206-97a2-a36f3a506541
 slug: check-permissions-in-a-custom-endpoint
 title: Check Permissions in a Custom Endpoint

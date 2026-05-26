@@ -1,4 +1,5 @@
 ---
+stableId: 4f4bdeae-3024-44b2-8e4f-34573834897b
 title: Authentication & SSO
 description: Configuration for authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML.
 navigation:

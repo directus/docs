@@ -1,4 +1,5 @@
 ---
+stableId: 3b3c64bb-f909-4f57-b6f6-3a3854995414
 id: 5a48edd1-f8d2-499d-8f1a-6a6b378c65d9
 slug: deploy-directus-to-an-ubuntu-server
 title: Deploy Directus to an Ubuntu Server

@@ -1,4 +1,5 @@
 ---
+stableId: aa5e9080-f779-43a9-ae90-b8a9ce076e49
 id: f6bf9070-0fb6-4cc0-ba6d-99e1b83e2b87
 slug: integrate-directus-with-esp-32-hardware-sensors
 title: Integrate Directus with ESP32 Hardware Sensors

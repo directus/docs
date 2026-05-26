@@ -1,4 +1,5 @@
 ---
+stableId: d0f23ffe-6571-4a90-b193-9adae48d0ade
 id: directus-n8n-advanced
 title: Advanced
 description: Advanced guide for using Directus raw CRUD operations in n8n, including raw JSON operations, complex filters, relational queries, and query parameters.

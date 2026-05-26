@@ -1,4 +1,5 @@
 ---
+stableId: bdd27ae8-1cd8-4ee0-9a6b-29c190d8c742
 id: 5e47f786-eddb-4570-bda9-60d6427282af
 slug: proxy-an-external-api-in-a-custom-endpoint-extension
 title: Proxy an External API in a Custom Endpoint Extension

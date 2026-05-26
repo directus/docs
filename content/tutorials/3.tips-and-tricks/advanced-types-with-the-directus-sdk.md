@@ -1,4 +1,5 @@
 ---
+stableId: 9b909764-1d6a-4524-9d7f-2db000e933fe
 id: 210f1fed-c5f7-4ef7-8155-0c08c2562852
 slug: advanced-types-with-the-directus-sdk
 title: Advanced Types with the Directus SDK

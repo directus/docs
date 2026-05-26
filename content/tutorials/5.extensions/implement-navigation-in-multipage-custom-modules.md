@@ -1,4 +1,5 @@
 ---
+stableId: 48273337-cf60-4265-b50d-d426fedb0c31
 id: 02b0514b-0ee9-426e-89f9-14dc73bfd62d
 slug: implement-navigation-in-multipage-custom-modules
 title: Implement Navigation in Multipage Custom Modules

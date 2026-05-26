@@ -1,4 +1,5 @@
 ---
+stableId: 89484f0c-4c1b-4320-ade9-2f2b91fce2bd
 id: vercel-deployments
 title: Deployments
 description: Complete guide for triggering deployments, monitoring build status, and viewing logs for your Vercel projects from Directus.

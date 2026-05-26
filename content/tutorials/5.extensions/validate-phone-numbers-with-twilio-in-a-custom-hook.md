@@ -1,4 +1,5 @@
 ---
+stableId: 56ba3ad4-0e59-4819-bbbd-cdffcaa6956f
 id: 20e049fb-529f-4a71-8a34-1e4e61d34af1
 slug: validate-phone-numbers-with-twilio-in-a-custom-hook
 title: Validate Phone Numbers with Twilio in a Custom Hook
