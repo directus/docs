@@ -34,7 +34,9 @@ When `MCP_ENABLED` is set to `false`, the MCP server cannot be enabled through *
 
 MCP OAuth adds browser-based authorization for compatible MCP clients. Set `MCP_OAUTH_ENABLED` to `true` to mount the OAuth discovery, authorization, token, registration, and revocation routes.
 
-After enabling the environment variable, enable **OAuth Enabled** in **Settings** > **AI** > **Model Context Protocol** for each project that should allow MCP OAuth.
+Client registration modes are separately opt-in. Enable at least one registration mode with `MCP_OAUTH_DCR_ENABLED=true` for Dynamic Client Registration or `MCP_OAUTH_CIMD_ENABLED=true` for Client ID Metadata Document registration. Both the environment variable and project setting must allow a registration mode before Directus advertises or accepts it.
+
+After enabling the environment variables, enable **OAuth Enabled** and at least one client registration mode in **Settings** > **AI** > **Model Context Protocol** for each project that should allow MCP OAuth.
 
 The MCP OAuth authorization endpoint and Dynamic Client Registration endpoint use dedicated rate limiter pools. See [Security & Limits](/configuration/security-limits#rate-limiting) for the `RATE_LIMITER_MCP_OAUTH_AUTHORIZE_*` and `RATE_LIMITER_MCP_OAUTH_REGISTRATION_*` variables.
 
@@ -48,8 +50,8 @@ The MCP OAuth authorization endpoint and Dynamic Client Registration endpoint us
 | `MCP_OAUTH_REQUIRE_RESOURCE` | Whether authorization and refresh requests must explicitly include the MCP resource parameter. | `false` |
 | `MCP_OAUTH_CLEANUP_SCHEDULE` | Cron schedule for removing expired authorization codes, expired OAuth grants, and stale clients. | `*/15 * * * *` |
 | `MCP_OAUTH_ALLOWED_REDIRECT_DOMAINS` | Comma-separated list of allowed redirect URI domains. Leave empty to allow any valid HTTPS redirect URI and loopback development URI. | `''` |
-| `MCP_OAUTH_DCR_ENABLED` | Whether Dynamic Client Registration can be enabled in project settings. | `true` |
-| `MCP_OAUTH_CIMD_ENABLED` | Whether Client ID Metadata Document registration can be enabled in project settings. | `true` |
+| `MCP_OAUTH_DCR_ENABLED` | Whether Dynamic Client Registration can be enabled in project settings. | `false` |
+| `MCP_OAUTH_CIMD_ENABLED` | Whether Client ID Metadata Document registration can be enabled in project settings. | `false` |
 | `MCP_OAUTH_CIMD_ALLOW_HTTP` | Allow `http://` Client ID Metadata Document URLs. Keep disabled outside local development. | `false` |
 | `MCP_OAUTH_CIMD_ALLOWED_DOMAINS` | Comma-separated list of domains allowed to use Client ID Metadata Document registration. Leave empty to allow any valid metadata document domain. | `''` |
 | `MCP_OAUTH_CIMD_BLOCKED_TLDS` | Comma-separated list of top-level domains blocked for Client ID Metadata Document registration. | `test,localhost,invalid,example,local,onion` |
