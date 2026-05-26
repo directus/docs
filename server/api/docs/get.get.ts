@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 	const ip = getRequestIP(event, { xForwardedFor: true }) || 'unknown';
 	const limit = checkDocsApiRateLimit(`docs-api:${ip}`);
 	if (!limit.ok) {
-		setResponseHeader(event, 'Retry-After', String(limit.retryAfter));
+		setResponseHeader(event, 'Retry-After', limit.retryAfter ?? 60);
 		throw createError({ statusCode: 429, message: 'Rate limit exceeded' });
 	}
 

@@ -1,7 +1,7 @@
 // Redirect `Accept: text/markdown` or curl requests to the static .md sibling
-// emitted by modules/content-markdown.ts. Pass-through for everything else.
+// emitted by modules/content-markdown.ts during build. Pass-through for everything else.
 
-const SKIP_PREFIXES = ['/raw/', '/__', '/api/', '/_nuxt/', '/_ipx/', '/mcp'];
+const SKIP_PREFIXES = ['/raw/', '/__', '/api/', '/_nuxt/', '/_ipx/'];
 
 export default defineEventHandler((event) => {
 	if (event.method !== 'GET') return;
@@ -13,6 +13,7 @@ export default defineEventHandler((event) => {
 		: url.pathname;
 
 	if (stripped.endsWith('.md')) return;
+	if (stripped === '/mcp' || stripped.startsWith('/mcp/')) return;
 	for (const prefix of SKIP_PREFIXES) {
 		if (stripped.startsWith(prefix)) return;
 	}

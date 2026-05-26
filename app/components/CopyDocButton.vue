@@ -14,6 +14,14 @@ const props = defineProps<{
 	page: ContentCollectionItem;
 }>();
 
+interface CopyMenuItem {
+	label: string;
+	icon: string;
+	description?: string;
+	external?: boolean;
+	onSelect: () => void | Promise<void>;
+}
+
 const isCopied = ref(false);
 const isMcpUrlCopied = ref(false);
 const isMarkdownLinkCopied = ref(false);
@@ -58,7 +66,7 @@ async function copyPage() {
 const copyMarkdownLink = () => copyWithFlag(`${window.location.origin}${markdownUrl.value}`, isMarkdownLinkCopied);
 const copyMcpUrl = () => copyWithFlag(mcpServerUrl(window.location.origin, baseURL), isMcpUrlCopied);
 
-const items = computed(() => [
+const items = computed<CopyMenuItem[][]>(() => [
 	[
 		{
 			label: isMarkdownLinkCopied.value ? 'Copied Markdown link!' : 'Copy Markdown link',

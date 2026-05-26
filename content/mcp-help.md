@@ -4,7 +4,7 @@ title: Docs MCP Server
 description: Connect Claude, Cursor, VS Code, or any MCP-compatible client directly to the Directus documentation.
 ---
 
-You landed here because you opened the Directus docs MCP server in a browser. The server itself speaks the [Model Context Protocol](https://modelcontextprotocol.io/) — connect a compatible AI client to it and your assistant can search and read these docs as a live tool.
+You landed here because you opened the Directus docs MCP server in a browser. The server itself speaks the [Model Context Protocol](https://modelcontextprotocol.io/). Connect a compatible AI client to it and your assistant can search and read these docs as a live tool.
 
 ::callout{icon="material-symbols:info" color="info"}
 This is the **docs MCP server**, which exposes this documentation site to AI clients. If you want to connect AI tools to your own Directus instance to manage content and schema, see the [Directus product MCP guide](/guides/ai/mcp) instead.
@@ -65,9 +65,11 @@ Point them at `https://directus.io/docs/mcp` with transport set to `http` (somet
 
 | Tool | Inputs | Use it for |
 |---|---|---|
-| `list-docs` | `section?`, `limit?` | Discover available docs pages when you do not know exact paths. |
+| `list-docs` | `pathPrefix?`, `limit?` | Discover available docs pages when you do not know exact paths. |
 | `get-doc` | `path` | Fetch a single page's full markdown by path (e.g. `/getting-started/overview`). |
 | `search-docs` | `query`, `section?`, `framework?`, `limit?` | Full-text search across the docs. Returns ranked results with title, snippet, and section. |
+| `search-directus-code` | `query`, `repo?`, `language?`, `path?`, `limit?` | Search source code across allowlisted Directus GitHub repos. |
+| `get-directus-file` | `repo?`, `path`, `ref?`, `offset?`, `bytes?` | Fetch source files from allowlisted Directus GitHub repos. |
 
 ## Try it
 
@@ -82,8 +84,8 @@ The assistant should call `search-docs` or `list-docs`, then `get-doc` to read t
 
 ## Troubleshooting
 
-- **Connection refused or 404** — confirm the URL is exactly `https://directus.io/docs/mcp` (note the `/docs` prefix).
-- **Tools not showing up** — restart your MCP client after adding the server. Some clients only load tools at startup.
-- **Search returns nothing** — `search-docs` is case-insensitive but does keyword match. Try fewer or broader terms.
+- **Connection refused or 404** - confirm the URL is exactly `https://directus.io/docs/mcp` (note the `/docs` prefix).
+- **Tools not showing up** - restart your MCP client after adding the server. Some clients only load tools at startup.
+- **Search returns nothing** - `search-docs` is case-insensitive but does keyword match. Try fewer or broader terms.
 
 Found a bug? Report it at [github.com/directus/docs/issues](https://github.com/directus/docs/issues).

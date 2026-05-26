@@ -1,8 +1,9 @@
 import { defineMcpTool } from '@nuxtjs/mcp-toolkit/server';
 import { z } from 'zod';
 import { DIRECTUS_REPOS, DIRECTUS_REPO_SLUGS } from '../../utils/directus-repos';
+import { sliceUtf8 } from '../../utils/sliceUtf8';
 
-const REF_REGEX = /^[a-zA-Z0-9._/-]{1,100}$/;
+const REF_REGEX = /^(?!\/)(?!.*\/\/)(?!.*(?:^|\/)\.{1,2}(?:\/|$))[a-zA-Z0-9._/-]{1,100}$/;
 const SENSITIVE_PATH_REGEX = /(^|\/)(\.env[^/]*|secrets?|\.git|node_modules)(\/|$)/i;
 const DEFAULT_CHUNK_BYTES = 50 * 1024;
 const MAX_CHUNK_BYTES = 100 * 1024;
@@ -21,18 +22,8 @@ function validatePath(path: string): boolean {
 		&& !hasControlChars(path);
 }
 
-function sliceUtf8(text: string, offset: number, bytes: number): { content: string; nextOffset: number | null; truncated: boolean } {
-	const buffer = Buffer.from(text, 'utf8');
-	const start = Math.min(offset, buffer.length);
-	const end = Math.min(start + bytes, buffer.length);
-	let content = buffer.subarray(start, end).toString('utf8');
-	while (content.includes('\uFFFD') && end > start) {
-		content = buffer.subarray(start, end - 1).toString('utf8');
-		break;
-	}
-	const consumed = Buffer.byteLength(content, 'utf8');
-	const nextOffset = start + consumed < buffer.length ? start + consumed : null;
-	return { content, nextOffset, truncated: nextOffset !== null };
+function encodePath(path: string): string {
+	return path.split('/').map(segment => encodeURIComponent(segment)).join('/');
 }
 
 export default defineMcpTool({
@@ -71,7 +62,8 @@ export default defineMcpTool({
 	handler: async ({ repo, path, ref, offset, bytes }) => {
 		const resolvedRef = ref ?? 'main';
 		const fullRepo = DIRECTUS_REPOS[repo];
-		const url = `https://raw.githubusercontent.com/${fullRepo}/${resolvedRef}/${path}`;
+		const encodedPath = encodePath(path);
+		const url = `https://raw.githubusercontent.com/${fullRepo}/${resolvedRef}/${encodedPath}`;
 		const headers: Record<string, string> = { 'User-Agent': 'directus-docs-mcp' };
 		if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
 
@@ -99,7 +91,7 @@ export default defineMcpTool({
 			offset: start,
 			nextOffset: chunk.nextOffset,
 			truncated: chunk.truncated,
-			url: `https://github.com/${fullRepo}/blob/${resolvedRef}/${path}`,
+			url: `https://github.com/${fullRepo}/blob/${resolvedRef}/${encodedPath}`,
 			content: `<tool_result repo="${repo}" path="${path}" ref="${resolvedRef}" offset="${start}">\n${chunk.content}${suffix}\n</tool_result>`,
 		};
 	},

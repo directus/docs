@@ -22,6 +22,7 @@ export default defineNuxtModule({
 				const rel = relative(contentDir, file);
 				if (!rel.split(sep).includes('_partials')) continue;
 				const name = stripStemPrefix(rel.split(sep).pop()!.replace(/\.md$/, ''));
+				if (partials.has(name)) logger.warn(`Duplicate partial name "${name}" in ${rel}`);
 				partials.set(name, stripFrontmatter(await readFile(file, 'utf8')));
 			}
 
@@ -59,7 +60,9 @@ async function walk(dir: string): Promise<string[]> {
 
 function toRoute(segments: string[]): string {
 	const cleaned = segments.map(stripStemPrefix);
-	const last = cleaned[cleaned.length - 1].replace(/\.md$/, '');
+	const lastSegment = cleaned[cleaned.length - 1];
+	if (!lastSegment) return '/index';
+	const last = lastSegment.replace(/\.md$/, '');
 	const prefix = cleaned.slice(0, -1);
 	if (last === 'index') return prefix.length ? '/' + prefix.join('/') : '/index';
 	return '/' + [...prefix, last].join('/');

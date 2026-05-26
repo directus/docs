@@ -16,22 +16,23 @@ export default defineMcpTool({
 	description:
 		'List documentation pages with title, path, description, and section. Use this to discover available docs when you do not know exact paths.',
 	inputSchema: {
-		section: z
+		pathPrefix: z
 			.string()
+			.refine(value => value.startsWith('/'), 'pathPrefix must start with "/"')
 			.optional()
 			.describe(prefixDescription),
 		limit: z.number().int().min(1).max(500).optional().describe('Max results (default 200).'),
 	},
 	cache: '10m',
-	handler: async ({ section, limit }) => {
+	handler: async ({ pathPrefix, limit }) => {
 		const event = useEvent();
 		let query = queryCollection(event, 'content')
 			.where('path', 'NOT LIKE', '%/.%')
-			.where('path', 'NOT LIKE', '/_partials/%')
+			.where('path', 'NOT LIKE', '%/_partials/%')
 			.order('path', 'ASC');
 
-		if (section) {
-			query = query.where('path', 'LIKE', `${section}%`);
+		if (pathPrefix) {
+			query = query.where('path', 'LIKE', `${pathPrefix}%`);
 		}
 
 		const rows = await query.limit(limit ?? 200).all();
