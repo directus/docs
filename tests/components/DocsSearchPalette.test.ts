@@ -94,9 +94,7 @@ describe('DocsSearchPalette', () => {
 	const query = ref('auth');
 	const section = ref<'all' | 'guides' | 'frameworks' | 'api' | 'reference' | 'tutorials'>('all');
 	const pending = ref(false);
-	const error = ref<string | null>(null);
 	const found = ref(stubHits.length);
-	const searchTimeMs = ref(8);
 	const items = ref([...stubHits]);
 	const sectionCounts = ref(new Map([
 		['guides', 1],
@@ -111,9 +109,7 @@ describe('DocsSearchPalette', () => {
 		query.value = 'auth';
 		section.value = 'all';
 		pending.value = false;
-		error.value = null;
 		found.value = stubHits.length;
-		searchTimeMs.value = 8;
 		items.value = [...stubHits];
 		sectionCounts.value = new Map([
 			['guides', 1],
@@ -132,14 +128,11 @@ describe('DocsSearchPalette', () => {
 			query,
 			section,
 			pending,
-			error,
 			found,
-			searchTimeMs,
 			items,
 			sectionCounts,
 			minQueryLength: 2,
 			isTooShort: ref(false),
-			runSearch: vi.fn(),
 			clear: clearMock,
 		});
 

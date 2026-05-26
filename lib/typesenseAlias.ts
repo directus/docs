@@ -32,6 +32,7 @@ export function getLocalGitBranch(): string | null {
 export function getTypesenseBranchName() {
 	return process.env.GITHUB_HEAD_REF
 		|| process.env.GITHUB_REF_NAME
+		|| process.env.VERCEL_GIT_COMMIT_REF
 		|| getLocalGitBranch();
 }
 

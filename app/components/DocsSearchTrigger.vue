@@ -4,19 +4,13 @@ const { label = 'Search', showLabel = true } = defineProps<{
 	showLabel?: boolean;
 }>();
 
-const config = useRuntimeConfig();
-const enabled = computed(() => Boolean(
-	config.public.typesenseUrl
-	&& config.public.typesensePublicApiKey
-	&& config.public.typesenseCollection,
-));
 const search = useSearchOverlay();
 
 defineShortcuts({
 	meta_k: {
 		usingInput: true,
 		handler: () => {
-			if (enabled.value) search.open();
+			search.open();
 		},
 	},
 });
@@ -24,7 +18,6 @@ defineShortcuts({
 
 <template>
 	<UButton
-		v-if="enabled"
 		icon="heroicons:magnifying-glass-20-solid"
 		variant="subtle"
 		color="neutral"

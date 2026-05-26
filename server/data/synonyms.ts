@@ -3,7 +3,7 @@
  *
  * Two flavors:
  *
- * 1. `multiway` — equivalent terms. Searching ANY term in the group matches
+ * 1. `multiway`: equivalent terms. Searching ANY term in the group matches
  *    docs containing ANY OTHER term in the group. Use for true synonyms where
  *    direction doesn't matter.
  *
@@ -11,7 +11,7 @@
  *      ['perms', 'permissions']
  *      ['login', 'sign in', 'log in']
  *
- * 2. `oneway` — directional. Searching the KEY surfaces docs containing the
+ * 2. `oneway`: directional. Searching the KEY surfaces docs containing the
  *    VALUE, but NOT the reverse. Use when a shorthand should reach the
  *    canonical Directus term, but the canonical term shouldn't be polluted
  *    with shorthand mentions.
@@ -23,7 +23,7 @@
  * Notes:
  * - Don't add pure case variants (Typesense case-folds by default).
  * - Don't add stemming pairs like aggregate/aggregation (Typesense stems).
- * - When in doubt, leave it out — bad synonyms hurt search worse than missing ones.
+ * - When in doubt, leave it out. Bad synonyms hurt search worse than missing ones.
  */
 
 export const multiway: ReadonlyArray<readonly string[]> = [

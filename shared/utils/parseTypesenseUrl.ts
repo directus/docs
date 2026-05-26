@@ -10,7 +10,7 @@ export function parseTypesenseUrl(url: string): TypesenseNode {
 		const parsedUrl = new URL(/^https?:\/\//i.test(url) ? url : `https://${url}`);
 		return {
 			host: parsedUrl.hostname,
-			port: parseInt(parsedUrl.port) || (parsedUrl.protocol === 'https:' ? 443 : 8108),
+			port: Number.parseInt(parsedUrl.port, 10) || (parsedUrl.protocol === 'https:' ? 443 : 8108),
 			protocol: parsedUrl.protocol.replace(':', ''),
 			// Empty string (not undefined) so the official Typesense client's
 			// `${protocol}://${host}:${port}${path}${endpoint}` URL builder
@@ -18,13 +18,7 @@ export function parseTypesenseUrl(url: string): TypesenseNode {
 			path: parsedUrl.pathname === '/' ? '' : parsedUrl.pathname,
 		};
 	}
-	catch {
-		const [host, port = '8108'] = url.split(':');
-		return {
-			host: host || 'localhost',
-			port: parseInt(port),
-			protocol: 'http',
-			path: '',
-		};
+	catch (error) {
+		throw new Error(`Invalid Typesense URL: ${url}`, { cause: error });
 	}
 }

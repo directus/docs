@@ -3,7 +3,7 @@ import type { ContentNavigationItem } from '@nuxt/content';
 import { findPageBreadcrumb } from '@nuxt/content/utils';
 import type { Ref } from 'vue';
 import { withBase } from 'ufo';
-import type { DocsSearchItem } from '~/composables/useDocsSearch';
+import type { DocsSearchItem } from '~/utils/searchResults';
 import { docsSections } from '#shared/utils/docsSections';
 
 const props = defineProps<{

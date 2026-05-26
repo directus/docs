@@ -3,8 +3,8 @@ import type { ComponentPublicInstance } from 'vue';
 import { withBase, withoutBase } from 'ufo';
 import { createReusableTemplate, useMediaQuery } from '@vueuse/core';
 import { relativeTime } from '~/utils/relativeTime';
-import type { DocsSearchItem } from '~/composables/useDocsSearch';
-import { sectionPriority } from '~/composables/useDocsSearch';
+import type { DocsSearchItem } from '~/utils/searchResults';
+import { sectionPriority } from '~/utils/searchResults';
 import type { DocsSectionId } from '#shared/utils/docsSections';
 import { docsSections, findSectionByPath } from '#shared/utils/docsSections';
 import { createSafePolygon } from '~/utils/safePolygon';
@@ -38,7 +38,7 @@ const paletteGroups = computed(() => {
 
 	if (searchTerm.value) return [];
 
-	// Idle state — render as palette groups with per-group slots so arrow keys + enter work natively.
+	// Idle state: render as palette groups with per-group slots so arrow keys + enter work natively.
 	// Each group's first item is a disabled "header" item rendered via a per-item slot. Reka skips
 	// [data-disabled] items in keyboard nav, so ↑↓ walks only real rows.
 	const groups: Array<{ id: string; slot?: string; ignoreFilter?: boolean; ui?: Record<string, string>; items: Array<Record<string, unknown>> }> = [];
@@ -269,7 +269,7 @@ function onHighlight(payload: { ref: HTMLElement; value: unknown } | undefined) 
 // onPointermove (bubble phase) runs. If we're guarding, stop propagation so
 // Reka's per-item handler never fires, leaving Reka's highlightedElement
 // untouched. Reka stays the source of truth for both visual highlight and the
-// @highlight event — we just selectively block its hover-driven updates.
+// @highlight event; we just selectively block its hover-driven updates.
 function onPaletteContentPointerMove(event: PointerEvent) {
 	safePolygon.onPointerMove(event);
 	if (!safePolygon.isGuarding()) return;
@@ -279,7 +279,7 @@ function onPaletteContentPointerMove(event: PointerEvent) {
 }
 
 // Auto-prime the preview to the first result when results change.
-// Also re-resolve the viewport element — UCommandPalette swaps the DOM node
+// Also re-resolve the viewport element. UCommandPalette swaps the DOM node
 // between the empty/skeleton state and the populated listbox, which would
 // otherwise leave useScrollShadow watching a detached node.
 watch(() => search?.items.value, async (items) => {
@@ -551,7 +551,7 @@ onUnmounted(() => {
 					</template>
 
 					<template #empty="{ searchTerm: currentSearchTerm }">
-						<!-- Loading skeleton — mirrors the structure/spacing of the #item template -->
+						<!-- Loading skeleton mirrors the structure/spacing of the #item template -->
 						<div
 							v-if="search?.pending.value && currentSearchTerm"
 							class="p-1.5"

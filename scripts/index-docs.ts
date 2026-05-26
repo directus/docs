@@ -41,7 +41,7 @@ function buildSynonymDefinitions(): SynonymDefinition[] {
 /**
  * Single global synonym set name, reused across every alias and slot.
  *
- * Synonyms are editorial — they live in `server/data/synonyms.ts` and are the
+ * Synonyms are editorial. They live in `server/data/synonyms.ts` and are the
  * same vocabulary regardless of which collection (production, preview, dev)
  * is being indexed. Sharing one set keeps the synonym sets list in the cluster
  * clean (one entry forever instead of N × 2 per branch) and makes editorial
@@ -134,14 +134,14 @@ async function getAliasTarget(client: Client, alias: string) {
  *
  * We keep two fixed slots per alias (`${alias}-a` and `${alias}-b`). Each run
  * writes into whichever slot the alias is NOT currently pointing at, then
- * swaps the alias. This bounds collection count to 2 per alias forever — no
+ * swaps the alias. This bounds collection count to 2 per alias forever: no
  * timestamps, no grace window, no cleanup loop drift.
  */
 function resolveNextSlot(currentTarget: string | null, alias: string) {
 	const slotA = `${alias}-a`;
 	const slotB = `${alias}-b`;
 	const next = currentTarget === slotA ? slotB : slotA;
-	const previous = currentTarget && currentTarget !== next ? currentTarget : null;
+	const previous = currentTarget === slotA || currentTarget === slotB ? currentTarget : null;
 	return { next, previous };
 }
 
@@ -219,7 +219,7 @@ async function deletePreviousSlot(client: Client, previousCollection: string | n
 	catch (error) {
 		if (!isTypesenseNotFoundError(error)) throw error;
 	}
-	// Synonym set is global (SYNONYM_SET_NAME), not per-slot — nothing to clean up here.
+	// Synonym set is global (SYNONYM_SET_NAME), not per-slot. Nothing to clean up here.
 }
 
 function printFailures(failures: Array<{ file: string; error: string }>) {
