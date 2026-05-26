@@ -58,7 +58,8 @@ export default defineNitroPlugin(async () => {
 	const posthogAiHost = process.env.POSTHOG_AI_HOST || config.public.posthog?.host;
 	const posthogEnabled = !config.public.posthog?.disabled && Boolean(config.public.posthog?.publicKey && posthogAiHost);
 
-	console.log(`[assistant] enabled=${assistantEnabled} model=${config.assistant?.model || 'unset'} store=${assistantRateLimitStore()} kv_reachable=${Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)} posthog=${posthogEnabled ? 'ok' : 'disabled'} posthog_ai_host=${posthogAiHost || 'unset'}`);
+	const redisReachable = Boolean((process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL) && (process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN));
+	console.log(`[assistant] enabled=${assistantEnabled} model=${config.assistant?.model || 'unset'} store=${assistantRateLimitStore()} redis_reachable=${redisReachable} posthog=${posthogEnabled ? 'ok' : 'disabled'} posthog_ai_host=${posthogAiHost || 'unset'}`);
 
 	if (!assistantEnabled || !posthogEnabled || globalThis.__directusAssistantOtel) return;
 

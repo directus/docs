@@ -81,13 +81,21 @@ function dailyKey(kind: string, value: string, now = new Date()): string {
 	return `assistant:daily:${now.toISOString().slice(0, 10)}:${kind}:${value}`;
 }
 
+function upstashUrl(): string | undefined {
+	return process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+}
+
+function upstashToken(): string | undefined {
+	return process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+}
+
 function hasKvEnv(): boolean {
-	return Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+	return Boolean(upstashUrl() && upstashToken());
 }
 
 async function kvClient() {
-	const mod = await import('@vercel/kv');
-	return mod.kv;
+	const { Redis } = await import('@upstash/redis');
+	return new Redis({ url: upstashUrl()!, token: upstashToken()! });
 }
 
 async function kvIncr(key: string, ttl: number): Promise<number> {
