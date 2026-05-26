@@ -124,8 +124,9 @@ async function getAliasTarget(client: Client, alias: string) {
 		const existing = await client.aliases(alias).retrieve() as { collection_name?: string };
 		return existing.collection_name ?? null;
 	}
-	catch {
-		return null;
+	catch (error) {
+		if (isTypesenseNotFoundError(error)) return null;
+		throw error;
 	}
 }
 

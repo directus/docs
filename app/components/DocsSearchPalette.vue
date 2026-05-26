@@ -3,6 +3,7 @@ import type { ComponentPublicInstance } from 'vue';
 import { withBase, withoutBase } from 'ufo';
 import { createReusableTemplate, useMediaQuery } from '@vueuse/core';
 import { relativeTime } from '~/utils/relativeTime';
+import { sanitizeHighlightHtml } from '~/utils/highlightHtml';
 import type { DocsSearchItem } from '~/utils/searchResults';
 import { sectionPriority } from '~/utils/searchResults';
 import type { DocsSectionId } from '#shared/utils/docsSections';
@@ -175,27 +176,30 @@ const visibleSections = computed(() => {
 const sectionIcon = (id: DocsSectionId) =>
 	docsSections.find(s => s.id === id)?.icon ?? 'i-ph-file-text';
 
+const clientOrigin = () => import.meta.client ? window.location.origin : 'http://localhost';
+const parseResultUrl = (url: string) => new URL(url, clientOrigin());
+
 const isCurrentPage = (to: string) => {
 	if (!to) return false;
-	const path = to.startsWith('http') ? new URL(to).pathname : to.split('#')[0];
+	const path = parseResultUrl(to).pathname;
 	return path === route.path;
 };
 
 const withoutBaseUrl = (url: string) => withoutBase(url, app.baseURL);
 
 async function navigateToResult(url: string) {
-	const isAbsoluteUrl = url.startsWith('https://');
-	const parsed = new URL(isAbsoluteUrl ? url : window.location.origin + url);
-	const nextUrl = parsed.pathname + parsed.hash;
-
 	open.value = false;
-	if (route.fullPath === nextUrl) return;
-	if (route.path === parsed.pathname) {
-		window.location.assign(parsed.pathname + parsed.hash);
+	const parsed = parseResultUrl(url);
+	const isExternalUrl = parsed.origin !== clientOrigin();
+	if (isExternalUrl) {
+		await navigateTo(url, { external: true });
 		return;
 	}
-	if (isAbsoluteUrl) {
-		await navigateTo(url, { external: true });
+
+	const nextUrl = parsed.pathname + parsed.search + parsed.hash;
+	if (route.fullPath === nextUrl) return;
+	if (route.path === parsed.pathname) {
+		window.location.assign(nextUrl);
 		return;
 	}
 	await router.push(withoutBaseUrl(nextUrl));
@@ -422,7 +426,7 @@ onUnmounted(() => {
 								<div
 									v-if="item.titleHtml"
 									class="truncate font-medium text-sm text-highlighted"
-									v-html="item.titleHtml"
+									v-html="sanitizeHighlightHtml(item.titleHtml)"
 								/>
 								<div
 									v-else
@@ -439,7 +443,7 @@ onUnmounted(() => {
 									<span
 										v-if="item.snippetHtml"
 										class="line-clamp-1 inline"
-										v-html="item.snippetHtml"
+										v-html="sanitizeHighlightHtml(item.snippetHtml)"
 									/>
 								</div>
 							</div>

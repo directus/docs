@@ -236,7 +236,7 @@ describe('DocsSearchPalette', () => {
 
 		const externalHit = {
 			...stubHits[1],
-			to: 'https://docs.example.com/frameworks/nuxt/authentication',
+			to: 'http://docs.example.com/frameworks/nuxt/authentication',
 		};
 		const palette = wrapper.findComponent({ name: 'UCommandPalette' });
 		palette.vm.$emit('highlight', { ref: document.createElement('div'), value: externalHit });
@@ -244,6 +244,6 @@ describe('DocsSearchPalette', () => {
 
 		preview.vm.$emit('open');
 		await nextTick();
-		expect(navigateToMock).toHaveBeenCalledWith('https://docs.example.com/frameworks/nuxt/authentication', { external: true });
+		expect(navigateToMock).toHaveBeenCalledWith('http://docs.example.com/frameworks/nuxt/authentication', { external: true });
 	});
 });

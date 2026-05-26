@@ -14,7 +14,7 @@
 		"redirects:check": "node scripts/redirects-sync.ts --fail-on-unresolved --no-write",
 		"typecheck:scripts": "tsc -p scripts/tsconfig.json",
 		"index:docs": "tsx scripts/index-docs.ts",
-		"test:search": "vitest run tests/scripts/index-docs-chunker.test.ts tests/components/DocsSearchPalette.test.ts tests/shared/parseTypesenseUrl.test.ts tests/lib/typesenseAlias.test.ts tests/services/typesenseService.test.ts"
+		"test:search": "vitest run tests/scripts/index-docs-chunker.test.ts tests/components/DocsSearchPalette.test.ts tests/shared/parseTypesenseUrl.test.ts tests/lib/typesenseAlias.test.ts tests/services/typesenseService.test.ts tests/utils/highlightHtml.test.ts"
 	},
 	"dependencies": {
 		"@directus/openapi": "0.3.0",
