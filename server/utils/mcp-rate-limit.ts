@@ -1,7 +1,16 @@
 const buckets = new Map<string, { count: number; resetAt: number }>();
+let lastSweep = 0;
 
 export function checkMcpRateLimit(key: string, max: number, windowMs: number): { ok: boolean; retryAfter?: number } {
 	const now = Date.now();
+
+	if (now - lastSweep > windowMs) {
+		for (const [k, b] of buckets) {
+			if (b.resetAt < now) buckets.delete(k);
+		}
+		lastSweep = now;
+	}
+
 	const bucket = buckets.get(key);
 	if (!bucket || bucket.resetAt <= now) {
 		buckets.set(key, { count: 1, resetAt: now + windowMs });

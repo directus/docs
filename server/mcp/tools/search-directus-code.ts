@@ -49,7 +49,7 @@ export default defineMcpTool({
 		repo: z
 			.enum(DIRECTUS_REPO_SLUGS)
 			.default('directus')
-			.describe('Allowlisted Directus repo. Defaults to `directus` (core). Use `sdk` for `@directus/sdk`, `extensions-sdk` for `@directus/extensions-sdk`, etc.'),
+			.describe('Allowlisted Directus repo. Defaults to `directus` (core). Note: `@directus/sdk` and `@directus/extensions-sdk` live inside the `directus` monorepo — use `path:packages/sdk` or `path:packages/extensions-sdk` as a path filter within that repo.'),
 		language: z
 			.string()
 			.optional()
