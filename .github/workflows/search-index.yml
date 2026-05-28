@@ -55,7 +55,7 @@ jobs:
         run: pnpm index:docs
 
   prod-index:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
       TYPESENSE_URL: ${{ secrets.TYPESENSE_URL }}
