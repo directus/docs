@@ -1,9 +1,14 @@
 ---
+stableId: ebafacb0-0e76-48f5-b9d4-5eed3e354419
 title: Security & Limits
 description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate limiting, and request limits.
 ---
 
 :partial{content="config-env-vars"}
+
+::callout{icon="material-symbols:info-outline"}
+This page documents environment variables. For in-app security configuration (permissions, system collections, public access), see [Security Best Practices](/guides/security/best-practices).
+::
 
 | Variable                            | Description                                                                                                                                                                             | Default Value             |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |

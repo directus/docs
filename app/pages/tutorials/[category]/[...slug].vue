@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { ContentCollectionItem, ContentNavigationItem } from '@nuxt/content';
-import { findPageBreadcrumb, mapContentNavigation } from '#ui-pro/utils';
+import type { ContentNavigationItem } from '@nuxt/content';
+import { findPageBreadcrumb } from '@nuxt/content/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
@@ -10,20 +10,49 @@ definePageMeta({
 
 const { path } = useNormalizedPath();
 
-const { data: page } = await useAsyncData(path, () => queryCollection('content').path(path.value).first());
+const { data: page } = await useAsyncData(path, () =>
+	queryCollection('content').path(path.value).first(),
+);
 
 if (!page.value) {
-	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
+	throw createError({
+		statusCode: 404,
+		statusMessage: 'Page not found',
+		fatal: true,
+	});
 }
 
-const imageSrc = (page: ContentCollectionItem | undefined) => {
-	if (!page) return '';
-	const technologies = page.technologies || ['directus'];
-	const techString = technologies.join(', ');
-	return `/docs/api/tutorialimg?logos=${techString}`;
-};
+const breadcrumb = computed(() =>
+	(findPageBreadcrumb(navigation.value, path.value) ?? []).map(item => ({
+		label: item.title,
+		to: item.path,
+	})),
+);
 
-const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation.value, page.value)).map(({ icon, ...link }) => link));
+const frameworkChips = computed(() => {
+	const tech = page.value?.technologies ?? [];
+	const root = findNavNode(navigation.value, '/frameworks');
+	const frameworks = root?.children ?? [];
+	return tech
+		.map((slug) => {
+			const node = frameworks.find(f => f.path === `/frameworks/${slug}`);
+			if (!node) return null;
+			return {
+				label: node.title,
+				icon: node.icon,
+				to: node.path,
+			};
+		})
+		.filter(c => c !== null);
+});
+
+defineOgImage('Default', {
+	title: page.value?.title ?? 'Directus Docs',
+	description: page.value?.description ?? '',
+	breadcrumb: breadcrumb.value
+		.map(item => item.label)
+		.filter((label): label is string => Boolean(label)),
+});
 </script>
 
 <template>
@@ -34,13 +63,40 @@ const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(naviga
 			:description="page!.description"
 		>
 			<template #headline>
-				<UBreadcrumb
-					:items="breadcrumb"
-				>
+				<UBreadcrumb :items="breadcrumb">
 					<template #separator>
 						<span class="mx-2 text-muted">/</span>
 					</template>
 				</UBreadcrumb>
+			</template>
+
+			<template
+				v-if="frameworkChips.length"
+				#description
+			>
+				<p
+					v-if="page!.description"
+					class="mb-4"
+				>
+					{{ page!.description }}
+				</p>
+				<div class="flex flex-wrap gap-2">
+					<NuxtLink
+						v-for="chip in frameworkChips"
+						:key="chip.to"
+						:to="chip.to"
+					>
+						<UBadge
+							:icon="chip.icon"
+							color="neutral"
+							variant="subtle"
+							size="md"
+							class="hover:bg-primary/10 hover:text-primary transition cursor-pointer"
+						>
+							{{ chip.label }}
+						</UBadge>
+					</NuxtLink>
+				</div>
 			</template>
 
 			<template
@@ -49,11 +105,6 @@ const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(naviga
 			>
 				<CopyDocButton :page="page" />
 			</template>
-			<img
-				v-if="page"
-				:src="imageSrc(page)"
-				alt="Generated Image"
-			>
 		</UPageHeader>
 
 		<UPageBody

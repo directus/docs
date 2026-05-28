@@ -1,4 +1,5 @@
 ---
+stableId: 56701b9c-6b92-44f5-8774-782c33b5739d
 title: Database
 description: Configuration for database connections.
 ---

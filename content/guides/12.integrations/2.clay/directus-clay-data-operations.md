@@ -1,4 +1,5 @@
 ---
+stableId: d67089d8-4978-4b1d-a560-8a78cede576f
 id: directus-clay-data-operations-tutorial
 title: Data Operations
 description: Advanced techniques for working with Directus data in Clay, including filters, pagination, common use cases, and best practices.

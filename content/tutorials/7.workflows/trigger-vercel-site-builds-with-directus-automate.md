@@ -1,13 +1,14 @@
 ---
+stableId: 2b936565-a2c4-4545-896f-216bf5ce461c
 id: 5ba45c20-d5f3-469a-a060-2d4fa960bd66
 slug: trigger-vercel-site-builds-with-directus-automate
-title: Trigger Vercel Site Builds with Directus Automate
+title: Trigger Vercel Site Builds with Directus Flows
 technologies:
   - vercel
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer
-description: Learn how to trigger new Vercel website builds through Directus Automate.
+description: Learn how to trigger new Vercel website builds through Directus Flows.
 ---
 ## Explanation
 

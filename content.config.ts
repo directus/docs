@@ -16,12 +16,14 @@ export default defineContentConfig({
 				title: z.string(),
 				description: z.string().optional(),
 				headline: z.string().optional(),
+				stableId: z.string().uuid().optional(),
 				authors: z.array(z.object({
 					name: z.string(),
 					title: z.string(),
 				})).optional(),
 				icon: z.string().optional(),
 				technologies: z.array(z.string()).optional(),
+				section: z.enum(['start-here', 'guides']).optional(),
 				links: z.array(z.object({
 					label: z.string(),
 					icon: z.string(),

@@ -1,13 +1,14 @@
 ---
+stableId: e03366c8-427e-42c0-a0cc-058bec00abb8
 id: e9fd65f3-e853-4ecb-8706-74c8fa342b43
 slug: build-an-ecommerce-platform-with-next-js-stripe-and-directus-automate
-title: Build an Ecommerce Platform with Next.js, Stripe, and Directus Automate
+title: Build an Ecommerce Platform with Next.js, Stripe, and Directus Flows
 technologies:
   - nextjs
 authors:
   - name: Trust Jamin
     title: Guest Author
-description: Learn to integrate Stripe with Directus Automate to build an e-commerce website.
+description: Learn to integrate Stripe with Directus Flows to build an e-commerce website.
 ---
 E-commerce websites are among the most popular for businesses as they enable customers to purchase items from your store from the comfort of their homes. In this article, you'll build an e-commerce store with Next.js as its front end, Directus as its backend services, and Stripe for payment processing.
 

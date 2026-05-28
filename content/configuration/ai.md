@@ -1,4 +1,5 @@
 ---
+stableId: 743f74e7-194d-42de-a115-dc7edd37dd77
 title: AI
 description: Configuration for AI Assistant and Model Context Protocol (MCP) features.
 ---

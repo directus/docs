@@ -7,8 +7,8 @@ const { data: navigation } = useAsyncData('content-navigation', () => queryColle
 provide('openapi', spec);
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
-defineOgImage({
-	url: '/og-image.png',
+defineOgImage('Default', {
+	title: 'Directus Docs',
 });
 </script>
 

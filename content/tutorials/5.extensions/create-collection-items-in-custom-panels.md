@@ -1,4 +1,5 @@
 ---
+stableId: 5bfabd97-af2a-4694-9156-9eb633051efb
 id: b8fa9a76-063b-499f-80e7-737f08f94684
 slug: create-collection-items-in-custom-panels
 title: Create Collection Items in Custom Panels

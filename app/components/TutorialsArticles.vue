@@ -4,7 +4,7 @@ const props = defineProps<{
 	limit?: number;
 }>();
 
-const { data: articles } = await useAsyncData(props.path + '-preview', () => {
+const { data: articles } = await useAsyncData(`${props.path}-articles-${props.limit ?? 'all'}`, () => {
 	const query = queryCollection('content')
 		.where('path', 'LIKE', `${props.path}/%`)
 		.select('title', 'description', 'icon', 'path', 'technologies', 'navigation');
