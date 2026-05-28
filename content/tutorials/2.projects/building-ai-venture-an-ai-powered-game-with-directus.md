@@ -1,11 +1,12 @@
 ---
+stableId: aff46e7f-689a-4703-9fc7-dbb5c70a4af3
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
 slug: building-ai-venture-an-ai-powered-game-with-directus
 title: Building AIVenture - An AI-Powered Game with Directus
 authors:
   - name: Craig Harman
     title: Guest Author
-description: Learn the advanced techniques used with Directus Automate to build a game.
+description: Learn the advanced techniques used with Directus Flows to build a game.
 ---
 ## You are standing in an open field…
 

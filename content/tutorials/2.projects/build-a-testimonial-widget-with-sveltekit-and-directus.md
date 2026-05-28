@@ -1,4 +1,5 @@
 ---
+stableId: 065f161c-3d11-4490-99aa-35a44aeb0042
 id: 95197ebe-fc70-4f80-a053-a894f3b0b00a
 slug: build-a-testimonial-widget-with-sveltekit-and-directus
 title: Build a Testimonial Widget with SvelteKit and Directus

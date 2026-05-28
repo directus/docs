@@ -1,4 +1,5 @@
 ---
+stableId: dcf975ee-c4fb-431d-ae2e-d80427032821
 id: 46046425-151c-4bb3-bd47-6274b5e24ecb
 slug: understand-available-slots-in-custom-modules
 title: Understand Available Slots in Custom Modules

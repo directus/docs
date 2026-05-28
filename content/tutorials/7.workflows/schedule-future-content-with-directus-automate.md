@@ -1,7 +1,8 @@
 ---
+stableId: 4164fbc4-95f1-4097-b57c-1bd347561a15
 id: c773724c-cc1b-4f79-bc46-208b26e8fd7f
 slug: schedule-future-content-with-directus-automate
-title: Schedule Future Content with Directus Automate
+title: Schedule Future Content with Directus Flows
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer

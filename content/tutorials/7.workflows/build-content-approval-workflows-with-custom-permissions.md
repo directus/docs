@@ -1,4 +1,5 @@
 ---
+stableId: 4396aa25-77f1-487e-be30-33f0f9578abc
 id: 8ab7ca33-2534-42b0-9857-ce840a001a50
 slug: build-content-approval-workflows-with-custom-permissions
 title: Build Content Approval Workflows with Custom Permissions
