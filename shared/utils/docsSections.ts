@@ -62,13 +62,13 @@ export const docsSections: DocsSection[] = [
 		prefixes: ['/api'],
 		icon: 'material-symbols:code',
 	},
-	{
-		id: 'reference',
-		label: 'Reference',
-		to: '/reference/interfaces',
-		prefixes: ['/reference'],
-		icon: 'material-symbols:bookmarks-outline',
-	},
+	// {
+	// 	id: 'reference',
+	// 	label: 'Reference',
+	// 	to: '/reference/interfaces',
+	// 	prefixes: ['/reference'],
+	// 	icon: 'material-symbols:bookmarks-outline',
+	// },
 	{
 		id: 'tutorials',
 		label: 'Tutorials',
@@ -95,7 +95,7 @@ export const docsGroups: DocsGroup[] = [
 	},
 	{
 		id: 'reference',
-		label: 'API ',
+		label: 'API',
 		to: '/api',
 		icon: 'material-symbols:code',
 		sectionIds: ['api'],
