@@ -1,5 +1,4 @@
 ::callout{icon="material-symbols:info-outline"}
-  **Directus requires a license to self-host**
-  Directus is licensed under a BSL 1.1 for commercial usage. This means you require a license if you are an entity with over $5 million in total finances. Otherwise, you can continue to enjoy Directus in full and commercially without a license.
-  [Request a license by contacting sales.](https://directus.io/demo)
+  **Licensing**
+  Directus is licensed under the [Monospace Sustainable Core License (MSCL)](https://directus.io/MSCL). The free **core tier** does not require a license. Higher limits and additional features require a paid license, or qualifying entities can apply for the [Open Innovation Grant](https://directus.io/contact) for free commercial use. [Learn more about licensing](/licensing/overview).
 ::
