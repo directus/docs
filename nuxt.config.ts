@@ -166,7 +166,7 @@ export default defineNuxtConfig({
 		prerender: {
 			routes: ['/'],
 			crawlLinks: true,
-			concurrency: 2,
+			concurrency: 1,
 			retry: 2,
 			retryDelay: 1000,
 		},
