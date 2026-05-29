@@ -1,0 +1,80 @@
+name: Search Index
+
+on:
+  push:
+    branches:
+      - main
+    paths: &index-paths
+      - 'content/**'
+      - 'scripts/index-docs.ts'
+      - 'scripts/index-docs-chunker.ts'
+      - 'shared/utils/parseTypesenseUrl.ts'
+      - 'shared/utils/docsSections.ts'
+      - 'app/utils/slugify.ts'
+      - 'server/data/synonyms.ts'
+      - 'lib/typesenseAlias.ts'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/search-index.yml'
+  pull_request:
+    branches:
+      - main
+    paths: *index-paths
+  workflow_dispatch:
+
+concurrency:
+  group: search-index-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  preview-index:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      TYPESENSE_URL: ${{ secrets.TYPESENSE_URL }}
+      TYPESENSE_PUBLIC_API_KEY: ${{ secrets.TYPESENSE_PUBLIC_API_KEY }}
+      TYPESENSE_PRIVATE_API_KEY: ${{ secrets.TYPESENSE_PRIVATE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.29.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Index preview collection
+        run: pnpm index:docs
+
+  prod-index:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      TYPESENSE_URL: ${{ secrets.TYPESENSE_URL }}
+      TYPESENSE_PUBLIC_API_KEY: ${{ secrets.TYPESENSE_PUBLIC_API_KEY }}
+      TYPESENSE_PRIVATE_API_KEY: ${{ secrets.TYPESENSE_PRIVATE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.29.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Index production collection
+        run: pnpm index:docs
