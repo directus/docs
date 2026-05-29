@@ -1,4 +1,5 @@
 ---
+stableId: 71ecfdac-438b-44a2-9f52-bdade14404a1
 title: Metrics
 description: Configuration for metrics.
 ---

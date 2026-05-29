@@ -1,4 +1,5 @@
 ---
+stableId: 4fdd3809-41f8-40f6-b0e7-a35d8cd8b66b
 id: zapier-advanced
 title: Advanced
 description: Advanced guide for using Directus API features in Zapier, including raw request actions, advanced filtering, and custom API calls.

@@ -16,9 +16,6 @@ export default defineAppConfig({
 				wrapper: '[&_pre>code]:!bg-transparent',
 			},
 		},
-	},
-
-	uiPro: {
 		page: {
 			slots: {
 				root: 'lg:gap-8',
@@ -40,7 +37,7 @@ export default defineAppConfig({
 				to: '/getting-started/overview',
 			},
 			{
-				label: 'Guides',
+				label: 'Guide',
 				children: [
 					{
 						label: 'Data Model',
@@ -58,7 +55,7 @@ export default defineAppConfig({
 						icon: 'directus-auth',
 					},
 					{
-						label: 'Connect',
+						label: 'APIs',
 						to: '/guides/connect/authentication',
 						icon: 'directus-connect',
 					},
@@ -68,7 +65,7 @@ export default defineAppConfig({
 						icon: 'directus-files',
 					},
 					{
-						label: 'Automate',
+						label: 'Flows',
 						to: '/guides/automate/flows',
 						icon: 'directus-automate',
 					},
@@ -93,6 +90,11 @@ export default defineAppConfig({
 						icon: 'directus-deployments',
 					},
 					{
+						label: 'Security',
+						to: '/guides/security/best-practices',
+						icon: 'i-ph-shield-check',
+					},
+					{
 						label: 'AI',
 						to: '/guides/ai/',
 						icon: 'directus-ai',
@@ -105,7 +107,7 @@ export default defineAppConfig({
 				],
 			},
 			{
-				label: 'Manage',
+				label: 'Hosting',
 				children: [
 					{
 						label: 'Cloud',
@@ -128,6 +130,16 @@ export default defineAppConfig({
 				label: 'Resources',
 				children: [
 					{
+						label: 'Frameworks',
+						to: '/frameworks',
+						icon: 'i-ph-brackets-curly',
+					},
+					{
+						label: 'Tutorials',
+						to: '/tutorials',
+						icon: 'i-ph-article',
+					},
+					{
 						label: 'Community',
 						to: '/community/overview/welcome',
 						icon: 'i-ph-hand-heart',
@@ -136,11 +148,6 @@ export default defineAppConfig({
 						label: 'Releases',
 						to: '/releases',
 						icon: 'i-ph-notebook',
-					},
-					{
-						label: 'Tutorials',
-						to: '/tutorials',
-						icon: 'i-ph-article',
 					},
 				],
 			},
@@ -185,11 +192,13 @@ export default defineAppConfig({
 	cta: {
 		cloud: {
 			link: 'https://directus.cloud',
-			description: 'Everything you need to start building. Provisioned in 90 seconds.',
+			description:
+				'Everything you need to start building. Provisioned in 90 seconds.',
 			cta: 'Get Started',
 		},
 		newsletter: {
-			description: 'Get once-a-month release notes & real‑world code tips...no fluff. 🐰',
+			description:
+				'Get once-a-month release notes & real‑world code tips...no fluff. 🐰',
 			form: {
 				hsPortal: 20534155,
 				hsForm: 'd57a69e4-6f43-4768-a600-5f7d30306260',
@@ -230,7 +239,7 @@ export default defineAppConfig({
 			},
 			{
 				label: 'License',
-				to: 'https://directus.io/bsl',
+				to: 'https://directus.io/mscl',
 			},
 			{
 				label: 'Terms',

@@ -1,10 +1,15 @@
 ---
+stableId: be7a4a55-ae49-4fc3-b812-f3b1c3bd07e7
 title: Flows
 description: Configure environment variables, memory, and timeout for Flows.
 ---
 
 
 :partial{content="config-env-vars"}
+
+::callout{icon="material-symbols:info-outline"}
+For guidance on who should be able to create and edit flows, and how to secure webhook triggers, see [Security Best Practices](/guides/security/best-practices#flows).
+::
 
 | Variable                      | Description                                                                                                      | Default Value |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------- |

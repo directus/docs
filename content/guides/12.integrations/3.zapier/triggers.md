@@ -1,4 +1,5 @@
 ---
+stableId: 9c585659-1b1c-40c9-9f01-345976d911ca
 id: zapier-triggers
 title: Triggers
 description: Complete guide for using Directus triggers in Zapier workflows to automatically start Zaps when events happen in Directus.

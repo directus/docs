@@ -1,9 +1,14 @@
 ---
+stableId: acac0926-dc36-4b84-9963-f0dea343efaf
 title: Extensions
 description: Configuration for extensions and the Directus Marketplace.
 ---
 
 :partial{content="config-env-vars"}
+
+::callout{icon="material-symbols:info-outline"}
+For guidance on restricting who can install or manage extensions, see [Security Best Practices](/guides/security/best-practices#extensions).
+::
 
 | Variable                                    | Description                                                                                                                        | Default Value  |
 | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------- |
