@@ -38,6 +38,8 @@ export default defineNuxtConfig({
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
+		'@nuxtjs/mcp-toolkit',
+		'~~/modules/content-markdown',
 	],
 
 	devtools: {
@@ -157,6 +159,9 @@ export default defineNuxtConfig({
 		compressPublicAssets: false,
 		externals: {
 			inline: ['unhead'],
+		},
+		experimental: {
+			asyncContext: true,
 		},
 		prerender: {
 			routes: ['/'],
@@ -387,6 +392,12 @@ export default defineNuxtConfig({
 			'This documentation covers the latest version of Directus.',
 			'Directus uses a Business Source License (BSL). See https://directus.io/bsl for license terms.',
 		],
+	},
+
+	mcp: {
+		name: 'Directus documentation',
+		description: 'Search and read the Directus documentation.',
+		browserRedirect: '/mcp-help',
 	},
 
 	ogImage: { zeroRuntime: true },
