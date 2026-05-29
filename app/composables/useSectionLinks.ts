@@ -29,9 +29,9 @@ export default function useSectionLinks() {
 			},
 			{
 				label: 'Licensing',
-				href: 'https://directus.io/bsl?ref=directus-docs',
+				href: '/licensing/overview',
 				icon: 'i-ph-key',
-				target: '_blank',
+				active: route.path.startsWith('/licensing'),
 			},
 		];
 
