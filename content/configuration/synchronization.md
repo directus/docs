@@ -1,4 +1,5 @@
 ---
+stableId: 54f191c6-0a98-4720-a45a-ec24cff19382
 title: Synchronization
 description: Configuration around synchronization and Redis.
 ---

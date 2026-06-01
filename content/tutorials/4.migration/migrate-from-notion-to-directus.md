@@ -1,4 +1,5 @@
 ---
+stableId: a65a7b6a-63bd-457c-87ca-fd8194edfbb0
 id: 4a0304fd-c3c3-43f9-8102-acfc6009e26d
 slug: migrate-from-notion-to-directus
 title: Migrate from Notion to Directus

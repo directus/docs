@@ -1,4 +1,5 @@
 ---
+stableId: acac0926-dc36-4b84-9963-f0dea343efaf
 title: Extensions
 description: Configuration for extensions and the Directus Marketplace.
 ---

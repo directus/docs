@@ -1,4 +1,5 @@
 ---
+stableId: 4fdd3809-41f8-40f6-b0e7-a35d8cd8b66b
 id: zapier-advanced
 title: Advanced
 description: Advanced guide for using Directus API features in Zapier, including raw request actions, advanced filtering, and custom API calls.
@@ -26,7 +27,7 @@ Quick reference of all available raw request actions:
 
 ---
 
-::callout{icon="heroicons-outline:light-bulb"}
+::callout{icon="material-symbols:lightbulb-outline"}
 **When to Use Raw Request Actions**
 Use raw request actions when you need full control over HTTP methods, complex query parameters (aggregation, search, etc.), or complete control over the JSON payload structure. For advanced filtering in Find actions, use the Filter (JSON) field instead.
 ::

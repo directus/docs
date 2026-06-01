@@ -1,4 +1,5 @@
 ---
+stableId: 4396aa25-77f1-487e-be30-33f0f9578abc
 id: 8ab7ca33-2534-42b0-9857-ce840a001a50
 slug: build-content-approval-workflows-with-custom-permissions
 title: Build Content Approval Workflows with Custom Permissions
@@ -115,6 +116,6 @@ explicit set of permissions each role has at each stage.
 
 ::callout{icon="material-symbols:info-outline"}
 
-Workflows can be further enhanced with custom [Interfaces](/guides/extensions/app-extensions/interfaces) as well as [flows](/guides/automate/flows).
+Workflows can be further enhanced with custom [Interfaces](/guides/extensions/app-extensions/interfaces) as well as [flows](/guides/flows).
 
 ::

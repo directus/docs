@@ -1,4 +1,5 @@
 ---
+stableId: 5c521402-6427-4d52-90cb-e3a713344b73
 id: zapier-actions
 title: Actions
 description: Complete guide for using Directus actions in Zapier workflows, including working with items, users, and files.
@@ -80,7 +81,7 @@ By default, Zapier returns only the **first result** from Find actions. To proce
 
 **Note for Items**: Select the **Collection** before configuring options.
 
-::callout{icon="heroicons-outline:light-bulb"}
+::callout{icon="material-symbols:lightbulb-outline"}
 **Advanced Filtering in Find**
 <br>
 The **Filter (JSON)** field in Find actions supports Directus's complete filter syntax, including logical operators (`_and`, `_or`), relational field filtering, and all filter operators. For complete filter syntax and examples, see the [Directus Filter Rules documentation](https://directus.io/docs/guides/connect/filter-rules).
@@ -126,7 +127,7 @@ To create users, use **Invite User**. This sends an invitation email so the user
 - **Role** (dropdown selection)
 - **Custom Invite URL** (optional)
 
-::callout{icon="heroicons-outline:light-bulb"}
+::callout{icon="material-symbols:lightbulb-outline"}
 **Direct User Creation**
 For direct user creation without invitation, use **User Raw Request** with POST method.
 ::
@@ -164,7 +165,7 @@ Import a file from a publicly accessible URL.
 - **Description** (optional)
 - **Folder** (optional)
 
-::callout{icon="heroicons-outline:light-bulb"}
+::callout{icon="material-symbols:lightbulb-outline"}
 **Upload vs Import**
 Use **Upload** when you have binary file data from a previous step. Use **Import** when you have a publicly accessible URL to the file.
 ::
