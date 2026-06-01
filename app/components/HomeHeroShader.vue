@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { withBase } from 'ufo';
+
 const props = withDefaults(defineProps<{
 	src?: string;
 	strokeSize?: number;
@@ -25,7 +27,9 @@ const props = withDefaults(defineProps<{
 	anchorY: 1,
 });
 
+const { app } = useRuntimeConfig();
 const isDev = import.meta.dev;
+const imageSrc = computed(() => withBase(props.src, app.baseURL));
 
 const settings = reactive({
 	strokeSize: props.strokeSize,
@@ -61,15 +65,21 @@ function parseColor(input: string): [number, number, number] | null {
 	return null;
 }
 
+const canvas = ref<HTMLCanvasElement | null>(null);
+const container = ref<HTMLDivElement | null>(null);
+
+function getContainerEl() {
+	const el = container.value;
+	return typeof HTMLElement !== 'undefined' && el instanceof HTMLElement ? el : null;
+}
+
 function readColors() {
-	if (!container.value) return;
-	const cs = getComputedStyle(container.value);
+	const el = getContainerEl();
+	if (!el) return;
+	const cs = getComputedStyle(el);
 	const base = parseColor(settings.baseColor) ?? parseColor(cs.getPropertyValue('--hero-shader-base'));
 	if (base) baseRgb.value = base;
 }
-
-const canvas = ref<HTMLCanvasElement | null>(null);
-const container = ref<HTMLDivElement | null>(null);
 
 let gl: WebGLRenderingContext | null = null;
 let program: WebGLProgram | null = null;
@@ -225,14 +235,14 @@ function compile(gl: WebGLRenderingContext, type: number, src: string): WebGLSha
 
 function loadImage() {
 	if (!gl || !imgTex) return;
-	const src = props.src;
+	const src = imageSrc.value;
 	imageLoaded.value = false;
 	shaderFailed.value = false;
 
 	const img = new Image();
 	img.crossOrigin = 'anonymous';
 	img.onload = () => {
-		if (!gl || !imgTex || src !== props.src) return;
+		if (!gl || !imgTex || src !== imageSrc.value) return;
 		gl.bindTexture(gl.TEXTURE_2D, imgTex);
 		gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
@@ -241,13 +251,14 @@ function loadImage() {
 		requestRender();
 	};
 	img.onerror = () => {
-		if (src === props.src) shaderFailed.value = true;
+		if (src === imageSrc.value) shaderFailed.value = true;
 	};
 	img.src = src;
 }
 
 function init() {
-	if (!canvas.value || !container.value) return;
+	const el = getContainerEl();
+	if (!canvas.value || !el) return;
 	gl = canvas.value.getContext('webgl', { antialias: false, premultipliedAlpha: false, preserveDrawingBuffer: true });
 	if (!gl) {
 		shaderFailed.value = true;
@@ -289,8 +300,8 @@ function init() {
 	readColors();
 	syncCanvasSize();
 	ro = new ResizeObserver(resize);
-	ro.observe(container.value);
-	const parent = container.value.parentElement;
+	ro.observe(el);
+	const parent = el.parentElement;
 	if (parent) ro.observe(parent);
 	window.addEventListener('resize', resize);
 	loadImage();
@@ -309,7 +320,7 @@ watch(() => [props.strokeSize, props.hoverRadius, props.strength, props.baseColo
 	settings.anchorY = props.anchorY;
 });
 
-watch(() => props.src, () => loadImage());
+watch(() => imageSrc.value, () => loadImage());
 
 watch(() => [settings.strokeSize, settings.hoverRadius, settings.strength, settings.baseColor, settings.washAmount, settings.breathe, settings.phase, settings.tempSway, settings.anchorX, settings.anchorY], () => {
 	readColors();
@@ -317,8 +328,9 @@ watch(() => [settings.strokeSize, settings.hoverRadius, settings.strength, setti
 });
 
 function syncCanvasSize() {
-	if (!canvas.value || !container.value || !gl) return false;
-	const rect = container.value.getBoundingClientRect();
+	const el = getContainerEl();
+	if (!canvas.value || !el || !gl) return false;
+	const rect = el.getBoundingClientRect();
 	const dpr = Math.min(window.devicePixelRatio || 1, 2);
 	const w = Math.max(1, Math.floor(rect.width * dpr));
 	const h = Math.max(1, Math.floor(rect.height * dpr));
@@ -384,14 +396,15 @@ function requestRender() {
 }
 
 function onMove(e: PointerEvent) {
-	if (!container.value) return;
+	const el = getContainerEl();
+	if (!el) return;
 
 	const isOverDebug = e.composedPath().some((target) => {
 		return target instanceof HTMLElement && target.closest('.shader-debug');
 	});
 	if (isOverDebug) return;
 
-	const rect = container.value.getBoundingClientRect();
+	const rect = el.getBoundingClientRect();
 	mouse.x = (e.clientX - rect.left) / rect.width;
 	mouse.y = 1.0 - (e.clientY - rect.top) / rect.height;
 	mouse.target = 1;
@@ -407,9 +420,10 @@ onMounted(() => {
 		mql.addEventListener('change', onReducedMotionChange);
 	}
 	init();
-	hoverTarget = container.value?.closest('section') as HTMLElement | null
-		?? container.value?.parentElement
-		?? container.value;
+	const el = getContainerEl();
+	hoverTarget = el?.closest('section') as HTMLElement | null
+		?? el?.parentElement
+		?? el;
 	if (hoverTarget) {
 		hoverTarget.addEventListener('pointermove', onMove);
 		hoverTarget.addEventListener('pointerleave', onLeave);
@@ -440,7 +454,7 @@ onBeforeUnmount(() => {
 		<div
 			v-if="shaderFailed"
 			class="hero-shader-fallback"
-			:style="{ backgroundImage: `url(${props.src})` }"
+			:style="{ backgroundImage: `url(${imageSrc})` }"
 		/>
 		<canvas
 			v-show="!shaderFailed"
