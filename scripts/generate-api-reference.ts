@@ -245,17 +245,26 @@ function operationsByTag() {
 }
 
 function navigation(byTag: Map<string, ApiReferenceOperation[]>) {
-	return [...byTag.entries()].map(([tag, operations]) => ({
-		title: tag,
-		to: `/api/${tag.toLowerCase()}`,
-		path: `/api/${tag.toLowerCase()}`,
-		children: operations.map(operation => ({
-			title: operation.summary ?? operation.path,
-			path: `/api/${tag.toLowerCase()}#${slugify(operation.summary!)}`,
-			exact: true,
-			exactHash: true,
-		})),
-	}));
+	return (openapi.tags ?? [])
+		.map((tag) => {
+			const operations = byTag.get(tag.name);
+			if (!operations?.length) return null;
+
+			const slug = tag.name.toLowerCase();
+
+			return {
+				title: tag.name,
+				to: `/api/${slug}`,
+				path: `/api/${slug}`,
+				children: operations.map(operation => ({
+					title: operation.summary ?? operation.path,
+					path: `/api/${slug}#${slugify(operation.summary!)}`,
+					exact: true,
+					exactHash: true,
+				})),
+			};
+		})
+		.filter(item => item !== null);
 }
 
 async function writeIfChanged(path: string, content: string) {

@@ -28,10 +28,21 @@ function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 
 function loadApiReferencePrerenderRoutes(): string[] {
 	const path = './app/generated/api-reference/routes.json';
-	if (!existsSync(path)) return [];
+	if (!existsSync(path)) {
+		throw new Error('Missing generated API reference routes. Run `pnpm api-ref:generate` before Nuxt.');
+	}
+
 	const raw = readFileSync(path, 'utf8').trim();
-	if (!raw) return [];
-	return JSON.parse(raw) as string[];
+	if (!raw) {
+		throw new Error('Generated API reference routes are empty. Run `pnpm api-ref:generate`.');
+	}
+
+	const routes = JSON.parse(raw) as string[];
+	if (routes.length === 0) {
+		throw new Error('Generated API reference routes are empty. Run `pnpm api-ref:generate`.');
+	}
+
+	return routes;
 }
 
 const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
