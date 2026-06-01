@@ -1,42 +1,29 @@
 <script setup lang="ts">
-import type { OpenAPIObject, OperationObject } from 'openapi3-ts/oas30';
-import { METHODS } from '~/constants';
-import type { FlattenedOperationObject, DerefedOperationObject } from '~/types';
-
-const openapi = inject<OpenAPIObject>('openapi')!;
+import type { ApiReferenceTagPage } from '~/types';
 
 definePageMeta({
 	layout: 'api',
 });
 
 const route = useRoute();
-
-const tag = computed(() => {
-	return openapi.tags?.find(tag => tag.name.toLowerCase() === route.params.tag);
+const tagSlug = computed(() => String(route.params.tag));
+const apiReferencePages = import.meta.glob<ApiReferenceTagPage>('../../generated/api-reference/tags/*.ts', {
+	import: 'default',
 });
 
-const operations = computed<FlattenedOperationObject<DerefedOperationObject>[]>(() => {
-	const operations = [];
+const { data: apiReferencePage } = await useAsyncData(
+	() => `api-reference-${tagSlug.value}`,
+	async () => {
+		const loader = apiReferencePages[`../../generated/api-reference/tags/${tagSlug.value}.ts`];
+		return loader ? await loader() : null;
+	},
+	{ watch: [tagSlug] },
+);
 
-	for (const [path, pathItemObject] of Object.entries(openapi.paths)) {
-		for (const method of METHODS) {
-			if (pathItemObject[method]) {
-				const operationObject: OperationObject = pathItemObject[method];
+const tag = computed(() => apiReferencePage.value?.tag);
+const operations = computed(() => apiReferencePage.value?.operations ?? []);
 
-				if (operationObject.tags?.includes(tag.value!.name)) {
-					operations.push({
-						...operationObject,
-						method, path,
-					});
-				}
-			}
-		}
-	}
-
-	return derefOperations(openapi, operations);
-});
-
-if (!tag.value) {
+if (!apiReferencePage.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 </script>

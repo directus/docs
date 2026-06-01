@@ -1,3 +1,5 @@
+import linguistToShiki from '~/utils/linguistToShiki';
+
 export default function (lang: string, label: string, source: unknown) {
 	return `
 \`\`\`${linguistToShiki(lang)} [${label}]

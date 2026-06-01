@@ -1,5 +1,4 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { spec as openapi } from '@directus/openapi';
 import type { NitroConfig } from 'nitropack';
 import { resolveBranchTypesenseAlias } from './lib/typesenseAlias';
 
@@ -27,8 +26,16 @@ function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 	return rules;
 }
 
+function loadApiReferencePrerenderRoutes(): string[] {
+	const path = './app/generated/api-reference/routes.json';
+	if (!existsSync(path)) return [];
+	const raw = readFileSync(path, 'utf8').trim();
+	if (!raw) return [];
+	return JSON.parse(raw) as string[];
+}
+
 const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
-const apiReferencePrerenderRoutes = openapi.tags?.map(tag => `/api/${tag.name.toLowerCase()}`) ?? [];
+const apiReferencePrerenderRoutes = loadApiReferencePrerenderRoutes();
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({

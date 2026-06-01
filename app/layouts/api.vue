@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const { spec: openapi } = await import('@directus/openapi');
+import { apiReferenceNavigation } from '~/generated/api-reference/meta';
 
-provide('openapi', openapi);
-
-const oasNavigation = computed(() => mapOasNavigation(openapi));
+const oasNavigation = apiReferenceNavigation;
 </script>
 
 <template>

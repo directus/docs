@@ -1,68 +1,15 @@
 <script setup lang="ts">
-import type {
-	OpenAPIObject,
-	RequestBodyObject,
-	SchemaObject,
-} from 'openapi3-ts/oas30';
-import type {
-	DerefedOperationObject,
-	FlattenedOperationObject,
-} from '~/types';
-
-const openapi = inject<OpenAPIObject>('openapi')!;
+import type { ApiReferenceOperation } from '~/types';
 
 const props = defineProps<{
-	operation: FlattenedOperationObject<DerefedOperationObject>;
+	operation: ApiReferenceOperation;
 }>();
 
-const requestBodyObject = computed(() => {
-	if (!props.operation.requestBody) return null;
-
-	return '$ref' in props.operation.requestBody ? resolveOasRef<RequestBodyObject>(openapi, props.operation.requestBody.$ref) : props.operation.requestBody ?? null;
-});
-
-const requestBodySchema = computed(() => {
-	const contentSchema = requestBodyObject.value?.content?.['application/json']?.schema;
-
-	if (contentSchema) {
-		return flattenSchema(openapi, contentSchema);
-	}
-
-	return null;
-});
-
-const responseBodyObjects = computed(() => {
-	return Object.fromEntries(
-		Object.entries(props.operation.responses).map(([code, response]) => {
-			return [
-				code,
-				response && '$ref' in response ? resolveOasRef<RequestBodyObject>(openapi, response.$ref) : response ?? null,
-			];
-		}));
-});
-
-const flattenedResponseBodySchemas = computed(() => {
-	return Object.entries(responseBodyObjects.value).map(([_, response]: [string, RequestBodyObject | null]) => {
-		const contentSchema = response?.content?.['application/json']?.schema;
-
-		if (contentSchema) {
-			return flattenSchema(openapi, contentSchema);
-		}
-
-		return null;
-	});
-});
-
-const responseBodyExample = computed(() => {
-	const responseSchema = responseBodyObjects?.value?.['200']?.content?.['application/json']?.schema
-		|| responseBodyObjects?.value?.['200']?.content?.['application/text']?.schema;
-
-	if (responseSchema) {
-		return responseToExample(openapi, responseSchema);
-	}
-
-	return null;
-});
+const responseTabs = computed(() => props.operation.responses.map((response, index) => ({
+	label: response.code,
+	meta: response,
+	index,
+})));
 
 type StatusCodeDescriptions = {
 	[key: number]: string;
@@ -118,7 +65,7 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 						v-for="param of operation.parameters"
 						:key="param.name"
 						:name="param.name"
-						:type="(param.schema as SchemaObject)?.type"
+						:type="param.schema?.type"
 						:ui="{
 							root: 'mb-0',
 							description: 'mt-2',
@@ -134,16 +81,16 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 			</div>
 
 			<div
-				v-if="requestBodyObject && requestBodySchema"
+				v-if="operation.requestBody?.schema"
 				class="mb-12 last:mb-0"
 			>
 				<ProseH4 :id="slugify(operation.summary!) + '-request'">
 					Request Body
 				</ProseH4>
-				<ProseP v-if="requestBodyObject.description">
-					{{ requestBodyObject.description }}
+				<ProseP v-if="operation.requestBody.description">
+					{{ operation.requestBody.description }}
 				</ProseP>
-				<ApiParams :param="requestBodySchema" />
+				<ApiParams :param="operation.requestBody.schema" />
 			</div>
 
 			<div class="mb-12 last:mb-0">
@@ -155,11 +102,7 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 				</ProseH4>
 				<UTabs
 					variant="link"
-					:items="Object.keys(responseBodyObjects).map((code, index) => ({
-						label: code,
-						meta: responseBodyObjects[code],
-						index,
-					}))"
+					:items="responseTabs"
 					:unmount-on-hide="false"
 				>
 					<template #default="{ item }">
@@ -183,8 +126,8 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 							{{ item.meta.description }}
 						</div>
 						<ApiParams
-							v-if="flattenedResponseBodySchemas[item.index]"
-							:param="flattenedResponseBodySchemas[item.index]!"
+							v-if="item.meta.schema"
+							:param="item.meta.schema"
 						/>
 					</template>
 				</UTabs>
@@ -192,14 +135,14 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 		</div>
 		<div class="grow sticky top-16 w-full">
 			<MDC
-				v-if="'x-codeSamples' in operation"
+				v-if="operation['x-codeSamples']?.length"
 				:key="`code-samples-${operation.method}-${operation.path}`"
 				:value="codeSamplesMd(operation)"
 			/>
 			<MDC
-				v-if="responseBodyExample"
+				v-if="operation.responseExample"
 				:key="`response-example-${operation.method}-${operation.path}`"
-				:value="preMd('json', 'Response Example', responseBodyExample)"
+				:value="preMd('json', 'Response Example', operation.responseExample)"
 			/>
 		</div>
 	</UPageBody>
