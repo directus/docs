@@ -5,9 +5,7 @@ const { data: navigation } = await useAsyncData('content-navigation', () => quer
 
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
-defineOgImage('Default', {
-	title: 'Directus Docs',
-});
+await useDocsOgImage();
 </script>
 
 <template>
