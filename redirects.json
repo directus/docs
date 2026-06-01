@@ -7,10 +7,6 @@
     "to": "/guides/ai",
     "statusCode": 301
   },
-  "/licensing/overview": {
-    "to": "/configuration/general#license",
-    "statusCode": 301
-  },
   "/releases/breaking-changes/version-12": {
     "to": "/releases/breaking-changes",
     "statusCode": 301
