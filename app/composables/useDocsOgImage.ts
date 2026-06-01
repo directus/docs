@@ -27,8 +27,18 @@ export async function useDocsOgImage(input: DocsOgImageInput = {}) {
 	const title = input.title ?? DEFAULT_TITLE;
 	const description = input.description ?? DEFAULT_DESCRIPTION;
 	const breadcrumb = input.breadcrumb?.filter(Boolean).join(' > ');
+	const ogImage = ref<string>();
 
-	const ogImage = await useOgImageUrl({
+	useSeoMeta({
+		title,
+		description,
+		ogTitle: title,
+		ogDescription: description,
+		ogImage: computed(() => ogImage.value),
+		twitterCard: 'summary_large_image',
+	});
+
+	ogImage.value = await useOgImageUrl({
 		template: 'docs',
 		params: {
 			title: truncateOgParam(title),
@@ -37,14 +47,5 @@ export async function useDocsOgImage(input: DocsOgImageInput = {}) {
 		},
 	});
 
-	useSeoMeta({
-		title,
-		description,
-		ogTitle: title,
-		ogDescription: description,
-		ogImage,
-		twitterCard: 'summary_large_image',
-	});
-
-	return ogImage;
+	return ogImage.value;
 }

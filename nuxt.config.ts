@@ -197,7 +197,6 @@ export default defineNuxtConfig({
 	icon: {
 		serverBundle: {
 			collections: ['material-symbols', 'simple-icons'],
-			externalizeIconsJson: true,
 		},
 		customCollections: [
 			{
