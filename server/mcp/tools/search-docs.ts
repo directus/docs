@@ -5,7 +5,6 @@ import { docsSections } from '#shared/utils/docsSections';
 import { frameworks } from '#shared/utils/frameworks';
 import { parseTypesenseUrl } from '#shared/utils/parseTypesenseUrl';
 
-const SITE_ORIGIN = 'https://directus.io';
 const BASE_PATH = '/docs';
 
 const sectionIds = docsSections.map(s => s.id) as [string, ...string[]];
@@ -50,6 +49,7 @@ export default defineMcpTool({
 	cache: '5m',
 	handler: async ({ query, section, framework, limit }) => {
 		const config = useRuntimeConfig();
+		const siteOrigin = config.public.siteUrl.replace(/\/$/, '');
 
 		if (!config.public.typesenseUrl || !config.public.typesensePublicApiKey || !config.public.typesenseCollection) {
 			throw createError({ statusCode: 503, message: 'Search backend not configured' });
@@ -93,7 +93,7 @@ export default defineMcpTool({
 			const rawUrl = doc.url || `${docPath}${doc.anchor ? `#${doc.anchor}` : ''}`;
 			const url = rawUrl.startsWith('http')
 				? rawUrl
-				: `${SITE_ORIGIN}${rawUrl.startsWith('/') ? '' : BASE_PATH}${rawUrl}`;
+				: `${siteOrigin}${rawUrl.startsWith('/') ? '' : BASE_PATH}${rawUrl}`;
 			return {
 				title: doc.search_title || doc.title || '',
 				heading: doc.heading,

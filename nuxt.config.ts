@@ -131,6 +131,7 @@ export default defineNuxtConfig({
 			typesenseUrl: process.env.TYPESENSE_URL,
 			typesensePublicApiKey: process.env.TYPESENSE_PUBLIC_API_KEY,
 			typesenseCollection,
+			siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
 		},
 		directusUrl: process.env.DIRECTUS_URL,
 	},

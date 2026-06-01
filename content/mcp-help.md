@@ -13,7 +13,7 @@ This is the **docs MCP server**, which exposes this documentation site to AI cli
 ## Server URL
 
 ```
-https://directus.io/docs/mcp
+https://directus.com/docs/mcp
 ```
 
 Transport: streamable HTTP. No authentication required.
@@ -39,7 +39,7 @@ For clients without a one-click installer, add the server to your MCP config.
 ### Claude Code
 
 ```bash
-claude mcp add --transport http directus-docs https://directus.io/docs/mcp
+claude mcp add --transport http directus-docs https://directus.com/docs/mcp
 ```
 
 ### Claude Desktop
@@ -51,7 +51,7 @@ Edit `claude_desktop_config.json`:
   "mcpServers": {
     "directus-docs": {
       "type": "http",
-      "url": "https://directus.io/docs/mcp"
+      "url": "https://directus.com/docs/mcp"
     }
   }
 }
@@ -59,7 +59,7 @@ Edit `claude_desktop_config.json`:
 
 ### Codex / Windsurf / other HTTP-MCP clients
 
-Point them at `https://directus.io/docs/mcp` with transport set to `http` (sometimes called `streamable-http`).
+Point them at `https://directus.com/docs/mcp` with transport set to `http` (sometimes called `streamable-http`).
 
 ## Available tools
 
@@ -84,7 +84,7 @@ The assistant should call `search-docs` or `list-docs`, then `get-doc` to read t
 
 ## Troubleshooting
 
-- **Connection refused or 404** - confirm the URL is exactly `https://directus.io/docs/mcp` (note the `/docs` prefix).
+- **Connection refused or 404** - confirm the URL is exactly `https://directus.com/docs/mcp` (note the `/docs` prefix).
 - **Tools not showing up** - restart your MCP client after adding the server. Some clients only load tools at startup.
 - **Search returns nothing** - `search-docs` is case-insensitive but does keyword match. Try fewer or broader terms.
 
