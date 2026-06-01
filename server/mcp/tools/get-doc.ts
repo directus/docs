@@ -3,7 +3,6 @@ import { queryCollection } from '@nuxt/content/server';
 import { useEvent } from 'nitropack/runtime';
 import { z } from 'zod';
 
-const SITE_ORIGIN = 'https://directus.io';
 const BASE_PATH = '/docs';
 
 export default defineMcpTool({
@@ -19,6 +18,8 @@ export default defineMcpTool({
 	cache: '10m',
 	handler: async ({ path }) => {
 		const event = useEvent();
+		const config = useRuntimeConfig();
+		const siteOrigin = config.public.siteUrl.replace(/\/$/, '');
 		const normalized = path.startsWith('/') ? path : `/${path}`;
 
 		const page = await queryCollection(event, 'content')
@@ -34,7 +35,7 @@ export default defineMcpTool({
 			path: page.path,
 			description: page.description ?? '',
 			content: page.rawbody ?? '',
-			url: `${SITE_ORIGIN}${BASE_PATH}${page.path}`,
+			url: `${siteOrigin}${BASE_PATH}${page.path}`,
 		};
 	},
 });

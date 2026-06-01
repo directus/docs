@@ -4,7 +4,6 @@ import { useEvent } from 'nitropack/runtime';
 import { z } from 'zod';
 import { docsSections } from '#shared/utils/docsSections';
 
-const SITE_ORIGIN = 'https://directus.io';
 const BASE_PATH = '/docs';
 
 const allPrefixes = Array.from(new Set(docsSections.flatMap(s => s.prefixes))).sort();
@@ -26,6 +25,8 @@ export default defineMcpTool({
 	cache: '10m',
 	handler: async ({ pathPrefix, limit }) => {
 		const event = useEvent();
+		const config = useRuntimeConfig();
+		const siteOrigin = config.public.siteUrl.replace(/\/$/, '');
 		let query = queryCollection(event, 'content')
 			.where('path', 'NOT LIKE', '%/.%')
 			.where('path', 'NOT LIKE', '%/_partials/%')
@@ -41,7 +42,7 @@ export default defineMcpTool({
 			title: row.title,
 			path: row.path,
 			description: row.description ?? '',
-			url: `${SITE_ORIGIN}${BASE_PATH}${row.path}`,
+			url: `${siteOrigin}${BASE_PATH}${row.path}`,
 		}));
 	},
 });
