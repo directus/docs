@@ -25,10 +25,10 @@ function openSearch() {
 				Documentation
 			</p>
 			<h1 class="m-0 font-display text-4xl leading-tight font-medium tracking-tight text-white @min-[48rem]/docs-pane:text-5xl @min-[64rem]/docs-pane:text-6xl">
-				The AI-ready backend<br>for your whole team.
+				A backend your whole team can use.
 			</h1>
 			<p class="mt-4 max-w-md text-base leading-7 text-white/70">
-				Wrap any SQL database in instant APIs, a Studio your team can actually use, and a native MCP server. One role-based access layer governs all of it.
+				Wrap any SQL database to get instant APIs, a Studio your team can actually use, and a native MCP server. One role-based access layer governs all of it.
 			</p>
 			<button
 				type="button"
