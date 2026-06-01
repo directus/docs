@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { header } = useAppConfig();
 const config = useRuntimeConfig();
-const route = useRoute();
 
 const { groups, allSectionItems } = useSectionNavigation();
 

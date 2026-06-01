@@ -14,7 +14,7 @@ export default defineMcpTool({
 	name: 'list-docs',
 	title: 'List Directus docs',
 	description:
-		'List documentation pages with title, path, description, and section. Use this to discover available docs when you do not know exact paths.',
+		'List documentation pages with title, path, description, and URL. Use this to discover available docs when you do not know exact paths.',
 	inputSchema: {
 		pathPrefix: z
 			.string()

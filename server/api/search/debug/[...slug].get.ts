@@ -12,6 +12,10 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const config = useRuntimeConfig();
+	if (!config.public.typesenseUrl || !config.public.typesensePublicApiKey || !config.public.typesenseCollection) {
+		throw createError({ statusCode: 503, statusMessage: 'Search not configured' });
+	}
+
 	const node = parseTypesenseUrl(config.public.typesenseUrl);
 	const path = node.path ?? '';
 	const baseUrl = `${node.protocol}://${node.host}:${node.port}${path}`;

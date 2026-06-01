@@ -318,7 +318,7 @@ export default defineAppConfig({
 			},
 			{
 				label: 'License',
-				to: 'https://directus.io/bsl',
+				to: 'https://directus.io/mscl',
 			},
 			{
 				label: 'Terms',

@@ -24,7 +24,7 @@ type FrameworkCard = {
 };
 
 const frameworkCards = computed<FrameworkCard[]>(() => {
-	const root = findNavNode(nav.value, '/frameworks');
+	const root = findNavNode(nav.value ?? undefined, '/frameworks');
 	const items = root?.children ?? [];
 
 	return items
