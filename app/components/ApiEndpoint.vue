@@ -125,7 +125,7 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 						}"
 						class="[&_p]:my-0"
 					>
-						<MDC
+						<ApiInlineMarkdown
 							v-if="param.description"
 							:value="param.description"
 						/>

@@ -14,19 +14,26 @@ export default function (openapi: OpenAPIObject, root: SchemaObject): unknown | 
 		return null;
 	}
 
-	const parseLevel = (schemaOrRef: SchemaObject | ReferenceObject): unknown => {
-		const schemaObj = '$ref' in schemaOrRef ? resolveOasRef<SchemaObject>(openapi, schemaOrRef.$ref) : schemaOrRef;
+	// Tracks $refs on the current descent path to break self-referential cycles.
+	const parseLevel = (schemaOrRef: SchemaObject | ReferenceObject, seen: Set<string> = new Set()): unknown => {
+		const ref = '$ref' in schemaOrRef ? schemaOrRef.$ref : null;
+
+		if (ref && seen.has(ref)) return undefined;
+
+		const schemaObj = ref ? resolveOasRef<SchemaObject>(openapi, ref) : schemaOrRef as SchemaObject;
 
 		if (!schemaObj) return undefined;
 
 		if ('example' in schemaObj) return schemaObj.example;
+
+		const nextSeen = ref ? new Set(seen).add(ref) : seen;
 
 		if (schemaObj.type === 'object') {
 			const obj: ExampleObject = {};
 
 			if (schemaObj.properties) {
 				for (const [key, value] of Object.entries(schemaObj.properties)) {
-					const parsedVal = parseLevel(value);
+					const parsedVal = parseLevel(value, nextSeen);
 
 					if (parsedVal !== undefined) {
 						obj[key] = parsedVal;
@@ -39,7 +46,7 @@ export default function (openapi: OpenAPIObject, root: SchemaObject): unknown | 
 
 		if (schemaObj.type === 'array') {
 			if (schemaObj.items) {
-				const parsedVal = parseLevel(schemaObj.items);
+				const parsedVal = parseLevel(schemaObj.items, nextSeen);
 				if (parsedVal !== undefined) return [parsedVal];
 				return [];
 			}
