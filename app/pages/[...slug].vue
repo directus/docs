@@ -65,7 +65,7 @@ const ogBreadcrumb = computed(() =>
 		.filter((title): title is string => Boolean(title)),
 );
 
-defineOgImage('Default', {
+await useDocsOgImage({
 	title: page.value?.title ?? 'Directus Docs',
 	description: page.value?.description ?? '',
 	breadcrumb: ogBreadcrumb.value,

@@ -36,7 +36,8 @@ export default defineNuxtConfig({
 		'nuxt-llms',
 		'@nuxt/content',
 		'@nuxt/scripts',
-		'@nuxtjs/seo',
+		'@nuxtjs/robots',
+		'@nuxtjs/sitemap',
 		'@vueuse/nuxt',
 		'@nuxtjs/mcp-toolkit',
 		'~~/modules/content-markdown',
@@ -122,6 +123,7 @@ export default defineNuxtConfig({
 	},
 
 	runtimeConfig: {
+		ogSigningSecret: process.env.NUXT_OG_SIGNING_SECRET ?? process.env.OG_SIGNING_SECRET,
 		public: {
 			scripts: {
 				googleTagManager: {
@@ -132,6 +134,7 @@ export default defineNuxtConfig({
 			typesensePublicApiKey: process.env.TYPESENSE_PUBLIC_API_KEY,
 			typesenseCollection,
 			siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+			ogBaseUrl: process.env.NUXT_PUBLIC_OG_BASE_URL || 'https://og.directus.com',
 		},
 		directusUrl: process.env.DIRECTUS_URL,
 	},
@@ -194,7 +197,6 @@ export default defineNuxtConfig({
 	icon: {
 		serverBundle: {
 			collections: ['material-symbols', 'simple-icons'],
-			externalizeIconsJson: true,
 		},
 		customCollections: [
 			{
@@ -206,14 +208,6 @@ export default defineNuxtConfig({
 			scan: true,
 			includeCustomCollections: true,
 		},
-	},
-
-	linkChecker: {
-		skipInspections: [
-			// Skip absolute site urls because of our routing setup between the docs and the main site
-			'absolute-site-urls',
-			'link-text',
-		],
 	},
 
 	llms: {
@@ -400,8 +394,6 @@ export default defineNuxtConfig({
 		description: 'Search and read the Directus documentation.',
 		browserRedirect: `${BASE_URL}/mcp-help`,
 	},
-
-	ogImage: { zeroRuntime: true },
 
 	// Disable PostHog in development
 	posthog: {
