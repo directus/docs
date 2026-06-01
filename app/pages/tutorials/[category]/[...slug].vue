@@ -73,12 +73,11 @@ const frameworkChips = computed(() => {
 		.filter(c => c !== null);
 });
 
-defineOgImage('Default', {
+await useDocsOgImage({
 	title: page.value?.title ?? 'Directus Docs',
 	description: page.value?.description ?? '',
 	breadcrumb: breadcrumb.value
-		.map(item => item.label)
-		.filter((label): label is string => Boolean(label)),
+		.flatMap(item => ('label' in item && item.label ? [item.label] : [])),
 });
 </script>
 

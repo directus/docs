@@ -62,7 +62,7 @@ Reusable content fragments live in `/content/_partials/` and are included via th
 
 ### Modules & Integrations
 
-Nuxt modules: `@nuxt/ui-pro`, `@nuxt/content`, `@nuxtjs/seo`, `@nuxtjs/algolia` (conditional on env vars), `@vueuse/nuxt`, `@nuxt/scripts`. Custom PostHog module in `/modules/posthog/`.
+Nuxt modules: `@nuxt/ui-pro`, `@nuxt/content`, `@nuxtjs/robots`, `@nuxtjs/sitemap`, `@nuxtjs/algolia` (conditional on env vars), `@vueuse/nuxt`, `@nuxt/scripts`. Custom PostHog module in `/modules/posthog/`.
 
 ## Code Style
 

@@ -42,7 +42,7 @@ const frameworkCards = computed<FrameworkCard[]>(() => {
 		});
 });
 
-useSeoMeta({
+await useDocsOgImage({
 	title: 'Frameworks',
 	description: 'Find Directus guides for your frontend framework, application stack, or platform.',
 });
