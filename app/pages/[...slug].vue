@@ -11,6 +11,20 @@ definePageMeta({
 
 const route = useRoute();
 
+const menuDrawerOpen = ref(false);
+const tocDrawerOpen = ref(false);
+
+watch(() => route.path, () => {
+	menuDrawerOpen.value = false;
+	tocDrawerOpen.value = false;
+});
+
+const { currentSection, currentGroup, groupSections, mobileSectionNavigation, allSectionItems } = useSectionNavigation();
+
+const pageHeaderUi = {
+	headline: 'font-mono font-normal! uppercase tracking-wider',
+};
+
 const { path } = useNormalizedPath();
 
 if (path.value.endsWith('/.navigation')) {
@@ -32,6 +46,16 @@ if (!page.value) {
 		fatal: true,
 	});
 }
+
+const { recordVisit, isFavorite, toggleFavorite } = usePageHistory();
+
+watch(page, (current) => {
+	if (import.meta.client && current?.title) {
+		recordVisit({ path: path.value, title: current.title });
+	}
+}, { immediate: true });
+
+const favorited = computed(() => isFavorite(path.value));
 
 const headline = computed(() => findPageHeadline(navigation.value, path.value));
 
@@ -66,33 +90,111 @@ const frameworkIcon = computed(() =>
 	frameworkRootMatch.value ? frameworkNode.value?.icon : undefined,
 );
 
-const frameworkBreadcrumb = computed(() => {
+const breadcrumb = computed(() => {
+	const trail: { label: string; to?: string }[] = (findPageBreadcrumb(navigation.value, path.value) ?? [])
+		.map(item => ({
+			label: item.title,
+			to: item.path === path.value || item.page === false ? undefined : item.path,
+		}));
+
+	if (trail.length === 0 && page.value?.title) {
+		trail.push({ label: page.value.title });
+	}
+
 	if (frameworkGuideMatch.value && frameworkNode.value) {
-		return [
-			{ label: 'Frameworks', to: '/frameworks' },
-			{ label: frameworkNode.value.title, to: frameworkNode.value.path },
-		];
+		const frameworkPath = frameworkNode.value.path;
+		const hasFrameworkCrumb = trail.some(item => item.to === frameworkPath);
+		if (!hasFrameworkCrumb) {
+			trail.push({ label: frameworkNode.value.title ?? '', to: frameworkPath });
+		}
+		else {
+			for (const item of trail) {
+				if (item.to === frameworkPath) item.label = frameworkNode.value.title ?? item.label;
+			}
+		}
 	}
-	if (frameworkRootMatch.value) {
-		return [{ label: 'Frameworks', to: '/frameworks' }];
-	}
-	return [];
+
+	return [
+		{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
+		...trail,
+	];
 });
 </script>
 
 <template>
-	<UPage v-if="page">
+	<DocsPage v-if="page">
+		<div
+			class="flex @min-[40rem]/docs-pane:hidden sticky top-(--ui-header-height) z-10 -mx-4 mb-4 items-center justify-between border-b border-dashed border-default bg-default/75 px-4 py-3 backdrop-blur"
+		>
+			<UDrawer
+				v-model:open="menuDrawerOpen"
+				direction="left"
+				side="left"
+				inset
+				:handle="false"
+				:ui="{ content: 'w-full max-w-2/3' }"
+			>
+				<UButton
+					label="Menu"
+					icon="material-symbols:menu"
+					color="neutral"
+					variant="link"
+					size="xs"
+					aria-label="Open navigation"
+				/>
+				<template #body>
+					<MobileNavSectionSwitcher :items="allSectionItems" :current-section="currentSection" />
+					<p class="text-xs font-medium text-dimmed uppercase font-mono tracking-widest mb-2 flex items-center gap-1">
+						<Icon v-if="currentSection?.icon" :name="currentSection?.icon" class="size-3.5" />
+						{{ currentSection?.label }}
+					</p>
+					<UContentNavigation
+						:navigation="mobileSectionNavigation"
+						variant="link"
+						highlight
+					/>
+				</template>
+			</UDrawer>
+
+			<UDrawer
+				v-if="page.body?.toc?.links?.length"
+				v-model:open="tocDrawerOpen"
+				direction="right"
+				side="right"
+				inset
+				:handle="false"
+				:ui="{ content: 'w-full max-w-2/3' }"
+			>
+				<UButton
+					label="On this page"
+					trailing-icon="material-symbols:chevron-right"
+					color="neutral"
+					variant="link"
+					size="xs"
+					aria-label="Open on this page"
+				/>
+				<template #body>
+					<DocsToc
+						:links="page.body?.toc?.links"
+						:authors="page.authors"
+						:file="page.id!"
+						mobile
+					/>
+				</template>
+			</UDrawer>
+		</div>
+
 		<UPageHeader
 			:title="page.title ?? ''"
 			:description="page.description ?? ''"
 			:headline="headline"
-			:ui="{ headline: 'headline', title: 'title' }"
+			:ui="pageHeaderUi"
 		>
 			<template
-				v-if="frameworkBreadcrumb.length"
+				v-if="breadcrumb.length > 1"
 				#headline
 			>
-				<UBreadcrumb :items="frameworkBreadcrumb">
+				<UBreadcrumb :items="breadcrumb">
 					<template #separator>
 						<span class="mx-2 text-muted">/</span>
 					</template>
@@ -118,6 +220,14 @@ const frameworkBreadcrumb = computed(() => {
 				v-if="!frameworkRootMatch"
 				#links
 			>
+				<UButton
+					:icon="favorited ? 'material-symbols:star' : 'material-symbols:star-outline'"
+					:label="favorited ? 'Favorited' : 'Favorite'"
+					color="neutral"
+					variant="ghost"
+					size="sm"
+					@click="toggleFavorite({ path, title: page!.title ?? '' })"
+				/>
 				<CopyDocButton :page="page" />
 			</template>
 		</UPageHeader>
@@ -145,5 +255,5 @@ const frameworkBreadcrumb = computed(() => {
 				:file="page.id!"
 			/>
 		</template>
-	</UPage>
+	</DocsPage>
 </template>

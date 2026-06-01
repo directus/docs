@@ -1,27 +1,69 @@
 export default defineAppConfig({
 	search: {
-		backend: 'algolia',
+		backend: 'typesense',
 	},
 
 	ui: {
 		colors: {
 			primary: 'purple',
 			secondary: 'pink',
-			neutral: 'slate',
+			neutral: 'neutral',
 		},
 
+		button: {
+			slots: {
+				base: 'rounded-l-full rounded-r-full',
+			},
+		},
+
+		container: {
+			base: '@max-[40rem]/docs-pane:px-4! @min-[40rem]/docs-pane:px-6! @min-[64rem]/docs-pane:px-8!',
+		},
+		header: {
+			slots: {
+				left: '@max-[40rem]/docs-pane:flex-none! @min-[40rem]/docs-pane:flex-1!',
+				center: '@max-[40rem]/docs-pane:hidden! @min-[40rem]/docs-pane:flex!',
+				right: '@max-[40rem]/docs-pane:flex-none! @min-[40rem]/docs-pane:flex-1!',
+				toggle: '@max-[40rem]/docs-pane:flex! @min-[40rem]/docs-pane:hidden!',
+				content: '@max-[40rem]/docs-pane:block! @min-[40rem]/docs-pane:hidden!',
+				overlay: '@max-[40rem]/docs-pane:block! @min-[40rem]/docs-pane:hidden!',
+			},
+		},
+		contentToc: {
+			slots: {
+				bottom: '@max-[64rem]/docs-pane:hidden! @min-[64rem]/docs-pane:flex!',
+			},
+		},
 		content: {
 			callout: {
 				// Fix background color of pre > code blocks
 				wrapper: '[&_pre>code]:!bg-transparent',
 			},
 		},
-		page: {
+		contentSurround: {
 			slots: {
-				root: 'lg:gap-8',
+				root: 'flex flex-col-reverse sm:grid sm:grid-cols-2 gap-8',
+			},
+		},
+		pageHeader: {
+			slots: {
+				wrapper: '@max-[40rem]/docs-pane:flex-col! @max-[40rem]/docs-pane:items-stretch! @max-[40rem]/docs-pane:justify-start! @min-[40rem]/docs-pane:flex-row! @min-[40rem]/docs-pane:items-center! @min-[40rem]/docs-pane:justify-between!',
+				title: 'text-3xl sm:text-4xl text-pretty font-display font-medium text-highlighted',
 			},
 		},
 		prose: {
+			h1: {
+				base: 'font-display font-medium',
+			},
+			h2: {
+				base: 'font-display font-medium',
+			},
+			h3: {
+				base: 'font-display font-medium',
+			},
+			h4: {
+				base: 'font-display font-medium',
+			},
 			pre: {
 				slots: {
 					base: 'text-xs/4',
@@ -92,7 +134,7 @@ export default defineAppConfig({
 					{
 						label: 'Security',
 						to: '/guides/security/best-practices',
-						icon: 'i-ph-shield-check',
+						icon: 'material-symbols:verified-user-outline',
 					},
 					{
 						label: 'AI',
@@ -112,17 +154,17 @@ export default defineAppConfig({
 					{
 						label: 'Cloud',
 						to: '/cloud/getting-started/introduction',
-						icon: 'i-ph-cloud',
+						icon: 'material-symbols:cloud-outline',
 					},
 					{
 						label: 'Self-Hosting',
 						to: '/self-hosting/overview',
-						icon: 'i-ph-hard-drives',
+						icon: 'material-symbols:dns-outline',
 					},
 					{
 						label: 'Configuration',
 						to: '/configuration/intro',
-						icon: 'i-ph-gear',
+						icon: 'material-symbols:settings-outline',
 					},
 				],
 			},
@@ -132,22 +174,22 @@ export default defineAppConfig({
 					{
 						label: 'Frameworks',
 						to: '/frameworks',
-						icon: 'i-ph-brackets-curly',
+						icon: 'material-symbols:data-object',
 					},
 					{
 						label: 'Tutorials',
 						to: '/tutorials',
-						icon: 'i-ph-article',
+						icon: 'material-symbols:article-outline',
 					},
 					{
 						label: 'Community',
 						to: '/community/overview/welcome',
-						icon: 'i-ph-hand-heart',
+						icon: 'material-symbols:volunteer-activism-outline',
 					},
 					{
 						label: 'Releases',
 						to: '/releases',
-						icon: 'i-ph-notebook',
+						icon: 'material-symbols:menu-book-outline',
 					},
 				],
 			},

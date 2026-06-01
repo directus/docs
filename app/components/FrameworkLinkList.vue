@@ -27,7 +27,7 @@ defineProps<{
 					</span>
 				</span>
 				<Icon
-					name="i-ph-arrow-right"
+					name="material-symbols:arrow-forward"
 					class="mt-1 size-4 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-primary"
 				/>
 			</NuxtLink>

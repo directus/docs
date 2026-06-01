@@ -1,5 +1,9 @@
 import { existsSync, readFileSync } from 'node:fs';
 import type { NitroConfig } from 'nitropack';
+import { resolveBranchTypesenseAlias } from './lib/typesenseAlias';
+
+const directusLight = JSON.parse(readFileSync('./app/assets/shiki/directus-light.json', 'utf8'));
+const directusDark = JSON.parse(readFileSync('./app/assets/shiki/directus-dark.json', 'utf8'));
 
 const BASE_URL = '/docs';
 
@@ -22,6 +26,8 @@ function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 	return rules;
 }
 
+const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: [
@@ -32,9 +38,8 @@ export default defineNuxtConfig({
 		'@nuxt/scripts',
 		'@nuxtjs/seo',
 		'@vueuse/nuxt',
-		...(process.env.ALGOLIA_APPLICATION_ID && process.env.ALGOLIA_API_KEY
-			? ['@nuxtjs/algolia']
-			: []),
+		'@nuxtjs/mcp-toolkit',
+		'~~/modules/content-markdown',
 	],
 
 	devtools: {
@@ -45,7 +50,7 @@ export default defineNuxtConfig({
 		baseURL: BASE_URL,
 	},
 
-	css: ['~/assets/css/main.css', '~/assets/css/algolia.css'],
+	css: ['~/assets/css/main.css'],
 
 	site: {
 		name: 'Directus Docs',
@@ -66,9 +71,9 @@ export default defineNuxtConfig({
 				},
 				highlight: {
 					theme: {
-						default: 'github-light',
-						light: 'github-light',
-						dark: 'github-dark',
+						default: directusLight as never,
+						light: directusLight as never,
+						dark: directusDark as never,
 					},
 					langs: [
 						'bash',
@@ -123,6 +128,9 @@ export default defineNuxtConfig({
 					id: process.env.GOOGLE_TAG_MANAGER_ID!,
 				},
 			},
+			typesenseUrl: process.env.TYPESENSE_URL,
+			typesensePublicApiKey: process.env.TYPESENSE_PUBLIC_API_KEY,
+			typesenseCollection,
 		},
 		directusUrl: process.env.DIRECTUS_URL,
 	},
@@ -131,7 +139,15 @@ export default defineNuxtConfig({
 		transpile: ['shiki'],
 	},
 
-	routeRules: loadRedirectRouteRules(),
+	routeRules: {
+		...loadRedirectRouteRules(),
+		'/api/**': { prerender: false },
+		'/docs/api/**': { prerender: false },
+		'/llms-full.txt': { prerender: false },
+		'/docs/llms-full.txt': { prerender: false },
+	},
+
+	sourcemap: false,
 
 	future: {
 		compatibilityVersion: 4,
@@ -141,20 +157,18 @@ export default defineNuxtConfig({
 
 	nitro: {
 		compressPublicAssets: false,
+		externals: {
+			inline: ['unhead'],
+		},
+		experimental: {
+			asyncContext: true,
+		},
 		prerender: {
 			routes: ['/'],
-
 			crawlLinks: true,
-
-			concurrency: 3,
+			concurrency: 1,
 			retry: 2,
 			retryDelay: 1000,
-		},
-	},
-
-	algolia: {
-		docSearch: {
-			indexName: 'directus_unified',
 		},
 	},
 
@@ -171,12 +185,16 @@ export default defineNuxtConfig({
 	fonts: {
 		families: [
 			{ name: 'Inter', weights: [400, 500, 600, 700], global: true },
-			{ name: 'Poppins', weights: [400, 500, 600], global: true },
-			{ name: 'Fira Mono', weights: [400, 500, 600], global: true },
+			{ name: 'Source Serif 4', weights: [400, 500, 600], global: true },
+			{ name: 'IBM Plex Mono', weights: [400, 500, 600], global: true },
 		],
 	},
 
 	icon: {
+		serverBundle: {
+			collections: ['material-symbols', 'simple-icons'],
+			externalizeIconsJson: true,
+		},
 		customCollections: [
 			{
 				prefix: 'directus',
@@ -374,6 +392,12 @@ export default defineNuxtConfig({
 			'This documentation covers the latest version of Directus.',
 			'Directus uses a Business Source License (BSL). See https://directus.io/bsl for license terms.',
 		],
+	},
+
+	mcp: {
+		name: 'Directus documentation',
+		description: 'Search and read the Directus documentation.',
+		browserRedirect: '/mcp-help',
 	},
 
 	ogImage: { zeroRuntime: true },

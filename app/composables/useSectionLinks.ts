@@ -6,19 +6,19 @@ export default function useSectionLinks() {
 			{
 				label: 'Get Started',
 				href: '/getting-started/overview',
-				icon: 'material-symbols:rocket',
+				icon: 'material-symbols:rocket-outline',
 				active: route.path.startsWith('/getting-started'),
 			},
 			{
 				label: 'Guides',
 				href: '/guides/data-model/collections',
-				icon: 'material-symbols:book',
+				icon: 'material-symbols:book-outline',
 				active: route.path.startsWith('/guides'),
 			},
 			{
 				label: 'Tutorials',
 				href: '/tutorials',
-				icon: 'material-symbols:school',
+				icon: 'material-symbols:school-outline',
 				active: route.path.startsWith('/tutorials'),
 			},
 			{
@@ -30,7 +30,7 @@ export default function useSectionLinks() {
 			{
 				label: 'Licensing',
 				href: '/licensing/overview',
-				icon: 'i-ph-key',
+				icon: 'material-symbols:key-outline',
 				active: route.path.startsWith('/licensing'),
 			},
 		];

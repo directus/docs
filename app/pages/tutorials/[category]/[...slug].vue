@@ -8,6 +8,13 @@ definePageMeta({
 	layout: 'tutorial',
 });
 
+const route = useRoute();
+const menuDrawerOpen = ref(false);
+const tocDrawerOpen = ref(false);
+watch(() => route.path, () => { menuDrawerOpen.value = false; tocDrawerOpen.value = false; });
+
+const { mobileSectionNavigation, currentSection, allSectionItems } = useSectionNavigation();
+
 const { path } = useNormalizedPath();
 
 const { data: page } = await useAsyncData(path, () =>
@@ -22,12 +29,32 @@ if (!page.value) {
 	});
 }
 
-const breadcrumb = computed(() =>
-	(findPageBreadcrumb(navigation.value, path.value) ?? []).map(item => ({
-		label: item.title,
-		to: item.path,
-	})),
-);
+const { recordVisit, isFavorite, toggleFavorite } = usePageHistory();
+
+const pageHeaderUi = {
+	headline: 'font-mono font-normal! uppercase tracking-wider',
+};
+
+watch(page, (current) => {
+	if (import.meta.client && current?.title) {
+		recordVisit({ path: path.value, title: current.title });
+	}
+}, { immediate: true });
+
+const favorited = computed(() => isFavorite(path.value));
+
+const breadcrumb = computed(() => {
+	const trail = (findPageBreadcrumb(navigation.value, path.value) ?? [])
+		.map(item => ({
+			label: item.title,
+			to: item.path === path.value || item.page === false ? undefined : item.path,
+		}));
+
+	return [
+		{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
+		...trail,
+	];
+});
 
 const frameworkChips = computed(() => {
 	const tech = page.value?.technologies ?? [];
@@ -56,10 +83,45 @@ defineOgImage('Default', {
 </script>
 
 <template>
-	<UPage>
+	<DocsPage>
+		<div class="flex @min-[40rem]/docs-pane:hidden sticky top-(--ui-header-height) z-10 -mx-4 mb-4 items-center justify-between border-b border-dashed border-default bg-default/75 px-4 py-3 backdrop-blur">
+			<UDrawer
+				v-model:open="menuDrawerOpen"
+				direction="left"
+				side="left"
+				inset
+				:handle="false"
+				:ui="{ content: 'w-full max-w-2/3' }"
+			>
+				<UButton label="Menu" icon="material-symbols:menu" color="neutral" variant="link" size="xs" aria-label="Open navigation" />
+				<template #body>
+					<MobileNavSectionSwitcher :items="allSectionItems" :current-section="currentSection" />
+					<p class="text-xs font-medium text-dimmed uppercase font-mono tracking-widest mb-2 flex items-center gap-1">
+						<Icon v-if="currentSection?.icon" :name="currentSection?.icon" class="size-3.5" />
+						{{ currentSection?.label }}
+					</p>
+					<UContentNavigation :navigation="mobileSectionNavigation" variant="link" highlight />
+				</template>
+			</UDrawer>
+			<UDrawer
+				v-if="page!.body?.toc?.links?.length"
+				v-model:open="tocDrawerOpen"
+				direction="right"
+				side="right"
+				inset
+				:handle="false"
+				:ui="{ content: 'w-full max-w-2/3' }"
+			>
+				<UButton label="On this page" trailing-icon="material-symbols:chevron-right" color="neutral" variant="link" size="xs" aria-label="Open on this page" />
+				<template #body>
+					<DocsToc :links="page!.body?.toc?.links" :authors="page!.authors" :file="page!.id!" mobile />
+				</template>
+			</UDrawer>
+		</div>
+
 		<UPageHeader
 			:title="page!.title"
-			:ui="{ title: 'title', headline: 'headline' }"
+			:ui="pageHeaderUi"
 			:description="page!.description"
 		>
 			<template #headline>
@@ -103,6 +165,14 @@ defineOgImage('Default', {
 				v-if="page"
 				#links
 			>
+				<UButton
+					:icon="favorited ? 'material-symbols:star' : 'material-symbols:star-outline'"
+					:label="favorited ? 'Favorited' : 'Favorite'"
+					color="neutral"
+					variant="ghost"
+					size="sm"
+					@click="toggleFavorite({ path, title: page!.title ?? '' })"
+				/>
 				<CopyDocButton :page="page" />
 			</template>
 		</UPageHeader>
@@ -127,5 +197,5 @@ defineOgImage('Default', {
 				:file="page!.id!"
 			/>
 		</template>
-	</UPage>
+	</DocsPage>
 </template>

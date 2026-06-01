@@ -1,238 +1,270 @@
 {
-	"/tutorials/getting-started": {
-		"to": "/tutorials",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/create-reusable-blocks-with-many-to-any-relationships": {
-		"to": "/tutorials/projects/create-reusable-blocks-with-many-to-any-relationships",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-in-android-with-kotlin": {
-		"to": "/frameworks/kotlin/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-in-ios-with-swift": {
-		"to": "/frameworks/swift/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-angular": {
-		"to": "/frameworks/angular/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-astro": {
-		"to": "/frameworks/astro/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-django": {
-		"to": "/frameworks/django/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-eleventy-3": {
-		"to": "/frameworks/eleventy/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-flask": {
-		"to": "/frameworks/flask/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-flutter": {
-		"to": "/frameworks/flutter/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-laravel": {
-		"to": "/frameworks/laravel/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-nextjs": {
-		"to": "/frameworks/nextjs/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-nuxt": {
-		"to": "/frameworks/nuxt/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-solidstart": {
-		"to": "/frameworks/solidstart/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-spring-boot": {
-		"to": "/frameworks/spring-boot/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/fetch-data-from-directus-with-sveltekit": {
-		"to": "/frameworks/sveltekit/data-fetching",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implement-directus-auth-with-ios": {
-		"to": "/frameworks/swift/authentication",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implement-multilingual-content-with-directus-and-svelte-kit": {
-		"to": "/frameworks/sveltekit/internationalization",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-live-preview-in-astro": {
-		"to": "/frameworks/astro/live-preview",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-live-preview-in-next-js": {
-		"to": "/frameworks/nextjs/live-preview",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-live-preview-in-nuxt": {
-		"to": "/frameworks/nuxt/live-preview",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-live-preview-in-react": {
-		"to": "/frameworks/react/live-preview",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-live-preview-in-sveltekit": {
-		"to": "/frameworks/sveltekit/live-preview",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-multilingual-content-using-directus-and-astro": {
-		"to": "/frameworks/astro/multilingual-content",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-multilingual-content-using-directus-and-next": {
-		"to": "/frameworks/nextjs/multilingual-content",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-multilingual-content-using-directus-and-nuxt": {
-		"to": "/frameworks/nuxt/multilingual-content",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/implementing-multilingual-content-using-directus-and-sveltekit": {
-		"to": "/frameworks/sveltekit/multilingual-content",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/integrating-the-directus-visual-editor-with-nextjs": {
-		"to": "/frameworks/nextjs/visual-editor",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/integrating-the-directus-visual-editor-with-nuxt": {
-		"to": "/frameworks/nuxt/visual-editor",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/integrating-the-directus-visual-editor-with-sveltekit": {
-		"to": "/frameworks/sveltekit/visual-editor",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/rendering-dynamic-blocks-using-astro": {
-		"to": "/frameworks/astro/reusable-blocks",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/rendering-dynamic-blocks-using-next": {
-		"to": "/frameworks/nextjs/reusable-blocks",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/rendering-dynamic-blocks-using-nuxt": {
-		"to": "/frameworks/nuxt/reusable-blocks",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/rendering-dynamic-blocks-using-sveltekit": {
-		"to": "/frameworks/sveltekit/reusable-blocks",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/set-up-live-preview-with-next-js": {
-		"to": "/frameworks/nextjs/live-preview-draft-mode",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/set-up-live-preview-with-nuxt": {
-		"to": "/frameworks/nuxt/live-preview-setup",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/submit-forms-using-directus-and-nextjs": {
-		"to": "/frameworks/nextjs/forms",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/submit-forms-using-directus-and-nuxt": {
-		"to": "/frameworks/nuxt/forms",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/submit-forms-using-directus-and-sveltekit": {
-		"to": "/frameworks/sveltekit/forms",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/using-authentication-in-astro": {
-		"to": "/frameworks/astro/authentication",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/using-authentication-in-next-js": {
-		"to": "/frameworks/nextjs/authentication",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/using-authentication-in-nuxt": {
-		"to": "/frameworks/nuxt/authentication",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/using-authentication-in-react": {
-		"to": "/frameworks/react/authentication",
-		"statusCode": 301
-	},
-	"/tutorials/getting-started/using-authentication-in-sveltekit": {
-		"to": "/frameworks/sveltekit/authentication",
-		"statusCode": 301
-	},
-	"/tutorials/migration/migrate-from-nuxt-content-to-directus": {
-		"to": "/frameworks/nuxt/migrate-from-nuxt-content",
-		"statusCode": 301
-	},
-	"/tutorials/projects/build-forms-dynamically-using-directus-and-astro": {
-		"to": "/frameworks/astro/dynamic-forms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/build-forms-dynamically-using-directus-and-next": {
-		"to": "/frameworks/nextjs/dynamic-forms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/build-forms-dynamically-using-directus-and-nuxt": {
-		"to": "/frameworks/nuxt/dynamic-forms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/build-forms-dynamically-using-directus-and-sveltekit": {
-		"to": "/frameworks/sveltekit/dynamic-forms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-a-cms-using-directus-and-astro": {
-		"to": "/frameworks/astro/build-a-cms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-a-cms-using-directus-and-nextjs": {
-		"to": "/frameworks/nextjs/build-a-cms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-a-cms-using-directus-and-nuxt": {
-		"to": "/frameworks/nuxt/build-a-cms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-a-cms-using-directus-and-sveltekit": {
-		"to": "/frameworks/sveltekit/build-a-cms",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-astro": {
-		"to": "/frameworks/astro/dynamic-pages",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-nextjs": {
-		"to": "/frameworks/nextjs/dynamic-pages",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-nuxt": {
-		"to": "/frameworks/nuxt/dynamic-pages",
-		"statusCode": 301
-	},
-	"/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-sveltekit": {
-		"to": "/frameworks/sveltekit/dynamic-pages",
-		"statusCode": 301
-	},
-	"/tutorials/tips-and-tricks/implement-pagination-and-infinite-scrolling-in-next-js-": {
-		"to": "/frameworks/nextjs/pagination-infinite-scroll",
-		"statusCode": 301
-	},
-	"/tutorials/workflows/combine-live-preview-and-content-versioning-with-next-js": {
-		"to": "/frameworks/nextjs/live-preview-content-versioning",
-		"statusCode": 301
-	}
+  "/guides/ai/mcp/oauth": {
+    "to": "/guides/ai/mcp",
+    "statusCode": 301
+  },
+  "/guides/ai/translations": {
+    "to": "/guides/ai",
+    "statusCode": 301
+  },
+  "/licensing/overview": {
+    "to": "/configuration/general#license",
+    "statusCode": 301
+  },
+  "/releases/breaking-changes/version-12": {
+    "to": "/releases/breaking-changes",
+    "statusCode": 301
+  },
+  "/guides/automate/data-chain": {
+    "to": "/guides/flows/data-chain",
+    "statusCode": 301
+  },
+  "/guides/automate/flows": {
+    "to": "/guides/flows",
+    "statusCode": 301
+  },
+  "/guides/automate/operations": {
+    "to": "/guides/flows/operations",
+    "statusCode": 301
+  },
+  "/guides/automate/triggers": {
+    "to": "/guides/flows/triggers",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started": {
+    "to": "/tutorials",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/create-reusable-blocks-with-many-to-any-relationships": {
+    "to": "/tutorials/projects/create-reusable-blocks-with-many-to-any-relationships",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-in-android-with-kotlin": {
+    "to": "/frameworks/kotlin/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-in-ios-with-swift": {
+    "to": "/frameworks/swift/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-angular": {
+    "to": "/frameworks/angular/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-astro": {
+    "to": "/frameworks/astro/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-django": {
+    "to": "/frameworks/django/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-eleventy-3": {
+    "to": "/frameworks/eleventy/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-flask": {
+    "to": "/frameworks/flask/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-flutter": {
+    "to": "/frameworks/flutter/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-laravel": {
+    "to": "/frameworks/laravel/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-nextjs": {
+    "to": "/frameworks/nextjs/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-nuxt": {
+    "to": "/frameworks/nuxt/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-solidstart": {
+    "to": "/frameworks/solidstart/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-spring-boot": {
+    "to": "/frameworks/spring-boot/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/fetch-data-from-directus-with-sveltekit": {
+    "to": "/frameworks/sveltekit/data-fetching",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implement-directus-auth-with-ios": {
+    "to": "/frameworks/swift/authentication",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implement-multilingual-content-with-directus-and-svelte-kit": {
+    "to": "/frameworks/sveltekit/internationalization",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-live-preview-in-astro": {
+    "to": "/frameworks/astro/live-preview",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-live-preview-in-next-js": {
+    "to": "/frameworks/nextjs/live-preview",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-live-preview-in-nuxt": {
+    "to": "/frameworks/nuxt/live-preview",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-live-preview-in-react": {
+    "to": "/frameworks/react/live-preview",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-live-preview-in-sveltekit": {
+    "to": "/frameworks/sveltekit/live-preview",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-multilingual-content-using-directus-and-astro": {
+    "to": "/frameworks/astro/multilingual-content",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-multilingual-content-using-directus-and-next": {
+    "to": "/frameworks/nextjs/multilingual-content",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-multilingual-content-using-directus-and-nuxt": {
+    "to": "/frameworks/nuxt/multilingual-content",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/implementing-multilingual-content-using-directus-and-sveltekit": {
+    "to": "/frameworks/sveltekit/multilingual-content",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/integrating-the-directus-visual-editor-with-nextjs": {
+    "to": "/frameworks/nextjs/visual-editor",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/integrating-the-directus-visual-editor-with-nuxt": {
+    "to": "/frameworks/nuxt/visual-editor",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/integrating-the-directus-visual-editor-with-sveltekit": {
+    "to": "/frameworks/sveltekit/visual-editor",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/rendering-dynamic-blocks-using-astro": {
+    "to": "/frameworks/astro/reusable-blocks",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/rendering-dynamic-blocks-using-next": {
+    "to": "/frameworks/nextjs/reusable-blocks",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/rendering-dynamic-blocks-using-nuxt": {
+    "to": "/frameworks/nuxt/reusable-blocks",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/rendering-dynamic-blocks-using-sveltekit": {
+    "to": "/frameworks/sveltekit/reusable-blocks",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/set-up-live-preview-with-next-js": {
+    "to": "/frameworks/nextjs/live-preview-draft-mode",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/set-up-live-preview-with-nuxt": {
+    "to": "/frameworks/nuxt/live-preview-setup",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/submit-forms-using-directus-and-nextjs": {
+    "to": "/frameworks/nextjs/forms",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/submit-forms-using-directus-and-nuxt": {
+    "to": "/frameworks/nuxt/forms",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/submit-forms-using-directus-and-sveltekit": {
+    "to": "/frameworks/sveltekit/forms",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/using-authentication-in-astro": {
+    "to": "/frameworks/astro/authentication",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/using-authentication-in-next-js": {
+    "to": "/frameworks/nextjs/authentication",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/using-authentication-in-nuxt": {
+    "to": "/frameworks/nuxt/authentication",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/using-authentication-in-react": {
+    "to": "/frameworks/react/authentication",
+    "statusCode": 301
+  },
+  "/tutorials/getting-started/using-authentication-in-sveltekit": {
+    "to": "/frameworks/sveltekit/authentication",
+    "statusCode": 301
+  },
+  "/tutorials/migration/migrate-from-nuxt-content-to-directus": {
+    "to": "/frameworks/nuxt/migrate-from-nuxt-content",
+    "statusCode": 301
+  },
+  "/tutorials/projects/build-forms-dynamically-using-directus-and-astro": {
+    "to": "/frameworks/astro/dynamic-forms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/build-forms-dynamically-using-directus-and-next": {
+    "to": "/frameworks/nextjs/dynamic-forms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/build-forms-dynamically-using-directus-and-nuxt": {
+    "to": "/frameworks/nuxt/dynamic-forms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/build-forms-dynamically-using-directus-and-sveltekit": {
+    "to": "/frameworks/sveltekit/dynamic-forms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-a-cms-using-directus-and-astro": {
+    "to": "/frameworks/astro/build-a-cms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-a-cms-using-directus-and-nextjs": {
+    "to": "/frameworks/nextjs/build-a-cms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-a-cms-using-directus-and-nuxt": {
+    "to": "/frameworks/nuxt/build-a-cms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-a-cms-using-directus-and-sveltekit": {
+    "to": "/frameworks/sveltekit/build-a-cms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-astro": {
+    "to": "/frameworks/astro/dynamic-pages",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-nextjs": {
+    "to": "/frameworks/nextjs/dynamic-pages",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-nuxt": {
+    "to": "/frameworks/nuxt/dynamic-pages",
+    "statusCode": 301
+  },
+  "/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-sveltekit": {
+    "to": "/frameworks/sveltekit/dynamic-pages",
+    "statusCode": 301
+  },
+  "/tutorials/tips-and-tricks/implement-pagination-and-infinite-scrolling-in-next-js-": {
+    "to": "/frameworks/nextjs/pagination-infinite-scroll",
+    "statusCode": 301
+  },
+  "/tutorials/workflows/combine-live-preview-and-content-versioning-with-next-js": {
+    "to": "/frameworks/nextjs/live-preview-content-versioning",
+    "statusCode": 301
+  }
 }

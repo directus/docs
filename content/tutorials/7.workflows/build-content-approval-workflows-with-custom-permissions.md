@@ -116,6 +116,6 @@ explicit set of permissions each role has at each stage.
 
 ::callout{icon="material-symbols:info-outline"}
 
-Workflows can be further enhanced with custom [Interfaces](/guides/extensions/app-extensions/interfaces) as well as [flows](/guides/automate/flows).
+Workflows can be further enhanced with custom [Interfaces](/guides/extensions/app-extensions/interfaces) as well as [flows](/guides/flows).
 
 ::
