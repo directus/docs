@@ -1,4 +1,5 @@
 ---
+stableId: 5e252930-7eb3-4c47-a34b-8ea2a4077ff7
 id: 8c3f5a07-162f-4902-8044-dd5fa8b823c2
 slug: format-dates-in-a-custom-display-extension
 title: Format Dates in a Custom Display Extension

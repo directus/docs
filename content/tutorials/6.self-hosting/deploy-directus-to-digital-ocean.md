@@ -1,4 +1,5 @@
 ---
+stableId: 2e51d7f7-5c1b-4ce4-bacf-ce9f6591fd4f
 id: 0398217e-fabe-4866-9827-d5e4172fe3a9
 slug: deploy-directus-to-digital-ocean
 title: Deploy Directus to Digital Ocean

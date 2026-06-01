@@ -1,4 +1,5 @@
 ---
+stableId: f75aaede-b1a9-4dbd-8b93-6343eb2d852d
 id: 11878553-5f03-4992-b321-5a983826c983
 slug: integrate-elasticsearch-indexing-with-custom-hooks
 title: Integrate Elasticsearch Indexing with Custom Hooks

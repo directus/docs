@@ -72,7 +72,7 @@ const integrations = [
 						<div class="text-gray-900 dark:text-white text-base font-bold text-pretty">
 							<span class="truncate">{{ integration.title }}</span>
 						</div>
-						<ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 leading-snug">
+						<ProseP class="text-sm text-gray-500 dark:text-gray-400 mt-1 leading-snug">
 							{{ integration.description }}
 						</ProseP>
 					</div>

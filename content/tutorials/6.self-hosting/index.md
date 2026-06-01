@@ -1,4 +1,5 @@
 ---
+stableId: eb1a09a1-e369-4bd5-a1f2-566c4024468a
 title: How to Deploy Directus
 description: Deploy Directus with Directus Cloud, self-host with Docker, or follow step-by-step guides for your preferred cloud provider.
 ---

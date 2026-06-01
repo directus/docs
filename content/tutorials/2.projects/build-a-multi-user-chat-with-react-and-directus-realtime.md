@@ -1,4 +1,5 @@
 ---
+stableId: 8a9e82ba-8662-400b-a49f-13734e0d8221
 id: 03c6db5a-029b-4207-8786-c1478e173e6b
 slug: build-a-multi-user-chat-with-react-and-directus-realtime
 title: Build a Multi-User Chat with React and Directus Realtime

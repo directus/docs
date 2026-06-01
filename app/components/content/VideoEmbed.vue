@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{ videoId: string }>();
+const props = defineProps<{ videoId?: string; youtubeId?: string }>();
 
 interface Show {
 	data: {
@@ -14,14 +14,32 @@ interface Show {
 	};
 }
 
-const show = await $fetch<Show>(
-	`https://tv.directus.app/items/episodes/${props.videoId}?fields=vimeo_id,slug,season.show.slug,season.show.title`,
-);
+const show = props.videoId
+	? await $fetch<Show>(
+		`https://tv.directus.app/items/episodes/${props.videoId}?fields=vimeo_id,slug,season.show.slug,season.show.title`,
+	)
+	: null;
 </script>
 
 <template>
 	<ClientOnly>
-		<UCard class="w-full">
+		<div
+			v-if="youtubeId"
+			class="aspect-video w-full overflow-hidden rounded-lg"
+		>
+			<iframe
+				:src="`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3`"
+				class="size-full"
+				loading="lazy"
+				referrerpolicy="strict-origin-when-cross-origin"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				allowfullscreen
+			/>
+		</div>
+		<UCard
+			v-else-if="show"
+			class="w-full"
+		>
 			<ScriptVimeoPlayer
 				:id="show.data.vimeo_id"
 				:root-attrs="{ style: { width: '100%' } }"

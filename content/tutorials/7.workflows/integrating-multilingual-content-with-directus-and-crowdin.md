@@ -1,4 +1,5 @@
 ---
+stableId: 18ca7924-fc9b-48df-980e-01635c0ff4ed
 id: 84f37f00-629b-4b38-8d18-9d92cc4b2f0c
 slug: integrating-multilingual-content-with-directus-and-crowdin
 title: Integrating Multilingual Content with Directus and Crowdin

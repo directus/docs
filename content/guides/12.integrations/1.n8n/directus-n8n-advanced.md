@@ -1,4 +1,5 @@
 ---
+stableId: d0f23ffe-6571-4a90-b193-9adae48d0ade
 id: directus-n8n-advanced
 title: Advanced
 description: Advanced guide for using Directus raw CRUD operations in n8n, including raw JSON operations, complex filters, relational queries, and query parameters.
@@ -33,7 +34,7 @@ Quick reference of all available raw operations organized by resource type:
 
 ---
 
-::callout{icon="heroicons-outline:light-bulb"}
+::callout{icon="material-symbols:lightbulb-outline"}
 **When to Use Raw Operations**
 Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), or full control over the JSON payload structure.
 ::
