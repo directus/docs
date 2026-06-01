@@ -1,4 +1,5 @@
 ---
+stableId: 0aae3c1e-6cd7-4e59-ae60-8053debbe19b
 id: 5a282783-0fd8-4a2c-9c4c-47b00c5ad3d1
 slug: migrate-from-wordpress-to-directus
 title: Migrate from WordPress to Directus

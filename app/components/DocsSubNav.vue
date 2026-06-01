@@ -1,0 +1,56 @@
+<script setup lang="ts">
+const { groupSections } = useSectionNavigation();
+
+const items = computed(() =>
+	groupSections.value.map(section => ({
+		label: section.label,
+		to: section.to,
+		icon: section.icon,
+		active: section.active,
+	})),
+);
+
+const showSubNav = computed(() => items.value.length > 1);
+
+useHead(computed(() => ({
+	style: showSubNav.value
+		? []
+		: [{ innerHTML: '.docs-pane { --ui-subnav-height: 0px !important; }' }],
+})));
+</script>
+
+<template>
+	<div
+		v-if="showSubNav"
+		class="docs-subnav hidden @min-[40rem]/docs-pane:flex items-center sticky z-30 bg-default/75 backdrop-blur border-b border-default"
+	>
+		<UContainer class="flex items-center justify-between gap-4">
+			<UNavigationMenu
+				:items="items"
+				orientation="horizontal"
+				variant="link"
+			/>
+			<SettingsDrawerTrigger show-label />
+		</UContainer>
+	</div>
+</template>
+
+<style>
+/*
+ * Sub-nav row: hidden when the docs pane is narrow (single-column layout).
+ * The CSS variable is consumed elsewhere for sticky offsets, so it's set on
+ * the docs-pane container and zeroed out when the sub-nav hides.
+ */
+.docs-pane {
+	--ui-subnav-height: 0px;
+}
+@container docs-pane (min-width: 40rem) {
+	.docs-pane {
+		--ui-subnav-height: 48px;
+	}
+}
+.docs-subnav {
+	height: var(--ui-subnav-height);
+	top: var(--ui-header-height);
+}
+</style>

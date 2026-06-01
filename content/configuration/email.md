@@ -1,4 +1,5 @@
 ---
+stableId: 30921051-136f-4d6c-8a84-471ef205783d
 title: Email
 description: Configuration for email settings and templates.
 ---

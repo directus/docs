@@ -1,4 +1,5 @@
 ---
+stableId: 96599788-9030-4596-a16d-eaf2a102b41d
 id: dfddca20-1cc7-4d66-bce0-0e88b36daa18
 slug: summarize-relational-items-in-a-custom-display-extension
 title: Summarize Relational Items in a Custom Display Extension

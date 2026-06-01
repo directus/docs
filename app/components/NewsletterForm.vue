@@ -27,8 +27,8 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="text-center sm:text-left flex justify-between items-center bg-gradient-to-tr from-purple-500 to-pink-500 pl-4 pr-6 py-4 rounded-md gap-6 flex-col sm:flex-row">
-		<p class="text-white font-bold text-lg block font-display text-balance leading-tight">
+	<div class="text-center sm:text-left flex justify-between items-center bg-primary pl-4 pr-6 py-4 rounded-md gap-6 flex-col sm:flex-row">
+		<p class="font-bold text-lg block text-inverted font-display text-balance leading-tight">
 			{{ newsletter.description }}
 		</p>
 		<div
@@ -52,7 +52,7 @@ onMounted(() => {
 			@apply w-full min-w-48;
 			@apply rounded-md text-xs sm:text-sm;
 			@apply bg-default;
-			@apply placeholder-gray-400 dark:placeholder-gray-500;
+			@apply placeholder:text-muted;
 			@apply p-2;
 		}
 	}

@@ -1,4 +1,5 @@
 ---
+stableId: c0d7f6bc-bdc0-418e-880a-3c9887a23078
 id: e974c49f-cd78-4cf0-8cfe-72f650346c80
 slug: build-a-notebook-chrome-extension-with-directus-auth
 title: Build a Notebook Chrome Extension with Directus Auth

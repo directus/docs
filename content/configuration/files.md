@@ -1,4 +1,5 @@
 ---
+stableId: 0c9b088d-3f66-4afe-84a9-1301af20dbde
 title: Files
 description: Configuration for storage locations, metadata, upload limits, and transformations.
 ---

@@ -1,4 +1,5 @@
 ---
+stableId: fa870162-2e4e-4a7c-826b-e3d228564204
 title: Logging
 description: Configuration for general and Realtime logging.
 ---
