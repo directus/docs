@@ -398,7 +398,7 @@ export default defineNuxtConfig({
 	mcp: {
 		name: 'Directus documentation',
 		description: 'Search and read the Directus documentation.',
-		browserRedirect: '/mcp-help',
+		browserRedirect: `${BASE_URL}/mcp-help`,
 	},
 
 	ogImage: { zeroRuntime: true },
