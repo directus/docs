@@ -1,48 +1,30 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
+import { docsSections } from '#shared/utils/docsSections';
 
-const nav = inject<Ref<ContentNavigationItem[]>>('navigation')!;
+const nav = inject<Ref<ContentNavigationItem[] | null>>('navigation')!;
 const route = useRoute();
 
-const { links } = useSectionLinks();
+const section = docsSections.find(s => s.id === 'tutorials')!;
 
-// Only render the nav for the current section of the docs (eg docs, api, cloud)
 const navigation = computed(() => {
 	const routePrefix = `/${route.path.split('/')[1]}`;
 
-	const sectionNav = nav.value.find((item) => {
-		return item.path.startsWith(routePrefix);
-	})?.children ?? [];
-
-	// Filter to only show category index pages, not individual tutorials
-	return sectionNav.filter((item: ContentNavigationItem) => {
-		// Only show items that are category index pages (not individual tutorial files)
-		// Category paths look like: /tutorials/getting-started, /tutorials/projects, etc.
-		// Individual tutorial paths look like: /tutorials/getting-started/some-tutorial-name
-		const pathSegments = item.path?.split('/').filter(Boolean) || [];
-		return pathSegments.length === 2 && pathSegments[0] === 'tutorials';
-	}).map((item: ContentNavigationItem) => {
-		// Remove the children array to prevent showing individual tutorials
-		return {
-			...item,
-			children: undefined,
-		};
-	});
+	return nav.value?.find(item => item.path?.startsWith(routePrefix))?.children ?? [];
 });
 </script>
 
 <template>
 	<UContainer>
-		<UPage>
+		<DocsPage>
 			<template #left>
-				<UPageAside>
-					<UPageAnchors :links="links" />
-					<USeparator
-						type="dashed"
-						class="my-5"
-					/>
-					<p class="text-xs font-medium text-dimmed mb-2 uppercase">
-						Hop To
+				<DocsAside class="lg:ps-0 lg:-ms-0 lg:pe-2">
+					<p class="text-xs font-medium text-dimmed mb-2 uppercase font-mono tracking-widest flex items-center gap-1">
+						<Icon
+							v-if="section.icon"
+							:name="section.icon"
+						/>
+						{{ section.label }}
 					</p>
 					<UContentNavigation
 						:navigation="navigation"
@@ -50,10 +32,10 @@ const navigation = computed(() => {
 						variant="link"
 						highlight
 					/>
-				</UPageAside>
+				</DocsAside>
 			</template>
 
 			<slot />
-		</UPage>
+		</DocsPage>
 	</UContainer>
 </template>

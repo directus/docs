@@ -5,7 +5,7 @@ const props = defineProps<{
 
 const linkMap = {
 	'auth': '/guides/auth/tokens-cookies',
-	'automate': '/guides/automate/flows',
+	'automate': '/guides/flows',
 	'content': '/guides/content/explore',
 	'connect': '/guides/connect/authentication',
 	'data-model': '/guides/data-model/collections',

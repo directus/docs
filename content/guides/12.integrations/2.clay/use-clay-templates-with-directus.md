@@ -39,7 +39,7 @@ Before using any templates, configure your Directus authentication in Clay:
 | **Get Item from Collection**  | Search and retrieve records from Directus |
 | **Get Related Item Details**  | Fetch relational data from Directus       |
 
-::callout{icon="material-symbols:warning" color="warning"}
+::callout{icon="material-symbols:warning-outline" color="warning"}
 **Important**  
 The Directus templates use generic collection names (like "posts" or "users") as examples. You'll need to adapt these to match your specific Directus schema by replacing collection names, adjusting field names, and configuring filters based on your data structure.
 ::

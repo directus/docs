@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
-import { spec } from '@directus/openapi';
 
-const { data: navigation } = useAsyncData('content-navigation', () => queryCollectionNavigation('content', ['title', 'description', 'icon', 'links']));
+const { data: navigation } = await useAsyncData('content-navigation', () => queryCollectionNavigation('content', ['title', 'description', 'icon', 'links']));
 
-provide('openapi', spec);
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
 defineOgImage('Default', {
@@ -15,13 +13,11 @@ defineOgImage('Default', {
 <template>
 	<UApp>
 		<NuxtLoadingIndicator color="var(--color-primary)" />
-		<DocsBanner />
-		<DocsHeader />
-		<UMain>
-			<NuxtLayout>
-				<NuxtPage />
-			</NuxtLayout>
-		</UMain>
-		<DocsFooter />
+		<div
+			id="docs-scroll"
+			class="h-screen min-w-0 overflow-y-auto overflow-x-hidden scroll-smooth"
+		>
+			<DocsShell />
+		</div>
 	</UApp>
 </template>

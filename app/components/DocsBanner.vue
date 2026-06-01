@@ -6,27 +6,19 @@ const dismissedBanners = useCookie('directus-dismissed-banners', {
 });
 
 const bannerVisible = computed(() => {
-	const bannerValue = unref(banner);
-	if (!bannerValue) return false;
-	if (Object.keys(bannerValue).length === 0) return false;
-
-	if (!('id' in bannerValue) || !('content' in bannerValue)) return false;
-	return unref(dismissedBanners).includes(bannerValue.id) === false;
+	const value = banner.value;
+	if (!value || Object.keys(value).length === 0) return false;
+	if (!('id' in value) || !('content' in value)) return false;
+	return !dismissedBanners.value.includes(value.id);
 });
 
 const dismiss = (id: string) => {
-	dismissedBanners.value = [...unref(dismissedBanners), id];
+	dismissedBanners.value = [...dismissedBanners.value, id];
 };
 
-const iconName = computed(() => {
-	const bannerValue = unref(banner);
-	if (
-		!bannerValue
-		|| (typeof bannerValue === 'object' && Object.keys(bannerValue).length === 0)
-	)
-		return null;
-	return getIconName(bannerValue.icon);
-});
+useHead(computed(() => ({
+	style: [{ innerHTML: `:root { --ui-banner-height: ${bannerVisible.value ? '32px' : '0px'}; }` }],
+})));
 </script>
 
 <template>
@@ -37,16 +29,16 @@ const iconName = computed(() => {
 		<UContainer class="h-full flex items-center gap-x-4">
 			<NuxtLink
 				class="flex-grow h-full flex items-center text-background no-underline text-xs leading-xs font-semibold group"
-				:href="banner?.link ?? undefined"
+				:href="banner.link ?? undefined"
 			>
 				<Icon
-					v-if="iconName"
+					v-if="banner.icon"
 					class="mr-2 size-5"
-					:name="iconName"
+					:name="getIconName(banner.icon)"
 				/>
 				<span
 					class="whitespace-nowrap overflow-hidden text-ellipsis"
-					v-html="banner?.content"
+					v-html="banner.content"
 				/>
 				<Icon
 					class="hidden md:block transform duration-150 ease-out ml-1 group-hover:translate-x-1 size-5"
@@ -56,9 +48,7 @@ const iconName = computed(() => {
 
 			<button
 				aria-label="Close"
-				:padded="false"
-				icon="material-symbols:close"
-				@click="banner && dismiss(banner.id)"
+				@click="dismiss(banner.id)"
 			>
 				<Icon
 					name="material-symbols:close"

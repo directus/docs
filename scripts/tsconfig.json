@@ -2,10 +2,19 @@
 	"compilerOptions": {
 		"module": "nodenext",
 		"moduleResolution": "nodenext",
+		"baseUrl": "..",
+		"paths": {
+			"~/types": ["./app/types.ts"],
+			"~/*": ["./*"],
+			"@/*": ["./*"]
+		},
 		"target": "es2022",
+		"ignoreDeprecations": "6.0",
 		"strict": true,
 		"noEmit": true,
 		"allowImportingTsExtensions": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
 		"types": ["node"],
 		"skipLibCheck": true
 	},

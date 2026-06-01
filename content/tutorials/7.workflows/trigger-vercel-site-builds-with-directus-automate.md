@@ -33,11 +33,11 @@ with them.
 
 ### Create and Configure Your Flow
 
-1. [Create a new flow](/guides/automate/flows)
+1. [Create a new flow](/guides/flows)
 
    Give it a memorable name and short description like `Trigger New Site Build`.
 
-2. [Complete the Trigger Setup](/guides/automate/triggers)
+2. [Complete the Trigger Setup](/guides/flows/triggers)
 
    ![The Trigger Setup tab of the Creating New Flow interface is show. The Event Hook type is selected. The Type field value is "Action(Non-Blocking)". In the Scope field, "items.create" and "items.update" are selected.](/img/ee5eca7d-2bcb-4e73-b6b6-d638375282f6.webp)
 
@@ -60,7 +60,7 @@ with them.
 
 > This step is optional but it is recommended to add a Condition operation to prevent unnecessary builds.
 
-3. [Create a new operation](/guides/automate/operations)
+3. [Create a new operation](/guides/flows/operations)
 
    ![Within a Directus Flow, the Create Operation screen is shown. The Name of the Operation is "If Published". The Operation type is "Condition". The value of the Condition Rules field is a JSON object.](/img/4fb65e5f-8aa7-4683-96a4-6ba55ab93a7c.webp)
 
