@@ -224,7 +224,7 @@ export default defineAppConfig({
 		// Has "edit page" dynamically added in the first position in DocsTocAuthors.vue
 		links: [
 			{
-				icon: 'material-symbols:star-rate-outline-rounded',
+				icon: 'material-symbols:star-outline',
 				label: 'Star on GitHub',
 				to: 'https://github.com/directus/directus',
 			},
