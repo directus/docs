@@ -29,6 +29,7 @@ export default function useUserPreferences() {
 		sameSite: 'lax',
 		path: '/',
 	});
+	const activeOnboarding = useState('directus-docs-onboarding-active', () => false);
 
 	const legacyFramework = useCookie<string | null>(LEGACY_FRAMEWORK_COOKIE);
 	if (!cookie.value.framework && legacyFramework.value) {
@@ -36,7 +37,11 @@ export default function useUserPreferences() {
 		if (valid) cookie.value = { ...cookie.value, framework: valid.slug };
 	}
 
-	const prefs = computed<UserPreferences>(() => ({ ...defaultPrefs, ...cookie.value }));
+	const prefs = computed<UserPreferences>(() => {
+		const value = { ...defaultPrefs, ...cookie.value };
+		if (value.onboarding === 'active') value.onboarding = null;
+		return value;
+	});
 
 	function set<K extends PreferenceKey>(key: K, value: UserPreferences[K] | null) {
 		const validated = value === null ? null : validators[key](value as string);
@@ -47,9 +52,12 @@ export default function useUserPreferences() {
 
 	function reset() {
 		cookie.value = { ...defaultPrefs };
+		activeOnboarding.value = false;
 		library.value = null;
 		if (import.meta.client) {
-			try { localStorage.removeItem(API_CONSUMER_LS_KEY); }
+			try {
+				localStorage.removeItem(API_CONSUMER_LS_KEY);
+			}
 			catch { /* ignore */ }
 		}
 	}
@@ -69,16 +77,19 @@ export default function useUserPreferences() {
 	));
 
 	const onboardingState = computed<OnboardingState>(() => {
+		if (activeOnboarding.value) return 'active';
 		const v = prefs.value.onboarding;
 		if (v) return v;
 		return hasAnyPref.value ? 'onboarded' : 'idle';
 	});
 
-	function setOnboarding(state: OnboardingState) {
+	function setOnboarding(state: Exclude<OnboardingState, 'active'>) {
+		activeOnboarding.value = false;
 		cookie.value = { ...prefs.value, onboarding: state };
 	}
 	function startOnboarding() {
-		setOnboarding('active');
+		activeOnboarding.value = true;
+		cookie.value = { ...prefs.value, onboarding: null };
 	}
 	function completeOnboarding() {
 		setOnboarding('onboarded');
@@ -92,7 +103,9 @@ export default function useUserPreferences() {
 	}
 
 	if (import.meta.client && library.value === null) {
-		try { library.value = localStorage.getItem(API_CONSUMER_LS_KEY); }
+		try {
+			library.value = localStorage.getItem(API_CONSUMER_LS_KEY);
+		}
 		catch { /* ignore */ }
 	}
 	function setLibrary(value: string | null) {

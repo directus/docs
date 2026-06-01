@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs';
+import { spec as openapi } from '@directus/openapi';
 import type { NitroConfig } from 'nitropack';
 import { resolveBranchTypesenseAlias } from './lib/typesenseAlias';
 
@@ -27,6 +28,7 @@ function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 }
 
 const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
+const apiReferencePrerenderRoutes = openapi.tags?.map(tag => `/api/${tag.name.toLowerCase()}`) ?? [];
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -145,8 +147,10 @@ export default defineNuxtConfig({
 
 	routeRules: {
 		...loadRedirectRouteRules(),
-		'/api/**': { prerender: false },
-		'/docs/api/**': { prerender: false },
+		'/api/**': { prerender: true },
+		'/docs/api/**': { prerender: true },
+		'/mcp/deeplink': { prerender: false },
+		'/docs/mcp/deeplink': { prerender: false },
 		'/llms-full.txt': { prerender: false },
 		'/docs/llms-full.txt': { prerender: false },
 	},
@@ -168,8 +172,9 @@ export default defineNuxtConfig({
 			asyncContext: true,
 		},
 		prerender: {
-			routes: ['/'],
+			routes: ['/', '/api', ...apiReferencePrerenderRoutes],
 			crawlLinks: true,
+			ignore: [/^\/docs\/mcp\/deeplink(\?.*)?$/],
 			concurrency: 1,
 			retry: 2,
 			retryDelay: 1000,
