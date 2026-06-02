@@ -1,4 +1,5 @@
 ---
+stableId: f7cdd8ab-baa4-4ac8-9766-b3de39435ecc
 id: deploy-directus-to-northflank
 slug: deploy-directus-to-northflank
 title: Deploy Directus to Northflank
