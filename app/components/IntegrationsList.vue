@@ -31,10 +31,22 @@ const integrations = [
 		logo: '/docs/img/tutorials/netlify.png',
 	},
 	{
+		title: 'Supabase',
+		description: 'Connect self-hosted Directus to Supabase Postgres and Supabase Storage.',
+		to: '/guides/integrations/supabase',
+		logo: '/docs/img/supabase.svg',
+	},
+	{
 		title: 'Framer',
 		description: 'Sync content between Directus collections and Framer\'s CMS in both directions.',
 		to: '/guides/integrations/framer',
 		logo: '/docs/img/framer.png',
+	},
+	{
+		title: 'Airbyte',
+		description: 'Sync data from Directus collections into a warehouse or database using the Directus Airbyte source connector.',
+		to: '/guides/integrations/airbyte',
+		logo: '/docs/img/airbyte.svg',
 	},
 ];
 </script>
