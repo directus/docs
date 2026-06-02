@@ -37,7 +37,7 @@ For guidance on restricting who can install or manage extensions, see [Security 
 | Variable               | Description                                       | Default Value                  |
 | ---------------------- | ------------------------------------------------- | ------------------------------ |
 | `MARKETPLACE_TRUST`    | One of `sandbox`, `all`                           | `sandbox`                      |
-| `MARKETPLACE_REGISTRY` | The registry to use for the Directus Marketplace. | `https://registry.directus.io` |
+| `MARKETPLACE_REGISTRY` | The registry to use for the Directus Marketplace. | `https://registry.directus.com` |
 
 ::callout{icon="material-symbols:info-outline"}
 **Sandbox**  

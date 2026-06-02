@@ -84,7 +84,7 @@ By default, Zapier returns only the **first result** from Find actions. To proce
 ::callout{icon="material-symbols:lightbulb-outline"}
 **Advanced Filtering in Find**
 <br>
-The **Filter (JSON)** field in Find actions supports Directus's complete filter syntax, including logical operators (`_and`, `_or`), relational field filtering, and all filter operators. For complete filter syntax and examples, see the [Directus Filter Rules documentation](https://directus.io/docs/guides/connect/filter-rules).
+The **Filter (JSON)** field in Find actions supports Directus's complete filter syntax, including logical operators (`_and`, `_or`), relational field filtering, and all filter operators. For complete filter syntax and examples, see the [Directus Filter Rules documentation](https://directus.com/docs/guides/connect/filter-rules).
 ::
 
 **Example: Complex filter**
@@ -225,7 +225,7 @@ are correct.
 
 When working with Directus API through Zapier, you may encounter various error codes. For a comprehensive list of
 Directus error codes and their meanings, refer to the
-[official Directus Error Codes documentation](https://directus.io/docs/guides/connect/errors).
+[official Directus Error Codes documentation](https://directus.com/docs/guides/connect/errors).
 
 ### Error Handling
 

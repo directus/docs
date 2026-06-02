@@ -234,7 +234,7 @@ export default defineNuxtConfig({
 	},
 
 	llms: {
-		domain: 'https://directus.io/docs',
+		domain: 'https://directus.com/docs',
 		title: 'Directus Documentation',
 		description:
 			'Directus is a real-time API and no-code Data Studio for managing any SQL database. It provides REST and GraphQL APIs, granular access control, authentication, file storage, automations, realtime via WebSockets, analytics dashboards, AI integration, and a full extension system. The Data Studio is a web application for non-technical users to browse, manage, and visualize data without writing code.',
@@ -405,10 +405,10 @@ export default defineNuxtConfig({
 			},
 		],
 		notes: [
-			'The interactive API Reference is generated from an OpenAPI specification and is not included in this file. Visit https://directus.io/docs/api for the full reference.',
+			'The interactive API Reference is generated from an OpenAPI specification and is not included in this file. Visit https://directus.com/docs/api for the full reference.',
 			'The @directus/sdk package reference is in the source repository. The Connect section here covers setup, authentication, and common patterns.',
 			'This documentation covers the latest version of Directus.',
-			'Directus uses a Business Source License (BSL). See https://directus.io/bsl for license terms.',
+			'Directus uses a Business Source License (BSL). See https://directus.com/license for license terms.',
 		],
 	},
 

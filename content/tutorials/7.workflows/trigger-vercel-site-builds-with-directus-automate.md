@@ -12,7 +12,7 @@ description: Learn how to trigger new Vercel website builds through Directus Flo
 ---
 ## Explanation
 
-When using Directus as a [Headless CMS](https://directus.io/solutions/headless-cms), it is common to pair it with a
+When using Directus as a [Headless CMS](https://directus.com/resources/what-is-headless-cms), it is common to pair it with a
 front-end framework / static site generator like [Next.js](https://nextjs.org/), [Nuxt.js](https://nuxt.com),
 [SvelteKit](https://kit.svelte.dev/), or other options.
 

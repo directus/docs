@@ -135,7 +135,7 @@ For **Get Many** operations on Users and Files, use the **Simplify** option to g
 
 ## Troubleshooting
 
-When working with Directus API through n8n, you may encounter various error codes. For a comprehensive list of Directus error codes and their meanings, refer to the [official Directus Error Codes documentation](https://directus.io/docs/guides/connect/errors).
+When working with Directus API through n8n, you may encounter various error codes. For a comprehensive list of Directus error codes and their meanings, refer to the [official Directus Error Codes documentation](https://directus.com/docs/guides/connect/errors).
 
 ### Error Handling
 

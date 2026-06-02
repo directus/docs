@@ -195,5 +195,5 @@ For bulk operations:
 
 ## Additional Resources
 
-- [Directus Filter Rules](https://directus.io/docs/guides/connect/filter-rules) - Complete filter syntax and operators
-- [Directus Query Parameters](https://directus.io/docs/guides/connect/query-parameters) - All available query parameters
+- [Directus Filter Rules](https://directus.com/docs/guides/connect/filter-rules) - Complete filter syntax and operators
+- [Directus Query Parameters](https://directus.com/docs/guides/connect/query-parameters) - All available query parameters

@@ -200,7 +200,7 @@ export default defineAppConfig({
 		links: [
 			{
 				icon: 'simple-icons:directus',
-				to: 'https://directus.io',
+				to: 'https://directus.com',
 			},
 			{
 				icon: 'simple-icons:github',
@@ -252,7 +252,7 @@ export default defineAppConfig({
 			{
 				icon: 'ic:baseline-support',
 				label: 'Need help? Contact Support.',
-				to: 'https://directus.io/support',
+				to: 'https://directus.com/support',
 			},
 			{
 				icon: 'ic:baseline-people-alt',
@@ -267,7 +267,7 @@ export default defineAppConfig({
 			{
 				icon: 'ic:outline-help-outline',
 				label: 'Need a license? Contact Sales.',
-				to: 'https://directus.io/demo',
+				to: 'https://directus.com/contact',
 			},
 		],
 	},
@@ -276,25 +276,25 @@ export default defineAppConfig({
 		links: [
 			{
 				label: 'Cloud Policies',
-				to: 'https://directus.io/cloud-policies',
+				to: 'https://directus.com/cloud-policies',
 			},
 			{
 				label: 'License',
-				to: 'https://directus.io/mscl',
+				to: 'https://directus.com/license',
 			},
 			{
 				label: 'Terms',
-				to: 'https://directus.io/terms',
+				to: 'https://directus.com/terms',
 			},
 			{
 				label: 'Privacy',
-				to: 'https://directus.io/privacy',
+				to: 'https://directus.com/privacy',
 			},
 		],
 		socials: [
 			{
 				icon: 'simple-icons:bluesky',
-				to: 'https://bsky.app/profile/directus.io',
+				to: 'https://bsky.app/profile/directus.com',
 			},
 			{
 				icon: 'simple-icons:x',

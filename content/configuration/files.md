@@ -123,7 +123,7 @@ Large files can be uploaded in chunks to improve reliability and efficiency, esp
 
 ::callout{icon="material-symbols:info-outline"}
 
-This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.io/docs/configuration/general).
+This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.com/docs/configuration/general).
 
 ::
 
