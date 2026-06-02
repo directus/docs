@@ -26,7 +26,7 @@ const chips = computed(() => {
 	if (role.value) out.push({ icon: role.value.icon, label: role.value.label });
 	if (primaryInstanceUrl.value) {
 		try {
-			out.push({ icon: 'material-symbols:link', label: new URL(primaryInstanceUrl.value).host });
+			out.push({ icon: 'i-lucide-link', label: new URL(primaryInstanceUrl.value).host });
 		}
 		catch { /* ignore */ }
 	}
@@ -93,8 +93,8 @@ function relativeTime(ts?: number): string {
 			<DocsEyebrow>Welcome Back</DocsEyebrow>
 			<UButton
 				label="Personalize"
-				icon="material-symbols:tune"
-				trailing-icon="material-symbols:arrow-forward"
+				icon="i-lucide-sliders-horizontal"
+				trailing-icon="i-lucide-arrow-right"
 				variant="ghost"
 				color="neutral"
 				size="xs"
@@ -106,7 +106,7 @@ function relativeTime(ts?: number): string {
 			<div class="p-6 pb-7">
 				<div v-if="resume">
 					<DocsEyebrow
-						icon="material-symbols:bookmark-outline"
+						icon="i-lucide-bookmark"
 						class="mb-2.5"
 					>
 						Continue reading
@@ -117,7 +117,7 @@ function relativeTime(ts?: number): string {
 					>
 						<span>{{ resume.title }}</span>
 						<UIcon
-							name="material-symbols:open-in-new"
+							name="i-lucide-arrow-up-right"
 							class="size-5 inline-block ml-1 -mt-1 text-muted group-hover:text-primary transition-colors"
 						/>
 					</NuxtLink>
@@ -133,7 +133,7 @@ function relativeTime(ts?: number): string {
 
 				<div v-else>
 					<DocsEyebrow
-						icon="material-symbols:explore-outline"
+						icon="i-lucide-compass"
 						class="mb-2.5"
 					>
 						Start here
@@ -144,7 +144,7 @@ function relativeTime(ts?: number): string {
 					>
 						<span>Pick a place to begin</span>
 						<UIcon
-							name="material-symbols:open-in-new"
+							name="i-lucide-arrow-up-right"
 							class="size-5 inline-block ml-1 -mt-1 text-muted group-hover:text-primary transition-colors"
 						/>
 					</NuxtLink>
@@ -155,7 +155,7 @@ function relativeTime(ts?: number): string {
 			</div>
 
 			<aside class="flex flex-col gap-3.5 p-6 pb-7">
-				<DocsEyebrow icon="material-symbols:person-search-outline">
+				<DocsEyebrow icon="i-lucide-user-search">
 					Your context
 				</DocsEyebrow>
 
@@ -177,7 +177,7 @@ function relativeTime(ts?: number): string {
 				<UButton
 					v-else
 					label="Tell us about your stack"
-					trailing-icon="material-symbols:arrow-forward"
+					trailing-icon="i-lucide-arrow-right"
 					variant="link"
 					color="neutral"
 					size="xs"
@@ -188,7 +188,7 @@ function relativeTime(ts?: number): string {
 				<UButton
 					v-if="chips.length"
 					label="Edit"
-					trailing-icon="material-symbols:arrow-forward"
+					trailing-icon="i-lucide-arrow-right"
 					variant="link"
 					color="neutral"
 					size="xs"
@@ -204,7 +204,7 @@ function relativeTime(ts?: number): string {
 		>
 			<div class="px-6 pt-5 pb-6">
 				<DocsEyebrow
-					icon="material-symbols:star-outline"
+					icon="i-lucide-star"
 					class="mb-2.5"
 				>
 					Favorites
@@ -226,7 +226,7 @@ function relativeTime(ts?: number): string {
 							<span class="truncate">{{ f.title }}</span>
 						</NuxtLink>
 						<UButton
-							icon="material-symbols:close"
+							icon="i-lucide-x"
 							variant="ghost"
 							color="neutral"
 							size="xs"
@@ -249,7 +249,7 @@ function relativeTime(ts?: number): string {
 				class="px-6 pt-5 pb-6"
 			>
 				<DocsEyebrow
-					icon="material-symbols:history"
+					icon="i-lucide-history"
 					class="mb-2.5"
 				>
 					Recently viewed

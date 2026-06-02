@@ -54,7 +54,7 @@ These operations work similarly across all resources:
 
 **Note for Items**: When creating or updating items, you must select the **Collection** first. For Users and Files, no collection selection is needed.
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Permanent Deletion**
 Delete operations permanently remove data. Make sure this is what you want to do!
 ::
@@ -118,7 +118,7 @@ When getting items, you can select specific fields to return. This is helpful wh
 - You want to reduce the amount of data transferred
 - You're working with large collections
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Performance Tip**
 Selecting only the fields you need reduces data transfer and improves workflow performance, especially with large collections.
 ::

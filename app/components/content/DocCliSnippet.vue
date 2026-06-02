@@ -50,7 +50,7 @@ const copyToClipboard = async () => {
 			</template>
 			<UIcon
 				class="w-5 h-5"
-				name="material-symbols:content-copy-outline"
+				name="i-lucide-copy"
 			/>
 		</div>
 	</div>

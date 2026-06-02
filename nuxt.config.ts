@@ -219,7 +219,7 @@ export default defineNuxtConfig({
 
 	icon: {
 		serverBundle: {
-			collections: ['material-symbols', 'simple-icons'],
+			collections: ['lucide', 'material-symbols', 'simple-icons'],
 		},
 		customCollections: [
 			{

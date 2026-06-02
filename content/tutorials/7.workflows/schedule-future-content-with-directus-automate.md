@@ -26,7 +26,7 @@ Last, we'll kick off a new deployment of your static site at your hosting provid
 
 ## How-To Guide
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 You’ll need to have already created a collection for your site content like `articles` or `posts` or `pages` with a
 field `status` that controls the published state.
@@ -97,7 +97,7 @@ field `status` that controls the published state.
 
    d. Check **Emit Events**
 
-   ::callout{icon="material-symbols:warning-outline-rounded"}
+   ::callout{icon="i-lucide-triangle-alert"}
 
    Emit events will trigger an `item.update` event in this flow. Be careful when using it in your flows to avoid
    creating infinite loops where flows continuously trigger one another.
@@ -171,7 +171,7 @@ visitor requests a page from your site, all you need to do is add a filter to yo
 
 #### Examples
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 In these examples, we're using an AND logical operator to only return
 records that match both conditions. This provides a little more control over your published content by ensuring only

@@ -20,7 +20,7 @@ Directus Cloud provides infrastructure from the team who builds Directus. It is 
 
 :cta-cloud
 
-::callout{icon="material-symbols:school-outline" color="secondary" to="/cloud/getting-started/introduction"}
+::callout{icon="i-lucide-graduation-cap" color="secondary" to="/cloud/getting-started/introduction"}
 Learn more about Directus Cloud.
 ::
 
@@ -28,7 +28,7 @@ Learn more about Directus Cloud.
 
 Directus is provided as a Docker image, so you can deploy it on many different platforms. While each is slightly different, the core concepts are the same. You control the database, cache, and file storage. For a local or deployable setup, start with [Create a project](/getting-started/create-a-project). For environment variables, persistence, and production concepts, see [Deploying Directus](/self-hosting/deploying).
 
-::callout{icon="material-symbols:school-outline" color="secondary" to="/getting-started/create-a-project"}
+::callout{icon="i-lucide-graduation-cap" color="secondary" to="/getting-started/create-a-project"}
 Create a project with Docker.
 ::
 
