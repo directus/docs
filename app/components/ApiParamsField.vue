@@ -17,7 +17,7 @@ defineProps<{
 		}"
 		class="[&_p]:my-0"
 	>
-		<MDC
+		<ApiInlineMarkdown
 			v-if="param.description"
 			:key="`description-${param.name}`"
 			:value="param.description"
