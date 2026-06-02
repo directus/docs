@@ -3,6 +3,7 @@ import {
 	type ToolSet,
 } from 'ai';
 import getDirectusFile from '~~/server/mcp/tools/get-directus-file';
+import getDirectusPage from '~~/server/mcp/tools/get-directus-page';
 import getDoc from '~~/server/mcp/tools/get-doc';
 import listDocs from '~~/server/mcp/tools/list-docs';
 import searchDirectusCode from '~~/server/mcp/tools/search-directus-code';
@@ -53,6 +54,7 @@ export default defineEventHandler(async (event) => {
 			'search-docs': searchDocs,
 			'search-directus-code': searchDirectusCode,
 			'get-directus-file': getDirectusFile,
+			'get-directus-page': getDirectusPage,
 		}, { maxCalls: 15, maxResultBytes: 50 * 1024, onActivity }) as ToolSet,
 	});
 
