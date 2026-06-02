@@ -21,6 +21,10 @@ defineProps<{
 				:items="items"
 				orientation="horizontal"
 				variant="link"
+				:ui="{
+					linkLeadingIcon: 'size-4',
+					linkTrailingIcon: 'size-4',
+				}"
 			/>
 			<SettingsDrawerTrigger show-label />
 		</UContainer>
