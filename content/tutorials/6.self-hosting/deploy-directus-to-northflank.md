@@ -69,4 +69,4 @@ File uploads are stored in the MinIO addon and will persist across redeploys.
 
 - [Configuration](/configuration/general) — all available Directus environment variables
 - [Deploying Directus](/self-hosting/deploying) — general self-hosting guidance and production recommendations
-- [File Storage](/configuration/file-storage) — configuring or swapping the storage adapter
+- [File Storage](/configuration/files) — configuring or swapping the storage adapter
