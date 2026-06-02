@@ -194,7 +194,7 @@ export default defineNuxtConfig({
 			routes: ['/', `${BASE_URL}/api`, ...docsApiReferencePrerenderRoutes],
 			crawlLinks: true,
 			ignore: [/^\/docs\/mcp\/deeplink(\?.*)?$/],
-			concurrency: 1,
+			concurrency: 3,
 			retry: 2,
 			retryDelay: 1000,
 		},
