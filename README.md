@@ -57,6 +57,7 @@ pnpm stable-ids:check   # Validate stableId frontmatter
 pnpm redirects:sync     # Update redirects.json for moved pages
 pnpm redirects:check    # Check redirect coverage without writing files
 pnpm index:docs         # Build the search index in Typesense
+pnpm typesense:cleanup-preview # Delete stale Typesense preview indexes
 pnpm typecheck:scripts  # Type check repository scripts
 ```
 
@@ -156,6 +157,23 @@ Each indexer run writes to whichever slot the alias is not currently pointing at
 For one-off writes, override the index target with `TYPESENSE_INDEX_TARGET=...`.
 
 The browser reads from `TYPESENSE_COLLECTION` when set. Otherwise it derives the same branch alias as the indexer. The app reads the alias, never the `-a` / `-b` slot name.
+
+### Preview Cleanup
+
+PR preview indexes are deleted when same-repo PRs close. The cleanup job deletes the branch alias and both fixed slots:
+
+```bash
+pnpm typesense:cleanup-preview --branch bry/foo
+```
+
+For one-time cleanup of accumulated preview indexes, run a dry run first:
+
+```bash
+pnpm typesense:cleanup-preview --stale --dry-run
+pnpm typesense:cleanup-preview --stale
+```
+
+Stale cleanup keeps preview aliases for currently open PR branches and deletes the rest. It requires `TYPESENSE_URL`, `TYPESENSE_PRIVATE_API_KEY`, and authenticated `gh`.
 
 ### Ranking
 

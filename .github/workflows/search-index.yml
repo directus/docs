@@ -20,6 +20,11 @@ on:
   pull_request:
     branches:
       - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
     paths: *index-paths
   workflow_dispatch:
 
@@ -28,12 +33,12 @@ permissions:
 
 jobs:
   preview-index:
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'pull_request' && github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     # Cancel superseded preview runs so the alias never ends up pointing at a
     # stale index from an out-of-order swap.
     concurrency:
-      group: search-index-preview-${{ github.ref }}
+      group: search-index-preview-${{ github.event.pull_request.number }}
       cancel-in-progress: true
     env:
       TYPESENSE_URL: ${{ secrets.TYPESENSE_URL }}
@@ -54,6 +59,32 @@ jobs:
 
       - name: Index preview collection
         run: pnpm index:docs
+
+  cleanup-preview-index:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    concurrency:
+      group: search-index-preview-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    env:
+      TYPESENSE_URL: ${{ secrets.TYPESENSE_URL }}
+      TYPESENSE_PRIVATE_API_KEY: ${{ secrets.TYPESENSE_PRIVATE_API_KEY }}
+      TYPESENSE_PREVIEW_BRANCH: ${{ github.event.pull_request.head.ref }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Delete preview collection
+        run: pnpm typesense:cleanup-preview --branch "$TYPESENSE_PREVIEW_BRANCH"
 
   prod-index:
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
