@@ -75,6 +75,7 @@ export default defineMcpTool({
 			});
 		}
 
+		// Intentionally global to protect the shared GITHUB_TOKEN.
 		const localLimit = await checkRateLimit('search-directus-code', { max: 20, windowSeconds: 60, onStoreError: 'deny' });
 		if (!localLimit.ok) {
 			throw createError({

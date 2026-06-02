@@ -1,4 +1,4 @@
-import type { H3Event } from 'h3';
+import { getHeader, type H3Event } from 'h3';
 
 export type AssistantRuntimeContext = 'production' | 'preview' | 'development';
 
