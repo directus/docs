@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useClipboard } from '@vueuse/core';
 import { getLibraryByLabel, getLibraryByValue, getSampleOptionByLabel } from '~/utils/libraries';
 import type { ApiReferenceCodeSample } from '~/types';
 
@@ -15,6 +16,7 @@ const { library, setLibrary } = useUserPreferences();
 interface Sample {
 	label: string;
 	html: string;
+	source: string;
 	icon?: string;
 	libraryValue?: string;
 }
@@ -26,13 +28,14 @@ const samples = computed<Sample[]>(() => {
 	const sdk = customSamples.find(s => getLibraryByLabel(s.label)?.label === 'SDK');
 	if (sdk) {
 		const lib = getLibraryByLabel(sdk.label);
-		result.push({ label: sdk.label, html: sdk.html, icon: lib?.icon, libraryValue: lib?.value });
+		result.push({ label: sdk.label, html: sdk.html, source: sdk.source, icon: lib?.icon, libraryValue: lib?.value });
 	}
 
 	const restLib = getLibraryByLabel('REST');
 	result.push({
 		label: 'REST',
 		html: props.restHtml,
+		source: `${props.method.toUpperCase()} ${props.path}`,
 		icon: restLib?.icon,
 		libraryValue: restLib?.value,
 	});
@@ -40,7 +43,7 @@ const samples = computed<Sample[]>(() => {
 	for (const sample of customSamples) {
 		if (sample === sdk) continue;
 		const lib = getSampleOptionByLabel(sample.label);
-		result.push({ label: sample.label, html: sample.html, icon: lib?.icon, libraryValue: lib?.value });
+		result.push({ label: sample.label, html: sample.html, source: sample.source, icon: lib?.icon, libraryValue: lib?.value });
 	}
 
 	return result;
@@ -72,23 +75,34 @@ const active = computed<string>({
 	},
 });
 
-const activeIcon = computed(() => items.value.find(i => i.value === active.value)?.icon);
+const activeSample = computed(() =>
+	samples.value.find(s => (s.libraryValue ?? s.label) === active.value),
+);
+
+const { copy, copied } = useClipboard({ copiedDuring: 2000 });
 </script>
 
 <template>
 	<div class="dark border border-default rounded-md overflow-hidden bg-default">
-		<div class="flex items-center justify-between gap-3 px-3 py-2 border-b border-default bg-elevated">
-			<div class="flex items-center gap-2 font-mono text-xs min-w-0">
-				<span :class="['method', method.toLowerCase()]">{{ method.toUpperCase() }}</span>
-				<span class="text-muted truncate">{{ path }}</span>
-			</div>
-			<USelect
+		<div class="flex items-center justify-between gap-2 pr-2 border-b border-default bg-elevated">
+			<UTabs
 				v-model="active"
 				:items="items"
-				:icon="activeIcon"
-				size="xs"
+				variant="link"
+				color="primary"
+				size="sm"
+				:content="false"
+				class="min-w-0 grow"
+				:ui="{ list: 'border-b-0 px-3', trigger: 'text-xs' }"
+			/>
+			<UButton
+				:icon="copied ? 'i-material-symbols-check' : 'i-material-symbols-content-copy-outline'"
+				color="neutral"
 				variant="ghost"
-				class="shrink-0 lib-select"
+				size="xs"
+				:aria-label="copied ? 'Copied' : 'Copy code'"
+				class="shrink-0"
+				@click="copy(activeSample?.source ?? '')"
 			/>
 		</div>
 		<template v-for="sample of samples" :key="sample.label">
@@ -101,32 +115,48 @@ const activeIcon = computed(() => items.value.find(i => i.value === active.value
 	</div>
 </template>
 
-<style scoped>
-.method {
-	font-weight: 600;
-}
-.method.get { color: var(--color-success); }
-.method.post { color: var(--color-primary); }
-.method.put { color: var(--color-warning); }
-.method.patch { color: var(--color-warning); }
-.method.delete { color: var(--color-error); }
-.method.options { color: var(--color-info); }
-.method.head { color: var(--color-info); }
-
-.lib-select :deep(button > [data-slot="leading"]) {
-	margin-left: auto;
-}
-</style>
-
 <style>
+/* The code region scrolls on its own if content can't fit, so an overflowing
+   sample never widens the panel, pushes the copy button away, or grows the page
+   taller than the viewport. The background lives here (not on the pre) so it
+   fills the whole scroll area, including space past the wrapped content. */
+.api-request-pre {
+	max-width: 100%;
+	max-height: 400px;
+	overflow: auto;
+	background-color: var(--ui-bg-muted);
+	scrollbar-width: thin;
+	scrollbar-color: var(--ui-border-accented) transparent;
+}
+
+.api-request-pre::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+.api-request-pre::-webkit-scrollbar-thumb {
+	background-color: var(--ui-border-accented);
+	border-radius: 9999px;
+}
+
+.api-request-pre::-webkit-scrollbar-track {
+	background: transparent;
+}
+
 .api-request-pre pre.shiki {
 	border: 0 !important;
 	border-radius: 0 !important;
 	margin: 0 !important;
-	max-height: 24rem;
-	overflow: auto;
 	padding: 0.75rem 1rem;
-	background-color: var(--ui-bg-muted) !important;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	background-color: transparent !important;
+	/* Reflow long lines at whitespace so they wrap instead of scrolling, but
+	   never split inside a token. A single token too wide to fit scrolls
+	   horizontally (via the wrapper's overflow) rather than breaking mid-word. */
+	white-space: pre-wrap;
+	overflow-wrap: normal;
+	word-break: normal;
 }
 
 .api-request-pre pre.shiki span {

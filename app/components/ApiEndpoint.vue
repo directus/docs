@@ -133,7 +133,7 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 				</UTabs>
 			</div>
 		</div>
-		<div class="grow sticky top-16 w-full">
+		<div class="grow min-w-0 sticky top-16 w-full">
 			<ApiCodeSamples
 				:method="operation.method"
 				:path="operation.path"
@@ -143,6 +143,7 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 			<ApiResponseExample
 				v-if="operation.responseExampleHtml"
 				:html="operation.responseExampleHtml"
+				:source="operation.responseExample"
 			/>
 		</div>
 	</UPageBody>

@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-	<nav class="grow full block pl-4 pr-6 py-3 rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm/6 font-mono">
+	<nav class="grow full block pl-4 pr-6 py-3 rounded-md border border-default bg-muted text-muted text-sm/6 font-mono">
 		<ULink
 			v-for="methodObject of operations"
 			:key="methodObject.path"
