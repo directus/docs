@@ -1,4 +1,5 @@
 ---
+stableId: 76603d18-6499-4dc0-ad7d-7efe3e070fe1
 id: f8e7d6c5-b4a3-4921-9f8e-7d6c5b4a3920
 slug: deploy-directus-to-render
 title: Deploy Directus to Render
