@@ -26,7 +26,7 @@ export default defineMcpTool({
 
 		let markdown: string;
 		try {
-			markdown = await ofetch<string>(`${getMcpStaticBaseUrl(event)}${getMcpMarkdownPath(normalized)}.md`, { responseType: 'text' });
+			markdown = await ofetch(`${getMcpStaticBaseUrl()}${getMcpMarkdownPath(normalized)}.md`, { responseType: 'text' });
 		}
 		catch {
 			if (!import.meta.dev) {

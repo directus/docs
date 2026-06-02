@@ -1,11 +1,10 @@
-import { getRequestURL, type H3Event } from 'h3';
 import { normalizeDocPath } from './mcpMarkdown';
 
-export function getMcpStaticBaseUrl(event: H3Event): string {
+export function getMcpStaticBaseUrl(): string {
 	const config = useRuntimeConfig();
 	const baseUrl = config.app.baseURL.replace(/\/$/, '');
-	const requestUrl = getRequestURL(event, { xForwardedHost: true, xForwardedProto: true });
-	return `${requestUrl.origin}${baseUrl}`;
+	const siteOrigin = config.public.siteUrl.replace(/\/$/, '');
+	return `${siteOrigin}${baseUrl}`;
 }
 
 export function getMcpMarkdownPath(path: string): string {

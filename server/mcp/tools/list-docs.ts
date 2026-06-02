@@ -50,7 +50,7 @@ export default defineMcpTool({
 
 async function loadDocIndex(event: ReturnType<typeof useEvent>): Promise<McpDocIndexEntry[]> {
 	try {
-		return await ofetch<McpDocIndexEntry[]>(`${getMcpStaticBaseUrl(event)}/mcp-docs-index.json`);
+		return await ofetch<McpDocIndexEntry[]>(`${getMcpStaticBaseUrl()}/mcp-docs-index.json`);
 	}
 	catch {
 		if (!import.meta.dev) {
