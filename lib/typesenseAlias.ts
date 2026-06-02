@@ -2,6 +2,9 @@ import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import process from 'node:process';
 
+export const TYPESENSE_PROD_ALIAS = 'directus-docs';
+export const TYPESENSE_PREVIEW_ALIAS_PREFIX = 'directus-docs-preview-';
+
 export function slugifyBranch(branch: string) {
 	const slug = branch
 		.toLowerCase()
@@ -38,6 +41,6 @@ export function getTypesenseBranchName() {
 
 export function resolveBranchTypesenseAlias(branch = getTypesenseBranchName()) {
 	if (!branch) return null;
-	if (branch === 'main') return 'directus-docs';
-	return `directus-docs-preview-${slugifyBranch(branch)}`;
+	if (branch === 'main') return TYPESENSE_PROD_ALIAS;
+	return `${TYPESENSE_PREVIEW_ALIAS_PREFIX}${slugifyBranch(branch)}`;
 }

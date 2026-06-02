@@ -36,7 +36,7 @@ const frameworkCards = computed<FrameworkCard[]>(() => {
 			return {
 				slug,
 				label: item.title ?? slug,
-				icon: item.icon ?? 'material-symbols:data-object',
+				icon: item.icon ?? 'i-lucide-braces',
 				count,
 			};
 		});
@@ -58,7 +58,7 @@ await useDocsOgImage({
 			<template #headline>
 				<UBreadcrumb
 					:items="[
-						{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
+						{ 'icon': 'i-lucide-house', 'to': '/', 'aria-label': 'Home' },
 						{ label: 'Frameworks' },
 					]"
 				>

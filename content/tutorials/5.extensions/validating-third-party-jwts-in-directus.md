@@ -381,8 +381,8 @@ export default defineHook(({ filter }, { logger }) => {
     // ... (code from step 2-5) ...
 
     // Extract custom claims
-    const serviceName = payload["https://directus.io/service-name"];
-    const serviceScope = payload["https://directus.io/service-scope"];
+    const serviceName = payload["https://directus.com/service-name"];
+    const serviceScope = payload["https://directus.com/service-scope"];
 
     // Map scope to role
     const scopeToRoleMap = {

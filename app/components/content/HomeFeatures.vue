@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const features = [
-	{ title: 'Instant APIs', description: 'REST, GraphQL, and SDKs out of the box.', icon: 'material-symbols:code' },
-	{ title: 'Flexible data modeling', description: 'Design your data exactly how you need it.', icon: 'material-symbols:deployed-code-outline' },
-	{ title: 'Permissions baked in', description: 'Granular access control at every level.', icon: 'material-symbols:verified-user-outline' },
-	{ title: 'Extensions', description: 'Extend and customize anything.', icon: 'material-symbols:extension-outline' },
-	{ title: 'Automations', description: 'Automate tasks and business logic with Flows.', icon: 'material-symbols:bolt-outline' },
-	{ title: 'Dashboards', description: 'Visualize data with Insights panels.', icon: 'material-symbols:bar-chart' },
+	{ title: 'Instant APIs', description: 'REST, GraphQL, and SDKs out of the box.', icon: 'i-lucide-code' },
+	{ title: 'Flexible data modeling', description: 'Design your data exactly how you need it.', icon: 'i-lucide-boxes' },
+	{ title: 'Permissions baked in', description: 'Granular access control at every level.', icon: 'i-lucide-shield-check' },
+	{ title: 'Extensions', description: 'Extend and customize anything.', icon: 'i-lucide-puzzle' },
+	{ title: 'Automations', description: 'Automate tasks and business logic with Flows.', icon: 'i-lucide-zap' },
+	{ title: 'Dashboards', description: 'Visualize data with Insights panels.', icon: 'i-lucide-chart-column' },
 ];
 </script>
 

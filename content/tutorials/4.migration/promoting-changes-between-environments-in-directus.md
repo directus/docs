@@ -45,7 +45,7 @@ project, or to move from a self-hosted project to Directus Cloud.
 
 ### How-To Guide
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 **Permissions**<br/>
 

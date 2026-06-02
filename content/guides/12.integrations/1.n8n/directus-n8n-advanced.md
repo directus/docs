@@ -34,7 +34,7 @@ Quick reference of all available raw operations organized by resource type:
 
 ---
 
-::callout{icon="material-symbols:lightbulb-outline"}
+::callout{icon="i-lucide-lightbulb"}
 **When to Use Raw Operations**
 Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), or full control over the JSON payload structure.
 ::
@@ -52,7 +52,7 @@ Raw operations work similarly to their standard counterparts, but instead of usi
 5. Enter your JSON data in the **JSON Data** field
 6. For Get and Update operations, provide the **Item ID** if needed
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Token Permissions**
 Ensure your Directus API token has the correct permissions for the resource and operations you're using. Raw operations require the same permissions as their standard counterparts.
 ::
@@ -116,9 +116,9 @@ Update items with complex data structures:
 
 Raw operations allow you to use Directus's complete filter syntax. Specify filters in the `filter` parameter of your **JSON Data** field.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Filter Documentation**
-For complete filter syntax, operators, and examples, see the [Directus Filter Rules documentation](https://directus.io/docs/guides/connect/filter-rules).
+For complete filter syntax, operators, and examples, see the [Directus Filter Rules documentation](https://directus.com/docs/guides/connect/filter-rules).
 ::
 
 **Example: Complex filter with logical operators**
@@ -188,9 +188,9 @@ Raw operations support all Directus query parameters. Include them in your JSON 
 }
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Query Parameters Documentation**
-For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.io/docs/guides/connect/query-parameters).
+For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.com/docs/guides/connect/query-parameters).
 ::
 
 ## Working with Relations

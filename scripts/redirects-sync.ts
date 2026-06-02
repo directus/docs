@@ -115,7 +115,7 @@ Options:
   --hints <file>            Manual redirect hints JSON (default: .docs/redirect-hints.json)
   --report <file>           Redirect decisions report (default: .docs/redirect-decisions-needed.json)
   --write-deterministic     Auto-write deterministic redirects to the manifest
-  --fail-on-unresolved      Exit non-zero if redirect decisions remain
+  --fail-on-unresolved      Exit non-zero if redirect updates or decisions remain
   --no-write                Do not write manifest or report files
 `);
 }
@@ -400,6 +400,40 @@ function buildDecisionMarkdown(payload: DecisionPayload): string {
 	return lines.join('\n') + '\n';
 }
 
+function reportMarkdownPath(file: string): string {
+	return file.endsWith('.json') ? file.replace(/\.json$/i, '.md') : `${file}.md`;
+}
+
+function printLimitedRedirects(title: string, redirects: AcceptedResolution[]): void {
+	if (!redirects.length) return;
+
+	console.error(`\n${title}:`);
+	for (const item of redirects.slice(0, 20)) {
+		console.error(`- ${item.from} -> ${item.to}`);
+	}
+	if (redirects.length > 20) {
+		console.error(`- ...and ${redirects.length - 20} more`);
+	}
+}
+
+function printRedirectFixInstructions(options: CliOptions, hasDeterministicRedirects: boolean, hasUnresolvedRedirects: boolean): void {
+	console.error('\nHow to fix redirects:');
+	console.error('- Run `pnpm redirects:sync`.');
+	if (hasDeterministicRedirects) {
+		console.error(`  - Writes safe redirects to ${options.manifest}.`);
+	}
+	if (hasUnresolvedRedirects) {
+		console.error(`  - Writes manual decisions to ${reportMarkdownPath(options.report)}.`);
+		console.error('- For each manual decision, choose a target, then either:');
+		console.error(`  - Add a manual hint to ${options.hints}, then rerun \`pnpm redirects:sync\`.`);
+		console.error('    { "manualRedirects": { "/old-path": "/new-path" } }');
+		console.error(`  - Or add the redirect directly to ${options.manifest}:`);
+		console.error('    "/old-path": { "to": "/new-path", "statusCode": 301 }');
+	}
+	console.error('- Commit updated redirect files.');
+	console.error('- Re-run `pnpm redirects:check`.');
+}
+
 function main(): void {
 	const options = parseArgs(process.argv.slice(2));
 	assertBaseRefExists(options.base);
@@ -425,6 +459,9 @@ function main(): void {
 	}
 
 	const newEntries = options.writeDeterministic
+		? accepted.filter(row => !manifest.fromSet.has(row.from))
+		: [];
+	const missingDeterministicRedirects = options.noWrite
 		? accepted.filter(row => !manifest.fromSet.has(row.from))
 		: [];
 
@@ -461,17 +498,26 @@ function main(): void {
 		console.log(`Wrote ${newEntries.length} redirect(s) to ${options.manifest}`);
 	}
 	if (unresolved.length && !options.noWrite) {
-		console.log(`Review redirect decisions in ${options.report.replace(/\.json$/i, '.md')}`);
+		console.log(`Review redirect decisions in ${reportMarkdownPath(options.report)}`);
 	}
+
+	printLimitedRedirects('Missing deterministic redirect entries', missingDeterministicRedirects);
 
 	if (unresolved.length) {
 		console.error('\nRedirect decisions needed:');
 		for (const item of unresolved.slice(0, 20)) {
 			console.error(`- ${item.old.path}: ${item.reason}`);
 		}
+		if (unresolved.length > 20) {
+			console.error(`- ...and ${unresolved.length - 20} more`);
+		}
 	}
 
-	if (options.failOnUnresolved && unresolved.length > 0) {
+	if (missingDeterministicRedirects.length || unresolved.length) {
+		printRedirectFixInstructions(options, missingDeterministicRedirects.length > 0, unresolved.length > 0);
+	}
+
+	if (options.failOnUnresolved && (unresolved.length > 0 || missingDeterministicRedirects.length > 0)) {
 		process.exit(1);
 	}
 }

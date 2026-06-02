@@ -12,7 +12,7 @@ description: Configuration for AI Assistant and Model Context Protocol (MCP) fea
 | -------- | ----------- | ------------- |
 | `AI_ENABLED` | Whether AI Assistant features are available. Set to `false` to completely disable AI Assistant across the entire instance, hiding the sidebar for all users and disabling the settings for administrators. | `true` |
 
-::callout{icon="material-symbols:info-outline" color="info"}
+::callout{icon="i-lucide-info" color="info"}
 When `AI_ENABLED` is set to `false`:
 - The API routes for the assistant are not mounted
 - AI Assistant sidebar is hidden from all users
@@ -27,7 +27,7 @@ This is useful for compliance requirements where AI features must be completely 
 | -------- | ----------- | ------------- |
 | `MCP_ENABLED` | Whether the Model Context Protocol server is available for system administrators to enable in project settings. Set to `false` to completely disable MCP functionality across the entire instance. | `true` |
 
-::callout{icon="material-symbols:info-outline" color="info"}
+::callout{icon="i-lucide-info" color="info"}
 When `MCP_ENABLED` is set to `false`, the MCP server cannot be enabled through **Settings → AI → Model Context Protocol** in the admin interface, providing system administrators with complete control over AI integration features. See the [MCP Server](/guides/ai/mcp/installation) guide for more information.
 ::
 
@@ -58,7 +58,7 @@ The MCP OAuth authorization endpoint and Dynamic Client Registration endpoint us
 | `MCP_OAUTH_CIMD_ALLOWED_DOMAINS` | Comma-separated list of domains allowed to use Client ID Metadata Document registration. Leave empty to allow any valid metadata document domain. | `''` |
 | `MCP_OAUTH_CIMD_BLOCKED_TLDS` | Comma-separated list of top-level domains blocked for Client ID Metadata Document registration. | `test,localhost,invalid,example,local,onion` |
 
-::callout{icon="material-symbols:menu-book-outline" color="primary" to="/guides/ai/mcp/oauth"}
+::callout{icon="i-lucide-book-open" color="primary" to="/guides/ai/mcp/oauth"}
 Read the MCP OAuth guide for setup steps, client registration behavior, and revocation.
 ::
 
@@ -72,7 +72,7 @@ Send AI Assistant traces to an external observability platform for monitoring us
 | `AI_TELEMETRY_PROVIDER` | Telemetry provider to use. Supported values: `langfuse`, `braintrust`. | `langfuse` |
 | `AI_TELEMETRY_RECORD_IO` | Include full prompt inputs and response outputs in traces. | `false` |
 
-::callout{icon="material-symbols:warning-outline" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 Enabling `AI_TELEMETRY_RECORD_IO` will send the full content of user messages and AI responses to your telemetry provider. Only enable this if your telemetry provider meets your data privacy requirements.
 ::
 

@@ -24,7 +24,7 @@ The branding section contains global settings that are applied as defaults throu
 - **Public Note** — A helpful note displayed at the bottom of the public page's right-pane, supports markdown for rich-text formatting.
 - **Default Appearance** — Light or Dark theme (or based on system preference).
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Public Background Video Limitations**  
 * Not all video formats/encodings can be streamed by browsers resulting in the video needing to be downloaded fully before playing.
 * Both supported and the optimal formats/settings can vary per browser.
@@ -57,7 +57,7 @@ body {
 
 This example is better served using the Theming Engine, but is a good example of Directus' flexibility of approach.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 Custom CSS can be an injection vector, see [Harden Content Security Policy When Using Custom CSS](/guides/security/best-practices#harden-content-security-policy-when-using-custom-css) for configuration guidance.
 ::
 
