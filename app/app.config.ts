@@ -161,12 +161,11 @@ export default defineAppConfig({
 						to: '/self-hosting/overview',
 						icon: 'material-symbols:dns-outline',
 					},
-					{
-						label: 'Configuration',
-						to: '/configuration/intro',
-						icon: 'material-symbols:settings-outline',
-					},
 				],
+			},
+			{
+				label: 'Configuration',
+				to: '/configuration/intro',
 			},
 			{
 				label: 'Resources',
