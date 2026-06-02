@@ -60,7 +60,26 @@ pnpm index:docs         # Build the search index in Typesense
 pnpm typecheck:scripts  # Type check repository scripts
 ```
 
-`pnpm install` configures `.githooks` for the repository when no custom `core.hooksPath` is set. The pre-commit hook can add missing `stableId` values to staged docs files. The pre-push hook checks redirects when docs content, redirect configuration, or content configuration changes.
+Stable IDs give each public docs page a permanent identity. Nuxt Content derives
+its unique page IDs from file paths, so moving a page changes its built-in ID.
+Redirect sync compares the current branch to `origin/main`, so moved pages keep
+their old URLs working.
+
+CI runs `pnpm stable-ids:check` and `pnpm redirects:check` for docs changes.
+
+- New docs page: run `pnpm stable-ids:ensure`, then commit the new `stableId`.
+- Moved docs page: keep the existing `stableId`, run `pnpm redirects:sync`, then commit `redirects.json`.
+- Deleted, split, or merged docs page: run `pnpm redirects:sync`, review `.docs/redirect-decisions-needed.md`, choose target redirects, then re-run `pnpm redirects:check`.
+- Before opening a PR: run `pnpm stable-ids:check` and `pnpm redirects:check`.
+
+Redirect scripts compare against `origin/main` by default. To check a release branch
+or another target, fetch it first, then pass `--base` directly to the script:
+
+```bash
+git fetch origin release/v13
+node scripts/redirects-sync.ts --base origin/release/v13 --no-write --fail-on-unresolved
+node scripts/redirects-sync.ts --base origin/release/v13 --write-deterministic --fail-on-unresolved
+```
 
 ## ✍️ Authoring Content
 
