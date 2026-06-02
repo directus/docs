@@ -13,4 +13,5 @@ export const strings = {
 	toolSearchDocs: 'Searched docs for',
 	toolSearchCode: 'Searched code for',
 	toolReadFile: 'Read source file',
+	toolReadWebPage: 'Read',
 };

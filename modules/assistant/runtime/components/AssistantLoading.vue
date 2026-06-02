@@ -120,6 +120,10 @@ function getToolLabel(toolName: string, args: Record<string, unknown>) {
 	if (toolName === 'search-docs') return `${strings.toolSearchDocs} "${query}"`;
 	if (toolName === 'search-directus-code') return `${strings.toolSearchCode} "${query}"${repo ? ` in ${repo}` : ''}`;
 	if (toolName === 'get-directus-file') return `${strings.toolReadFile} ${repo}/${path || '...'}`;
+	if (toolName === 'get-directus-page') {
+		const page = path.replace(/^https?:\/\//, '').replace(/^directus\.com/, '');
+		return `${strings.toolReadWebPage} directus.com${page.startsWith('/') ? page : `/${page}`}`;
+	}
 
 	return toolName;
 }
