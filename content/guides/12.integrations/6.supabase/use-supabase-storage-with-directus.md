@@ -1,4 +1,5 @@
 ---
+stableId: 4e9f6d3b-5b4c-4cfa-a325-aee889b833a3
 id: use-supabase-storage-with-directus
 title: Use Supabase Storage with Directus
 description: Configure Directus to store files in Supabase Storage using the S3-compatible API and the Directus S3 storage driver.

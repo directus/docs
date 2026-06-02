@@ -1,4 +1,5 @@
 ---
+stableId: ea8b6948-168f-479f-92db-8234c534a046
 id: connect-supabase-postgres-to-directus
 title: Connect Supabase Postgres to Directus
 description: Configure a self-hosted Directus instance to use Supabase Postgres via the session pooler and verify the setup.
