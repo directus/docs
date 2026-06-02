@@ -107,7 +107,7 @@ SYNCHRONIZATION_STORE="redis"
 PUBLIC_URL=${APP_URL}
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Generate `SECRET` with:
 

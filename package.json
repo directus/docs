@@ -21,7 +21,7 @@
 	"dependencies": {
 		"@directus/openapi": "0.3.0",
 		"@directus/sdk": "^21.2.2",
-		"@iconify-json/heroicons-outline": "1.2.1",
+		"@iconify-json/lucide": "1.2.111",
 		"@iconify-json/material-symbols": "1.2.68",
 		"@iconify-json/simple-icons": "1.2.79",
 		"@nuxt/content": "3.13.0",
@@ -48,7 +48,6 @@
 		"zod": "4.4.3"
 	},
 	"devDependencies": {
-		"@iconify-json/ph": "^1.2.2",
 		"@nuxt/eslint": "1.15.2",
 		"@nuxt/scripts": "1.0.2",
 		"@nuxt/test-utils": "^4.0.3",
