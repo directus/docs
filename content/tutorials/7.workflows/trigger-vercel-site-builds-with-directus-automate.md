@@ -23,7 +23,7 @@ existing content changes.
 
 ## How-To Guide
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 You’ll need to have already created a collection for your site content like `articles` or `posts` or `pages` with a
 field `status` that controls the published state. You'll also need to have a Vercel account and a site already hosted
@@ -82,7 +82,7 @@ with them.
 
 ### Configure Vercel Deploy Hook
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 You can learn more about Vercel Deploy Hooks on their documentation.
 

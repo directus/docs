@@ -48,7 +48,7 @@ const show = props.videoId
 				<template #awaitingLoad>
 					<div class="absolute inset-0 flex items-center justify-center">
 						<UButton
-							icon="material-symbols:play-circle-outline"
+							icon="i-lucide-circle-play"
 							size="xl"
 						/>
 					</div>

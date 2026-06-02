@@ -6,7 +6,7 @@ description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate 
 
 :partial{content="config-env-vars"}
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 This page documents environment variables. For in-app security configuration (permissions, system collections, public access), see [Security Best Practices](/guides/security/best-practices).
 ::
 
@@ -61,7 +61,7 @@ Argon2's hashing function is used by Directus to hash user passwords, generate h
 
 All `HASH_*` environment variable parameters are passed to the `argon2.hash` function. See the [node-argon2 library options page](https://github.com/ranisalt/node-argon2/wiki/Options) for reference.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Memory Usage**  
 Modifying `HASH_MEMORY_COST` and/or `HASH_PARALLELISM` will affect the amount of memory directus uses when computing hashes; each thread gets `HASH_MEMORY_COST` amount of memory, so the total additional memory will be these two values multiplied. This may cause out of memory errors, especially when running in containerized environments.
 ::

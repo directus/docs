@@ -6,7 +6,7 @@ description: Configuration for extensions and the Directus Marketplace.
 
 :partial{content="config-env-vars"}
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 For guidance on restricting who can install or manage extensions, see [Security Best Practices](/guides/security/best-practices#extensions).
 ::
 
@@ -39,7 +39,7 @@ For guidance on restricting who can install or manage extensions, see [Security 
 | `MARKETPLACE_TRUST`    | One of `sandbox`, `all`                           | `sandbox`                      |
 | `MARKETPLACE_REGISTRY` | The registry to use for the Directus Marketplace. | `https://registry.directus.com` |
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Sandbox**  
 By default, the Directus Marketplace will allow installation of all [App extension types](/guides/extensions/app-extensions) and only [API extension types](/guides/extensions/api-extensions) that use our secure sandbox.
 ::

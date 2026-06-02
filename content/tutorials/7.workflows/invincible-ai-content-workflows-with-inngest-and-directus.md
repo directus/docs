@@ -81,7 +81,7 @@ The following sections detail the technical implementation.
 ## Implementation Guide
 
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 To implement this integration, you'll want to have
 

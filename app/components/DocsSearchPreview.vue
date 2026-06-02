@@ -21,7 +21,7 @@ const navigation = inject<Ref<ContentNavigationItem[]> | null>('navigation', nul
 const { app } = useRuntimeConfig();
 
 const sectionIcon = (id: DocsSearchItem['section']) =>
-	docsSections.find(section => section.id === id)?.icon ?? 'i-ph-file-text';
+	docsSections.find(section => section.id === id)?.icon ?? 'i-lucide-file-text';
 
 const previewDisplayPath = computed(() => {
 	const to = props.result?.to;
@@ -118,7 +118,7 @@ const previewBreadcrumb = computed(() => {
 		>
 			<div class="palette-empty-icon">
 				<UIcon
-					name="i-ph-magnifying-glass"
+					name="i-lucide-search"
 					class="size-4"
 				/>
 			</div>

@@ -10,6 +10,8 @@ export interface ApiReferenceCodeSample {
 	label: string;
 	lang: string;
 	source: string;
+	// Shiki-highlighted HTML for `source`, precomputed at build time.
+	html: string;
 }
 
 export interface ApiReferenceParameter {
@@ -40,6 +42,10 @@ export interface ApiReferenceOperation {
 	requestBody: ApiReferenceRequestBody | null;
 	responses: ApiReferenceResponse[];
 	responseExample: unknown | null;
+	// Shiki-highlighted HTML for the response example, precomputed at build time.
+	responseExampleHtml: string | null;
+	// Shiki-highlighted HTML for the auto-generated REST sample (`METHOD /path`).
+	restSampleHtml: string;
 	'x-codeSamples'?: ApiReferenceCodeSample[];
 }
 
