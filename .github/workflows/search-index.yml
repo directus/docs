@@ -8,30 +8,37 @@ on:
       - 'content/**'
       - 'scripts/index-docs.ts'
       - 'scripts/index-docs-chunker.ts'
+      - 'scripts/_content-lib.ts'
       - 'shared/utils/parseTypesenseUrl.ts'
       - 'shared/utils/docsSections.ts'
       - 'app/utils/slugify.ts'
       - 'server/data/synonyms.ts'
       - 'lib/typesenseAlias.ts'
+      - 'package.json'
       - 'pnpm-lock.yaml'
       - '.github/workflows/search-index.yml'
   pull_request:
     branches:
       - main
+    types:
+      - opened
+      - synchronize
+      - reopened
     paths: *index-paths
   workflow_dispatch:
-
-concurrency:
-  group: search-index-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
 
 permissions:
   contents: read
 
 jobs:
   preview-index:
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'pull_request' && github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    # Cancel superseded preview runs so the alias never ends up pointing at a
+    # stale index from an out-of-order swap.
+    concurrency:
+      group: search-index-preview-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     env:
       TYPESENSE_URL: ${{ secrets.TYPESENSE_URL }}
       TYPESENSE_PUBLIC_API_KEY: ${{ secrets.TYPESENSE_PUBLIC_API_KEY }}
@@ -47,7 +54,8 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        # These jobs run repository scripts only; skip package postinstall/build scripts.
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Index preview collection
         run: pnpm index:docs
@@ -55,6 +63,11 @@ jobs:
   prod-index:
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # Run prod indexing sequentially; the blue/green slot design tolerates
+    # re-runs, so never cancel a swap mid-flight.
+    concurrency:
+      group: search-index-prod
+      cancel-in-progress: false
     env:
       TYPESENSE_URL: ${{ secrets.TYPESENSE_URL }}
       TYPESENSE_PUBLIC_API_KEY: ${{ secrets.TYPESENSE_PUBLIC_API_KEY }}
@@ -70,7 +83,8 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        # These jobs run repository scripts only; skip package postinstall/build scripts.
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Index production collection
         run: pnpm index:docs

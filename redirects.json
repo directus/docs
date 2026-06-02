@@ -1,14 +1,6 @@
 {
-  "/guides/ai/mcp/oauth": {
-    "to": "/guides/ai/mcp",
-    "statusCode": 301
-  },
   "/guides/ai/translations": {
     "to": "/guides/ai",
-    "statusCode": 301
-  },
-  "/releases/breaking-changes/version-12": {
-    "to": "/releases/breaking-changes",
     "statusCode": 301
   },
   "/guides/automate/data-chain": {

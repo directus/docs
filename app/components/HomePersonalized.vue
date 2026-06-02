@@ -11,13 +11,21 @@ const { primary: primaryInstanceUrl } = useInstanceUrls();
 const settings = useSettingsOverlay();
 function openDrawer() { settings.open(); }
 
+// localStorage-backed state (recents, favorites, instance URLs) is only
+// populated on the client, so gate any UI that depends on it until after
+// mount. Server and first client render share the stable default branch,
+// avoiding hydration mismatches.
+const mounted = ref(false);
+
 const showInline = computed(() => onboardingState.value === 'active');
 const showIdleCta = computed(() => onboardingState.value === 'idle');
 
-const resume = computed(() => recents.value[0] ?? null);
-const restRecents = computed(() => recents.value.slice(1, 7));
+const resume = computed(() => mounted.value ? recents.value[0] ?? null : null);
+const restRecents = computed(() => mounted.value ? recents.value.slice(1, 7) : []);
+const favoritesList = computed(() => mounted.value ? favorites.value : []);
 
 const chips = computed(() => {
+	if (!mounted.value) return [];
 	const out: { icon: string; label: string }[] = [];
 	if (framework.value) out.push({ icon: framework.value.icon, label: framework.value.label });
 	if (experience.value) out.push({ icon: experience.value.icon, label: experience.value.label });
@@ -26,21 +34,24 @@ const chips = computed(() => {
 	if (role.value) out.push({ icon: role.value.icon, label: role.value.label });
 	if (primaryInstanceUrl.value) {
 		try {
-			out.push({ icon: 'material-symbols:link', label: new URL(primaryInstanceUrl.value).host });
+			out.push({ icon: 'i-lucide-link', label: new URL(primaryInstanceUrl.value).host });
 		}
 		catch { /* ignore */ }
 	}
 	return out;
 });
 
+// Cookie-backed prefs only — SSR-safe. The instance URL is localStorage-backed
+// and gated separately via the mounted flag.
 const hasAnyPref = computed(() =>
-	Boolean(framework.value || useCase.value || deployment.value || role.value || experience.value || primaryInstanceUrl.value));
+	Boolean(framework.value || useCase.value || deployment.value || role.value || experience.value));
 
 const showPanel = computed(() =>
 	onboardingState.value === 'onboarded'
-	&& (hasAnyPref.value || recents.value.length > 0 || favorites.value.length > 0));
+	&& (hasAnyPref.value || (mounted.value && (recents.value.length > 0 || favorites.value.length > 0))));
 
 onMounted(() => {
+	mounted.value = true;
 	touchCookie();
 });
 
@@ -93,8 +104,8 @@ function relativeTime(ts?: number): string {
 			<DocsEyebrow>Welcome Back</DocsEyebrow>
 			<UButton
 				label="Personalize"
-				icon="material-symbols:tune"
-				trailing-icon="material-symbols:arrow-forward"
+				icon="i-lucide-sliders-horizontal"
+				trailing-icon="i-lucide-arrow-right"
 				variant="ghost"
 				color="neutral"
 				size="xs"
@@ -106,7 +117,7 @@ function relativeTime(ts?: number): string {
 			<div class="p-6 pb-7">
 				<div v-if="resume">
 					<DocsEyebrow
-						icon="material-symbols:bookmark-outline"
+						icon="i-lucide-bookmark"
 						class="mb-2.5"
 					>
 						Continue reading
@@ -117,7 +128,7 @@ function relativeTime(ts?: number): string {
 					>
 						<span>{{ resume.title }}</span>
 						<UIcon
-							name="material-symbols:open-in-new"
+							name="i-lucide-arrow-up-right"
 							class="size-5 inline-block ml-1 -mt-1 text-muted group-hover:text-primary transition-colors"
 						/>
 					</NuxtLink>
@@ -133,7 +144,7 @@ function relativeTime(ts?: number): string {
 
 				<div v-else>
 					<DocsEyebrow
-						icon="material-symbols:explore-outline"
+						icon="i-lucide-compass"
 						class="mb-2.5"
 					>
 						Start here
@@ -144,7 +155,7 @@ function relativeTime(ts?: number): string {
 					>
 						<span>Pick a place to begin</span>
 						<UIcon
-							name="material-symbols:open-in-new"
+							name="i-lucide-arrow-up-right"
 							class="size-5 inline-block ml-1 -mt-1 text-muted group-hover:text-primary transition-colors"
 						/>
 					</NuxtLink>
@@ -155,7 +166,7 @@ function relativeTime(ts?: number): string {
 			</div>
 
 			<aside class="flex flex-col gap-3.5 p-6 pb-7">
-				<DocsEyebrow icon="material-symbols:person-search-outline">
+				<DocsEyebrow icon="i-lucide-user-search">
 					Your context
 				</DocsEyebrow>
 
@@ -177,7 +188,7 @@ function relativeTime(ts?: number): string {
 				<UButton
 					v-else
 					label="Tell us about your stack"
-					trailing-icon="material-symbols:arrow-forward"
+					trailing-icon="i-lucide-arrow-right"
 					variant="link"
 					color="neutral"
 					size="xs"
@@ -188,7 +199,7 @@ function relativeTime(ts?: number): string {
 				<UButton
 					v-if="chips.length"
 					label="Edit"
-					trailing-icon="material-symbols:arrow-forward"
+					trailing-icon="i-lucide-arrow-right"
 					variant="link"
 					color="neutral"
 					size="xs"
@@ -199,22 +210,22 @@ function relativeTime(ts?: number): string {
 		</div>
 
 		<div
-			v-if="favorites.length || restRecents.length"
+			v-if="favoritesList.length || restRecents.length"
 			class="grid grid-cols-1 divide-y divide-default border-t border-default @min-[48rem]/docs-pane:grid-cols-2 @min-[48rem]/docs-pane:divide-x @min-[48rem]/docs-pane:divide-y-0"
 		>
 			<div class="px-6 pt-5 pb-6">
 				<DocsEyebrow
-					icon="material-symbols:star-outline"
+					icon="i-lucide-star"
 					class="mb-2.5"
 				>
 					Favorites
 				</DocsEyebrow>
 				<ul
-					v-if="favorites.length"
+					v-if="favoritesList.length"
 					class="flex flex-col gap-0.5"
 				>
 					<li
-						v-for="f in favorites.slice(0, 8)"
+						v-for="f in favoritesList.slice(0, 8)"
 						:key="f.path"
 						class="group flex items-center gap-2"
 					>
@@ -226,7 +237,7 @@ function relativeTime(ts?: number): string {
 							<span class="truncate">{{ f.title }}</span>
 						</NuxtLink>
 						<UButton
-							icon="material-symbols:close"
+							icon="i-lucide-x"
 							variant="ghost"
 							color="neutral"
 							size="xs"
@@ -249,7 +260,7 @@ function relativeTime(ts?: number): string {
 				class="px-6 pt-5 pb-6"
 			>
 				<DocsEyebrow
-					icon="material-symbols:history"
+					icon="i-lucide-history"
 					class="mb-2.5"
 				>
 					Recently viewed

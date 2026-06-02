@@ -4,9 +4,9 @@
 
 ## 🐰 Introduction
 
-Welcome! This is the repo for [Directus' documentation](https://docs.directus.io).
+Welcome! This is the repo for [Directus' documentation](https://directus.com/docs).
 
-**[Learn more about Directus](https://directus.io)**
+**[Learn more about Directus](https://directus.com)**
 
 
 ## 🖥️ Running the Docs
@@ -57,10 +57,30 @@ pnpm stable-ids:check   # Validate stableId frontmatter
 pnpm redirects:sync     # Update redirects.json for moved pages
 pnpm redirects:check    # Check redirect coverage without writing files
 pnpm index:docs         # Build the search index in Typesense
+pnpm typesense:cleanup-preview # Delete stale Typesense preview indexes
 pnpm typecheck:scripts  # Type check repository scripts
 ```
 
-`pnpm install` configures `.githooks` for the repository when no custom `core.hooksPath` is set. The pre-commit hook can add missing `stableId` values to staged docs files. The pre-push hook checks redirects when docs content, redirect configuration, or content configuration changes.
+Stable IDs give each public docs page a permanent identity. Nuxt Content derives
+its unique page IDs from file paths, so moving a page changes its built-in ID.
+Redirect sync compares the current branch to `origin/main`, so moved pages keep
+their old URLs working.
+
+CI runs `pnpm stable-ids:check` and `pnpm redirects:check` for docs changes.
+
+- New docs page: run `pnpm stable-ids:ensure`, then commit the new `stableId`.
+- Moved docs page: keep the existing `stableId`, run `pnpm redirects:sync`, then commit `redirects.json`.
+- Deleted, split, or merged docs page: run `pnpm redirects:sync`, review `.docs/redirect-decisions-needed.md`, choose target redirects, then re-run `pnpm redirects:check`.
+- Before opening a PR: run `pnpm stable-ids:check` and `pnpm redirects:check`.
+
+Redirect scripts compare against `origin/main` by default. To check a release branch
+or another target, fetch it first, then pass `--base` directly to the script:
+
+```bash
+git fetch origin release/v13
+node scripts/redirects-sync.ts --base origin/release/v13 --no-write --fail-on-unresolved
+node scripts/redirects-sync.ts --base origin/release/v13 --write-deterministic --fail-on-unresolved
+```
 
 ## ✍️ Authoring Content
 
@@ -99,8 +119,8 @@ The documentation automatically deploys to Vercel when changes are merged into t
 
 ## 🚀 Contributing
 
-- [Code of Conduct](https://directus.io/docs/community/overview/conduct)
-- [Contributing and authoring guidelines](https://directus.io/docs/community/contribution/documentation)
+- [Code of Conduct](https://directus.com/docs/community/overview/conduct)
+- [Contributing and authoring guidelines](https://directus.com/docs/community/contribution/documentation)
 
 <br />
 
@@ -137,6 +157,23 @@ Each indexer run writes to whichever slot the alias is not currently pointing at
 For one-off writes, override the index target with `TYPESENSE_INDEX_TARGET=...`.
 
 The browser reads from `TYPESENSE_COLLECTION` when set. Otherwise it derives the same branch alias as the indexer. The app reads the alias, never the `-a` / `-b` slot name.
+
+### Preview Cleanup
+
+PR preview indexes are deleted when same-repo PRs close. The cleanup job deletes the branch alias and both fixed slots:
+
+```bash
+pnpm typesense:cleanup-preview --branch bry/foo
+```
+
+For one-time cleanup of accumulated preview indexes, run a dry run first:
+
+```bash
+pnpm typesense:cleanup-preview --stale --dry-run
+pnpm typesense:cleanup-preview --stale
+```
+
+Stale cleanup keeps preview aliases for currently open PR branches and deletes the rest. It requires `TYPESENSE_URL`, `TYPESENSE_PRIVATE_API_KEY`, and authenticated `gh`.
 
 ### Ranking
 

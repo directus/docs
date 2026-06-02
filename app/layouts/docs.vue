@@ -113,7 +113,7 @@ const frameworkNavigation = computed(() => {
 							class="mt-4 flex items-center gap-2 border-t border-dashed border-default pt-4 text-sm font-medium text-muted transition hover:text-primary"
 						>
 							<Icon
-								name="material-symbols:arrow-back"
+								name="i-lucide-arrow-left"
 								class="size-4"
 							/>
 							All Frameworks

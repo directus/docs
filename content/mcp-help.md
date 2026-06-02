@@ -6,7 +6,7 @@ description: Connect Claude, Cursor, VS Code, or any MCP-compatible client direc
 
 You landed here because you opened the Directus docs MCP server in a browser. The server itself speaks the [Model Context Protocol](https://modelcontextprotocol.io/). Connect a compatible AI client to it and your assistant can search and read these docs as a live tool.
 
-::callout{icon="material-symbols:info" color="info"}
+::callout{icon="i-lucide-info" color="info"}
 This is the **docs MCP server**, which exposes this documentation site to AI clients. If you want to connect AI tools to your own Directus instance to manage content and schema, see the [Directus product MCP guide](/guides/ai/mcp) instead.
 ::
 
