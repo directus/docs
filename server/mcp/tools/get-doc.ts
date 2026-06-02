@@ -28,8 +28,11 @@ export default defineMcpTool({
 		try {
 			markdown = await ofetch(`${getMcpStaticBaseUrl()}${getMcpMarkdownPath(normalized)}.md`, { responseType: 'text' });
 		}
-		catch {
+		catch (error) {
 			if (!import.meta.dev) {
+				if (fetchStatusCode(error) !== 404) {
+					throw createError({ statusCode: 503, message: `Doc markdown unavailable for ${normalized}` });
+				}
 				throw createError({ statusCode: 404, message: `No doc found at ${normalized}` });
 			}
 
@@ -62,3 +65,8 @@ export default defineMcpTool({
 		};
 	},
 });
+
+function fetchStatusCode(error: unknown): number | undefined {
+	if (!error || typeof error !== 'object' || !('response' in error)) return;
+	return (error as { response?: { status?: number } }).response?.status;
+}
