@@ -79,7 +79,7 @@ Number of items to skip (e.g., `0`, `50`, `100`)
 
 ## Troubleshooting
 
-When working with Directus API through Clay, you may encounter various error codes. For a comprehensive list of Directus error codes and their meanings, refer to the [official Directus Error Codes documentation](https://directus.io/docs/guides/connect/errors).
+When working with Directus API through Clay, you may encounter various error codes. For a comprehensive list of Directus error codes and their meanings, refer to the [official Directus Error Codes documentation](https://directus.com/docs/guides/connect/errors).
 
 ### Common Issues
 

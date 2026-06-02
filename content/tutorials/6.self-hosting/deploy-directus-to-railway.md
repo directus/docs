@@ -56,7 +56,7 @@ The templates preconfigure most of what Directus needs: database, Redis, and (wh
 
 After you save variables, Railway will redeploy the Directus service so the new values take effect. The first time you open your Directus URL, you'll either see the onboarding screen (blank template) or the login screen (CMS template, using the credentials you set).
 
-::callout{icon="material-symbols:info-outline" title="Preconfigured variables"}
+::callout{icon="i-lucide-info" title="Preconfigured variables"}
 The official templates set database, Redis, and (with the Bucket service) S3 storage automatically. Only override those if you're using an external database or storage; otherwise focus on `PUBLIC_URL`. For the CMS template, you can also set `ADMIN_EMAIL` and `ADMIN_PASSWORD` if you didn't during deploy. The blank template creates the first admin via the onboarding UI by default; set `ADMIN_EMAIL` and `ADMIN_PASSWORD` to create it automatically instead.
 ::
 

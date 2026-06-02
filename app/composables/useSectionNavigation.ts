@@ -9,19 +9,21 @@ import {
 	type DocsSection,
 } from '#shared/utils/docsSections';
 
-export function useSectionNavigation() {
+export function useSectionNavigation(options: { immediate?: boolean } = {}) {
 	const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')!;
 	const route = useRoute();
+	const router = useRouter();
+	const routePath = computed(() => options.immediate ? router.currentRoute.value.path : route.path);
 
 	const currentSection = computed<DocsSection | null>(() =>
-		findSectionByPath(route.path),
+		findSectionByPath(routePath.value),
 	);
 
 	const currentGroup = computed<DocsGroup | null>(() => {
 		if (currentSection.value) return findGroupBySectionId(currentSection.value.id);
 		// Treat the home route as part of the primary docs group so the
 		// section subnav and sidebar render with default content.
-		if (route.path === '/') return docsGroups.find(group => group.id === 'docs') ?? null;
+		if (routePath.value === '/') return docsGroups.find(group => group.id === 'docs') ?? null;
 		return null;
 	});
 
@@ -35,7 +37,7 @@ export function useSectionNavigation() {
 	const sections = computed(() =>
 		docsSections.map(section => ({
 			...section,
-			active: section.prefixes.some(prefix => matchesPrefix(route.path, prefix)),
+			active: section.prefixes.some(prefix => matchesPrefix(routePath.value, prefix)),
 		})),
 	);
 
@@ -73,7 +75,7 @@ export function useSectionNavigation() {
 	});
 
 	const containsActivePath = (item: ContentNavigationItem): boolean => {
-		if (item.path === route.path) return true;
+		if (item.path === routePath.value) return true;
 		return item.children?.some(containsActivePath) ?? false;
 	};
 

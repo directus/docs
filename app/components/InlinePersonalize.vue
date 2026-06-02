@@ -111,7 +111,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 						<template v-if="currentKey === 'framework'">
 							<UInput
 								v-model="frameworkQuery"
-								icon="material-symbols:search"
+								icon="i-lucide-search"
 								size="sm"
 								placeholder="Search frameworks..."
 								class="w-full mb-2"
@@ -185,7 +185,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 				class="flex items-center gap-2 py-1 text-sm text-highlighted"
 			>
 				<UIcon
-					name="material-symbols:check-circle-outline"
+					name="i-lucide-circle-check"
 					class="size-5 text-primary"
 				/>
 				<span>All set — your docs are personalized.</span>

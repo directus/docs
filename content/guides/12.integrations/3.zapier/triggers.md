@@ -71,7 +71,7 @@ You can add Filter steps after the trigger to only process specific events:
 - Filter by collection or field values
 - Only process certain types of files
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Filtering Tip**
 Use Zapier's **Filter** step after the trigger to add conditional logic. For example, only send notifications when `status` equals `"published"`.
 ::

@@ -23,7 +23,7 @@ if (!page.value) {
 	<DocsPage>
 		<div class="flex @min-[40rem]/docs-pane:hidden sticky top-(--ui-header-height) z-10 -mx-4 mb-4 items-center border-b border-dashed border-default bg-default/75 px-4 py-3 backdrop-blur">
 			<UDrawer v-model:open="menuDrawerOpen" direction="left" side="left" inset :handle="false" :ui="{ content: 'w-full max-w-2/3' }">
-				<UButton label="Menu" icon="material-symbols:menu" color="neutral" variant="link" size="xs" aria-label="Open navigation" />
+				<UButton label="Menu" icon="i-lucide-menu" color="neutral" variant="link" size="xs" aria-label="Open navigation" />
 				<template #body>
 					<MobileNavSectionSwitcher :items="allSectionItems" :current-section="currentSection" />
 					<p class="text-xs font-medium text-dimmed uppercase font-mono tracking-widest mb-2 flex items-center gap-1">
@@ -42,7 +42,7 @@ if (!page.value) {
 			<template #headline>
 				<UBreadcrumb
 					:items="[
-						{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
+						{ 'icon': 'i-lucide-house', 'to': '/', 'aria-label': 'Home' },
 						{ label: 'Tutorials' },
 					]"
 				>

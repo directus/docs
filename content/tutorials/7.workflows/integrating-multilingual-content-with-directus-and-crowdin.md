@@ -44,8 +44,8 @@ For detailed step-by-step instructions, explore the [content translation referen
 
 Contributing to the translation process and translating the Directus project itself is a collaborative effort you can make. Here's how you can actively participate and ensure Directus Data Studio is available in multiple languages:
 
-1. **Crowdin Account Creation**: If you don't already have a Crowdin account, start by [creating one](https://accounts.crowdin.com/register?utm_source=docs.directus.io&utm_medium=referral&utm_campaign=guest-post).
-2. **Join the Directus Translation Project:** Once you have a Crowdin account, search for the "Directus" project within Crowdin or simply [join this project](https://crowdin.com/project/directus?utm_source=docs.directus.io&utm_medium=referral&utm_campaign=guest-post) to gain access.
+1. **Crowdin Account Creation**: If you don't already have a Crowdin account, start by [creating one](https://accounts.crowdin.com/register?utm_source=directus.com/docs&utm_medium=referral&utm_campaign=guest-post).
+2. **Join the Directus Translation Project:** Once you have a Crowdin account, search for the "Directus" project within Crowdin or simply [join this project](https://crowdin.com/project/directus?utm_source=directus.com/docs&utm_medium=referral&utm_campaign=guest-post) to gain access.
 3. **Translating Strings**: Inside the Directus project, you'll find various languages and files with strings and phrases that require translation. Go to Language > Files or Translate All, and click on each string to enter translations for different languages.
 4. **Collaboration:** Crowdin enables collaboration with other translators. You can discuss translations, ask questions, and provide context to ensure accurate translations.
 
@@ -66,7 +66,7 @@ If your language is already available on Directus, you can change the UI in a fe
 
 Now, let's delve into the heart of multilingual content management. This is where we should introduce Crowdin - a localization software created to simplify the translation process and ensure your app speaks fluently in every tongue.
 
-We'll explore how to utilize the [Crowdin connector](https://store.crowdin.com/directus-translation-strings?utm_source=docs.directus.io&utm_medium=referral&utm_campaign=guest-post) to add new translation strings to your Directus project:
+We'll explore how to utilize the [Crowdin connector](https://store.crowdin.com/directus-translation-strings?utm_source=directus.com/docs&utm_medium=referral&utm_campaign=guest-post) to add new translation strings to your Directus project:
 
 1. **Install Crowdin Connector:** If you haven't already, install the Crowdin connector for Directus.
 2. **Configuration**: Configure the Crowdin connector with your Directus URL, email, and password. It's recommended to set up a dedicated user in your project for the connector.
@@ -77,8 +77,8 @@ We'll explore how to utilize the [Crowdin connector](https://store.crowdin.com/d
 
 As your content evolves, use the integration to keep translations updated - manage updates, new strings, and changes through Crowdin's interface.
 
-Refer to the latest [integration](https://store.crowdin.com/directus-translation-strings?utm_source=docs.directus.io&utm_medium=referral&utm_campaign=guest-post) documentation for the most accurate and up-to-date instructions. Or, you can always contact the Crowdin [support team](https://crowdin.com/contacts?utm_source=docs.directus.io&utm_medium=referral&utm_campaign=guest-post) (available 24/7).
+Refer to the latest [integration](https://store.crowdin.com/directus-translation-strings?utm_source=directus.com/docs&utm_medium=referral&utm_campaign=guest-post) documentation for the most accurate and up-to-date instructions. Or, you can always contact the Crowdin [support team](https://crowdin.com/contacts?utm_source=directus.com/docs&utm_medium=referral&utm_campaign=guest-post) (available 24/7).
 
 ## A World Of Multilingual Possibilities
 
-As you embark on your multilingual journey, remember that [Directus and Crowdin](https://store.crowdin.com/directus-translation-strings?utm_source=docs.directus.io&utm_medium=referral&utm_campaign=guest-post) are your trusty companions. Content localization isn't just about translating words; it's about creating connections and understanding. In a world where languages blend and cultures unite, your code becomes the bridge that brings people together. With Directus and Crowdin, you're not just coding; you're crafting an inclusive digital world where everyone's voice is heard and understood.
+As you embark on your multilingual journey, remember that [Directus and Crowdin](https://store.crowdin.com/directus-translation-strings?utm_source=directus.com/docs&utm_medium=referral&utm_campaign=guest-post) are your trusty companions. Content localization isn't just about translating words; it's about creating connections and understanding. In a world where languages blend and cultures unite, your code becomes the bridge that brings people together. With Directus and Crowdin, you're not just coding; you're crafting an inclusive digital world where everyone's voice is heard and understood.

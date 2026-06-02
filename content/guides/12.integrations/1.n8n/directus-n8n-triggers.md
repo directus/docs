@@ -52,7 +52,7 @@ When you activate a workflow with a Directus Trigger node:
 3. Your workflow runs automatically with the data from Directus
 4. When you deactivate the workflow, the Flow and webhook are automatically removed
 
-::callout{icon="material-symbols:info-outline" color="warning"}
+::callout{icon="i-lucide-info" color="warning"}
 **Public URL Required**
 Your n8n instance needs to be accessible from the internet for triggers to work. If you're using n8n Cloud, this is already set up. If you're self-hosting, you'll need to modify the Flow in Directus to use a tunnel (like ngrok or Cloudflare Tunnel) to expose your n8n instance publicly.
 ::
@@ -81,7 +81,7 @@ You can add conditions after the trigger to only process specific events:
 - Filter by collection or field values
 - Only process certain types of files
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Filtering Tip**
 Use n8n's **IF** node after the trigger to add conditional logic. For example, only send notifications when `{{ $json.status }}` equals `"published"`.
 ::

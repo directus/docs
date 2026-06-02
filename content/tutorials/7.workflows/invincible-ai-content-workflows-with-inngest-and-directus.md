@@ -81,7 +81,7 @@ The following sections detail the technical implementation.
 ## Implementation Guide
 
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 To implement this integration, you'll want to have
 
@@ -458,7 +458,7 @@ Here's an examination of this hooks implementation in detail:
 
 Now, create a simple workflow function to consume the `image-uploaded` event.
 
-By default, [asset transformations](https://directus.io/docs/guides/files/transform#preset-transformations) in Directus on created "on the fly" (and then cached) whenever you request an image, but if you're statically generating a large site with lots of images this can slow your build time.
+By default, [asset transformations](https://directus.com/docs/guides/files/transform#preset-transformations) in Directus on created "on the fly" (and then cached) whenever you request an image, but if you're statically generating a large site with lots of images this can slow your build time.
 
 You can address that by using Inngest to do the transformations when images are uploaded, instead of when they are requested.
 

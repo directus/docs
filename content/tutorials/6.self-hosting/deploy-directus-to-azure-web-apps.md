@@ -60,7 +60,7 @@ Within the Azure Marketplace, select the Web App resource. When creating a Web A
 - **Port:** 8055
 
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 In this section, we will specify the version of Directus as `11.17.0` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
 
@@ -92,7 +92,7 @@ Let’s go through the important parameters in this configuration:
 - Also set `DB_USER` and `DB_PASSWORD` to the credentials you set up during the creation of your Azure Database for PostgreSQL.
 
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 The `WEBSITES_ENABLE_APP_SERVICE_STORAGE` setting must remain at its default value of "off". Changing it to "on" will prevent Directus from starting.
 
@@ -119,7 +119,7 @@ Then return to the Web App and head to Settings -> Configuration -> Path mapping
 | Extensions | Azure Files | SMB | extensions | /directus/extensions |
 | Uploads | Azure Files | SMB | uploads | /directus/uploads |
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Although Azure Web Apps provide an option to configure volume mounts in the container's configuration screen, this does not work with Directus.
 Keep `WEBSITES_ENABLE_APP_SERVICE_STORAGE` set to its default value of "off".

@@ -42,7 +42,7 @@ useHead(computed(() => ({
 				/>
 				<Icon
 					class="hidden md:block transform duration-150 ease-out ml-1 group-hover:translate-x-1 size-5"
-					name="material-symbols:arrow-forward"
+					name="i-lucide-arrow-right"
 				/>
 			</NuxtLink>
 
@@ -51,7 +51,7 @@ useHead(computed(() => ({
 				@click="dismiss(banner.id)"
 			>
 				<Icon
-					name="material-symbols:close"
+					name="i-lucide-x"
 					class="size-5"
 				/>
 			</button>

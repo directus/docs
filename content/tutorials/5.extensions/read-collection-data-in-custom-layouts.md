@@ -196,7 +196,7 @@ router.patch('/', async (req, res) => {
 });
 ```
 
-::callout{icon="material-symbols:warning-outline-rounded"}
+::callout{icon="i-lucide-triangle-alert"}
 
 Updating the field name is not supported at this time.
 
@@ -314,7 +314,7 @@ router.delete('/', async (req, res) => {
 });
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Refer to the full list of methods [in our codebase](https://github.com/directus/directus/blob/main/api/src/services).
 
