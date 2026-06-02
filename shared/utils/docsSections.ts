@@ -7,9 +7,10 @@ export type DocsSectionId
 		| 'frameworks'
 		| 'reference'
 		| 'api'
-		| 'community';
+		| 'community'
+		| 'licensing';
 
-export type DocsGroupId = 'docs' | 'reference' | 'legacy-reference' | 'examples';
+export type DocsGroupId = 'docs' | 'reference' | 'legacy-reference' | 'examples' | 'licensing';
 
 export interface DocsSection {
 	id: DocsSectionId;
@@ -91,6 +92,13 @@ export const docsSections: DocsSection[] = [
 		prefixes: ['/community', '/releases'],
 		icon: 'material-symbols:groups-outline',
 	},
+	{
+		id: 'licensing',
+		label: 'Licensing',
+		to: '/licensing/overview',
+		prefixes: ['/licensing'],
+		icon: 'material-symbols:key-outline',
+	},
 ];
 
 export const docsGroups: DocsGroup[] = [
@@ -121,6 +129,13 @@ export const docsGroups: DocsGroup[] = [
 		to: '/tutorials',
 		icon: 'material-symbols:article-outline',
 		sectionIds: ['tutorials'],
+	},
+	{
+		id: 'licensing',
+		label: 'Licensing',
+		to: '/licensing/overview',
+		icon: 'material-symbols:key-outline',
+		sectionIds: ['licensing'],
 	},
 ];
 
