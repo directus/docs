@@ -36,6 +36,17 @@ describe('abuseGate', () => {
 		}).verdict).toBe('blocked');
 	});
 
+	it('allows the Directus docs production origin', () => {
+		expect(abuseGate({
+			...trusted,
+			origin: 'https://directus.com',
+			referer: 'https://directus.com/docs',
+			host: 'directus.com',
+			vercelEnv: 'production',
+			nodeEnv: 'production',
+		}).verdict).toBe('trusted');
+	});
+
 	it('allows exact Vercel preview URL in preview', () => {
 		expect(abuseGate({
 			...trusted,
@@ -45,5 +56,29 @@ describe('abuseGate', () => {
 			vercelUrl: 'directus-docs-git-branch.vercel.app',
 			nodeEnv: 'production',
 		}).verdict).toBe('trusted');
+	});
+
+	it('allows Directus Vercel branch aliases in preview', () => {
+		expect(abuseGate({
+			...trusted,
+			origin: 'https://docs-git-bry-dockem-8-ai-assistant-directus.vercel.app',
+			referer: 'https://docs-git-bry-dockem-8-ai-assistant-directus.vercel.app/docs',
+			host: 'docs-git-bry-dockem-8-ai-assistant-directus.vercel.app',
+			vercelEnv: 'preview',
+			vercelUrl: 'docs-abc123-directus.vercel.app',
+			nodeEnv: 'production',
+		}).verdict).toBe('trusted');
+	});
+
+	it('does not allow arbitrary Vercel branch aliases in preview', () => {
+		expect(abuseGate({
+			...trusted,
+			origin: 'https://evil-git-branch-someone.vercel.app',
+			referer: 'https://evil-git-branch-someone.vercel.app/docs',
+			host: 'evil-git-branch-someone.vercel.app',
+			vercelEnv: 'preview',
+			vercelUrl: 'docs-abc123-directus.vercel.app',
+			nodeEnv: 'production',
+		}).verdict).toBe('blocked');
 	});
 });

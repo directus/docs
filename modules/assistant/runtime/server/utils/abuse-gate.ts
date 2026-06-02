@@ -38,8 +38,9 @@ function isDev(input: AbuseGateInput): boolean {
 }
 
 function allowedOrigins(input: AbuseGateInput): Set<string> {
-	const origins = new Set(['https://directus.io', 'https://www.directus.io']);
+	const origins = new Set(['https://directus.com', 'https://www.directus.com', 'https://directus.io', 'https://www.directus.io']);
 	if (input.vercelEnv === 'preview' && input.vercelUrl) origins.add(`https://${input.vercelUrl}`);
+	if (input.vercelEnv === 'preview' && input.host?.endsWith('-directus.vercel.app')) origins.add(`https://${input.host}`);
 	if (isDev(input)) {
 		origins.add('http://localhost:3000');
 		origins.add('http://localhost:3001');
