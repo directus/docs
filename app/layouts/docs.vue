@@ -1,90 +1,136 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
+import { docsSections } from '#shared/utils/docsSections';
 
+const { currentSection, sectionNavigation } = useSectionNavigation();
 const nav = inject<Ref<ContentNavigationItem[]>>('navigation')!;
 const route = useRoute();
+const router = useRouter();
 
-const { links } = useSectionLinks();
-const { header: { nav: navConfig } } = useAppConfig();
+const isFrameworksSection = computed(() => route.path === '/frameworks' || route.path.startsWith('/frameworks/'));
 
-const currentSection = computed(() => {
-	// Get the first segment of the path to determine the content section
-	const pathSegments = route.path.split('/').filter(Boolean);
-	const contentSection = pathSegments[0]; // e.g., "cloud", "guides", "api"
+const gettingStartedSection = docsSections.find(s => s.id === 'getting-started')!;
 
-	if (!contentSection) return null;
+const fallbackSection = computed(() => (currentSection.value ? null : gettingStartedSection));
 
-	// Don't show section header for guides since they're already in the navigation
-	if (contentSection === 'guides') return null;
+const gettingStartedNavigation = computed<ContentNavigationItem[]>(() => {
+	const root = nav.value?.find(item => item.path === '/getting-started');
+	return root?.children ?? [];
+});
 
-	// Find the nav section that contains a child matching this content section
-	for (const item of navConfig) {
-		if (item.children) {
-			const matchingChild = item.children.find((child) => {
-				if (child.to) {
-					const childSegments = child.to.split('/').filter(Boolean);
-					return childSegments[0] === contentSection;
-				}
-				return false;
-			});
-			if (matchingChild) {
-				return matchingChild; // Return the specific child (e.g., "Cloud", "Self-Hosting")
-			}
-		}
+const displaySection = computed(() => currentSection.value ?? fallbackSection.value);
+const displayNavigation = computed(() =>
+	currentSection.value ? sectionNavigation.value : gettingStartedNavigation.value,
+);
 
-		// For direct matches (like API Reference, Start)
-		if (item.to) {
-			const itemSegments = item.to.split('/').filter(Boolean);
-			if (itemSegments[0] === contentSection) {
-				return item;
-			}
-		}
+const frameworksRoot = computed(() =>
+	nav.value?.find(item => item.path === '/frameworks'),
+);
+
+type FrameworkOption = { label: string; value: string; icon?: string };
+
+const frameworkOptions = computed<FrameworkOption[]>(() => {
+	const items = frameworksRoot.value?.children ?? [];
+	return items
+		.filter(item => item.path && item.path !== '/frameworks')
+		.map(item => ({
+			label: item.title ?? item.path?.split('/').pop() ?? '',
+			value: item.path,
+			icon: item.icon,
+		}));
+});
+
+const selectedFrameworkPath = computed(() => {
+	const match = /^\/frameworks\/([^/]+)/.exec(route.path);
+	return match ? `/frameworks/${match[1]}` : undefined;
+});
+
+const selectedFrameworkIcon = computed(() =>
+	frameworkOptions.value.find(option => option.value === selectedFrameworkPath.value)?.icon,
+);
+
+const onFrameworkSelect = (value: string | undefined) => {
+	if (value && value !== selectedFrameworkPath.value) {
+		router.push(value);
 	}
+};
 
-	return null;
-}) as ComputedRef<{ label: string; to: string; icon?: string } | null>;
-
-// Only render the nav for the current section of the docs (eg docs, api, cloud)
-const navigation = computed(() => {
-	const routePrefix = `/${route.path.split('/')[1]}`;
-
-	return nav.value.find((item) => {
-		return item.path.startsWith(routePrefix);
-	})?.children ?? [];
+const frameworkNavigation = computed(() => {
+	const path = selectedFrameworkPath.value;
+	if (!path) return [];
+	const node = frameworksRoot.value?.children?.find(item => item.path === path);
+	return node?.children ?? [];
 });
 </script>
 
 <template>
 	<UContainer>
-		<UPage>
+		<DocsPage>
 			<template #left>
-				<UPageAside>
-					<UPageAnchors :links="links" />
-					<USeparator
-						type="dashed"
-						class="my-5"
-					/>
+				<DocsAside class="lg:ps-0 lg:-ms-0 lg:pe-2">
 					<p
-						v-if="currentSection"
-						class="text-xs font-medium text-dimmed mb-2 uppercase flex items-center gap-1"
+						v-if="displaySection"
+						class="text-xs font-medium text-dimmed mb-2 uppercase font-mono tracking-widest flex items-center gap-1"
 					>
 						<Icon
-							v-if="currentSection?.icon"
-							:name="currentSection.icon"
+							v-if="displaySection?.icon"
+							:name="displaySection.icon"
 						/>
-						{{ currentSection.label }}
+						{{ displaySection.label }}
 					</p>
 
+					<template v-if="isFrameworksSection">
+						<USelectMenu
+							:model-value="selectedFrameworkPath"
+							:items="frameworkOptions"
+							:icon="selectedFrameworkIcon"
+							placeholder="Choose a framework"
+							value-key="value"
+							size="lg"
+							class="w-full mb-4"
+							@update:model-value="onFrameworkSelect"
+						>
+							<template #item-leading="{ item }">
+								<Icon
+									v-if="item.icon"
+									:name="item.icon"
+									class="size-4"
+								/>
+							</template>
+						</USelectMenu>
+
+						<UContentNavigation
+							v-if="frameworkNavigation.length"
+							:navigation="frameworkNavigation"
+							default-open
+							variant="link"
+							highlight
+						/>
+
+						<NuxtLink
+							v-if="selectedFrameworkPath"
+							to="/frameworks"
+							class="mt-4 flex items-center gap-2 border-t border-dashed border-default pt-4 text-sm font-medium text-muted transition hover:text-primary"
+						>
+							<Icon
+								name="i-lucide-arrow-left"
+								class="size-4"
+							/>
+							All Frameworks
+						</NuxtLink>
+					</template>
+
 					<UContentNavigation
-						:navigation="navigation"
+						v-else
+						:navigation="displayNavigation"
 						default-open
 						variant="link"
 						highlight
 					/>
-				</UPageAside>
+				</DocsAside>
 			</template>
 
 			<slot />
-		</UPage>
+		</DocsPage>
 	</UContainer>
 </template>

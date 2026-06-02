@@ -1,4 +1,5 @@
 ---
+stableId: 6a84ed31-311c-4ef4-ace0-2e8cacbaa960
 id: 0a7a8969-138e-4047-884e-1048a811a939
 slug: build-directus-garden-a-passive-collaborative-event-booth-demo
 title: Build Directus Garden - A Passive Collaborative Event Booth Demo
@@ -30,9 +31,9 @@ This is a perfect vibe — passive, laid-back, and incredibly cute. With this in
 
 In this small demo built in a day, attendees become gardeners helping us build a beautiful and lively garden by placing items in the scene.
 
-To do this, they must use Directus Auth to register for and login to their account, and then Directus Connect to see what they can place before doing so.
+To do this, they must use Directus Auth to register for and login to their account, and then Directus APIs to see what they can place before doing so.
 
-The client is a Nuxt.js application backed with Directus, and can facilitate multiple ongoing events. Once audience members participate, they are invited back at the final break for a raffle draw via a transactional email sent through Directus Automate.
+The client is a Nuxt.js application backed with Directus, and can facilitate multiple ongoing events. Once audience members participate, they are invited back at the final break for a raffle draw via a transactional email sent through Directus Flows.
 
 ## Understanding the Project
 

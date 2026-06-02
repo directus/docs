@@ -1,4 +1,5 @@
 ---
+stableId: 48273337-cf60-4265-b50d-d426fedb0c31
 id: 02b0514b-0ee9-426e-89f9-14dc73bfd62d
 slug: implement-navigation-in-multipage-custom-modules
 title: Implement Navigation in Multipage Custom Modules
@@ -347,7 +348,7 @@ export default{
 This uses the built-in `v-list` and `v-list-item` to render the navigation from the pages property. The current property
 is used to set the `v-list-item` to active when the current page matches the navigation item.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 The export names the component `PageNavigation`. This must match the component import in the module.vue.
 
@@ -373,7 +374,7 @@ Now this can be used in the template. After the `breadcrumbs`, add the following
 </template>
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 `PageNavigation` must be a `page-navigation` when used in the template to meet lint syntax standards.
 
@@ -502,7 +503,7 @@ api.get(`/items/pages?fields=title,banner,content&filter[uri][_eq]=${page}`).the
 
 ### Work With Images
 
-::callout{icon="material-symbols:warning-outline-rounded"}
+::callout{icon="i-lucide-triangle-alert"}
 
 Since [Directus version 10.10.0](/releases/breaking-changes/version-10#version-10100) the query parameter authentication is
 no longer required and considered deprecated, you can rely on
@@ -576,7 +577,7 @@ Then wrap any internal images with this function:
 page_banner.value = addTokenToURL(`/assets/${item.banner}?width=2000&height=563&fit=cover`);
 ```
 
-::callout{icon="material-symbols:info-outline}
+::callout{icon="i-lucide-info}
 
 If you are using images from external sources, the host must be added to the Content Security Policy (CSP) inside the
 environment or config file.
@@ -674,7 +675,7 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

@@ -1,5 +1,6 @@
 ---
-slug: build-a-realtime-chat-app-with-directus-and-nuxt
+stableId: e810de4e-c2cb-484d-8600-4b9fcc715a64
+slug: build-a-realtime-chat-app-using-directus-and-nuxt
 title: Build a Realtime Chat App with Directus and Nuxt
 technologies:
   - nuxt
@@ -197,7 +198,7 @@ Then, in the template, add a form to capture the user's email and password and d
 
 If you run `npm run dev` and navigate to `http://localhost:3000` you should see a login form.
 
-Directus Realtime (Websockets) will be used to authenticate the user as well as send and receive messages. To connect the client to Directus use [handshake mode](https://directus.io/docs/guides/realtime/authentication#handshake-mode) which requires a connection followed quickly and immediately by an authentication.
+Directus Realtime (Websockets) will be used to authenticate the user as well as send and receive messages. To connect the client to Directus use [handshake mode](https://directus.com/docs/guides/realtime/authentication#handshake-mode) which requires a connection followed quickly and immediately by an authentication.
 
 After the variable definitions in `pages/index.vue` script setup add the following code:
 
@@ -252,7 +253,7 @@ Visit `http://your-website-url` and try logging in with the user you created in 
 
 ### Subscribe to Incoming Messages
 
-Although `$directus.onWebSocket('message', (message) => {}` will receive all messages, the Directus SDK provides a more convenient way to subscribe to specific events. In this case the client can subscribe to the `messages` collection to receive specific fields from any messages as they are created and uniquely identify our subscription with a [UID](https://directus.io/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [best practice](https://directus.io/docs/guides/realtime/subscriptions#using-uids).
+Although `$directus.onWebSocket('message', (message) => {}` will receive all messages, the Directus SDK provides a more convenient way to subscribe to specific events. In this case the client can subscribe to the `messages` collection to receive specific fields from any messages as they are created and uniquely identify our subscription with a [UID](https://directus.com/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [best practice](https://directus.com/docs/guides/realtime/subscriptions#using-uids).
 
 At the bottom of the setup script in `pages/index.vue` add the following code:
 
@@ -410,7 +411,7 @@ Visit your website url again and refresh the page. You should see the last 10 me
 
 Directus Realtime uses websockets to maintain a connection to the server. Behind the scenes Directus is sending a heartbeat or ping message every 30 seconds to keep the connection alive. If the connection is lost, then the user will not receive updates. Nuxt already responds to this message in `receiveMessage` by sending a pong message back to Directus.
 
-To ensure a stable connection [use the refresh token from handshake mode](https://directus.io/docs/guides/realtime/authentication#handshake-mode) to re-authenticate the user and re-subscribe to the messages collection.
+To ensure a stable connection [use the refresh token from handshake mode](https://directus.com/docs/guides/realtime/authentication#handshake-mode) to re-authenticate the user and re-subscribe to the messages collection.
 
 At the bottom of the script setup section in `pages/index.vue` add the following code:
 

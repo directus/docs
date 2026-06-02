@@ -1,4 +1,5 @@
 ---
+stableId: 9b909764-1d6a-4524-9d7f-2db000e933fe
 id: 210f1fed-c5f7-4ef7-8155-0c08c2562852
 slug: advanced-types-with-the-directus-sdk
 title: Advanced Types with the Directus SDK
@@ -37,7 +38,7 @@ interface MySchema {
 }
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 For the most reliable results, the root schema types should be kept as pure as possible. This means avoiding unions
 (`CollectionA | null`), optional types (`optional_collection?: CollectionA[]`), and preferably inline relational types
@@ -106,7 +107,7 @@ In the output types these string literals will get resolved to their appropriate
 - `'datetime'`, `'date'`, and `'time'` resolve to `string`
 - `'json'` resolves to [`JsonValue`](https://github.com/directus/directus/blob/main/sdk/src/types/output.ts#L105)
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Types to Avoid**
 Some types should be avoided in the Schema as they may not play well with the type logic: `any` or `any[]`, empty type
 `{}`, `never` or `void`.
@@ -283,7 +284,7 @@ const results2 = await directusClient.request(readItems("collection_a", {
 }));
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 At this time, `alias` has not been typed yet for use in other query parameters like `deep`.
 

@@ -1,4 +1,5 @@
 ---
+stableId: 9672836c-5724-41aa-819a-078253d1ee1a
 id: d204a3d5-d674-4a21-862e-6c9c8ac82ab3
 slug: preview-files-in-live-preview-with-google-docs-previews
 title: Preview Files in Live Preview with Google Docs Previews

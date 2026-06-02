@@ -1,4 +1,5 @@
 ---
+stableId: fa870162-2e4e-4a7c-826b-e3d228564204
 title: Logging
 description: Configuration for general and Realtime logging.
 ---
@@ -38,7 +39,7 @@ The WebSocket Logs endpoint is accessible at `/websocket/logs`. The method of au
 | `WEBSOCKETS_LOGS_STYLE`      | Stream just the message (pretty) or the full JSON log. One of `pretty`, `raw`.                         | `pretty`      |
 | `WEBSOCKETS_LOGS_CONN_LIMIT` | How many simultaneous connections are allowed.                                                         | `Infinity`    |
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Ephemeral Logs**  
 Realtime system logs are ephemeral and not stored in the database. They are only available while the realtime connection is
 active. Refreshing the page will clear the logs.

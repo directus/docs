@@ -1,15 +1,16 @@
 ---
+stableId: f46d4a90-cff7-4431-b552-8b1296ef5720
 id: 89cd5e8e-cabd-4422-92c8-9736faedefe0
 slug: generate-transcripts-with-deepgram-and-directus-automate
-title: Generate Transcripts with Deepgram and Directus Automate
+title: Generate Transcripts with Deepgram and Directus Flows
 technologies:
   - deepgram
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to integrate Deepgram's Speech-to-Text API with Directus Automate.
+description: Learn how to integrate Deepgram's Speech-to-Text API with Directus Flows.
 ---
-Voice is one of the most common ways we communicate and yet one of the hardest for developers to use and understand. In this post, you'll use Deepgram's speech recognition API and Directus Automate to create and store transcripts whenever a new file is uploaded.
+Voice is one of the most common ways we communicate and yet one of the hardest for developers to use and understand. In this post, you'll use Deepgram's speech recognition API and Directus Flows to create and store transcripts whenever a new file is uploaded.
 
 ## Before You Start
 
@@ -57,7 +58,7 @@ Replace `YOUR_DIRECTUS_URL` with the URL for your Directus project, and `TOKEN` 
 
 From the resolved path of the previous operation, create an **Update Data** operation. Set the Collection to `directus_files` with Full Access permissions.
 
-::callout{icon="material-symbols:info-outline" title="Set a System Collection"}
+::callout{icon="i-lucide-info" title="Set a System Collection"}
 
 The dropdown in the collection field will only show user-created collections. To add `directus_files`, which is a system collection, click the `{}` button to turn the input to raw mode and type the collection name manually.
 

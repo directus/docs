@@ -1,4 +1,5 @@
 ---
+stableId: e521a65d-42cd-4cb0-87ab-34e7d8fe00ec
 id: 79c82730-7768-4722-8538-7f3fecac3d43
 slug: send-sms-messages-with-twilio-in-custom-operations
 title: Send SMS Messages with Twilio in Custom Operations
@@ -183,7 +184,7 @@ Ensure the `.env` file has `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILI
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

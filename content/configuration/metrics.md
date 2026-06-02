@@ -1,4 +1,5 @@
 ---
+stableId: 71ecfdac-438b-44a2-9f52-bdade14404a1
 title: Metrics
 description: Configuration for metrics.
 ---
@@ -14,7 +15,7 @@ To enable performance and error measurement of connected services, Directus can 
 | `METRICS_NAME_PREFIX`         | Prefix applied to all Prometheus metric names.                                                                          | `directus_`                    |
 | `METRICS_HEALTH_CHECK_PREFIX` | Prefix for health check keys used in cache, Redis, and storage checks.                                                  | `directus-metric-`             |
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Metric Aggregation**
 If Directus is running within a PM2 context, then metrics will be aggregated on a per scheduled job frequency. Ensure
 Prometheus' scrape frequency takes that into account.

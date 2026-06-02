@@ -1,4 +1,5 @@
 ---
+stableId: b4940c7f-b2ea-4653-92cf-ca33661ee0d9
 id: clay-templates-directus-tutorial
 title: Templates
 description: Learn how to use Clay's pre-built HTTP API templates to connect with Directus for data enrichment and synchronization.
@@ -38,7 +39,7 @@ Before using any templates, configure your Directus authentication in Clay:
 | **Get Item from Collection**  | Search and retrieve records from Directus |
 | **Get Related Item Details**  | Fetch relational data from Directus       |
 
-::callout{icon="material-symbols:warning" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Important**  
 The Directus templates use generic collection names (like "posts" or "users") as examples. You'll need to adapt these to match your specific Directus schema by replacing collection names, adjusting field names, and configuring filters based on your data structure.
 ::

@@ -3,57 +3,81 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "nuxt build",
-		"dev": "nuxt dev",
-		"generate": "nuxt generate",
+		"api-ref:generate": "node scripts/generate-api-reference.ts",
+		"build": "node scripts/generate-api-reference.ts && nuxt build",
+		"dev": "node scripts/generate-api-reference.ts && nuxt dev",
+		"generate": "node scripts/generate-api-reference.ts && nuxt generate",
 		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare"
+		"postinstall": "node scripts/generate-api-reference.ts && nuxt prepare",
+		"stable-ids:ensure": "node scripts/ensure-stable-ids.ts",
+		"stable-ids:check": "node scripts/check-stable-ids.ts",
+		"redirects:sync": "node scripts/redirects-sync.ts --write-deterministic --fail-on-unresolved",
+		"redirects:check": "node scripts/redirects-sync.ts --fail-on-unresolved --no-write",
+		"typecheck:scripts": "tsc -p scripts/tsconfig.json",
+		"index:docs": "node scripts/index-docs.ts",
+		"typesense:cleanup-preview": "node scripts/cleanup-typesense-preview.ts",
+		"test:search": "vitest run tests/scripts/index-docs-chunker.test.ts tests/scripts/cleanup-typesense-preview.test.ts tests/components/DocsSearchPalette.test.ts tests/shared/parseTypesenseUrl.test.ts tests/lib/typesenseAlias.test.ts tests/services/typesenseService.test.ts tests/utils/highlightHtml.test.ts"
 	},
 	"dependencies": {
 		"@directus/openapi": "0.3.0",
-		"@directus/sdk": "^21.1.0",
-		"@docsearch/css": "4.5.4",
-		"@docsearch/js": "4.5.4",
-		"@iconify-json/heroicons-outline": "1.2.1",
-		"@iconify-json/material-symbols": "1.2.54",
-		"@iconify-json/simple-icons": "1.2.70",
-		"@nuxt/content": "3.11.2",
-		"@nuxt/ui-pro": "3.3.7",
-		"@nuxtjs/algolia": "1.11.2",
+		"@directus/sdk": "^21.2.2",
+		"@iconify-json/lucide": "1.2.111",
+		"@iconify-json/material-symbols": "1.2.68",
+		"@iconify-json/simple-icons": "1.2.79",
+		"@nuxt/content": "3.13.0",
+		"@nuxt/fonts": "0.14.0",
+		"@nuxt/ui": "^4.6.1",
 		"@nuxtjs/color-mode": "4.0.0",
-		"@nuxtjs/seo": "3.4.0",
-		"@vueuse/core": "14.2.0",
-		"@vueuse/nuxt": "14.2.0",
-		"lodash-es": "4.18.1",
-		"nuxt": "4.3.1",
+		"@nuxtjs/mcp-toolkit": "0.17.2",
+		"@nuxtjs/robots": "6.0.8",
+		"@nuxtjs/sitemap": "8.0.13",
+		"@vueuse/core": "14.2.1",
+		"@vueuse/nuxt": "14.2.1",
+		"h3": "1.15.11",
+		"nuxt": "4.4.2",
 		"nuxt-llms": "0.2.0",
 		"openapi3-ts": "4.5.0",
-		"posthog-js": "1.345.0",
-		"posthog-node": "5.24.14",
+		"posthog-js": "1.371.2",
+		"posthog-node": "5.29.7",
 		"sharp": "^0.34.5",
-		"ufo": "1.6.3"
+		"shiki": "4.0.2",
+		"tailwindcss": "^4.2.4",
+		"typesense": "^3.0.6",
+		"ufo": "1.6.3",
+		"unhead": "^3.1.0",
+		"zod": "4.4.3"
 	},
 	"devDependencies": {
-		"@nuxt/eslint": "1.14.0",
-		"@nuxt/scripts": "0.13.2",
+		"@nuxt/eslint": "1.15.2",
+		"@nuxt/scripts": "1.0.2",
+		"@nuxt/test-utils": "^4.0.3",
+		"@types/js-yaml": "^4.0.9",
 		"@types/lodash-es": "4.17.12",
-		"typescript": "5.9.3",
-		"vue-tsc": "^3.2.4"
+		"@types/node": "^22",
+		"@vue/test-utils": "^2.4.10",
+		"dotenv": "^17.4.2",
+		"gray-matter": "^4.0.3",
+		"happy-dom": "^20.9.0",
+		"js-yaml": "^4.1.1",
+		"lodash-es": "4.18.1",
+		"remark": "^15.0.1",
+		"remark-mdc": "^3.11.0",
+		"remark-parse": "^11.0.0",
+		"typescript": "6.0.3",
+		"vitest": "^4.1.7",
+		"vue-tsc": "^3.2.7"
 	},
 	"pnpm": {
-		"supportedArchitectures": {
-			"os": ["current", "linux"],
-			"cpu": ["current", "x64"],
-			"libc": ["current", "musl"]
-		},
 		"overrides": {
-			"reka": "2.3.1",
-			"debug": "4.4.1"
+			"vite": "npm:rolldown-vite@latest",
+			"h3": "1.15.11"
 		},
 		"onlyBuiltDependencies": [
-			"better-sqlite3",
-			"sharp"
+			"better-sqlite3"
 		]
 	},
-	"packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8"
+	"packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8",
+	"engines": {
+		"node": ">=22.18"
+	}
 }

@@ -1,11 +1,12 @@
 ---
+stableId: 108362e9-deea-4072-aca6-920a7d6e7265
 id: 9e2efc14-27b4-4fa0-9632-71d922947fa2
 slug: use-npm-packages-in-custom-operations
 title: Use npm Packages in Custom Operations
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to expose an npm package as an operation in Directus Automate.
+description: Learn how to expose an npm package as an operation in Directus Flows.
 ---
 This guide will show you how to expose an NPM package as a custom operation in Flows. We will use `lodash` here, but the
 process should be the same for any package.
@@ -108,7 +109,7 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

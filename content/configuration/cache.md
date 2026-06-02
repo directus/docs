@@ -1,4 +1,5 @@
 ---
+stableId: d9e98a97-d820-4155-9c5a-cf29defe43c8
 title: Cache
 description: Configuration for internal and output caching.
 ---
@@ -11,17 +12,17 @@ subsequent requests are served straight from this cache. Enabling cache will als
 cache-control headers. Depending on your setup, this will further improve performance by caching the request in
 middleman servers (like CDNs) and even the browser.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Internal Caching**
 In addition to data-caching, Directus also does some internal caching. Note `CACHE_SCHEMA` which is enabled by default.
 This speed up the overall performance of Directus, as we don't want to introspect the whole database on every request.
 ::
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 These settings are shared across all cache drivers. If `CACHE_ENABLED` is disabled, settings marked with **superscript 5** may be used by Directus's caching system. This behavior cannot be turned off.
 ::
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Assets Cache**
 `Cache-Control` and `Last-Modified` headers for the `/assets` endpoint are separate from the regular data-cache.
 `Last-Modified` comes from `modified_on` DB field. This is useful as it's often possible to cache assets for far longer

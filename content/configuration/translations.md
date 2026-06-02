@@ -1,4 +1,5 @@
 ---
+stableId: 219484ed-4006-426f-bdc3-71b04004dc3b
 title: Translations
 description: Directus supports translations for both the Data Studio UI and authored content.
 ---

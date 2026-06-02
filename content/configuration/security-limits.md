@@ -1,11 +1,12 @@
 ---
+stableId: ebafacb0-0e76-48f5-b9d4-5eed3e354419
 title: Security & Limits
 description: Configuration for access tokens, cookies, CSP, hashing, CORS, rate limiting, and request limits.
 ---
 
 :partial{content="config-env-vars"}
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 This page documents environment variables. For in-app security configuration (permissions, system collections, public access), see [Security Best Practices](/guides/security/best-practices).
 ::
 
@@ -60,7 +61,7 @@ Argon2's hashing function is used by Directus to hash user passwords, generate h
 
 All `HASH_*` environment variable parameters are passed to the `argon2.hash` function. See the [node-argon2 library options page](https://github.com/ranisalt/node-argon2/wiki/Options) for reference.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Memory Usage**  
 Modifying `HASH_MEMORY_COST` and/or `HASH_PARALLELISM` will affect the amount of memory directus uses when computing hashes; each thread gets `HASH_MEMORY_COST` amount of memory, so the total additional memory will be these two values multiplied. This may cause out of memory errors, especially when running in containerized environments.
 ::
@@ -90,8 +91,8 @@ Directus uses [helmet.js](https://helmetjs.github.io) for configuring Conent-Sec
 
 ### Examples
 
-**Allowing own and directus.io domain**\
-`CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC="'self' https://directus.io"`
+**Allowing own and directus.com domain**\
+`CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC="'self' https://directus.com"`
 
 **Deny loading any fonts**\
 `CONTENT_SECURITY_POLICY_DIRECTIVES__FONT_SRC="'none'"`
@@ -119,6 +120,12 @@ Enabling the rate-limiter with no other options will set a default maximum of 50
 | `RATE_LIMITER_REGISTRATION_ENABLED`         | Whether or not to enable rate limiting per IP on the user registration. | `true`        |
 | `RATE_LIMITER_REGISTRATION_POINTS`          | The amount of allowed hits per duration.                                | `5`           |
 | `RATE_LIMITER_REGISTRATION_DURATION`        | The time window in seconds in which the points are counted.             | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_ENABLED`            | Whether or not to enable rate limiting per IP on MCP OAuth authorization requests. | `true`        |
+| `RATE_LIMITER_MCP_OAUTH_POINTS`             | The amount of allowed authorization requests per duration.              | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_DURATION`           | The time window in seconds in which authorization points are counted.   | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_ENABLED` | Whether or not to enable rate limiting per IP on MCP OAuth Dynamic Client Registration. | `true`        |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_POINTS` | The amount of allowed Dynamic Client Registration requests per duration. | `30`          |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_DURATION` | The time window in seconds in which Dynamic Client Registration points are counted. | `60`          |
 
 ### Pressure-Based Rate Limiter
 
