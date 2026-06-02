@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { execFileSync } from 'node:child_process';
 import process from 'node:process';
+import { pathToFileURL } from 'node:url';
 import { Client } from 'typesense';
 import { parseTypesenseUrl } from '../shared/utils/parseTypesenseUrl.ts';
 import {
@@ -9,12 +10,12 @@ import {
 	TYPESENSE_PREVIEW_ALIAS_PREFIX,
 } from '../lib/typesenseAlias.ts';
 
-interface CollectionAlias {
+export interface CollectionAlias {
 	name: string;
 	collection_name: string;
 }
 
-interface Options {
+export interface Options {
 	branch?: string;
 	stale: boolean;
 	dryRun: boolean;
@@ -44,17 +45,19 @@ function isTypesenseNotFoundError(error: unknown) {
 	);
 }
 
-function parseArgs(argv = process.argv.slice(2)): Options {
+export function parseArgs(argv = process.argv.slice(2), env = process.env): Options {
 	const options: Options = {
-		branch: process.env.TYPESENSE_PREVIEW_BRANCH,
+		branch: env.TYPESENSE_PREVIEW_BRANCH,
 		stale: false,
-		dryRun: process.env.TYPESENSE_CLEANUP_DRY_RUN === 'true',
+		dryRun: env.TYPESENSE_CLEANUP_DRY_RUN === 'true',
 	};
 
 	for (let index = 0; index < argv.length; index++) {
 		const arg = argv[index];
 		if (arg === '--branch') {
-			options.branch = argv[++index];
+			const branch = argv[++index];
+			if (!branch || branch.startsWith('--')) throw new Error('--branch requires a branch name');
+			options.branch = branch;
 			continue;
 		}
 		if (arg === '--stale') {
@@ -111,7 +114,7 @@ async function deleteCollection(client: Client, collection: string, dryRun: bool
 	}
 }
 
-async function cleanupAlias(client: Client, alias: string, dryRun: boolean, existingAlias?: CollectionAlias | null) {
+export async function cleanupAlias(client: Client, alias: string, dryRun: boolean, existingAlias?: CollectionAlias | null) {
 	if (!alias.startsWith(TYPESENSE_PREVIEW_ALIAS_PREFIX)) {
 		throw new Error(`Refusing to clean non-preview alias: ${alias}`);
 	}
@@ -125,8 +128,8 @@ async function cleanupAlias(client: Client, alias: string, dryRun: boolean, exis
 	}
 }
 
-function getOpenBranchesFromEnv() {
-	const raw = process.env.TYPESENSE_OPEN_PREVIEW_BRANCHES;
+function getOpenBranchesFromEnv(env = process.env) {
+	const raw = env.TYPESENSE_OPEN_PREVIEW_BRANCHES;
 	if (!raw) return null;
 	return raw
 		.split(/[\n,]/)
@@ -134,8 +137,8 @@ function getOpenBranchesFromEnv() {
 		.filter(Boolean);
 }
 
-function getOpenPrBranches() {
-	const envBranches = getOpenBranchesFromEnv();
+function getOpenPrBranches(env = process.env) {
+	const envBranches = getOpenBranchesFromEnv(env);
 	if (envBranches) return envBranches;
 
 	const output = execFileSync('gh', [
@@ -155,7 +158,7 @@ function getOpenPrBranches() {
 		.filter(Boolean);
 }
 
-function aliasFromSlot(collectionName: string) {
+export function aliasFromSlot(collectionName: string) {
 	if (!collectionName.startsWith(TYPESENSE_PREVIEW_ALIAS_PREFIX)) return null;
 	if (collectionName.endsWith('-a') || collectionName.endsWith('-b')) return collectionName.slice(0, -2);
 	return null;
@@ -169,11 +172,12 @@ async function cleanupStale(client: Client, dryRun: boolean) {
 
 	const aliases = await listAliases(client);
 	const previewAliases = aliases.filter(alias => alias.name.startsWith(TYPESENSE_PREVIEW_ALIAS_PREFIX));
+	const previewAliasNames = new Set(previewAliases.map(alias => alias.name));
 	const collectionNames = await listCollectionNames(client);
 	const orphanAliases = collectionNames
 		.map(aliasFromSlot)
 		.filter((alias): alias is string => Boolean(alias))
-		.filter(alias => !previewAliases.some(existing => existing.name === alias));
+		.filter(alias => !previewAliasNames.has(alias));
 
 	const staleAliases = new Map<string, CollectionAlias | null>();
 	for (const alias of previewAliases) {
@@ -193,7 +197,7 @@ async function cleanupStale(client: Client, dryRun: boolean) {
 	}
 }
 
-async function main() {
+export async function main() {
 	const options = parseArgs();
 	const client = createClient();
 
@@ -208,7 +212,9 @@ async function main() {
 	await cleanupStale(client, options.dryRun);
 }
 
-main().catch((error) => {
-	console.error(error instanceof Error ? error.message : error);
-	process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+	main().catch((error) => {
+		console.error(error instanceof Error ? error.message : error);
+		process.exitCode = 1;
+	});
+}

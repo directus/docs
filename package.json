@@ -16,7 +16,7 @@
 		"typecheck:scripts": "tsc -p scripts/tsconfig.json",
 		"index:docs": "node scripts/index-docs.ts",
 		"typesense:cleanup-preview": "node scripts/cleanup-typesense-preview.ts",
-		"test:search": "vitest run tests/scripts/index-docs-chunker.test.ts tests/components/DocsSearchPalette.test.ts tests/shared/parseTypesenseUrl.test.ts tests/lib/typesenseAlias.test.ts tests/services/typesenseService.test.ts tests/utils/highlightHtml.test.ts"
+		"test:search": "vitest run tests/scripts/index-docs-chunker.test.ts tests/scripts/cleanup-typesense-preview.test.ts tests/components/DocsSearchPalette.test.ts tests/shared/parseTypesenseUrl.test.ts tests/lib/typesenseAlias.test.ts tests/services/typesenseService.test.ts tests/utils/highlightHtml.test.ts"
 	},
 	"dependencies": {
 		"@directus/openapi": "0.3.0",
