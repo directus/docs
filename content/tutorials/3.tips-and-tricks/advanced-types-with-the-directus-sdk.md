@@ -1,4 +1,5 @@
 ---
+stableId: 9b909764-1d6a-4524-9d7f-2db000e933fe
 id: 210f1fed-c5f7-4ef7-8155-0c08c2562852
 slug: advanced-types-with-the-directus-sdk
 title: Advanced Types with the Directus SDK
@@ -82,10 +83,9 @@ interface CollectionA {
 }
 ```
 
-There are currently 3 literal types that can be applied. The first 2 are both used to apply the `count(field)`
+There are currently 5 literal types that can be applied. The first 2 are both used to apply the `count(field)`
 array function in the `filter`/`field` auto-complete suggestions, these are the
-`'json'` and `'csv'` string literal types. The `'datetime'` string literal type which is used to apply all
-datetime functions in the `filter`/`field` auto-complete suggestions.
+`'json'` and `'csv'` string literal types. The `'datetime'`, `'date'`, and `'time'` string literal types which are used to apply related functions in the `filter`/`field` auto-complete suggestions.
 
 ```ts
 interface CollectionA {
@@ -96,13 +96,15 @@ interface CollectionA {
 	tags: 'csv'; // [!code ++]
 	json_field: 'json'; // [!code ++]
 	date_created: 'datetime'; // [!code ++]
+	start_time: 'time'; // [!code ++]
+	event_date: 'date'; // [!code ++]
 }
 ```
 
 In the output types these string literals will get resolved to their appropriate types:
 
 - `'csv'` resolves to `string[]`
-- `'datetime'` resolves to `string`
+- `'datetime'`, `'date'`, and `'time'` resolve to `string`
 - `'json'` resolves to [`JsonValue`](https://github.com/directus/directus/blob/main/sdk/src/types/output.ts#L105)
 
 ::callout{icon="material-symbols:warning-rounded" color="warning"}

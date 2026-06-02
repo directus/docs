@@ -1,4 +1,5 @@
 ---
+stableId: 4e510251-2a5a-4e15-bb27-d28a742af024
 id: efb3fc4e-36cb-44e0-af93-adce554fdad0
 slug: search-engine-optimization-best-practices
 title: Search Engine Optimization Best Practices

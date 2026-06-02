@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import type { OpenAPIObject } from 'openapi3-ts/oas30';
+import { apiReferenceNavigation } from '~/generated/api-reference/meta';
 
-const { links } = useSectionLinks();
-
-const openapi = inject<OpenAPIObject>('openapi')!;
-const oasNavigation = computed(() => mapOasNavigation(openapi));
+const oasNavigation = apiReferenceNavigation;
 </script>
 
 <template>
@@ -16,11 +13,6 @@ const oasNavigation = computed(() => mapOasNavigation(openapi));
 
 					}"
 				>
-					<UPageAnchors :links="links" />
-					<USeparator
-						type="dashed"
-						class="my-5"
-					/>
 					<UContentNavigation
 						:navigation="oasNavigation"
 						highlight

@@ -30,4 +30,3 @@ Requests can be authenticated in the following ways:
       Using a query parameter for authentication can lead to it being revealed or logged. If possible, use another method.
     ::
 	::
-::

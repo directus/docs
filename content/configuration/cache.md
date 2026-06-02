@@ -1,4 +1,5 @@
 ---
+stableId: d9e98a97-d820-4155-9c5a-cf29defe43c8
 title: Cache
 description: Configuration for internal and output caching.
 ---

@@ -1,4 +1,5 @@
 ---
+stableId: 3b3c64bb-f909-4f57-b6f6-3a3854995414
 id: 5a48edd1-f8d2-499d-8f1a-6a6b378c65d9
 slug: deploy-directus-to-an-ubuntu-server
 title: Deploy Directus to an Ubuntu Server
@@ -22,7 +23,9 @@ This guide covers setting up Docker, configuring Docker Compose, using Nginx as 
 
 ## Upload Your Local Directus Application Folder to the Server
 
-If you have successfully followed the [Self-Hosted Quickstart](/getting-started/overview), you should have a directory with a `docker-compose.yml` file, `database/` directory with a `data.db` file, `uploads/` directory, and `extensions/` directory.
+If you have successfully followed the [Create a Project guide](/getting-started/create-a-project), you should have a directory with a `docker-compose.yml` file, `database/` directory with a `data.db` file, `uploads/` directory, and `extensions/` directory.
+
+Make sure your `docker-compose.yml` uses `directus/directus:11.17.0`, a `SECRET` value, and a `PUBLIC_URL` that matches the final URL you plan to use.
 
 Use `scp` (Secure Copy Protocol) to upload the local folder to your server.
 
@@ -319,6 +322,17 @@ Ensure you select the option to redirect HTTP traffic to HTTPS when prompted. Ce
 After the setup is complete, visit your Directus application using `https://directus.exampledomain.com` in a web browser to verify the SSL Certificate. You should see a padlock icon indicating a secure SSL connection. You should also be automatically redirected from `http` to `https`.
 
 ![URL in the browser uses http and is marked as secure.](/img/480c9f17-8819-48e4-9d01-ed0e8afc2322.webp)
+
+## Validation Checklist
+
+Verify the setup:
+
+- Open your public URL and confirm Directus loads correctly.
+- Confirm that HTTP requests are redirected to HTTPS.
+- Sign in or complete onboarding, depending on whether you preconfigured admin credentials in your `docker-compose.yml`.
+- Create and read an item in a test collection to verify database access.
+- Upload a test file and confirm it persists after container restart.
+- Run `sudo systemctl status directus.service` and confirm the service is healthy.
 
 ## Summary
 

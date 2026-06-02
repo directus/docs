@@ -13,7 +13,7 @@ Welcome! This is the repo for [Directus' documentation](https://docs.directus.io
 
 ### Requirements
 
-- Node.js 22
+- Node.js 22.18 or later
 - pnpm
 
 ### Install Dependencies
@@ -47,6 +47,48 @@ pnpm dev
 pnpm build
 ```
 
+### Repository Tooling
+
+The repository includes scripts that keep docs routes stable when files move and that index the docs into Typesense.
+
+```bash
+pnpm stable-ids:ensure  # Add missing stableId frontmatter
+pnpm stable-ids:check   # Validate stableId frontmatter
+pnpm redirects:sync     # Update redirects.json for moved pages
+pnpm redirects:check    # Check redirect coverage without writing files
+pnpm index:docs         # Build the search index in Typesense
+pnpm typecheck:scripts  # Type check repository scripts
+```
+
+`pnpm install` configures `.githooks` for the repository when no custom `core.hooksPath` is set. The pre-commit hook can add missing `stableId` values to staged docs files. The pre-push hook checks redirects when docs content, redirect configuration, or content configuration changes.
+
+## ✍️ Authoring Content
+
+Pages live as Markdown files under `content/`. Frontmatter fields are validated by the schema in `content.config.ts`.
+
+### Framework Guides
+
+Framework guides live under `content/frameworks/<framework>/`. The numeric prefix on filenames (`01.`, `02.`, …) controls sidebar sort order only — it has no semantic meaning, renumber freely.
+
+The `section` frontmatter field controls grouping on the `/frameworks/<framework>` hub page:
+
+- `section: start-here` — appears in the "Start Here" block at the top.
+- `section: guides` (or unset) — appears in the "Guides" block below.
+
+Minimal frontmatter for a new framework guide:
+
+```yaml
+---
+title: Fetch Data from Directus with Foo
+description: Learn how to integrate Directus in your Foo app.
+section: start-here
+technologies:
+  - foo
+navigation:
+  title: Data Fetching
+---
+```
+
 ## ☁️ Deploying the Docs
 
 The documentation automatically deploys to Vercel when changes are merged into the main branch. Simply:
@@ -68,9 +110,45 @@ The documentation automatically deploys to Vercel when changes are merged into t
 - [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
 - [Roadmap](https://roadmap.directus.io) (Roadmap & Feature Requests)
 
-## Making changes to Algolia Search
+## 🔍 Search
 
-The docs make use of the Algolia Crawler to index the content. The crawler is found at the bottom left in the Algolia dashboard under `Data Sources > Crawler > directus`. To make changes on how the crawler works, go to the `Editor` tab and make your changes. By default the crawler runs once a day but you can also manually run it. In order to tweak the ranking of search results, go to the `Search > Configure > Index > Configuration > Ranking and Sorting` tab.
+Search is powered by [Typesense](https://typesense.org). The browser palette (`UCommandPalette`-based) lives at `app/components/DocsSearchPalette.vue` and queries Typesense directly via `app/services/typesenseService.ts`. The official `typesense` npm client is used by the indexer only.
+
+### Indexing
+
+The indexer at `scripts/index-docs.ts` walks `/content`, chunks each Markdown page, attaches synonyms, and pushes everything to Typesense. OpenAPI indexing is deferred to a later branch. Run it locally with:
+
+```bash
+pnpm index:docs
+```
+
+CI runs the same command on every push to `main` (production index) and on every PR commit (per-branch preview index). See `.github/workflows/search-index.yml`.
+
+### Collection naming
+
+Indexes use a blue/green slot pattern with a stable alias:
+
+- `main` -> alias `directus-docs`, slots `directus-docs-a` / `directus-docs-b`
+- Branch `bry/foo` -> alias `directus-docs-preview-bry-foo`, slots `...-a` / `...-b`
+- Local branch runs use the same branch-derived alias as CI
+
+Each indexer run writes to whichever slot the alias is not currently pointing at, swaps the alias, then deletes the previous slot.
+
+For one-off writes, override the index target with `TYPESENSE_INDEX_TARGET=...`.
+
+The browser reads from `TYPESENSE_COLLECTION` when set. Otherwise it derives the same branch alias as the indexer. The app reads the alias, never the `-a` / `-b` slot name.
+
+### Ranking
+
+Section boosts and personalization live in `buildPersonalizedSortBy` in `app/composables/useDocsSearch.ts`. The same `sectionPriority` array drives both the Typesense `_eval` boost order and the chip-bar render order in the palette.
+
+### Synonyms
+
+Search synonyms live in `server/data/synonyms.ts` and are pushed to Typesense on every indexer run. Two formats: `multiway` (equivalent terms) and `oneway` (directional shorthand -> canonical, e.g. `db -> database`). Header comment in the file explains both.
+
+### Search-friendly content
+
+Write H2s and first paragraphs so they work as standalone search results.
 
 <br />
 

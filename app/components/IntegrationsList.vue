@@ -30,6 +30,12 @@ const integrations = [
 		to: '/guides/integrations/netlify',
 		logo: '/docs/img/tutorials/netlify.png',
 	},
+	{
+		title: 'Framer',
+		description: 'Sync content between Directus collections and Framer\'s CMS in both directions.',
+		to: '/guides/integrations/framer',
+		logo: '/docs/img/framer.png',
+	},
 ];
 </script>
 
@@ -63,20 +69,10 @@ const integrations = [
 					</div>
 
 					<div class="p-3">
-						<!-- TODO: Remove Beta badge when Zapier integration is out of beta -->
-						<div class="text-gray-900 dark:text-white text-base font-bold text-pretty flex items-center gap-2">
+						<div class="text-gray-900 dark:text-white text-base font-bold text-pretty">
 							<span class="truncate">{{ integration.title }}</span>
-							<UBadge
-								v-if="integration.title === 'Zapier'"
-								variant="soft"
-								color="info"
-								size="sm"
-								class="shrink-0"
-							>
-								Beta
-							</UBadge>
 						</div>
-						<ProseP class="text-[15px] text-gray-500 dark:text-gray-400 mt-1 leading-snug">
+						<ProseP class="text-sm text-gray-500 dark:text-gray-400 mt-1 leading-snug">
 							{{ integration.description }}
 						</ProseP>
 					</div>

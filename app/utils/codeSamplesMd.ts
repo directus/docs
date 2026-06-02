@@ -1,16 +1,11 @@
-import type { FlattenedOperationObject } from '~/types';
-
-export interface CodeSample {
-	label: string;
-	lang: string;
-	source: string;
-}
+import preMd from '~/utils/preMd';
+import type { ApiReferenceCodeSample } from '~/types';
 
 /**
  * Convert our @directus/openapi x-codeSamples to valid markdown codeblocks.
  * This allows them to be rendered with MDC
  */
-export default function codeSamplesMd(operation: FlattenedOperationObject) {
+export default function codeSamplesMd(operation: { method: string; path: string; 'x-codeSamples'?: ApiReferenceCodeSample[] }) {
 	let md = '::code-group{sync="api-consumer"}';
 
 	const { method, path } = operation;
@@ -21,7 +16,7 @@ ${method.toUpperCase()} ${path}
 \`\`\`
 `;
 
-	const samples = operation['x-codeSamples'] as CodeSample[];
+	const samples = operation['x-codeSamples'] ?? [];
 
 	for (const { lang, source, label } of samples) {
 		md += preMd(lang, label, source);
