@@ -1,9 +1,10 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spec as openapi } from '@directus/openapi';
 import { get } from 'lodash-es';
+import { createHighlighter } from 'shiki';
 import type {
 	OpenAPIObject,
 	OperationObject,
@@ -26,6 +27,43 @@ import type {
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const outputDir = join(root, 'app/generated/api-reference');
 const tagsDir = join(outputDir, 'tags');
+
+// Reuse the same Directus themes @nuxt/content uses for the rest of the docs.
+const directusLight = JSON.parse(readFileSync(join(root, 'app/assets/shiki/directus-light.json'), 'utf8'));
+const directusDark = JSON.parse(readFileSync(join(root, 'app/assets/shiki/directus-dark.json'), 'utf8'));
+
+// Linguist-style labels from `x-codeSamples` mapped to Shiki language ids.
+const langAliases: Record<string, string> = {
+	javascript: 'js',
+	js: 'js',
+	graphql: 'graphql',
+	http: 'http',
+	json: 'json',
+};
+
+const shikiLangs = [...new Set(Object.values(langAliases))];
+
+function toShikiLang(lang: string): string {
+	return langAliases[lang.toLowerCase()] ?? 'text';
+}
+
+const highlighter = await createHighlighter({
+	themes: [directusLight, directusDark],
+	langs: shikiLangs,
+});
+
+const lightTheme = directusLight.name;
+const darkTheme = directusDark.name;
+
+// Render code to dual-theme HTML once at build time. CSS vars (--shiki-dark*)
+// let the components swap colors for dark mode without re-highlighting.
+function highlight(code: string, lang: string): string {
+	return highlighter.codeToHtml(code, {
+		lang: toShikiLang(lang),
+		themes: { light: lightTheme, dark: darkTheme },
+		defaultColor: false,
+	});
+}
 
 const methods: (keyof PathItemObject)[] = [
 	'get',
@@ -209,7 +247,15 @@ function responseExample(operation: OperationObject): unknown | null {
 }
 
 function apiOperation(path: string, method: keyof PathItemObject, operation: OperationObject): ApiReferenceOperation {
-	const codeSamples = (operation as OperationObject & { 'x-codeSamples'?: ApiReferenceCodeSample[] })['x-codeSamples'];
+	type RawCodeSample = Omit<ApiReferenceCodeSample, 'html'>;
+	const codeSamples = (operation as OperationObject & { 'x-codeSamples'?: RawCodeSample[] })['x-codeSamples'];
+	const highlightedSamples = codeSamples?.map(sample => ({ ...sample, html: highlight(sample.source, sample.lang) }));
+
+	const restSource = `${method.toUpperCase()} ${path}`;
+	const example = responseExample(operation);
+	const responseExampleHtml = example === null
+		? null
+		: highlight(typeof example === 'string' ? example : JSON.stringify(example, null, 2), 'json');
 
 	return {
 		method,
@@ -222,8 +268,10 @@ function apiOperation(path: string, method: keyof PathItemObject, operation: Ope
 			.map(apiParameter),
 		requestBody: requestBodyData(operation),
 		responses: responseData(operation),
-		responseExample: responseExample(operation),
-		...(codeSamples?.length ? { 'x-codeSamples': codeSamples } : {}),
+		responseExample: example,
+		responseExampleHtml,
+		restSampleHtml: highlight(restSource, 'http'),
+		...(highlightedSamples?.length ? { 'x-codeSamples': highlightedSamples } : {}),
 	};
 }
 

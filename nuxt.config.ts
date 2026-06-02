@@ -47,6 +47,7 @@ function loadApiReferencePrerenderRoutes(): string[] {
 
 const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
 const apiReferencePrerenderRoutes = loadApiReferencePrerenderRoutes();
+const docsApiReferencePrerenderRoutes = apiReferencePrerenderRoutes.map(route => `${BASE_URL}${route}`);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -190,7 +191,7 @@ export default defineNuxtConfig({
 			asyncContext: true,
 		},
 		prerender: {
-			routes: ['/', '/api', ...apiReferencePrerenderRoutes],
+			routes: ['/', `${BASE_URL}/api`, ...docsApiReferencePrerenderRoutes],
 			crawlLinks: true,
 			ignore: [/^\/docs\/mcp\/deeplink(\?.*)?$/],
 			concurrency: 1,

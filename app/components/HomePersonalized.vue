@@ -11,13 +11,21 @@ const { primary: primaryInstanceUrl } = useInstanceUrls();
 const settings = useSettingsOverlay();
 function openDrawer() { settings.open(); }
 
+// localStorage-backed state (recents, favorites, instance URLs) is only
+// populated on the client, so gate any UI that depends on it until after
+// mount. Server and first client render share the stable default branch,
+// avoiding hydration mismatches.
+const mounted = ref(false);
+
 const showInline = computed(() => onboardingState.value === 'active');
 const showIdleCta = computed(() => onboardingState.value === 'idle');
 
-const resume = computed(() => recents.value[0] ?? null);
-const restRecents = computed(() => recents.value.slice(1, 7));
+const resume = computed(() => mounted.value ? recents.value[0] ?? null : null);
+const restRecents = computed(() => mounted.value ? recents.value.slice(1, 7) : []);
+const favoritesList = computed(() => mounted.value ? favorites.value : []);
 
 const chips = computed(() => {
+	if (!mounted.value) return [];
 	const out: { icon: string; label: string }[] = [];
 	if (framework.value) out.push({ icon: framework.value.icon, label: framework.value.label });
 	if (experience.value) out.push({ icon: experience.value.icon, label: experience.value.label });
@@ -33,14 +41,17 @@ const chips = computed(() => {
 	return out;
 });
 
+// Cookie-backed prefs only — SSR-safe. The instance URL is localStorage-backed
+// and gated separately via the mounted flag.
 const hasAnyPref = computed(() =>
-	Boolean(framework.value || useCase.value || deployment.value || role.value || experience.value || primaryInstanceUrl.value));
+	Boolean(framework.value || useCase.value || deployment.value || role.value || experience.value));
 
 const showPanel = computed(() =>
 	onboardingState.value === 'onboarded'
-	&& (hasAnyPref.value || recents.value.length > 0 || favorites.value.length > 0));
+	&& (hasAnyPref.value || (mounted.value && (recents.value.length > 0 || favorites.value.length > 0))));
 
 onMounted(() => {
+	mounted.value = true;
 	touchCookie();
 });
 
@@ -199,7 +210,7 @@ function relativeTime(ts?: number): string {
 		</div>
 
 		<div
-			v-if="favorites.length || restRecents.length"
+			v-if="favoritesList.length || restRecents.length"
 			class="grid grid-cols-1 divide-y divide-default border-t border-default @min-[48rem]/docs-pane:grid-cols-2 @min-[48rem]/docs-pane:divide-x @min-[48rem]/docs-pane:divide-y-0"
 		>
 			<div class="px-6 pt-5 pb-6">
@@ -210,11 +221,11 @@ function relativeTime(ts?: number): string {
 					Favorites
 				</DocsEyebrow>
 				<ul
-					v-if="favorites.length"
+					v-if="favoritesList.length"
 					class="flex flex-col gap-0.5"
 				>
 					<li
-						v-for="f in favorites.slice(0, 8)"
+						v-for="f in favoritesList.slice(0, 8)"
 						:key="f.path"
 						class="group flex items-center gap-2"
 					>
