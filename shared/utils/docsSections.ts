@@ -2,6 +2,7 @@ export type DocsSectionId
 	= | 'getting-started'
 		| 'guides'
 		| 'deploy'
+		| 'configuration'
 		| 'tutorials'
 		| 'frameworks'
 		| 'reference'
@@ -45,8 +46,15 @@ export const docsSections: DocsSection[] = [
 		id: 'deploy',
 		label: 'Hosting',
 		to: '/cloud/getting-started/introduction',
-		prefixes: ['/cloud', '/self-hosting', '/configuration'],
+		prefixes: ['/cloud', '/self-hosting'],
 		icon: 'material-symbols:cloud-outline',
+	},
+	{
+		id: 'configuration',
+		label: 'Configuration',
+		to: '/configuration/intro',
+		prefixes: ['/configuration'],
+		icon: 'material-symbols:settings-outline',
 	},
 	{
 		id: 'frameworks',
@@ -91,7 +99,7 @@ export const docsGroups: DocsGroup[] = [
 		label: 'Docs',
 		to: '/getting-started/overview',
 		icon: 'material-symbols:menu-book-outline',
-		sectionIds: ['getting-started', 'guides', 'deploy', 'frameworks', 'community'],
+		sectionIds: ['getting-started', 'guides', 'deploy', 'configuration', 'frameworks', 'community'],
 	},
 	{
 		id: 'reference',
