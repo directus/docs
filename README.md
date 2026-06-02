@@ -4,9 +4,9 @@
 
 ## 🐰 Introduction
 
-Welcome! This is the repo for [Directus' documentation](https://docs.directus.io).
+Welcome! This is the repo for [Directus' documentation](https://directus.com/docs).
 
-**[Learn more about Directus](https://directus.io)**
+**[Learn more about Directus](https://directus.com)**
 
 
 ## 🖥️ Running the Docs
@@ -119,8 +119,8 @@ The documentation automatically deploys to Vercel when changes are merged into t
 
 ## 🚀 Contributing
 
-- [Code of Conduct](https://directus.io/docs/community/overview/conduct)
-- [Contributing and authoring guidelines](https://directus.io/docs/community/contribution/documentation)
+- [Code of Conduct](https://directus.com/docs/community/overview/conduct)
+- [Contributing and authoring guidelines](https://directus.com/docs/community/contribution/documentation)
 
 <br />
 

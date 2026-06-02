@@ -10,7 +10,7 @@ description: Learn how we built our referral-based ticketing and raffle system w
 ---
 I recently shipped the ticketing system for [Leap Week 3](https://leapweek.dev) - our week long launch celebration for developers at Directus. There are product announcements, workshops, giveaways, and more.
 
-While the live events are broadcast via [Directus TV](https://directus.io/tv), the registration has typically been powered by existing ticketing platforms. This time, we decided to build our own, powered by Directus.
+While the live events are broadcast via [Directus TV](https://directus.com/tv), the registration has typically been powered by existing ticketing platforms. This time, we decided to build our own, powered by Directus.
 
 This project also used [Nuxt](https://nuxt.com) and Vue on the frontend, along with [Nuxt UI](https://ui.nuxt.com) and [Tailwind CSS](https://tailwindcss.com/) for a lot of the basic components like buttons and form inputs. It is hosted on Netlify with image generation through OpenAI’s [Dall•E 3](https://openai.com/index/dall-e-3/) model.
 
@@ -199,9 +199,9 @@ The Netlify support team was right there to help us out. They increased our limi
 
 ## Shortening URLs
 
-Originally we wanted to run this off a subdomain of the site. But [`https://leapweek.directus.io/tickets/bryant-gillespie`](https://leapweek.directus.io/tickets/bryant-gillespie) eats up a lot of characters and shorter urls are better for sharing. We’re really digging Dub.co for sharing our content on socials, but it just wasn’t a fit here for generating links.
+Originally we wanted to run this off a subdomain of the site. But `https://leapweek.directus.com/tickets/bryant-gillespie` eats up a lot of characters and shorter urls are better for sharing. We’re really digging Dub.co for sharing our content on socials, but it just wasn’t a fit here for generating links.
 
-So we chose the [`leapweek.dev`](http://leapweek.dev) domain over `leapweek.directus.io`.
+So we chose the [`leapweek.dev`](http://leapweek.dev) domain over `leapweek.directus.com`.
 
 But we could do better.
 

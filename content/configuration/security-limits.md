@@ -91,8 +91,8 @@ Directus uses [helmet.js](https://helmetjs.github.io) for configuring Conent-Sec
 
 ### Examples
 
-**Allowing own and directus.io domain**\
-`CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC="'self' https://directus.io"`
+**Allowing own and directus.com domain**\
+`CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC="'self' https://directus.com"`
 
 **Deny loading any fonts**\
 `CONTENT_SECURITY_POLICY_DIRECTIVES__FONT_SRC="'none'"`

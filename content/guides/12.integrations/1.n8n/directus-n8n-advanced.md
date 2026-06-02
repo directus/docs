@@ -118,7 +118,7 @@ Raw operations allow you to use Directus's complete filter syntax. Specify filte
 
 ::callout{icon="material-symbols:info-outline"}
 **Filter Documentation**
-For complete filter syntax, operators, and examples, see the [Directus Filter Rules documentation](https://directus.io/docs/guides/connect/filter-rules).
+For complete filter syntax, operators, and examples, see the [Directus Filter Rules documentation](https://directus.com/docs/guides/connect/filter-rules).
 ::
 
 **Example: Complex filter with logical operators**
@@ -190,7 +190,7 @@ Raw operations support all Directus query parameters. Include them in your JSON 
 
 ::callout{icon="material-symbols:info-outline"}
 **Query Parameters Documentation**
-For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.io/docs/guides/connect/query-parameters).
+For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.com/docs/guides/connect/query-parameters).
 ::
 
 ## Working with Relations

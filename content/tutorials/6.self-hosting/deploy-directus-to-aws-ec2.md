@@ -204,4 +204,4 @@ Some steps you could consider moving forward towards improving your deployment i
 - Consider utilizing [AWS Secrets Manager](https://us-east-1.console.aws.amazon.com/secretsmanager/) for managing your `ENV` variables
 - Consider implementing a load balancer for scaling the incoming requests to your Directus project.
 
-Compared to using [Directus Cloud](https://directus.io/cloud), using a self-hosted instance of Directus on AWS has several limitations by default, like no backups, no rolling updates, round-the-clock monitoring, and the inability to automatically restart in the event of a crash. Each of these can be configured and maintained separately.
+Compared to using [Directus Cloud](https://directus.com/start), using a self-hosted instance of Directus on AWS has several limitations by default, like no backups, no rolling updates, round-the-clock monitoring, and the inability to automatically restart in the event of a crash. Each of these can be configured and maintained separately.

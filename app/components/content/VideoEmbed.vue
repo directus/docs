@@ -74,7 +74,7 @@ const show = props.videoId
 
 			<template #footer>
 				<ULink
-					:href="`https://directus.io/tv/${show.data.season.show.slug}`"
+					:href="`https://directus.com/tv/${show.data.season.show.slug}`"
 					class="text-primary"
 				>
 					Watch {{ show.data.season.show.title }} on <LogoTv />
