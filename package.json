@@ -33,7 +33,6 @@
 		"@nuxtjs/sitemap": "8.0.13",
 		"@vueuse/core": "14.2.1",
 		"@vueuse/nuxt": "14.2.1",
-		"better-sqlite3": "^12.10.0",
 		"h3": "1.15.11",
 		"nuxt": "4.4.2",
 		"nuxt-llms": "0.2.0",
