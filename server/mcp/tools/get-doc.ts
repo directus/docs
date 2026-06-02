@@ -1,7 +1,7 @@
 import { defineMcpTool } from '@nuxtjs/mcp-toolkit/server';
-import { queryCollection } from '@nuxt/content/server';
 import { useEvent } from 'nitropack/runtime';
 import { z } from 'zod';
+import { normalizeDocPath, parseMcpMarkdown } from '../../utils/mcpMarkdown';
 
 const BASE_PATH = '/docs';
 
@@ -20,22 +20,40 @@ export default defineMcpTool({
 		const event = useEvent();
 		const config = useRuntimeConfig();
 		const siteOrigin = config.public.siteUrl.replace(/\/$/, '');
-		const normalized = path.startsWith('/') ? path : `/${path}`;
+		const baseUrl = config.app.baseURL.replace(/\/$/, '');
+		const normalized = normalizeDocPath(path);
 
-		const page = await queryCollection(event, 'content')
-			.where('path', '=', normalized)
-			.first();
-
-		if (!page) {
-			throw createError({ statusCode: 404, message: `No doc found at ${normalized}` });
+		let markdown: string;
+		try {
+			markdown = await event.$fetch<string>(`${baseUrl}${normalized}.md`, { responseType: 'text' });
 		}
+		catch {
+			const { queryCollection } = await import('@nuxt/content/server');
+			const page = await queryCollection(event, 'content')
+				.where('path', '=', normalized)
+				.first();
+
+			if (!page) {
+				throw createError({ statusCode: 404, message: `No doc found at ${normalized}` });
+			}
+
+			return {
+				title: page.title,
+				path: page.path,
+				description: page.description ?? '',
+				content: page.rawbody ?? '',
+				url: `${siteOrigin}${BASE_PATH}${page.path}`,
+			};
+		}
+
+		const page = parseMcpMarkdown(markdown, normalized);
 
 		return {
 			title: page.title,
-			path: page.path,
+			path: normalized,
 			description: page.description ?? '',
-			content: page.rawbody ?? '',
-			url: `${siteOrigin}${BASE_PATH}${page.path}`,
+			content: page.content,
+			url: `${siteOrigin}${BASE_PATH}${normalized}`,
 		};
 	},
 });
