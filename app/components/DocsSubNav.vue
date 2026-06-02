@@ -1,28 +1,20 @@
 <script setup lang="ts">
-const { groupSections } = useSectionNavigation();
-
-const items = computed(() =>
-	groupSections.value.map(section => ({
-		label: section.label,
-		to: section.to,
-		icon: section.icon,
-		active: section.active,
-	})),
-);
-
-const showSubNav = computed(() => items.value.length > 1);
-
-useHead(computed(() => ({
-	style: showSubNav.value
-		? []
-		: [{ innerHTML: '.docs-pane { --ui-subnav-height: 0px !important; }' }],
-})));
+defineProps<{
+	items: {
+		label: string;
+		to: string;
+		icon: string;
+		active: boolean;
+	}[];
+	show: boolean;
+}>();
 </script>
 
 <template>
 	<div
-		v-if="showSubNav"
+		v-show="show"
 		class="docs-subnav hidden @min-[40rem]/docs-pane:flex items-center sticky z-30 bg-default/75 backdrop-blur border-b border-default"
+		:aria-hidden="!show"
 	>
 		<UContainer class="flex items-center justify-between gap-4">
 			<UNavigationMenu
@@ -45,7 +37,7 @@ useHead(computed(() => ({
 	--ui-subnav-height: 0px;
 }
 @container docs-pane (min-width: 40rem) {
-	.docs-pane {
+	.docs-pane.docs-pane--has-subnav {
 		--ui-subnav-height: 48px;
 	}
 }
