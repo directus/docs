@@ -69,6 +69,10 @@ export function useAssistantHistory() {
 		}
 	}
 
+	function clearActive() {
+		activeId.value = null;
+	}
+
 	function update(id: string, messages: UIMessage[]) {
 		const idx = conversations.value.findIndex(c => c.id === id);
 		if (idx === -1) return;
@@ -96,6 +100,7 @@ export function useAssistantHistory() {
 		active,
 		startNew,
 		setActive,
+		clearActive,
 		update,
 		remove,
 	};

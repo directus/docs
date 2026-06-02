@@ -1,31 +1,48 @@
-import type { UIMessage } from 'ai';
 import { Chat } from '@ai-sdk/vue';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport, type ChatStatus, type UIMessage } from 'ai';
 import { useAppConfig, useRoute, useRuntimeConfig, useState, useToast } from '#imports';
-import { computed, watch } from 'vue';
+import { computed, watch, type Ref } from 'vue';
 import type { FaqCategory } from '../types';
-import { compactMessagesForRequest } from '../utils/messages';
 import { buildEasterEggMessages, EASTER_EGG_RESPONSE_DELAY_MS, isEasterEggPrompt } from '../utils/easter-egg';
+import { compactMessagesForRequest } from '../utils/messages';
 import { useAssistantHistory } from './useAssistantHistory';
 
 let chat: Chat<UIMessage> | null = null;
 let initialized = false;
+let lifecycleVersion = 0;
+let easterEggTimer: ReturnType<typeof setTimeout> | undefined;
+
+function parseErrorMessage(error: Error): string {
+	try {
+		const parsed = JSON.parse(error.message);
+		return parsed?.message || error.message;
+	}
+	catch {
+		return error.message;
+	}
+}
+
+function cancelEasterEgg(easterEggLoadingId: Ref<string | null>) {
+	if (easterEggTimer) {
+		clearTimeout(easterEggTimer);
+		easterEggTimer = undefined;
+	}
+	easterEggLoadingId.value = null;
+}
 
 export function useAssistant() {
 	const config = useRuntimeConfig();
 	const appConfig = useAppConfig();
 	const assistantConfig = appConfig.assistant as { faqQuestions?: FaqCategory[] } | undefined;
 	const isEnabled = computed(() => Boolean(config.public.assistant?.enabled));
-
 	const isOpen = useState('assistant-open', () => false);
 	const pendingMessage = useState<string | undefined>('assistant-pending', () => undefined);
 	const easterEggLoadingId = useState<string | null>('assistant-easter-egg-id', () => null);
-
+	const pageContextDismissed = useState('assistant-page-context-dismissed', () => false);
 	const history = useAssistantHistory();
 
 	const route = useRoute();
 	const baseURL = (config.app?.baseURL || '/').replace(/\/$/, '');
-	const pageContextDismissed = useState('assistant-page-context-dismissed', () => false);
 	const currentPagePath = computed(() => {
 		const path = route?.path;
 		if (!path || !path.startsWith('/')) return null;
@@ -41,12 +58,25 @@ export function useAssistant() {
 		return history.activeId.value ?? history.startNew(chat?.messages ?? []).id;
 	}
 
+	function bumpLifecycle() {
+		lifecycleVersion++;
+		cancelEasterEgg(easterEggLoadingId);
+	}
+
+	// The single writer of chat.messages. Every conversation transition
+	// (reset, open, delete, easter egg) goes through here so the persistence
+	// watcher reasons about one mutation idiom, not three.
+	function setMessages(next: UIMessage[]) {
+		if (!chat) return;
+		chat.messages.splice(0, chat.messages.length, ...next);
+	}
+
 	if (import.meta.client && !chat) {
 		const toast = useToast();
 		chat = new Chat({
 			messages: history.active.value?.messages ? [...history.active.value.messages] : [],
 			transport: new DefaultChatTransport({
-				api: (config.app?.baseURL.replace(/\/$/, '') || '') + config.public.assistant.apiPath,
+				api: `${baseURL}${config.public.assistant.apiPath}`,
 				fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
 					const response = await fetch(input, init);
 					if (localStorage.getItem('assistantDebug') === '1' && response.headers.get('x-assistant-mode') === 'degraded') {
@@ -76,17 +106,8 @@ export function useAssistant() {
 				}),
 			}),
 			onError: (error: Error) => {
-				const message = (() => {
-					try {
-						const parsed = JSON.parse(error.message);
-						return parsed?.message || error.message;
-					}
-					catch {
-						return error.message;
-					}
-				})();
 				toast.add({
-					description: message,
+					description: parseErrorMessage(error),
 					icon: 'i-lucide-alert-circle',
 					color: 'error',
 					duration: 0,
@@ -96,7 +117,7 @@ export function useAssistant() {
 	}
 
 	const messages = computed<UIMessage[]>(() => chat?.messages ?? []);
-	const status = computed(() => chat?.status ?? 'ready');
+	const status = computed<ChatStatus>(() => chat?.status ?? 'ready');
 	const lastMessage = computed(() => messages.value.at(-1));
 	const showThinking = computed(() => {
 		const last = lastMessage.value;
@@ -130,11 +151,7 @@ export function useAssistant() {
 	}
 
 	function open(initialMessage?: string, clearPrevious = false) {
-		if (clearPrevious && chat) {
-			chat.stop();
-			chat.messages.length = 0;
-			history.activeId.value = null;
-		}
+		if (clearPrevious && chat) resetChat();
 		if (initialMessage) pendingMessage.value = initialMessage;
 		isOpen.value = true;
 	}
@@ -163,13 +180,16 @@ export function useAssistant() {
 
 	function triggerEasterEgg(userText: string) {
 		if (!chat) return;
+		cancelEasterEgg(easterEggLoadingId);
+		const version = lifecycleVersion;
 		const { user, assistant, response } = buildEasterEggMessages(userText);
 		easterEggLoadingId.value = assistant.id;
-		chat.messages = [...chat.messages, user];
-		setTimeout(() => {
-			if (!chat) return;
-			chat.messages = [...chat.messages, { ...assistant, parts: response }];
+		setMessages([...chat.messages, user]);
+		easterEggTimer = setTimeout(() => {
+			if (!chat || version !== lifecycleVersion || easterEggLoadingId.value !== assistant.id) return;
+			setMessages([...chat.messages, { ...assistant, parts: response }]);
 			easterEggLoadingId.value = null;
+			easterEggTimer = undefined;
 		}, EASTER_EGG_RESPONSE_DELAY_MS);
 	}
 
@@ -183,23 +203,30 @@ export function useAssistant() {
 
 	function resetChat() {
 		if (!chat) return;
+		bumpLifecycle();
 		chat.stop();
-		chat.messages.length = 0;
-		history.activeId.value = null;
+		setMessages([]);
+		history.clearActive();
 	}
 
 	function openConversation(id: string) {
 		const conv = history.conversations.value.find(c => c.id === id);
 		if (!conv || !chat) return;
+		bumpLifecycle();
 		chat.stop();
-		chat.messages.splice(0, chat.messages.length, ...conv.messages);
 		history.setActive(id);
+		setMessages(conv.messages);
 		isOpen.value = true;
 	}
 
 	function deleteConversation(id: string) {
+		const wasActive = history.activeId.value === id;
+		if (wasActive && chat) {
+			bumpLifecycle();
+			chat.stop();
+			setMessages([]);
+		}
 		history.remove(id);
-		if (history.activeId.value === null && chat) chat.messages.length = 0;
 	}
 
 	return {

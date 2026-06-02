@@ -14,9 +14,13 @@ const log = logger.withTag('assistant');
 
 const defaults: Required<AssistantModuleOptions> = {
 	apiPath: '/__ai__/chat',
-	model: 'google/gemini-3.1-flash-lite-preview',
+	model: 'google/gemini-3.1-flash-lite',
 	feedbackSurveyId: '',
 };
+
+export function isAssistantEnabled(apiKey: string | undefined): boolean {
+	return process.env.ASSISTANT_ENABLED !== 'false' && Boolean(apiKey);
+}
 
 export default defineNuxtModule<AssistantModuleOptions>({
 	meta: { name: 'assistant' },
@@ -25,7 +29,7 @@ export default defineNuxtModule<AssistantModuleOptions>({
 		const apiKey = process.env.OPENROUTER_API_KEY;
 		const model = process.env.AI_MODEL || options.model;
 		const feedbackSurveyId = process.env.ASSISTANT_FEEDBACK_SURVEY_ID || options.feedbackSurveyId;
-		const enabled = !!apiKey;
+		const enabled = isAssistantEnabled(apiKey);
 
 		const { resolve } = createResolver(import.meta.url);
 
@@ -45,7 +49,7 @@ export default defineNuxtModule<AssistantModuleOptions>({
 		}
 
 		if (!enabled) {
-			log.warn('AI assistant disabled: OPENROUTER_API_KEY not set');
+			log.warn(process.env.ASSISTANT_ENABLED === 'false' ? 'AI assistant disabled: ASSISTANT_ENABLED=false' : 'AI assistant disabled: OPENROUTER_API_KEY not set');
 			return;
 		}
 

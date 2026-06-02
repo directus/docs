@@ -22,7 +22,13 @@ function byteLength(value: string): number {
 	return Buffer.byteLength(value, 'utf8');
 }
 
-function truncateResult(value: string, maxBytes: number): string {
+// Serialize a tool's return value to the string the model sees, redacting
+// secrets along the way. Strings pass through; everything else is JSON.
+export function serializeResult(result: unknown): string {
+	return typeof result === 'string' ? result : JSON.stringify(redactValue(result));
+}
+
+export function truncateResult(value: string, maxBytes: number): string {
 	if (byteLength(value) <= maxBytes) return value;
 	let end = Math.min(value.length, maxBytes);
 	while (byteLength(value.slice(0, end)) > maxBytes) end--;
@@ -56,8 +62,7 @@ export function bindMcpToolsForAI(tools: Record<string, ToolLike>, options: Tool
 					const handler = t.handler as (args: unknown, extra: unknown) => unknown;
 					const result = await handler(parsed.data, {});
 					options.onActivity?.();
-					const text = typeof result === 'string' ? result : JSON.stringify(redactValue(result));
-					return truncateResult(text, maxResultBytes);
+					return truncateResult(serializeResult(result), maxResultBytes);
 				}
 				catch (error) {
 					console.warn('[assistant] tool failed', { tool: name, error });

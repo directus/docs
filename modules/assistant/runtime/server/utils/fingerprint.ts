@@ -1,5 +1,5 @@
 import { createHash, createHmac } from 'node:crypto';
-import type { H3Event } from 'h3';
+import { getHeader, type H3Event } from 'h3';
 
 export type FingerprintResult = {
 	fingerprint: string;

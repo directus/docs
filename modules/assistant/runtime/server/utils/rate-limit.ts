@@ -1,19 +1,12 @@
-// Burst limits use process memory. Daily limits use Vercel KV when configured,
-// with process-memory fallback for local dev.
+// Daily limits use Vercel KV when configured, with process-memory fallback for
+// local dev. Burst limits live in the shared server/utils/rate-limit module.
 
 interface Bucket {
 	count: number;
 	resetAt: number;
 }
 
-const buckets = new Map<string, Bucket>();
 const dailyMemory = new Map<string, Bucket>();
-let lastSweep = 0;
-
-export interface RateLimitResult {
-	ok: boolean;
-	retryAfter?: number;
-}
 
 export type DailyLimitInput = {
 	ip: string;
@@ -39,27 +32,6 @@ const LIMITS = {
 	combo: 50,
 };
 
-export function checkRateLimit(key: string, max: number, windowMs: number): RateLimitResult {
-	const now = Date.now();
-
-	if (now - lastSweep > windowMs) {
-		for (const [k, b] of buckets) {
-			if (b.resetAt < now) buckets.delete(k);
-		}
-		lastSweep = now;
-	}
-
-	const bucket = buckets.get(key);
-	if (!bucket || bucket.resetAt < now) {
-		buckets.set(key, { count: 1, resetAt: now + windowMs });
-		return { ok: true };
-	}
-
-	bucket.count++;
-	if (bucket.count > max) return { ok: false, retryAfter: Math.ceil((bucket.resetAt - now) / 1000) };
-	return { ok: true };
-}
-
 export function secondsUntilUtcMidnight(now = new Date()): number {
 	const reset = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1) / 1000;
 	return Math.max(1, Math.ceil(reset - now.getTime() / 1000));
@@ -69,11 +41,32 @@ export function utcResetAt(now = new Date()): string {
 	return new Date(now.getTime() + secondsUntilUtcMidnight(now) * 1000).toISOString();
 }
 
+function ipv6Prefix64(ip: string): string | null {
+	const address = ip.toLowerCase().split('%')[0] ?? ip.toLowerCase();
+	if (!address.includes(':')) return null;
+
+	const parts = address.split('::');
+	if (parts.length > 2) return null;
+
+	const head = parts[0] ? parts[0].split(':') : [];
+	const tail = parts[1] ? parts[1].split(':') : [];
+	if ([...head, ...tail].some(part => !/^[0-9a-f]{1,4}$/.test(part))) return null;
+
+	const missing = 8 - head.length - tail.length;
+	if (missing < 0 || (parts.length === 1 && missing !== 0)) return null;
+
+	const full = [...head, ...Array.from({ length: missing }, () => '0'), ...tail];
+	if (full.length !== 8) return null;
+
+	return `${full.slice(0, 4).map(part => Number.parseInt(part, 16).toString(16)).join(':')}::/64`;
+}
+
 export function ipPrefix(ip: string): string {
 	if (!ip || ip === 'unknown') return 'unknown';
 	const first = ip.split(',')[0]?.trim() || ip;
 	if (/^\d+\.\d+\.\d+\.\d+$/.test(first)) return first.split('.').slice(0, 3).join('.') + '.0/24';
-	if (first.includes(':')) return first.split(':').slice(0, 4).join(':') + '::/64';
+	const ipv6 = ipv6Prefix64(first);
+	if (ipv6) return ipv6;
 	return first;
 }
 
