@@ -31,6 +31,12 @@ const integrations = [
 		logo: '/docs/img/tutorials/netlify.png',
 	},
 	{
+		title: 'Supabase',
+		description: 'Connect self-hosted Directus to Supabase Postgres and Supabase Storage.',
+		to: '/guides/integrations/supabase',
+		logo: '/docs/img/supabase.svg',
+	},
+	{
 		title: 'Framer',
 		description: 'Sync content between Directus collections and Framer\'s CMS in both directions.',
 		to: '/guides/integrations/framer',
