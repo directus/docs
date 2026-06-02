@@ -3,6 +3,13 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, sep } from 'node:path';
 import { defineNuxtModule, useLogger } from '@nuxt/kit';
 import { contentToMarkdown } from '../server/utils/contentToMarkdown';
+import { parseMcpMarkdown } from '../server/utils/mcpMarkdown';
+
+interface McpDocIndexEntry {
+	title: string;
+	path: string;
+	description: string;
+}
 
 export default defineNuxtModule({
 	meta: { name: 'content-markdown' },
@@ -27,6 +34,7 @@ export default defineNuxtModule({
 			}
 
 			let written = 0;
+			const index: McpDocIndexEntry[] = [];
 			for (const file of markdownFiles) {
 				const rel = relative(contentDir, file);
 				const segments = rel.split(sep);
@@ -35,14 +43,24 @@ export default defineNuxtModule({
 				const route = toRoute(segments);
 				const raw = await readFile(file, 'utf8');
 				const md = contentToMarkdown(raw, partials);
+				const path = route === '/index' ? '/' : route;
+				const page = parseMcpMarkdown(md, path);
 
 				const outPath = join(outDir, route + '.md');
 				await mkdir(dirname(outPath), { recursive: true });
 				await writeFile(outPath, md, 'utf8');
+				index.push({
+					title: page.title,
+					path,
+					description: page.description,
+				});
 				written++;
 			}
 
-			logger.info(`Wrote ${written} content markdown files`);
+			index.sort((a, b) => a.path.localeCompare(b.path));
+			await writeFile(join(outDir, 'mcp-docs-index.json'), JSON.stringify(index, null, 2), 'utf8');
+
+			logger.info(`Wrote ${written} content markdown files and ${index.length} MCP index entries`);
 		});
 	},
 });

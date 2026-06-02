@@ -1,7 +1,9 @@
 import { defineMcpTool } from '@nuxtjs/mcp-toolkit/server';
+import { ofetch } from 'ofetch';
 import { useEvent } from 'nitropack/runtime';
 import { z } from 'zod';
 import { normalizeDocPath, parseMcpMarkdown } from '../../utils/mcpMarkdown';
+import { getMcpMarkdownPath, getMcpStaticBaseUrl } from '../../utils/mcpStatic';
 
 const BASE_PATH = '/docs';
 
@@ -20,14 +22,17 @@ export default defineMcpTool({
 		const event = useEvent();
 		const config = useRuntimeConfig();
 		const siteOrigin = config.public.siteUrl.replace(/\/$/, '');
-		const baseUrl = config.app.baseURL.replace(/\/$/, '');
 		const normalized = normalizeDocPath(path);
 
 		let markdown: string;
 		try {
-			markdown = await event.$fetch<string>(`${baseUrl}${normalized}.md`, { responseType: 'text' });
+			markdown = await ofetch<string>(`${getMcpStaticBaseUrl(event)}${getMcpMarkdownPath(normalized)}.md`, { responseType: 'text' });
 		}
 		catch {
+			if (!import.meta.dev) {
+				throw createError({ statusCode: 404, message: `No doc found at ${normalized}` });
+			}
+
 			const { queryCollection } = await import('@nuxt/content/server');
 			const page = await queryCollection(event, 'content')
 				.where('path', '=', normalized)

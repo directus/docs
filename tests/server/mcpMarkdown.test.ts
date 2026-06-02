@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { normalizeDocPath, parseMcpMarkdown } from '../../server/utils/mcpMarkdown';
+import { getMcpMarkdownPath } from '../../server/utils/mcpStatic';
 
 describe('mcpMarkdown', () => {
 	it('normalizes doc paths', () => {
 		expect(normalizeDocPath('self-hosting/requirements')).toBe('/self-hosting/requirements');
 		expect(normalizeDocPath('/self-hosting/requirements')).toBe('/self-hosting/requirements');
+	});
+
+	it('maps root docs path to index markdown', () => {
+		expect(getMcpMarkdownPath('/')).toBe('/index');
+		expect(getMcpMarkdownPath('/self-hosting/requirements')).toBe('/self-hosting/requirements');
 	});
 
 	it('parses frontmatter and markdown body', () => {
