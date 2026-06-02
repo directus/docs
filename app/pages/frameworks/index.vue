@@ -36,13 +36,13 @@ const frameworkCards = computed<FrameworkCard[]>(() => {
 			return {
 				slug,
 				label: item.title ?? slug,
-				icon: item.icon ?? 'material-symbols:data-object',
+				icon: item.icon ?? 'i-lucide-braces',
 				count,
 			};
 		});
 });
 
-useSeoMeta({
+await useDocsOgImage({
 	title: 'Frameworks',
 	description: 'Find Directus guides for your frontend framework, application stack, or platform.',
 });
@@ -58,7 +58,7 @@ useSeoMeta({
 			<template #headline>
 				<UBreadcrumb
 					:items="[
-						{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
+						{ 'icon': 'i-lucide-house', 'to': '/', 'aria-label': 'Home' },
 						{ label: 'Frameworks' },
 					]"
 				>

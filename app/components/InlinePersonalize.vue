@@ -64,7 +64,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 </script>
 
 <template>
-	<div class="relative rounded-xl border border-default bg-default px-4 py-4">
+	<div class="relative w-full max-w-full overflow-hidden rounded-xl border border-default bg-default px-4 py-4">
 		<Transition
 			mode="out-in"
 			enter-active-class="transition-opacity duration-200"
@@ -76,7 +76,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 				v-if="phase === 'asking'"
 				key="asking"
 			>
-				<header class="mb-3.5 flex items-start justify-between gap-3">
+				<header class="mb-3.5 flex flex-col gap-3 @min-[28rem]/docs-pane:flex-row @min-[28rem]/docs-pane:items-start @min-[28rem]/docs-pane:justify-between">
 					<div class="min-w-0">
 						<DocsEyebrow class="mb-1">
 							Personalize
@@ -85,7 +85,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 							{{ currentTitle }}
 						</h3>
 					</div>
-					<div class="flex shrink-0 items-center gap-2">
+					<div class="flex shrink-0 items-center justify-between gap-2 @min-[28rem]/docs-pane:justify-start">
 						<span class="font-mono text-xs text-muted">{{ stepIndex + 1 }} of {{ stepKeys.length }}</span>
 						<UButton
 							label="Skip"
@@ -111,12 +111,12 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 						<template v-if="currentKey === 'framework'">
 							<UInput
 								v-model="frameworkQuery"
-								icon="material-symbols:search"
+								icon="i-lucide-search"
 								size="sm"
 								placeholder="Search frameworks..."
 								class="w-full mb-2"
 							/>
-							<div class="grid max-h-60 grid-cols-2 gap-1.5 overflow-y-auto @min-[32rem]/docs-pane:grid-cols-3">
+							<div class="grid max-h-60 grid-cols-1 gap-1.5 overflow-y-auto @min-[28rem]/docs-pane:grid-cols-2 @min-[44rem]/docs-pane:grid-cols-3">
 								<button
 									v-for="f in filteredFrameworks"
 									:key="f.slug"
@@ -140,7 +140,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 						</template>
 
 						<template v-else-if="currentKey === 'useCase'">
-							<div class="grid grid-cols-2 gap-1.5 @min-[32rem]/docs-pane:grid-cols-3">
+							<div class="grid grid-cols-1 gap-1.5 @min-[28rem]/docs-pane:grid-cols-2 @min-[44rem]/docs-pane:grid-cols-3">
 								<button
 									v-for="u in useCases"
 									:key="u.slug"
@@ -158,7 +158,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 						</template>
 
 						<template v-else>
-							<div class="grid grid-cols-1 gap-1.5 @min-[32rem]/docs-pane:grid-cols-3">
+							<div class="grid grid-cols-1 gap-1.5 @min-[44rem]/docs-pane:grid-cols-3">
 								<button
 									v-for="e in experiences"
 									:key="e.slug"
@@ -185,7 +185,7 @@ const optionBase = 'inline-flex min-w-0 cursor-pointer items-center gap-2 rounde
 				class="flex items-center gap-2 py-1 text-sm text-highlighted"
 			>
 				<UIcon
-					name="material-symbols:check-circle-outline"
+					name="i-lucide-circle-check"
 					class="size-5 text-primary"
 				/>
 				<span>All set — your docs are personalized.</span>

@@ -7,9 +7,7 @@ const { data: navigation } = await useAsyncData('content-navigation', () => quer
 
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
-defineOgImage('Default', {
-	title: 'Directus Docs',
-});
+await useDocsOgImage();
 
 const assistantEnabled = useRuntimeConfig().public.assistant?.enabled;
 const { isOpen } = useAssistant();

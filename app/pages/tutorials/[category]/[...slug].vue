@@ -51,7 +51,7 @@ const breadcrumb = computed(() => {
 		}));
 
 	return [
-		{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
+		{ 'icon': 'i-lucide-house', 'to': '/', 'aria-label': 'Home' },
 		...trail,
 	];
 });
@@ -73,12 +73,11 @@ const frameworkChips = computed(() => {
 		.filter(c => c !== null);
 });
 
-defineOgImage('Default', {
+await useDocsOgImage({
 	title: page.value?.title ?? 'Directus Docs',
 	description: page.value?.description ?? '',
 	breadcrumb: breadcrumb.value
-		.map(item => item.label)
-		.filter((label): label is string => Boolean(label)),
+		.flatMap(item => ('label' in item && item.label ? [item.label] : [])),
 });
 </script>
 
@@ -93,7 +92,7 @@ defineOgImage('Default', {
 				:handle="false"
 				:ui="{ content: 'w-full max-w-2/3' }"
 			>
-				<UButton label="Menu" icon="material-symbols:menu" color="neutral" variant="link" size="xs" aria-label="Open navigation" />
+				<UButton label="Menu" icon="i-lucide-menu" color="neutral" variant="link" size="xs" aria-label="Open navigation" />
 				<template #body>
 					<MobileNavSectionSwitcher :items="allSectionItems" :current-section="currentSection" />
 					<p class="text-xs font-medium text-dimmed uppercase font-mono tracking-widest mb-2 flex items-center gap-1">
@@ -112,7 +111,7 @@ defineOgImage('Default', {
 				:handle="false"
 				:ui="{ content: 'w-full max-w-2/3' }"
 			>
-				<UButton label="On this page" trailing-icon="material-symbols:chevron-right" color="neutral" variant="link" size="xs" aria-label="Open on this page" />
+				<UButton label="On this page" trailing-icon="i-lucide-chevron-right" color="neutral" variant="link" size="xs" aria-label="Open on this page" />
 				<template #body>
 					<DocsToc :links="page!.body?.toc?.links" :authors="page!.authors" :file="page!.id!" mobile />
 				</template>
@@ -166,7 +165,7 @@ defineOgImage('Default', {
 				#links
 			>
 				<UButton
-					:icon="favorited ? 'material-symbols:star' : 'material-symbols:star-outline'"
+					:icon="favorited ? 'i-lucide-star' : 'i-lucide-star'"
 					:label="favorited ? 'Favorited' : 'Favorite'"
 					color="neutral"
 					variant="ghost"

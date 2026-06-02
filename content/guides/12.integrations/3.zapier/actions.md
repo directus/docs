@@ -54,7 +54,7 @@ These operations work similarly across all resources:
 
 **Note for Items**: All item operations require selecting the **Collection** first. Fields are automatically shown based on your Directus collection structure.
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Permanent Deletion**
 Delete operations permanently remove data. Make sure this is what you want to do!
 ::
@@ -73,7 +73,7 @@ Select **Find** operation → Choose Collection (Items only) → Configure optio
 | **Search** | General search query across attributes |
 | **Filter (JSON)** | Advanced filtering using Directus filter syntax |
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Processing Multiple Results**
 <br>
 By default, Zapier returns only the **first result** from Find actions. To process all returned results, you must configure **"If multiple search results are found"** in the action settings to **"Return all results as line items"**. This allows Zapier to process each result separately in subsequent steps.
@@ -81,10 +81,10 @@ By default, Zapier returns only the **first result** from Find actions. To proce
 
 **Note for Items**: Select the **Collection** before configuring options.
 
-::callout{icon="material-symbols:lightbulb-outline"}
+::callout{icon="i-lucide-lightbulb"}
 **Advanced Filtering in Find**
 <br>
-The **Filter (JSON)** field in Find actions supports Directus's complete filter syntax, including logical operators (`_and`, `_or`), relational field filtering, and all filter operators. For complete filter syntax and examples, see the [Directus Filter Rules documentation](https://directus.io/docs/guides/connect/filter-rules).
+The **Filter (JSON)** field in Find actions supports Directus's complete filter syntax, including logical operators (`_and`, `_or`), relational field filtering, and all filter operators. For complete filter syntax and examples, see the [Directus Filter Rules documentation](https://directus.com/docs/guides/connect/filter-rules).
 ::
 
 **Example: Complex filter**
@@ -110,7 +110,7 @@ The **Filter (JSON)** field in Find actions supports Directus's complete filter 
 
 Items are content entries in your Directus collections (blog posts, products, pages, etc.). All operations require selecting a **Collection** first.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Dynamic Field Discovery**
 Fields are automatically discovered from your Directus schema and shown in the action configuration. You can map data from previous steps using the dropdown menus.
 ::
@@ -127,7 +127,7 @@ To create users, use **Invite User**. This sends an invitation email so the user
 - **Role** (dropdown selection)
 - **Custom Invite URL** (optional)
 
-::callout{icon="material-symbols:lightbulb-outline"}
+::callout{icon="i-lucide-lightbulb"}
 **Direct User Creation**
 For direct user creation without invitation, use **User Raw Request** with POST method.
 ::
@@ -149,7 +149,7 @@ Upload a file from binary data in your Zap.
 - **Description** (optional)
 - **Folder** (optional)
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **File Data Source**
 The file must come from a previous step that provides binary file data (like downloading a file from a URL or getting a file from another app).
 ::
@@ -165,7 +165,7 @@ Import a file from a publicly accessible URL.
 - **Description** (optional)
 - **Folder** (optional)
 
-::callout{icon="material-symbols:lightbulb-outline"}
+::callout{icon="i-lucide-lightbulb"}
 **Upload vs Import**
 Use **Upload** when you have binary file data from a previous step. Use **Import** when you have a publicly accessible URL to the file.
 ::
@@ -225,7 +225,7 @@ are correct.
 
 When working with Directus API through Zapier, you may encounter various error codes. For a comprehensive list of
 Directus error codes and their meanings, refer to the
-[official Directus Error Codes documentation](https://directus.io/docs/guides/connect/errors).
+[official Directus Error Codes documentation](https://directus.com/docs/guides/connect/errors).
 
 ### Error Handling
 

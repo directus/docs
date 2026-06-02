@@ -65,7 +65,7 @@ const ogBreadcrumb = computed(() =>
 		.filter((title): title is string => Boolean(title)),
 );
 
-defineOgImage('Default', {
+await useDocsOgImage({
 	title: page.value?.title ?? 'Directus Docs',
 	description: page.value?.description ?? '',
 	breadcrumb: ogBreadcrumb.value,
@@ -115,7 +115,7 @@ const breadcrumb = computed(() => {
 	}
 
 	return [
-		{ 'icon': 'material-symbols:home-outline', 'to': '/', 'aria-label': 'Home' },
+		{ 'icon': 'i-lucide-house', 'to': '/', 'aria-label': 'Home' },
 		...trail,
 	];
 });
@@ -136,7 +136,7 @@ const breadcrumb = computed(() => {
 			>
 				<UButton
 					label="Menu"
-					icon="material-symbols:menu"
+					icon="i-lucide-menu"
 					color="neutral"
 					variant="link"
 					size="xs"
@@ -167,7 +167,7 @@ const breadcrumb = computed(() => {
 			>
 				<UButton
 					label="On this page"
-					trailing-icon="material-symbols:chevron-right"
+					trailing-icon="i-lucide-chevron-right"
 					color="neutral"
 					variant="link"
 					size="xs"
@@ -221,7 +221,7 @@ const breadcrumb = computed(() => {
 				#links
 			>
 				<UButton
-					:icon="favorited ? 'material-symbols:star' : 'material-symbols:star-outline'"
+					:icon="favorited ? 'i-lucide-star' : 'i-lucide-star'"
 					:label="favorited ? 'Favorited' : 'Favorite'"
 					color="neutral"
 					variant="ghost"

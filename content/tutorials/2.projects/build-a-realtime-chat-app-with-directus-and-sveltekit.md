@@ -28,9 +28,9 @@ You also need to configure CORS and WebSocket. Update your `docker-compose.yml` 
 
 ```bash
 WEBSOCKETS_ENABLED: "true"
-CORS_ENABLED: "true" 
-CORS_ORIGIN: "http://localhost:5173" 
-CORS_CREDENTIALS: "true" 
+CORS_ENABLED: "true"
+CORS_ORIGIN: "http://localhost:5173"
+CORS_CREDENTIALS: "true"
 ```
 ### Create a Collection
 
@@ -57,7 +57,7 @@ Navigate to Settings -> Access Policies -> Public. Under `messages` grant full a
 To start building, you need to install SvelteKit and Directus sdk. Run this command to install SvelteKit:
 
 ```bash
-npx sv create realtime-app 
+npx sv create realtime-app
 ```
 When prompted, select SvelteKit minimal as the template. Do not add type checking, as this tutorial is implemented in JavaScript. Your output should look like this:
 
@@ -209,10 +209,10 @@ Create a file called `+page.svelte` file in the `./src/route` directory. Add the
 </script>
 ```
 
-In the code above we use WebSocket authentication via [handshake mode](https://directus.io/docs/guides/realtime/authentication#handshake-mode) to connect to Directus in real-time. When the WebSocket starts, the app  sends authentication details to stay connected. The authentication function handles login, stores tokens, loads recent messages, and reconnects automatically if the connection drops or authentication expires. 
+In the code above we use WebSocket authentication via [handshake mode](https://directus.com/docs/guides/realtime/authentication#handshake-mode) to connect to Directus in real-time. When the WebSocket starts, the app  sends authentication details to stay connected. The authentication function handles login, stores tokens, loads recent messages, and reconnects automatically if the connection drops or authentication expires.
 
 ### Subscribe to Incoming Messages
-Add the following code at the bottom of the `script` in your `./src/routes/+page.svelte`: 
+Add the following code at the bottom of the `script` in your `./src/routes/+page.svelte`:
 
 ```javascript
 async function subscribeToMessages() {
@@ -237,9 +237,9 @@ async function subscribeToMessages() {
 }
 ```
 
-The `subscribeToMessages()` function sets up a real-time listener for new messages in Directus using WebSocket subscriptions. It subscribes to the `messages` collection, requesting only the message ID, content, and sender’s first name while also including a [UID](https://directus.io/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [good practice](https://directus.io/docs/guides/realtime/subscriptions#using-uids)
+The `subscribeToMessages()` function sets up a real-time listener for new messages in Directus using WebSocket subscriptions. It subscribes to the `messages` collection, requesting only the message ID, content, and sender’s first name while also including a [UID](https://directus.com/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [good practice](https://directus.com/docs/guides/realtime/subscriptions#using-uids)
 
-This allows the app to match responses with specific requests, improving reliability when handling multiple subscriptions. As new messages arrive, the function processes each event in a loop and calls `receiveMessage(event)`, ensuring real-time updates in the app. 
+This allows the app to match responses with specific requests, improving reliability when handling multiple subscriptions. As new messages arrive, the function processes each event in a loop and calls `receiveMessage(event)`, ensuring real-time updates in the app.
 
 ## Send Messages
 To begin sending messages, add the following code at the bottom of the script in your `.src/routes/+page.svelte` file
@@ -271,7 +271,7 @@ const sendMessage = async (event) => {
   }
 };
 ```
-The `sendMessage` function handles sending a new message via WebSocket in Directus. It first prevents the default form submission behavior and checks if the message content is empty or if the user is not logged in, in which case it stops execution. 
+The `sendMessage` function handles sending a new message via WebSocket in Directus. It first prevents the default form submission behavior and checks if the message content is empty or if the user is not logged in, in which case it stops execution.
 
 If the WebSocket is not connected, it attempts to reconnect before sending the message. It then sends the message as a create action in the "messages" collection using Directus' WebSocket API. If successful, it logs confirmation and clears the message input. If sending fails, it logs the error, and if the WebSocket is disconnected, a reconnection attempt is triggered.
 
@@ -298,10 +298,10 @@ async function receiveMessage(newMessage) {
 ```
 The receiveMessage function processes incoming WebSocket messages and ensures they belong to the correct subscription by checking the UID before updating the app.
 
-If valid, it extracts the message ID, content, and sender’s first name, then updates the message list. 
+If valid, it extracts the message ID, content, and sender’s first name, then updates the message list.
 
 ## Display Incoming Messages
-To display the messages, you need to add the UI templates for the chats. Right after the script tag in your `./src/routes/+page.svelte`, add the following code: 
+To display the messages, you need to add the UI templates for the chats. Right after the script tag in your `./src/routes/+page.svelte`, add the following code:
 
 ```javascript
 <div class="container-center">
@@ -448,7 +448,7 @@ function attemptReconnect() {
 }
 ```
 
-The `setupWebSocketEventHandlers()` and `attemptReconnect()` functions ensures a stable WebSocket connection by handling authentication expiration and keeping the session alive respectively. 
+The `setupWebSocketEventHandlers()` and `attemptReconnect()` functions ensures a stable WebSocket connection by handling authentication expiration and keeping the session alive respectively.
 
 ## Test the Application
 To test the application, run this command:
@@ -460,7 +460,7 @@ Afterward, open **http://localhost:5173/** in your browser. You should see a log
 
 ![image showing the login page](/img/sveltekit_realtime_chat_login.png)
 
-Next, you'll see an empty chat. Go to the Directus dashboard and create a new message in the 'Messages' collection. After that, you should see the message displayed in the chat box, as shown in the image below.  
+Next, you'll see an empty chat. Go to the Directus dashboard and create a new message in the 'Messages' collection. After that, you should see the message displayed in the chat box, as shown in the image below.
 
 ![image showing the real-time chat section](/img/sveltekit_realchat.png)
 

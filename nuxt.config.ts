@@ -26,7 +26,28 @@ function loadRedirectRouteRules(): NitroConfig['routeRules'] {
 	return rules;
 }
 
+function loadApiReferencePrerenderRoutes(): string[] {
+	const path = './app/generated/api-reference/routes.json';
+	if (!existsSync(path)) {
+		throw new Error('Missing generated API reference routes. Run `pnpm api-ref:generate` before Nuxt.');
+	}
+
+	const raw = readFileSync(path, 'utf8').trim();
+	if (!raw) {
+		throw new Error('Generated API reference routes are empty. Run `pnpm api-ref:generate`.');
+	}
+
+	const routes = JSON.parse(raw) as string[];
+	if (routes.length === 0) {
+		throw new Error('Generated API reference routes are empty. Run `pnpm api-ref:generate`.');
+	}
+
+	return routes;
+}
+
 const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
+const apiReferencePrerenderRoutes = loadApiReferencePrerenderRoutes();
+const docsApiReferencePrerenderRoutes = apiReferencePrerenderRoutes.map(route => `${BASE_URL}${route}`);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -36,7 +57,8 @@ export default defineNuxtConfig({
 		'nuxt-llms',
 		'@nuxt/content',
 		'@nuxt/scripts',
-		'@nuxtjs/seo',
+		'@nuxtjs/robots',
+		'@nuxtjs/sitemap',
 		'@vueuse/nuxt',
 		'@nuxtjs/mcp-toolkit',
 		'~~/modules/content-markdown',
@@ -123,6 +145,7 @@ export default defineNuxtConfig({
 	},
 
 	runtimeConfig: {
+		ogSigningSecret: process.env.NUXT_OG_SIGNING_SECRET ?? process.env.OG_SIGNING_SECRET,
 		public: {
 			scripts: {
 				googleTagManager: {
@@ -132,6 +155,8 @@ export default defineNuxtConfig({
 			typesenseUrl: process.env.TYPESENSE_URL,
 			typesensePublicApiKey: process.env.TYPESENSE_PUBLIC_API_KEY,
 			typesenseCollection,
+			siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+			ogBaseUrl: process.env.NUXT_PUBLIC_OG_BASE_URL || 'https://og.directus.com',
 		},
 		directusUrl: process.env.DIRECTUS_URL,
 	},
@@ -142,8 +167,10 @@ export default defineNuxtConfig({
 
 	routeRules: {
 		...loadRedirectRouteRules(),
-		'/api/**': { prerender: false },
-		'/docs/api/**': { prerender: false },
+		'/api/**': { prerender: true },
+		'/docs/api/**': { prerender: true },
+		'/mcp/deeplink': { prerender: false },
+		'/docs/mcp/deeplink': { prerender: false },
 		'/llms-full.txt': { prerender: false },
 		'/docs/llms-full.txt': { prerender: false },
 	},
@@ -165,9 +192,10 @@ export default defineNuxtConfig({
 			asyncContext: true,
 		},
 		prerender: {
-			routes: ['/'],
+			routes: ['/', `${BASE_URL}/api`, ...docsApiReferencePrerenderRoutes],
 			crawlLinks: true,
-			concurrency: 2,
+			ignore: [/^\/docs\/mcp\/deeplink(\?.*)?$/],
+			concurrency: 1,
 			retry: 2,
 			retryDelay: 1000,
 		},
@@ -193,8 +221,7 @@ export default defineNuxtConfig({
 
 	icon: {
 		serverBundle: {
-			collections: ['material-symbols', 'simple-icons'],
-			externalizeIconsJson: true,
+			collections: ['lucide', 'material-symbols', 'ph', 'simple-icons'],
 		},
 		customCollections: [
 			{
@@ -208,16 +235,8 @@ export default defineNuxtConfig({
 		},
 	},
 
-	linkChecker: {
-		skipInspections: [
-			// Skip absolute site urls because of our routing setup between the docs and the main site
-			'absolute-site-urls',
-			'link-text',
-		],
-	},
-
 	llms: {
-		domain: 'https://directus.io/docs',
+		domain: 'https://directus.com/docs',
 		title: 'Directus Documentation',
 		description:
 			'Directus is a real-time API and no-code Data Studio for managing any SQL database. It provides REST and GraphQL APIs, granular access control, authentication, file storage, automations, realtime via WebSockets, analytics dashboards, AI integration, and a full extension system. The Data Studio is a web application for non-technical users to browse, manage, and visualize data without writing code.',
@@ -388,20 +407,18 @@ export default defineNuxtConfig({
 			},
 		],
 		notes: [
-			'The interactive API Reference is generated from an OpenAPI specification and is not included in this file. Visit https://directus.io/docs/api for the full reference.',
+			'The interactive API Reference is generated from an OpenAPI specification and is not included in this file. Visit https://directus.com/docs/api for the full reference.',
 			'The @directus/sdk package reference is in the source repository. The Connect section here covers setup, authentication, and common patterns.',
 			'This documentation covers the latest version of Directus.',
-			'Directus uses a Business Source License (BSL). See https://directus.io/bsl for license terms.',
+			'Directus uses a Business Source License (BSL). See https://directus.com/license for license terms.',
 		],
 	},
 
 	mcp: {
 		name: 'Directus documentation',
 		description: 'Search and read the Directus documentation.',
-		browserRedirect: '/mcp-help',
+		browserRedirect: `${BASE_URL}/mcp-help`,
 	},
-
-	ogImage: { zeroRuntime: true },
 
 	// Disable PostHog in development
 	posthog: {
