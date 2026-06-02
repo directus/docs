@@ -134,15 +134,15 @@ const statusCodeDescriptions: StatusCodeDescriptions = {
 			</div>
 		</div>
 		<div class="grow sticky top-16 w-full">
-			<MDC
-				v-if="operation['x-codeSamples']?.length"
-				:key="`code-samples-${operation.method}-${operation.path}`"
-				:value="codeSamplesMd(operation)"
+			<ApiCodeSamples
+				:method="operation.method"
+				:path="operation.path"
+				:rest-html="operation.restSampleHtml"
+				:samples="operation['x-codeSamples']"
 			/>
-			<MDC
-				v-if="operation.responseExample"
-				:key="`response-example-${operation.method}-${operation.path}`"
-				:value="preMd('json', 'Response Example', operation.responseExample)"
+			<ApiResponseExample
+				v-if="operation.responseExampleHtml"
+				:html="operation.responseExampleHtml"
 			/>
 		</div>
 	</UPageBody>
