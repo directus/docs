@@ -62,6 +62,7 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 		'@nuxtjs/mcp-toolkit',
 		'~~/modules/content-markdown',
+		'~~/modules/assistant',
 	],
 
 	devtools: {
@@ -72,7 +73,7 @@ export default defineNuxtConfig({
 		baseURL: BASE_URL,
 	},
 
-	css: ['~/assets/css/main.css'],
+	css: ['~/assets/css/main.css', '@directus/vue-split-panel/index.css'],
 
 	site: {
 		name: 'Directus Docs',
@@ -223,7 +224,7 @@ export default defineNuxtConfig({
 
 	icon: {
 		serverBundle: {
-			collections: ['lucide', 'material-symbols', 'simple-icons'],
+			collections: ['lucide', 'material-symbols', 'ph', 'simple-icons'],
 		},
 		customCollections: [
 			{

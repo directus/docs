@@ -1,6 +1,6 @@
 ---
 title: Directus Documentation
-description: A backend your whole team can use.
+description: The AI-ready backend for your whole team.
 navigation: false
 ---
 

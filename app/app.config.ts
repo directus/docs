@@ -3,6 +3,33 @@ export default defineAppConfig({
 		backend: 'typesense',
 	},
 
+	assistant: {
+		faqQuestions: [
+			{
+				category: 'Getting Started',
+				items: [
+					'What is Directus?',
+					'How do I install Directus?',
+					'How do I create a collection?',
+				],
+			},
+			{
+				category: 'Frameworks',
+				items: [
+					'How do I fetch data from Directus in Nuxt?',
+					'How do I use the Directus SDK in Next.js?',
+				],
+			},
+			{
+				category: 'Source code',
+				items: [
+					'Where is the items service defined in directus/directus?',
+					'Show me an example of a custom Directus extension.',
+				],
+			},
+		],
+	},
+
 	ui: {
 		colors: {
 			primary: 'purple',
@@ -16,6 +43,12 @@ export default defineAppConfig({
 			},
 		},
 
+		// Container-query overrides for Nuxt UI components, keyed off the
+		// `docs-pane` parent set on <DocsShell>. These translate "narrow pane"
+		// into "mobile mode" so the AI split panel can collapse the layout
+		// based on pane width rather than viewport. Tailwind 4 only sees
+		// literal class strings, so these stay inline (no template-string
+		// composition).
 		container: {
 			base: '@max-[40rem]/docs-pane:px-4! @min-[40rem]/docs-pane:px-6! @min-[64rem]/docs-pane:px-8!',
 		},
@@ -34,6 +67,7 @@ export default defineAppConfig({
 				bottom: '@max-[64rem]/docs-pane:hidden! @min-[64rem]/docs-pane:flex!',
 			},
 		},
+
 		content: {
 			callout: {
 				// Fix background color of pre > code blocks
@@ -47,6 +81,9 @@ export default defineAppConfig({
 		},
 		pageHeader: {
 			slots: {
+				// Counter the default `lg:flex-row lg:items-center lg:justify-between`
+				// from Nuxt UI: at narrow pane widths the row should collapse to a
+				// stacked column even when the viewport is wide (AI panel open).
 				wrapper: '@max-[40rem]/docs-pane:flex-col! @max-[40rem]/docs-pane:items-stretch! @max-[40rem]/docs-pane:justify-start! @min-[40rem]/docs-pane:flex-row! @min-[40rem]/docs-pane:items-center! @min-[40rem]/docs-pane:justify-between!',
 				title: 'text-3xl sm:text-4xl text-pretty font-display font-medium text-highlighted',
 			},
@@ -220,7 +257,7 @@ export default defineAppConfig({
 			hsForm: 'd57a69e4-6f43-4768-a600-5f7d30306260',
 		},
 
-		// Has "edit page" dynamically added in the first position in DocsTocAuthors.vue
+		// Has "edit page" dynamically added in the first position in DocsToc.vue
 		links: [
 			{
 				icon: 'i-lucide-star',

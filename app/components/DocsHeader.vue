@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { header } = useAppConfig();
+const config = useRuntimeConfig();
 
 const { groups, allSectionItems } = useSectionNavigation();
 
@@ -37,6 +38,7 @@ const groupItems = computed(() =>
 
 		<template #right>
 			<DocsSearchTrigger />
+			<AssistantChat v-if="config.public.assistant?.enabled" />
 			<div class="block @min-[40rem]/docs-pane:hidden">
 				<SettingsDrawerTrigger />
 			</div>
