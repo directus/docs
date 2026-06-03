@@ -1,6 +1,7 @@
 import type { Context } from '@opentelemetry/api';
 import type { NodeSDK } from '@opentelemetry/sdk-node';
 import type { ReadableSpan, Span, SpanProcessor } from '@opentelemetry/sdk-trace-base';
+import { isAssistantEnabled } from '../../../index';
 import { assistantRateLimitStore } from '../utils/rate-limit';
 import { redactValue } from '../utils/sanitize';
 
@@ -54,7 +55,7 @@ class RedactingSpanProcessor implements SpanProcessor {
 
 export default defineNitroPlugin(async () => {
 	const config = useRuntimeConfig();
-	const assistantEnabled = process.env.ASSISTANT_ENABLED !== 'false' && Boolean(config.assistant?.openrouterApiKey);
+	const assistantEnabled = isAssistantEnabled(config.assistant?.openrouterApiKey);
 	const posthogAiHost = process.env.POSTHOG_AI_HOST || config.public.posthog?.host;
 	const posthogEnabled = !config.public.posthog?.disabled && Boolean(config.public.posthog?.publicKey && posthogAiHost);
 

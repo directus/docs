@@ -5,7 +5,6 @@ import { strings } from '../strings';
 const route = useRoute();
 const { open, isOpen } = useAssistant();
 const input = ref('');
-const isVisible = ref(true);
 const inputRef = ref<{ inputRef: HTMLInputElement } | null>(null);
 
 const isDocsRoute = computed(() => route.meta.layout === 'docs');
@@ -34,7 +33,7 @@ function handleEscape() {
 <template>
 	<AnimatePresence>
 		<motion.div
-			v-if="isDocsRoute && isVisible && !isOpen"
+			v-if="isDocsRoute && !isOpen"
 			key="floating-input"
 			:initial="{ y: 20, opacity: 0 }"
 			:animate="{ y: 0, opacity: 1 }"
