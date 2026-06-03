@@ -1,4 +1,5 @@
 ---
+stableId: 48becf46-6c52-47fe-88c2-12592449e70d
 id: netlify-deployments
 title: Deployments
 description: Full guide for triggering builds, tracking deployment progress, and viewing logs for your Netlify sites from Directus.

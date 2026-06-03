@@ -1,4 +1,5 @@
 ---
+stableId: db34a47d-af53-4570-85f3-594754d070bb
 id: 2cdec3d5-9f3d-4c43-9541-6a9f5bc68007
 slug: deploy-directus-to-google-cloud-platform
 title: Deploy Directus to Google Cloud Platform
@@ -41,7 +42,7 @@ Copy the connection name for later usage.
 
 ## Set Up the Docker Container
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 In this section, we will specify the version of Directus as `11.17.0` as the latest at the time of writing. Please refer to the [releases](https://github.com/directus/directus/releases) and replace this with the latest version.
 
@@ -59,7 +60,7 @@ Next, Build the docker image and tag it to be `directus:11.17.0`:
 docker build -t directus:11.17.0 --platform linux/amd64 .
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 ### Using an Apple Silicon Machine?
 
@@ -89,7 +90,7 @@ Click on **Create** to create a new repository.
 
 To push the `Dockerfile` to the created repository, you must first be authenticated via the CLI that ships Google Cloud SDK.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 In this section, we will specify `us-central1` as the region. If you used a different region, please replace it.
 

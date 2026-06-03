@@ -1,4 +1,5 @@
 ---
+stableId: b04b55ba-2cd6-4f1e-9e4f-b3579e6768e9
 id: 38c78e29-8fad-46f8-8855-f18864310d00
 slug: promoting-changes-between-environments-in-directus
 title: Promoting Changes Between Environments in Directus
@@ -44,7 +45,7 @@ project, or to move from a self-hosted project to Directus Cloud.
 
 ### How-To Guide
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 **Permissions**<br/>
 

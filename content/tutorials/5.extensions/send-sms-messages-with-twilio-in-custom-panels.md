@@ -1,4 +1,5 @@
 ---
+stableId: 38a54e0c-83af-44e2-a838-800705f02794
 id: 9dbc2c00-796b-48ff-8ed6-f01ddf72d7ef
 slug: send-sms-messages-with-twilio-in-custom-panels
 title: Send SMS Messages with Twilio in Custom Panels
@@ -667,7 +668,7 @@ If you don’t have the Twilio Endpoint Extension, follow the instructions
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

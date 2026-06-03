@@ -1,17 +1,18 @@
 ---
+stableId: 51836497-a247-44f2-bd1f-f6275b8deb62
 id: 03141a12-e9be-4fd5-8072-78685d4ff12b
 slug: trigger-netlify-site-builds-with-directus-automate
-title: Trigger Netlify Site Builds with Directus Automate
+title: Trigger Netlify Site Builds with Directus Flows
 technologies:
   - netlify
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer
-description: Learn how to trigger new Netlify website builds through Directus Automate.
+description: Learn how to trigger new Netlify website builds through Directus Flows.
 ---
 ## Explanation
 
-When using Directus as a [Headless CMS](https://directus.io/solutions/headless-cms), it is common to pair it with a
+When using Directus as a [Headless CMS](https://directus.com/resources/what-is-headless-cms), it is common to pair it with a
 front-end framework / static site generator like [Next.js](https://nextjs.org/), [Nuxt.js](https://nuxt.com),
 [SvelteKit](https://kit.svelte.dev/), or other options.
 
@@ -24,7 +25,7 @@ existing content changes.
 
 ## How-To Guide
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 You’ll need to have already created a collection for your site content like `articles` or `posts` or `pages` with a
 field `status` that controls the published state. You'll also need to have a Netlify account and a site already hosted
@@ -34,11 +35,11 @@ with them.
 
 ### Create and Configure Your Flow
 
-1. [Create a new flow](/guides/automate/flows)
+1. [Create a new flow](/guides/flows)
 
    Give it a memorable name and short description like `Trigger New Site Build`.
 
-2. [Complete the trigger setup](/guides/automate/triggers)
+2. [Complete the trigger setup](/guides/flows/triggers)
 
    ![The trigger setup tab of the creating new flow interface is show. The event hook type is selected. The type field value is "Action(Non-Blocking)". In the scope field, "items.create" and "items.update" are selected.](/img/ee5eca7d-2bcb-4e73-b6b6-d638375282f6.webp)
 
@@ -61,7 +62,7 @@ with them.
 
 > This step is optional but it is recommended to add a Condition operation to prevent unnecessary builds.
 
-3. [Create a new Operation](/guides/automate/operations)
+3. [Create a new Operation](/guides/flows/operations)
 
    ![Within a Directus Flow, the Create Operation screen is shown. The Name of the Operation is "If Published". The Operation type is "Condition". The value of the Condition Rules field is a JSON object.](/img/4fb65e5f-8aa7-4683-96a4-6ba55ab93a7c.webp)
 
@@ -83,7 +84,7 @@ with them.
 
 ### Configure Netlify Build Hook
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 You can learn more about Netlify Build Hooks on their documentation.
 

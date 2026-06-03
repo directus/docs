@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content';
 
-import { findPageHeadline } from '#ui-pro/utils';
+import { findPageBreadcrumb, findPageHeadline } from '@nuxt/content/utils';
 
 const navigation = inject('navigation') as Ref<ContentNavigationItem[]>;
 
@@ -11,62 +11,224 @@ definePageMeta({
 
 const route = useRoute();
 
-const { path } = useNormalizedPath();
-const { data: page } = await useAsyncData(path, () => queryCollection('content').path(path.value).first());
+const menuDrawerOpen = ref(false);
+const tocDrawerOpen = ref(false);
 
-if (!page.value) {
-	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
-}
-
-const headline = computed(() => findPageHeadline(navigation.value, page.value));
-
-// TODO: Remove Beta badge when Zapier integration is out of beta
-const showComingSoonBadge = computed(() => {
-	const path = route.path;
-	const pageId = page.value?.id;
-
-	// Show badge on Zapier pages
-	if (path.includes('/integrations/zapier') || pageId === 'zapier-integration') {
-		return true;
-	}
-
-	return false;
+watch(() => route.path, () => {
+	menuDrawerOpen.value = false;
+	tocDrawerOpen.value = false;
 });
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => queryCollectionItemSurroundings('content',
-	route.path,
-	{
+const { currentSection, currentGroup, groupSections, mobileSectionNavigation, allSectionItems } = useSectionNavigation();
+
+const pageHeaderUi = {
+	headline: 'font-mono font-normal! uppercase tracking-wider',
+};
+
+const { path } = useNormalizedPath();
+
+if (path.value.endsWith('/.navigation')) {
+	throw createError({
+		statusCode: 404,
+		statusMessage: 'Page not found',
+		fatal: true,
+	});
+}
+
+const { data: page } = await useAsyncData(path, () =>
+	queryCollection('content').path(path.value).first(),
+);
+
+if (!page.value) {
+	throw createError({
+		statusCode: 404,
+		statusMessage: 'Page not found',
+		fatal: true,
+	});
+}
+
+const { recordVisit, isFavorite, toggleFavorite } = usePageHistory();
+
+watch(page, (current) => {
+	if (import.meta.client && current?.title) {
+		recordVisit({ path: path.value, title: current.title });
+	}
+}, { immediate: true });
+
+const favorited = computed(() => isFavorite(path.value));
+
+const headline = computed(() => findPageHeadline(navigation.value, path.value));
+
+const ogBreadcrumb = computed(() =>
+	(findPageBreadcrumb(navigation.value, path.value) ?? [])
+		.map(item => item.title)
+		.filter((title): title is string => Boolean(title)),
+);
+
+await useDocsOgImage({
+	title: page.value?.title ?? 'Directus Docs',
+	description: page.value?.description ?? '',
+	breadcrumb: ogBreadcrumb.value,
+});
+
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
+	queryCollectionItemSurroundings('content', route.path, {
 		fields: ['title', 'description', 'path'],
-	},
-).where('path', 'NOT LIKE', '%.navigation'));
+	}).where('path', 'NOT LIKE', '%.navigation'),
+);
+
+const frameworkRootMatch = computed(() => /^\/frameworks\/([^/]+)\/?$/.exec(path.value));
+const frameworkGuideMatch = computed(() => /^\/frameworks\/([^/]+)\/.+/.exec(path.value));
+const frameworkSlug = computed(() => frameworkRootMatch.value?.[1] ?? frameworkGuideMatch.value?.[1]);
+
+const frameworkNode = computed(() => {
+	const slug = frameworkSlug.value;
+	return slug ? findNavNode(navigation.value, `/frameworks/${slug}`) : undefined;
+});
+
+const frameworkIcon = computed(() =>
+	frameworkRootMatch.value ? frameworkNode.value?.icon : undefined,
+);
+
+const breadcrumb = computed(() => {
+	const trail: { label: string; to?: string }[] = (findPageBreadcrumb(navigation.value, path.value) ?? [])
+		.map(item => ({
+			label: item.title,
+			to: item.path === path.value || item.page === false ? undefined : item.path,
+		}));
+
+	if (trail.length === 0 && page.value?.title) {
+		trail.push({ label: page.value.title });
+	}
+
+	if (frameworkGuideMatch.value && frameworkNode.value) {
+		const frameworkPath = frameworkNode.value.path;
+		const hasFrameworkCrumb = trail.some(item => item.to === frameworkPath);
+		if (!hasFrameworkCrumb) {
+			trail.push({ label: frameworkNode.value.title ?? '', to: frameworkPath });
+		}
+		else {
+			for (const item of trail) {
+				if (item.to === frameworkPath) item.label = frameworkNode.value.title ?? item.label;
+			}
+		}
+	}
+
+	return [
+		{ 'icon': 'i-lucide-house', 'to': '/', 'aria-label': 'Home' },
+		...trail,
+	];
+});
 </script>
 
 <template>
-	<UPage>
-		<UPageHeader
-			:title="!showComingSoonBadge ? (page!.title ?? '') : undefined"
-			:description="page!.description ?? ''"
-			:headline="headline"
-			:ui="{ headline: 'headline', title: 'title' }"
+	<DocsPage v-if="page">
+		<div
+			class="flex @min-[40rem]/docs-pane:hidden sticky top-(--ui-header-height) z-10 -mx-4 mb-4 items-center justify-between border-b border-dashed border-default bg-default/75 px-4 py-3 backdrop-blur"
 		>
-			<!-- TODO: Remove Beta badge when Zapier integration is out of beta -->
+			<UDrawer
+				v-model:open="menuDrawerOpen"
+				direction="left"
+				side="left"
+				inset
+				:handle="false"
+				:ui="{ content: 'w-full max-w-2/3' }"
+			>
+				<UButton
+					label="Menu"
+					icon="i-lucide-menu"
+					color="neutral"
+					variant="link"
+					size="xs"
+					aria-label="Open navigation"
+				/>
+				<template #body>
+					<MobileNavSectionSwitcher :items="allSectionItems" :current-section="currentSection" />
+					<p class="text-xs font-medium text-dimmed uppercase font-mono tracking-widest mb-2 flex items-center gap-1">
+						<Icon v-if="currentSection?.icon" :name="currentSection?.icon" class="size-3.5" />
+						{{ currentSection?.label }}
+					</p>
+					<UContentNavigation
+						:navigation="mobileSectionNavigation"
+						variant="link"
+						highlight
+					/>
+				</template>
+			</UDrawer>
+
+			<UDrawer
+				v-if="page.body?.toc?.links?.length"
+				v-model:open="tocDrawerOpen"
+				direction="right"
+				side="right"
+				inset
+				:handle="false"
+				:ui="{ content: 'w-full max-w-2/3' }"
+			>
+				<UButton
+					label="On this page"
+					trailing-icon="i-lucide-chevron-right"
+					color="neutral"
+					variant="link"
+					size="xs"
+					aria-label="Open on this page"
+				/>
+				<template #body>
+					<DocsToc
+						:links="page.body?.toc?.links"
+						:authors="page.authors"
+						:file="page.id!"
+						mobile
+					/>
+				</template>
+			</UDrawer>
+		</div>
+
+		<UPageHeader
+			:title="page.title ?? ''"
+			:description="page.description ?? ''"
+			:headline="headline"
+			:ui="pageHeaderUi"
+		>
 			<template
-				v-if="showComingSoonBadge"
+				v-if="breadcrumb.length > 1"
+				#headline
+			>
+				<UBreadcrumb :items="breadcrumb">
+					<template #separator>
+						<span class="mx-2 text-muted">/</span>
+					</template>
+				</UBreadcrumb>
+			</template>
+
+			<template
+				v-if="frameworkIcon"
 				#title
 			>
-				<div class="flex items-center gap-2">
-					<span>{{ page!.title ?? '' }}</span>
-					<UBadge
-						variant="soft"
-						color="info"
-						size="sm"
-					>
-						Beta
-					</UBadge>
-				</div>
+				<span class="flex items-center gap-4">
+					<span class="flex size-14 items-center justify-center rounded-xl bg-muted text-muted ring ring-default">
+						<Icon
+							:name="frameworkIcon"
+							class="size-8"
+						/>
+					</span>
+					<span>{{ page.title }}</span>
+				</span>
 			</template>
-			<template #links>
-				<CopyDocButton :page="page!" />
+
+			<template
+				v-if="!frameworkRootMatch"
+				#links
+			>
+				<UButton
+					:icon="favorited ? 'i-lucide-star' : 'i-lucide-star'"
+					:label="favorited ? 'Favorited' : 'Favorite'"
+					color="neutral"
+					variant="ghost"
+					size="sm"
+					@click="toggleFavorite({ path, title: page!.title ?? '' })"
+				/>
+				<CopyDocButton :page="page" />
 			</template>
 		</UPageHeader>
 
@@ -74,10 +236,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 			class="content"
 			prose
 		>
-			<ContentRenderer
-				v-if="page"
-				:value="page"
-			/>
+			<ContentRenderer :value="page" />
 
 			<USeparator v-if="surround?.length" />
 
@@ -87,14 +246,14 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => qu
 		</UPageBody>
 
 		<template
-			v-if="page!.body?.toc?.links?.length"
+			v-if="page.body?.toc?.links?.length"
 			#right
 		>
 			<DocsToc
-				:links="page!.body?.toc?.links"
-				:authors="page!.authors"
-				:file="page!.id!"
+				:links="page.body?.toc?.links"
+				:authors="page.authors"
+				:file="page.id!"
 			/>
 		</template>
-	</UPage>
+	</DocsPage>
 </template>

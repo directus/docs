@@ -1,4 +1,5 @@
 ---
+stableId: 5bfabd97-af2a-4694-9156-9eb633051efb
 id: b8fa9a76-063b-499f-80e7-737f08f94684
 slug: create-collection-items-in-custom-panels
 title: Create Collection Items in Custom Panels
@@ -267,7 +268,7 @@ API.
 <v-button v-else secondary>Save</v-button>
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 The secondary button shows an inactive button when the form is not ready to submit. Use this conditional for any further
 validation.
@@ -373,7 +374,7 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

@@ -1,4 +1,4 @@
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **System Collections**
 
 - `<system-collection>` should be replaced with the system collection name without the `directus_` prefix. For example, listening for new records in the `directus_users` collection becomes `users.create`.

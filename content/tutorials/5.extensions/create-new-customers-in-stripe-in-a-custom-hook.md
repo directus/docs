@@ -1,4 +1,5 @@
 ---
+stableId: 6f673434-bdbf-4a89-9440-18e2e13623da
 id: ba5c9666-330f-4349-9f1e-da113fb84d27
 slug: create-new-customers-in-stripe-in-a-custom-hook
 title: Create New Customers in Stripe in a Custom Hook
@@ -123,8 +124,8 @@ stripe.customers
   .catch((error) => {
     const mailService = new MailService({ schema });
     mailService.send({ // [!code ++]
-      to: 'sharedmailbox@directus.io', // [!code ++]
-      from: 'noreply@directus.io', // [!code ++]
+      to: 'sharedmailbox@directus.com', // [!code ++]
+      from: 'noreply@directus.com', // [!code ++]
       subject: `An error has occurred with Stripe API`, // [!code ++]
       text: `The following error occurred for ${payload.first_name} ${payload.last_name} when attempting to create an account in Stripe.\r\n\r\n${error}\r\n\r\nPlease investigate.\r\n\r\nID: ${key}\r\nEmail: ${payload.email_address}`, // [!code ++]
     }); // [!code ++]
@@ -150,7 +151,7 @@ Ensure the `.env` file has `STRIPE_TOKEN` variable.
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.
@@ -189,8 +190,8 @@ export default ({ action }, { env, services }) => {
       .catch((error) => {
         const mailService = new MailService({ schema });
         mailService.send({
-          to: 'sharedmailbox@directus.io',
-          from: 'noreply@directus.io',
+          to: 'sharedmailbox@directus.com',
+          from: 'noreply@directus.com',
           subject: `An error has occurred with Stripe API`,
           text: `The following error occurred for ${payload.first_name} ${payload.last_name} when attempting to create an account in Stripe.\r\n\r\n${error}\r\n\r\nPlease investigate.\r\n\r\nID: ${key}\r\nEmail: ${payload.email_address}`,
         });

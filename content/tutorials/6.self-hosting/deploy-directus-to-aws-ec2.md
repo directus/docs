@@ -1,4 +1,5 @@
 ---
+stableId: d5fa569d-b780-43e2-8de6-0268c1b34b1f
 id: aa9c315b-633a-4e58-aef3-ecf1161d8f55
 slug: deploy-directus-to-aws-ec2
 title: Deploy Directus to AWS EC2
@@ -175,7 +176,7 @@ Copy the name of the bucket and region to using in your `docker-compose.yml` con
   STORAGE_S3_ENDPOINT: s3.amazonaws.com
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 To retrieve your AWS access key details, follow this [guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey).
 
@@ -203,4 +204,4 @@ Some steps you could consider moving forward towards improving your deployment i
 - Consider utilizing [AWS Secrets Manager](https://us-east-1.console.aws.amazon.com/secretsmanager/) for managing your `ENV` variables
 - Consider implementing a load balancer for scaling the incoming requests to your Directus project.
 
-Compared to using [Directus Cloud](https://directus.io/cloud), using a self-hosted instance of Directus on AWS has several limitations by default, like no backups, no rolling updates, round-the-clock monitoring, and the inability to automatically restart in the event of a crash. Each of these can be configured and maintained separately.
+Compared to using [Directus Cloud](https://directus.com/start), using a self-hosted instance of Directus on AWS has several limitations by default, like no backups, no rolling updates, round-the-clock monitoring, and the inability to automatically restart in the event of a crash. Each of these can be configured and maintained separately.

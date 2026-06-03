@@ -1,40 +1,48 @@
 @import "tailwindcss";
-@import "@nuxt/ui-pro";
+@import "@nuxt/ui";
 
 @source "../../../content/**/*";
-
+@source "../../../modules/**/*.{vue,ts}";
 
 @theme static {
-	--font-sans: 'Inter', sans-serif;
-	--font-display: 'Poppins', sans-serif;
+	--font-sans: "Inter", sans-serif;
+	--font-display: "Source Serif 4", serif;
+	--font-mono: "IBM Plex Mono", monospace;
 
-  --color-purple-50: #f3f2ff;
-  --color-purple-100: #e9e8ff;
-  --color-purple-200: #d6d4ff;
-  --color-purple-300: #b8b1ff;
-  --color-purple-400: #9585ff;
-  --color-purple-500: #6644ff;
-  --color-purple-600: #6030f7;
-  --color-purple-700: #531ee3;
-  --color-purple-800: #4418bf;
-  --color-purple-900: #39169c;
-  --color-purple-950: #210b6a;
+	--color-purple-50: #f3f2ff;
+	--color-purple-100: #e9e8ff;
+	--color-purple-200: #d6d4ff;
+	--color-purple-300: #b8b1ff;
+	--color-purple-400: #9585ff;
+	--color-purple-500: #6644ff;
+	--color-purple-600: #6030f7;
+	--color-purple-700: #531ee3;
+	--color-purple-800: #4418bf;
+	--color-purple-900: #39169c;
+	--color-purple-950: #210b6a;
 
-
-  --color-pink-50: #fef1fa;
-  --color-pink-100: #fee5f6;
-  --color-pink-200: #feccee;
-  --color-pink-300: #ff99dd;
-  --color-pink-400: #fe68c9;
-  --color-pink-500: #f83cb0;
-  --color-pink-600: #e81a8f;
-  --color-pink-700: #ca0c72;
-  --color-pink-800: #a70d5e;
-  --color-pink-900: #8b1050;
-  --color-pink-950: #55022d;
+	--color-pink-50: #fef1fa;
+	--color-pink-100: #fee5f6;
+	--color-pink-200: #feccee;
+	--color-pink-300: #ff99dd;
+	--color-pink-400: #fe68c9;
+	--color-pink-500: #f83cb0;
+	--color-pink-600: #e81a8f;
+	--color-pink-700: #ca0c72;
+	--color-pink-800: #a70d5e;
+	--color-pink-900: #8b1050;
+	--color-pink-950: #55022d;
 
 	--diff-red: rgba(244, 63, 94, 0.2);
 	--diff-green: rgba(16, 185, 129, 0.2);
+}
+
+.dark {
+	--ui-bg: #090909;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--color-primary) 50%, var(--ui-bg) 50%);
 }
 
 /*
@@ -46,13 +54,13 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
 }
 
 button,
@@ -64,13 +72,18 @@ button,
 	cursor: default;
 }
 
-
 html {
 	scroll-behavior: smooth;
 }
 
+.sp-divider,
+.sp-divider *,
+.sp-divider > :first-child::after {
+	cursor: col-resize !important;
+}
+
 pre {
-	>code {
+	> code {
 		& .line.diff.remove {
 			background-color: var(--diff-red);
 			opacity: 0.7;
@@ -80,4 +93,57 @@ pre {
 			background-color: var(--diff-green);
 		}
 	}
+}
+
+html .shiki span {
+	color: var(--shiki-default);
+	background: var(--shiki-default-bg);
+	font-style: var(--shiki-default-font-style);
+	font-weight: var(--shiki-default-font-weight);
+	text-decoration: var(--shiki-default-text-decoration);
+}
+
+html.light .shiki span,
+html .light .shiki span {
+	color: var(--shiki-light);
+	background: var(--shiki-light-bg);
+	font-style: var(--shiki-light-font-style);
+	font-weight: var(--shiki-light-font-weight);
+	text-decoration: var(--shiki-light-text-decoration);
+}
+
+html.dark .shiki span,
+html .dark .shiki span {
+	color: var(--shiki-dark);
+	background: var(--shiki-dark-bg);
+	font-style: var(--shiki-dark-font-style);
+	font-weight: var(--shiki-dark-font-weight);
+	text-decoration: var(--shiki-dark-text-decoration);
+}
+
+.scrollbar-thin {
+	scrollbar-width: thin;
+	scrollbar-color: var(--ui-border-accented) var(--ui-bg-muted);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+	background: var(--ui-bg-muted);
+	border-radius: 999px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+	background-color: var(--ui-border-accented);
+	border-radius: 999px;
+	border: 2px solid transparent;
+	background-clip: content-box;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+	background-color: var(--ui-text-dimmed);
+	background-clip: content-box;
 }

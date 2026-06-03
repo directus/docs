@@ -3,11 +3,11 @@
 		<DocsHeader />
 
 		<UContainer>
-			<UMain>
-				<UPage>
+			<main class="min-h-[calc(100vh-var(--ui-header-height))]">
+				<DocsPage>
 					<UError :error="error" />
-				</UPage>
-			</UMain>
+				</DocsPage>
+			</main>
 		</UContainer>
 	</div>
 </template>

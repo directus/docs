@@ -1,5 +1,6 @@
 ---
-slug: build-a-realtime-chat-app-with-directus-and-astro
+stableId: 70f8292e-a9a7-44a7-8409-8861b0991ab8
+slug: build-a-realtime-chat-app-using-directus-and-astro
 title: Build a Realtime Chat App with Directus and Astro
 technologies:
   - astro
@@ -24,7 +25,7 @@ You will need:
 
 ## Enable Websockets in Directus
 
-Directus uses websockets to enable realtime capabilities. If you are using the [Directus Cloud](https://directus.io/cloud), websockets are enabled by default. If you are [self-hosting Directus](https://directus.io/docs/self-hosting/), you will need to enable websockets in your `directus` config file.
+Directus uses websockets to enable realtime capabilities. If you are using the [Directus Cloud](https://directus.com/start), websockets are enabled by default. If you are [self-hosting Directus](https://directus.com/docs/self-hosting/overview), you will need to enable websockets in your `directus` config file.
 
 To enable websockets, update your `docker-compose.yml` config file to include the following:
 
@@ -48,7 +49,7 @@ After which you can go to the optional fields and activate the following:
 
 ### Edit Public Policy
 
-To allow unauthenticated users to view the posts collection, you need to modify the public [access policy](https://directus.io/docs/guides/auth/access-control) to offer read access. Ideally, in a real project, you should create a new policy and authenticate users to Directus before allowing them access to your content.
+To allow unauthenticated users to view the posts collection, you need to modify the public [access policy](https://directus.com/docs/guides/auth/access-control) to offer read access. Ideally, in a real project, you should create a new policy and authenticate users to Directus before allowing them access to your content.
 
 To enable access, go to  **Settings** -> **Access Policies** -> **Public**, and under Permissions, add `messages` with full access for `create` and `read`.
 
@@ -279,7 +280,7 @@ Navigate to `http://localhost:4321/` and you will be provided you with a UI that
 
 ![Astro Chat UI](/img/astro-chat-app-login-to-chat.png)
 
-To authenticate the realtime client using the handshake mode, you will first need to authenticate the REST client using the email and password from the login form. Then, you can use the [handshake mode](https://directus.io/docs/guides/realtime/authentication#handshake-mode) to authenticate the realtime client right after calling `directus.connect()`.
+To authenticate the realtime client using the handshake mode, you will first need to authenticate the REST client using the email and password from the login form. Then, you can use the [handshake mode](https://directus.com/docs/guides/realtime/authentication#handshake-mode) to authenticate the realtime client right after calling `directus.connect()`.
 
 To do that, inside of the `Chat.tsx` file, create a `initializeWebSocket` function that will handle the websocket connection and authentication:
 
@@ -333,7 +334,7 @@ This will call the `initializeWebSocket` function after successfully logging in 
 
 ### Subscribe to Incoming Messages
 
-At the moment, `directus.onWebSocket("message", {})` receives all messages, however, Directus SDK provides a much better approach to subscribe to specific events. In this case, you can subscribe to the `messages` collection to receive specific fields from any messages as they are created and uniquely identify the subscription with a [UID](https://directus.io/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [best practice](https://directus.io/docs/guides/realtime/subscriptions#using-uids).
+At the moment, `directus.onWebSocket("message", {})` receives all messages, however, Directus SDK provides a much better approach to subscribe to specific events. In this case, you can subscribe to the `messages` collection to receive specific fields from any messages as they are created and uniquely identify the subscription with a [UID](https://directus.com/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [best practice](https://directus.com/docs/guides/realtime/subscriptions#using-uids).
 
 To handle incoming messages, start by creating a `subscribeToMessages` function inside the `Chat.tsx` component:
 

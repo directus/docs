@@ -1,9 +1,14 @@
 ---
+stableId: 0c9b088d-3f66-4afe-84a9-1301af20dbde
 title: Files
 description: Configuration for storage locations, metadata, upload limits, and transformations.
 ---
 
 :partial{content="config-env-vars"}
+
+::callout{icon="i-lucide-info"}
+For guidance on file-upload permissions, asset access tokens, and blocking internal IPs for file imports, see [Security Best Practices](/guides/security/best-practices#files--assets).
+::
 
 By default, Directus stores all uploaded files locally on the file system or can also configure Directus to use external storage services. You can also configure _multiple_ storage adapters at the same time which allows you to choose where files are being uploaded on a file-by-file basis.
 
@@ -116,13 +121,13 @@ Large files can be uploaded in chunks to improve reliability and efficiency, esp
 | `TUS_UPLOAD_EXPIRATION` | The expiry duration for uncompleted files with no upload activity. | `10m`         |
 | `TUS_CLEANUP_SCHEDULE`  | Cron schedule to clean up the expired uncompleted uploads.         | `0 * * * *`   |
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
-This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.io/docs/configuration/general).
+This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.com/docs/configuration/general).
 
 ::
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 
 **Chunked Upload Restrictions**<br/>
 

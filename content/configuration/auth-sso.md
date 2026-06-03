@@ -1,4 +1,5 @@
 ---
+stableId: 4f4bdeae-3024-44b2-8e4f-34573834897b
 title: Authentication & SSO
 description: Configuration for authentication methods, including local email/password, OAuth 2.0, OpenID, LDAP, and SAML.
 navigation:
@@ -22,13 +23,13 @@ For each of the auth providers listed, you must provide the following configurat
 | `AUTH_<PROVIDER>_DRIVER` | Which driver to use, either `local`, `oauth2`, `openid`, `ldap`, `saml`.                                                                    |               |
 | `AUTH_<PROVIDER>_MODE`   | Whether to use `'cookie'` or `'session'` authentication mode when redirecting. Applies to the following drivers `oauth2`, `openid`, `saml`. | `session`     |
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 Cookie and session configuration settings such as `REFRESH_TOKEN_COOKIE_*`, `SESSION_COOKIE_*`, and related security parameters can be found in [Security & Limits](/configuration/security-limits).
 ::
 
 Based on your configured drivers, you must also provide additional variables, where `<PROVIDER>` is the capitalized name of the item in the `AUTH_PROVIDERS` value.
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **PUBLIC_URL and AUTH_ALLOWED_PUBLIC_URLS**
 
 - Our `oauth2`, `openid` and `saml` SSO drivers rely on `PUBLIC_URL` for redirection, with `oauth2` and `openid` also using it for the callback URL generation. If set incorrectly, the login process for these drivers may behave unexpectedly.
@@ -62,6 +63,7 @@ The default Directus email/password authentication flow. No additional configura
 | `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                                                                                                                                        | `email`          |
 | `AUTH_<PROVIDER>_AUTHORIZE_URL`             | Authorization page URL of the OAuth provider.                                                                                                                                                                                  |                  |
 | `AUTH_<PROVIDER>_ACCESS_URL`                | Access token URL of the OAuth provider.                                                                                                                                                                                        |                  |
+| `AUTH_<PROVIDER>_COOKIE_SECURE`             | Whether or not to set the `secure` attribute on the state cookie.                                                                                                                                                              | `false`          |
 | `AUTH_<PROVIDER>_PROFILE_URL`               | User profile URL of the OAuth provider.                                                                                                                                                                                        |                  |
 | `AUTH_<PROVIDER>_IDENTIFIER_KEY`            | User profile identifier key <sup>[1]</sup>. Will default to `EMAIL_KEY`.                                                                                                                                                       |                  |
 | `AUTH_<PROVIDER>_EMAIL_KEY`                 | User profile email key.                                                                                                                                                                                                        | `email`          |
@@ -103,6 +105,7 @@ OpenID Connect (OIDC) is an authentication protocol built on OAuth 2.0, and shou
 | `AUTH_<PROVIDER>_PRIVATE_KEYS`              | An array of JSON Web Key Set (JWKS) private keys used to sign client assertions <sup>[1]</sup> when `AUTH_<PROVIDER>_CLIENT_TOKEN_ENDPOINT_AUTH_METHOD` is set to `private_key_jwt`.                                      |                        |
 | `AUTH_<PROVIDER>_SCOPE`                     | A white-space separated list of permissions to request.                                                                                                                                                                   | `openid profile email` |
 | `AUTH_<PROVIDER>_ISSUER_URL`                | OIDC `.well-known` discovery document URL of the external service.                                                                                                                                                        |                        |
+| `AUTH_<PROVIDER>_COOKIE_SECURE`             | Whether or not to set the `secure` attribute on the state cookie.                                                                                                                                                         | `false`                |
 | `AUTH_<PROVIDER>_IDENTIFIER_KEY`            | User profile identifier key <sup>[2]</sup>.                                                                                                                                                                               | `sub`<sup>[3]</sup>    |
 | `AUTH_<PROVIDER>_ALLOW_PUBLIC_REGISTRATION` | Automatically create accounts for authenticating users.                                                                                                                                                                   | `false`                |
 | `AUTH_<PROVIDER>_REQUIRE_VERIFIED_EMAIL`    | Require created users to have a verified email address.                                                                                                                                                                   | `false`                |
@@ -189,7 +192,7 @@ SAML is an open-standard, XML-based authentication framework for authentication 
 
 The `SP_metadata` and `IDP_metadata` variables should be set to the XML metadata provided by the service provider and identity provider respectively.
 
-:::callout{icon="material-symbols:warning-rounded" color="warning"}
+:::callout{icon="i-lucide-triangle-alert" color="warning"}
 **SAML Attribute Keys**\
 \
 Most identity providers send simple attribute names like `email` rather than the full XML schema URIs shown as defaults above. Set `IDENTIFIER_KEY` and `EMAIL_KEY` to match your identity provider's attribute names. Make sure to check the attribute statements in your IdP's SAML configuration.\
@@ -222,7 +225,7 @@ AUTH_FACEBOOK_ICON="facebook"
 AUTH_FACEBOOK_LABEL="Facebook"
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Multiple Providers**
 Directus users can only authenticate using the auth provider they are created with. It is not possible to authenticate with multiple providers for the same user.
 ::
@@ -345,7 +348,7 @@ AUTH_GITHUB_ACCESS_URL="https://github.com/login/oauth/access_token"
 AUTH_GITHUB_PROFILE_URL="https://api.github.com/user"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 
 If the authenticating user has not marked their email as "public" in GitHub, it will not be accessible by Directus.
 
@@ -364,7 +367,7 @@ AUTH_TWITTER_IDENTIFIER_KEY="data.username"
 AUTH_TWITTER_SCOPE="tweet.read users.read"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 
 Twitter does not provide "email" so we define "username" as the identifier.
 
@@ -384,7 +387,7 @@ AUTH_AWS_IDENTIFIER_KEY="email"
 AUTH_AWS_EMAIL_KEY="email"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Metadata**
 
 - AWS IAM Docs are not that verbose. Users have found that the `SP_metadata` environment variable can be supplied empty.
@@ -422,7 +425,7 @@ AUTH_GOOGLE_IDENTIFIER_KEY="email"
 AUTH_GOOGLE_EMAIL_KEY="email"
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **SP Metadata**
 
 - The `entityID` should be the same as the one configured in Google in the `EntityDescriptor` tag
