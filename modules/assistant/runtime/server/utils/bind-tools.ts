@@ -1,6 +1,7 @@
 import { tool, type Tool } from 'ai';
 import { z, type ZodRawShape } from 'zod';
 import { redactValue } from './sanitize';
+import { sliceUtf8 } from '~~/server/utils/sliceUtf8';
 
 interface ToolLike {
 	name?: string;
@@ -30,9 +31,8 @@ export function serializeResult(result: unknown): string {
 
 export function truncateResult(value: string, maxBytes: number): string {
 	if (byteLength(value) <= maxBytes) return value;
-	let end = Math.min(value.length, maxBytes);
-	while (byteLength(value.slice(0, end)) > maxBytes) end--;
-	return `${value.slice(0, end)}\n\n[tool result truncated at ${maxBytes} bytes. If this is from get-directus-file, call it again with a higher offset to read the next chunk.]`;
+	const { content } = sliceUtf8(value, 0, maxBytes);
+	return `${content}\n\n[tool result truncated at ${maxBytes} bytes. If this is from get-directus-file, call it again with a higher offset to read the next chunk.]`;
 }
 
 export function bindMcpToolsForAI(tools: Record<string, ToolLike>, options: ToolBindOptions = {}) {

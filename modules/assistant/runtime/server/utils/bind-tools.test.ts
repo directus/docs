@@ -38,6 +38,13 @@ describe('truncateResult', () => {
 		expect(Buffer.byteLength(body, 'utf8')).toBeLessThanOrEqual(40);
 		expect(body.endsWith('€')).toBe(true);
 	});
+
+	it('never leaves a lone surrogate when truncating emoji', () => {
+		const out = truncateResult('abc😀def', 5);
+		const body = out.split('\n\n[')[0] ?? '';
+		expect(body).toBe('abc');
+		expect(body).not.toContain('\uFFFD');
+	});
 });
 
 describe('serializeResult', () => {
