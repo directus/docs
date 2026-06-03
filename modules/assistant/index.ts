@@ -1,5 +1,6 @@
 import { addComponent, addImports, addServerHandler, addServerPlugin, createResolver, defineNuxtModule, logger } from '@nuxt/kit';
 import { defu } from 'defu';
+import { isAssistantEnabled } from './runtime/utils/is-assistant-enabled';
 
 export interface AssistantModuleOptions {
 	/** API endpoint path. Default '/__ai__/chat'. */
@@ -17,10 +18,6 @@ const defaults: Required<AssistantModuleOptions> = {
 	model: 'google/gemini-3.1-flash-lite',
 	feedbackSurveyId: '',
 };
-
-export function isAssistantEnabled(apiKey: string | undefined): boolean {
-	return process.env.ASSISTANT_ENABLED !== 'false' && Boolean(apiKey);
-}
 
 export default defineNuxtModule<AssistantModuleOptions>({
 	meta: { name: 'assistant' },

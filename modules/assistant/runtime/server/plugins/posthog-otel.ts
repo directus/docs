@@ -1,7 +1,7 @@
 import type { Context } from '@opentelemetry/api';
 import type { NodeSDK } from '@opentelemetry/sdk-node';
 import type { ReadableSpan, Span, SpanProcessor } from '@opentelemetry/sdk-trace-base';
-import { isAssistantEnabled } from '../../../index';
+import { isAssistantEnabled } from '../../utils/is-assistant-enabled';
 import { assistantRateLimitStore } from '../utils/rate-limit';
 import { redactValue } from '../utils/sanitize';
 
