@@ -355,6 +355,8 @@ function relativeTime(ts: number): string {
 				v-model="input"
 				:rows="2"
 				:maxrows="8"
+				:autoresize-delay="220"
+				:autofocus-delay="220"
 				:placeholder="strings.placeholder"
 				maxlength="1000"
 				:ui="{
