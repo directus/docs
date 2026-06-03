@@ -69,6 +69,20 @@ export default defineNuxtConfig({
 		enabled: true,
 	},
 
+	vite: {
+		optimizeDeps: {
+			include: [
+				'@ai-sdk/vue',
+				'ai',
+				'@directus/vue-split-panel',
+				'@vue/devtools-core',
+				'@vue/devtools-kit',
+				'motion-v',
+				'posthog-js',
+			],
+		},
+	},
+
 	app: {
 		baseURL: BASE_URL,
 	},
