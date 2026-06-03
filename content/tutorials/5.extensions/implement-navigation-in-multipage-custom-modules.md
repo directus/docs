@@ -8,9 +8,9 @@ authors:
     title: Guest Author
 description: Learn how to navigate between multiple pages in module extensions.
 ---
+
 Modules are an empty canvas in Directus with an empty navigation panel on the left, page header at the top and the
-sidebar on the right. This guide will help you set up a multi-page module with navigation in the navigation bar and link
-breadcrumbs.
+sidebar on the right. This guide will help you set up a multi-page module with navigation in the navigation bar.
 
 ![A custom module has three items in the navigation - Home, Hello World, and Contact Us. The homepage displays an image, three navigation tiles, and some copy.](/img/db55ac3f-016e-4531-8282-a9445482c02e.webp)
 
@@ -45,21 +45,21 @@ Open `index.js` and make the following changes:
 - Update the `icon`. You can choose an icon from the library [here](https://fonts.google.com/icons).
 
 ```js
-import ModuleComponent from './module.vue';
+import ModuleComponent from "./module.vue";
 
 export default {
-  id: 'landing-page', // root URI
-  name: 'Landing Page',
-  icon: 'rocket_launch',
+  id: "landing-page", // root URI
+  name: "Landing Page",
+  icon: "rocket_launch",
   routes: [
     {
-      path: '',
+      path: "",
       props: true,
       component: ModuleComponent,
     },
     {
-      name: 'page',
-      path: ':page',
+      name: "page",
+      path: ":page",
       props: true,
       component: ModuleComponent,
     },
@@ -80,7 +80,7 @@ Open the `module.vue` file and the template will look like this:
 
 ```vue
 <template>
-    <private-view title="My Custom Module">Content goes here...</private-view>
+  <private-view title="My Custom Module">Content goes here...</private-view>
 </template>
 
 <script>
@@ -92,8 +92,8 @@ Now you need to build your page inside the `private-view`. Import `ref` and `wat
 `extensions-sdk` above the export:
 
 ```js
-import { ref, watch } from 'vue';
-import { useApi } from '@directus/extensions-sdk';
+import { ref, watch } from "vue";
+import { useApi } from "@directus/extensions-sdk";
 ```
 
 Inside `export default` add the page property to receive the URI value.
@@ -127,63 +127,44 @@ setup(props) {
 ```
 
 Directus has a header element at the top of the module that uses the title attribute of the private view as the page
-title. This will need to be converted to a variable so it changes when the page changes. It also has a breadcrumb which
-will help with page navigation. Create a variable inside the setup called `page_title` and breadcrumb using `ref`.
+title. This will need to be converted to a variable so it changes when the page changes. Create a variable inside the
+setup called `page_title` using `ref`.
 
 ```js
 setup(props) {
   const api = useApi();
   const page_title = ref('');
-  const breadcrumb = ref([
-    {
-      name: 'Home',
-      to: `/landing-page`,
-    },
-  ]);
 
   // Existing code here
 },
 ```
 
-Add `page_title` and `breadcrumb` to the returned objects and create the `render_page` function to update the
-`page_title` and `breadcrumb`:
+Add `page_title` to the returned objects and create the `render_page` function to update the `page_title`:
 
 ```js
-return { page_title, breadcrumb, };
+return { page_title };
 
-function render_page(page){
-  if(page === null){
-    page_title.value = '500: Internal Server Error';
-    breadcrumb.value[1] = {};
+function render_page(page) {
+  if (page === null) {
+    page_title.value = "500: Internal Server Error";
   } else {
-    switch(page) {
-      case 'home':
-        page_title.value = 'Home';
+    switch (page) {
+      case "home":
+        page_title.value = "Home";
         break;
-      case 'hello-world':
-        page_title.value = 'Hello World';
+      case "hello-world":
+        page_title.value = "Hello World";
         break;
-      case 'contact':
-        page_title.value = 'Contact Us';
+      case "contact":
+        page_title.value = "Contact Us";
         break;
       default:
-        page_title.value = '404: Not Found';
-    }
-
-
-    if(page === 'home'){
-      breadcrumb.value[1] = {};
-    } else {
-      breadcrumb.value[1] = {
-        name: page_title.value,
-        to: `/landing-page/${page}`,
-      };
+        page_title.value = "404: Not Found";
     }
   }
 
-
   console.log(`Title: ${page_title.value}`);
-};
+}
 ```
 
 Ideally this would be an API query instead of the switch case. The `page` variable contains the current URI, use this to
@@ -191,114 +172,105 @@ fetch the page details through the API and return the page title. If no result i
 page. Here is an example:
 
 ```js
-api.get(`/items/pages?fields=title&filter[uri][_eq]=${page}`).then((rsp) => {
-    if(rsp.data.data){
-        rsp.data.data.forEach(item => {
-            page_title.value = item.title;
-        });
+api
+  .get(`/items/pages?fields=title&filter[uri][_eq]=${page}`)
+  .then((rsp) => {
+    if (rsp.data.data) {
+      rsp.data.data.forEach((item) => {
+        page_title.value = item.title;
+      });
     } else {
-        page_title.value = "404: Not Found";
+      page_title.value = "404: Not Found";
     }
-}).catch((error) => {
+  })
+  .catch((error) => {
     console.log(error);
-});
+  });
 ```
 
-To tie all this together, update the `private-view` `title` attribute to the `page_title` variable, include the
-`breadcrumb` using the `#headline` template slot and add the `router-view` element at the bottom. Note that the router
-view is linked to the `page` property from the URI.
+To tie all this together, update the `private-view` `title` attribute to the `page_title` variable and add the
+`router-view` element at the bottom. Note that the router view is linked to the `page` property from the URI.
 
 ```html
 <private-view :title="page_title">
-  <template v-if="breadcrumb" #headline>
-    <v-breadcrumb :items="breadcrumb" />
-  </template>
   <router-view name="landing-page" :page="page" />
 </private-view>
 ```
 
-Looking at this now, the page title will be Home for the root page and the breadcrumbs are above the title:
-
-![Breadcrumb showing only Home](/img/8ecff87c-69f1-4524-87f4-7a997ffa889f.webp)
-
-When the page changes to `/admin/landing-page/hello-world`, the page title changes and the breadcrumbs are updated:
-
-![Breadcrumb showing both Home and Hello World as a second level item](/img/ed29fd15-abf7-40e7-bb74-22ed5365ac3e.webp)
+Looking at this now, the page title will be Home for the root page. When the page changes to
+`/admin/landing-page/hello-world`, the page title updates accordingly.
 
 ## Implement Page Navigation
 
 On the left side is an empty navigation panel where you can add content through template slots.
 
-Create an `all_pages` variable after the breadcrumbs to use for the navigation object:
+Create an `all_pages` variable after `page_title` to use for the navigation object:
 
 ```js
-const page_title = ref('');
-const breadcrumb = ref([
-  {
-    name: 'Home',
-    to: `/landing-page`,
-  },
-]);
+const page_title = ref("");
 const all_pages = ref([]); // [!code ++]
 ```
 
 Return the object with the others:
 
 ```js
-return { page_title, breadcrumb }; // [!code --]
-return { page_title, breadcrumb, all_pages };  // [!code ++]
+return { page_title }; // [!code --]
+return { page_title, all_pages }; // [!code ++]
 ```
 
 Create a function called `fetch_all_pages` underneath the `render_pages` function that will output the required object
 for a built-in Directus component called `v-list`. Ideally this function will use an API to fetch this information:
 
 ```js
-function fetch_all_pages(){
+function fetch_all_pages() {
   all_pages.value = [
     {
-      label: 'Home',
-      uri: 'landing-page',
-      to: '/landing-page',
-      icon: 'home',
-      color: '',
+      label: "Home",
+      uri: "landing-page",
+      to: "/landing-page",
+      icon: "home",
+      color: "",
     },
     {
-      label: 'Hello World',
-      uri: 'hello-world',
-      to: '/landing-page/hello-world',
-      icon: 'public',
-      color: '',
+      label: "Hello World",
+      uri: "hello-world",
+      to: "/landing-page/hello-world",
+      icon: "public",
+      color: "",
     },
     {
-      label: 'Contact Us',
-      uri: 'contact',
-      to: '/landing-page/contact',
-      icon: 'phone',
-      color: '',
+      label: "Contact Us",
+      uri: "contact",
+      to: "/landing-page/contact",
+      icon: "phone",
+      color: "",
     },
   ];
-};
+}
 ```
 
 Here is an example of the above code as an API using a collection in Directus called `pages`:
 
 ```js
-function fetch_all_pages(){
-  api.get('/items/pages?fields=title,uri,icon,color').then((rsp) => {
-    all_pages.value = [];
-    rsp.data.data.forEach(item => {
-      all_pages.value.push({
-        label: item.title,
-        uri: item.uri,
-        to: `/landing-page/${item.uri}`,
-        icon: item.icon,
-        color: item.color,
+function fetch_all_pages() {
+  api
+    .get("/items/pages?fields=title,uri,icon,color")
+    .then((rsp) => {
+      all_pages.value = [];
+      rsp.data.data.forEach((item) => {
+        all_pages.value.push({
+          label: item.title,
+          uri: item.uri,
+          to: `/landing-page/${item.uri}`,
+          icon: item.icon,
+          color: item.color,
+        });
       });
+    })
+    .catch((error) => {
+      console.log(error);
     });
-  }).catch((error) => {
-    console.log(error);
-  });
-};
+}
 ```
 
 Run this function after the `render_page` function:
@@ -317,8 +289,15 @@ code inside this file:
 ```vue
 <template>
   <v-list nav v-if="pages">
-    <v-list-item v-for="navItem in pages" :key="navItem.to" :active="navItem.uri == current" :to="navItem.to">
-      <v-list-item-icon><v-icon :name="navItem.icon" :color="navItem.color" /></v-list-item-icon>
+    <v-list-item
+      v-for="navItem in pages"
+      :key="navItem.to"
+      :active="navItem.uri == current"
+      :to="navItem.to"
+    >
+      <v-list-item-icon
+        ><v-icon :name="navItem.icon" :color="navItem.color"
+      /></v-list-item-icon>
       <v-list-item-content>
         <v-text-overflow :text="navItem.label" />
       </v-list-item-content>
@@ -326,10 +305,9 @@ code inside this file:
   </v-list>
 </template>
 
-
 <script>
-export default{
-  name: 'PageNavigation',
+export default {
+  name: "PageNavigation",
   inheritAttrs: false,
   props: {
     current: {
@@ -339,7 +317,7 @@ export default{
     pages: {
       type: Array,
       default: [],
-    }
+    },
   },
 };
 </script>
@@ -358,19 +336,19 @@ To start using the new component in `module.vue`, add it to the `export default`
 
 ```js
 export default {
-  components: {  // [!code ++]
-    PageNavigation,  // [!code ++]
-  },  // [!code ++]
-  props: {
-  }
-}
+  components: {
+    // [!code ++]
+    PageNavigation, // [!code ++]
+  }, // [!code ++]
+  props: {},
+};
 ```
 
-Now this can be used in the template. After the `breadcrumbs`, add the following code:
+Now this can be used in the template. Inside the `private-view`, add the following code:
 
 ```vue
 <template #navigation>
-  <page-navigation :current="page" :pages="all_pages"/>
+  <page-navigation :current="page" :pages="all_pages" />
 </template>
 ```
 
@@ -395,11 +373,16 @@ In the template, create the HTML structure after the navigation and some new var
 ```html
 <div class="lp-container">
   <div class="lp-banner" v-if="page_banner">
-    <img :src="page_banner" alt=""/>
+    <img :src="page_banner" alt="" />
   </div>
   <div class="lp-cards" v-if="page_cards">
-    <div class="lp-card" v-for="card in page_cards.filter(item => (item.uri != page))" :key="card.uri" @click="change_page(card.to)">
-      <img class="lp-card-image" :src="card.image" alt=""/>
+    <div
+      class="lp-card"
+      v-for="card in page_cards.filter(item => (item.uri != page))"
+      :key="card.uri"
+      @click="change_page(card.to)"
+    >
+      <img class="lp-card-image" :src="card.image" alt="" />
       <span class="lp-card-title">{{ card.label }}</span>
     </div>
   </div>
@@ -425,10 +408,10 @@ Add a new function to change the page called `change_page`. Import the `vue-rout
 import:
 
 ```js
-import { ref, watch } from 'vue';
-import { useApi } from '@directus/extensions-sdk';
-import { useRouter } from 'vue-router';  // [!code ++]
-import PageNavigation from './components/navigation.vue';
+import { ref, watch } from "vue";
+import { useApi } from "@directus/extensions-sdk";
+import { useRouter } from "vue-router"; // [!code ++]
+import PageNavigation from "./components/navigation.vue";
 ```
 
 Assign the router to a variable:
@@ -447,38 +430,48 @@ Create the function before the return and add the three new variables and the ne
 items. This will allow them to be used in the template.
 
 ```js
-function change_page(to){
+function change_page(to) {
   const next = router.resolve(`${to}`);
   router.push(next);
 }
 
-return { page_title, page_banner, page_cards, page_body, breadcrumb, all_pages, change_page };
+return {
+  page_title,
+  page_banner,
+  page_cards,
+  page_body,
+  all_pages,
+  change_page,
+};
 ```
 
 Inside the render_page function, start adding content to these new variables. Here is an example using static content.
 
 ```js
-switch(page) {
-  case 'home':
-    page_title.value = 'Home';
-    page_banner.value = '/assets/83BD365C-C3CE-4015-B2AD-63EDA9E52A69?width=2000&height=563&fit=cover';
+switch (page) {
+  case "home":
+    page_title.value = "Home";
+    page_banner.value =
+      "/assets/83BD365C-C3CE-4015-B2AD-63EDA9E52A69?width=2000&height=563&fit=cover";
     page_cards.value = all_pages.value;
-    page_body.value = '<p>Lorem ipsum dolor sit amet</p>';
+    page_body.value = "<p>Lorem ipsum dolor sit amet</p>";
     break;
-  case 'hello-world':
-    page_title.value = 'Hello World';
-    page_banner.value = '/assets/853B243D-A1BF-6051-B1BF-23EDA8E32A09?width=2000&height=563&fit=cover';
+  case "hello-world":
+    page_title.value = "Hello World";
+    page_banner.value =
+      "/assets/853B243D-A1BF-6051-B1BF-23EDA8E32A09?width=2000&height=563&fit=cover";
     page_cards.value = all_pages.value;
-    page_body.value = '<p>Lorem ipsum dolor sit amet</p>';
+    page_body.value = "<p>Lorem ipsum dolor sit amet</p>";
     break;
-  case 'contact':
-    page_title.value = 'Contact Us';
-    page_banner.value = '/assets/91CE173D-A1AD-4104-A1EC-74FCB8F41B58?width=2000&height=563&fit=cover';
+  case "contact":
+    page_title.value = "Contact Us";
+    page_banner.value =
+      "/assets/91CE173D-A1AD-4104-A1EC-74FCB8F41B58?width=2000&height=563&fit=cover";
     page_cards.value = [];
-    page_body.value = '<p>Lorem ipsum dolor sit amet</p>';
+    page_body.value = "<p>Lorem ipsum dolor sit amet</p>";
     break;
   default:
-    page_title.value = '404: Not Found';
+    page_title.value = "404: Not Found";
 }
 ```
 
@@ -486,19 +479,22 @@ Or from the internal API providing you have a table with the fields `title`, `ba
 (WYSIWYG field):
 
 ```js
-api.get(`/items/pages?fields=title,banner,content&filter[uri][_eq]=${page}`).then((rsp) => {
-  if(rsp.data.data){
-    rsp.data.data.forEach(item => {
-      page_title.value = item.title;
-      page_banner.value = `/assets/${item.banner}?width=2000&height=563&fit=cover`;
-      page_body.value = item.content;
-    });
-  } else {
-    page_title.value = "404: Not Found";
-  }
-}).catch((error) => {
-  console.log(error);
-});
+api
+  .get(`/items/pages?fields=title,banner,content&filter[uri][_eq]=${page}`)
+  .then((rsp) => {
+    if (rsp.data.data) {
+      rsp.data.data.forEach((item) => {
+        page_title.value = item.title;
+        page_banner.value = `/assets/${item.banner}?width=2000&height=563&fit=cover`;
+        page_body.value = item.content;
+      });
+    } else {
+      page_title.value = "404: Not Found";
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 ```
 
 ### Work With Images
@@ -529,13 +525,15 @@ export default function useDirectusToken(directusApi) {
       queryParams.push(`${key}=${value}`);
     }
 
-    return path.includes('?') ? `${path}&${queryParams.join('&')}` : `${path}?${queryParams.join('&')}`;
+    return path.includes("?")
+      ? `${path}&${queryParams.join("&")}`
+      : `${path}?${queryParams.join("&")}`;
   }
 
   function getToken() {
     return (
-      directusApi.defaults?.headers?.['Authorization']?.split(' ')[1] ||
-      directusApi.defaults?.headers?.common?.['Authorization']?.split(' ')[1] ||
+      directusApi.defaults?.headers?.["Authorization"]?.split(" ")[1] ||
+      directusApi.defaults?.headers?.common?.["Authorization"]?.split(" ")[1] ||
       null
     );
   }
@@ -547,7 +545,7 @@ export default function useDirectusToken(directusApi) {
       access_token: accessToken,
     });
   }
-};
+}
 ```
 
 This will use the access token of the current user to render the images. Alternatively, you can enable Read permissions
@@ -556,7 +554,7 @@ on the Public role for the image ID or images with a specific folder ID to remov
 Import the function into the `module.vue` file to make it available in your script:
 
 ```js
-import useDirectusToken from './use-directus-token';
+import useDirectusToken from "./use-directus-token";
 ```
 
 Include the function `AddTokenToURL` as a variable from the new script.
@@ -574,7 +572,9 @@ setup(props) {
 Then wrap any internal images with this function:
 
 ```js
-page_banner.value = addTokenToURL(`/assets/${item.banner}?width=2000&height=563&fit=cover`);
+page_banner.value = addTokenToURL(
+  `/assets/${item.banner}?width=2000&height=563&fit=cover`,
+);
 ```
 
 ::callout{icon="i-lucide-info}
@@ -598,7 +598,7 @@ the following SCSS:
   width: 100%;
   max-width: 1024px;
 
-  &> div {
+  & > div {
     margin-bottom: var(--content-padding);
   }
 }
@@ -695,22 +695,22 @@ images from within Directus to surface on the page. From here you can create con
 of the Directus platform.
 
 ```js [index.js]
-import ModuleComponent from './module.vue';
+import ModuleComponent from "./module.vue";
 
 export default {
-  id: 'landing-page',
-  name: 'Landing Page',
-  icon: 'rocket_launch',
+  id: "landing-page",
+  name: "Landing Page",
+  icon: "rocket_launch",
   routes: [
     {
-      name: 'home',
-      path: '',
+      name: "home",
+      path: "",
       props: true,
       component: ModuleComponent,
     },
     {
-      name: 'page',
-      path: ':page',
+      name: "page",
+      path: ":page",
       props: true,
       component: ModuleComponent,
     },
@@ -721,21 +721,23 @@ export default {
 ```vue [module.vue]
 <template>
   <private-view :title="page_title">
-    <template v-if="breadcrumb" #headline>
-      <v-breadcrumb :items="breadcrumb" />
-    </template>
-
     <template #navigation>
-      <page-navigation :current="page" :pages="all_pages"/>
+      <page-navigation :current="page" :pages="all_pages" />
     </template>
 
     <div class="lp-container">
       <div class="lp-banner" v-if="page_banner">
-        <img :src="page_banner" alt=""/>
+        <img :src="page_banner" alt="" />
       </div>
       <div class="lp-cards" v-if="page_cards">
-        <div class="lp-card" v-for="card in page_cards.filter(item => (item.uri != page))" :key="card.uri" :style="`background-color: ${card.color}`" @click="change_page(card.to)">
-          <v-icon :name="card.icon"/>
+        <div
+          class="lp-card"
+          v-for="card in page_cards.filter((item) => item.uri != page)"
+          :key="card.uri"
+          :style="`background-color: ${card.color}`"
+          @click="change_page(card.to)"
+        >
+          <v-icon :name="card.icon" />
           <span class="lp-card-title">{{ card.label }}</span>
         </div>
       </div>
@@ -747,11 +749,11 @@ export default {
 </template>
 
 <script>
-import { ref, watch } from 'vue';
-import { useApi } from '@directus/extensions-sdk';
-import { useRouter } from 'vue-router';
-import PageNavigation from './components/navigation.vue';
-import useDirectusToken from './use-directus-token.js';
+import { ref, watch } from "vue";
+import { useApi } from "@directus/extensions-sdk";
+import { useRouter } from "vue-router";
+import PageNavigation from "./components/navigation.vue";
+import useDirectusToken from "./use-directus-token.js";
 
 export default {
   components: {
@@ -760,106 +762,103 @@ export default {
   props: {
     page: {
       type: String,
-      default: 'home',
+      default: "home",
     },
   },
   setup(props) {
     const router = useRouter();
     const api = useApi();
     const { addTokenToURL } = useDirectusToken(api);
-    const page_title = ref('');
-    const page_banner = ref('');
+    const page_title = ref("");
+    const page_banner = ref("");
     const page_cards = ref([]);
-    const page_body = ref('');
-    const breadcrumb = ref([
-            {
-                name: 'Home',
-                to: `/landing-page`,
-            },
-        ]);
+    const page_body = ref("");
     const all_pages = ref([]);
 
     render_page(props.page);
     fetch_all_pages();
 
     watch(
-            () => props.page,
-            () => {
-                render_page(props.page);
-            }
-        );
+      () => props.page,
+      () => {
+        render_page(props.page);
+      },
+    );
 
-    function change_page(to){
+    function change_page(to) {
       const next = router.resolve(`${to}`);
       router.push(next);
     }
 
-    return { page_title, page_banner, page_cards, page_body, breadcrumb, all_pages, change_page };
+    return {
+      page_title,
+      page_banner,
+      page_cards,
+      page_body,
+      all_pages,
+      change_page,
+    };
 
-    function render_page(page){
-      if(page === null){
-        page_title.value = '500: Internal Server Error';
-        breadcrumb.value.splice(1, 1);
-        page_banner.value = '';
+    function render_page(page) {
+      if (page === null) {
+        page_title.value = "500: Internal Server Error";
+        page_banner.value = "";
         page_cards.value = [];
-        page_body.value = '';
+        page_body.value = "";
       } else {
-        switch(page) {
-          case 'home':
-            page_title.value = 'Home';
-            page_banner.value = addTokenToURL('/assets/83BD365C-C3CE-4015-B2AD-63EDA9E52A69?width=2000&height=563&fit=cover');
+        switch (page) {
+          case "home":
+            page_title.value = "Home";
+            page_banner.value = addTokenToURL(
+              "/assets/83BD365C-C3CE-4015-B2AD-63EDA9E52A69?width=2000&height=563&fit=cover",
+            );
             page_cards.value = all_pages.value;
-            page_body.value = '<p>Lorem ipsum dolor sit amet.</p>';
+            page_body.value = "<p>Lorem ipsum dolor sit amet.</p>";
             break;
-          case 'hello-world':
-            page_title.value = 'Hello World';
-            page_banner.value = addTokenToURL('/assets/853B243D-A1BF-6051-B1BF-23EDA8E32A09?width=2000&height=563&fit=cover');
+          case "hello-world":
+            page_title.value = "Hello World";
+            page_banner.value = addTokenToURL(
+              "/assets/853B243D-A1BF-6051-B1BF-23EDA8E32A09?width=2000&height=563&fit=cover",
+            );
             page_cards.value = all_pages.value;
-            page_body.value = '<p>Lorem ipsum dolor sit amet.</p>';
+            page_body.value = "<p>Lorem ipsum dolor sit amet.</p>";
             break;
-          case 'contact':
-            page_title.value = 'Contact Us';
-            page_banner.value = addTokenToURL('/assets/91CE173D-A1AD-4104-A1EC-74FCB8F41B58?width=2000&height=563&fit=cover');
+          case "contact":
+            page_title.value = "Contact Us";
+            page_banner.value = addTokenToURL(
+              "/assets/91CE173D-A1AD-4104-A1EC-74FCB8F41B58?width=2000&height=563&fit=cover",
+            );
             page_cards.value = [];
-            page_body.value = '<p>Lorem ipsum dolor sit amet.</p>';
+            page_body.value = "<p>Lorem ipsum dolor sit amet.</p>";
             break;
           default:
-            page_title.value = '404: Not Found';
-        }
-
-        if(page === 'home'){
-          breadcrumb.value.splice(1, 1);
-        } else {
-          breadcrumb.value[1] = {
-            name: page_title.value,
-            to: `/landing-page/${page}`,
-          };
+            page_title.value = "404: Not Found";
         }
       }
     }
 
-    function fetch_all_pages(){
+    function fetch_all_pages() {
       all_pages.value = [
         {
-          label: 'Home',
-          uri: 'landing-page',
-          to: '/landing-page',
-          icon: 'home',
-          color: '#6644FF',
+          label: "Home",
+          uri: "landing-page",
+          to: "/landing-page",
+          icon: "home",
+          color: "#6644FF",
         },
         {
-          label: 'Hello World',
-          uri: 'hello-world',
-          to: '/landing-page/hello-world',
-          icon: 'public',
-          color: '#2ECDA7',
+          label: "Hello World",
+          uri: "hello-world",
+          to: "/landing-page/hello-world",
+          icon: "public",
+          color: "#2ECDA7",
         },
         {
-          label: 'Contact Us',
-          uri: 'contact',
-          to: '/landing-page/contact',
-          icon: 'phone',
-          color: '#3399FF',
+          label: "Contact Us",
+          uri: "contact",
+          to: "/landing-page/contact",
+          icon: "phone",
+          color: "#3399FF",
         },
       ];
       console.log(all_pages.value);
@@ -869,70 +868,77 @@ export default {
 </script>
 
 <style lang="scss">
-  .lp-container {
-    padding: var(--content-padding);
-    padding-top: 0;
+.lp-container {
+  padding: var(--content-padding);
+  padding-top: 0;
+  width: 100%;
+  max-width: 1024px;
+
+  & > div {
+    margin-bottom: var(--content-padding);
+  }
+}
+
+.lp-banner {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
+  img {
+    display: block;
     width: 100%;
-    max-width: 1024px;
-
-    &> div {
-      margin-bottom: var(--content-padding);
-    }
   }
+}
 
-  .lp-banner {
+.lp-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--input-padding);
+  row-gap: var(--input-padding);
+
+  .lp-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     border-radius: var(--border-radius);
-    overflow: hidden;
+    padding: var(--input-padding);
+    color: white;
 
-    img {
-      display: block;
+    .v-icon {
       width: 100%;
-    }
-  }
+      height: 50px;
+      margin-bottom: 6px;
 
-  .lp-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: var(--input-padding);
-      row-gap: var(--input-padding);
-
-    .lp-card {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: var(--border-radius);
-      padding: var(--input-padding);
-      color: white;
-
-      .v-icon {
-        width: 100%;
-        height: 50px;
-        margin-bottom: 6px;
-
-        i {
-          font-size: 50px;
-            color: white;
-        }
-      }
-
-      .lp-card-title {
-        display: block;
-        font-weight: bold;
-        font-size: 1.4em;
-        line-height: 1.2;
+      i {
+        font-size: 50px;
+        color: white;
       }
     }
+
+    .lp-card-title {
+      display: block;
+      font-weight: bold;
+      font-size: 1.4em;
+      line-height: 1.2;
+    }
   }
+}
 </style>
 ```
 
 ```vue [components/navigation.vue]
 <template>
   <v-list nav v-if="pages">
-    <v-list-item v-for="navItem in pages" :key="navItem.to" :active="navItem.uri == current" :to="navItem.to">
-      <v-list-item-icon><v-icon :name="navItem.icon" :color="navItem.color" /></v-list-item-icon>
+    <v-list-item
+      v-for="navItem in pages"
+      :key="navItem.to"
+      :active="navItem.uri == current"
+      :to="navItem.to"
+    >
+      <v-list-item-icon
+        ><v-icon :name="navItem.icon" :color="navItem.color"
+      /></v-list-item-icon>
       <v-list-item-content>
         <v-text-overflow :text="navItem.label" />
       </v-list-item-content>
@@ -942,7 +948,7 @@ export default {
 
 <script>
 export default {
-  name: 'PageNavigation',
+  name: "PageNavigation",
   inheritAttrs: false,
   props: {
     current: {
@@ -954,7 +960,7 @@ export default {
       default: [],
     },
   },
-}
+};
 </script>
 ```
 
@@ -973,13 +979,15 @@ export default function useDirectusToken(directusApi) {
       queryParams.push(`${key}=${value}`);
     }
 
-    return path.includes('?') ? `${path}&${queryParams.join('&')}` : `${path}?${queryParams.join('&')}`;
+    return path.includes("?")
+      ? `${path}&${queryParams.join("&")}`
+      : `${path}?${queryParams.join("&")}`;
   }
 
   function getToken() {
     return (
-      directusApi.defaults?.headers?.['Authorization']?.split(' ')[1] ||
-      directusApi.defaults?.headers?.common?.['Authorization']?.split(' ')[1] ||
+      directusApi.defaults?.headers?.["Authorization"]?.split(" ")[1] ||
+      directusApi.defaults?.headers?.common?.["Authorization"]?.split(" ")[1] ||
       null
     );
   }

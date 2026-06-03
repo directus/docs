@@ -8,6 +8,7 @@ authors:
     title: Guest Author
 description: Learn about all of the slots available in your custom modules.
 ---
+
 This guide follows on [Create a Custom Portal Module](/tutorials/extensions/implement-navigation-in-multipage-custom-modules), where you created
 a landing page module. You will learn how to add native sidebar dropdown element, action buttons and search, a split
 view window, and layout options using the built-in functions of Directus. These help provide a more coherent experience
@@ -21,43 +22,18 @@ The private view in Directus has a number of slots available which are empty by 
 template tag. For example:
 
 ```vue
-<template #slot_name>
-	// Content to insert into the slot
-</template>
+<template #slot_name>// Content to insert into the slot</template>
 ```
 
 The slots available to you in this view are:
 
-- `headline`
 - `title-outer:prepend`
 - `title-outer:append`
-- `actions`
 - `actions:prepend`
+- `actions`
+- `actions:primary`
 - `sidebar`
 - `splitView`
-
-## `headline`
-
-This is the area above the page title utilized for the breadcrumbs. Use the following code to include a breadcrumb.
-
-```vue
-<template v-if="breadcrumb" #headline>
-	<v-breadcrumb :items="breadcrumb" />
-</template>
-```
-
-`v-breadcumb` accepts a list of objects which will output the pages in order of the list:
-
-```js
-[
-	{
-		name: 'Home',
-		to: '/landing-page',
-	},
-]
-```
-
-![Two examples of breadcrumbs. One showing just Home, and one adding a second-level page called Hello World](/img/8284cf66-1d53-4113-b2f7-532d8d8498c3.webp)
 
 ## `title-outer:prepend`
 
@@ -66,17 +42,17 @@ an icon inside a circle. The icon relates to the current page such as the collec
 
 ```vue
 <template #title-outer:prepend>
-	<v-button class="header-icon" rounded disabled icon secondary>
-		<v-icon name="access_time" />
-	</v-button>
+  <v-button class="header-icon" disabled icon secondary>
+    <v-icon name="access_time" />
+  </v-button>
 </template>
 ```
 
-![An icon is shown to the left of the title and breadcrumbs](/img/51558a50-8edf-490b-9c54-5c39a4d3b14d.webp)
+![An icon is shown to the left of the title](/img/51558a50-8edf-490b-9c54-5c39a4d3b14d.webp)
 
 ::callout{icon="i-lucide-info"}
 
-The icon is `rounded`, `disabled` and `secondary`. This will keep the same look as the rest of Directus but you can
+The icon is `disabled` and `secondary`. This will keep the same look as the rest of Directus but you can
 remove these to customize the look and feel.
 
 [Learn more about the usage of Directus UI Components ->](/guides/extensions/app-extensions/ui-library)
@@ -90,11 +66,7 @@ bookmarks. In this example, the slot is used for a clickable icon button.
 
 ```vue
 <template #title-outer:append>
-	<v-icon
-		clickable
-		name="add_circle"
-		@click="buttonAction()"
-	/>
+  <v-icon clickable name="add_circle" @click="buttonAction()" />
 </template>
 ```
 
@@ -113,12 +85,12 @@ and a search bar.
 
 ```vue
 <template #actions>
-	<v-input class="module-search" :model-value="search">
-		<template #prepend><v-icon name="search" /></template>
-	</v-input>
-	<v-button v-tooltip.bottom="'COOL'" icon rounded>
-		<v-icon name="launch" />
-	</v-button>
+  <v-input class="module-search" :model-value="search">
+    <template #prepend><v-icon name="search" /></template>
+  </v-input>
+  <v-button v-tooltip.bottom="'COOL'" icon>
+    <v-icon name="launch" />
+  </v-button>
 </template>
 ```
 
@@ -126,19 +98,19 @@ You will also need to style the search. I suggest matching the existing one in D
 
 ```scss
 .v-input.full-width.module-search {
-    display: flex;
-    width: 300px;
-    height: 44px;
+  display: flex;
+  width: 300px;
+  height: 44px;
 
-    .input {
-        width: auto;
-        padding: 0 10px;
-        overflow: hidden;
-        color: var(--theme--foreground);
-        text-overflow: ellipsis;
-        background-color: var(--theme--background);
-        border-radius: 22px;
-    }
+  .input {
+    width: auto;
+    padding: 0 10px;
+    overflow: hidden;
+    color: var(--theme--foreground);
+    text-overflow: ellipsis;
+    background-color: var(--theme--background);
+    border-radius: 22px;
+  }
 }
 ```
 
@@ -156,9 +128,7 @@ You can add content before the actions slot like page information and selection 
 to ensure it outputs on a single line.
 
 ```vue
-<template #actions:prepend>
-	ACTION PREPEND
-</template>
+<template #actions:prepend>ACTION PREPEND</template>
 ```
 
 ![To the left of the search box is the text 'ACTION PREPEND' broken over two lines and unstyled.](/img/42c337a1-61a8-4d75-88fb-85b1e1c9dac6.webp)
@@ -168,6 +138,20 @@ to ensure it outputs on a single line.
 This space is quite limited due to the length of the page title and the amount of actions.
 
 ::
+
+## `actions:primary`
+
+Use this slot to render the page's primary call to action. Unlike the `actions` slot — which is intended for secondary,
+icon-style buttons — `actions:primary` renders a single, prominent labeled button on the right side of the header.
+
+```vue
+<template #actions:primary>
+  <v-button @click="createItem">
+    <v-icon name="add" left />
+    Create Item
+  </v-button>
+</template>
+```
 
 ## `sidebar`
 
@@ -180,14 +164,14 @@ related to the current page, then update this content within your `setup` whenev
 section outputs some custom text.
 
 ```vue
-		<template #sidebar>
-			<sidebar-detail id="information" icon="info" title="Information">
-				PAGE DESCRIPTION
-			</sidebar-detail>
-			<sidebar-detail id="sidebar-item" icon="layers" title="SIDEBAR ITEM">
-				SIDEBAR ITEM CONTENT
-			</sidebar-detail>
-		</template>
+<template #sidebar>
+  <sidebar-detail id="information" icon="info" title="Information">
+    PAGE DESCRIPTION
+  </sidebar-detail>
+  <sidebar-detail id="sidebar-item" icon="layers" title="SIDEBAR ITEM">
+    SIDEBAR ITEM CONTENT
+  </sidebar-detail>
+</template>
 ```
 
 ![Sidebar shows a title called Information with a close button, and a collapsible section called Sidebar Item with text inside of it.](/img/7c814289-e3ed-4c29-a29e-eca48ffb432a.webp)
@@ -200,41 +184,43 @@ action button as shown below but can be triggered any way you choose. To use thi
 attributes to the parent `private-view` and create a toggle button. The actions slot is a convenient place:
 
 ```html
-<private-view :splitView="livePreviewMode" :split-view-min-width="310" :title="page_title">
-	<template #actions>
-		<v-button
-			v-tooltip.bottom="!livePreviewMode ? 'Enable Split View' : 'Disable Split View'"
-			rounded
-			icon
-			class="action-preview"
-			:secondary="!livePreviewMode"
-			@click="toggleSplitView"
-		>
-			<v-icon name="visibility" outline />
-		</v-button>
-	</template>
+<private-view
+  :splitView="livePreviewMode"
+  :split-view-min-width="310"
+  :title="page_title"
+>
+  <template #actions>
+    <v-button
+      v-tooltip.bottom="!livePreviewMode ? 'Enable Split View' : 'Disable Split View'"
+      icon
+      class="action-preview"
+      :secondary="!livePreviewMode"
+      @click="toggleSplitView"
+    >
+      <v-icon name="visibility" outline />
+    </v-button>
+  </template>
 
-
-	<template #splitView>
-		<div ref="livePreviewEl" class="live-preview">
-			<div class="container">
-				<div class="iframe-view">
-					<div
-						ref="resizeHandle"
-						class="resize-handle"
-						:style="{
+  <template #splitView>
+    <div ref="livePreviewEl" class="live-preview">
+      <div class="container">
+        <div class="iframe-view">
+          <div
+            ref="resizeHandle"
+            class="resize-handle"
+            :style="{
 							width: '100%',
 							height: '100%',
 							resize: 'both',
 						}"
-					>
-						<!-- <iframe id="frame" ref="frameEl" :src="url" @load="onIframeLoad" /> -->
-						SPLIT VIEW
-					</div>
-				</div>
-			</div>
-		</div>
-	</template>
+          >
+            <!-- <iframe id="frame" ref="frameEl" :src="url" @load="onIframeLoad" /> -->
+            SPLIT VIEW
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 </private-view>
 ```
 
@@ -255,29 +241,29 @@ Add the following CSS to your style for the default styling of the `SplitView` c
 
 ```scss
 .live-preview {
-	width: 100%;
-	height: 100%;
-	.container {
-		width: 100%;
-		height: calc(100% - 44px);
-		overflow: auto;
-	}
-	.iframe-view {
-		width: 100%;
-		height: 100%;
-		overflow: auto;
-		display: grid;
-		padding: 48px;
-		#frame {
-			width: 100%;
-			height: 100%;
-			border: 0;
-		}
-		.resize-handle {
-			overflow: hidden;
-			box-shadow: 0px 4px 12px -4px rgba(0, 0, 0, 0.2);
-		}
-	}
+  width: 100%;
+  height: 100%;
+  .container {
+    width: 100%;
+    height: calc(100% - 44px);
+    overflow: auto;
+  }
+  .iframe-view {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: grid;
+    padding: 48px;
+    #frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .resize-handle {
+      overflow: hidden;
+      box-shadow: 0px 4px 12px -4px rgba(0, 0, 0, 0.2);
+    }
+  }
 }
 ```
 
