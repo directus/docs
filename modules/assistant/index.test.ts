@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { isAssistantEnabled } from './index';
+import { isAssistantEnabled } from './runtime/utils/is-assistant-enabled';
 
 let savedEnv: NodeJS.ProcessEnv;
 
