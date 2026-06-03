@@ -1,8 +1,4 @@
 {
-  "/guides/ai/translations": {
-    "to": "/guides/ai",
-    "statusCode": 301
-  },
   "/guides/automate/data-chain": {
     "to": "/guides/flows/data-chain",
     "statusCode": 301
