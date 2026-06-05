@@ -1,8 +1,9 @@
 ---
+stableId: 38e940b1-113e-44fb-bf8f-4906fb1cd578
 slug: invincible-ai-content-workflows-with-inngest-and-directus
 title: Invincible AI content workflows with Inngest and Directus
 technologies:
-  - inggest
+  - inngest
 authors:
   - name: Bryant Gillespie
     title: Developer Advocate
@@ -61,7 +62,7 @@ The platform also offers a developer-friendly experience with excellent local de
 
 ## The Directus + Inngest Integration: Beyond Flows
 
-While Directus already includes its own [workflow automation system (Flows)](/guides/automate/flows), Inngest complements it by handling scenarios that Flows wasn't designed for. Directus Flows excels at short-lived automations like sending notifications or processing simple data operations, but AI workflows typically require more resilience and computational power.
+While Directus already includes its own [workflow automation system (Flows)](/guides/flows), Inngest complements it by handling scenarios that Flows wasn't designed for. Directus Flows excels at short-lived automations like sending notifications or processing simple data operations, but AI workflows typically require more resilience and computational power.
 
 Inngest is the perfect companion when you need:
 
@@ -80,7 +81,7 @@ The following sections detail the technical implementation.
 ## Implementation Guide
 
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 To implement this integration, you'll want to have
 
@@ -457,7 +458,7 @@ Here's an examination of this hooks implementation in detail:
 
 Now, create a simple workflow function to consume the `image-uploaded` event.
 
-By default, [asset transformations](https://directus.io/docs/guides/files/transform#preset-transformations) in Directus on created "on the fly" (and then cached) whenever you request an image, but if you're statically generating a large site with lots of images this can slow your build time.
+By default, [asset transformations](https://directus.com/docs/guides/files/transform#preset-transformations) in Directus on created "on the fly" (and then cached) whenever you request an image, but if you're statically generating a large site with lots of images this can slow your build time.
 
 You can address that by using Inngest to do the transformations when images are uploaded, instead of when they are requested.
 

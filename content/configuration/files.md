@@ -1,11 +1,12 @@
 ---
+stableId: 0c9b088d-3f66-4afe-84a9-1301af20dbde
 title: Files
 description: Configuration for storage locations, metadata, upload limits, and transformations.
 ---
 
 :partial{content="config-env-vars"}
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 For guidance on file-upload permissions, asset access tokens, and blocking internal IPs for file imports, see [Security Best Practices](/guides/security/best-practices#files--assets).
 ::
 
@@ -120,13 +121,13 @@ Large files can be uploaded in chunks to improve reliability and efficiency, esp
 | `TUS_UPLOAD_EXPIRATION` | The expiry duration for uncompleted files with no upload activity. | `10m`         |
 | `TUS_CLEANUP_SCHEDULE`  | Cron schedule to clean up the expired uncompleted uploads.         | `0 * * * *`   |
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
-This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.io/docs/configuration/general).
+This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.com/docs/configuration/general).
 
 ::
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 
 **Chunked Upload Restrictions**<br/>
 
@@ -146,11 +147,18 @@ the storage driver(s) being used.
 | Variable                                 | Description                                                                                                                          | Default Value |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
 | `ASSETS_CACHE_TTL`                       | How long assets will be cached for in the browser. Sets the `max-age` value of the `Cache-Control` header.                           | `30d`         |
+| `ASSETS_CACHE_REVALIDATE`                | When enabled, sets `Cache-Control: max-age=0, must-revalidate` to force CDNs to revalidate assets on every request.                  | `false`       |
 | `ASSETS_TRANSFORM_MAX_CONCURRENT`        | How many file transformations can be done simultaneously.                                                                            | `25`          |
 | `ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION`   | The max pixel dimensions size (width/height) that is allowed to be transformed.                                                      | `6000`        |
 | `ASSETS_TRANSFORM_TIMEOUT`               | Max time spent trying to transform an asset.                                                                                         | `7500ms`      |
 | `ASSETS_TRANSFORM_MAX_OPERATIONS`        | The max number of transform operations that is allowed to be processed (excludes saved presets).                                     | `5`           |
 | `ASSETS_INVALID_IMAGE_SENSITIVITY_LEVEL` | Level of sensitivity to invalid images. See the [`sharp.failOn`](https://sharp.pixelplumbing.com/api-constructor#parameters) option. | `warning`     |
+
+::callout{icon="material-symbols:info-outline"}
+
+When enabling `ASSETS_CACHE_REVALIDATE`, CDNs will revalidate assets on every request instead of serving them straight from their cache. This means one lightweight round-trip to Directus per request, which has a small performance impact compared to the default `max-age` behavior. On an existing Directus instance, the initial CDN cache must also be cleared before revalidation can take effect, as assets already cached will continue to be served with the previous `max-age` rules until they expire.
+
+::
 
 Image transformations can be heavy on memory usage. If you're using a system with 1GB or less available memory, we recommend lowering the allowed concurrent transformations to prevent you from overflowing your server.
 

@@ -1,4 +1,5 @@
 ---
+stableId: 11c16367-745c-426b-aa17-71a01ef8ea23
 title: Directus API Reference
 description: Learn how to use our API
 ---

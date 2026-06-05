@@ -1,7 +1,8 @@
 ---
+stableId: 4164fbc4-95f1-4097-b57c-1bd347561a15
 id: c773724c-cc1b-4f79-bc46-208b26e8fd7f
 slug: schedule-future-content-with-directus-automate
-title: Schedule Future Content with Directus Automate
+title: Schedule Future Content with Directus Flows
 authors:
   - name: Bryant Gillespie
     title: Growth Engineer
@@ -11,7 +12,7 @@ description: Learn how to set content to be scheduled on a future date with Dire
 
 This guide explains how to schedule content to be published on a future date for a statically generated site (SSG).
 
-We'll be using [Flows](/guides/automate/flows) to publish articles when the current date matches the published date.
+We'll be using [Flows](/guides/flows) to publish articles when the current date matches the published date.
 
 First we'll schedule a flow to run at regular intervals.
 
@@ -25,7 +26,7 @@ Last, we'll kick off a new deployment of your static site at your hosting provid
 
 ## How-To Guide
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 You’ll need to have already created a collection for your site content like `articles` or `posts` or `pages` with a
 field `status` that controls the published state.
@@ -62,13 +63,13 @@ field `status` that controls the published state.
 
 ### Create and Configure Your Flow
 
-5. [Create a new flow](/guides/automate/flows)
+5. [Create a new flow](/guides/flows)
 
    ![Under the Creating a New Flow interface, the Flow Setup tab is shown. The name of the new flow is Published Scheduled Articles. The status is Active. The Description field reads "This is triggered every 15 minutes to publish any scheduled articles". The icon selected is "Fiber New". For the Color field, a green color with the hex code #2ECDA7 is selected. Track Activity & Logs is selected.](/img/2040227f-7536-480e-b458-20a8878dea47.webp)
 
    Give it a memorable name and short description like `Publish Scheduled Articles`.
 
-6. [Complete the trigger setup](/guides/automate/triggers)
+6. [Complete the trigger setup](/guides/flows/triggers)
 
    ![Under the Creating New Flow interface, the Trigger Setup tab is shown. The selected trigger is Schedule(CRON). The Interval field has a value of "* 15 * * * *".](/img/dde30ee7-e06b-4617-965d-371463624a5e.webp)
 
@@ -84,7 +85,7 @@ field `status` that controls the published state.
 
 ### Add an Operation to Check The Published Date and Update Data
 
-7. [Create a new operation](/guides/automate/operations)
+7. [Create a new operation](/guides/flows/operations)
 
    ![Inside a Directus Flow, the Create Operation interface is shown. The Name of the operation is "Update Articles". The Key is "update_articles". The type of Operation is "Update Data". The Collection for the operation is "Articles". The Payload for the operation is a JSON object with key - status and value of published. There is also a JSON object for the Query field. A filter that checks that the item status is equal to "scheduled" and the date_published is less than or equal to the current timestamp.](/img/0424a6b8-7bd2-4c1a-ba8a-5c7c36edd7ea.webp)
 
@@ -96,7 +97,7 @@ field `status` that controls the published state.
 
    d. Check **Emit Events**
 
-   ::callout{icon="material-symbols:warning-outline-rounded"}
+   ::callout{icon="i-lucide-triangle-alert"}
 
    Emit events will trigger an `item.update` event in this flow. Be careful when using it in your flows to avoid
    creating infinite loops where flows continuously trigger one another.
@@ -170,7 +171,7 @@ visitor requests a page from your site, all you need to do is add a filter to yo
 
 #### Examples
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 In these examples, we're using an AND logical operator to only return
 records that match both conditions. This provides a little more control over your published content by ensuring only

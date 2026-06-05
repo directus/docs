@@ -1,17 +1,18 @@
 ---
+stableId: f1b91cbc-3e94-4214-b49a-350ae0f4ed55
 id: 34bda8b7-e162-4090-8ceb-ae3db85fb098
 slug: create-github-issues-with-directus-automate
-title: Create GitHub Issues with Directus Automate
+title: Create GitHub Issues with Directus Flows
 technologies:
   - github
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to integrate GitHub with Directus Automate to create new issues.
+description: Learn how to integrate GitHub with Directus Flows to create new issues.
 ---
 At the bottom of every page in our docs (including this one) is a feedback widget, which we use to gather feedback on what's good and what needs improving across our pages. All of this data is stored in a Directus project which we look through weekly and create associated GitHub Issues if action is required.
 
-In this guide, you will learn how to use Directus Automate with Confirmation Prompts to automatically create issues directly from Directus.
+In this guide, you will learn how to use Directus Flows with Confirmation Prompts to automatically create issues directly from Directus.
 
 ## Before You Start
 
@@ -23,7 +24,7 @@ You will also need a Directus collection called `feedback` with a field for `con
 
 ## Create a Flow
 
-Flows are Directus' no-code automation builder provided as part of Directus Automate. Create a new flow called "Create GitHub Issue". Add a **Manual Trigger** on the `Feedback` collection, and set the **Location** to "Item Page Only".
+Flows are Directus' no-code automation builder. Create a new flow called "Create GitHub Issue". Add a **Manual Trigger** on the `Feedback` collection, and set the **Location** to "Item Page Only".
 
 Check the **Require Confirmation** box and add one field with a key and name of `title`. This will contain the issue title - which should describe the remedial action based on feedback provided. For example, "I can't find the docs related to connecting an existing database" might be feedback, where "Signpost existing database connection docs" would be the issue title.
 
@@ -54,7 +55,7 @@ In the payload, you will set the issue title and description:
 }
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 The body supports any Markdown, so the `>` at the start turns the text after it into a blockquote.
 ::
 

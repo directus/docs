@@ -1,4 +1,5 @@
 ---
+stableId: 56ba3ad4-0e59-4819-bbbd-cdffcaa6956f
 id: 20e049fb-529f-4a71-8a34-1e4e61d34af1
 slug: validate-phone-numbers-with-twilio-in-a-custom-hook
 title: Validate Phone Numbers with Twilio in a Custom Hook
@@ -131,7 +132,7 @@ Ensure the `.env` file has `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` variable
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

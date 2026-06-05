@@ -1,4 +1,5 @@
 ---
+stableId: d395c571-bc7d-4c61-9863-d60d5b72a562
 title: Migrations
 description: Creation of custom migration files to automate database changes.
 ---
@@ -30,7 +31,7 @@ export async function down(knex) {
 }
 ```
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Backup Your Database**
 Proceed at your own risk and backup your database before adding custom migrations.
 ::

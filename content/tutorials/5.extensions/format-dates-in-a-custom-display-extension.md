@@ -1,4 +1,5 @@
 ---
+stableId: 5e252930-7eb3-4c47-a34b-8ea2a4077ff7
 id: 8c3f5a07-162f-4902-8044-dd5fa8b823c2
 slug: format-dates-in-a-custom-display-extension
 title: Format Dates in a Custom Display Extension
@@ -167,7 +168,7 @@ with `directus-extension`. In this case, you may choose to use `directus-extensi
 
 Restart Directus to load the extension.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

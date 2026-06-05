@@ -1,4 +1,5 @@
 ---
+stableId: 56701b9c-6b92-44f5-8774-782c33b5739d
 title: Database
 description: Configuration for database connections.
 ---
@@ -29,7 +30,7 @@ This includes:
 - `DB_POOL__` prefixed options which are passed to [`tarn.js`](https://github.com/vincit/tarn.js#usage).
 - `DB_SSL__` prefixed options which are passed to the respective database driver. For example, `DB_SSL__CA` which can be used to specify a custom Certificate Authority (CA) certificate for SSL connections. This is required if the database server CA is not part of [Node.js' trust store](https://nodejs.org/api/tls.html).
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Note**  
 `DB_SSL__CA_FILE` may be preferred to load the CA directly from a file.
 ::

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { OpenAPIObject } from 'openapi3-ts/oas30';
+import { apiReferenceMeta } from '~/generated/api-reference/meta';
 
 definePageMeta({
 	layout: 'api',
@@ -7,8 +7,6 @@ definePageMeta({
 
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => queryCollection('content').path(route.path).first());
-
-const openapi = inject<OpenAPIObject>('openapi')!;
 
 if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
@@ -23,7 +21,7 @@ if (!page.value) {
 			:ui="{ title: 'title', headline: 'headline' }"
 		>
 			<template #headline>
-				For Directus v{{ openapi.info.version }}+
+				For Directus v{{ apiReferenceMeta.version }}+
 			</template>
 		</UPageHeader>
 		<UPageBody prose>

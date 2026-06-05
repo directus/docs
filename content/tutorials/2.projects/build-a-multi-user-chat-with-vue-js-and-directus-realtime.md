@@ -1,4 +1,5 @@
 ---
+stableId: c835fb8f-3ccc-4a84-b30c-69f7429f0578
 id: 418e29e7-1a2f-44a3-82ad-99dc118cccd0
 slug: build-a-multi-user-chat-with-vue-js-and-directus-realtime
 title: Build a Multi-User Chat with Vue.js and Directus Realtime

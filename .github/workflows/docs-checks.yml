@@ -1,0 +1,58 @@
+name: Docs Checks
+
+on:
+  push:
+    branches:
+      - main
+    paths: &docs-check-paths
+      - 'content/**'
+      - 'content.config.ts'
+      - 'redirects.json'
+      - 'scripts/_content-lib.ts'
+      - 'scripts/check-stable-ids.ts'
+      - 'scripts/ensure-stable-ids.ts'
+      - 'scripts/redirects-sync.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/docs-checks.yml'
+  pull_request:
+    branches:
+      - main
+    paths: *docs-check-paths
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docs-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Typecheck scripts
+        run: pnpm typecheck:scripts
+
+      - name: Check stable IDs
+        run: pnpm stable-ids:check
+
+      # Redirect check diffs against origin/main, so it only makes sense as a
+      # pre-merge gate on PRs. On push to main the merge already landed and
+      # origin/main points at the pushed commit (self-comparison), so skip it.
+      - name: Fetch base ref for redirect diff
+        if: github.event_name == 'pull_request'
+        run: git fetch --depth=1 origin main
+
+      - name: Check redirects
+        if: github.event_name == 'pull_request'
+        run: pnpm redirects:check
