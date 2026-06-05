@@ -1,4 +1,5 @@
 import { Chat } from '@ai-sdk/vue';
+import { useLocalStorage } from '@vueuse/core';
 import { DefaultChatTransport, type ChatStatus, type UIMessage } from 'ai';
 import { useAppConfig, useRoute, useRuntimeConfig, useState, useToast } from '#imports';
 import { computed, watch, type Ref } from 'vue';
@@ -35,7 +36,7 @@ export function useAssistant() {
 	const appConfig = useAppConfig();
 	const assistantConfig = appConfig.assistant as { faqQuestions?: FaqCategory[] } | undefined;
 	const isEnabled = computed(() => Boolean(config.public.assistant?.enabled));
-	const isOpen = useState('assistant-open', () => false);
+	const isOpen = useLocalStorage('assistant-open', false);
 	const pendingMessage = useState<string | undefined>('assistant-pending', () => undefined);
 	const easterEggLoadingId = useState<string | null>('assistant-easter-egg-id', () => null);
 	const pageContextDismissed = useState('assistant-page-context-dismissed', () => false);
