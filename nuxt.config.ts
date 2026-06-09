@@ -71,6 +71,7 @@ export default defineNuxtConfig({
 
 	app: {
 		baseURL: BASE_URL,
+		buildAssetsDir: '/_nuxt-docs/',
 	},
 
 	css: ['~/assets/css/main.css', '@directus/vue-split-panel/index.css'],
