@@ -1,4 +1,5 @@
 ---
+stableId: 5f29f902-cfbe-4c55-af05-1e41de895ab9
 title: Health Check
 description: Configuration for the server health check service.
 ---
