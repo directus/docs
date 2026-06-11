@@ -10,7 +10,7 @@ authors:
 
 Integrating external identity providers (e.g. Okta) with Directus often results in the need to accept a third-party JWT, validate it and translate it into a Directus **Accountability** object. This allows clients to authenticate with their external provider while Directus enforces access controls.
 
-This guide walks through implementing this flow using Directus's `authenticate` hook. This guide assumes the provider exposes a [JWK](https://www.rfc-editor.org/rfc/rfc7517) endpoint.
+This guide walks through implementing this flow using Directus's `authenticate` hook. This guide assumes the provider exposes a [JWK](https://www.rfc-editor.org/rfc/rfc7517.html) endpoint.
 
 ## 1. Create an `authenticate` filter hook
 

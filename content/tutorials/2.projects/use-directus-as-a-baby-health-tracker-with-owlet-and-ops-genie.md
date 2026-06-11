@@ -114,7 +114,7 @@ Create a Request operation with the final token we got from the authentication o
 
 | Method | URL |
 | --- | --- |
-| GET | https://ads-field-eu-1a2039d9.aylanetworks.com/apiv1/devices.json |
+| GET | `https://ads-field-eu-1a2039d9.aylanetworks.com/apiv1/devices.json` |
 
 As header parameter, we set the following:
 
