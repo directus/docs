@@ -75,7 +75,7 @@ All communication to the frontend is through a single Directus user name “Sant
 
 The `Elves` policy has create, read, and update permissions on `profiles` and `likes`. And also read permissions for the `directus_` system collections in order to generate types using a helper Node script.
 
-![Access policies in the Salty Santa Directus project](/img-salty-santa-6.png)
+![Access policies in the Salty Santa Directus project](/img/os-salty-santa-6.png)
 
 If you ever use this same pattern, just make sure you’re only using static access tokens for server-to-server comms. You don’t want to expose those to anyone on the frontend because of the elevated permissions that might be attached.
 
@@ -634,7 +634,7 @@ Once you sent your letter to Santa, we’d send the generated text to their API 
 But fear not - here’s a sample of what could have been.
 
 <audio controls>
-  <source src="https://product-team.directus.app/assets/c856d836-7ef6-4ff6-8961-152b3156c49f.mp3" type="audio/mpeg">
+  <source src="/img/aaedf2bb-bb9a-41b8-9b47-f68f4293e813.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 

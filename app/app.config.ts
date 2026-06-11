@@ -331,7 +331,7 @@ export default defineAppConfig({
 		socials: [
 			{
 				icon: 'simple-icons:bluesky',
-				to: 'https://bsky.app/profile/directus.com',
+				to: 'https://bsky.app/profile/directus.io',
 			},
 			{
 				icon: 'simple-icons:x',
