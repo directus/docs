@@ -351,7 +351,7 @@ Directus returns for Many To Any (M2A) relationships.
 If you notice you aren't receiving the data that you expect, check the Permissions settings for your Public or chosen
 role. You'll have to enable Read access for each collection using in the Pages > Blocks Many-To-Any field.
 
-### Use Typescript
+### Use TypeScript
 
 We recommend adding types for each of your different collections to your frontend framework.
 

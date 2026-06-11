@@ -6,7 +6,7 @@ title: Use Directus as a Baby Health Tracker with Owlet and OpsGenie
 authors:
   - name: Andreas Morgner
     title: Guest Author
-description: Learn how to integrate Directus with hardware sensors and incident repsonse systems.
+description: Learn how to integrate Directus with hardware sensors and incident response systems.
 ---
 I have a baby and like many parents rely on monitors and sensors to make sure they're ok. In this article, we will explore Directus as a backend for a smart wearable device, and how to extend the functionality of the the apps shipped with the device. I personally use the [Owlet Smart Sock](https://owletcare.com/products/owlet-smart-sock), but the approaches covered in this article can be adapted for many other sensors.
 
@@ -33,7 +33,7 @@ For each element of the data provided by the sensor, we want to save these value
 
 ### OpsGenie Alerts Collection
 
-This collection is for integration into the OpsGenie alerting system. As Direcuts provides the fields for sort, creation, and update date as well aw who perfomred the action, we enanled these fields during creation. Next to the id we need the following fields for alerts we want to create later on. Next to the default fields, the most important custom fields are the following ones:
+This collection is for integration into the OpsGenie alerting system. As Direcuts provides the fields for sort, creation, and update date as well aw who performed the action, we enanled these fields during creation. Next to the id we need the following fields for alerts we want to create later on. Next to the default fields, the most important custom fields are the following ones:
 
 Create an `opsgenie_alert` collection for integration into the OpsGenie alerting system. As Directus provides the fields for sort, creation, and update date as well as who performed an action, enable these fields during creation. Create the following fields:
 

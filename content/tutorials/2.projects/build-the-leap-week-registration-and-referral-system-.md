@@ -108,7 +108,7 @@ export default defineEventHandler(async (event) => {
 			throw createError({ statusCode: 500, statusMessage: 'Ticket not found' });
 		}
 
-		// If they have genearated 3 avatars, throw an error
+		// If they have generated 3 avatars, throw an error
 		if (ticket.avatars && ticket.avatars.length >= avatarLimit) {
 			throw createError({ statusCode: 500, statusMessage: `Maximum number of ${avatarLimit} avatars generated.` });
 		}
