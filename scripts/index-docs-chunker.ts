@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import GithubSlugger from 'github-slugger';
 import { load as loadYaml } from 'js-yaml';
 import { remark } from 'remark';
 import remarkParse from 'remark-parse';
 import remarkMdc from 'remark-mdc';
 import { findSectionByPath } from '../shared/utils/docsSections.ts';
-import slugify from '../app/utils/slugify.ts';
 import { listRoutableContentFiles } from './_content-lib.ts';
 
 const CONTENT_DIR = path.resolve('content');
@@ -169,6 +169,14 @@ function buildPageSearchTitle(routePath: string, title: string) {
 
 function buildChunkSearchTitle(pageSearchTitle: string, heading?: string) {
 	return heading?.trim() || pageSearchTitle;
+}
+
+function buildSectionAnchors(sections: MarkdownSection[]) {
+	const slugger = new GithubSlugger();
+	return sections.map((section) => {
+		const heading = section.h3 ?? section.h2;
+		return heading ? slugger.slug(heading) : undefined;
+	});
 }
 
 function normalizeText(value: string): string {
@@ -520,6 +528,7 @@ export function chunkMarkdownPage({ sourcePath, updatedAt, partials }: ChunkMark
 	const tree = remark().use(remarkParse).use(remarkMdc).parse(parsed.content) as { children: MdastNode[] };
 	const blocks = extractBlocks(tree.children, partials);
 	const sections = blocksToSections(blocks);
+	const sectionAnchors = buildSectionAnchors(sections);
 	const rawChunks: RawChunk[] = [];
 	const summaryChunk = createSummaryChunk(routePath, pageSearchTitle, frontmatter.description, sectionLabel, sections);
 	if (summaryChunk) rawChunks.push(summaryChunk);
@@ -529,7 +538,7 @@ export function chunkMarkdownPage({ sourcePath, updatedAt, partials }: ChunkMark
 			? sectionBlock.textParts
 			: [sectionBlock.h3 ?? sectionBlock.h2 ?? title];
 		const contentChunks = chunkSectionText(textParts);
-		const anchor = sectionBlock.h3 ? slugify(sectionBlock.h3) : sectionBlock.h2 ? slugify(sectionBlock.h2) : undefined;
+		const anchor = sectionAnchors[sectionIndex];
 		const heading = sectionBlock.h3 ?? sectionBlock.h2;
 		const hierarchy = buildSectionHierarchy(sectionLabel, pageSearchTitle, sectionBlock);
 		const codeBlocks = [...new Set(sectionBlock.codeBlocks.map(normalizeCode).filter(Boolean))];
