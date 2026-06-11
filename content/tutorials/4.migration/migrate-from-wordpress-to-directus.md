@@ -88,7 +88,7 @@ After the JSON file is extracted and the schema is developed on Directus, you ca
 
 ![Import in Directus Collection](/img/ec2f9808-5775-45a1-bac8-715095434502.webp)
 
-If you have images in the post or pages, you won’t be able to access them. With the Directus REST API we will be able to manipulate the JSON to extact the images and save to Directus Files so we can access the files in the post.
+If you have images in the post or pages, you won’t be able to access them. With the Directus REST API we will be able to manipulate the JSON to extract the images and save to Directus Files so we can access the files in the post.
 
 To use the API we need to get the API token at User Directory → Administrator → Admin User → Token. Copy the token and Keep it somewhere, we will use it later.
 

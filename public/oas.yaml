@@ -274,7 +274,7 @@ paths:
                   description: The user's one-time-password (if MFA is enabled).
       responses:
         '200':
-          description: Successful authentification
+          description: Successful authentication
           content:
             application/json:
               schema:

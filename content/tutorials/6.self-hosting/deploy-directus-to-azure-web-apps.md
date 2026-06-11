@@ -29,7 +29,7 @@ Sign into your Azure account via the [Azure Portal](https://portal.azure.com/). 
 
 Provide a unique name for your resource group and choose the Azure subscription to link your new group to. Select the appropriate region for your resource group, considering factors like data residency and proximity to users, and adjust other settings if required.
 
-## Setting Up Azure Database for PostgresSQL
+## Setting Up Azure Database for PostgreSQL
 
 Directus connects to an existing database, so it's time to create one. Enter your new resource group and, in the Overview pane, click the **Create** button to initiate the resource creation process.
 

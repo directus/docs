@@ -276,7 +276,7 @@ Now click on any of the videos to stream it.
 
 ## Creating Search Functionality
 
-In your `services/index.ts`, add a new funtion that implements search functionality to find videos by title or description.
+In your `services/index.ts`, add a new function that implements search functionality to find videos by title or description.
 
 ```ts
 export async function searchVideos(query: string): Promise<Video[]> {

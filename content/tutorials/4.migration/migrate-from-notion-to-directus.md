@@ -94,7 +94,7 @@ Well, Directus is not just another CMS. It offers a unique combination of flexib
 
 ## Creating the Blogs Collection and Data Model
 
-Migrating my blog content to Directus was a smooth process. In my Directus instance, I initally created a `blogs` collection to hold all blog data. Then I went on to design the data model with the following fields:
+Migrating my blog content to Directus was a smooth process. In my Directus instance, I initially created a `blogs` collection to hold all blog data. Then I went on to design the data model with the following fields:
 
 - `id` - Integer Input
 - `status` - Dropdown

@@ -24,7 +24,7 @@ In your `docker-compose.yml` file, set an `EXTENSIONS_AUTO_RELOAD` environment v
 
 In your terminal, navigate to your `extensions` directory and run `npx create-directus-extension@latest`. Name your extension `elasticsearch-indexing` and choose a `hook` type and create the extension with `JavaScript`. Allow Directus to automatically install dependencies and wait for them to install.
 
-## Seting Up Elasticsearch
+## Setting Up Elasticsearch
 
 To integrate Directus and Elasticsearch, you will need a running instance of both. For this tutorial, [Elastic Cloud](https://www.elastic.co/cloud/elasticsearch-service/signup) will be used. You will need both the Cloud ID and an API Key, which you can generate from your deployment dashboard.
 
