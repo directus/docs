@@ -225,11 +225,11 @@ With the JWT payload verified we can map its claims to a Directus accountability
 
 This mapping can be done in several ways. The three most common:
 
-- [Dynamically via Claim](#dynamically-via-claim)
-- [Static Mapping](#static-mapping)
-- [Auto-Provisioning](#auto-provisioning)
+- [Lookup User Dynamically Using a Claim](#option-1---lookup-user-dynamically-using-a-claim)
+- [Use a Static Mapping](#option-2--use-a-static-mapping)
+- [Auto-Provision Users](#option-3---auto-provision-users)
 
-#### Dynamically via Claim
+#### Option 1 - Lookup User Dynamically Using a Claim
 
 We match a Directus user's `external_identifier` against the JWT's `sub` claim, then use their information to build the accountability.
 
@@ -293,7 +293,7 @@ export default defineHook(({ filter }, { logger, services }) => {
 
 This approach is flexible and works well with automated provisioning.
 
-#### Static Mapping
+#### Option 2- Use a Static Mapping
 
 If the mapping between the claim and user id/role is known ahead of time, you can avoid DB queries entirely.
 
@@ -361,7 +361,7 @@ export default defineHook(({ filter }, { logger, services }) => {
 
 This method is best for small systems or service accounts.
 
-#### Auto-Provisioning
+#### Option 3 - Auto-Provision Users
 
 This method combines user lookup with auto-provisioning for dynamic service account management.
 
@@ -473,7 +473,7 @@ This guide covers the basics. For a production-ready setup, you may want to:
 
 ## Full Example
 
-The snippet below combines every step into a single, copy-ready `index.ts` using the [Dynamically via Claim](#dynamically-via-claim) mapping strategy. Replace `<your-okta-domain>` with your own domain, and swap the mapping section for [Static Mapping](#static-mapping) or [Auto-Provisioning](#auto-provisioning) if they fit your use case better.
+The snippet below combines every step into a single, copy-ready `index.ts` using the [Lookup User Dynamically Using a Claim](#option-1---lookup-user-dynamically-using-a-claim) mapping strategy. Replace `<your-okta-domain>` with your own domain, and swap the mapping section for [Use a Static Mapping](#option-2--use-a-static-mapping) or [Auto-Provision Users](#option-3---auto-provision-users) if they fit your use case better.
 
 ```ts
 import {
