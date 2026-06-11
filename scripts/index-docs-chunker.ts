@@ -584,7 +584,6 @@ export function collectMarkdownDocuments() {
 	const partials = loadPartials();
 	const files = listRoutableContentFiles('content').filter(file => {
 		if (file.startsWith('content/_partials/')) return false;
-		if (file.startsWith('content/releases/')) return false;
 		return true;
 	});
 
