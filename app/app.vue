@@ -2,12 +2,31 @@
 import type { ContentNavigationItem } from '@nuxt/content';
 import { SplitPanel } from '@directus/vue-split-panel';
 import { useLocalStorage, useWindowSize } from '@vueuse/core';
+import faviconDark from '~/assets/favicons/directus-favicon-dark.svg?url&no-inline';
+import faviconLight from '~/assets/favicons/directus-favicon-light.svg?url&no-inline';
 
 const { data: navigation } = await useAsyncData('content-navigation', () => queryCollectionNavigation('content', ['title', 'description', 'icon', 'links']));
 
 provide('navigation', navigation as Ref<ContentNavigationItem[]>);
 
 await useDocsOgImage();
+
+useServerHead({
+	link: [
+		{
+			rel: 'icon',
+			type: 'image/svg+xml',
+			href: faviconLight,
+			media: '(prefers-color-scheme: light)',
+		},
+		{
+			rel: 'icon',
+			type: 'image/svg+xml',
+			href: faviconDark,
+			media: '(prefers-color-scheme: dark)',
+		},
+	],
+});
 
 const assistantEnabled = useRuntimeConfig().public.assistant?.enabled;
 const { isOpen } = useAssistant();

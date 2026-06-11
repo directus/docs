@@ -862,7 +862,7 @@ You will receive a response that looks like this:
 
 In this tutorial, you've successfully created a hotel booking website fetching data from Directus and its relational datasets using Directus's powerful operators and filter rules, trigger a payment on Stripe, create a webhook that listens to the Stripe payment, and then make a reservation in Directus.
 
-The complete code for this tutorial can be found [here](https://github.com/directs-labs/nextjs-hotel-booking).
+The original example repository for this tutorial is no longer available.
 
 Some possible steps to carry out next might include:
 
