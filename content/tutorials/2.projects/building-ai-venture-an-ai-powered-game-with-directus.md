@@ -10,7 +10,7 @@ description: Learn the advanced techniques used with Directus Flows to build a g
 ---
 ## You are standing in an open field…
 
-[AIVenture](https://aiventure.craigharman.com) harks back to the days of text-based adventure games such at [Zork](https://en.wikipedia.org/wiki/Zork) and [Hitchhiker’s Guide to the Galaxy](https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy_(video_game)) but with a modern AI twist. The game uses Directus Flows and user registration along with the [directus-extension-ai-pack](https://github.com/br41nslug/directus-extension-ai-pack) extension to create a low-code game engine offering players a unique story-telling experience.
+AIVenture harks back to the days of text-based adventure games such at [Zork](https://en.wikipedia.org/wiki/Zork) and [Hitchhiker’s Guide to the Galaxy](https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy_%28video_game%29) but with a modern AI twist. The game uses Directus Flows and user registration along with the [directus-extension-ai-pack](https://github.com/br41nslug/directus-extension-ai-pack) extension to create a low-code game engine offering players a unique story-telling experience.
 
 ![AIVenture in-game screenshot](/img/47ad01fe-84b9-46fd-9de2-438461385360.webp)
 
@@ -43,7 +43,7 @@ The emails sent to players are customized by directly editing the [liquid](https
 
 AIVenture uses the [directus-extension-ai-pack](https://github.com/br41nslug/directus-extension-ai-pack) extension to interact with OpenAI’s **Chat Completion API** within Directus Flows. The extension requires minimal setup before allowing chat prompts to be sent to OpenAI and have responses returned for further processing in our flows.
 
-OpenAI charges the API account owner for usage via [tokens](https://platform.openai.com/docs/guides/gpt/managing-tokens) allocated by the length of your prompts and the resulting responses. In order to keep OpenAI bills under control, AIVenture allocates daily, per user, token limits on a player’s progress through the game as well as a hard limit that indicates the game needs to reach a conclusion.
+OpenAI charges the API account owner for usage via [tokens](https://platform.openai.com/docs/concepts) allocated by the length of your prompts and the resulting responses. In order to keep OpenAI bills under control, AIVenture allocates daily, per user, token limits on a player’s progress through the game as well as a hard limit that indicates the game needs to reach a conclusion.
 
 The ChatGPT API returns a token count with each response, so we were able to access the ChatGPT usage data in our flow:
 
@@ -135,4 +135,4 @@ module.exports = async function(data) {
 
 ## Summary
 
-AIVenture is a modern text-based adventure game engine that combines AI technology to create an engaging and immersive gaming experience. The use of Directus Flows simplifies game logic management, and uses sparing amounts of Javascript to handle forking game logic. If you’d like to play a game or two visit the [AIVenture website](https://aiventure.craigharman.com).
+AIVenture is a modern text-based adventure game engine that combines AI technology to create an engaging and immersive gaming experience. The use of Directus Flows simplifies game logic management, and uses sparing amounts of Javascript to handle forking game logic. The original AIVenture demo is no longer available.

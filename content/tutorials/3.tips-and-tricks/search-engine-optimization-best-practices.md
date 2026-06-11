@@ -394,7 +394,7 @@ export default defineEventHandler(async (event) => {
 **Frontend Framework Sitemap Resources**
 
 - [Next.js - XML Sitemap Documentation](https://nextjs.org/learn/seo/crawling-and-indexing/xml-sitemaps)
-- [Nuxt - Nuxt Simple Sitemap Module](https://nuxt.com/modules/simple-sitemap)
+- [Nuxt - Nuxt Sitemap Module](https://nuxtseo.com/docs/sitemap/getting-started/installation)
 - [Astro - @astro/sitemap Integration](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
 - [Svelte - Sitemap Package](https://github.com/bartholomej/svelte-sitemap)
 - [Remix - Remix SEO Package](https://github.com/balavishnuvj/remix-seo)
