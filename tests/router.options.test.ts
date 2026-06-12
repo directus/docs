@@ -34,4 +34,23 @@ describe('router scroll behavior', () => {
 
 		expect(scroller.scrollTo).toHaveBeenCalledWith({ top: 240, behavior: 'smooth' });
 	});
+
+	it('includes sticky subnav height in the hash scroll offset', async () => {
+		document.body.innerHTML = '<div id="docs-scroll"><div class="docs-pane" style="--ui-header-height: 64px; --ui-subnav-height: 48px;"></div></div>';
+		const scroller = document.getElementById('docs-scroll') as HTMLElement;
+		scroller.scrollTo = vi.fn();
+
+		const target = document.createElement('h2');
+		target.id = 'deep';
+		Object.defineProperty(target, 'offsetTop', { value: 320 });
+		scroller.appendChild(target);
+
+		await routerOptions.scrollBehavior?.(
+			{ path: '/guides/connect/query-parameters', hash: '#deep' } as never,
+			{ path: '/' } as never,
+			null as never,
+		);
+
+		expect(scroller.scrollTo).toHaveBeenCalledWith({ top: 192, behavior: 'smooth' });
+	});
 });
