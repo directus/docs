@@ -37,6 +37,12 @@ const integrations = [
 		logo: '/docs/img/supabase.svg',
 	},
 	{
+		title: 'Cloudflare Workers',
+		description: 'Integrate Directus with Cloudflare Workers Builds to deploy Workers and track build status.',
+		to: '/guides/integrations/cloudflare-workers',
+		logo: '/docs/img/cloudflare.svg',
+	},
+	{
 		title: 'Framer',
 		description: 'Sync content between Directus collections and Framer\'s CMS in both directions.',
 		to: '/guides/integrations/framer',
