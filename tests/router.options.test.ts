@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import routerOptions from '../app/router.options';
+import routerOptions, { scrollToHashWhenReady } from '../app/router.options';
 
 describe('router scroll behavior', () => {
 	beforeEach(() => {
@@ -15,34 +15,26 @@ describe('router scroll behavior', () => {
 
 	it('waits for a routed hash target rendered after navigation', async () => {
 		const scroller = document.getElementById('docs-scroll') as HTMLElement;
-		scroller.scrollTo = vi.fn();
 
-		await routerOptions.scrollBehavior?.(
-			{ path: '/guides/connect/query-parameters', hash: '#deep' } as never,
-			{ path: '/' } as never,
-			null as never,
-		);
-
-		expect(scroller.scrollTo).not.toHaveBeenCalled();
+		scrollToHashWhenReady('#deep');
 
 		const target = document.createElement('h2');
 		target.id = 'deep';
-		Object.defineProperty(target, 'offsetTop', { value: 320 });
+		target.scrollIntoView = vi.fn();
 		scroller.appendChild(target);
 
 		await new Promise(resolve => setTimeout(resolve, 0));
 
-		expect(scroller.scrollTo).toHaveBeenCalledWith({ top: 240, behavior: 'smooth' });
+		expect(target.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
 	});
 
-	it('includes sticky subnav height in the hash scroll offset', async () => {
+	it('uses native hash scrolling so heading scroll margin applies', async () => {
 		document.body.innerHTML = '<div id="docs-scroll"><div class="docs-pane" style="--ui-header-height: 64px; --ui-subnav-height: 48px;"></div></div>';
 		const scroller = document.getElementById('docs-scroll') as HTMLElement;
-		scroller.scrollTo = vi.fn();
 
 		const target = document.createElement('h2');
 		target.id = 'deep';
-		Object.defineProperty(target, 'offsetTop', { value: 320 });
+		target.scrollIntoView = vi.fn();
 		scroller.appendChild(target);
 
 		await routerOptions.scrollBehavior?.(
@@ -51,6 +43,6 @@ describe('router scroll behavior', () => {
 			null as never,
 		);
 
-		expect(scroller.scrollTo).toHaveBeenCalledWith({ top: 192, behavior: 'smooth' });
+		expect(target.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
 	});
 });
