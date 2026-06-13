@@ -38,4 +38,22 @@ describe('index-docs chunker', () => {
 		expect(combined).toContain('Operations');
 		expect(combined).not.toContain('shiny-card');
 	});
+
+	it('matches rendered heading anchors for duplicate and punctuated headings', () => {
+		const sourcePath = path.resolve('content/guides/06.flows/4.operations.md');
+		const partials = loadPartials();
+		const documents = chunkMarkdownPage({
+			sourcePath,
+			updatedAt: Math.round(fs.statSync(sourcePath).mtimeMs),
+			partials,
+		});
+
+		const optionsAnchors = [...new Set(documents
+			.filter(document => document.heading === 'Options')
+			.map(document => document.anchor))];
+
+		expect(optionsAnchors.slice(0, 4)).toEqual(['options', 'options-1', 'options-2', 'options-3']);
+		expect(optionsAnchors).toHaveLength(new Set(optionsAnchors).size);
+		expect(documents.find(document => document.heading === 'Webhook / Request URL')?.anchor).toBe('webhook--request-url');
+	});
 });
