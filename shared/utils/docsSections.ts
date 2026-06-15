@@ -8,6 +8,7 @@ export type DocsSectionId
 		| 'reference'
 		| 'api'
 		| 'community'
+		| 'releases'
 		| 'licensing';
 
 export type DocsGroupId = 'docs' | 'reference' | 'legacy-reference' | 'examples' | 'licensing';
@@ -89,8 +90,15 @@ export const docsSections: DocsSection[] = [
 		id: 'community',
 		label: 'Community',
 		to: '/community/overview/welcome',
-		prefixes: ['/community', '/releases'],
+		prefixes: ['/community'],
 		icon: 'i-lucide-users',
+	},
+	{
+		id: 'releases',
+		label: 'Releases',
+		to: '/releases',
+		prefixes: ['/releases'],
+		icon: 'i-lucide-tag',
 	},
 	{
 		id: 'licensing',
@@ -107,7 +115,7 @@ export const docsGroups: DocsGroup[] = [
 		label: 'Docs',
 		to: '/getting-started/overview',
 		icon: 'i-lucide-book-open',
-		sectionIds: ['getting-started', 'guides', 'deploy', 'configuration', 'frameworks', 'community'],
+		sectionIds: ['getting-started', 'guides', 'deploy', 'configuration', 'frameworks', 'community', 'releases'],
 	},
 	{
 		id: 'reference',
