@@ -68,6 +68,7 @@
 		"@types/node": "^22",
 		"@vue/test-utils": "^2.4.10",
 		"dotenv": "^17.4.2",
+		"github-slugger": "2.0.0",
 		"gray-matter": "^4.0.3",
 		"happy-dom": "^20.9.0",
 		"js-yaml": "^4.1.1",
