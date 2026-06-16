@@ -1,4 +1,5 @@
 ---
+stableId: 9672836c-5724-41aa-819a-078253d1ee1a
 id: d204a3d5-d674-4a21-862e-6c9c8ac82ab3
 slug: preview-files-in-live-preview-with-google-docs-previews
 title: Preview Files in Live Preview with Google Docs Previews
@@ -18,7 +19,7 @@ Using the file interface, you can store all types of files inside items in your 
     ```
 5. Using the variable tool in the **Preview URL** interface, add in the image `ID` just before the `?` character in the URL.
 
-![Using the plus button to the right of the text box presents all fields within the candidate collection. Select ID with the cursor positioned just before the question mark.](/img/d4018c0d-65e1-42f7-a957-660069934abc.webp)
+![Using the plus button to the right of the text box presents all fields within the candidate collection. Select ID with the cursor positioned just before the question mark.](/img/d4018c0d-65e1-42f7-a957-660069934abc.gif)
 
 Open up a record in your collection and select the **Live Preview** button in the top-right. Now you can preview the file inside Directus without having to download it first!
 

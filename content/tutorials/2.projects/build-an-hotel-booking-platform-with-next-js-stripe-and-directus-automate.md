@@ -1,7 +1,8 @@
 ---
+stableId: 78258d4b-8355-4477-b45a-2505d018eab6
 id: e93c8494-df0d-4aa1-80c1-beabb0081411
 slug: build-an-hotel-booking-platform-with-next-js-stripe-and-directus-automate
-title: Build an Hotel Booking Platform with Next.js, Stripe, and Directus Automate
+title: Build an Hotel Booking Platform with Next.js, Stripe, and Directus Flows
 technologies:
   - nextjs
 authors:
@@ -861,7 +862,7 @@ You will receive a response that looks like this:
 
 In this tutorial, you've successfully created a hotel booking website fetching data from Directus and its relational datasets using Directus's powerful operators and filter rules, trigger a payment on Stripe, create a webhook that listens to the Stripe payment, and then make a reservation in Directus.
 
-The complete code for this tutorial can be found [here](https://github.com/directs-labs/nextjs-hotel-booking).
+The original example repository for this tutorial is no longer available.
 
 Some possible steps to carry out next might include:
 

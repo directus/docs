@@ -1,6 +1,7 @@
 ---
+stableId: d84d4667-9995-439f-bede-19688f6e8189
 id: dc13157c-95a1-4486-9dd3-3d0c43876bdc
-slug: build-a-user-feedback-widget-with-vue-js
+slug: build-a-user-feedback-widget-with-vue-js-
 title: Build a User Feedback Widget with Vue.js
 technologies:
   - vue
@@ -27,7 +28,7 @@ Before we hop 🐰 in , here’s what you’ll need to follow along:
 
 **Knowledge**
 
-- Beginner knowledge of Javascript, Typescript, and Vue.js (Composition API)
+- Beginner knowledge of Javascript, TypeScript, and Vue.js (Composition API)
 
 **Tooling**
 
@@ -387,7 +388,7 @@ async function handleSubmission(rating?: number) {
 		const data = await response.json();
 		feedback.id = data.id;
 
-		// If the reponse has comments, we can assume they've completed the second step. So we'll show the success message.
+		// If the response has comments, we can assume they've completed the second step. So we'll show the success message.
 		if (data.comments) {
 			success.value = true;
 		}
@@ -464,7 +465,7 @@ Open up the Public role with the [Access Control settings](/guides/auth/access-c
 
 **Create and Update Operations**
 
-Click the :icon{name="material-symbols:block"} button inside each column and choose :icon{name="material-symbols:check"} All Access.
+Click the :icon{name="material-symbols:block-outline"} button inside each column and choose :icon{name="material-symbols:check"} All Access.
 
 **Read Operation**
 

@@ -2,8 +2,12 @@
 const { $posthog } = useNuxtApp();
 
 const savedValue = ref<'good' | 'bad' | null>(null);
-const buttonLoading = ref<boolean>(false);
-const buttonTimeout = 500;
+const buttonLoading = ref(false);
+
+const options = [
+	{ value: 'good', icon: 'i-lucide-thumbs-up' },
+	{ value: 'bad', icon: 'i-lucide-thumbs-down' },
+] as const;
 
 const handleFeedback = (feedback: 'good' | 'bad') => {
 	if (buttonLoading.value) return;
@@ -14,7 +18,7 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 
 	setTimeout(() => {
 		buttonLoading.value = false;
-	}, buttonTimeout);
+	}, 500);
 };
 </script>
 
@@ -25,25 +29,24 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 		</p>
 		<div class="space-y-3">
 			<UButton
-				:icon="savedValue === 'good' ? 'material-symbols:check' : 'material-symbols:thumb-up-outline'"
+				v-for="option in options"
+				:key="option.value"
+				:icon="savedValue === option.value ? 'i-lucide-check' : option.icon"
 				square
-				variant="subtle"
+				size="xl"
+				variant="ghost"
 				color="neutral"
-				:loading="buttonLoading && savedValue === 'good'"
+				:ui="
+					{
+						base: 'rounded-md',
+					}"
+				:loading="buttonLoading && savedValue === option.value"
 				:disabled="savedValue !== null"
-				class="mr-2"
-				:class="{ 'disabled:text-primary disabled:bg-primary-100 disabled:ring-primary': !buttonLoading && savedValue === 'good' }"
-				@click="handleFeedback('good')"
-			/>
-			<UButton
-				:icon="savedValue === 'bad' ? 'material-symbols:check' : 'material-symbols:thumb-down-outline'"
-				square
-				variant="subtle"
-				color="neutral"
-				:loading="buttonLoading && savedValue === 'bad'"
-				:disabled="savedValue !== null"
-				:class="{ 'disabled:text-primary disabled:bg-primary-100 disabled:ring-primary': !buttonLoading && savedValue === 'bad' }"
-				@click="handleFeedback('bad')"
+				:class="[
+					option.value === 'good' && 'mr-1',
+					!buttonLoading && savedValue === option.value && 'disabled:text-primary disabled:bg-primary-100 disabled:ring-primary',
+				]"
+				@click="handleFeedback(option.value)"
 			/>
 		</div>
 	</div>

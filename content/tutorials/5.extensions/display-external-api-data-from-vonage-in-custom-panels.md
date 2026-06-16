@@ -1,4 +1,5 @@
 ---
+stableId: afd47502-8778-42b9-8ca8-8e4a6f1fb427
 id: cb0c443f-e261-4d33-a420-aef1a97f9b06
 slug: display-external-api-data-from-vonage-in-custom-panels
 title: Display External API Data From Vonage In Custom Panels
@@ -451,7 +452,7 @@ directory into the Directus extensions `directory`. Make sure the directory with
 
 Restart Directus to load the extensions.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Only the `package.json` and `dist` directory are required inside of your extension directory. However, adding the source
 code has no negative effect.

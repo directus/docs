@@ -41,13 +41,13 @@ const messages = computed(() => {
 				side: 'right',
 				variant: 'subtle',
 				avatar: {
-					icon: 'material-symbols:person',
+					icon: 'i-lucide-user',
 				},
 			}"
 			:assistant="{
 				side: 'left',
 				avatar: {
-					icon: 'material-symbols:smart-toy',
+					icon: 'i-lucide-bot',
 				},
 
 			}"
@@ -70,7 +70,7 @@ const messages = computed(() => {
 						class="flex items-center gap-2 text-sm px-3 py-2 rounded-md bg-muted border border-muted"
 					>
 						<UIcon
-							name="material-symbols:check-circle"
+							name="i-lucide-circle-check"
 							class="w-4 h-4 flex-shrink-0 text-muted"
 						/>
 						<span

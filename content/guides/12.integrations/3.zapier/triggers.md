@@ -1,4 +1,5 @@
 ---
+stableId: 9c585659-1b1c-40c9-9f01-345976d911ca
 id: zapier-triggers
 title: Triggers
 description: Complete guide for using Directus triggers in Zapier workflows to automatically start Zaps when events happen in Directus.
@@ -70,7 +71,7 @@ You can add Filter steps after the trigger to only process specific events:
 - Filter by collection or field values
 - Only process certain types of files
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Filtering Tip**
 Use Zapier's **Filter** step after the trigger to add conditional logic. For example, only send notifications when `status` equals `"published"`.
 ::

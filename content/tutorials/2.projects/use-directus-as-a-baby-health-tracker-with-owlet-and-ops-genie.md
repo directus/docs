@@ -1,15 +1,16 @@
 ---
+stableId: 085ef055-f42c-4c09-84d4-f6e7dd934de4
 id: 2aa59541-f1aa-4b2e-bdc4-64fa74d4af83
 slug: use-directus-as-a-baby-health-tracker-with-owlet-and-ops-genie
 title: Use Directus as a Baby Health Tracker with Owlet and OpsGenie
 authors:
   - name: Andreas Morgner
     title: Guest Author
-description: Learn how to integrate Directus with hardware sensors and incident repsonse systems.
+description: Learn how to integrate Directus with hardware sensors and incident response systems.
 ---
 I have a baby and like many parents rely on monitors and sensors to make sure they're ok. In this article, we will explore Directus as a backend for a smart wearable device, and how to extend the functionality of the the apps shipped with the device. I personally use the [Owlet Smart Sock](https://owletcare.com/products/owlet-smart-sock), but the approaches covered in this article can be adapted for many other sensors.
 
-We will cover data model configuration, how to grab data from the wearable using Directus Automate, and how to integrate Directus into 3rd party tools for reporting, such as OpsGenie and screen widgets on an iPhone.
+We will cover data model configuration, how to grab data from the wearable using Directus Flows, and how to integrate Directus into 3rd party tools for reporting, such as OpsGenie and screen widgets on an iPhone.
 
 ## Creating Collections
 
@@ -32,7 +33,7 @@ For each element of the data provided by the sensor, we want to save these value
 
 ### OpsGenie Alerts Collection
 
-This collection is for integration into the OpsGenie alerting system. As Direcuts provides the fields for sort, creation, and update date as well aw who perfomred the action, we enanled these fields during creation. Next to the id we need the following fields for alerts we want to create later on. Next to the default fields, the most important custom fields are the following ones:
+This collection is for integration into the OpsGenie alerting system. As Direcuts provides the fields for sort, creation, and update date as well aw who performed the action, we enanled these fields during creation. Next to the id we need the following fields for alerts we want to create later on. Next to the default fields, the most important custom fields are the following ones:
 
 Create an `opsgenie_alert` collection for integration into the OpsGenie alerting system. As Directus provides the fields for sort, creation, and update date as well as who performed an action, enable these fields during creation. Create the following fields:
 
@@ -113,7 +114,7 @@ Create a Request operation with the final token we got from the authentication o
 
 | Method | URL |
 | --- | --- |
-| GET | https://ads-field-eu-1a2039d9.aylanetworks.com/apiv1/devices.json |
+| GET | `https://ads-field-eu-1a2039d9.aylanetworks.com/apiv1/devices.json` |
 
 As header parameter, we set the following:
 

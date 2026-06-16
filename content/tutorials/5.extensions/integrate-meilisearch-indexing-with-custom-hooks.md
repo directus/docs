@@ -1,4 +1,5 @@
 ---
+stableId: 7fa99674-e335-4de0-a2dd-3a470b1fd732
 id: 27fd058d-83da-4ea5-b7cc-458c4c696079
 slug: integrate-meilisearch-indexing-with-custom-hooks
 title: Integrate Meilisearch Indexing with Custom Hooks

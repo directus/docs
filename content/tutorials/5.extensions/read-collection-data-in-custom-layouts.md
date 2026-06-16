@@ -1,4 +1,5 @@
 ---
+stableId: 8853fcca-7cb3-4de8-a1c2-2d438d812b62
 id: a5598c32-0b99-4c24-9e3c-2e9b73b600e8
 slug: read-collection-data-in-custom-layouts
 title: Read Collection Data in Custom Layouts
@@ -195,7 +196,7 @@ router.patch('/', async (req, res) => {
 });
 ```
 
-::callout{icon="material-symbols:warning-outline-rounded"}
+::callout{icon="i-lucide-triangle-alert"}
 
 Updating the field name is not supported at this time.
 
@@ -313,7 +314,7 @@ router.delete('/', async (req, res) => {
 });
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Refer to the full list of methods [in our codebase](https://github.com/directus/directus/blob/main/api/src/services).
 

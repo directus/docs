@@ -1,4 +1,5 @@
 ---
+stableId: 2e51d7f7-5c1b-4ce4-bacf-ce9f6591fd4f
 id: 0398217e-fabe-4866-9827-d5e4172fe3a9
 slug: deploy-directus-to-digital-ocean
 title: Deploy Directus to Digital Ocean
@@ -13,7 +14,7 @@ This guide shows you how to deploy Directus on the DigitalOcean App Platform wit
 
 DigitalOcean App Platform is a good fit if you already use DigitalOcean and want a managed app runtime while still controlling your database, storage, and deployment configuration.
 
-If you want a fully managed Directus deployment with infrastructure and upgrades handled for you, use [Directus Cloud](https://directus.io/pricing/cloud).
+If you want a fully managed Directus deployment with infrastructure and upgrades handled for you, use [Directus Cloud](https://directus.com/pricing).
 
 
 ## Before You Start
@@ -106,7 +107,7 @@ SYNCHRONIZATION_STORE="redis"
 PUBLIC_URL=${APP_URL}
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 Generate `SECRET` with:
 

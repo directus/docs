@@ -1,11 +1,5 @@
 import { $fetch } from 'ofetch';
-import {
-	createDirectus,
-	readItem,
-	readItems,
-	rest,
-	type QueryFilter,
-} from '@directus/sdk';
+import { createDirectus, rest } from '@directus/sdk';
 import type { Schema } from '#shared/types/schema';
 
 const {
@@ -18,9 +12,6 @@ const directusServer = createDirectus<Schema>(directusUrl as string, {
 	},
 }).with(rest());
 
-export {
-	directusServer,
-	readItem,
-	readItems,
-};
-export type { QueryFilter };
+export { directusServer };
+export { readItem, readItems } from '@directus/sdk';
+export type { QueryFilter } from '@directus/sdk';

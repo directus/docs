@@ -1,21 +1,22 @@
 ---
+stableId: d2f091ed-8952-4c98-9d59-eadf4c1e2453
 id: 571e0f54-f95d-4ccf-8712-8b92150b364f
 slug: enrich-user-data-with-clearbit-and-directus-automate
-title: Enrich User Data with Clearbit and Directus Automate
+title: Enrich User Data with Clearbit and Directus Flows
 technologies:
   - clearbit
 authors:
   - name: Kevin Lewis
     title: Director, Developer Experience
-description: Learn how to integrate Clearbit data enrichment with Directus Automate.
+description: Learn how to integrate Clearbit data enrichment with Directus Flows.
 ---
 The Directus toolkit can be used for so many different projects and use cases, with a common one being Customer Relationship Management (CRM). CRMs are often used to support sales and marketing teams in understanding who is interested in and already using a product, and have more streamlined conversations with them.
 
-When a new user is created in Directus, directly through the Data Studio or through [Directus Auth](https://directus.io/toolkit/auth), you may only collect a small amount of information about them. Historically, you may have to then do manual research to understand who a person is before messaging them.
+When a new user is created in Directus, directly through the Data Studio or through [Directus Auth](https://directus.com/docs/guides/auth/tokens-cookies), you may only collect a small amount of information about them. Historically, you may have to then do manual research to understand who a person is before messaging them.
 
 [Clearbit has a series of Enrichment APIs](https://clearbit.com/platform/enrichment) that will take in the data you have, look at a load of data points from around the web, and provide a more complete payload about that person in response.
 
-In this quick project, you will set up a new Flow with [Directus Automate](https://directus.io/toolkit/automate) that will automatically enrich any new users in your Directus project.
+In this quick project, you will set up a new [Flow](/guides/automate/flows) that will automatically enrich any new users in your Directus project.
 
 ## Before You Start
 
@@ -37,7 +38,7 @@ Add a `Authorization` header with the value `Bearer YOUR_KEY`, replacing `YOUR_K
 
 From the resolved path of the previous operation, create an **Update Data** operation. Set the Collection to `directus_users` with Full Access permissions.
 
-::callout{icon="material-symbols:info-outline" title="Set a System Collection"}
+::callout{icon="i-lucide-info" title="Set a System Collection"}
 
 The dropdown in the collection field will only show user-created collections. To add `directus_users`, which is a system collection, click the `{}` button to turn the input to raw mode and type the collection name manually.
 

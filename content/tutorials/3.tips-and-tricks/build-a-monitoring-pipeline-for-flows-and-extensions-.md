@@ -1,4 +1,5 @@
 ---
+stableId: 601e2891-5380-4c42-9159-cfa20b544a5f
 id: 8fde0935-5bd7-4f95-980b-337aecb9cb01
 slug: build-a-monitoring-pipeline-for-flows-and-extensions-
 title: Build a Monitoring Pipeline For Flows And Extensions

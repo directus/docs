@@ -1,6 +1,7 @@
 ---
+stableId: 4d9c1b0e-a39e-4e21-9cb1-52ece475ce5d
 id: 11a1c86f-36bf-4dd5-8bce-7eed75451514
-slug: ai-santa-roast-app-with-directus-nuxt
+slug: how-i-built-an-ai-open-source-santa-roast-app-with-directus-and-nuxt
 title: How I Built an AI Open Source Santa Roast App with Directus and Nuxt
 technologies:
   - nuxt
@@ -30,7 +31,7 @@ Like a lot of fun projects, this started with a simple conversation on Slack. My
 
 John suggested scanning letters and having them transcribed. I’m way more of a smartass than John so I said "Hey, what if we make it snarkier? Like, you write a letter to Santa and he roasts you back?”
 
-So with that direction, I built the first version in an episode of our ["100 Apps, 100 Hours" show on Directus TV](https://directus.io/tv/100-apps-100-hours).  Let's just say it wasn't as pretty as what you see now. Here’s what it looked like.
+So with that direction, I built the first version in an episode of our ["100 Apps, 100 Hours" show on Directus TV](https://directus.com/tv/100-apps-100-hours).  Let's just say it wasn't as pretty as what you see now. Here’s what it looked like.
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1047153908?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ai-letters-to-santa-preview"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
@@ -74,7 +75,7 @@ All communication to the frontend is through a single Directus user name “Sant
 
 The `Elves` policy has create, read, and update permissions on `profiles` and `likes`. And also read permissions for the `directus_` system collections in order to generate types using a helper Node script.
 
-![Access policies in the Salty Santa Directus project](/img-salty-santa-6.png)
+![Access policies in the Salty Santa Directus project](/img/os-salty-santa-6.png)
 
 If you ever use this same pattern, just make sure you’re only using static access tokens for server-to-server comms. You don’t want to expose those to anyone on the frontend because of the elevated permissions that might be attached.
 
@@ -163,7 +164,7 @@ There’s some other cool additional libraries that add those special touches.
 
 ### Naughty or Nice scoring algorithm ✅
 
-The original version relied on the AI Santa to decide whether a developer made it onto the naughty or nice list. The roasts were hilarious but almost everyone was on the naughty list. Which didn’t feel “fair” to those who contribute a lot, so we had to figure out a way to fix it. 
+The original version relied on the AI Santa to decide whether a developer made it onto the naughty or nice list. The roasts were hilarious but almost everyone was on the naughty list. Which didn’t feel “fair” to those who contribute a lot, so we had to figure out a way to fix it.
 
 After eliciting feedback from the team and our AI / LLM friends, we came back with this (way over-engineered 😅) algorithm.
 
@@ -192,7 +193,7 @@ After eliciting feedback from the team and our AI / LLM friends, we came back wi
 
 **Fetching user data with the GitHub GraphQL API**
 
-We needed to grab a lot of different data points to calculate that naughty/nice score - commits, PRs, reviews, issues, followers, organizations, and more. With the GitHub REST API, we’d be making 6-10 separate API calls for each profile to get all the data we needed to properly score a profile.. 
+We needed to grab a lot of different data points to calculate that naughty/nice score - commits, PRs, reviews, issues, followers, organizations, and more. With the GitHub REST API, we’d be making 6-10 separate API calls for each profile to get all the data we needed to properly score a profile..
 
 With GraphQL, we can get it all in one shot.
 
@@ -580,7 +581,7 @@ After hearing feedback from teammates about privacy concerns, we added a simple 
 
 ### Dynamic OG Images ✅
 
-Fun social sharing / OG images seem to have become a thing in my projects. And if I’m building a Nuxt project - I always reach for the [`nuxt-og-image` module](https://github.com/nuxt-modules/og-image) by rockstar Harlan Wilton. 
+Fun social sharing / OG images seem to have become a thing in my projects. And if I’m building a Nuxt project - I always reach for the [`nuxt-og-image` module](https://github.com/nuxt-modules/og-image) by rockstar Harlan Wilton.
 
 ![OS Salty Santa OG Image on social media](/img/os-salty-santa-7.png)
 
@@ -626,14 +627,14 @@ There can still be a few gotchas depending on the rendering method and the host 
 
 Some features just don’t make the final cut. This one got axed not because it didn’t work or wasn’t awesome - but for cost purposes.
 
-Mr [Pedro Pizzaro](https://directus.io/team/pedro-pizarro) – one of our AEs is freaking awesome at voiceover. And he recorded a custom salty sample voice that we used to create a custom voice at [ElevenLabs](https://elevenlabs.io). 
+Mr Pedro Pizzaro – one of our AEs is freaking awesome at voiceover. And he recorded a custom salty sample voice that we used to create a custom voice at [ElevenLabs](https://elevenlabs.io).
 
 Once you sent your letter to Santa, we’d send the generated text to their API to generate speech and then play it back to you on your profile page. But the amount of credits we’d burn through made it too expensive to include.
 
 But fear not - here’s a sample of what could have been.
 
 <audio controls>
-  <source src="https://product-team.directus.app/assets/c856d836-7ef6-4ff6-8961-152b3156c49f.mp3" type="audio/mpeg">
+  <source src="/img/aaedf2bb-bb9a-41b8-9b47-f68f4293e813.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -647,16 +648,16 @@ I’d estimate I’ve spent a solid 30 hours of time “in-the-seat” actually 
 
 ### What does it cost to run?
 
-Because we’re fetching a lot of data like repositories and their readmes, the input token count in quite high. The average input token count is around ~9,977 tokens. This varies a lot based on the users repos and readme content. 
+Because we’re fetching a lot of data like repositories and their readmes, the input token count in quite high. The average input token count is around ~9,977 tokens. This varies a lot based on the users repos and readme content.
 
 Output is a totally different story – averaging around ~360 tokens since we’re just outputting the letter (mostly).
 
-That brings the **cost to ~$0.035 per profile roasted**. Or put a different way - every 1000 roasts would cost us about $35. 
+That brings the **cost to ~$0.035 per profile roasted**. Or put a different way - every 1000 roasts would cost us about $35.
 
 We may tweak our data fetching and adjust our prompts to attempt to lower this if it becomes really popular.
 
 ## Santa’s Summary
 
-This thing was a blast to build and I hope this a super-helpful write up for your own projects. Be sure to check out the live project at https://salty-santa.vercel.app. 
+This thing was a blast to build and I hope this a super-helpful write up for your own projects. Be sure to check out the live project at https://salty-santa.vercel.app.
 
 Let us know your feedback. And shoot us your ideas for the next fun build.

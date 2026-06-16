@@ -1,4 +1,5 @@
 ---
+stableId: 4396aa25-77f1-487e-be30-33f0f9578abc
 id: 8ab7ca33-2534-42b0-9857-ce840a001a50
 slug: build-content-approval-workflows-with-custom-permissions
 title: Build Content Approval Workflows with Custom Permissions
@@ -15,7 +16,7 @@ things a step further and let you define what a role can and can't do to each it
 Workflows are when you use these permissions techniques to create structured stages to content or data creation. In
 simplest terms, it is when you have two or more roles, and you give them different permissions at each stage in the
 content creation process. This is common when using Directus as a
-[Headless CMS](https://directus.io/solutions/headless-cms).
+[Headless CMS](https://directus.com/resources/what-is-headless-cms).
 
 There are an infinite number of possible workflows you could configure. But for this recipe, we will configure a simple
 workflow where `writers` and `editors` work together to create, co-edit and publish `articles`.
@@ -39,7 +40,7 @@ This whole workflow is created with permissions. All we need to do to create the
 
 ## How-To Guide
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
 To implement a workflow, you'll need:
 
@@ -113,8 +114,8 @@ A minor misconfiguration here could ruin academic integrity. Here's a few potent
 When creating your own workflow, its a good idea to define each role involved, each stage in the workflow, and the
 explicit set of permissions each role has at each stage.
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
-Workflows can be further enhanced with custom [Interfaces](/guides/extensions/app-extensions/interfaces) as well as [flows](/guides/automate/flows).
+Workflows can be further enhanced with custom [Interfaces](/guides/extensions/app-extensions/interfaces) as well as [flows](/guides/flows).
 
 ::

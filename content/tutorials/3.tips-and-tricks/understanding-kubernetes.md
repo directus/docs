@@ -1,4 +1,5 @@
 ---
+stableId: 9da22b66-3bd7-4a11-9e94-18df020a9fb9
 id: 92776b78-2741-4ee7-96a2-bd8137b8ebc9
 slug: understanding-kubernetes
 title: Understanding Kubernetes

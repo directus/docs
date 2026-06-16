@@ -1,4 +1,5 @@
 ---
+stableId: a65a7b6a-63bd-457c-87ca-fd8194edfbb0
 id: 4a0304fd-c3c3-43f9-8102-acfc6009e26d
 slug: migrate-from-notion-to-directus
 title: Migrate from Notion to Directus
@@ -9,7 +10,7 @@ authors:
     title: Developer Advocate
 description: Learn how to migrate data from Notion databases to Directus.
 ---
-As a developer advocate and freelance coach, I share valuable content with my audience via my [blog](https://thefreelancehq.com/blog). When creating the blog, I needed a [Headless CMS](https://directus.io/solutions/headless-cms) that would integrate nicely with a Next.js Pages directory and make it easy to manage content. Notion was a great choice then, so I opted for it.
+As a developer advocate and freelance coach, I share valuable content with my audience via my [blog](https://thefreelancehq.com/blog). When creating the blog, I needed a [Headless CMS](https://directus.com/resources/what-is-headless-cms) that would integrate nicely with a Next.js Pages directory and make it easy to manage content. Notion was a great choice then, so I opted for it.
 
 While Notion worked pretty well for most cases, the setup process wasn’t quite as easy as I expected, especially the process of mapping Notion elements to DOM elements.
 
@@ -89,11 +90,11 @@ Today I am excited to share my recent adventure of migrating my blog content fro
 
 Well, Directus is not just another CMS. It offers a unique combination of flexibility, customization, and collaboration for content management. It also has built-in user roles and permissions and a JavaScript SDK which were core features I was particularly interested in.
 
-💡 If you're new to Directus, create a Directus Cloud account [here](https://directus.cloud/register).
+💡 If you're new to Directus, create a Directus Cloud account [here](https://directus.cloud).
 
 ## Creating the Blogs Collection and Data Model
 
-Migrating my blog content to Directus was a smooth process. In my Directus instance, I initally created a `blogs` collection to hold all blog data. Then I went on to design the data model with the following fields:
+Migrating my blog content to Directus was a smooth process. In my Directus instance, I initially created a `blogs` collection to hold all blog data. Then I went on to design the data model with the following fields:
 
 - `id` - Integer Input
 - `status` - Dropdown

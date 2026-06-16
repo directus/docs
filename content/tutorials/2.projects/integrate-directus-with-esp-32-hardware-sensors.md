@@ -1,4 +1,5 @@
 ---
+stableId: aa5e9080-f779-43a9-ae90-b8a9ce076e49
 id: f6bf9070-0fb6-4cc0-ba6d-99e1b83e2b87
 slug: integrate-directus-with-esp-32-hardware-sensors
 title: Integrate Directus with ESP32 Hardware Sensors
@@ -64,7 +65,7 @@ If you are using the ESP32 Wroom 32D, choose the ESP 32 DA Module and the COM po
 
 ## Logging temperature and humidity data to Serial
 
-You can log the values from the DHT22 to the serial monitor by defining variables for the temperature and humidity and then initializing the DHT object. Within the setup function, you must initialize the Serial logging and intialize the connection to the DHT22 module.
+You can log the values from the DHT22 to the serial monitor by defining variables for the temperature and humidity and then initializing the DHT object. Within the setup function, you must initialize the Serial logging and initialize the connection to the DHT22 module.
 
 Within the loop function, the sensor readings are obtained from the DHT22 and stored to the temperature and humidity variables. With all that done, these values can be logged to the serial monitor.
 
@@ -96,7 +97,7 @@ void loop() {
 ```
 ## Sending the temperature and humidity data to Directus
 At this point, you have your ESP32 logging data to the Serial monitor. To send these to Directus, you have to introduce the HTTP and WiFi libraries to your project.
-The WiFi library connects your ESP32 to the internet while the HTTP library turns your ESP32 into an HTTP agent that can make HTTP requests. The script below is the complete code for logging data to Directus - add it to the defaul file on your opened Arduino IDE:
+The WiFi library connects your ESP32 to the internet while the HTTP library turns your ESP32 into an HTTP agent that can make HTTP requests. The script below is the complete code for logging data to Directus - add it to the default file on your opened Arduino IDE:
 ```cpp
 #include <WiFi.h>
 #include <HTTPClient.h>

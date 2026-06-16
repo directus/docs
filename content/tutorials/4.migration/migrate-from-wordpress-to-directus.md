@@ -1,4 +1,5 @@
 ---
+stableId: 0aae3c1e-6cd7-4e59-ae60-8053debbe19b
 id: 5a282783-0fd8-4a2c-9c4c-47b00c5ad3d1
 slug: migrate-from-wordpress-to-directus
 title: Migrate from WordPress to Directus
@@ -76,7 +77,7 @@ Now we will create the fields that will hold the data items. If you are using my
 ![Pages fields](/img/285156db-942e-49df-b9d2-ffb9c89bc9ac.webp)
 ![Fields for Collection](/img/bb47c0fb-0ca5-4ba2-984a-ba40f9d15cba.webp)
 
-::{callout icon="material-symbols:info-outline"}
+::{callout icon="i-lucide-info"}
 
 *Note that the “Content” field has a Field type of ***WYSIWYG***, the rest are ***Input*** type. we are using ***WYSIWYG*** because the exported data is in raw HTML
 
@@ -87,7 +88,7 @@ After the JSON file is extracted and the schema is developed on Directus, you ca
 
 ![Import in Directus Collection](/img/ec2f9808-5775-45a1-bac8-715095434502.webp)
 
-If you have images in the post or pages, you won’t be able to access them. With the Directus REST API we will be able to manipulate the JSON to extact the images and save to Directus Files so we can access the files in the post.
+If you have images in the post or pages, you won’t be able to access them. With the Directus REST API we will be able to manipulate the JSON to extract the images and save to Directus Files so we can access the files in the post.
 
 To use the API we need to get the API token at User Directory → Administrator → Admin User → Token. Copy the token and Keep it somewhere, we will use it later.
 
@@ -233,7 +234,7 @@ api_key = "your-api-token"
 # Uncomment the line below to run the function with your actual Directus URL and API key
 import_posts_to_directus(json_file_path, directus_url, api_key)
 ```
-::callout{icon="material-symbols:info-outline" title="Replace Data"}
+::callout{icon="i-lucide-info" title="Replace Data"}
 
 Note: Replace `https://your.directus.app` and `your-api-token` with the appropriate details.
 

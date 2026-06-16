@@ -5,6 +5,7 @@
 .nitro
 .cache
 dist
+app/generated/api-reference
 
 # Node dependencies
 node_modules
@@ -27,3 +28,5 @@ logs
 .vercel
 
 .vscode
+
+.claude/scheduled_tasks.lock

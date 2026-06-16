@@ -19,7 +19,7 @@ onMounted(() => {
 <template>
 	<div
 		id="pre-footer"
-		class="border-t border-gray-200 dark:border-gray-800 py-8 mt-14"
+		class="border-t border-default py-8 mt-14"
 	>
 		<div
 			class="mx-auto grid md:grid-cols-3 gap-4 px-4 sm:px-6 lg:px-8 py-8 lg:py-4 max-w-7xl"
@@ -48,33 +48,35 @@ onMounted(() => {
 			</div>
 		</div>
 	</div>
-	<UFooter
-		class="border-t border-default"
-	>
-		<template #left>
-			<p class="text-sm text-gray-400 dark:text-gray-500">
-				© {{ new Date().getFullYear() }} Monospace Inc
-			</p>
-		</template>
+	<footer class="border-t border-default">
+		<UContainer class="py-8 lg:py-4 lg:flex lg:items-center lg:justify-between lg:gap-x-3">
+			<div class="lg:flex-1 lg:order-3 flex items-center justify-center lg:justify-end gap-x-1.5">
+				<UButton
+					v-for="social in footer.socials"
+					:key="social.icon"
+					size="xs"
+					:icon="social.icon"
+					color="neutral"
+					variant="ghost"
+					:to="social.to"
+					target="_blank"
+				/>
+			</div>
 
-		<UNavigationMenu
-			:items="footer.links"
-			variant="link"
-		/>
+			<div class="lg:order-2 mt-3 lg:mt-0 flex items-center justify-center">
+				<UNavigationMenu
+					:items="footer.links"
+					variant="link"
+				/>
+			</div>
 
-		<template #right>
-			<UButton
-				v-for="social in footer.socials"
-				:key="social.icon"
-				size="xs"
-				:icon="social.icon"
-				color="neutral"
-				variant="ghost"
-				:to="social.to"
-				target="_blank"
-			/>
-		</template>
-	</UFooter>
+			<div class="lg:flex-1 lg:order-1 mt-3 lg:mt-0 flex items-center justify-center lg:justify-start gap-x-1.5">
+				<p class="text-sm text-muted">
+					© {{ new Date().getFullYear() }} Monospace Inc
+				</p>
+			</div>
+		</UContainer>
+	</footer>
 </template>
 
 <style>
@@ -87,15 +89,15 @@ onMounted(() => {
 		input[type=email] {
 			@apply w-full;
 			@apply rounded-md text-xs sm:text-sm;
-			@apply dark:bg-gray-900;
-			@apply placeholder-gray-400 dark:placeholder-gray-500;
-			@apply border border-gray-200 dark:border-gray-800 p-2;
+			@apply bg-default text-default;
+			@apply placeholder:text-muted;
+			@apply border border-default p-2;
 		}
 	}
 	input[type=submit] {
 		@apply rounded-md text-xs sm:text-sm font-bold;
-		@apply bg-primary-500 text-white;
-		@apply border border-primary-200 dark:border-primary-800 py-2 px-4;
+		@apply bg-primary text-inverted;
+		@apply border border-primary py-2 px-4;
 		@apply flex-none;
 	}
 }

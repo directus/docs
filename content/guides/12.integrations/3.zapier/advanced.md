@@ -1,4 +1,5 @@
 ---
+stableId: 4fdd3809-41f8-40f6-b0e7-a35d8cd8b66b
 id: zapier-advanced
 title: Advanced
 description: Advanced guide for using Directus API features in Zapier, including raw request actions, advanced filtering, and custom API calls.
@@ -26,7 +27,7 @@ Quick reference of all available raw request actions:
 
 ---
 
-::callout{icon="heroicons-outline:light-bulb"}
+::callout{icon="i-lucide-lightbulb"}
 **When to Use Raw Request Actions**
 Use raw request actions when you need full control over HTTP methods, complex query parameters (aggregation, search, etc.), or complete control over the JSON payload structure. For advanced filtering in Find actions, use the Filter (JSON) field instead.
 ::
@@ -46,7 +47,7 @@ Raw Request actions allow you to make custom Directus API calls with full contro
    - **Request Body (JSON)**: JSON data for POST/PATCH requests
    - **Filter (JSON)**: Filter conditions (required for DELETE operations)
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Token Permissions**
 Ensure your Directus API token has the correct permissions for the resource and operations you're using. Raw request actions require the same permissions as their standard counterparts.
 ::
@@ -194,5 +195,5 @@ For bulk operations:
 
 ## Additional Resources
 
-- [Directus Filter Rules](https://directus.io/docs/guides/connect/filter-rules) - Complete filter syntax and operators
-- [Directus Query Parameters](https://directus.io/docs/guides/connect/query-parameters) - All available query parameters
+- [Directus Filter Rules](https://directus.com/docs/guides/connect/filter-rules) - Complete filter syntax and operators
+- [Directus Query Parameters](https://directus.com/docs/guides/connect/query-parameters) - All available query parameters

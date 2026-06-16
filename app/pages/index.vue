@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+	layout: 'docs',
+});
+
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () =>
 	queryCollection('landing').path('/').first(),
@@ -14,19 +18,16 @@ if (!page.value) {
 </script>
 
 <template>
-	<UContainer>
-		<UPage class="pb-48">
-			<UPageHeader
-				:title="page!.title"
-				:description="page!.description"
-			/>
+	<div class="pb-24">
+		<HomePersonalized />
 
-			<UPageBody>
-				<ContentRenderer
-					v-if="page!"
-					:value="page"
-				/>
-			</UPageBody>
-		</UPage>
-	</UContainer>
+		<HomeHero />
+
+		<UPageBody>
+			<ContentRenderer
+				v-if="page!"
+				:value="page"
+			/>
+		</UPageBody>
+	</div>
 </template>
