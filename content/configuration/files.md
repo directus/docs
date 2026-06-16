@@ -58,19 +58,19 @@ Based on your configured drivers, you must also provide additional variables, wh
 
 ### Google Cloud Storage (`gcs`)
 
-| Variable                          | Description                                                                                            | Default Value |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------- |
-| `STORAGE_<LOCATION>_KEY_FILENAME` | Path to a service-account JSON key file on disk.                                                       |               |
-| `STORAGE_<LOCATION>_CREDENTIALS`  | Service-account JSON credentials passed inline. Use the `json:` syntax prefix (see example below).     |               |
-| `STORAGE_<LOCATION>_BUCKET`       | Google Cloud Storage bucket.                                                                           |               |
+| Variable                                       | Description                                                                     | Default Value |
+| ---------------------------------------------- | ------------------------------------------------------------------------------- | ------------- |
+| `STORAGE_<LOCATION>_KEY_FILENAME`              | Path to a service account key file on disk.                                     |               |
+| `STORAGE_<LOCATION>_CREDENTIALS`<sup>[1]</sup> | Service account JSON credentials provided inline. Must be prefixed with`json:`. |               |
+| `STORAGE_<LOCATION>_BUCKET`                    | Google Cloud Storage bucket.                                                    |               |
 
-Use `STORAGE_<LOCATION>_CREDENTIALS` when you can't (or don't want to) write the key file to disk, for example when you're running Directus on a managed platform that injects secrets as environment variables. The value must be the full service-account JSON, prefixed with `json:` so Directus parses it as an object instead of a string. See [Environment Syntax Prefix](/configuration/intro#environment-syntax-prefix) for details on the prefix.
+<sup>[1]</sup> Use this when a key file is unavailable or impractical, such as on platforms that inject secrets through environment variables. The value must contain the full service account JSON and be prefixed with `json:` so Directus parses it as an object rather than a string. See [Environment Syntax Prefix](/configuration/intro#environment-syntax-prefix) for details.
 
-```
+```env
 STORAGE_GCS_CREDENTIALS="json:{\"type\":\"service_account\",\"project_id\":\"...\",\"private_key\":\"...\",\"client_email\":\"...\"}"
 ```
 
-`KEY_FILENAME` and `CREDENTIALS` are mutually exclusive. Pick one.
+`STORAGE_<LOCATION>_KEY_FILENAME` and `STORAGE_<LOCATION>_CREDENTIALS` are mutually exclusive. Configure only one.
 
 ### Azure (`azure`)
 
