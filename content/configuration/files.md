@@ -58,10 +58,19 @@ Based on your configured drivers, you must also provide additional variables, wh
 
 ### Google Cloud Storage (`gcs`)
 
-| Variable                          | Description                  | Default Value |
-| --------------------------------- | ---------------------------- | ------------- |
-| `STORAGE_<LOCATION>_KEY_FILENAME` | Path to key file on disk.    |               |
-| `STORAGE_<LOCATION>_BUCKET`       | Google Cloud Storage bucket. |               |
+| Variable                                       | Description                                                                     | Default Value |
+| ---------------------------------------------- | ------------------------------------------------------------------------------- | ------------- |
+| `STORAGE_<LOCATION>_KEY_FILENAME`              | Path to a service account key file on disk.                                     |               |
+| `STORAGE_<LOCATION>_CREDENTIALS`<sup>[1]</sup> | Service account JSON credentials provided inline. Must be prefixed with`json:`. |               |
+| `STORAGE_<LOCATION>_BUCKET`                    | Google Cloud Storage bucket.                                                    |               |
+
+<sup>[1]</sup> Use this when a key file is unavailable or impractical, such as on platforms that inject secrets through environment variables. The value must contain the full service account JSON and be prefixed with `json:` so Directus parses it as an object rather than a string. See [Environment Syntax Prefix](/configuration/intro#environment-syntax-prefix) for details.
+
+```env
+STORAGE_GCS_CREDENTIALS="json:{\"type\":\"service_account\",\"project_id\":\"...\",\"private_key\":\"...\",\"client_email\":\"...\"}"
+```
+
+`STORAGE_<LOCATION>_KEY_FILENAME` and `STORAGE_<LOCATION>_CREDENTIALS` are mutually exclusive. Configure only one.
 
 ### Azure (`azure`)
 
