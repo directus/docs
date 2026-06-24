@@ -20,7 +20,7 @@
 	},
 	"dependencies": {
 		"@ai-sdk/vue": "3.0.185",
-		"@directus/openapi": "0.3.0",
+		"@directus/openapi": "0.3.1",
 		"@directus/sdk": "^21.2.2",
 		"@directus/vue-split-panel": "^0.8.9",
 		"@iconify-json/lucide": "1.2.111",
