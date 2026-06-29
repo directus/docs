@@ -32,7 +32,7 @@ Before we hop 🐰 in , here’s what you’ll need to follow along:
 
 **Tooling**
 
-- A Directus instance up and running (either [self-hosted](/getting-started/overview) or on [Directus Cloud](https://directus.cloud/))
+- A Directus instance up and running (either [self-hosted](/getting-started/overview) or on [Directus Cloud](https://cloud.directus.com/))
 - A Vue.js project set up ([Using Vite is recommended](https://vuejs.org/guide/scaling-up/tooling.html#tooling))
 
 ## Preparing Directus Collection
