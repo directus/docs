@@ -90,7 +90,7 @@ Today I am excited to share my recent adventure of migrating my blog content fro
 
 Well, Directus is not just another CMS. It offers a unique combination of flexibility, customization, and collaboration for content management. It also has built-in user roles and permissions and a JavaScript SDK which were core features I was particularly interested in.
 
-💡 If you're new to Directus, create a Directus Cloud account [here](https://cloud.directus.com).
+💡 If you're new to Directus, create a Directus Cloud account [here](https://directus.cloud).
 
 ## Creating the Blogs Collection and Data Model
 

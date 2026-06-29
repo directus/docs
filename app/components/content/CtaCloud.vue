@@ -4,7 +4,7 @@ const { cta } = useAppConfig();
 
 <template>
 	<NuxtLink
-		to="https://cloud.directus.com"
+		to="https://directus.cloud"
 		class="flex justify-between items-center bg-primary pl-4 pr-6 py-4 rounded-md my-5 last:mb-0"
 	>
 		<span>
