@@ -67,7 +67,7 @@ We're using Directus for the backend (shocking, I know 😉). But it's actually 
 
 ![Profiles saved in the Salty OS Santa Directus project](/img/os-salty-santa-4.png)
 
-Under the hood, it's all sitting on a PostgreSQL database – hosted on [Directus Cloud](https://directus.cloud). Anytime I add a collection or field to my data model, Directus mirrors those changes to Postgres and updates the APIs automatically. Super handy when you're iterating quickly on a project like this.
+Under the hood, it's all sitting on a PostgreSQL database – hosted on [Directus Cloud](https://cloud.directus.com). Anytime I add a collection or field to my data model, Directus mirrors those changes to Postgres and updates the APIs automatically. Super handy when you're iterating quickly on a project like this.
 
 All communication to the frontend is through a single Directus user name “Santa’s Helper” (gotta carry the theme 🤣🎅). Santa’s Helper authenticates using a static access token and has a single Access Policy called `Elves`.
 

@@ -24,7 +24,7 @@ Once you're ready to commit, pick how you want to run Directus:
   title: Directus Cloud
   description: Spin up a managed instance in seconds. No infrastructure to run.
   icon: i-lucide-cloud
-  to: https://directus.cloud
+  to: https://cloud.directus.com
   ---
   :::
 

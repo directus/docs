@@ -19,7 +19,7 @@ updates all connected chats.
 ### Set Up Your Directus Project
 
 You will need a Directus project. If you don’t already have one, the easiest way to get started is with our
-[managed Directus Cloud service](https://directus.cloud).
+[managed Directus Cloud service](https://cloud.directus.com).
 
 Create a new collection called `messages`, with `date_created` and `user_created` fields enabled in the _Optional System
 Fields_ pane on collection creation. Create an input field called `text`.
