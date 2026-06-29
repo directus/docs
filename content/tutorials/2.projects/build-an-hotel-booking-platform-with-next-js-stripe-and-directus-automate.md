@@ -19,7 +19,7 @@ You will create different room types, create and store rooms based on the room t
 You will need:
 
 - [Node.js](https://nodejs.org/) installed and a code editor on your computer.
-- A Directus project - you can use [Directus Cloud](https://cloud.directus.com/) or [run it yourself](/getting-started/create-a-project).
+- A Directus project - you can use [Directus Cloud](https://directus.cloud/) or [run it yourself](/getting-started/create-a-project).
 - A [Stripe](https://stripe.com/) account with a business already set up
 - [Stripe CLI](https://docs.stripe.com/stripe-cli) installed in your computer
 - Some knowledge of TypeScript and React.

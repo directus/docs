@@ -269,7 +269,7 @@ export default defineAppConfig({
 
 	cta: {
 		cloud: {
-			link: 'https://cloud.directus.com',
+			link: 'https://directus.cloud',
 			description:
 				'Everything you need to start building. Provisioned in 90 seconds.',
 			cta: 'Get Started',
