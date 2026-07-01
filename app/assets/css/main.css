@@ -147,3 +147,15 @@ html .dark .shiki span {
 	background-color: var(--ui-text-dimmed);
 	background-clip: content-box;
 }
+
+.engine-studio-card > [data-slot="container"] {
+	display: block;
+	flex: none;
+	width: 100%;
+	min-width: 0;
+}
+
+.engine-studio-card [data-slot="body"] {
+	height: 95.5px;
+	flex: none;
+}
