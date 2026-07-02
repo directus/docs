@@ -36,12 +36,12 @@ Quick reference of all available raw operations organized by resource type:
 
 ::callout{icon="i-lucide-lightbulb"}
 **When to Use Raw Operations**
-Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), or full control over the JSON payload structure.
+Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), reading a specific content version (`draft` or `published`), or full control over the JSON payload structure.
 ::
 
 ## Using Raw Operations
 
-Raw operations work similarly to their standard counterparts, but instead of using the node's form fields, you provide all data in the **JSON Data** field as a JSON object.
+Raw operations work similarly to their standard counterparts, but instead of using the node's form fields, you provide data as a JSON object: the **JSON Data** field for Create/Update, or the **Query Parameters** field for Get/Get Many.
 
 ### Setting Up a Raw Operation
 
@@ -49,7 +49,7 @@ Raw operations work similarly to their standard counterparts, but instead of usi
 2. Set **Resource** to Item, User, or File
 3. Select a **Raw JSON** operation (e.g., "Get Many (Raw JSON)", "Create (Raw JSON)")
 4. For Items operations, select the **Collection**
-5. Enter your JSON data in the **JSON Data** field
+5. Enter your data in the **JSON Data** field (Create/Update) or the **Query Parameters** field (Get/Get Many)
 6. For Get and Update operations, provide the **Item ID** if needed
 
 ::callout{icon="i-lucide-triangle-alert" color="warning"}
@@ -114,7 +114,7 @@ Update items with complex data structures:
 
 ## Using Filters with Raw Operations
 
-Raw operations allow you to use Directus's complete filter syntax. Specify filters in the `filter` parameter of your **JSON Data** field.
+Raw operations allow you to use Directus's complete filter syntax. Specify filters in the `filter` parameter of the **Query Parameters** field (Get Many).
 
 ::callout{icon="i-lucide-info"}
 **Filter Documentation**
@@ -157,7 +157,7 @@ For complete filter syntax, operators, and examples, see the [Directus Filter Ru
 
 ## Query Parameters
 
-Raw operations support all Directus query parameters. Include them in your JSON Data alongside filters:
+Get (Raw JSON) and Get Many (Raw JSON) support all Directus query parameters. Include them in the **Query Parameters** field alongside filters:
 
 **Common query parameters:**
 ```json
@@ -192,6 +192,45 @@ Raw operations support all Directus query parameters. Include them in your JSON 
 **Query Parameters Documentation**
 For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.com/docs/guides/connect/query-parameters).
 ::
+
+## Content Versioning
+
+### When it applies
+
+Only collections with content versioning enabled in Directus use the `version` query parameter. Non-versioned collections don't need it.
+
+::callout{icon="i-lucide-triangle-alert" color="warning"}
+**Only use `version` on versioned collections**
+Don't add it to every request by default. It's only relevant when content versioning is enabled for that collection.
+::
+
+### Reading versioned content
+
+Use **Get (Raw JSON)** and pass `version` in the **Query Parameters** field. The `version` parameter only applies to single-item retrieval, so it has no effect on **Get Many (Raw JSON)**:
+
+```json
+{
+  "version": "draft"
+}
+```
+
+Or for the published version:
+
+```json
+{
+  "version": "published"
+}
+```
+
+`version: "main"` still works for backward compatibility, but `published` is preferred. See [Directus v12 breaking changes](https://directus.com/docs/releases/breaking-changes/version-12#versionmain-renamed-to-versionpublished).
+
+### Updating draft content
+
+Directus doesn't accept a `version` parameter on item updates. Draft edits go through the dedicated [Versions API](https://directus.com/docs/api/versions) instead: `POST /versions/{id}/save` to save changes to a version, then `POST /versions/{id}/promote` to publish it.
+
+Neither **Update** nor **Update (Raw JSON)** can call these endpoints. Use an **HTTP Request** node to call them directly with your Directus credentials.
+
+See [Content Versioning](https://directus.com/docs/guides/content/content-versioning) for the full versioning workflow in Directus.
 
 ## Working with Relations
 
