@@ -36,7 +36,7 @@ Quick reference of all available raw operations organized by resource type:
 
 ::callout{icon="i-lucide-lightbulb"}
 **When to Use Raw Operations**
-Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), reading a specific content version (`draft` or `published`), or full control over the JSON payload structure.
+Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), or full control over the JSON payload structure.
 ::
 
 ## Using Raw Operations
@@ -192,45 +192,6 @@ Get (Raw JSON) and Get Many (Raw JSON) support all Directus query parameters. In
 **Query Parameters Documentation**
 For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.com/docs/guides/connect/query-parameters).
 ::
-
-## Content Versioning
-
-### When it applies
-
-Only collections with content versioning enabled in Directus use the `version` query parameter. Non-versioned collections don't need it.
-
-::callout{icon="i-lucide-triangle-alert" color="warning"}
-**Only use `version` on versioned collections**
-Don't add it to every request by default. It's only relevant when content versioning is enabled for that collection.
-::
-
-### Reading versioned content
-
-Use **Get (Raw JSON)** and pass `version` in the **Query Parameters** field. The `version` parameter only applies to single-item retrieval, so it has no effect on **Get Many (Raw JSON)**:
-
-```json
-{
-  "version": "draft"
-}
-```
-
-Or for the published version:
-
-```json
-{
-  "version": "published"
-}
-```
-
-`version: "main"` still works for backward compatibility, but `published` is preferred. See [Directus v12 breaking changes](https://directus.com/docs/releases/breaking-changes/version-12#versionmain-renamed-to-versionpublished).
-
-### Updating draft content
-
-Directus doesn't accept a `version` parameter on item updates. Draft edits go through the dedicated [Versions API](https://directus.com/docs/api/versions) instead: `POST /versions/{id}/save` to save changes to a version, then `POST /versions/{id}/promote` to publish it.
-
-Neither **Update** nor **Update (Raw JSON)** can call these endpoints. Use an **HTTP Request** node to call them directly with your Directus credentials.
-
-See [Content Versioning](https://directus.com/docs/guides/content/content-versioning) for the full versioning workflow in Directus.
 
 ## Working with Relations
 

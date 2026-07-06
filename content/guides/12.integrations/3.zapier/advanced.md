@@ -13,7 +13,7 @@ This guide covers advanced Directus features in Zapier, including raw request ac
 
 ## Raw Request Actions
 
-Raw Request actions provide full HTTP method control for Items, Users, and Files, and let you use Directus's native JSON syntax for the request body. 
+Raw Request actions provide full HTTP method control for Items, Users, and Files. These actions allow you to use Directus's native JSON syntax for filters, query parameters, and data manipulation.
 
 ## Available Raw Request Actions
 
@@ -80,11 +80,6 @@ Ensure your Directus API token has the correct permissions for the resource and 
 ```
 
 **DELETE** - Delete items by ID or using Filter (JSON) for bulk deletion
-
-::callout{icon="i-lucide-info"}
-**Content versioning**
-Directus doesn't accept a `version` parameter on this endpoint. Updating a draft in a versioned collection requires the dedicated [Versions API](https://directus.com/docs/api/versions) (`POST /versions/{id}/save`), which **Item Raw Request** can't call since it's scoped to the standard Items endpoint. See [Content Versioning](/guides/integrations/zapier/actions#content-versioning-directus-v12) for workarounds.
-::
 
 ### Users - Raw Request
 

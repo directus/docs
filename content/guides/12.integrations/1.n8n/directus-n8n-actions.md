@@ -76,18 +76,6 @@ Items are content entries in your Directus collections (blog posts, products, pa
 - Collection: `posts`
 - Fields: `title`, `content`, `status`
 
-::callout{icon="i-lucide-triangle-alert" color="warning"}
-**Content versioning (Directus v12+)**
-<br>
-On collections with content versioning enabled, Directus v12 blocks direct updates to published items. Running **Update** on a published item may return an error.
-
-To update draft content instead:
-- Use **Get (Raw JSON)** with `{"version": "draft"}` to read the draft state (see the [Advanced guide](/guides/integrations/n8n/directus-n8n-advanced#content-versioning))
-- Use an **HTTP Request** node to call the Directus [Versions API](https://directus.com/docs/api/versions) directly, since neither **Update** nor **Update (Raw JSON)** can write to a draft
-
-Collections without versioning enabled aren't affected. Use **Update** as normal.
-::
-
 ### Users
 
 #### Invite a User

@@ -117,30 +117,6 @@ Items are content entries in your Directus collections (blog posts, products, pa
 Fields are automatically discovered from your Directus schema and shown in the action configuration. You can map data from previous steps using the dropdown menus.
 ::
 
-### Content Versioning (Directus v12+)
-
-Content versioning is opt-in per collection. If you haven't enabled it, skip this section. **Update Item** works as usual.
-
-When versioning is enabled, Directus v12 treats the published item as read-only. Edits must go through a version (typically the draft), using the dedicated [Versions API](https://directus.com/docs/api/versions) rather than the standard Items API.
-
-::callout{icon="i-lucide-triangle-alert" color="warning"}
-**Zapier limitation**
-<br>
-**Update Item** and **Item Raw Request** both call the standard Items endpoint, so they work for published items but not drafts. Use one of the workarounds below.
-::
-
-
-
-**Workarounds for versioned collections:**
-
-- Edit and publish content in the Directus Studio instead of Zapier
-- Call the Versions API directly from outside Zapier (`POST /versions/{id}/save` to save a draft, `POST /versions/{id}/promote` to publish it)
-- Restructure your Zap to avoid updating published items in versioned collections
-
-**Find Items** returns published content by default. Reading a specific version, like draft, requires the Directus API `version` query parameter, which isn't available in the standard **Find Items** action.
-
-Publishing drafts isn't available through the Zapier integration. Use the Directus Studio or the [Versions API](https://directus.com/docs/api/versions).
-
 ### Users
 
 #### Invite User
@@ -261,16 +237,6 @@ If you get errors:
 2. **Not Found Errors**: Verify that the collection, item ID, or user ID exists
 3. **Connection Errors**: Make sure your Directus URL is correct and accessible (must include `https://`, no trailing
    slash)
-
-### Update Item fails on Directus v12
-
-**Symptom**: **Update Item** returns an error on one collection, but other collections work fine.
-
-**Likely cause**: The collection has content versioning enabled, and you're trying to update a published item. Directus v12 requires edits to go through a draft version, and the Zapier integration doesn't support the `version` query parameter.
-
-**Fix**: Use one of the workarounds in [Content Versioning (Directus v12+)](#content-versioning-directus-v12), typically editing in the Directus Studio or using the Directus API directly.
-
-If the collection doesn't use versioning, the issue is likely unrelated. Check permissions, the item ID, and your connection settings.
 
 ### Getting Help
 
