@@ -32,11 +32,11 @@ This page documents environment variables. For in-app security configuration (pe
 | `USER_INVITE_TOKEN_TTL`             | The duration that the invite token is valid.                                                                                                                                            | `7d`                      |
 | `USER_INVITE_URL_ALLOW_LIST`        | List of URLs that can be used as `invite_url` in the `/users/invite` endpoint.                                                                                                          |                           |
 | `USER_REGISTER_URL_ALLOW_LIST`      | List of URLs that can be used as `verification_url` in the `/users/register` endpoint.                                                                                                  |                           |
-| `IP_TRUST_PROXY`                    | Settings for the Express.js trust proxy setting.                                                                                                                                        | false                      |
+| `IP_TRUST_PROXY`                    | Settings for the Express.js trust proxy setting.                                                                                                                                        | false                     |
 | `IP_CUSTOM_HEADER`                  | What custom request header to use for the IP address.                                                                                                                                   | false                     |
 | `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny importing files from these IP addresses / IP ranges / CIDR blocks. Use `0.0.0.0` to match any local IP address.                                                                    | `0.0.0.0,169.254.169.254` |
-| `HSTS_ENABLED`                      | Enable the Strict-Transport-Security policy header. When enabled, Directus will send the `Strict-Transport-Security: max-age=15552000; includeSubDomains` header on all responses.                                                                                                                                     | `false`                   |
-| `HSTS_*`                            | Custom overrides for the Strict-Transport-Security header. See [helmet's documentation](https://helmetjs.github.io). Example: `HSTS_MAX_AGE=63072000`                                                                   |                           |
+| `HSTS_ENABLED`                      | Enable the Strict-Transport-Security policy header. When enabled, Directus will send the `Strict-Transport-Security: max-age=15552000; includeSubDomains` header on all responses.      | `false`                   |
+| `HSTS_*`                            | Custom overrides for the Strict-Transport-Security header. See [helmet's documentation](https://helmetjs.github.io). Example: `HSTS_MAX_AGE=63072000`                                   |                           |
 
 <sup>[1]</sup> When `SECRET` is not set, a random value will be used. This means sessions won't persist across system
 restarts or horizontally scaled deployments. Must be explicitly set to a secure random value in production.
@@ -44,7 +44,7 @@ restarts or horizontally scaled deployments. Must be explicitly set to a secure 
 <sup>[2]</sup> localhost can get resolved to `::1` as well as `127.0.0.1` depending on the system - ensure to include
 both if you want to specifically block localhost.
 
-Browser are pretty strict when it comes to third-party cookies. If you're running into unexpected problems when running your project and API on different domains, make sure to verify your configuration for `REFRESH_TOKEN_COOKIE_NAME`, `REFRESH_TOKEN_COOKIE_SECURE`, and `REFRESH_TOKEN_COOKIE_SAME_SITE`.
+Browsers are pretty strict when it comes to third-party cookies. If you're running into unexpected problems when running your project and API on different domains, make sure to verify your configuration for `REFRESH_TOKEN_COOKIE_NAME`, `REFRESH_TOKEN_COOKIE_SECURE`, and `REFRESH_TOKEN_COOKIE_SAME_SITE`.
 
 ## Hashing
 
@@ -57,7 +57,7 @@ Browser are pretty strict when it comes to third-party cookies. If you're runnin
 | `HASH_TYPE`            | The variant of the hash function (`0`: argon2d, `1`: argon2i, or `2`: argon2id).                                                 | `2` (argon2id)      |
 | `HASH_ASSOCIATED_DATA` | An extra and optional non-secret value. The value will be included Base64 encoded in the parameters portion of the digest.       |                     |
 
-Argon2's hashing function is used by Directus to hash user passwords, generate hashes for the `Hash` field type in collections, and for use in the `/utils/hash/generate` endpoint.
+Argon2's hashing function is used by Directus to hash user passwords and to generate hashes for the `Hash` field type in collections.
 
 All `HASH_*` environment variable parameters are passed to the `argon2.hash` function. See the [node-argon2 library options page](https://github.com/ranisalt/node-argon2/wiki/Options) for reference.
 
@@ -87,7 +87,7 @@ For more details about each configuration variable, please see the [CORS package
 | `CONTENT_SECURITY_POLICY_*`        | Configure global csp settings                  |               |
 | `ASSETS_CONTENT_SECURITY_POLICY_*` | Configure csp settings for the assets endpoint |               |
 
-Directus uses [helmet.js](https://helmetjs.github.io) for configuring Conent-Security-Policy headers in combination with [Environment Object Syntax](/configuration/intro#environment-object-syntax). See helmet's documentation on `helmet.contentSecurityPolicy()` to get a complete overview over the available options.
+Directus uses [helmet.js](https://helmetjs.github.io) for configuring Content-Security-Policy headers in combination with [Environment Object Syntax](/configuration/intro#environment-object-syntax). See helmet's documentation on `helmet.contentSecurityPolicy()` to get a complete overview over the available options.
 
 ### Examples
 
@@ -106,26 +106,26 @@ You can use the built-in rate-limiter to prevent users from hitting the API too 
 
 Enabling the rate-limiter with no other options will set a default maximum of 50 requests per second, tracked in memory.
 
-| Variable                                    | Description                                                             | Default Value |
-| ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_ENABLED`                      | Whether or not to enable rate limiting per IP on the API.               | `false`       |
-| `RATE_LIMITER_POINTS`                       | The amount of allowed hits per duration.                                | `50`          |
-| `RATE_LIMITER_DURATION`                     | The time window in seconds in which the points are counted.             | `1`           |
-| `RATE_LIMITER_STORE`                        | Where to store the rate limiter counts. One of `memory`, `redis`.       | `memory`      |
-| `RATE_LIMITER_HEALTHCHECK_THRESHOLD`        | Healthcheck timeout threshold in milliseconds.                          | `150`         |
-| `RATE_LIMITER_GLOBAL_ENABLED`               | Whether or not to enable global rate limiting on the API.               | `false`       |
-| `RATE_LIMITER_GLOBAL_POINTS`                | The total amount of allowed hits per duration.                          | `1000`        |
-| `RATE_LIMITER_GLOBAL_DURATION`              | The time window in seconds in which the points are counted.             | `1`           |
-| `RATE_LIMITER_GLOBAL_HEALTHCHECK_THRESHOLD` | Healthcheck timeout threshold in milliseconds.                          | `150`         |
-| `RATE_LIMITER_REGISTRATION_ENABLED`         | Whether or not to enable rate limiting per IP on the user registration. | `true`        |
-| `RATE_LIMITER_REGISTRATION_POINTS`          | The amount of allowed hits per duration.                                | `5`           |
-| `RATE_LIMITER_REGISTRATION_DURATION`        | The time window in seconds in which the points are counted.             | `60`          |
-| `RATE_LIMITER_MCP_OAUTH_ENABLED`            | Whether or not to enable rate limiting per IP on MCP OAuth authorization requests. | `true`        |
-| `RATE_LIMITER_MCP_OAUTH_POINTS`             | The amount of allowed authorization requests per duration.              | `60`          |
-| `RATE_LIMITER_MCP_OAUTH_DURATION`           | The time window in seconds in which authorization points are counted.   | `60`          |
-| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_ENABLED` | Whether or not to enable rate limiting per IP on MCP OAuth Dynamic Client Registration. | `true`        |
-| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_POINTS` | The amount of allowed Dynamic Client Registration requests per duration. | `30`          |
-| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_DURATION` | The time window in seconds in which Dynamic Client Registration points are counted. | `60`          |
+| Variable                                       | Description                                                                             | Default Value |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_ENABLED`                         | Whether or not to enable rate limiting per IP on the API.                               | `false`       |
+| `RATE_LIMITER_POINTS`                          | The amount of allowed hits per duration.                                                | `50`          |
+| `RATE_LIMITER_DURATION`                        | The time window in seconds in which the points are counted.                             | `1`           |
+| `RATE_LIMITER_STORE`                           | Where to store the rate limiter counts. One of `memory`, `redis`.                       | `memory`      |
+| `RATE_LIMITER_HEALTHCHECK_THRESHOLD`           | Healthcheck timeout threshold in milliseconds.                                          | `150`         |
+| `RATE_LIMITER_GLOBAL_ENABLED`                  | Whether or not to enable global rate limiting on the API.                               | `false`       |
+| `RATE_LIMITER_GLOBAL_POINTS`                   | The total amount of allowed hits per duration.                                          | `1000`        |
+| `RATE_LIMITER_GLOBAL_DURATION`                 | The time window in seconds in which the points are counted.                             | `1`           |
+| `RATE_LIMITER_GLOBAL_HEALTHCHECK_THRESHOLD`    | Healthcheck timeout threshold in milliseconds.                                          | `150`         |
+| `RATE_LIMITER_REGISTRATION_ENABLED`            | Whether or not to enable rate limiting per IP on the user registration.                 | `true`        |
+| `RATE_LIMITER_REGISTRATION_POINTS`             | The amount of allowed hits per duration.                                                | `5`           |
+| `RATE_LIMITER_REGISTRATION_DURATION`           | The time window in seconds in which the points are counted.                             | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_ENABLED`               | Whether or not to enable rate limiting per IP on MCP OAuth authorization requests.      | `true`        |
+| `RATE_LIMITER_MCP_OAUTH_POINTS`                | The amount of allowed authorization requests per duration.                              | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_DURATION`              | The time window in seconds in which authorization points are counted.                   | `60`          |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_ENABLED`  | Whether or not to enable rate limiting per IP on MCP OAuth Dynamic Client Registration. | `true`        |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_POINTS`   | The amount of allowed Dynamic Client Registration requests per duration.                | `30`          |
+| `RATE_LIMITER_MCP_OAUTH_REGISTRATION_DURATION` | The time window in seconds in which Dynamic Client Registration points are counted.     | `60`          |
 
 ### Pressure-Based Rate Limiter
 
@@ -145,43 +145,46 @@ This rate-limiter prevents the API from accepting new requests while the server 
 
 You can use the built-in email rate-limiter. This rate limiter has a queue to prevent mails from being dropped if a short burst happens to hit the limit.
 
-| Variable                                    | Description                                                             | Default Value |
-| ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_EMAIL_ENABLED`                | Whether or not to enable rate limiting for emails.                      | `false`       |
-| `RATE_LIMITER_EMAIL_POINTS`                 | The amount of allowed emails per duration.                              | `60`          |
-| `RATE_LIMITER_EMAIL_DURATION`               | The time window in seconds in which the points are counted.             | `60`          |
-| `RATE_LIMITER_EMAIL_QUEUE_SIZE`             | The amount of items that will be queued before erroring.                | `1000000`     |
-| `RATE_LIMITER_EMAIL_ERROR_MESSAGE`          | A custom error message which is appended to the rate limit error.       | `''`          |
+| Variable                           | Description                                                       | Default Value |
+| ---------------------------------- | ----------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_EMAIL_ENABLED`       | Whether or not to enable rate limiting for emails.                | `false`       |
+| `RATE_LIMITER_EMAIL_POINTS`        | The amount of allowed emails per duration.                        | `60`          |
+| `RATE_LIMITER_EMAIL_DURATION`      | The time window in seconds in which the points are counted.       | `60`          |
+| `RATE_LIMITER_EMAIL_QUEUE_SIZE`    | The amount of items that will be queued before erroring.          | `1000000`     |
+| `RATE_LIMITER_EMAIL_ERROR_MESSAGE` | A custom error message which is appended to the rate limit error. | `''`          |
 
 ### Email Flows Operation Rate Limiting
 
-You can use the built-in email rate-limiter. works the same as the api rate limiter, if you hit the limit then the flow operation starts erroring and dropping the mails.
+You can use the built-in email rate-limiter for flow operations. Unlike the queue-based email rate limiter, hitting this limit causes the flow operation to error and drop the email.
 
-| Variable                                    | Description                                                             | Default Value |
-| ------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_EMAIL_FLOWS_ENABLED`          | Whether or not to enable rate limiting for the `Send Email` operation.               | `false`       |
-| `RATE_LIMITER_EMAIL_FLOWS_POINTS`           | The amount of allowed hits per duration.                                | `1`           |
-| `RATE_LIMITER_EMAIL_FLOWS_DURATION`         | The time window in seconds in which the points are counted.             | `60`          |
-| `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE`    | A custom error message which is appended to the rate limit error.       | `''`          |
+| Variable                                 | Description                                                            | Default Value |
+| ---------------------------------------- | ---------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_EMAIL_FLOWS_ENABLED`       | Whether or not to enable rate limiting for the `Send Email` operation. | `false`       |
+| `RATE_LIMITER_EMAIL_FLOWS_POINTS`        | The amount of allowed hits per duration.                               | `1`           |
+| `RATE_LIMITER_EMAIL_FLOWS_DURATION`      | The time window in seconds in which the points are counted.            | `60`          |
+| `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE` | A custom error message which is appended to the rate limit error.      | `''`          |
 
 ## Limits & Optimizations
 
 Allows you to configure hard technical limits, to prevent abuse and optimize for your particular server environment.
 
-| Variable                       | Description                                                                                 | Default Value |
-| ------------------------------ | ------------------------------------------------------------------------------------------- | ------------- |
-| `RELATIONAL_BATCH_SIZE`        | How many rows are read into memory at a time when constructing nested relational datasets.  | 25000         |
-| `EXPORT_BATCH_SIZE`            | How many rows are read into memory at a time when constructing exports.                     | 5000          |
-| `USERS_ADMIN_ACCESS_LIMIT`     | How many active users with admin privilege are allowed.                                     | `Infinity`    |
-| `USERS_APP_ACCESS_LIMIT`       | How many active users with access to the Data Studio are allowed.                           | `Infinity`    |
-| `USERS_API_ACCESS_LIMIT`       | How many active API access users are allowed.                                               | `Infinity`    |
-| `GRAPHQL_QUERY_TOKEN_LIMIT`    | How many GraphQL query tokens will be parsed.                                               | 5000          |
-| `MAX_PAYLOAD_SIZE`             | Controls the maximum request body size. Accepts number of bytes, or human readable string.  | `1mb`         |
-| `MAX_BATCH_MUTATION`           | The maximum number of items for batch mutations when creating, updating and deleting.       | `Infinity`    |
-| `MAX_RELATIONAL_DEPTH`         | The maximum depth when filtering / querying relational fields, with a minimum value of `2`. | `10`          |
-| `MAX_JSON_QUERY_DEPTH`         | The maximum json path depth when querying JSON fields.                              | `10`          |
-| `QUERY_LIMIT_DEFAULT`          | The default query limit used when not defined in the API request.                           | `100`         |
-| `QUERY_LIMIT_MAX`              | The maximum query limit accepted on API requests.                                           | `-1`          |
-| `QUERYSTRING_MAX_PARSE_DEPTH`  | The maximum object depth when parsing URL query parameters using the querystring format     | `10`          |
-| `QUERYSTRING_ARRAY_LIMIT`      | The array limit when parsing URL query parameters using the querystring format              | `500`         |
-| `MAX_IMPORT_ERRORS`                        | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`                       |
+| Variable                      | Description                                                                                                                        | Default Value |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `RELATIONAL_BATCH_SIZE`       | How many rows are read into memory at a time when constructing nested relational datasets.                                         | 25000         |
+| `EXPORT_BATCH_SIZE`           | How many rows are read into memory at a time when constructing exports.                                                            | 5000          |
+| `USERS_ADMIN_ACCESS_LIMIT`    | How many active users with admin privilege are allowed.                                                                            | `Infinity`    |
+| `USERS_APP_ACCESS_LIMIT`      | How many active users with access to the Data Studio are allowed.                                                                  | `Infinity`    |
+| `USERS_API_ACCESS_LIMIT`      | How many active API access users are allowed.                                                                                      | `Infinity`    |
+| `GRAPHQL_QUERY_TOKEN_LIMIT`   | How many GraphQL query tokens will be parsed.                                                                                      | 5000          |
+| `GRAPHQL_SINGLE_USE_MUTATIONS` | Sensitive system mutations that are limited to one use per GraphQL request.                                                        | See <sup>[1]</sup> |
+| `MAX_PAYLOAD_SIZE`            | Controls the maximum request body size. Accepts number of bytes, or human readable string.                                         | `1mb`         |
+| `MAX_BATCH_MUTATION`          | The maximum number of items for batch mutations when creating, updating and deleting.                                              | `Infinity`    |
+| `MAX_RELATIONAL_DEPTH`        | The maximum depth when filtering / querying relational fields, with a minimum value of `2`.                                        | `10`          |
+| `MAX_JSON_QUERY_DEPTH`        | The maximum json path depth when querying JSON fields.                                                                             | `10`          |
+| `QUERY_LIMIT_DEFAULT`         | The default query limit used when not defined in the API request.                                                                  | `100`         |
+| `QUERY_LIMIT_MAX`             | The maximum query limit accepted on API requests.                                                                                  | `-1`          |
+| `QUERYSTRING_MAX_PARSE_DEPTH` | The maximum object depth when parsing URL query parameters using the querystring format                                            | `10`          |
+| `QUERYSTRING_ARRAY_LIMIT`     | The array limit when parsing URL query parameters using the querystring format                                                     | `500`         |
+| `MAX_IMPORT_ERRORS`           | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`        |
+
+<sup>[1]</sup> Defaults to `auth_login`, `auth_refresh`, `auth_password_request`, `auth_password_reset`, `users_register`, `users_register_verify`, `users_invite_accept`, `users_me_tfa_generate`, `users_me_tfa_enable`, `users_me_tfa_disable`, and `utils_cache_clear`. Setting your own list overrides these.

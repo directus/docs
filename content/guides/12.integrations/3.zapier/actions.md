@@ -104,6 +104,8 @@ The **Filter (JSON)** field in Find actions supports Directus's complete filter 
 }
 ```
 
+This example assumes a string `status` field. Collections created in Directus v12 may use a boolean `archived` field instead. Adjust your filter to match your schema, for example `{"archived": {"_eq": false}}`.
+
 ## Resource-Specific Operations
 
 ### Items
