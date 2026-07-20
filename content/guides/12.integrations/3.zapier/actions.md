@@ -242,7 +242,7 @@ If you get errors:
 
 If you encounter issues:
 
-1. **For Directus-specific questions:** Ask for help in the [Directus Community](https://community.directus.io/)
+1. **For Directus-specific questions:** Ask for help in the [Directus Community](https://community.directus.com)
 2. **For Zapier-specific questions:** Visit the [Zapier Community](https://community.zapier.com) or check
    [Zapier Help Center](https://help.zapier.com/)
 3. **For API connection issues:** Verify your Directus configuration and permissions

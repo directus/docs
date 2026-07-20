@@ -294,7 +294,7 @@ export default defineAppConfig({
 			{
 				icon: 'i-lucide-users',
 				label: 'Join our Community Platform.',
-				to: 'https://community.directus.io',
+				to: 'https://community.directus.com',
 			},
 			{
 				icon: 'i-lucide-rocket',
