@@ -51,6 +51,36 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 | `EMAIL_SES_CREDENTIALS__SECRET_ACCESS_KEY` | Your AWS SES secret key.    |               |
 | `EMAIL_SES_REGION`                         | Your AWS SES region.        |               |
 
+#### IAM Permissions
+
+Directus sends mail through Amazon SES using the AWS SES v2 API (via Nodemailer). The IAM user or role for your SES credentials needs permission to call `ses:SendRawEmail`.
+
+A minimal policy looks like:
+
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": "ses:SendRawEmail",
+			"Resource": [
+				"arn:aws:ses:REGION:ACCOUNT_ID:identity/YOUR_VERIFIED_IDENTITY"
+			]
+		}
+	]
+}
+```
+
+Replace `REGION`, `ACCOUNT_ID`, and `YOUR_VERIFIED_IDENTITY` with your SES region, AWS account ID, and the verified email address or domain used in [`EMAIL_FROM`](#email-templates).
+
+When `EMAIL_VERIFY_SETUP` is `true` (the default), `/server/health` calls Nodemailer's `verify()` method. That check attempts a test send from `invalid@invalid`. For the health check to succeed with a least-privilege policy, either:
+
+- also allow `ses:SendRawEmail` on `arn:aws:ses:REGION:ACCOUNT_ID:identity/invalid@invalid` (SES should then reject the address; Nodemailer treats `MessageRejected` / `InvalidParameterValue` as a successful verification), or
+- set `EMAIL_VERIFY_SETUP=false` to skip the email health check.
+
+Without one of those options, health checks can fail with an opaque internal error even when normal sends from `EMAIL_FROM` work.
+
 ## Email Templates
 
 Templates can be used to add custom templates for your emails, or to override the system emails used for things like resetting a password or inviting a user.
