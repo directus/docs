@@ -105,7 +105,7 @@ When working with Directus API through Clay, you may encounter various error cod
 
 If you encounter issues:
 
-1. **For Directus-specific questions:** Ask for help in the [Directus Community](https://community.directus.io/)
+1. **For Directus-specific questions:** Ask for help in the [Directus Community](https://community.directus.com)
 2. **For Clay-specific questions:** Contact Clay support or check Clay's documentation
 3. **For API connection issues:** Verify your Directus configuration and permissions
 
@@ -120,5 +120,5 @@ If you encounter issues:
 ## Additional Resources
 
 - [Clay Documentation](https://clay.com/docs)
-- [Directus Community](https://community.directus.io/)
+- [Directus Community](https://community.directus.com)
 
