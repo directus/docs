@@ -195,6 +195,10 @@
     "to": "/frameworks/nuxt/migrate-from-nuxt-content",
     "statusCode": 301
   },
+  "/tutorials/projects/build-a-user-feedback-widget-with-vue-js-": {
+    "to": "/tutorials/projects/build-a-user-feedback-widget-with-vue-js",
+    "statusCode": 301
+  },
   "/tutorials/projects/build-forms-dynamically-using-directus-and-astro": {
     "to": "/frameworks/astro/dynamic-forms",
     "statusCode": 301
@@ -209,6 +213,10 @@
   },
   "/tutorials/projects/build-forms-dynamically-using-directus-and-sveltekit": {
     "to": "/frameworks/sveltekit/dynamic-forms",
+    "statusCode": 301
+  },
+  "/tutorials/projects/build-the-leap-week-registration-and-referral-system-": {
+    "to": "/tutorials/projects/build-the-leap-week-registration-and-referral-system",
     "statusCode": 301
   },
   "/tutorials/projects/create-a-cms-using-directus-and-astro": {
@@ -241,6 +249,10 @@
   },
   "/tutorials/projects/create-dynamic-pages-for-a-cms-using-directus-and-sveltekit": {
     "to": "/frameworks/sveltekit/dynamic-pages",
+    "statusCode": 301
+  },
+  "/tutorials/tips-and-tricks/build-a-monitoring-pipeline-for-flows-and-extensions-": {
+    "to": "/tutorials/tips-and-tricks/build-a-monitoring-pipeline-for-flows-and-extensions",
     "statusCode": 301
   },
   "/tutorials/tips-and-tricks/implement-pagination-and-infinite-scrolling-in-next-js-": {
