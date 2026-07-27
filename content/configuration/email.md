@@ -11,7 +11,7 @@ description: Configuration for email settings and templates.
 | Variable             | Description                                                              | Default Value |
 | -------------------- | ------------------------------------------------------------------------ | ------------- |
 | `EMAIL_VERIFY_SETUP` | Check if email setup is properly configured.                             | `true`        |
-| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`. | `sendmail`    |
+| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`, `mailtrap`. | `sendmail`    |
 
 Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 
@@ -50,6 +50,19 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 | `EMAIL_SES_CREDENTIALS__ACCESS_KEY_ID`     | Your AWS SES access key ID. |               |
 | `EMAIL_SES_CREDENTIALS__SECRET_ACCESS_KEY` | Your AWS SES secret key.    |               |
 | `EMAIL_SES_REGION`                         | Your AWS SES region.        |               |
+
+### Mailtrap
+
+[Mailtrap](https://mailtrap.io) sends email through its API. Use the sandbox to capture emails in a test inbox during development, or send live email in production.
+
+| Variable                  | Description                                                                                       | Default Value |
+| ------------------------- | ------------------------------------------------------------------------------------------------- | ------------- |
+| `EMAIL_MAILTRAP_TOKEN`    | Your Mailtrap API token.                                                                          |               |
+| `EMAIL_MAILTRAP_SANDBOX`  | Send to a test inbox instead of delivering email. Requires `EMAIL_MAILTRAP_INBOX_ID`.             | `false`       |
+| `EMAIL_MAILTRAP_INBOX_ID` | The inbox ID to use when `EMAIL_MAILTRAP_SANDBOX` is enabled.                                      |               |
+| `EMAIL_MAILTRAP_BULK`     | Use the bulk sending stream for high-volume email.                                                | `false`       |
+
+Find your API token under **Settings > API Tokens** in your Mailtrap account. For sandbox testing, copy the inbox ID from **Sandboxes > (click on your sandbox) > copy the numerical ID from the URL**.
 
 ## Email Templates
 
