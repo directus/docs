@@ -70,6 +70,7 @@ You can add Filter steps after the trigger to only process specific events:
 - Check if `status` equals `published` before sending notifications
 - Filter by collection or field values
 - Only process certain types of files
+- On collections using a boolean `archived` field instead of `status`, filter where `archived` equals `false`
 
 ::callout{icon="i-lucide-info"}
 **Filtering Tip**

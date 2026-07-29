@@ -185,6 +185,8 @@ For bulk operations:
 }
 ```
 
+Whether to filter on `status` or `archived` depends on your collection's schema. Collections created in Directus v12 may use the boolean `archived` field instead of a string `status` field.
+
 ---
 
 ## Next Steps
