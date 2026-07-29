@@ -31,7 +31,7 @@ Reusable content fragments live in `/content/_partials/` and are included via th
 ### Routing
 
 - `app/pages/[...slug].vue` — catch-all for content pages
-- `app/pages/api/[tag].vue` — OpenAPI-generated API reference (reads `/public/oas.yaml`)
+- `app/pages/api/[tag].vue` — OpenAPI-generated API reference (spec comes from the `@directus/openapi` package via `scripts/generate-api-reference.ts`; fixes to endpoint docs belong in the [directus/openapi](https://github.com/directus/openapi) repo)
 - `app/pages/tutorials/` — tutorial section with nested routes
 
 ### Custom Markdown Components
