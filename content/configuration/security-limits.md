@@ -186,5 +186,6 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `QUERYSTRING_MAX_PARSE_DEPTH` | The maximum object depth when parsing URL query parameters using the querystring format                                            | `10`          |
 | `QUERYSTRING_ARRAY_LIMIT`     | The array limit when parsing URL query parameters using the querystring format                                                     | `500`         |
 | `MAX_IMPORT_ERRORS`           | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`        |
+| `IMPORT_MAX_FILE_SIZE`        | The maximum size of a file uploaded to the import endpoint. Accepts number of bytes, or human readable string; no limit by default. Returns `413` when exceeded. |               |
 
 <sup>[1]</sup> Defaults to `auth_login`, `auth_refresh`, `auth_password_request`, `auth_password_reset`, `users_register`, `users_register_verify`, `users_invite_accept`, `users_me_tfa_generate`, `users_me_tfa_enable`, `users_me_tfa_disable`, and `utils_cache_clear`. Setting your own list overrides these.
