@@ -28,7 +28,7 @@ Before we hop 🐰 in , here’s what you’ll need to follow along:
 
 **Knowledge**
 
-- Beginner knowledge of Javascript, Typescript, and Vue.js (Composition API)
+- Beginner knowledge of Javascript, TypeScript, and Vue.js (Composition API)
 
 **Tooling**
 
@@ -388,7 +388,7 @@ async function handleSubmission(rating?: number) {
 		const data = await response.json();
 		feedback.id = data.id;
 
-		// If the reponse has comments, we can assume they've completed the second step. So we'll show the success message.
+		// If the response has comments, we can assume they've completed the second step. So we'll show the success message.
 		if (data.comments) {
 			success.value = true;
 		}

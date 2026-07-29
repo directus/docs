@@ -47,6 +47,7 @@ function loadApiReferencePrerenderRoutes(): string[] {
 
 const typesenseCollection = process.env.TYPESENSE_COLLECTION || resolveBranchTypesenseAlias() || undefined;
 const apiReferencePrerenderRoutes = loadApiReferencePrerenderRoutes();
+const docsApiReferencePrerenderRoutes = apiReferencePrerenderRoutes.map(route => `${BASE_URL}${route}`);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -61,6 +62,7 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 		'@nuxtjs/mcp-toolkit',
 		'~~/modules/content-markdown',
+		'~~/modules/assistant',
 	],
 
 	devtools: {
@@ -69,9 +71,10 @@ export default defineNuxtConfig({
 
 	app: {
 		baseURL: BASE_URL,
+		buildAssetsDir: '/_nuxt-docs/',
 	},
 
-	css: ['~/assets/css/main.css'],
+	css: ['~/assets/css/main.css', '@directus/vue-split-panel/index.css'],
 
 	site: {
 		name: 'Directus Docs',
@@ -85,6 +88,9 @@ export default defineNuxtConfig({
 	},
 
 	content: {
+		experimental: {
+			sqliteConnector: 'native',
+		},
 		build: {
 			markdown: {
 				toc: {
@@ -190,7 +196,7 @@ export default defineNuxtConfig({
 			asyncContext: true,
 		},
 		prerender: {
-			routes: ['/', '/api', ...apiReferencePrerenderRoutes],
+			routes: ['/', `${BASE_URL}/api`, ...docsApiReferencePrerenderRoutes],
 			crawlLinks: true,
 			ignore: [/^\/docs\/mcp\/deeplink(\?.*)?$/],
 			concurrency: 1,
@@ -219,7 +225,7 @@ export default defineNuxtConfig({
 
 	icon: {
 		serverBundle: {
-			collections: ['material-symbols', 'simple-icons'],
+			collections: ['lucide', 'material-symbols', 'ph', 'simple-icons'],
 		},
 		customCollections: [
 			{
@@ -234,7 +240,7 @@ export default defineNuxtConfig({
 	},
 
 	llms: {
-		domain: 'https://directus.io/docs',
+		domain: 'https://directus.com/docs',
 		title: 'Directus Documentation',
 		description:
 			'Directus is a real-time API and no-code Data Studio for managing any SQL database. It provides REST and GraphQL APIs, granular access control, authentication, file storage, automations, realtime via WebSockets, analytics dashboards, AI integration, and a full extension system. The Data Studio is a web application for non-technical users to browse, manage, and visualize data without writing code.',
@@ -405,10 +411,10 @@ export default defineNuxtConfig({
 			},
 		],
 		notes: [
-			'The interactive API Reference is generated from an OpenAPI specification and is not included in this file. Visit https://directus.io/docs/api for the full reference.',
+			'The interactive API Reference is generated from an OpenAPI specification and is not included in this file. Visit https://directus.com/docs/api for the full reference.',
 			'The @directus/sdk package reference is in the source repository. The Connect section here covers setup, authentication, and common patterns.',
 			'This documentation covers the latest version of Directus.',
-			'Directus uses a Business Source License (BSL). See https://directus.io/bsl for license terms.',
+			'Directus uses a Business Source License (BSL). See https://directus.com/license for license terms.',
 		],
 	},
 

@@ -55,7 +55,7 @@ In the payload, you will set the issue title and description:
 }
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 The body supports any Markdown, so the `>` at the start turns the text after it into a blockquote.
 ::
 

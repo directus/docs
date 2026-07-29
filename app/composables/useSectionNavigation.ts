@@ -9,19 +9,21 @@ import {
 	type DocsSection,
 } from '#shared/utils/docsSections';
 
-export function useSectionNavigation() {
+export function useSectionNavigation(options: { immediate?: boolean } = {}) {
 	const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')!;
 	const route = useRoute();
+	const router = useRouter();
+	const routePath = computed(() => options.immediate ? router.currentRoute.value.path : route.path);
 
 	const currentSection = computed<DocsSection | null>(() =>
-		findSectionByPath(route.path),
+		findSectionByPath(routePath.value),
 	);
 
 	const currentGroup = computed<DocsGroup | null>(() => {
 		if (currentSection.value) return findGroupBySectionId(currentSection.value.id);
 		// Treat the home route as part of the primary docs group so the
 		// section subnav and sidebar render with default content.
-		if (route.path === '/') return docsGroups.find(group => group.id === 'docs') ?? null;
+		if (routePath.value === '/') return docsGroups.find(group => group.id === 'docs') ?? null;
 		return null;
 	});
 
@@ -35,7 +37,7 @@ export function useSectionNavigation() {
 	const sections = computed(() =>
 		docsSections.map(section => ({
 			...section,
-			active: section.prefixes.some(prefix => matchesPrefix(route.path, prefix)),
+			active: section.prefixes.some(prefix => matchesPrefix(routePath.value, prefix)),
 		})),
 	);
 
@@ -56,15 +58,23 @@ export function useSectionNavigation() {
 		children: item.children?.map(collapseDescendants),
 	});
 
-	const sectionNavigation = computed<ContentNavigationItem[]>(() => {
-		const section = currentSection.value;
-		if (!section) return [];
-
-		const topLevel = section.id === 'deploy' || section.id === 'community'
+	const getSectionTopLevel = (section: DocsSection) => {
+		const topLevel = section.id === 'deploy'
 			? section.prefixes
 				.map(findRoot)
 				.filter((item): item is ContentNavigationItem => item !== null)
 			: findRoot(section.prefixes[0]!)?.children ?? [];
+
+		return section.id === 'releases'
+			? topLevel.filter(item => item.path !== section.to)
+			: topLevel;
+	};
+
+	const sectionNavigation = computed<ContentNavigationItem[]>(() => {
+		const section = currentSection.value;
+		if (!section) return [];
+
+		const topLevel = getSectionTopLevel(section);
 
 		return topLevel.map(item => ({
 			...item,
@@ -73,7 +83,7 @@ export function useSectionNavigation() {
 	});
 
 	const containsActivePath = (item: ContentNavigationItem): boolean => {
-		if (item.path === route.path) return true;
+		if (item.path === routePath.value) return true;
 		return item.children?.some(containsActivePath) ?? false;
 	};
 
@@ -93,9 +103,7 @@ export function useSectionNavigation() {
 	const mobileNavigationTree = computed<ContentNavigationItem[]>(() => {
 		if (currentGroup.value?.id === 'docs') {
 			return groupSections.value.flatMap((section) => {
-				const topLevel = section.id === 'deploy' || section.id === 'community'
-					? section.prefixes.map(findRoot).filter((item): item is ContentNavigationItem => item !== null)
-					: findRoot(section.prefixes[0]!)?.children ?? [];
+				const topLevel = getSectionTopLevel(section);
 				const items = topLevel.map(item => ({
 					...item,
 					children: item.children?.map(collapseDescendants),

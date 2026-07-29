@@ -1,7 +1,3 @@
-<script setup lang="ts">
-const { preference } = useColorMode();
-</script>
-
 <template>
 	<div class="relative h-7 shrink-0">
 	<!-- Mobile: compact mark+wordmark without "docs" -->
@@ -15,7 +11,6 @@ const { preference } = useColorMode();
 	</svg>
 	<!-- Desktop: full logo with "docs" -->
 	<svg
-		:class="preference"
 		viewBox="0 0 262 40"
 		xmlns="http://www.w3.org/2000/svg"
 		class="fill-current text-default dark:text-white h-full w-auto transition-opacity duration-300 opacity-0 sm:opacity-100 pointer-events-none sm:pointer-events-auto absolute sm:static inset-0"

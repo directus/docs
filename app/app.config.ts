@@ -3,6 +3,33 @@ export default defineAppConfig({
 		backend: 'typesense',
 	},
 
+	assistant: {
+		faqQuestions: [
+			{
+				category: 'Getting Started',
+				items: [
+					'What is Directus?',
+					'How do I install Directus?',
+					'How do I create a collection?',
+				],
+			},
+			{
+				category: 'Frameworks',
+				items: [
+					'How do I fetch data from Directus in Nuxt?',
+					'How do I use the Directus SDK in Next.js?',
+				],
+			},
+			{
+				category: 'Source code',
+				items: [
+					'Where is the items service defined in directus/directus?',
+					'Show me an example of a custom Directus extension.',
+				],
+			},
+		],
+	},
+
 	ui: {
 		colors: {
 			primary: 'purple',
@@ -16,6 +43,12 @@ export default defineAppConfig({
 			},
 		},
 
+		// Container-query overrides for Nuxt UI components, keyed off the
+		// `docs-pane` parent set on <DocsShell>. These translate "narrow pane"
+		// into "mobile mode" so the AI split panel can collapse the layout
+		// based on pane width rather than viewport. Tailwind 4 only sees
+		// literal class strings, so these stay inline (no template-string
+		// composition).
 		container: {
 			base: '@max-[40rem]/docs-pane:px-4! @min-[40rem]/docs-pane:px-6! @min-[64rem]/docs-pane:px-8!',
 		},
@@ -34,6 +67,7 @@ export default defineAppConfig({
 				bottom: '@max-[64rem]/docs-pane:hidden! @min-[64rem]/docs-pane:flex!',
 			},
 		},
+
 		content: {
 			callout: {
 				// Fix background color of pre > code blocks
@@ -47,6 +81,9 @@ export default defineAppConfig({
 		},
 		pageHeader: {
 			slots: {
+				// Counter the default `lg:flex-row lg:items-center lg:justify-between`
+				// from Nuxt UI: at narrow pane widths the row should collapse to a
+				// stacked column even when the viewport is wide (AI panel open).
 				wrapper: '@max-[40rem]/docs-pane:flex-col! @max-[40rem]/docs-pane:items-stretch! @max-[40rem]/docs-pane:justify-start! @min-[40rem]/docs-pane:flex-row! @min-[40rem]/docs-pane:items-center! @min-[40rem]/docs-pane:justify-between!',
 				title: 'text-3xl sm:text-4xl text-pretty font-display font-medium text-highlighted',
 			},
@@ -134,7 +171,7 @@ export default defineAppConfig({
 					{
 						label: 'Security',
 						to: '/guides/security/best-practices',
-						icon: 'material-symbols:verified-user-outline',
+						icon: 'i-lucide-shield-check',
 					},
 					{
 						label: 'AI',
@@ -154,19 +191,18 @@ export default defineAppConfig({
 					{
 						label: 'Cloud',
 						to: '/cloud/getting-started/introduction',
-						icon: 'material-symbols:cloud-outline',
+						icon: 'i-lucide-cloud',
 					},
 					{
 						label: 'Self-Hosting',
 						to: '/self-hosting/overview',
-						icon: 'material-symbols:dns-outline',
-					},
-					{
-						label: 'Configuration',
-						to: '/configuration/intro',
-						icon: 'material-symbols:settings-outline',
+						icon: 'i-lucide-server',
 					},
 				],
+			},
+			{
+				label: 'Configuration',
+				to: '/configuration/intro',
 			},
 			{
 				label: 'Resources',
@@ -174,22 +210,22 @@ export default defineAppConfig({
 					{
 						label: 'Frameworks',
 						to: '/frameworks',
-						icon: 'material-symbols:data-object',
+						icon: 'i-lucide-braces',
 					},
 					{
 						label: 'Tutorials',
 						to: '/tutorials',
-						icon: 'material-symbols:article-outline',
+						icon: 'i-lucide-file-text',
 					},
 					{
 						label: 'Community',
 						to: '/community/overview/welcome',
-						icon: 'material-symbols:volunteer-activism-outline',
+						icon: 'i-lucide-heart-handshake',
 					},
 					{
 						label: 'Releases',
 						to: '/releases',
-						icon: 'material-symbols:menu-book-outline',
+						icon: 'i-lucide-book-open',
 					},
 				],
 			},
@@ -201,7 +237,7 @@ export default defineAppConfig({
 		links: [
 			{
 				icon: 'simple-icons:directus',
-				to: 'https://directus.io',
+				to: 'https://directus.com',
 			},
 			{
 				icon: 'simple-icons:github',
@@ -221,10 +257,10 @@ export default defineAppConfig({
 			hsForm: 'd57a69e4-6f43-4768-a600-5f7d30306260',
 		},
 
-		// Has "edit page" dynamically added in the first position in DocsTocAuthors.vue
+		// Has "edit page" dynamically added in the first position in DocsToc.vue
 		links: [
 			{
-				icon: 'material-symbols:star-outline',
+				icon: 'i-lucide-star',
 				label: 'Star on GitHub',
 				to: 'https://github.com/directus/directus',
 			},
@@ -251,24 +287,24 @@ export default defineAppConfig({
 	preFooter: {
 		links: [
 			{
-				icon: 'ic:baseline-support',
+				icon: 'i-lucide-headset',
 				label: 'Need help? Contact Support.',
-				to: 'https://directus.io/support',
+				to: 'https://directus.com/support',
 			},
 			{
-				icon: 'ic:baseline-people-alt',
+				icon: 'i-lucide-users',
 				label: 'Join our Community Platform.',
 				to: 'https://community.directus.io',
 			},
 			{
-				icon: 'ic:baseline-rocket-launch',
+				icon: 'i-lucide-rocket',
 				label: 'Check out our product changelog.',
 				to: '/releases/changelog',
 			},
 			{
-				icon: 'ic:outline-help-outline',
+				icon: 'i-lucide-circle-question-mark',
 				label: 'Need a license? Contact Sales.',
-				to: 'https://directus.io/demo',
+				to: 'https://directus.com/contact',
 			},
 		],
 	},
@@ -277,19 +313,19 @@ export default defineAppConfig({
 		links: [
 			{
 				label: 'Cloud Policies',
-				to: 'https://directus.io/cloud-policies',
+				to: 'https://directus.com/cloud-policies',
 			},
 			{
 				label: 'License',
-				to: 'https://directus.io/mscl',
+				to: 'https://directus.com/license',
 			},
 			{
 				label: 'Terms',
-				to: 'https://directus.io/terms',
+				to: 'https://directus.com/terms',
 			},
 			{
 				label: 'Privacy',
-				to: 'https://directus.io/privacy',
+				to: 'https://directus.com/privacy',
 			},
 		],
 		socials: [

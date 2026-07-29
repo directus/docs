@@ -34,14 +34,14 @@ Quick reference of all available raw operations organized by resource type:
 
 ---
 
-::callout{icon="material-symbols:lightbulb-outline"}
+::callout{icon="i-lucide-lightbulb"}
 **When to Use Raw Operations**
 Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), or full control over the JSON payload structure.
 ::
 
 ## Using Raw Operations
 
-Raw operations work similarly to their standard counterparts, but instead of using the node's form fields, you provide all data in the **JSON Data** field as a JSON object.
+Raw operations work similarly to their standard counterparts, but instead of using the node's form fields, you provide data as a JSON object: the **JSON Data** field for Create/Update, or the **Query Parameters** field for Get/Get Many.
 
 ### Setting Up a Raw Operation
 
@@ -49,10 +49,10 @@ Raw operations work similarly to their standard counterparts, but instead of usi
 2. Set **Resource** to Item, User, or File
 3. Select a **Raw JSON** operation (e.g., "Get Many (Raw JSON)", "Create (Raw JSON)")
 4. For Items operations, select the **Collection**
-5. Enter your JSON data in the **JSON Data** field
+5. Enter your data in the **JSON Data** field (Create/Update) or the **Query Parameters** field (Get/Get Many)
 6. For Get and Update operations, provide the **Item ID** if needed
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Token Permissions**
 Ensure your Directus API token has the correct permissions for the resource and operations you're using. Raw operations require the same permissions as their standard counterparts.
 ::
@@ -114,11 +114,11 @@ Update items with complex data structures:
 
 ## Using Filters with Raw Operations
 
-Raw operations allow you to use Directus's complete filter syntax. Specify filters in the `filter` parameter of your **JSON Data** field.
+Raw operations allow you to use Directus's complete filter syntax. Specify filters in the `filter` parameter of the **Query Parameters** field (Get Many).
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Filter Documentation**
-For complete filter syntax, operators, and examples, see the [Directus Filter Rules documentation](https://directus.io/docs/guides/connect/filter-rules).
+For complete filter syntax, operators, and examples, see the [Directus Filter Rules documentation](https://directus.com/docs/guides/connect/filter-rules).
 ::
 
 **Example: Complex filter with logical operators**
@@ -157,7 +157,7 @@ For complete filter syntax, operators, and examples, see the [Directus Filter Ru
 
 ## Query Parameters
 
-Raw operations support all Directus query parameters. Include them in your JSON Data alongside filters:
+Get (Raw JSON) and Get Many (Raw JSON) support all Directus query parameters. Include them in the **Query Parameters** field alongside filters:
 
 **Common query parameters:**
 ```json
@@ -188,9 +188,9 @@ Raw operations support all Directus query parameters. Include them in your JSON 
 }
 ```
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 **Query Parameters Documentation**
-For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.io/docs/guides/connect/query-parameters).
+For complete query parameter documentation, see the [Directus Query Parameters documentation](https://directus.com/docs/guides/connect/query-parameters).
 ::
 
 ## Working with Relations

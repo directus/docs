@@ -22,7 +22,7 @@ const { style: scrollShadowStyle } = useScrollShadow(tocEl, { size: 48 });
 const communityLinks = computed(() => {
 	return [
 		{
-			icon: 'material-symbols:edit-document-outline',
+			icon: 'i-lucide-file-pen-line',
 			label: 'Edit this page',
 			to: `https://github.com/directus/docs/edit/main/${props.file}`,
 		},

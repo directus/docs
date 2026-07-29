@@ -6,7 +6,7 @@ const settings = useSettingsOverlay();
 
 <template>
 	<UButton
-		icon="material-symbols:tune"
+		icon="i-lucide-sliders-horizontal"
 		variant="ghost"
 		color="neutral"
 		size="sm"

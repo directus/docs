@@ -274,7 +274,7 @@ paths:
                   description: The user's one-time-password (if MFA is enabled).
       responses:
         '200':
-          description: Successful authentification
+          description: Successful authentication
           content:
             application/json:
               schema:
@@ -10294,7 +10294,7 @@ components:
           nullable: true
         origin:
           description: Origin of the request when the action took place.
-          example: https://directus.io
+          example: https://directus.com
           type: string
         revisions:
           description: Any changes that were made in this activity. One-to-many to revisions.
@@ -10877,7 +10877,7 @@ components:
           type: string
         message:
           description: Subject line of the message.
-          example: \nHello admin@example.com,\n\rijk@directus.io has mentioned you in a comment:\n\n> Hello <em>admin@example.com</em>!\n\n<a href=\"http://localhost:8080/admin/content/articles/1\">Click here to view.</a>\n
+          example: \nHello admin@example.com,\n\rijk@directus.com has mentioned you in a comment:\n\n> Hello <em>admin@example.com</em>!\n\n<a href=\"http://localhost:8080/admin/content/articles/1\">Click here to view.</a>\n
           type: string
         collection:
           description: Collection this notification references.

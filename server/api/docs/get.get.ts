@@ -1,13 +1,8 @@
 import getDoc from '~~/server/mcp/tools/get-doc';
-import { checkDocsApiRateLimit } from '~~/server/utils/docs-api-rate-limit';
+import { enforceDocsApiLimit } from '~~/server/utils/docs-api-limit';
 
 export default defineEventHandler(async (event) => {
-	const ip = getRequestIP(event, { xForwardedFor: true }) || 'unknown';
-	const limit = checkDocsApiRateLimit(`docs-api:${ip}`);
-	if (!limit.ok) {
-		setResponseHeader(event, 'Retry-After', limit.retryAfter ?? 60);
-		throw createError({ statusCode: 429, message: 'Rate limit exceeded' });
-	}
+	await enforceDocsApiLimit(event);
 
 	const query = getQuery(event);
 	if (typeof query.path !== 'string' || !query.path) {

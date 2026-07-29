@@ -5,8 +5,8 @@ const savedValue = ref<'good' | 'bad' | null>(null);
 const buttonLoading = ref(false);
 
 const options = [
-	{ value: 'good', icon: 'material-symbols:thumb-up-outline' },
-	{ value: 'bad', icon: 'material-symbols:thumb-down-outline' },
+	{ value: 'good', icon: 'i-lucide-thumbs-up' },
+	{ value: 'bad', icon: 'i-lucide-thumbs-down' },
 ] as const;
 
 const handleFeedback = (feedback: 'good' | 'bad') => {
@@ -31,7 +31,7 @@ const handleFeedback = (feedback: 'good' | 'bad') => {
 			<UButton
 				v-for="option in options"
 				:key="option.value"
-				:icon="savedValue === option.value ? 'material-symbols:check' : option.icon"
+				:icon="savedValue === option.value ? 'i-lucide-check' : option.icon"
 				square
 				size="xl"
 				variant="ghost"

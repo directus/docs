@@ -4,7 +4,7 @@ withDefaults(defineProps<{
 	icon?: string;
 }>(), {
 	title: 'Example',
-	icon: 'material-symbols:info-outline',
+	icon: 'i-lucide-info',
 });
 </script>
 

@@ -70,12 +70,12 @@ const items = computed<CopyMenuItem[][]>(() => [
 	[
 		{
 			label: isMarkdownLinkCopied.value ? 'Copied Markdown link!' : 'Copy Markdown link',
-			icon: 'material-symbols:link',
+			icon: 'i-lucide-link',
 			onSelect: () => copyMarkdownLink(),
 		},
 		{
 			label: 'View as Markdown',
-			icon: 'material-symbols:markdown-outline',
+			icon: 'i-lucide-file-code',
 			external: true,
 			onSelect: () => openExternal(markdownUrl.value),
 		},
@@ -96,7 +96,7 @@ const items = computed<CopyMenuItem[][]>(() => [
 		{
 			label: isMcpUrlCopied.value ? 'Copied MCP URL!' : 'Copy MCP server URL',
 			description: 'Use with any MCP-compatible client',
-			icon: 'material-symbols:link',
+			icon: 'i-lucide-link',
 			onSelect: () => copyMcpUrl(),
 		},
 		...MCP_IDES.map(ide => ({
@@ -115,7 +115,7 @@ const items = computed<CopyMenuItem[][]>(() => [
 			color="neutral"
 			size="sm"
 			variant="soft"
-			leading-icon="material-symbols:content-copy-outline"
+			leading-icon="i-lucide-copy"
 			:label="isCopied ? 'Copied!' : 'Copy page'"
 			@click="copyPage"
 		/>
@@ -128,7 +128,7 @@ const items = computed<CopyMenuItem[][]>(() => [
 				size="sm"
 				variant="soft"
 				color="neutral"
-				icon="material-symbols:keyboard-arrow-down"
+				icon="i-lucide-chevron-down"
 			/>
 			<template #item="{ item }">
 				<div class="flex gap-2 text-left">

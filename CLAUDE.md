@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Directus documentation site built with Nuxt 3 and `@nuxt/content`. Markdown files in `/content` are rendered as pages. Deployed to Vercel on merge to main, served at `https://directus.io/docs` (note the `/docs` base URL in `nuxt.config.ts`).
+Directus documentation site built with Nuxt 3 and `@nuxt/content`. Markdown files in `/content` are rendered as pages. Deployed to Vercel on merge to main, served at `https://directus.com/docs` (note the `/docs` base URL in `nuxt.config.ts`).
 
 ## Commands
 
@@ -114,4 +114,4 @@ Matching the existing tone is mission-critical. All new or edited content in `/c
 
 ## Hosting
 
-The docs website is hosted as a nested path on the main Directus marketing website https://directus.io/docs. The rest of the Directus website is a separate repo.
+The docs website is hosted as a nested path on the main Directus marketing website https://directus.com/docs. The rest of the Directus website is a separate repo.

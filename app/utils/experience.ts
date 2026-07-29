@@ -8,9 +8,9 @@ export interface ExperienceOption {
 }
 
 export const experiences: ExperienceOption[] = [
-	{ slug: 'new', label: 'New to Directus', icon: 'material-symbols:auto-awesome-outline', description: 'First time or just evaluating.' },
-	{ slug: 'familiar', label: 'Some Experience', icon: 'material-symbols:potted-plant-outline', description: 'Built something, still learning.' },
-	{ slug: 'experienced', label: 'Power User', icon: 'material-symbols:forest-outline', description: 'Daily / production use.' },
+	{ slug: 'new', label: 'New to Directus', icon: 'i-lucide-sparkles', description: 'First time or just evaluating.' },
+	{ slug: 'familiar', label: 'Some Experience', icon: 'i-lucide-sprout', description: 'Built something, still learning.' },
+	{ slug: 'experienced', label: 'Power User', icon: 'i-lucide-trees', description: 'Daily / production use.' },
 ];
 
 export const getExperience = (slug: string): ExperienceOption | undefined =>

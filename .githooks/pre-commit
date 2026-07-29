@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-if ! command -v pnpm >/dev/null 2>&1; then
-	echo "warning: pnpm not found; skipping stable ID hook" >&2
-	exit 0
-fi
-
-pnpm stable-ids:ensure --staged

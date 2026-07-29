@@ -2,7 +2,7 @@
 import { defineMcpTool } from '@nuxtjs/mcp-toolkit/server';
 import { ofetch } from 'ofetch';
 import { z } from 'zod';
-import { checkMcpRateLimit } from '../../utils/mcp-rate-limit';
+import { checkRateLimit } from '../../utils/rate-limit';
 import { DIRECTUS_REPO_SLUGS, directusRepoSearchQualifier } from '../../utils/directus-repos';
 
 async function fetchWithRetry<T>(url: string, opts: any, retries = 1): Promise<T> {
@@ -75,7 +75,8 @@ export default defineMcpTool({
 			});
 		}
 
-		const localLimit = checkMcpRateLimit('search-directus-code', 20, 60_000);
+		// Intentionally global to protect the shared GITHUB_TOKEN.
+		const localLimit = await checkRateLimit('search-directus-code', { max: 20, windowSeconds: 60, onStoreError: 'deny' });
 		if (!localLimit.ok) {
 			throw createError({
 				statusCode: 429,

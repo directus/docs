@@ -1,5 +1,11 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { getTypesenseBranchName, resolveBranchTypesenseAlias, slugifyBranch } from '../../lib/typesenseAlias';
+import {
+	getTypesenseBranchName,
+	resolveBranchTypesenseAlias,
+	slugifyBranch,
+	TYPESENSE_PREVIEW_ALIAS_PREFIX,
+	TYPESENSE_PROD_ALIAS,
+} from '../../lib/typesenseAlias';
 
 const originalEnv = { ...process.env };
 
@@ -14,7 +20,8 @@ describe('typesense alias helpers', () => {
 	});
 
 	it('maps main to the production alias', () => {
-		expect(resolveBranchTypesenseAlias('main')).toBe('directus-docs');
+		expect(resolveBranchTypesenseAlias('main')).toBe(TYPESENSE_PROD_ALIAS);
+		expect(resolveBranchTypesenseAlias('bry/foo')).toBe(`${TYPESENSE_PREVIEW_ALIAS_PREFIX}bry-foo`);
 	});
 
 	it('uses the Vercel branch env when GitHub env is absent', () => {

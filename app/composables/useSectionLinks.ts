@@ -6,31 +6,31 @@ export default function useSectionLinks() {
 			{
 				label: 'Get Started',
 				href: '/getting-started/overview',
-				icon: 'material-symbols:rocket-outline',
+				icon: 'i-lucide-rocket',
 				active: route.path.startsWith('/getting-started'),
 			},
 			{
 				label: 'Guides',
 				href: '/guides/data-model/collections',
-				icon: 'material-symbols:book-outline',
+				icon: 'i-lucide-book-open',
 				active: route.path.startsWith('/guides'),
 			},
 			{
 				label: 'Tutorials',
 				href: '/tutorials',
-				icon: 'material-symbols:school-outline',
+				icon: 'i-lucide-graduation-cap',
 				active: route.path.startsWith('/tutorials'),
 			},
 			{
 				label: 'API Reference',
 				href: '/api',
-				icon: 'material-symbols:code',
+				icon: 'i-lucide-code',
 				active: route.path.startsWith('/api'),
 			},
 			{
 				label: 'Licensing',
 				href: '/licensing/overview',
-				icon: 'material-symbols:key-outline',
+				icon: 'i-lucide-key-round',
 				active: route.path.startsWith('/licensing'),
 			},
 		];

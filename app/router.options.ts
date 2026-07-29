@@ -1,4 +1,5 @@
 import type { RouterConfig } from '@nuxt/schema';
+import { useMutationObserver } from '@vueuse/core';
 import { nextTick } from 'vue';
 
 export const scrollPositions = new Map<string, number>();
@@ -12,13 +13,21 @@ function scrollToHash(scroller: HTMLElement | null, hash: string): boolean {
 	const target = getHashTarget(hash);
 	if (!target) return false;
 
-	if (scroller) {
-		scroller.scrollTo({ top: Math.max(0, target.offsetTop - 80), behavior: 'smooth' });
-	}
-	else {
-		window.scrollTo({ top: Math.max(0, target.offsetTop - 80), behavior: 'smooth' });
-	}
+	target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	return true;
+}
+
+export function scrollToHashWhenReady(hash: string) {
+	const scroller = document.getElementById('docs-scroll');
+	if (scrollToHash(scroller, hash)) return;
+
+	const root = scroller ?? document.body;
+	const { stop } = useMutationObserver(root, () => {
+		if (window.location.hash !== hash || !scrollToHash(scroller, hash)) return;
+		stop();
+		window.clearTimeout(timeout);
+	}, { childList: true, subtree: true });
+	const timeout = window.setTimeout(stop, 3000);
 }
 
 export default <RouterConfig>{
@@ -36,7 +45,7 @@ export default <RouterConfig>{
 
 		if (to.hash) {
 			await nextTick();
-			requestAnimationFrame(() => scrollToHash(scroller, to.hash));
+			scrollToHashWhenReady(to.hash);
 			return false;
 		}
 

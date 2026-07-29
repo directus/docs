@@ -33,7 +33,7 @@ After which you can go to the optional fields and activate the following:
 
 ### Edit Public Policy
 
-To allow viewing the posts collections and field listings as an unauthenticated user, you will need to modify the public [access policy](https://directus.io/docs/guides/auth/access-control). In a real project, you would want to create a new policy and authenticate users to Directus before allowing them access to your content.
+To allow viewing the posts collections and field listings as an unauthenticated user, you will need to modify the public [access policy](https://directus.com/docs/guides/auth/access-control). In a real project, you would want to create a new policy and authenticate users to Directus before allowing them access to your content.
 
 To do this, navigate to **Settings** -> **Access Policies** -> **Public** and under Permissions add `messages` with full access for `create` and `read`.
 
@@ -189,7 +189,7 @@ If you run `npm run dev` and navigate to `http://localhost:3000` you should see 
 
 ![Login form](/img/next-login-form.png)
 
-To authenticate the realtime client using the default handshake mode, you will first need to authenticate the REST client using the email and password that the user provides in the login form. Then, you can use the [handshake mode](https://directus.io/docs/guides/realtime/authentication#handshake-mode) to authenticate the realtime client right after calling `directus.connect()`.
+To authenticate the realtime client using the default handshake mode, you will first need to authenticate the REST client using the email and password that the user provides in the login form. Then, you can use the [handshake mode](https://directus.com/docs/guides/realtime/authentication#handshake-mode) to authenticate the realtime client right after calling `directus.connect()`.
 
 To do that, add the following functions to the Home component:
 
@@ -234,7 +234,7 @@ Now, visit `http://localhost:3000` and try logging in with the user you created 
 
 ### Subscribe to Incoming Messages
 
-Although `directus.onWebSocket('message', {})` will receive all messages, the Directus SDK provides a more convenient way to subscribe to specific events. In this case, you can subscribe to the `messages` collection to receive specific fields from any messages as they are created and uniquely identify your subscription with a [UID](https://directus.io/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [best practice](https://directus.io/docs/guides/realtime/subscriptions#using-uids).
+Although `directus.onWebSocket('message', {})` will receive all messages, the Directus SDK provides a more convenient way to subscribe to specific events. In this case, you can subscribe to the `messages` collection to receive specific fields from any messages as they are created and uniquely identify your subscription with a [UID](https://directus.com/docs/guides/realtime/actions#use-uids-to-better-understand-responses) for [best practice](https://directus.com/docs/guides/realtime/subscriptions#using-uids).
 
 To do that, add the following code to the Home component:
 
@@ -451,7 +451,7 @@ You can now visit your website url again and try logging in again. You should se
 
 As you have seen before, Directus Realtime uses websockets to maintain a connection to the server. Behind the scenes, the Directus instance sends a heartbeat or ping message every 30 seconds to keep the connection alive. If the connection is lost, then the client will not receive updates. You already respond to this message in `receiveMessage` by sending a pong message back to Directus.
 
-However, to ensure a more stable connection, you can [use the refresh token from handshake mode](https://directus.io/docs/guides/realtime/authentication#handshake-mode) to re-authenticate the user and re-subscribe to the messages collection when the access token expires.
+However, to ensure a more stable connection, you can [use the refresh token from handshake mode](https://directus.com/docs/guides/realtime/authentication#handshake-mode) to re-authenticate the user and re-subscribe to the messages collection when the access token expires.
 
 To do that, update the `receiveMessage` function to handle the `expired` auth message appropriately:
 

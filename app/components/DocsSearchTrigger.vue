@@ -18,7 +18,7 @@ defineShortcuts({
 
 <template>
 	<UButton
-		icon="heroicons:magnifying-glass-20-solid"
+		icon="i-lucide-search"
 		variant="subtle"
 		color="neutral"
 		:aria-label="label"

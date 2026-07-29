@@ -6,7 +6,7 @@ defineEmits<{ start: []; dismiss: [] }>();
 	<div class="flex items-center gap-3.5 rounded-xl border border-default bg-default px-4 py-3.5 @max-[40rem]/docs-pane:flex-wrap">
 		<div class="inline-flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
 			<UIcon
-				name="material-symbols:auto-awesome-outline"
+				name="i-lucide-sparkles"
 				class="size-4"
 			/>
 		</div>
@@ -21,14 +21,14 @@ defineEmits<{ start: []; dismiss: [] }>();
 		<div class="flex shrink-0 items-center gap-1 @max-[40rem]/docs-pane:w-full @max-[40rem]/docs-pane:justify-end">
 			<UButton
 				label="Start"
-				trailing-icon="material-symbols:arrow-forward"
+				trailing-icon="i-lucide-arrow-right"
 				color="primary"
 				variant="soft"
 				size="sm"
 				@click="$emit('start')"
 			/>
 			<UButton
-				icon="material-symbols:close"
+				icon="i-lucide-x"
 				color="neutral"
 				variant="ghost"
 				size="sm"

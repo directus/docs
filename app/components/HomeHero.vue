@@ -37,7 +37,7 @@ function openSearch() {
 				@click="openSearch"
 			>
 				<UIcon
-					name="heroicons:magnifying-glass-20-solid"
+					name="i-lucide-search"
 					class="size-4 shrink-0 text-white/60"
 				/>
 				<span class="flex-1">Search the docs...</span>
@@ -46,14 +46,14 @@ function openSearch() {
 			<div class="mt-6 flex flex-wrap gap-2.5">
 				<UButton
 					label="Get Started"
-					trailing-icon="i-ph-arrow-right"
+					trailing-icon="i-lucide-arrow-right"
 					color="primary"
 					size="lg"
 					to="/getting-started/overview"
 				/>
 				<UButton
 					label="What is Directus?"
-					trailing-icon="i-ph-play"
+					trailing-icon="i-lucide-play"
 					color="neutral"
 					variant="subtle"
 					size="lg"

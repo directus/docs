@@ -12,7 +12,7 @@ description: Learn how to integrate Clearbit data enrichment with Directus Flows
 ---
 The Directus toolkit can be used for so many different projects and use cases, with a common one being Customer Relationship Management (CRM). CRMs are often used to support sales and marketing teams in understanding who is interested in and already using a product, and have more streamlined conversations with them.
 
-When a new user is created in Directus, directly through the Data Studio or through [Directus Auth](https://directus.io/toolkit/auth), you may only collect a small amount of information about them. Historically, you may have to then do manual research to understand who a person is before messaging them.
+When a new user is created in Directus, directly through the Data Studio or through [Directus Auth](https://directus.com/docs/guides/auth/tokens-cookies), you may only collect a small amount of information about them. Historically, you may have to then do manual research to understand who a person is before messaging them.
 
 [Clearbit has a series of Enrichment APIs](https://clearbit.com/platform/enrichment) that will take in the data you have, look at a load of data points from around the web, and provide a more complete payload about that person in response.
 
@@ -38,7 +38,7 @@ Add a `Authorization` header with the value `Bearer YOUR_KEY`, replacing `YOUR_K
 
 From the resolved path of the previous operation, create an **Update Data** operation. Set the Collection to `directus_users` with Full Access permissions.
 
-::callout{icon="material-symbols:info-outline" title="Set a System Collection"}
+::callout{icon="i-lucide-info" title="Set a System Collection"}
 
 The dropdown in the collection field will only show user-created collections. To add `directus_users`, which is a system collection, click the `{}` button to turn the input to raw mode and type the collection name manually.
 

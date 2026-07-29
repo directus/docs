@@ -329,7 +329,7 @@ export function CartProvider({ children }: CartProviderProps) {
 Let's break down the `cart-context` component for better understanding:
 
 - `CartContext` uses React's `createContext` API to create a new context and `useState` for storing items into the `cartItem` array.
-- Use `localStorage` for storing `cartItems` for persistance
+- Use `localStorage` for storing `cartItems` for persistence
 - Creates a `CartProvider` component from which the context can be passed from to other components
 - `addToCart` adds an item to the shopping cart if it's not already there.
 - `removeFromCart` removes an item from the shopping cart.

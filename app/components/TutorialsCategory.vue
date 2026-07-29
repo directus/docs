@@ -26,7 +26,7 @@ defineProps<{
 		<ProseCallout
 			class=" my-10 font-bold"
 			:to="path"
-			icon="material-symbols:arrow-outward"
+			icon="i-lucide-arrow-up-right"
 		>
 			See all {{ title }} tutorials
 		</ProseCallout>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { header } = useAppConfig();
+const config = useRuntimeConfig();
 
 const { groups, allSectionItems } = useSectionNavigation();
 
@@ -29,16 +30,15 @@ const groupItems = computed(() =>
 
 				class="hidden @min-[40rem]/docs-pane:flex"
 				:ui="{
-					// list: 'flex items-center gap-2 rounded-full ring ring-inset ring-accented bg-elevated p-0.5',
-					// item: 'py-0',
-					// link: 'rounded-full px-3 py-1 text-base before:rounded-full before:inset-0 data-[active]:before:bg-transparent! aria-[current=page]:before:bg-transparent!',
-					// linkLeadingIcon: 'size-4',
+					linkLeadingIcon: 'size-4',
+					linkTrailingIcon: 'size-4',
 				}"
 			/>
 		</template>
 
 		<template #right>
 			<DocsSearchTrigger />
+			<AssistantChat v-if="config.public.assistant?.enabled" />
 			<div class="block @min-[40rem]/docs-pane:hidden">
 				<SettingsDrawerTrigger />
 			</div>
@@ -80,7 +80,7 @@ const groupItems = computed(() =>
 						:class="active ? 'text-primary font-medium' : 'text-muted'"
 			
 					>
-						<UIcon v-if="link.icon" :name="link.icon" class="size-5 shrink-0" />
+						<UIcon v-if="link.icon" :name="link.icon" class="size-4 shrink-0" />
 						{{ link.title }}
 					</span>
 					<span
@@ -89,7 +89,7 @@ const groupItems = computed(() =>
 						:class="active ? 'text-primary' : 'text-highlighted'"
 			
 					>
-						<UIcon v-if="link.icon" :name="link.icon" class="size-5 shrink-0" />
+						<UIcon v-if="link.icon" :name="link.icon" class="size-4 shrink-0" />
 						{{ link.title }}
 					</span>
 				</template>

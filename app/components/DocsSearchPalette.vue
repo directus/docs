@@ -21,6 +21,34 @@ const router = useRouter();
 const { app } = useRuntimeConfig();
 const search = useDocsSearch();
 const { recents, favorites } = usePageHistory();
+const assistant = useAssistant();
+const assistantEnabled = computed(() => assistant.isEnabled.value);
+
+function promoteToAssistant(query: string) {
+	const trimmed = query.trim();
+	if (!trimmed || !assistantEnabled.value) return;
+	open.value = false;
+	assistant.open(trimmed, true);
+}
+
+const aiGroup = computed(() => {
+	if (!assistantEnabled.value) return null;
+	if (search?.pending.value) return null;
+	const query = searchTerm.value.trim();
+	if (!query || (search && query.length < search.minQueryLength)) return null;
+	return {
+		id: 'ai',
+		slot: 'ai' as const,
+		ignoreFilter: true,
+		items: [{
+			id: 'ai:ask',
+			query,
+			label: `Ask AI about "${query}"`,
+			icon: 'i-ph-sparkle',
+			onSelect: () => promoteToAssistant(query),
+		}],
+	};
+});
 
 const paletteGroups = computed(() => {
 	if (searchTerm.value && search && search.items.value.length > 0) {
@@ -34,10 +62,12 @@ const paletteGroups = computed(() => {
 				},
 			})),
 		}];
+		if (aiGroup.value) groups.push(aiGroup.value);
 		return groups;
 	}
 
-	if (searchTerm.value) return [];
+	// Search term entered but no results yet → only the AI row (if eligible); #empty handles the rest
+	if (searchTerm.value) return aiGroup.value ? [aiGroup.value] : [];
 
 	// Idle state: render as palette groups with per-group slots so arrow keys + enter work natively.
 	// Each group's first item is a disabled "header" item rendered via a per-item slot. Reka skips
@@ -58,7 +88,7 @@ const paletteGroups = computed(() => {
 					id: 'header:recents',
 					slot: 'group-header',
 					disabled: true,
-					headerIcon: 'i-ph-clock-counter-clockwise',
+					headerIcon: 'i-lucide-history',
 					headerIconClass: 'size-3.5 opacity-60',
 					headerLabel: 'Recently viewed',
 					headerCount: visibleRecents.length,
@@ -72,7 +102,7 @@ const paletteGroups = computed(() => {
 						label: r.title,
 						path: r.path,
 						visitedAt: r.visitedAt,
-						icon: section?.icon ?? 'i-ph-file-text',
+						icon: section?.icon ?? 'i-lucide-file-text',
 						sectionLabel: section?.label ?? '',
 						onSelect: () => {
 							void navigateToResult(r.path);
@@ -93,7 +123,7 @@ const paletteGroups = computed(() => {
 					id: 'header:favorites',
 					slot: 'group-header',
 					disabled: true,
-					headerIcon: 'i-ph-star-fill',
+					headerIcon: 'i-lucide-star',
 					headerIconClass: 'size-3.5 text-warning',
 					headerLabel: 'Favorites',
 					headerCount: visibleFavorites.length,
@@ -106,7 +136,7 @@ const paletteGroups = computed(() => {
 						to: f.path,
 						label: f.title,
 						path: f.path,
-						icon: section?.icon ?? 'i-ph-file-text',
+						icon: section?.icon ?? 'i-lucide-file-text',
 						sectionLabel: section?.label ?? '',
 						onSelect: () => {
 							void navigateToResult(f.path);
@@ -126,7 +156,7 @@ const paletteGroups = computed(() => {
 				id: 'header:jump',
 				slot: 'group-header',
 				disabled: true,
-				headerIcon: 'i-ph-compass',
+				headerIcon: 'i-lucide-compass',
 				headerIconClass: 'size-3.5 opacity-60',
 				headerLabel: 'Jump to a section',
 				muted: true,
@@ -174,7 +204,7 @@ const visibleSections = computed(() => {
 });
 
 const sectionIcon = (id: DocsSectionId) =>
-	docsSections.find(s => s.id === id)?.icon ?? 'i-ph-file-text';
+	docsSections.find(s => s.id === id)?.icon ?? 'i-lucide-file-text';
 
 const clientOrigin = () => import.meta.client ? window.location.origin : 'http://localhost';
 const parseResultUrl = (url: string) => new URL(url, clientOrigin());
@@ -219,9 +249,9 @@ function handleClear() {
 }
 
 const suggestions = [
-	{ label: 'API Reference', to: '/api', icon: 'i-ph-code' },
-	{ label: 'Guides', to: '/guides/data-model/collections', icon: 'i-ph-book-open' },
-	{ label: 'Tutorials', to: '/tutorials', icon: 'i-ph-article' },
+	{ label: 'API Reference', to: '/api', icon: 'i-lucide-code' },
+	{ label: 'Guides', to: '/guides/data-model/collections', icon: 'i-lucide-book-open' },
+	{ label: 'Tutorials', to: '/tutorials', icon: 'i-lucide-file-text' },
 ];
 
 // Apply scroll shadow to the palette's scrollable viewport.
@@ -358,6 +388,14 @@ function cycleSection(direction: 1 | -1) {
 function handlePaletteKeydown(event: KeyboardEvent) {
 	if (!open.value || !searchTerm.value) return;
 
+	if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+		if (!assistantEnabled.value) return;
+		event.preventDefault();
+		event.stopPropagation();
+		promoteToAssistant(searchTerm.value);
+		return;
+	}
+
 	if (event.key !== '[' && event.key !== ']') return;
 
 	event.preventDefault();
@@ -457,7 +495,7 @@ onUnmounted(() => {
 							/>
 							<UIcon
 								v-else
-								name="i-ph-arrow-right"
+								name="i-lucide-arrow-right"
 								class="size-3.5 text-primary shrink-0 self-center opacity-0 -translate-x-1 transition-all duration-150 group-data-[highlighted]:opacity-100 group-data-[highlighted]:translate-x-0"
 							/>
 						</div>
@@ -488,7 +526,7 @@ onUnmounted(() => {
 							{{ relativeTime(item.visitedAt) }}
 						</span>
 						<UIcon
-							name="i-ph-arrow-right"
+							name="i-lucide-arrow-right"
 							class="size-3.5 text-dimmed opacity-0 -translate-x-1 transition-all duration-150 group-data-[highlighted]:opacity-100 group-data-[highlighted]:translate-x-0 group-data-[highlighted]:text-primary"
 						/>
 					</template>
@@ -512,7 +550,7 @@ onUnmounted(() => {
 							class="font-mono uppercase tracking-wider"
 						/>
 						<UIcon
-							name="i-ph-arrow-right"
+							name="i-lucide-arrow-right"
 							class="size-3.5 text-dimmed opacity-0 -translate-x-1 transition-all duration-150 group-data-[highlighted]:opacity-100 group-data-[highlighted]:translate-x-0 group-data-[highlighted]:text-primary"
 						/>
 					</template>
@@ -528,11 +566,28 @@ onUnmounted(() => {
 					</template>
 					<template #section-trailing>
 						<UIcon
-							name="i-ph-arrow-right"
+							name="i-lucide-arrow-right"
 							class="size-3.5 text-dimmed opacity-0 -translate-x-1 transition-all duration-150 group-data-[highlighted]:opacity-100 group-data-[highlighted]:translate-x-0 group-data-[highlighted]:text-primary"
 						/>
 					</template>
 
+					<template #ai-leading>
+						<UIcon
+							name="i-ph-sparkle"
+							class="size-4 text-primary"
+						/>
+					</template>
+					<template #ai-label="{ item }">
+						<span class="font-medium text-highlighted truncate">
+							Ask AI about <span class="text-primary">"{{ item.query }}"</span>
+						</span>
+					</template>
+					<template #ai-trailing>
+						<div class="flex items-center gap-1">
+							<UKbd value="meta" />
+							<UKbd value="enter" />
+						</div>
+					</template>
 
 					<template #group-header="{ item }">
 						<header class="flex items-center px-2.5 pt-3 pb-1 font-mono text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-muted">
@@ -582,7 +637,7 @@ onUnmounted(() => {
 							<div class="flex items-start gap-3">
 								<div class="size-7 rounded-lg flex items-center justify-center text-muted bg-elevated shrink-0">
 									<UIcon
-										name="i-ph-keyboard"
+										name="i-lucide-keyboard"
 										class="size-4"
 									/>
 								</div>
@@ -605,7 +660,7 @@ onUnmounted(() => {
 							<div class="flex items-start gap-3">
 								<div class="size-7 rounded-lg flex items-center justify-center text-muted bg-elevated shrink-0">
 									<UIcon
-										name="i-ph-magnifying-glass"
+										name="i-lucide-search"
 										class="size-4"
 									/>
 								</div>
@@ -656,6 +711,14 @@ onUnmounted(() => {
 									<UKbd>[</UKbd>
 									<UKbd>]</UKbd>
 									Sections
+								</span>
+								<span
+									v-if="searchTerm && assistantEnabled"
+									class="inline-flex items-center gap-1.5 font-mono text-[0.625rem] uppercase tracking-wider"
+								>
+									<UKbd value="meta" />
+									<UKbd value="enter" />
+									Ask AI
 								</span>
 							</div>
 							<div

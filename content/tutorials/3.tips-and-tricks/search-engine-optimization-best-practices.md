@@ -10,7 +10,7 @@ description: Learn some best practices for enabling SEO in your projects using D
 ---
 Search engine optimization (SEO) is an ever-changing but super important part of getting your website in front of visitors.
 
-When using Directus as a[ Headless CMS](https://directus.io/solutions/headless-cms), it is incredibly un-opinionated about what you do with your data and content on the frontend, leaving how you build your website up to you.
+When using Directus as a[ Headless CMS](https://directus.com/resources/what-is-headless-cms), it is incredibly un-opinionated about what you do with your data and content on the frontend, leaving how you build your website up to you.
 
 But if you’re just starting out, being so open-ended can leave you wondering about the best way to handle things like SEO.
 
@@ -394,7 +394,7 @@ export default defineEventHandler(async (event) => {
 **Frontend Framework Sitemap Resources**
 
 - [Next.js - XML Sitemap Documentation](https://nextjs.org/learn/seo/crawling-and-indexing/xml-sitemaps)
-- [Nuxt - Nuxt Simple Sitemap Module](https://nuxt.com/modules/simple-sitemap)
+- [Nuxt - Nuxt Sitemap Module](https://nuxtseo.com/docs/sitemap/getting-started/installation)
 - [Astro - @astro/sitemap Integration](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
 - [Svelte - Sitemap Package](https://github.com/bartholomej/svelte-sitemap)
 - [Remix - Remix SEO Package](https://github.com/balavishnuvj/remix-seo)

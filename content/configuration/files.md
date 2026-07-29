@@ -6,7 +6,7 @@ description: Configuration for storage locations, metadata, upload limits, and t
 
 :partial{content="config-env-vars"}
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 For guidance on file-upload permissions, asset access tokens, and blocking internal IPs for file imports, see [Security Best Practices](/guides/security/best-practices#files--assets).
 ::
 
@@ -58,10 +58,19 @@ Based on your configured drivers, you must also provide additional variables, wh
 
 ### Google Cloud Storage (`gcs`)
 
-| Variable                          | Description                  | Default Value |
-| --------------------------------- | ---------------------------- | ------------- |
-| `STORAGE_<LOCATION>_KEY_FILENAME` | Path to key file on disk.    |               |
-| `STORAGE_<LOCATION>_BUCKET`       | Google Cloud Storage bucket. |               |
+| Variable                                       | Description                                                                     | Default Value |
+| ---------------------------------------------- | ------------------------------------------------------------------------------- | ------------- |
+| `STORAGE_<LOCATION>_KEY_FILENAME`              | Path to a service account key file on disk.                                     |               |
+| `STORAGE_<LOCATION>_CREDENTIALS`<sup>[1]</sup> | Service account JSON credentials provided inline. Must be prefixed with`json:`. |               |
+| `STORAGE_<LOCATION>_BUCKET`                    | Google Cloud Storage bucket.                                                    |               |
+
+<sup>[1]</sup> Use this when a key file is unavailable or impractical, such as on platforms that inject secrets through environment variables. The value must contain the full service account JSON and be prefixed with `json:` so Directus parses it as an object rather than a string. See [Environment Syntax Prefix](/configuration/intro#environment-syntax-prefix) for details.
+
+```env
+STORAGE_GCS_CREDENTIALS="json:{\"type\":\"service_account\",\"project_id\":\"...\",\"private_key\":\"...\",\"client_email\":\"...\"}"
+```
+
+`STORAGE_<LOCATION>_KEY_FILENAME` and `STORAGE_<LOCATION>_CREDENTIALS` are mutually exclusive. Configure only one.
 
 ### Azure (`azure`)
 
@@ -121,13 +130,13 @@ Large files can be uploaded in chunks to improve reliability and efficiency, esp
 | `TUS_UPLOAD_EXPIRATION` | The expiry duration for uncompleted files with no upload activity. | `10m`         |
 | `TUS_CLEANUP_SCHEDULE`  | Cron schedule to clean up the expired uncompleted uploads.         | `0 * * * *`   |
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 
-This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.io/docs/configuration/general).
+This feature requires the `PUBLIC_URL` to be set correctly to [where your API is publicly accessible](https://directus.com/docs/configuration/general).
 
 ::
 
-::callout{icon="material-symbols:warning-rounded" color="warning"}
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 
 **Chunked Upload Restrictions**<br/>
 
@@ -144,16 +153,31 @@ the storage driver(s) being used.
 
 ## Assets
 
-| Variable                                 | Description                                                                                                                          | Default Value |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
-| `ASSETS_CACHE_TTL`                       | How long assets will be cached for in the browser. Sets the `max-age` value of the `Cache-Control` header.                           | `30d`         |
-| `ASSETS_TRANSFORM_MAX_CONCURRENT`        | How many file transformations can be done simultaneously.                                                                            | `25`          |
-| `ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION`   | The max pixel dimensions size (width/height) that is allowed to be transformed.                                                      | `6000`        |
-| `ASSETS_TRANSFORM_TIMEOUT`               | Max time spent trying to transform an asset.                                                                                         | `7500ms`      |
-| `ASSETS_TRANSFORM_MAX_OPERATIONS`        | The max number of transform operations that is allowed to be processed (excludes saved presets).                                     | `5`           |
-| `ASSETS_INVALID_IMAGE_SENSITIVITY_LEVEL` | Level of sensitivity to invalid images. See the [`sharp.failOn`](https://sharp.pixelplumbing.com/api-constructor#parameters) option. | `warning`     |
+| Variable                                      | Description                                                                                                                          | Default Value |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
+| `ASSETS_CACHE_TTL`                            | How long assets will be cached for in the browser. Sets the `max-age` value of the `Cache-Control` header.                           | `30d`         |
+| `ASSETS_CACHE_REVALIDATE`                     | When enabled, sets `Cache-Control: max-age=0, must-revalidate` to force CDNs to revalidate assets on every request.                  | `false`       |
+| `ASSETS_TRANSFORM_MAX_CONCURRENT`             | How many file transformations can be done simultaneously.                                                                            | `25`          |
+| `ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION`        | The max pixel dimensions size (width/height) that is allowed to be transformed.                                                      | `6000`        |
+| `ASSETS_TRANSFORM_IMAGE_MAX_OUTPUT_DIMENSION` | The max pixel dimensions size (width/height) that a transformation is allowed to output.                                             | `3000`        |
+| `ASSETS_TRANSFORM_TIMEOUT`                    | Max time spent trying to transform an asset.                                                                                         | `7500ms`      |
+| `ASSETS_TRANSFORM_MAX_OPERATIONS`             | The max number of transform operations that is allowed to be processed (excludes saved presets).                                     | `5`           |
+| `ASSETS_INVALID_IMAGE_SENSITIVITY_LEVEL`      | Level of sensitivity to invalid images. See the [`sharp.failOn`](https://sharp.pixelplumbing.com/api-constructor#parameters) option. | `warning`     |
 
+::callout{icon="material-symbols:info-outline"}
+
+When enabling `ASSETS_CACHE_REVALIDATE`, CDNs will revalidate assets on every request instead of serving them straight from their cache. This means one lightweight round-trip to Directus per request, which has a small performance impact compared to the default `max-age` behavior. On an existing Directus instance, the initial CDN cache must also be cleared before revalidation can take effect, as assets already cached will continue to be served with the previous `max-age` rules until they expire.
+
+::
+
+::callout{icon="i-lucide-triangle-alert" color="warning"}
 Image transformations can be heavy on memory usage. If you're using a system with 1GB or less available memory, we recommend lowering the allowed concurrent transformations to prevent you from overflowing your server.
+
+`ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION` limits the size of the source image, while `ASSETS_TRANSFORM_IMAGE_MAX_OUTPUT_DIMENSION` limits the size of the transformed result. A transformation that projects a width or height larger than the output limit is rejected with an [`ILLEGAL_ASSET_TRANSFORMATION`](/guides/connect/errors) error.
+
+The output limit applies at every step of a transformation, not only to the final dimensions. A transformation that scales an image up to 10000px and then back down to 2000px is still rejected, because each step is fully applied before the next one runs.
+
+::
 
 ## Imports
 

@@ -1,5 +1,4 @@
-import { defineNuxtPlugin, useRuntimeConfig, useState, useRequestEvent } from '#app';
-import { getCookie } from 'h3';
+import { defineNuxtPlugin, useCookie, useRuntimeConfig, useState } from '#app';
 import { PostHog } from 'posthog-node';
 import type { JsonType } from 'posthog-js';
 
@@ -9,12 +8,7 @@ export default defineNuxtPlugin({
 	setup: async () => {
 		const config = useRuntimeConfig().public.posthog;
 
-		const event = useRequestEvent();
-		const cookie = event ? getCookie(event, `ph_${config.publicKey}_posthog`) : undefined;
-		const identity = JSON.parse(cookie ?? '{}');
-		const distinctId = identity?.distinct_id ?? undefined;
-
-		if (config.disabled) {
+		if (config.disabled || !config.publicKey || !config.host) {
 			return {
 				provide: {
 					serverPosthog: null as PostHog | null,
@@ -22,15 +16,27 @@ export default defineNuxtPlugin({
 			};
 		}
 
-		if (config.publicKey.length === 0) {
-			// PostHog public key is not defined. Skipping PostHog setup.
-			// User has already been warned on dev startup
-			return {};
-		}
+		const identity = useCookie<{ distinct_id?: string } | null>(`ph_${config.publicKey}_posthog`, {
+			default: () => null,
+			readonly: true,
+			watch: false,
+		});
+		const distinctId = identity.value && typeof identity.value === 'object' ? identity.value.distinct_id : undefined;
 
 		const posthog = new PostHog(config.publicKey, { host: config.host });
+		let featureFlags: Record<string, boolean | string> = {};
+		let featureFlagPayloads: Record<string, JsonType> = {};
 
-		const { featureFlags, featureFlagPayloads } = await posthog.getAllFlagsAndPayloads(distinctId);
+		if (distinctId) {
+			try {
+				const flags = await posthog.getAllFlagsAndPayloads(distinctId);
+				featureFlags = flags.featureFlags ?? {};
+				featureFlagPayloads = flags.featureFlagPayloads ?? {};
+			}
+			catch (error) {
+				console.warn('[posthog] failed to load feature flags', error);
+			}
+		}
 
 		useState<Record<string, boolean | string> | undefined>('ph-feature-flags', () => featureFlags);
 		useState<Record<string, JsonType> | undefined>('ph-feature-flag-payloads', () => featureFlagPayloads);

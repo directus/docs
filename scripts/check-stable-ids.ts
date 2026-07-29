@@ -65,7 +65,18 @@ function main(): void {
 		console.error(`\nTotal files: ${total}`);
 		console.error(`Passing: ${passing}`);
 		console.error(`Failing: ${failing} (${breakdown})`);
-		console.error('\nFix the files above and re-run the command.');
+		console.error('\nHow to fix:');
+		if (counts['missing frontmatter'] > 0) {
+			console.error('- Add frontmatter to files missing it.');
+		}
+		if (counts['missing stableId'] > 0) {
+			console.error('- Run `pnpm stable-ids:ensure` to add missing stableId values.');
+		}
+		if (counts['invalid stableId'] > 0) {
+			console.error('- Replace invalid stableId values with valid UUIDs.');
+			console.error('- For new pages, remove invalid stableId values, then run `pnpm stable-ids:ensure`.');
+		}
+		console.error('- Re-run `pnpm stable-ids:check`.');
 		process.exit(1);
 	}
 

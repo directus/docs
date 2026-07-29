@@ -4,151 +4,32 @@
 
 ## 🐰 Introduction
 
-Welcome! This is the repo for [Directus' documentation](https://docs.directus.io).
+Welcome. This is the repo for [Directus documentation](https://directus.com/docs).
 
-**[Learn more about Directus](https://directus.io)**
-
-
-## 🖥️ Running the Docs
-
-### Requirements
-
-- Node.js 22.18 or later
-- pnpm
-
-### Install Dependencies
-
-```bash
-pnpm install
-```
-
-### Setup Environment
-
-Copy the example environment file:
-
-```bash
-cp .env.example .env
-```
-
-Update the environment variables in the `.env` file with proper secret keys for the different
-services.
-
-### Run Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-pnpm dev
-```
-
-### Building Locally
-
-```bash
-pnpm build
-```
-
-### Repository Tooling
-
-The repository includes scripts that keep docs routes stable when files move and that index the docs into Typesense.
-
-```bash
-pnpm stable-ids:ensure  # Add missing stableId frontmatter
-pnpm stable-ids:check   # Validate stableId frontmatter
-pnpm redirects:sync     # Update redirects.json for moved pages
-pnpm redirects:check    # Check redirect coverage without writing files
-pnpm index:docs         # Build the search index in Typesense
-pnpm typecheck:scripts  # Type check repository scripts
-```
-
-`pnpm install` configures `.githooks` for the repository when no custom `core.hooksPath` is set. The pre-commit hook can add missing `stableId` values to staged docs files. The pre-push hook checks redirects when docs content, redirect configuration, or content configuration changes.
-
-## ✍️ Authoring Content
-
-Pages live as Markdown files under `content/`. Frontmatter fields are validated by the schema in `content.config.ts`.
-
-### Framework Guides
-
-Framework guides live under `content/frameworks/<framework>/`. The numeric prefix on filenames (`01.`, `02.`, …) controls sidebar sort order only — it has no semantic meaning, renumber freely.
-
-The `section` frontmatter field controls grouping on the `/frameworks/<framework>` hub page:
-
-- `section: start-here` — appears in the "Start Here" block at the top.
-- `section: guides` (or unset) — appears in the "Guides" block below.
-
-Minimal frontmatter for a new framework guide:
-
-```yaml
----
-title: Fetch Data from Directus with Foo
-description: Learn how to integrate Directus in your Foo app.
-section: start-here
-technologies:
-  - foo
-navigation:
-  title: Data Fetching
----
-```
-
-## ☁️ Deploying the Docs
-
-The documentation automatically deploys to Vercel when changes are merged into the main branch. Simply:
-
-1. Open a Pull Request with your changes
-2. This should trigger a deploy preview as well.
-3. Once PR is approved and merged to main, Vercel will automatically build and deploy the updated documentation
+**[Learn more about Directus](https://directus.com)**
 
 ## 🚀 Contributing
 
-- [Code of Conduct](https://directus.io/docs/community/overview/conduct)
-- [Contributing and authoring guidelines](https://directus.io/docs/community/contribution/documentation)
+Looking to report a docs issue or improve the documentation?
 
-<br />
+- [Open an issue](https://github.com/directus/docs/issues)
+- [Read the contribution guide](CONTRIBUTING.md)
+- [Code of Conduct](https://directus.com/docs/community/overview/conduct)
+- [Documentation authoring guidelines](https://directus.com/docs/community/contribution/documentation)
+
+## 🖥️ Running Locally
+
+Contributor setup, local development, search indexing, and deployment notes live in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## ✨ AI Assistant
+
+The docs site includes an optional AI Assistant for deploy previews and production. Setup, environment variables, rate limits, and telemetry notes live in [CONTRIBUTING.md#ai-assistant](CONTRIBUTING.md#ai-assistant).
 
 ## 🤔 Community Help
 
 - [Community Platform](https://community.directus.io) (Questions, Live Discussions)
 - [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
 - [Roadmap](https://roadmap.directus.io) (Roadmap & Feature Requests)
-
-## 🔍 Search
-
-Search is powered by [Typesense](https://typesense.org). The browser palette (`UCommandPalette`-based) lives at `app/components/DocsSearchPalette.vue` and queries Typesense directly via `app/services/typesenseService.ts`. The official `typesense` npm client is used by the indexer only.
-
-### Indexing
-
-The indexer at `scripts/index-docs.ts` walks `/content`, chunks each Markdown page, attaches synonyms, and pushes everything to Typesense. OpenAPI indexing is deferred to a later branch. Run it locally with:
-
-```bash
-pnpm index:docs
-```
-
-CI runs the same command on every push to `main` (production index) and on every PR commit (per-branch preview index). See `.github/workflows/search-index.yml`.
-
-### Collection naming
-
-Indexes use a blue/green slot pattern with a stable alias:
-
-- `main` -> alias `directus-docs`, slots `directus-docs-a` / `directus-docs-b`
-- Branch `bry/foo` -> alias `directus-docs-preview-bry-foo`, slots `...-a` / `...-b`
-- Local branch runs use the same branch-derived alias as CI
-
-Each indexer run writes to whichever slot the alias is not currently pointing at, swaps the alias, then deletes the previous slot.
-
-For one-off writes, override the index target with `TYPESENSE_INDEX_TARGET=...`.
-
-The browser reads from `TYPESENSE_COLLECTION` when set. Otherwise it derives the same branch alias as the indexer. The app reads the alias, never the `-a` / `-b` slot name.
-
-### Ranking
-
-Section boosts and personalization live in `buildPersonalizedSortBy` in `app/composables/useDocsSearch.ts`. The same `sectionPriority` array drives both the Typesense `_eval` boost order and the chip-bar render order in the palette.
-
-### Synonyms
-
-Search synonyms live in `server/data/synonyms.ts` and are pushed to Typesense on every indexer run. Two formats: `multiway` (equivalent terms) and `oneway` (directional shorthand -> canonical, e.g. `db -> database`). Header comment in the file explains both.
-
-### Search-friendly content
-
-Write H2s and first paragraphs so they work as standalone search results.
 
 <br />
 

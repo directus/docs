@@ -7,7 +7,7 @@ description: Configure environment variables, memory, and timeout for Flows.
 
 :partial{content="config-env-vars"}
 
-::callout{icon="material-symbols:info-outline"}
+::callout{icon="i-lucide-info"}
 For guidance on who should be able to create and edit flows, and how to secure webhook triggers, see [Security Best Practices](/guides/security/best-practices#flows).
 ::
 

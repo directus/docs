@@ -1,0 +1,17 @@
+export const strings = {
+	tooltip: 'Ask AI',
+	title: 'Ask AI',
+	placeholder: 'Ask anything about Directus...',
+	close: 'Close',
+	askMeAnything: 'Ask me anything',
+	askMeAnythingDescription: 'I can search the Directus docs and source code to ground answers.',
+	lineBreak: 'Shift + Enter for new line',
+	assistantFooterNotice: 'AI responses may be inaccurate.',
+	loadingFinished: 'Sources used',
+	toolListPages: 'Listed documentation pages',
+	toolReadPage: 'Read',
+	toolSearchDocs: 'Searched docs for',
+	toolSearchCode: 'Searched code for',
+	toolReadFile: 'Read source file',
+	toolReadWebPage: 'Read',
+};
