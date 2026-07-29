@@ -18,7 +18,7 @@ In the Data Studio, files will automatically be uploaded to the first configured
 
 | Variable            | Description                                                                                   | Default Value |
 | ------------------- | --------------------------------------------------------------------------------------------- | ------------- |
-| `STORAGE_LOCATIONS` | A comma separated list of storage locations. You can use any names you'd like for these keys. | `local`       |
+| `STORAGE_LOCATIONS` | A comma-separated list of storage locations. You can use any names you'd like for these keys. | `local`       |
 
 For each of the storage locations listed, you must provide the following configuration (variable name must be uppercase in these options):
 
