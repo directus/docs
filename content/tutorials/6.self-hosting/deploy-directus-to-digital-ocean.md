@@ -143,7 +143,7 @@ Verify the setup:
 
 You now have Directus running on DigitalOcean App Platform with a managed database, optional Redis, and optional Spaces storage. Changes to the Dockerfile or environment variables trigger new deployments, while your database and object storage remain separate from the app container.
 
-If you need help, ask on the [community platform](https://community.directus.io).
+If you need help, ask on the [community platform](https://community.directus.com).
 
 ## Handling PM2 Errors
 

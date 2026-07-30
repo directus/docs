@@ -115,7 +115,7 @@ Use n8n's **IF** node after the trigger to add conditional logic. For example, o
 
 If you encounter issues:
 
-1. **For Directus-specific questions:** Ask for help in the [Directus Community](https://community.directus.io/)
+1. **For Directus-specific questions:** Ask for help in the [Directus Community](https://community.directus.com)
 2. **For n8n-specific questions:** Visit the [n8n Community Forum](https://community.n8n.io/) or check [n8n Documentation](https://docs.n8n.io/)
 3. **For trigger issues:** Check that both your Directus and n8n instances are accessible
 

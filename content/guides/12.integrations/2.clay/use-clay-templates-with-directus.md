@@ -119,7 +119,7 @@ Configure how Clay data maps to Directus fields:
 ## Additional Resources
 
 - [Clay Documentation](https://clay.com/docs)
-- [Directus Community](https://community.directus.io/)
+- [Directus Community](https://community.directus.com)
 
 
 

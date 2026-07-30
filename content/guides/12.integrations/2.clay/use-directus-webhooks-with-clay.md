@@ -117,7 +117,7 @@ This gives you control over exactly which fields to send.
 ## Additional Resources
 
 - [Clay Documentation](https://clay.com/docs)
-- [Directus Community](https://community.directus.io/)
+- [Directus Community](https://community.directus.com)
 
 
 
