@@ -181,8 +181,9 @@ The output limit applies at every step of a transformation, not only to the fina
 
 ## Imports
 
-| Variable                  | Description                                           | Default Value   |
-| ------------------------- | ----------------------------------------------------- | --------------- |
-| `IMPORT_EXPORT_NAMESPACE` | Redis namespace for storing import/export information | `import-export` |
-| `IMPORT_TIMEOUT`          | Allowed duration for importing files                  | `1m`            |
-| `IMPORT_CONCURRENT_MAX`   | Maximum simultainous imports                          | `10`            |
+| Variable                  | Description                                                                                                          | Default Value            |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `IMPORT_EXPORT_NAMESPACE` | Redis namespace for storing import/export information.                                                               | `directus:import-export` |
+| `IMPORT_TIMEOUT`          | Allowed duration for importing files. Shared across receiving the upload and parsing it.                             | `1h`                     |
+| `IMPORT_MAX_CONCURRENCY`  | Maximum simultaneous imports.                                                                                        | `20`                     |
+| `IMPORT_MAX_FILE_SIZE`    | Maximum size of an uploaded import file. See [Security & Limits](/configuration/security-limits).                     | `50mb`                   |
