@@ -9,12 +9,14 @@ Directus documentation site built with Nuxt 3 and `@nuxt/content`. Markdown file
 ## Commands
 
 ```bash
-pnpm install        # Install dependencies (requires Node.js 22, pnpm 9.15.4)
+pnpm install        # Install dependencies (requires Node.js >=22.18, pnpm 10.29.2)
 pnpm dev            # Dev server at http://localhost:3000/docs
 pnpm build          # Production build
 pnpm generate       # Static site generation (used for Vercel deploy)
 pnpm preview        # Preview production build locally
 ```
+
+`pnpm dev` fails with `Invalid URL` unless `DIRECTUS_URL` is set, because the Nuxt server passes it to `createDirectus()` during render. Copy any missing environment variables from `.env.example` to `.env` before the first run. For content-only work, `DIRECTUS_URL` is the sole required value; the remaining variables emit warnings and disable search, analytics, and the assistant.
 
 There is no test runner configured. Linting is via `@nuxt/eslint` (run through Nuxt's built-in integration).
 
@@ -31,7 +33,7 @@ Reusable content fragments live in `/content/_partials/` and are included via th
 ### Routing
 
 - `app/pages/[...slug].vue` — catch-all for content pages
-- `app/pages/api/[tag].vue` — OpenAPI-generated API reference (reads `/public/oas.yaml`)
+- `app/pages/api/[tag].vue` — OpenAPI-generated API reference (spec comes from the `@directus/openapi` package via `scripts/generate-api-reference.ts`; fixes to endpoint docs belong in the [directus/openapi](https://github.com/directus/openapi) repo)
 - `app/pages/tutorials/` — tutorial section with nested routes
 
 ### Custom Markdown Components

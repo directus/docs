@@ -77,4 +77,4 @@ There are some points to further improve on as you build your Flows for data enr
 
 Take a look at the [Clearbit API Reference](https://dashboard.clearbit.com/docs) for more ideas on how you can expand on this starting point.
 
-If you have any questions, feel free to drop into our [community platform](https://community.directus.io).
+If you have any questions, feel free to drop into our [community platform](https://community.directus.com).

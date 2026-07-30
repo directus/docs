@@ -6,14 +6,14 @@ description: Configuration for metrics.
 
 To enable performance and error measurement of connected services, Directus can provide Prometheus metrics.
 
-| Variable                      | Description                                                                                                             | Default Value                  |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| `METRICS_ENABLED`             | Whether or not to enable metrics.                                                                                       | `false`                        |
-| `METRICS_SCHEDULE`            | The cron schedule at which to generate the metrics, the default is every minute                                         | `*/1 * * * *`                  |
-| `METRICS_TOKENS`              | A CSV of tokens to allow access to via a `Authorization: Metrics <token>` header. By default it is restricted to admins | --                             |
-| `METRICS_SERVICES`            | A CSV of directus services to observe metrics for. Currently `database`, `cache`, `redis` and `storage` are supported   | `database,cache,redis,storage` |
-| `METRICS_NAME_PREFIX`         | Prefix applied to all Prometheus metric names.                                                                          | `directus_`                    |
-| `METRICS_HEALTH_CHECK_PREFIX` | Prefix for health check keys used in cache, Redis, and storage checks.                                                  | `directus-metric-`             |
+| Variable                      | Description                                                                                                                                                            | Default Value                  |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| `METRICS_ENABLED`             | Whether or not to enable metrics.                                                                                                                                      | `false`                        |
+| `METRICS_SCHEDULE`            | The cron schedule at which to generate the metrics.                                                                                                                    | `*/1 * * * *`                  |
+| `METRICS_TOKENS`              | A comma-separated list of tokens (e.g. `token1,token2`) that grant access via the `Authorization: Metrics <token>` header. By default, access is restricted to admins. | --                             |
+| `METRICS_SERVICES`            | A comma-separated list of Directus services to observe metrics for. Supported values: `database`, `cache`, `redis`, `storage`.                                         | `database,cache,redis,storage` |
+| `METRICS_NAME_PREFIX`         | Prefix applied to all Prometheus metric names.                                                                                                                         | `directus_`                    |
+| `METRICS_HEALTH_CHECK_PREFIX` | Prefix for health check keys used in cache, Redis, and storage checks.                                                                                                 | `directus-metric-`             |
 
 ::callout{icon="i-lucide-triangle-alert" color="warning"}
 **Metric Aggregation**
