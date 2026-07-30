@@ -94,8 +94,21 @@ You should have two Directus projects - this guide will refer to them as the "ba
     }
     ```
 
-    Note that the data property is destructured from the response and returned. In the `main()` function, call
-    `getSnapshot()`:
+    This returns a snapshot of every collection in the project. To promote only part of your data model, scope the
+    snapshot with `includeCollections` or `excludeCollections`:
+
+    ```js
+    function getSnapshot() {
+      return baseDirectus.request(schemaSnapshot({ includeCollections: ['articles', 'authors'] }));
+    }
+    ```
+
+    The two options are mutually exclusive, and collection names that do not exist in the base project are ignored. A
+    scoped snapshot is a partial snapshot, marked with `version: 2` instead of `version: 1`. The diff step reads that
+    marker and limits itself to the collections the snapshot contains, so applying a partial snapshot never removes
+    collections that were left out of it.
+
+    In the `main()` function, call `getSnapshot()`:
 
     ```js
     async function main() {
@@ -131,6 +144,20 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     Get your diff by running `node index.js`.
 
+    By default the diff mirrors the base project: anything the target has that the base does not is marked for
+    deletion. Pass `mode: 'merge'` to get an additive diff instead, which omits operations that would delete a
+    collection, field, or relation:
+
+    ```js
+    function getDiff(snapshot) {
+      return targetDirectus.request(schemaDiff(snapshot, { mode: 'merge' }));
+    }
+    ```
+
+    Use `merge` when the target project holds collections the base project should not remove, such as a production
+    environment with its own reporting tables. Use the default `mirror` mode when the base project is the single source
+    of truth for the whole data model.
+
     #### Apply Diff To Target Project
 
     At the bottom of `index.js`, create a `applyDiff()` function which accepts a `diff` parameter:
@@ -157,8 +184,14 @@ You should have two Directus projects - this guide will refer to them as the "ba
     ### Handling Different Directus Versions
 
     The diff endpoint does not allow different Directus versions and database vendors by default. This is to avoid any
-    unintentional diffs from being generated. You can opt in to bypass these checks by adding a second query parameter
-    called `force` with the value of `true`.
+    unintentional diffs from being generated. You can opt in to bypass these checks by passing `force: true` alongside
+    the other diff options:
+
+    ```js
+    function getDiff(snapshot) {
+      return targetDirectus.request(schemaDiff(snapshot, { force: true }));
+    }
+    ```
 
     The hash property in the diff is based on the target instance's schema and version. It is used to safeguard against
     changes that may happen after the current diff was generated which can potentially incur unexpected side effects when
@@ -210,6 +243,14 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     Copy the JSON response with your data model snapshot.
 
+    To promote only part of your data model, scope the snapshot with either `includeCollections` or `excludeCollections`, passing a comma-separated list of collection names. The two parameters cannot be used together.
+
+    ```
+    GET /schema/snapshot?includeCollections=articles,authors
+    ```
+
+    A scoped snapshot is a partial snapshot, marked with `version: 2` instead of `version: 1`. The diff step reads that marker and limits itself to the collections the snapshot contains, so applying a partial snapshot never removes collections that were left out of it.
+
     #### Retrieve Data Model Diff
 
     This section will create a "diff" that describes all differences between your source and target project's data models.
@@ -218,9 +259,15 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     Copy the JSON response with your data model diff.
 
+    By default the diff mirrors the source project, so anything the target has that the source does not is marked for deletion. Add `mode=merge` for an additive diff, which omits operations that would delete a collection, field, or relation. The default is `mode=mirror`.
+
+    ```
+    POST /schema/diff?mode=merge
+    ```
+
     #### Apply Diff To Target Project
 
-    Perform a `POST` request to `/schema/apply?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of JSON response from the snapshot.
+    Perform a `POST` request to `/schema/apply?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of the JSON response from the diff.
 
     Note the response status of 204, which indicates a successful data model migration.
 
