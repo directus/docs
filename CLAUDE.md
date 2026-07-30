@@ -16,7 +16,7 @@ pnpm generate       # Static site generation (used for Vercel deploy)
 pnpm preview        # Preview production build locally
 ```
 
-`pnpm dev` fails with `Invalid URL` unless `DIRECTUS_URL` is set, because the Nuxt server passes it to `createDirectus()` during render. Copy `.env.example` to `.env` before the first run. For content-only work, `DIRECTUS_URL` is the sole required value; the remaining variables emit warnings and disable search, analytics, and the assistant.
+`pnpm dev` fails with `Invalid URL` unless `DIRECTUS_URL` is set, because the Nuxt server passes it to `createDirectus()` during render. Copy any missing environment variables from `.env.example` to `.env` before the first run. For content-only work, `DIRECTUS_URL` is the sole required value; the remaining variables emit warnings and disable search, analytics, and the assistant.
 
 There is no test runner configured. Linting is via `@nuxt/eslint` (run through Nuxt's built-in integration).
 
