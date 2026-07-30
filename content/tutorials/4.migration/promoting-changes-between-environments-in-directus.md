@@ -220,7 +220,7 @@ You should have two Directus projects - this guide will refer to them as the "ba
 
     #### Apply Diff To Target Project
 
-    Perform a `POST` request to `/schema/apply?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of JSON response from the snapshot.
+    Perform a `POST` request to `/schema/apply?access_token=<YOUR_ACCESS_TOKEN>`, with the "Content Type" header set to `application/json` and the body set to the contents of the `data` property of the JSON response from the diff.
 
     Note the response status of 204, which indicates a successful data model migration.
 
