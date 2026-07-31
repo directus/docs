@@ -19,7 +19,7 @@ For guidance on restricting who can install or manage extensions, see [Security 
 | `EXTENSIONS_LOCATION`<sup>[5], [6]</sup>        | Key of the configured [storage locations](/configuration/files) to load extensions from a specific storage location.               |                |
 | `EXTENSIONS_LIMIT`                              | Maximum number of extensions you allow to be installed through the Marketplace.                                                    |                |
 | `EXTENSIONS_ROLLDOWN`                           | Enable use of [Rolldown](https://rolldown.rs/) to optimize extensions bundling.                                                    | `false`        |
-| `EXTENSIONS_SYNC_MAX_CONCURRENCY`<sup>[7]</sup> | Maximum number of concurrent downloads when syncing extensions from the configured storage location.                               | `20`           |
+| `EXTENSIONS_STORAGE_MAX_CONCURRENCY`<sup>[7]</sup> | Maximum number of concurrent requests when syncing, installing, or uninstalling extensions in the configured storage location.                               | `20`           |
 
 <sup>[1]</sup> When `EXTENSIONS_LOCATION` is set, this defines the path inside the selected storage location where extensions reside.
 
@@ -33,7 +33,7 @@ For guidance on restricting who can install or manage extensions, see [Security 
 
 <sup>[6]</sup> The value of `EXTENSIONS_LOCATION` must correspond to a key defined in your `STORAGE_LOCATIONS` environment variable.
 
-<sup>[7]</sup> `EXTENSIONS_SYNC_MAX_CONCURRENCY` only applies when `EXTENSIONS_LOCATION` is set, as extensions are then downloaded from the storage location on startup.
+<sup>[7]</sup> `EXTENSIONS_STORAGE_MAX_CONCURRENCY` only applies when `EXTENSIONS_LOCATION` is set. Invalid values fall back to the default.
 
 ## Marketplace
 
