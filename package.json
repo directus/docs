@@ -50,7 +50,7 @@
 		"openapi3-ts": "4.5.0",
 		"posthog-js": "1.371.2",
 		"posthog-node": "5.29.7",
-		"sharp": "^0.34.5",
+		"sharp": "^0.35.0",
 		"shiki": "4.0.2",
 		"shiki-stream": "^0.1.4",
 		"tailwindcss": "^4.2.4",
