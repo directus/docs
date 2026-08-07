@@ -16,8 +16,8 @@ importers:
         specifier: 3.0.185
         version: 3.0.185(vue@3.5.33(typescript@6.0.3))(zod@4.4.3)
       '@directus/openapi':
-        specifier: 0.3.0
-        version: 0.3.0
+        specifier: 0.4.0
+        version: 0.4.0
       '@directus/sdk':
         specifier: ^21.2.2
         version: 21.2.2
@@ -390,8 +390,8 @@ packages:
   '@colordx/core@5.4.0':
     resolution: {integrity: sha512-zEvOjz+QQJX9l+HS5UO4tXoHSG+WSxPKHJg293k3j3myUWJtZ9P0pJT42WHLNxueyiVQX6BQtCs59i3MgpTMeg==}
 
-  '@directus/openapi@0.3.0':
-    resolution: {integrity: sha512-T4VZltB4TWTcZYt1vpPnK/nGP5PRrxORcm1cBZKKQ7p7v05knywMN3nuP1IPqHMP4+Ki4abG0qjHtUxaBPvMSw==}
+  '@directus/openapi@0.4.0':
+    resolution: {integrity: sha512-jtNLw9DGIa4+Mq2wKtfvzVUXV6bHc9tFroW4gYt9pP5YmRFLbA314Wh/ouQN06zXCD+qUaEK7F8sr6Qum64GJw==}
     engines: {node: '>=22', pnpm: '>=10 <11'}
 
   '@directus/sdk@21.2.2':
@@ -8402,7 +8402,7 @@ snapshots:
 
   '@colordx/core@5.4.0': {}
 
-  '@directus/openapi@0.3.0': {}
+  '@directus/openapi@0.4.0': {}
 
   '@directus/sdk@21.2.2': {}
 
