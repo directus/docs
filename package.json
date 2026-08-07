@@ -29,7 +29,7 @@
 		"@iconify-json/simple-icons": "1.2.79",
 		"@nuxt/content": "3.13.0",
 		"@nuxt/fonts": "0.14.0",
-		"@nuxt/ui": "^4.6.1",
+		"@nuxt/ui": "^4.8.1",
 		"@nuxtjs/color-mode": "4.0.0",
 		"@nuxtjs/mcp-toolkit": "0.17.2",
 		"@nuxtjs/robots": "6.0.8",
