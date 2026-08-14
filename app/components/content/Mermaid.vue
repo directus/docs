@@ -226,7 +226,9 @@ function download(blob: Blob, extension: 'svg' | 'png') {
 	const link = document.createElement('a');
 	link.href = url;
 	link.download = `${props.filename}.${extension}`;
+	document.body.appendChild(link);
 	link.click();
+	link.remove();
 	URL.revokeObjectURL(url);
 }
 
@@ -434,7 +436,7 @@ const downloadItems = [
 		<div
 			v-else
 			class="relative min-h-80 touch-none overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
-			role="img"
+			role="group"
 			:aria-label="`${title}. Use arrow keys to pan, plus and minus to zoom, and zero to reset.`"
 			tabindex="0"
 			:class="dragging ? 'cursor-grabbing' : 'cursor-grab'"

@@ -60,7 +60,7 @@ describe('Mermaid', () => {
 		await wrapper.get('[aria-label="Zoom in"]').trigger('click');
 		expect(wrapper.get('.mermaid-canvas').attributes('style')).toContain('scale(1.2)');
 
-		await wrapper.get('[role="img"]').trigger('keydown', { key: 'ArrowRight' });
+		await wrapper.get('[role="group"]').trigger('keydown', { key: 'ArrowRight' });
 		expect(wrapper.get('.mermaid-canvas').attributes('style')).toContain('translate3d(32px, 0px, 0)');
 
 		await wrapper.get('[aria-label="Reset view"]').trigger('click');
@@ -81,7 +81,9 @@ describe('Mermaid', () => {
 	it('downloads the rendered SVG', async () => {
 		const createObjectUrl = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:diagram');
 		const revokeObjectUrl = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
-		const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
+		const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function () {
+			expect(this.isConnected).toBe(true);
+		});
 		const wrapper = await mountSuspended(Mermaid, {
 			props: { code: diagram, filename: 'request-flow' },
 			global: { stubs: { UTooltip: tooltipStub } },
@@ -109,6 +111,7 @@ describe('Mermaid', () => {
 		expect(exportedSvg).not.toContain('var(');
 		expect(exportedSvg).not.toContain('color-mix(');
 		expect(click).toHaveBeenCalledOnce();
+		expect(document.querySelector('a[download="request-flow.svg"]')).toBeNull();
 		expect(revokeObjectUrl).toHaveBeenCalledWith('blob:diagram');
 	});
 
