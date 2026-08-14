@@ -99,7 +99,7 @@ const lines = computed<Span[][]>(() => {
 			}}</span>
 		</div>
 		<pre
-			class="overflow-x-auto px-4 py-3.5"
+			class="px-4 py-3.5 whitespace-pre-wrap break-words"
 			v-bind="$attrs"
 		><code><template v-for="(line, index) in lines" :key="index"><span v-for="(span, spanIndex) in line" :key="spanIndex" :class="span.class">{{ span.text }}</span>{{ '\n' }}</template></code></pre>
 	</div>
