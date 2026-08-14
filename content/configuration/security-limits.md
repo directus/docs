@@ -164,6 +164,18 @@ You can use the built-in email rate-limiter for flow operations. Unlike the queu
 | `RATE_LIMITER_EMAIL_FLOWS_DURATION`      | The time window in seconds in which the points are counted.            | `60`          |
 | `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE` | A custom error message which is appended to the rate limit error.      | `''`          |
 
+### WebSocket Rate Limiting
+
+You can rate limit the number of messages a client can send over a WebSocket connection. WebSocket rate limiting is turned on or off by the main `RATE_LIMITER_ENABLED` flag, and there is no separate enable flag.
+
+| Variable                             | Description                                                                                                                         | Default Value |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_WEBSOCKETS_POINTS`     | Number of allowed WebSocket messages per client in each duration window.                                                           | `50`          |
+| `RATE_LIMITER_WEBSOCKETS_DURATION`   | Length of the window in seconds for WebSocket message rate limiting.                                                               | `1`           |
+| `RATE_LIMITER_WEBSOCKETS_KEY_PREFIX` | Prefix applied to the WebSocket limiter's Redis keys. Override this when a shared Redis instance scopes each project's access by key prefix. | `websocket`   |
+
+The store and Redis connection are shared with the main rate limiter, so the WebSocket limiter uses the same `RATE_LIMITER_STORE` and `REDIS` configuration. The defaults of 50 points per 1 second match the previous built-in behavior, so existing setups are unaffected unless you set the new variables.
+
 ## Limits & Optimizations
 
 Allows you to configure hard technical limits, to prevent abuse and optimize for your particular server environment.
