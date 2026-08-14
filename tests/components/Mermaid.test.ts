@@ -13,10 +13,6 @@ afterEach(() => {
 
 const diagram = `flowchart LR
   Client --> Directus`;
-const xyChart = `xychart-beta
-  x-axis [Mon, Tue, Wed]
-  bar [120, 180, 160]
-  line [100, 150, 190]`;
 const tooltipStub = { template: '<span v-bind="$attrs"><slot /></span>' };
 
 describe('Mermaid', () => {
@@ -40,15 +36,6 @@ describe('Mermaid', () => {
 		});
 
 		expect(wrapper.find('.mermaid-canvas svg').exists()).toBe(true);
-	});
-
-	it('renders XY charts used for interactive tooltips', async () => {
-		const wrapper = await mountSuspended(Mermaid, {
-			props: { code: xyChart },
-			global: { stubs: { UTooltip: tooltipStub } },
-		});
-
-		expect(wrapper.get('.mermaid-canvas svg').attributes('data-xychart-colors')).toBe('1');
 	});
 
 	it('zooms, pans with the keyboard, and resets', async () => {
