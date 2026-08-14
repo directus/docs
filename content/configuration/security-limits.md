@@ -166,15 +166,15 @@ You can use the built-in email rate-limiter for flow operations. Unlike the queu
 
 ### WebSocket Rate Limiting
 
-You can rate limit the number of messages a client can send over a WebSocket connection. WebSocket rate limiting is turned on or off by the main `RATE_LIMITER_ENABLED` flag, and there is no separate enable flag.
+You can rate limit the number of messages a client can send over a WebSocket connection. The WebSocket message rate limiter inherits all `RATE_LIMITER_*` settings (store, points, duration, Redis connection) and is enabled by the same `RATE_LIMITER_ENABLED` flag. There is no separate enable flag.
 
-| Variable                             | Description                                                                                                                         | Default Value |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_WEBSOCKETS_POINTS`     | Number of allowed WebSocket messages per client in each duration window.                                                           | `50`          |
-| `RATE_LIMITER_WEBSOCKETS_DURATION`   | Length of the window in seconds for WebSocket message rate limiting.                                                               | `1`           |
-| `RATE_LIMITER_WEBSOCKETS_KEY_PREFIX` | Prefix applied to the WebSocket limiter's Redis keys. Override this when a shared Redis instance scopes each project's access by key prefix. | `websocket`   |
+Any `RATE_LIMITER_WEBSOCKETS_*` variable overrides the matching `RATE_LIMITER_*` value for WebSocket connections only.
 
-The store and Redis connection are shared with the main rate limiter, so the WebSocket limiter uses the same `RATE_LIMITER_STORE` and `REDIS` configuration. The defaults of 50 points per 1 second match the previous built-in behavior, so existing setups are unaffected unless you set the new variables.
+| Variable                             | Description                                                                                                                                  | Default Value               |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| `RATE_LIMITER_WEBSOCKETS_POINTS`     | Overrides `RATE_LIMITER_POINTS` for WebSocket connections - allowed messages per client per window.                                          | Inherits `RATE_LIMITER_POINTS`   |
+| `RATE_LIMITER_WEBSOCKETS_DURATION`   | Overrides `RATE_LIMITER_DURATION` for WebSocket connections - window length in seconds.                                                      | Inherits `RATE_LIMITER_DURATION` |
+| `RATE_LIMITER_WEBSOCKETS_KEY_PREFIX` | Prefix for the WebSocket limiter's Redis keys. Override this when a shared Redis instance scopes each project's access by key prefix.         | `websocket`                 |
 
 ## Limits & Optimizations
 
