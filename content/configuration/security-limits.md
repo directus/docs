@@ -164,6 +164,18 @@ You can use the built-in email rate-limiter for flow operations. Unlike the queu
 | `RATE_LIMITER_EMAIL_FLOWS_DURATION`      | The time window in seconds in which the points are counted.            | `60`          |
 | `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE` | A custom error message which is appended to the rate limit error.      | `''`          |
 
+### WebSocket Rate Limiting
+
+You can rate limit the number of messages a client can send over a WebSocket connection. The WebSocket message rate limiter inherits all `RATE_LIMITER_*` settings (store, points, duration, Redis connection) and is enabled by the same `RATE_LIMITER_ENABLED` flag. There is no separate enable flag.
+
+Any `RATE_LIMITER_WEBSOCKETS_*` variable overrides the matching `RATE_LIMITER_*` value for WebSocket connections only.
+
+| Variable                             | Description                                                                                                                                  | Default Value               |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| `RATE_LIMITER_WEBSOCKETS_POINTS`     | Overrides `RATE_LIMITER_POINTS` for WebSocket connections - allowed messages per client per window.                                          | Inherits `RATE_LIMITER_POINTS`   |
+| `RATE_LIMITER_WEBSOCKETS_DURATION`   | Overrides `RATE_LIMITER_DURATION` for WebSocket connections - window length in seconds.                                                      | Inherits `RATE_LIMITER_DURATION` |
+| `RATE_LIMITER_WEBSOCKETS_KEY_PREFIX` | Prefix for the WebSocket limiter's Redis keys. Override this when a shared Redis instance scopes each project's access by key prefix.         | `websocket`                 |
+
 ## Limits & Optimizations
 
 Allows you to configure hard technical limits, to prevent abuse and optimize for your particular server environment.
