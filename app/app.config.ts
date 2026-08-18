@@ -169,6 +169,10 @@ export default defineAppConfig({
 						icon: 'directus-deployments',
 					},
 					{
+						label: 'Environment Sync',
+						to: '/guides/environment-sync',
+					},
+					{
 						label: 'Security',
 						to: '/guides/security/best-practices',
 						icon: 'i-lucide-shield-check',
