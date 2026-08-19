@@ -1,7 +1,7 @@
 ---
 stableId: d84d4667-9995-439f-bede-19688f6e8189
 id: dc13157c-95a1-4486-9dd3-3d0c43876bdc
-slug: build-a-user-feedback-widget-with-vue-js-
+slug: build-a-user-feedback-widget-with-vue-js
 title: Build a User Feedback Widget with Vue.js
 technologies:
   - vue
