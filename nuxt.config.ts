@@ -169,6 +169,12 @@ export default defineNuxtConfig({
 		transpile: ['shiki'],
 	},
 
+	vite: {
+		optimizeDeps: {
+			include: ['debug'],
+		},
+	},
+
 	routeRules: {
 		...loadRedirectRouteRules(),
 		'/api/**': { prerender: true },
