@@ -10,16 +10,16 @@ description: Configuration for extensions and the Directus Marketplace.
 For guidance on restricting who can install or manage extensions, see [Security Best Practices](/guides/security/best-practices#extensions).
 ::
 
-| Variable                                        | Description                                                                                                                        | Default Value  |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `EXTENSIONS_PATH`<sup>[1]</sup>                 | Path to your local extensions directory, or subdirectory within the configured storage location when `EXTENSIONS_LOCATION` is set. | `./extensions` |
-| `EXTENSIONS_MUST_LOAD`                          | Exit the server when any API extension fails to load.                                                                              | `false`        |
-| `EXTENSIONS_AUTO_RELOAD`<sup>[2], [3]</sup>     | Automatically reload extensions when they have changed.                                                                            | `false`        |
-| `EXTENSIONS_CACHE_TTL`<sup>[4]</sup>            | How long custom app Extensions get cached by browsers.                                                                             |                |
-| `EXTENSIONS_LOCATION`<sup>[5], [6]</sup>        | Key of the configured [storage locations](/configuration/files) to load extensions from a specific storage location.               |                |
-| `EXTENSIONS_LIMIT`                              | Maximum number of extensions you allow to be installed through the Marketplace.                                                    |                |
-| `EXTENSIONS_ROLLDOWN`                           | Enable use of [Rolldown](https://rolldown.rs/) to optimize extensions bundling.                                                    | `false`        |
-| `EXTENSIONS_STORAGE_MAX_CONCURRENCY`<sup>[7]</sup> | Maximum number of concurrent requests when syncing, installing, or uninstalling extensions in the configured storage location.                               | `20`           |
+| Variable                                           | Description                                                                                                                        | Default Value  |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `EXTENSIONS_PATH`<sup>[1]</sup>                    | Path to your local extensions directory, or subdirectory within the configured storage location when `EXTENSIONS_LOCATION` is set. | `./extensions` |
+| `EXTENSIONS_MUST_LOAD`                             | Exit the server when any API extension fails to load.                                                                              | `false`        |
+| `EXTENSIONS_AUTO_RELOAD`<sup>[2], [3]</sup>        | Automatically reload extensions when they have changed.                                                                            | `false`        |
+| `EXTENSIONS_CACHE_TTL`<sup>[4]</sup>               | How long custom app Extensions get cached by browsers.                                                                             |                |
+| `EXTENSIONS_LOCATION`<sup>[5], [6]</sup>           | Key of the configured [storage locations](/configuration/files) to load extensions from a specific storage location.               |                |
+| `EXTENSIONS_LIMIT`                                 | Maximum number of extensions you allow to be installed through the Marketplace.                                                    |                |
+| `EXTENSIONS_ROLLDOWN`                              | Enable use of [Rolldown](https://rolldown.rs/) to optimize extensions bundling.                                                    | `false`        |
+| `EXTENSIONS_STORAGE_MAX_CONCURRENCY`<sup>[7]</sup> | Maximum number of concurrent requests when syncing, installing, or uninstalling extensions in the configured storage location.     | `20`           |
 
 <sup>[1]</sup> When `EXTENSIONS_LOCATION` is set, this defines the path inside the selected storage location where extensions reside.
 
