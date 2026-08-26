@@ -24,6 +24,13 @@ For each of the auth providers listed, you must provide the following configurat
 | `AUTH_<PROVIDER>_MODE`   | Whether to use `'cookie'` or `'session'` authentication mode when redirecting. Applies to the following drivers `oauth2`, `openid`, `saml`. | `session`     |
 
 ::callout{icon="i-lucide-info"}
+**Data Studio login**  
+The Data Studio login page only lists SSO providers configured with `AUTH_<PROVIDER>_MODE=session` (the default). Providers using `cookie` mode are hidden from the login screen and filtered out of the `/auth` provider list, because they are intended for external applications that consume refresh tokens rather than the Data Studio session cookie.
+
+The `/auth/login/<provider>` flow still works for `cookie` mode providers. If an SSO button is missing from the login page, confirm the provider is set to `session` mode.
+::
+
+::callout{icon="i-lucide-info"}
 Cookie and session configuration settings such as `REFRESH_TOKEN_COOKIE_*`, `SESSION_COOKIE_*`, and related security parameters can be found in [Security & Limits](/configuration/security-limits).
 ::
 
