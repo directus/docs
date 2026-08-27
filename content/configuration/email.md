@@ -8,10 +8,10 @@ description: Configuration for email settings and templates.
 
 ## Email Transport
 
-| Variable             | Description                                                              | Default Value |
-| -------------------- | ------------------------------------------------------------------------ | ------------- |
-| `EMAIL_VERIFY_SETUP` | Check if email setup is properly configured.                             | `true`        |
-| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`. | `sendmail`    |
+| Variable             | Description                                                                          | Default Value |
+| -------------------- | ------------------------------------------------------------------------------------ | ------------- |
+| `EMAIL_VERIFY_SETUP` | Check if email setup is properly configured.                                         | `true`        |
+| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`, `mailtrap`. | `sendmail`    |
 
 Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 
@@ -51,6 +51,15 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 | `EMAIL_SES_CREDENTIALS__SECRET_ACCESS_KEY` | Your AWS SES secret key.    |               |
 | `EMAIL_SES_REGION`                         | Your AWS SES region.        |               |
 
+### Mailtrap
+
+| Variable                       | Description                                                                                | Default Value |
+| ------------------------------ | ------------------------------------------------------------------------------------------ | ------------- |
+| `EMAIL_MAILTRAP_TOKEN`         | An API token from [your Mailtrap account](https://mailtrap.io).                            |               |
+| `EMAIL_MAILTRAP_SANDBOX`       | Send to a test inbox instead of delivering email. Requires `EMAIL_MAILTRAP_TEST_INBOX_ID`. | `false`       |
+| `EMAIL_MAILTRAP_TEST_INBOX_ID` | The inbox ID to use when `EMAIL_MAILTRAP_SANDBOX` is enabled.                              |               |
+| `EMAIL_MAILTRAP_BULK`          | Use the bulk sending stream. Cannot be combined with `EMAIL_MAILTRAP_SANDBOX`.             | `false`       |
+
 ## Email Templates
 
 Templates can be used to add custom templates for your emails, or to override the system emails used for things like resetting a password or inviting a user.
@@ -60,17 +69,17 @@ Templates can be used to add custom templates for your emails, or to override th
 | `EMAIL_FROM`           | Email address from which emails are sent. | `no-reply@example.com` |
 | `EMAIL_TEMPLATES_PATH` | Where custom templates are located        | `./templates`          |
 
-In the `EMAIL_TEMPLATES_PATH`, you can create templates for your emails by adding [`.liquid`](https://liquidjs.com) files. 
+In the `EMAIL_TEMPLATES_PATH`, you can create templates for your emails by adding [`.liquid`](https://liquidjs.com) files.
 
 ### Overriding System Emails
 
-There are a number of templates provided by Directus that can be overridden with a custom template: 
+There are a number of templates provided by Directus that can be overridden with a custom template:
 
-| Template           | File                    |
-| ------------------ | ----------------------- |
-| Password Reset     | `password-reset.liquid` |
-| User Invitation    | `user-invitation.liquid` |
-| User Registration  | `user-registration.liquid` |
+| Template          | File                       |
+| ----------------- | -------------------------- |
+| Password Reset    | `password-reset.liquid`    |
+| User Invitation   | `user-invitation.liquid`   |
+| User Registration | `user-registration.liquid` |
 
 When overriding the default email templates, make sure to include the provided `url` somewhere to ensure the email is functional.
 
