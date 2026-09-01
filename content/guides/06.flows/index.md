@@ -17,6 +17,7 @@ Flows run arbitrary code with elevated accountability. See [Security Best Practi
 - **Icon** — Adds an icon to help quickly identify the flow.
 - **Description** — Sets a brief verbal description of the flow.
 - **Color** — Sets a color to help identify the flow.
+- **Folder** — Organizes the flow into a folder on the Flows page.
 - **Activity and Logs Tracking** — Selects whether the flow should be tracked in both the [activity log](/guides/auth/accountability) and the flow's logs, only in the activity log, or neither.
 
 ## Logs
