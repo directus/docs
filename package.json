@@ -80,7 +80,7 @@
 		"remark-mdc": "^3.11.0",
 		"remark-parse": "^11.0.0",
 		"typescript": "6.0.3",
-		"vitest": "^4.1.7",
+		"vitest": "^4.1.11",
 		"vue-tsc": "^3.2.7"
 	},
 	"pnpm": {
