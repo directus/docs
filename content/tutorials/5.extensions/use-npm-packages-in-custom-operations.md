@@ -118,7 +118,7 @@ code has no negative effect.
 
 ## Use the Operation
 
-In the Directus Data Studio, open the Flows section in Settings. Create a new flow with a manual trigger. Select the
+In the Directus Data Studio, open the Flows module. Create a new flow with a manual trigger. Select the
 collection(s) to include this button on.
 
 Add a new step (operation) by clicking the tick/plus on the card, then choose **Lodash Camel Case** from the list. In

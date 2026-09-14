@@ -6,6 +6,8 @@ description: Flows enable custom, event-driven data processing and task automati
 
 Flows enable custom, event-driven data processing and task automation within Directus. Each flow is composed of one trigger, a series of operations, and a data chain that is passed between each step.
 
+Flows live in the **Flows** module in the module bar and are available to users with admin access. See [Manage Flows](/guides/flows/manage-flows) to organize, search, duplicate, import, and export them.
+
 ::callout{icon="i-lucide-info"}
 Flows run arbitrary code with elevated accountability. See [Security Best Practices](/guides/security/best-practices#flows) for guidance on restricting who can create, edit, or trigger them.
 ::
