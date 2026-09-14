@@ -41,7 +41,7 @@ See this webhook flow setup in action with our interactive demo or skip to the s
 
 ---
 
-1. **Go to Settings → Flows** in your Directus Admin Panel
+1. **Open the Flows module** from the module bar in your Directus Admin Panel
 2. **Click "Create Flow"**
 3. **Configure the flow:**
    - **Name:** Give it a descriptive name (e.g., "Send New Posts to Clay")

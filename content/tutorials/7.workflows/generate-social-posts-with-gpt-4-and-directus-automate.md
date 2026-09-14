@@ -23,7 +23,7 @@ In your Directus project, create a new collection called `posts` with the follow
 
 ## Create Flow Trigger & Read Data
 
-In the Settings Module, go to the Flows section and create a new Flow called “Generate Social Post”. Use a Manual Flow Trigger and select the Posts collection.
+In the Flows module, create a new Flow called “Generate Social Post”. Use a Manual Flow Trigger and select the Posts collection.
 
 The trigger will only return the `ID` of the article, but the whole post is needed to send to OpenAI. Create a **Read Data** operation called "Article" and give it full access permissions. On the Articles collection, access the `{{$trigger.body.keys[0]}}` item.
 
