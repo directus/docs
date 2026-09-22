@@ -19,7 +19,7 @@ Flows run arbitrary code with elevated accountability. See [Security Best Practi
 - **Icon** — Adds an icon to help quickly identify the flow.
 - **Description** — Sets a brief verbal description of the flow.
 - **Color** — Sets a color to help identify the flow.
-- **Folder** — Organizes the flow into a folder on the Flows page.
+- **Folder** — Shows which folder holds the flow on the Flows page. This is read-only. A new flow goes into whichever folder you have open when you create it, and you move it afterwards with **Move to Folder**. See [Manage Flows](/guides/flows/manage-flows#organize-flows-into-folders).
 - **Activity and Logs Tracking** — Selects whether the flow should be tracked in both the [activity log](/guides/auth/accountability) and the flow's logs, only in the activity log, or neither.
 
 ## Logs
