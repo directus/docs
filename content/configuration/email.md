@@ -11,7 +11,7 @@ description: Configuration for email settings and templates.
 | Variable             | Description                                                              | Default Value |
 | -------------------- | ------------------------------------------------------------------------ | ------------- |
 | `EMAIL_VERIFY_SETUP` | Check if email setup is properly configured.                             | `true`        |
-| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`. | `sendmail`    |
+| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`, `mailtrap`. | `sendmail`    |
 
 Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 
@@ -50,6 +50,19 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 | `EMAIL_SES_CREDENTIALS__ACCESS_KEY_ID`     | Your AWS SES access key ID. |               |
 | `EMAIL_SES_CREDENTIALS__SECRET_ACCESS_KEY` | Your AWS SES secret key.    |               |
 | `EMAIL_SES_REGION`                         | Your AWS SES region.        |               |
+
+### Mailtrap
+
+Directus sends through the official [`mailtrap`](https://www.npmjs.com/package/mailtrap) package, which supports live sending, the sandbox testing inbox, and the bulk stream.
+
+| Variable                       | Description                                                                                          | Default Value |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------- | ------------- |
+| `EMAIL_MAILTRAP_TOKEN`         | An API token from [your Mailtrap account](https://mailtrap.io/api-tokens). Required.                 |               |
+| `EMAIL_MAILTRAP_SANDBOX`       | Send to a testing inbox instead of real recipients. Requires `EMAIL_MAILTRAP_TEST_INBOX_ID`.         | `false`       |
+| `EMAIL_MAILTRAP_TEST_INBOX_ID` | The testing inbox to send to when `EMAIL_MAILTRAP_SANDBOX` is enabled.                               |               |
+| `EMAIL_MAILTRAP_BULK`          | Send through the bulk stream. Cannot be combined with `EMAIL_MAILTRAP_SANDBOX`.                      | `false`       |
+
+`EMAIL_MAILTRAP_TOKEN` is required. Directus throws an error when it creates the transport without a token, because the Mailtrap transport cannot verify its configuration ahead of the first send.
 
 ## Email Templates
 
