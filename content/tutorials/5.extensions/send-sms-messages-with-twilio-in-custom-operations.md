@@ -193,7 +193,7 @@ code has no negative effect.
 
 ## Use the Operation
 
-In the Directus Data Studio, open the Flows section in Settings. Create a new flow with an event trigger. Select the
+In the Directus Data Studio, open the Flows module. Create a new flow with an event trigger. Select the
 collection(s) to include.
 
 If the payload does not contain the phone number, use the **Read Data** operation to fetch the phone number from the
