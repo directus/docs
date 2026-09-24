@@ -6,7 +6,9 @@ description: Configuration for the server health check service.
 
 :partial{content="config-env-vars"}
 
-The health check service powers the `/server/health` endpoint, which reports the status of connected services like the database, edis, storage, and email. Results are cached and shared across requests to avoid excessive checks.
+The health check service powers the `/server/health` endpoint, which reports the status of connected services like the database, Redis, storage, and email. Results are cached and shared across requests to avoid excessive checks. In multi-instance deployments, the cached result is shared across all instances.
+
+The endpoint requires authentication. Unauthenticated requests receive a `403` error, non-admin users receive only the overall `status`, and admin users receive the result of each individual check. For unauthenticated liveness checks, use `/server/ping` instead. See [Health Checks](/self-hosting/deploying#health-checks) for details.
 
 | Variable                | Description                                                                                           | Default Value                  |
 | ----------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------ |
