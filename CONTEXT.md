@@ -1,6 +1,6 @@
 # Directus Docs — Domain Language
 
-Shared vocabulary for this codebase. Seeded with rate-limiting terms; extend as other areas are sharpened.
+Shared vocabulary for this source code. Seeded with rate-limiting terms; extend as other areas are sharpened.
 
 ## Language
 

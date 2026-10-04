@@ -316,6 +316,6 @@ router.delete('/', async (req, res) => {
 
 ::callout{icon="i-lucide-info"}
 
-Refer to the full list of methods [in our codebase](https://github.com/directus/directus/blob/main/api/src/services).
+Refer to the full list of methods [in our source code](https://github.com/directus/directus/blob/main/api/src/services).
 
 ::

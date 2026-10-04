@@ -6,7 +6,7 @@ description: Configuration of the Data Studio's theming engine and appearance se
 
 :video-embed{video-id="8ad4795b-963c-4ebd-8921-38ea2dda9f44"}
 
-The Directus Data Studio has been developed with customization and extensibility in mind. Colors and styles referenced within the codebase are based around theme rules which enables making comprehensive styling changes to the Data Studio.
+The Directus Data Studio has been developed with customization and extensibility in mind. Colors and styles referenced within the source code are based around theme rules which enables making comprehensive styling changes to the Data Studio.
 
 Theming options can be found in dedicated section in the Settings Module.
 

@@ -31,7 +31,7 @@ The Directus + Inngest integration provides impressive capabilities for handling
 
 What makes Inngest especially valuable for AI workflows is its ability to handle long-running, resource-intensive processes reliably. AI operations often involve multiple steps (data preparation, model inference, result processing) that need to be coordinated, with appropriate error handling and retries at each stage.
 
-Most importantly, Inngest eliminates the need to manage complex queue infrastructure. You simply write functions in your existing codebase using Inngest's SDK, and it handles all the orchestration for you. This approach is particularly valuable with AI workflows, which often require careful state management and can benefit from the step-by-step execution model.
+Most importantly, Inngest eliminates the need to manage complex queue infrastructure. You simply write functions in your existing source code using Inngest's SDK, and it handles all the orchestration for you. This approach is particularly valuable with AI workflows, which often require careful state management and can benefit from the step-by-step execution model.
 
 **Here's a quick fictional example of an Inngest function.**
 
