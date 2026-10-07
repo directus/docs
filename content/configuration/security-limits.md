@@ -42,7 +42,7 @@ This page documents environment variables. For in-app security configuration (pe
 restarts or horizontally scaled deployments. Must be explicitly set to a secure random value in production.
 
 <sup>[2]</sup> localhost can get resolved to `::1` as well as `127.0.0.1` depending on the system - ensure to include
-both if you want to specifically block localhost. Wildcards (`10.0.0.*`), netmasks (`10.0.0.0/255.255.255.0`), short ranges (`10.0.0.1-50`), and malformed prefixes (`10.0.0.0/ 24`) are invalid. Directus reads `IMPORT_IP_DENY_LIST` from the environment on every outbound request, so it is never validated on save. If any entry is invalid, Directus logs a warning and denies every outbound request.
+both if you want to specifically block localhost. Wildcards (`10.0.0.*`), netmasks (`10.0.0.0/255.255.255.0`), short ranges (`10.0.0.1-50`), and malformed prefixes (`10.0.0.0/ 24`) are invalid. Directus checks `IMPORT_IP_DENY_LIST` each time it makes an outbound request. If any entry is invalid, Directus logs a warning and denies every outbound request.
 
 Browsers are pretty strict when it comes to third-party cookies. If you're running into unexpected problems when running your project and API on different domains, make sure to verify your configuration for `REFRESH_TOKEN_COOKIE_NAME`, `REFRESH_TOKEN_COOKIE_SECURE`, and `REFRESH_TOKEN_COOKIE_SAME_SITE`.
 
