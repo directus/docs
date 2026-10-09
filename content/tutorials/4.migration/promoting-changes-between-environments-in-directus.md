@@ -8,7 +8,12 @@ authors:
     title: Developer Educator
 description: Learn the options to migrate schema and data between Directus projects.
 ---
+
 In Directus, different environments (development, staging, production) are managed as separate project instances. This guide explains how to safely promote changes between these environments.
+
+::callout{icon="i-lucide-book-open" color="primary" to="/guides/environment-sync"}
+For more granular migration and CI/CD integration, refer to our environement sync docs
+::
 
 ## Schema Changes
 
@@ -23,6 +28,7 @@ Manage all production content as your single source of truth using:
 - Flows to control publishing process and procedures
 
 ### Migration Options
+
 When you need to migrate content as part of schema updates, you have several options:
 
 1. **Data Studio**: Use the built-in interface to export/import data in CSV, JSON, or XML formats.
@@ -33,7 +39,6 @@ When you need to migrate content as part of schema updates, you have several opt
    - [Custom extensions migrations](/self-hosting/including-extensions)
    - Direct database operations (being careful with system tables)
    - Using and modifying the [template CLI](https://github.com/directus-community/directus-template-cli) to extract and load of all schema, system collections and content.
-
 
 ## Migrate Your Schema
 
@@ -56,11 +61,12 @@ You must be an admin user to use these endpoints and follow this guide.
 You should have two Directus projects - this guide will refer to them as the "base" and the "target".
 
 ::tabs
-    ::div{class="pr-6"}
-    ---
-    label: Node.js
-    ---
-    #### Set Up Project
+::div{class="pr-6"}
+
+---
+
+label: Node.js
+--- #### Set Up Project
 
     Open a new empty directory in your code editor. In your terminal, navigate to the directory and install dependencies
     with `npm install @directus/sdk`.
@@ -282,4 +288,5 @@ You should have two Directus projects - this guide will refer to them as the "ba
     applying the diffs without this safeguard. In case the schema has been changed in the meantime, the diff must be
     regenerated.
     ::
+
 ::
