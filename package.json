@@ -48,7 +48,7 @@
 		"ai": "6.0.185",
 		"beautiful-mermaid": "1.1.3",
 		"h3": "1.15.11",
-		"nuxt": "4.4.2",
+		"nuxt": "4.5.1",
 		"nuxt-llms": "0.2.0",
 		"openapi3-ts": "4.5.0",
 		"posthog-js": "1.371.2",
