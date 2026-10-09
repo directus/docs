@@ -36,7 +36,7 @@ In order to create new note, edit note or delete note on behalf of user, we need
 
 ![Filter Notes](/img/0ce9a861-27a4-44d7-93fb-5481b7711945.webp)
 
-# Initialize Extension
+## Initialize Extension
 
 Open your terminal and run the following commands to create a new project, install dependencies, and run the project:
 
