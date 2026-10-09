@@ -82,7 +82,7 @@ export function formatBlogData(page: PageData) {
 
 - Built a custom Notion block and text component to achieve the desired appearance for each content type.
 
-These additional components and functions led to codebase complexity, and I soon realized there was a need for an alternative CMS that could offer scalability and maintainability over time.
+These additional components and functions led to source code complexity, and I soon realized there was a need for an alternative CMS that could offer scalability and maintainability over time.
 
 ## Why Directus?
 
