@@ -23,18 +23,18 @@ Quick reference of all available actions organized by resource type:
 |----------|-----------|-------------|
 | **Items** | Create | Add a new item to a collection |
 | **Items** | Get | Retrieve a single item by ID |
-| **Items** | Get Many | Retrieve multiple items with optional filters |
+| **Items** | Get Many | Retrieve multiple items |
 | **Items** | Update | Modify an existing item |
 | **Items** | Delete | Permanently remove an item |
 | **Users** | Invite | Send an invitation to a new user |
 | **Users** | Get | Retrieve a single user by ID |
-| **Users** | Get Many | Retrieve multiple users with optional filters |
+| **Users** | Get Many | Retrieve multiple users |
 | **Users** | Update | Modify an existing user |
 | **Users** | Delete | Permanently remove a user |
 | **Files** | Upload a File | Upload a file from binary data |
 | **Files** | Import a File | Import a file from a URL |
 | **Files** | Get | Retrieve a single file by ID |
-| **Files** | Get Many | Retrieve multiple files with optional filters |
+| **Files** | Get Many | Retrieve multiple files |
 | **Files** | Update | Modify file metadata |
 | **Files** | Delete | Permanently remove a file |
 
@@ -62,9 +62,18 @@ Delete operations permanently remove data. Make sure this is what you want to do
 ### Get Operations
 
 - **Get**: Set Resource → Operation to Get → Enter ID → Optionally select **Fields** to return
-- **Get Many**: Set Resource → Operation to Get Many → Optionally add filters → Set **Limit** → Optionally select **Fields**
+- **Get Many**: Set Resource → Operation to Get Many → Select Collection (Items only) → Optionally select **Fields** → Set **Limit** or enable **Return All**. For Users and Files, optionally enable **Simplify**.
 
-**Note for Items**: Select the **Collection** before configuring filters.
+**Note for Items**: Select the **Collection** first. To filter results, use [Get Many (Raw JSON)](/guides/integrations/n8n/directus-n8n-advanced).
+
+**Return All** is off by default. With it off, you get one page of up to **Limit** rows (maximum 100). With it on, you get all results.
+
+::callout{icon="i-lucide-triangle-alert" color="warning"}
+**Return All loads all results into n8n**
+That means many API calls and a large item output. Prefer **Limit**, or a filter in [Get Many (Raw JSON)](/guides/integrations/n8n/directus-n8n-advanced), on large collections. Select only the fields you need. Huge collections can hit n8n memory or timeout limits. Use **Return All** when you need the rest of a set, not to dump the whole CMS.
+
+To process rows in chunks, use Get Many (Raw JSON) with `limit` and `offset`, or n8n's **Split In Batches** node. Do not use **Return All** for batched writes.
+::
 
 ## Resource-Specific Operations
 
@@ -116,7 +125,7 @@ When getting items, you can select specific fields to return. This is helpful wh
 
 - You only need certain information
 - You want to reduce the amount of data transferred
-- You're working with large collections
+- You're working with large collections, including **Return All** runs
 
 ::callout{icon="i-lucide-info"}
 **Performance Tip**
@@ -159,6 +168,7 @@ If you encounter issues:
 ## Next Steps
 
 - **[← Back to Overview](/guides/integrations/n8n)** Return to the integration overview
+- **[Learn about Advanced Features →](/guides/integrations/n8n/directus-n8n-advanced)** Filters, query parameters, and Get Many (Raw JSON)
 - **[Learn about Directus Triggers →](/guides/integrations/n8n/directus-n8n-triggers)** Set up automated workflows
 
 
