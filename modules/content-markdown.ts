@@ -2,6 +2,7 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, sep } from 'node:path';
 import { defineNuxtModule, useLogger } from '@nuxt/kit';
+import type { NitroOptions } from 'nitropack';
 import { contentToMarkdown } from '../server/utils/contentToMarkdown';
 import { parseMcpMarkdown } from '../server/utils/mcpMarkdown';
 
@@ -61,9 +62,43 @@ export default defineNuxtModule({
 			await writeFile(join(outDir, 'mcp-docs-index.json'), JSON.stringify(index, null, 2), 'utf8');
 
 			logger.info(`Wrote ${written} content markdown files and ${index.length} MCP index entries`);
+
+			if (nitro.options.preset.includes('vercel')) {
+				addVercelAgentRoutes(nitro.options, index.map(entry => entry.path));
+			}
 		});
 	},
 });
+
+/*
+ * On Vercel, prerendered pages are served from the CDN before server middleware runs,
+ * so server/middleware/markdown-negotiation.ts never sees them. Mirror it in Vercel's
+ * routing layer with an exact rewrite per page to its `.md` sibling (a page without
+ * one keeps serving HTML), and point agents at llms.txt via a Link header (RFC 8288).
+ * Pushed onto `vercel.config.routes`, which Nitro places ahead of its own routes.
+ */
+function addVercelAgentRoutes(options: NitroOptions, paths: string[]) {
+	const base = options.baseURL.replace(/\/$/, '');
+	const routes: Record<string, unknown>[] = [{
+		src: `^${base}(?:/.*)?$`,
+		headers: { Link: `<${base}/llms.txt>; rel="describedby"; type="text/plain"` },
+		continue: true,
+	}];
+	for (const path of paths) {
+		routes.push({
+			src: `^${escapeRegExp(base + path.replace(/\/$/, ''))}/?$`,
+			has: [{ type: 'header', key: 'accept', value: '(.*)text/markdown(.*)' }],
+			dest: `${base}${path === '/' ? '/index' : path}.md`,
+		});
+	}
+	const vercel = options.vercel ||= { config: { version: 3 } };
+	vercel.config ||= { version: 3 };
+	(vercel.config.routes ||= []).push(...routes as never[]);
+}
+
+function escapeRegExp(value: string): string {
+	return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 async function walk(dir: string): Promise<string[]> {
 	const entries = await readdir(dir, { withFileTypes: true });
