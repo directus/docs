@@ -34,4 +34,4 @@ Create a project with Docker.
 
 ## Platform-Specific Guides
 
-We also have step-by-step guides for self-hosting Directus on various cloud providers, including Amazon Web Services, Microsoft Azure, Google Cloud Platform, DigitalOcean, Ubuntu, Railway, and Render. The tutorials below walk you through deploying on each platform (often including reverse proxy, SSL, and running as a service where relevant).
+We also have step-by-step guides for self-hosting Directus on various cloud providers, including Amazon Web Services, Microsoft Azure, Google Cloud Platform, DigitalOcean, Ubuntu, Railway, Render, and PandaStack. The tutorials below walk you through deploying on each platform (often including reverse proxy, SSL, and running as a service where relevant).
