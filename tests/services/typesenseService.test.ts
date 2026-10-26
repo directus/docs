@@ -1,13 +1,18 @@
+import { mockNuxtImport } from '@nuxt/test-utils/runtime';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { TypesenseService } from '../../app/services/typesenseService';
 
+const { fetchMock } = vi.hoisted(() => ({ fetchMock: vi.fn() }));
+
+mockNuxtImport('$fetch', () => fetchMock);
+
 afterEach(() => {
-	vi.unstubAllGlobals();
+	fetchMock.mockReset();
 });
 
 describe('TypesenseService', () => {
 	it('uses multi_search to merge unfiltered facet counts for refinements', async () => {
-		const fetchMock = vi.fn().mockResolvedValue({
+		fetchMock.mockResolvedValue({
 			results: [
 				{
 					hits: [{ document: { id: '1', title: 'Auth' } }],
@@ -21,8 +26,6 @@ describe('TypesenseService', () => {
 				},
 			],
 		});
-		vi.stubGlobal('$fetch', fetchMock);
-
 		const service = new TypesenseService({
 			typesenseUrl: 'https://search.example.com/typesense',
 			typesensePublicApiKey: 'public-key',
