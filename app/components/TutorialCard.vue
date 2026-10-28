@@ -10,10 +10,8 @@ const props = defineProps<{
 	};
 }>();
 
-const imageSrc = computed(() => {
-	const technologies = props.article.technologies?.length ? props.article.technologies : ['directus'];
-	return `/docs/api/tutorialimg?logos=${technologies.join(', ')}`;
-});
+// Cards are baked by `pnpm tutorial-cards`.
+const imageSrc = computed(() => `/docs/img/tutorials/cards/${props.article.technologies?.[0] ?? 'directus'}.jpg`);
 </script>
 
 <template>
