@@ -66,6 +66,17 @@ navigation:
 ---
 ```
 
+### Tutorial Cards
+
+Tutorial cards show a logo for the first entry in `technologies`. The cards are static images in `public/img/tutorials/cards/<technology>.jpg`, baked from `public/img/tutorials/<technology>.png`. A technology without a logo gets the Directus card.
+
+When a tutorial uses a technology that has no card yet:
+
+1. Optionally add the logo as `public/img/tutorials/<technology>.png`. The file name must match the `technologies` value exactly.
+2. Run `pnpm tutorial-cards` and commit the new card.
+
+To rebuild every card (for example after changing a logo or the background), run `node scripts/tutorial-cards.ts --force`.
+
 ## Repository Tooling
 
 The repository includes scripts that keep docs routes stable when files move and that index the docs into Typesense.
@@ -75,6 +86,8 @@ pnpm stable-ids:ensure  # Add missing stableId frontmatter
 pnpm stable-ids:check   # Validate stableId frontmatter
 pnpm redirects:sync     # Update redirects.json for moved pages
 pnpm redirects:check    # Check redirect coverage without writing files
+pnpm tutorial-cards     # Bake missing tutorial card images
+pnpm tutorial-cards:check # Check every tutorial has a card
 pnpm index:docs         # Build the search index in Typesense
 pnpm typesense:cleanup-preview # Delete stale Typesense preview indexes
 pnpm typecheck:scripts  # Type check repository scripts
@@ -82,7 +95,7 @@ pnpm typecheck:scripts  # Type check repository scripts
 
 Stable IDs give each public docs page a permanent identity. Nuxt Content derives its unique page IDs from file paths, so moving a page changes its built-in ID. Redirect sync compares the current branch to `origin/main`, so moved pages keep their old URLs working.
 
-CI runs `pnpm stable-ids:check` and `pnpm redirects:check` for docs changes.
+CI runs `pnpm stable-ids:check`, `pnpm redirects:check`, and `pnpm tutorial-cards:check` for docs changes.
 
 - New docs page: run `pnpm stable-ids:ensure`, then commit the new `stableId`.
 - Moved docs page: keep the existing `stableId`, run `pnpm redirects:sync`, then commit `redirects.json`.
