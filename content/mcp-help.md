@@ -82,6 +82,8 @@ After connecting, ask your AI client questions like:
 
 The assistant should call `search-docs` or `list-docs`, then `get-doc` to read the relevant page.
 
+For deeper guidance while your agent builds, install the [Directus Agent Skills](/guides/ai/agent-skills) as well. The skills cover the mistakes agents commonly make with Directus, and the docs MCP server fills in everything else.
+
 ## Troubleshooting
 
 - **Connection refused or 404** - confirm the URL is exactly `https://directus.com/docs/mcp` (note the `/docs` prefix).
