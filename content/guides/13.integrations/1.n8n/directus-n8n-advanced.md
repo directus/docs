@@ -36,7 +36,7 @@ Quick reference of all available raw operations organized by resource type:
 
 ::callout{icon="i-lucide-lightbulb"}
 **When to Use Raw Operations**
-Use raw operations when you need complex filters with logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), or full control over the JSON payload structure.
+Use raw operations when you need filters, logical operators (`_and`, `_or`), relational field filtering, advanced query parameters (aggregation, search, etc.), or full control over the JSON payload structure.
 ::
 
 ## Using Raw Operations
@@ -59,7 +59,7 @@ Ensure your Directus API token has the correct permissions for the resource and 
 
 ### Get Many (Raw JSON)
 
-Retrieve items with advanced filtering and query parameters:
+Retrieve items with advanced filtering and query parameters. Get Many (Raw JSON) returns one page of results from the query JSON as written.
 
 ```json
 {
@@ -72,6 +72,16 @@ Retrieve items with advanced filtering and query parameters:
   "limit": 10
 }
 ```
+
+`limit` controls that single request:
+
+- Omit `limit` to get Directus's default page (usually 100), not the whole collection.
+- Set `"limit": 10` to get 10 rows.
+- Set `"limit": -1` to request Directus's maximum allowed page size. If [`QUERY_LIMIT_MAX`](/configuration/security-limits) is set (for example, `5`), you still only get that many rows. This is not a dump of the whole collection.
+
+To process a large filtered set in chunks, keep `limit` and `offset` in the query and use n8n's **Split In Batches** node.
+
+If you want all results and you don't need a custom filter, use standard [Get Many](/guides/integrations/n8n/directus-n8n-actions) with **Return All**.
 
 ### Get (Raw JSON)
 
@@ -157,7 +167,7 @@ For complete filter syntax, operators, and examples, see the [Directus Filter Ru
 
 ## Query Parameters
 
-Get (Raw JSON) and Get Many (Raw JSON) support all Directus query parameters. Include them in the **Query Parameters** field alongside filters:
+Get (Raw JSON) and Get Many (Raw JSON) support all Directus query parameters. Include them in the **Query Parameters** field alongside filters. If you omit `limit` on Get Many (Raw JSON), Directus returns its default page (usually 100), not the whole collection.
 
 **Common query parameters:**
 ```json
@@ -226,9 +236,10 @@ You can use n8n expressions in your raw JSON data for dynamic queries:
 
 ## Performance Tips
 
-- **Select only needed fields**: Use the `fields` parameter to reduce data transfer
-- **Use pagination**: Use `limit` and `offset`/`page` for large datasets, process in batches with n8n's **Split In Batches** node
-- **Filter in Directus**: Always use the `filter` parameter rather than processing all data in n8n
+- **Select only the fields you need**: Use the `fields` parameter to reduce data transfer
+- **Filter in Directus**: Use the `filter` parameter rather than loading extra rows into n8n
+- **Paginate in chunks**: Use `limit` and `offset` for large datasets, then process batches with n8n's **Split In Batches** node. Get Many (Raw JSON) returns one page of results.
+- **Return All is all-at-once**: Standard [Get Many](/guides/integrations/n8n/directus-n8n-actions) with **Return All** returns all results into n8n in one node run. Use it when you need the rest of a set and you don't need a custom filter. Do not use it to dump a large collection, or when you need to write out rows in chunks.
 
 **Example:**
 ```json
@@ -249,7 +260,7 @@ You can use n8n expressions in your raw JSON data for dynamic queries:
 ## Next Steps
 
 - **[← Back to Overview](/guides/integrations/n8n)** Return to the integration overview
-- **[Learn about Directus Actions →](/guides/integrations/n8n/directus-n8n-actions)** Basic operations guide
+- **[Learn about Directus Actions →](/guides/integrations/n8n/directus-n8n-actions)** Standard Get Many, Return All, and other operations
 - **[Learn about Directus Triggers →](/guides/integrations/n8n/directus-n8n-triggers)** Automation workflows
 
 
