@@ -34,7 +34,7 @@ This page documents environment variables. For in-app security configuration (pe
 | `USER_REGISTER_URL_ALLOW_LIST`      | List of URLs that can be used as `verification_url` in the `/users/register` endpoint.                                                                                                  |                           |
 | `IP_TRUST_PROXY`                    | Settings for the Express.js trust proxy setting.                                                                                                                                        | false                     |
 | `IP_CUSTOM_HEADER`                  | What custom request header to use for the IP address.                                                                                                                                   | false                     |
-| `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny importing files from these IP addresses / IP ranges / CIDR blocks. Use `0.0.0.0` to match any local IP address.                                                                    | `0.0.0.0,169.254.169.254` |
+| `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny outbound requests, such as file imports and the **Request URL** flow operation, to these IP addresses, IP ranges (`10.0.0.1-10.0.0.50`), or CIDR blocks (`10.0.0.0/8`). Use `0.0.0.0` to match any local IP address. | `0.0.0.0,169.254.169.254` |
 | `HSTS_ENABLED`                      | Enable the Strict-Transport-Security policy header. When enabled, Directus will send the `Strict-Transport-Security: max-age=15552000; includeSubDomains` header on all responses.      | `false`                   |
 | `HSTS_*`                            | Custom overrides for the Strict-Transport-Security header. See [helmet's documentation](https://helmetjs.github.io). Example: `HSTS_MAX_AGE=63072000`                                   |                           |
 
@@ -42,7 +42,7 @@ This page documents environment variables. For in-app security configuration (pe
 restarts or horizontally scaled deployments. Must be explicitly set to a secure random value in production.
 
 <sup>[2]</sup> localhost can get resolved to `::1` as well as `127.0.0.1` depending on the system - ensure to include
-both if you want to specifically block localhost.
+both if you want to specifically block localhost. Wildcards (`10.0.0.*`), netmasks (`10.0.0.0/255.255.255.0`), short ranges (`10.0.0.1-50`), and malformed prefixes (`10.0.0.0/ 24`) are invalid. Directus checks `IMPORT_IP_DENY_LIST` each time it makes an outbound request. If any entry is invalid, Directus logs a warning and denies every outbound request.
 
 Browsers are pretty strict when it comes to third-party cookies. If you're running into unexpected problems when running your project and API on different domains, make sure to verify your configuration for `REFRESH_TOKEN_COOKIE_NAME`, `REFRESH_TOKEN_COOKIE_SECURE`, and `REFRESH_TOKEN_COOKIE_SAME_SITE`.
 
