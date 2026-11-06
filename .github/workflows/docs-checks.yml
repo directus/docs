@@ -12,6 +12,8 @@ on:
       - 'scripts/check-stable-ids.ts'
       - 'scripts/ensure-stable-ids.ts'
       - 'scripts/redirects-sync.ts'
+      - 'scripts/tutorial-cards.ts'
+      - 'public/img/tutorials/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - '.github/workflows/docs-checks.yml'
@@ -45,6 +47,9 @@ jobs:
 
       - name: Check stable IDs
         run: pnpm stable-ids:check
+
+      - name: Check tutorial cards
+        run: pnpm tutorial-cards:check
 
       # Redirect check diffs against origin/main, so it only makes sense as a
       # pre-merge gate on PRs. On push to main the merge already landed and
