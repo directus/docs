@@ -16,6 +16,7 @@ description: Configuration for AI Assistant and Model Context Protocol (MCP) fea
 When `AI_ENABLED` is set to `false`:
 - The API routes for the assistant are not mounted
 - AI Assistant sidebar is hidden from all users
+- [AI Text and AI Image](/guides/flows/operations#ai-text) flow steps fail without calling the AI provider
 - AI settings form displays a disabled notice
 
 This is useful for compliance requirements where AI features must be completely hidden.
