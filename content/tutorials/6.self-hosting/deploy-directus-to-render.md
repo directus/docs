@@ -18,10 +18,10 @@ Use the **Deploy to Render** button in the repository README to open Render with
 repo manually under **New** → **Blueprint** in the Render Dashboard. Details such as which databases and add-ons are
 included live in the repo; treat the README there as the source of truth for required secrets and optional variables.
 
-**Official repository:** [directus/render-blueprint-directus](https://github.com/directus/render-blueprint-directus)
+**Official repository:** [directus-labs/directus-render-blueprint](https://github.com/directus-labs/directus-render-blueprint)
 
 **One-click deploy:**
-[Deploy to Render](https://render.com/deploy?repo=https://github.com/directus/render-blueprint-directus)
+[Deploy to Render](https://render.com/deploy?repo=https://github.com/directus-labs/directus-render-blueprint)
 
 ## Before You Start
 
@@ -35,8 +35,8 @@ included live in the repo; treat the README there as the source of truth for req
 
 ## Step 1: Deploy the blueprint
 
-1. Open [directus/render-blueprint-directus](https://github.com/directus/render-blueprint-directus) and follow the
-   **Deploy to Render** link in the README (or use the one-click URL above).
+1. Open [directus-labs/directus-render-blueprint](https://github.com/directus-labs/directus-render-blueprint) and follow
+   the **Deploy to Render** link in the README (or use the one-click URL above).
 2. Sign in to Render when prompted and authorize GitHub access if Render asks for repository permissions.
 3. Render loads the Blueprint from the repo. Review the resources it will create (for example a web service running the
    Directus Docker image and a PostgreSQL instance). Confirm names, regions, and instance sizes match what you want for
