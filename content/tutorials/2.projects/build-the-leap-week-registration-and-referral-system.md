@@ -1,7 +1,7 @@
 ---
 stableId: 30c50361-3fd9-4f38-a979-c5860f453944
 id: 86f258e4-f1ef-4e33-8dd8-fce88161e748
-slug: build-the-leap-week-registration-and-referral-system-
+slug: build-the-leap-week-registration-and-referral-system
 title: Build the Leap Week Registration and Referral System
 authors:
   - name: Bryant Gillespie
