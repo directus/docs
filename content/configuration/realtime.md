@@ -25,7 +25,7 @@ It's recommended to keep the `WEBSOCKETS_HEARTBEAT_PERIOD` between 30 and 120 se
 | `WEBSOCKETS_REST_PATH`         | The URL path at which the WebSocket endpoint will be available.                                        | `/websocket`  |
 | `WEBSOCKETS_REST_CONN_LIMIT`   | How many simultaneous connections are allowed.                                                         | `Infinity`    |
 | `WEBSOCKETS_REST_AUTH`         | The method of authentication to require for this connection. One of `public`, `handshake` or `strict`. | `handshake`   |
-| `WEBSOCKETS_REST_AUTH_TIMEOUT` | The amount of time in seconds to wait before closing an unauthenticated connection.                    | 30            |
+| `WEBSOCKETS_REST_AUTH_TIMEOUT` | The amount of time in seconds to wait before closing an unauthenticated connection.                    | 10            |
 
 ::callout{icon="i-lucide-book-open" color="primary" to="/guides/realtime/authentication"}
 Read more about different authentication methods with Directus Realtime.
@@ -39,7 +39,7 @@ Read more about different authentication methods with Directus Realtime.
 | `WEBSOCKETS_GRAPHQL_PATH`         | The URL path at which the GraphQL Subscriptions endpoint will be available.                            | `/graphql`    |
 | `WEBSOCKETS_GRAPHQL_CONN_LIMIT`   | How many simultaneous connections are allowed.                                                         | `Infinity`    |
 | `WEBSOCKETS_GRAPHQL_AUTH`         | The method of authentication to require for this connection. One of `public`, `handshake` or `strict`. | `handshake`   |
-| `WEBSOCKETS_GRAPHQL_AUTH_TIMEOUT` | The amount of time in seconds to wait before closing an unauthenticated connection.                    | 30            |
+| `WEBSOCKETS_GRAPHQL_AUTH_TIMEOUT` | The amount of time in seconds to wait before closing an unauthenticated connection.                    | 10            |
 
 
 ::callout{icon="i-lucide-book-open" color="primary" to="/guides/realtime/authentication"}
