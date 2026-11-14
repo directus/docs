@@ -27,9 +27,9 @@ The docs site includes an optional AI Assistant for deploy previews and producti
 
 ## 🤔 Community Help
 
-- [Community Platform](https://community.directus.io) (Questions, Live Discussions)
+- [Community Platform](https://community.directus.com) (Questions, Live Discussions)
 - [GitHub Issues](https://github.com/directus/docs/issues) (Report Bugs)
-- [Roadmap](https://roadmap.directus.io) (Roadmap & Feature Requests)
+- [Roadmap](https://roadmap.directus.com) (Roadmap & Feature Requests)
 
 <br />
 
