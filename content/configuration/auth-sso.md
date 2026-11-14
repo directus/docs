@@ -25,9 +25,9 @@ For each of the auth providers listed, you must provide the following configurat
 
 ::callout{icon="i-lucide-info"}
 **Data Studio login**  
-The Data Studio login page only lists SSO providers configured with `AUTH_<PROVIDER>_MODE=session` (the default). Providers using `cookie` mode are hidden from the login screen and filtered out of the `/auth` provider list, because they are intended for external applications that consume refresh tokens rather than the Data Studio session cookie.
+The Data Studio login page only lists `oauth2`, `openid`, and `saml` providers configured with `AUTH_<PROVIDER>_MODE=session` (the default). Providers using `cookie` mode are hidden from the login screen, because they are intended for external applications that consume refresh tokens rather than the Data Studio session cookie. The Data Studio requests `GET /auth?sessionOnly`, which excludes them. `GET /auth` without that parameter still returns them.
 
-The `/auth/login/<provider>` flow still works for `cookie` mode providers. If an SSO button is missing from the login page, confirm the provider is set to `session` mode.
+The `/auth/login/<provider>` flow still works for `cookie` mode providers. If an SSO button is missing from the login page, confirm the provider is set to `session` mode and that your license includes SSO.
 ::
 
 ::callout{icon="i-lucide-info"}
