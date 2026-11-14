@@ -18,7 +18,7 @@ In the Data Studio, files will automatically be uploaded to the first configured
 
 | Variable            | Description                                                                                   | Default Value |
 | ------------------- | --------------------------------------------------------------------------------------------- | ------------- |
-| `STORAGE_LOCATIONS` | A comma separated list of storage locations. You can use any names you'd like for these keys. | `local`       |
+| `STORAGE_LOCATIONS` | A comma-separated list of storage locations. You can use any names you'd like for these keys. | `local`       |
 
 For each of the storage locations listed, you must provide the following configuration (variable name must be uppercase in these options):
 
@@ -153,15 +153,16 @@ the storage driver(s) being used.
 
 ## Assets
 
-| Variable                                 | Description                                                                                                                          | Default Value |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
-| `ASSETS_CACHE_TTL`                       | How long assets will be cached for in the browser. Sets the `max-age` value of the `Cache-Control` header.                           | `30d`         |
-| `ASSETS_CACHE_REVALIDATE`                | When enabled, sets `Cache-Control: max-age=0, must-revalidate` to force CDNs to revalidate assets on every request.                  | `false`       |
-| `ASSETS_TRANSFORM_MAX_CONCURRENT`        | How many file transformations can be done simultaneously.                                                                            | `25`          |
-| `ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION`   | The max pixel dimensions size (width/height) that is allowed to be transformed.                                                      | `6000`        |
-| `ASSETS_TRANSFORM_TIMEOUT`               | Max time spent trying to transform an asset.                                                                                         | `7500ms`      |
-| `ASSETS_TRANSFORM_MAX_OPERATIONS`        | The max number of transform operations that is allowed to be processed (excludes saved presets).                                     | `5`           |
-| `ASSETS_INVALID_IMAGE_SENSITIVITY_LEVEL` | Level of sensitivity to invalid images. See the [`sharp.failOn`](https://sharp.pixelplumbing.com/api-constructor#parameters) option. | `warning`     |
+| Variable                                      | Description                                                                                                                          | Default Value |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
+| `ASSETS_CACHE_TTL`                            | How long assets will be cached for in the browser. Sets the `max-age` value of the `Cache-Control` header.                           | `30d`         |
+| `ASSETS_CACHE_REVALIDATE`                     | When enabled, sets `Cache-Control: max-age=0, must-revalidate` to force CDNs to revalidate assets on every request.                  | `false`       |
+| `ASSETS_TRANSFORM_MAX_CONCURRENT`             | How many file transformations can be done simultaneously.                                                                            | `25`          |
+| `ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION`        | The max pixel dimensions size (width/height) that is allowed to be transformed.                                                      | `6000`        |
+| `ASSETS_TRANSFORM_IMAGE_MAX_OUTPUT_DIMENSION` | The max pixel dimensions size (width/height) that a transformation is allowed to output.                                             | `6000`        |
+| `ASSETS_TRANSFORM_TIMEOUT`                    | Max time spent trying to transform an asset.                                                                                         | `7500ms`      |
+| `ASSETS_TRANSFORM_MAX_OPERATIONS`             | The max number of transform operations that is allowed to be processed (excludes saved presets).                                     | `5`           |
+| `ASSETS_INVALID_IMAGE_SENSITIVITY_LEVEL`      | Level of sensitivity to invalid images. See the [`sharp.failOn`](https://sharp.pixelplumbing.com/api-constructor#parameters) option. | `warning`     |
 
 ::callout{icon="material-symbols:info-outline"}
 
@@ -169,12 +170,29 @@ When enabling `ASSETS_CACHE_REVALIDATE`, CDNs will revalidate assets on every re
 
 ::
 
+::callout{icon="i-lucide-triangle-alert" color="warning"}
+**Transformations and resource usage**
+
 Image transformations can be heavy on memory usage. If you're using a system with 1GB or less available memory, we recommend lowering the allowed concurrent transformations to prevent you from overflowing your server.
+
+Two variables bound the pixel dimensions of a transformation:
+
+- `ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION` limits the source image. A request to transform a larger image is rejected.
+- `ASSETS_TRANSFORM_IMAGE_MAX_OUTPUT_DIMENSION` limits what a transformation is allowed to produce. A transformation projecting a larger width or height is rejected with an [`ILLEGAL_ASSET_TRANSFORMATION`](/guides/connect/errors) error.
+
+The output limit applies at every step of a transformation, not only to the final dimensions. A transformation that scales an image up to 10000px and then back down to 2000px is still rejected, because each step is fully applied before the next one runs. Operations that leave the dimensions unchanged, such as `blur`, are checked too, because they still run against the full image and consume CPU.
+
+A single 6000x6000 result holds up to 144MB in memory before it is encoded, and 25 of those at the default `ASSETS_TRANSFORM_MAX_CONCURRENT` add up to 3.6GB. Lower `ASSETS_TRANSFORM_IMAGE_MAX_OUTPUT_DIMENSION` if you want transformed output bounded more tightly than the images you accept.
+
+See [Transform Files](/guides/files/transform) for the parameters and presets that these limits apply to.
+
+::
 
 ## Imports
 
-| Variable                  | Description                                           | Default Value   |
-| ------------------------- | ----------------------------------------------------- | --------------- |
-| `IMPORT_EXPORT_NAMESPACE` | Redis namespace for storing import/export information | `import-export` |
-| `IMPORT_TIMEOUT`          | Allowed duration for importing files                  | `1m`            |
-| `IMPORT_CONCURRENT_MAX`   | Maximum simultainous imports                          | `10`            |
+| Variable                  | Description                                                                                                          | Default Value            |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `IMPORT_EXPORT_NAMESPACE` | Redis namespace for storing import/export information.                                                               | `directus:import-export` |
+| `IMPORT_TIMEOUT`          | Allowed duration for importing files. Shared across receiving the upload and parsing it.                             | `1h`                     |
+| `IMPORT_MAX_CONCURRENCY`  | Maximum simultaneous imports.                                                                                        | `20`                     |
+| `IMPORT_MAX_FILE_SIZE`    | Maximum size of an uploaded import file. See [Security & Limits](/configuration/security-limits).                     | `50mb`                   |

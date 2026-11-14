@@ -169,6 +169,10 @@ export default defineAppConfig({
 						icon: 'directus-deployments',
 					},
 					{
+						label: 'Environment Sync',
+						to: '/guides/environment-sync',
+					},
+					{
 						label: 'Security',
 						to: '/guides/security/best-practices',
 						icon: 'i-lucide-shield-check',
@@ -294,7 +298,7 @@ export default defineAppConfig({
 			{
 				icon: 'i-lucide-users',
 				label: 'Join our Community Platform.',
-				to: 'https://community.directus.io',
+				to: 'https://community.directus.com',
 			},
 			{
 				icon: 'i-lucide-rocket',
