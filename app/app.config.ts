@@ -343,7 +343,7 @@ export default defineAppConfig({
 			},
 			{
 				icon: 'simple-icons:discord',
-				to: 'https://directus.chat/',
+				to: 'https://discord.com/invite/directus',
 			},
 			{
 				icon: 'simple-icons:github',
