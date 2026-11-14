@@ -34,7 +34,7 @@ This page documents environment variables. For in-app security configuration (pe
 | `USER_REGISTER_URL_ALLOW_LIST`      | List of URLs that can be used as `verification_url` in the `/users/register` endpoint.                                                                                                  |                           |
 | `IP_TRUST_PROXY`                    | Settings for the Express.js trust proxy setting.                                                                                                                                        | false                     |
 | `IP_CUSTOM_HEADER`                  | What custom request header to use for the IP address.                                                                                                                                   | false                     |
-| `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny importing files from these IP addresses / IP ranges / CIDR blocks. Use `0.0.0.0` to match any local IP address.                                                                    | `0.0.0.0,169.254.169.254` |
+| `IMPORT_IP_DENY_LIST`<sup>[2]</sup> | Deny outbound requests, such as file imports and the **Request URL** flow operation, to these IP addresses, IP ranges (`10.0.0.1-10.0.0.50`), or CIDR blocks (`10.0.0.0/8`). Use `0.0.0.0` to match any local IP address. | `0.0.0.0,169.254.169.254` |
 | `HSTS_ENABLED`                      | Enable the Strict-Transport-Security policy header. When enabled, Directus will send the `Strict-Transport-Security: max-age=15552000; includeSubDomains` header on all responses.      | `false`                   |
 | `HSTS_*`                            | Custom overrides for the Strict-Transport-Security header. See [helmet's documentation](https://helmetjs.github.io). Example: `HSTS_MAX_AGE=63072000`                                   |                           |
 
@@ -42,7 +42,7 @@ This page documents environment variables. For in-app security configuration (pe
 restarts or horizontally scaled deployments. Must be explicitly set to a secure random value in production.
 
 <sup>[2]</sup> localhost can get resolved to `::1` as well as `127.0.0.1` depending on the system - ensure to include
-both if you want to specifically block localhost.
+both if you want to specifically block localhost. Wildcards (`10.0.0.*`), netmasks (`10.0.0.0/255.255.255.0`), short ranges (`10.0.0.1-50`), and malformed prefixes (`10.0.0.0/ 24`) are invalid. Directus checks `IMPORT_IP_DENY_LIST` each time it makes an outbound request. If any entry is invalid, Directus logs a warning and denies every outbound request.
 
 Browsers are pretty strict when it comes to third-party cookies. If you're running into unexpected problems when running your project and API on different domains, make sure to verify your configuration for `REFRESH_TOKEN_COOKIE_NAME`, `REFRESH_TOKEN_COOKIE_SECURE`, and `REFRESH_TOKEN_COOKIE_SAME_SITE`.
 
@@ -68,15 +68,15 @@ Modifying `HASH_MEMORY_COST` and/or `HASH_PARALLELISM` will affect the amount of
 
 ## CORS
 
-| Variable               | Description                                                                                                                                             | Default Value                |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| `CORS_ENABLED`         | Whether or not to enable the CORS headers.                                                                                                              | `false`                      |
-| `CORS_ORIGIN`          | Value for the `Access-Control-Allow-Origin` header. Use `true` to match the Origin header, or provide a domain or a CSV of domains for specific access. | `false`                      |
-| `CORS_METHODS`         | Value for the `Access-Control-Allow-Methods` header.                                                                                                    | `GET,POST,PATCH,DELETE`      |
-| `CORS_ALLOWED_HEADERS` | Value for the `Access-Control-Allow-Headers` header.                                                                                                    | `Content-Type,Authorization` |
-| `CORS_EXPOSED_HEADERS` | Value for the `Access-Control-Expose-Headers` header.                                                                                                   | `Content-Range`              |
-| `CORS_CREDENTIALS`     | Whether or not to send the `Access-Control-Allow-Credentials` header.                                                                                   | `true`                       |
-| `CORS_MAX_AGE`         | Value for the `Access-Control-Max-Age` header.                                                                                                          | `18000`                      |
+| Variable               | Description                                                                                                                                                              | Default Value                |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------- |
+| `CORS_ENABLED`         | Whether or not to enable the CORS headers.                                                                                                                               | `false`                      |
+| `CORS_ORIGIN`          | Value for the `Access-Control-Allow-Origin` header. Use `true` to match the Origin header, or provide a domain or a comma-separated list of domains for specific access. | `false`                      |
+| `CORS_METHODS`         | Value for the `Access-Control-Allow-Methods` header.                                                                                                                     | `GET,POST,PATCH,DELETE`      |
+| `CORS_ALLOWED_HEADERS` | Value for the `Access-Control-Allow-Headers` header.                                                                                                                     | `Content-Type,Authorization` |
+| `CORS_EXPOSED_HEADERS` | Value for the `Access-Control-Expose-Headers` header.                                                                                                                    | `Content-Range`              |
+| `CORS_CREDENTIALS`     | Whether or not to send the `Access-Control-Allow-Credentials` header.                                                                                                    | `true`                       |
+| `CORS_MAX_AGE`         | Value for the `Access-Control-Max-Age` header.                                                                                                                           | `18000`                      |
 
 For more details about each configuration variable, please see the [CORS package documentation](https://www.npmjs.com/package/cors#configuration-options).
 
@@ -164,6 +164,18 @@ You can use the built-in email rate-limiter for flow operations. Unlike the queu
 | `RATE_LIMITER_EMAIL_FLOWS_DURATION`      | The time window in seconds in which the points are counted.            | `60`          |
 | `RATE_LIMITER_EMAIL_FLOWS_ERROR_MESSAGE` | A custom error message which is appended to the rate limit error.      | `''`          |
 
+### WebSocket Rate Limiting
+
+You can rate limit the number of messages a client can send over a WebSocket connection. The WebSocket message rate limiter inherits all `RATE_LIMITER_*` settings (store, points, duration, Redis connection) and is enabled by the same `RATE_LIMITER_ENABLED` flag. There is no separate enable flag.
+
+Any `RATE_LIMITER_WEBSOCKETS_*` variable overrides the matching `RATE_LIMITER_*` value for WebSocket connections only.
+
+| Variable                             | Description                                                                                                                                  | Default Value               |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| `RATE_LIMITER_WEBSOCKETS_POINTS`     | Overrides `RATE_LIMITER_POINTS` for WebSocket connections - allowed messages per client per window.                                          | Inherits `RATE_LIMITER_POINTS`   |
+| `RATE_LIMITER_WEBSOCKETS_DURATION`   | Overrides `RATE_LIMITER_DURATION` for WebSocket connections - window length in seconds.                                                      | Inherits `RATE_LIMITER_DURATION` |
+| `RATE_LIMITER_WEBSOCKETS_KEY_PREFIX` | Prefix for the WebSocket limiter's Redis keys. Override this when a shared Redis instance scopes each project's access by key prefix.         | `websocket`                 |
+
 ## Limits & Optimizations
 
 Allows you to configure hard technical limits, to prevent abuse and optimize for your particular server environment.
@@ -186,5 +198,6 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `QUERYSTRING_MAX_PARSE_DEPTH` | The maximum object depth when parsing URL query parameters using the querystring format                                            | `10`          |
 | `QUERYSTRING_ARRAY_LIMIT`     | The array limit when parsing URL query parameters using the querystring format                                                     | `500`         |
 | `MAX_IMPORT_ERRORS`           | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`        |
+| `IMPORT_MAX_FILE_SIZE`        | The maximum size of a file uploaded to the data import, schema diff and schema apply endpoints . Accepts number of bytes, or human readable string. Returns `413` when exceeded. | `50mb`        |
 
 <sup>[1]</sup> Defaults to `auth_login`, `auth_refresh`, `auth_password_request`, `auth_password_reset`, `users_register`, `users_register_verify`, `users_invite_accept`, `users_me_tfa_generate`, `users_me_tfa_enable`, `users_me_tfa_disable`, and `utils_cache_clear`. Setting your own list overrides these.

@@ -11,7 +11,7 @@ description: Configuration for email settings and templates.
 | Variable             | Description                                                              | Default Value |
 | -------------------- | ------------------------------------------------------------------------ | ------------- |
 | `EMAIL_VERIFY_SETUP` | Check if email setup is properly configured.                             | `true`        |
-| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`. | `sendmail`    |
+| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`, `mailtrap`. | `sendmail`    |
 
 Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 
@@ -53,9 +53,9 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide additional variables.
 
 #### IAM Permissions
 
-Directus sends mail through Amazon SES using the AWS SES v2 API (via Nodemailer). The IAM user or role for your SES credentials needs permission to call `ses:SendRawEmail`.
+Directus sends mail through Amazon SES using the AWS SES v2 API (via Nodemailer). The IAM user or role for your SES credentials needs permission to call `ses:SendEmail` and `ses:SendRawEmail`.
 
-A minimal policy looks like:
+The following policy grants the minimum required access:
 
 ```json
 {
@@ -63,7 +63,7 @@ A minimal policy looks like:
 	"Statement": [
 		{
 			"Effect": "Allow",
-			"Action": "ses:SendRawEmail",
+			"Action": ["ses:SendEmail", "ses:SendRawEmail"],
 			"Resource": [
 				"arn:aws:ses:REGION:ACCOUNT_ID:identity/YOUR_VERIFIED_IDENTITY"
 			]
@@ -76,10 +76,23 @@ Replace `REGION`, `ACCOUNT_ID`, and `YOUR_VERIFIED_IDENTITY` with your SES regio
 
 When `EMAIL_VERIFY_SETUP` is `true` (the default), `/server/health` calls Nodemailer's `verify()` method. That check attempts a test send from `invalid@invalid`. For the health check to succeed with a least-privilege policy, either:
 
-- also allow `ses:SendRawEmail` on `arn:aws:ses:REGION:ACCOUNT_ID:identity/invalid@invalid` (SES should then reject the address; Nodemailer treats `MessageRejected` / `InvalidParameterValue` as a successful verification), or
+- also allow `ses:SendEmail` and `ses:SendRawEmail` on `arn:aws:ses:REGION:ACCOUNT_ID:identity/invalid@invalid` (SES should then reject the address; Nodemailer treats `MessageRejected` / `InvalidParameterValue` as a successful verification), or
 - set `EMAIL_VERIFY_SETUP=false` to skip the email health check.
 
 Without one of those options, health checks can fail with an opaque internal error even when normal sends from `EMAIL_FROM` work.
+
+### Mailtrap
+
+Directus sends through the official [`mailtrap`](https://www.npmjs.com/package/mailtrap) package, which supports live sending, the sandbox testing inbox, and the bulk stream.
+
+| Variable                       | Description                                                                                          | Default Value |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------- | ------------- |
+| `EMAIL_MAILTRAP_TOKEN`         | An API token from [your Mailtrap account](https://mailtrap.io/api-tokens). Required.                 |               |
+| `EMAIL_MAILTRAP_SANDBOX`       | Send to a testing inbox instead of real recipients. Requires `EMAIL_MAILTRAP_TEST_INBOX_ID`.         | `false`       |
+| `EMAIL_MAILTRAP_TEST_INBOX_ID` | The testing inbox to send to when `EMAIL_MAILTRAP_SANDBOX` is enabled.                               |               |
+| `EMAIL_MAILTRAP_BULK`          | Send through the bulk stream. Cannot be combined with `EMAIL_MAILTRAP_SANDBOX`.                      | `false`       |
+
+`EMAIL_MAILTRAP_TOKEN` is required. Directus throws an error when it creates the transport without a token, because the Mailtrap transport cannot verify its configuration ahead of the first send.
 
 ## Email Templates
 
