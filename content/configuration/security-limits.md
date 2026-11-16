@@ -188,16 +188,31 @@ Allows you to configure hard technical limits, to prevent abuse and optimize for
 | `USERS_APP_ACCESS_LIMIT`      | How many active users with access to the Data Studio are allowed.                                                                  | `Infinity`    |
 | `USERS_API_ACCESS_LIMIT`      | How many active API access users are allowed.                                                                                      | `Infinity`    |
 | `GRAPHQL_QUERY_TOKEN_LIMIT`   | How many GraphQL query tokens will be parsed.                                                                                      | 5000          |
+| `GRAPHQL_QUERY_SELECTION_LIMIT` | How many fields a GraphQL operation can select in total, counted after its fragments are expanded.                              | 10000         |
 | `GRAPHQL_SINGLE_USE_MUTATIONS` | Sensitive system mutations that are limited to one use per GraphQL request.                                                        | See <sup>[1]</sup> |
-| `MAX_PAYLOAD_SIZE`            | Controls the maximum request body size. Accepts number of bytes, or human readable string.                                         | `1mb`         |
+| `MAX_PAYLOAD_SIZE`            | Controls the maximum request body size, and the maximum size of an incoming WebSocket message. Accepts number of bytes, or human readable string. | `1mb`         |
 | `MAX_BATCH_MUTATION`          | The maximum number of items for batch mutations when creating, updating and deleting.                                              | `Infinity`    |
 | `MAX_RELATIONAL_DEPTH`        | The maximum depth when filtering / querying relational fields, with a minimum value of `2`.                                        | `10`          |
 | `MAX_JSON_QUERY_DEPTH`        | The maximum json path depth when querying JSON fields.                                                                             | `10`          |
 | `QUERY_LIMIT_DEFAULT`         | The default query limit used when not defined in the API request.                                                                  | `100`         |
 | `QUERY_LIMIT_MAX`             | The maximum query limit accepted on API requests.                                                                                  | `-1`          |
+| `QUERY_FILTER_MAX_NODES`      | The maximum number of nodes a `filter` can contain, counted across a whole query.                                                    | `10000`       |
+| `QUERY_FILTER_MAX_DEPTH`      | The maximum nesting depth of a `filter`, and of `deep`.                                                                            | `50`          |
 | `QUERYSTRING_MAX_PARSE_DEPTH` | The maximum object depth when parsing URL query parameters using the querystring format                                            | `10`          |
 | `QUERYSTRING_ARRAY_LIMIT`     | The array limit when parsing URL query parameters using the querystring format                                                     | `500`         |
 | `MAX_IMPORT_ERRORS`           | The maximum number of validation errors permitted while importing records before the process is cancelled and the errors returned. | `1000`        |
 | `IMPORT_MAX_FILE_SIZE`        | The maximum size of a file uploaded to the data import, schema diff and schema apply endpoints . Accepts number of bytes, or human readable string. Returns `413` when exceeded. | `50mb`        |
 
 <sup>[1]</sup> Defaults to `auth_login`, `auth_refresh`, `auth_password_request`, `auth_password_reset`, `users_register`, `users_register_verify`, `users_invite_accept`, `users_me_tfa_generate`, `users_me_tfa_enable`, `users_me_tfa_disable`, and `utils_cache_clear`. Setting your own list overrides these.
+
+### Query Complexity
+
+`QUERY_FILTER_MAX_NODES`, `QUERY_FILTER_MAX_DEPTH`, and `GRAPHQL_QUERY_SELECTION_LIMIT` bound the work a single request can cause before it is executed. A request that exceeds one of them is rejected with an [`INVALID_QUERY`](/guides/connect/errors) error naming the limit it hit.
+
+Nodes are counted across a whole query rather than per parameter. Every object, array, and value in a `filter` counts as one node, and a filter nested under `deep` spends from the same allowance instead of starting over. A filter such as `{"id":{"_in":[...]}}` costs three nodes plus one node per value in `_in`.
+
+Depth is counted per filter, and separately for the nesting of `deep` itself. The array that `_and` and `_or` wrap their operands in is not a level of its own, so grouping rules does not change their depth.
+
+`GRAPHQL_QUERY_SELECTION_LIMIT` is checked during GraphQL validation, before any resolver runs. Fragments are expanded first, so a short document that expands into a large selection is rejected on its expanded size.
+
+Set any of these variables to `Infinity` to opt out of the limit. If a value is not a positive number, Directus logs a warning and uses the default.
