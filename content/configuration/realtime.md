@@ -27,6 +27,10 @@ It's recommended to keep the `WEBSOCKETS_HEARTBEAT_PERIOD` between 30 and 120 se
 | `WEBSOCKETS_REST_AUTH`         | The method of authentication to require for this connection. One of `public`, `handshake` or `strict`. | `handshake`   |
 | `WEBSOCKETS_REST_AUTH_TIMEOUT` | The amount of time in seconds to wait before closing an unauthenticated connection.                    | 10            |
 
+::callout{icon="i-lucide-info"}
+Incoming WebSocket messages are capped by `MAX_PAYLOAD_SIZE` (default `1mb`), the same limit used for REST request bodies. A larger message closes the connection with code `1009`. See [Security & Limits](/configuration/security-limits#limits--optimizations).
+::
+
 ::callout{icon="i-lucide-book-open" color="primary" to="/guides/realtime/authentication"}
 Read more about different authentication methods with Directus Realtime.
 ::
