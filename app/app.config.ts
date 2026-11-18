@@ -342,8 +342,12 @@ export default defineAppConfig({
 				to: 'https://x.com/directus',
 			},
 			{
+				icon: 'i-lucide-messages-square',
+				to: 'https://community.directus.com',
+			},
+			{
 				icon: 'simple-icons:discord',
-				to: 'https://directus.chat/',
+				to: 'https://discord.com/invite/directus',
 			},
 			{
 				icon: 'simple-icons:github',

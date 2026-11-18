@@ -3,8 +3,7 @@ definePageMeta({
 	layout: 'docs',
 });
 
-const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () =>
+const { data: page } = await useAsyncData('landing', () =>
 	queryCollection('landing').path('/').first(),
 );
 

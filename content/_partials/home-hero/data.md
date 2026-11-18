@@ -1,6 +1,6 @@
 ```typescript
 import { createDirectus, rest, readItems } from '@directus/sdk';
-const directus = createDirectus('http://directus.example.com');
+const directus = createDirectus('http://directus.example.com').with(rest());
 
 const item = await directus.request(
 	readItems('articles', {
