@@ -34,3 +34,25 @@ This includes:
 **Note**  
 `DB_SSL__CA_FILE` may be preferred to load the CA directly from a file.
 ::
+
+## Self-Signed Certificates
+
+Managed databases (for example Heroku Managed PostgreSQL or DigitalOcean Managed PostgreSQL) often enforce SSL and provide their own Certificate Authority (CA). Because that CA is not in Node.js' default trust store, connections can fail with `SELF_SIGNED_CERT_IN_CHAIN`.
+
+To trust the provider CA while still verifying certificates:
+
+1. Download the database CA certificate in PEM format.
+2. Configure Directus based on how you configure the database:
+   - With separate `DB_HOST`, `DB_USER`, and other database variables, use either `DB_SSL__CA_FILE` (the absolute path to the PEM file, preferred) or `DB_SSL__CA` (the PEM contents as a string).
+   - With `DB_CONNECTION_STRING`, add `sslrootcert=/absolute/path/to/ca.pem&sslmode=verify-full` to the connection string, or use `NODE_EXTRA_CA_CERTS`.
+3. Keep certificate verification enabled (`DB_SSL__REJECT_UNAUTHORIZED` unset or `true`).
+
+Alternatively, add the CA to the Node.js trust store for the whole process:
+
+```
+NODE_EXTRA_CA_CERTS="/absolute/path/to/db-ca.crt"
+```
+
+::callout{icon="i-lucide-triangle-alert" color="warning"}
+Do not set `DB_SSL__REJECT_UNAUTHORIZED`, `rejectUnauthorized`, or `NODE_TLS_REJECT_UNAUTHORIZED` to `false` in production. That disables TLS certificate verification and weakens the security of the entire application. Prefer trusting the provider CA with `DB_SSL__CA_FILE` / `DB_SSL__CA`, connection-string parameters, or `NODE_EXTRA_CA_CERTS`.
+::
